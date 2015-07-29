@@ -1,9 +1,10 @@
 {
-  "name": "Trybe",
+  "name": "trybe",
   "version": "0.0.1",
+  "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "node_modules/react-native/packager/packager.sh --reset-cache"
   },
   "dependencies": {
     "react-native": "^0.8.0"
