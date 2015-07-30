@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var Feed = require('./client/components/feed/feed');
+var Feed = require('./client/scripts/components/feed/feed');
 
 var {
   AppRegistry,

@@ -1,8 +1,8 @@
 'use strict';
 
-var React = require('react');
-var feedStore = require('../stores/feedStore');
-var feedActions = require('../actions/feedActions');
+var React = require('react-native');
+var feedStore = require('../../stores/feedStore');
+var feedActions = require('../../actions/feedActions');
 
 var {
   AppRegistry,
@@ -30,8 +30,8 @@ var Feed = React.createClass({
   },
   render: function(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
+      <View>
+        <Text>
           Feed
         </Text>
       </View>

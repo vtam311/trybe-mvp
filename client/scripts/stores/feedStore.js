@@ -1,15 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 11:34:36
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-07-30 12:05:14
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants'); //
-var objectAssign = require('react/lib/Object.assign');
+// var objectAssign = require('react/lib/Object.assign');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -22,7 +22,7 @@ var addCard = function(card){
   _store.cards.push(card);
 };
 
-var feedStore = objectAssign({}, EventEmitter.prototype, {
+var feedStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
