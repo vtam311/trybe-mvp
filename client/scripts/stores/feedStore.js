@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 12:34:48
+* @Last Modified time: 2015-07-30 13:04:41
 */
 
 'use strict';
@@ -14,7 +14,10 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  cards: []
+  cards: [
+    {title: 'Card 1 Title', body: 'Card 1 Body', footer: 'Card 1 Footer'},
+    {title: 'Card 2 Title', body: 'Card 2 Body', footer: 'Card 2 Footer'},
+  ]
 };
 
 var addCard = function(card){

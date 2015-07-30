@@ -3,9 +3,9 @@
 var React = require('react-native');
 var feedStore = require('../../stores/feedStore');
 var feedActions = require('../../actions/feedActions');
+var Card = require('./feedCard');
 
 var {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -29,11 +29,20 @@ var Feed = React.createClass({
     });
   },
   render: function(){
+    if (this.state.cards) {
+      var cards = this.state.cards
+      .map(function (card, idx) {
+        return ([
+          /* jshint ignore:start */
+          <Card key={idx} index={idx} card={card} />,
+          /* jshint ignore:end */
+        ]);
+      });
+    }
+
     return (
       <View>
-        <Text>
-          Feed
-        </Text>
+        {cards}
       </View>
     );
   }
