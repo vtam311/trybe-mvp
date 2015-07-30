@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 14:25:05
+* @Last Modified time: 2015-07-30 14:29:14
 */
 
 'use strict';
@@ -20,8 +20,8 @@ var FeedCardBody = React.createClass({
 
   render: function(){
     var type = this.props.type;
-    var exercises = this.props.exercises;
     var rounds = this.props.rounds;
+    var exercises = this.props.exercises;
 
     return (
       /* jshint ignore:start */

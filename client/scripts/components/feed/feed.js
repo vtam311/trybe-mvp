@@ -33,7 +33,7 @@ var Feed = React.createClass({
   render: function(){
     if (this.state.cards) {
       var cards = this.state.cards
-      .map(function (card, idx) {
+      .map(function(card, idx) {
         return ([
           /* jshint ignore:start */
           <FeedCard index={idx} card={card} />,
