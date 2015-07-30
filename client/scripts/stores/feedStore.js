@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 13:04:41
+* @Last Modified time: 2015-07-30 14:19:35
 */
 
 'use strict';
@@ -15,8 +15,26 @@ var CHANGE_EVENT = 'change';
 
 var _store = {
   cards: [
-    {title: 'Card 1 Title', body: 'Card 1 Body', footer: 'Card 1 Footer'},
-    {title: 'Card 2 Title', body: 'Card 2 Body', footer: 'Card 2 Footer'},
+    {
+      username: 'Robb Wolf',
+      activity: 'assigned today\'s workout',
+      createdAt: '3 hours ago',
+      trybe: 'NorCal Strength & Conditioning CF On-Ramp',
+      workout: {
+        id: 23,
+        type: 'timed circuit',
+        time: null,
+        rounds: 15,
+        exercises: [
+          {name: 'Pull Ups', reps: '5', load: null},
+          {name: 'Push Ups', reps: '10', load: null},
+          {name: 'Squats', reps: '15', load: null}
+        ],
+        finalResult: null,
+      },
+      likes: 89,
+      comments: 22
+    }
   ]
 };
 

@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+
+//Load components
 var Feed = require('./client/scripts/components/feed/feed');
 
 var {
@@ -33,16 +35,6 @@ var Trybe = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to trybe
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, join a trybe
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
         <Feed/>
       </View>
     );
