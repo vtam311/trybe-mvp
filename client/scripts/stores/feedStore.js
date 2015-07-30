@@ -1,15 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-07-30 12:05:14
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-07-30 12:34:48
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants'); //
-// var objectAssign = require('react/lib/Object.assign');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
