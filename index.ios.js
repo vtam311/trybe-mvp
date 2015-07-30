@@ -1,10 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
+var Feed = require('./client/components/feed/feed');
+
 var {
   AppRegistry,
   StyleSheet,
@@ -36,15 +34,16 @@ var Trybe = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to trybe
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          To get started, join a trybe
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <Feed/>
       </View>
     );
   }
