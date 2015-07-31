@@ -4,6 +4,8 @@ var React = require('react-native');
 
 //Load components
 var Feed = require('./client/scripts/components/feed/feed');
+var feedActions = require('./client/scripts/actions/feedActions');
+var feedStore = require('./client/scripts/stores/feedStore');
 
 var {
   AppRegistry,
@@ -32,10 +34,31 @@ var styles = StyleSheet.create({
 });
 
 var Trybe = React.createClass({
+  componentWillMount: function(){
+    feedStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function(){
+    feedStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
+    this.setState({
+      cards: feedStore.getCards()
+    });
+  },
+  getInitialState: function(){
+    var feedView = 1; //temporary placeholder
+
+    return {
+      cards: feedActions.getCards(feedView)
+      // cards: feedStore.getCards()
+    };
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
-        <Feed/>
+        <Text>trybe</Text>
+        <Feed cards={this.state.cards}/>
       </View>
     );
   }
