@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 20:04:24
+* @Last Modified time: 2015-07-30 21:14:49
 */
 
 'use strict';
@@ -14,7 +14,29 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  cards: []
+  // cards: []
+  cards: [
+      {
+        username: 'feedStore Default',
+        activity: 'assigned today\'s workout',
+        createdAt: '3 hours ago',
+        trybe: 'NorCal Strength & Conditioning CF On-Ramp',
+        workout: {
+          id: 23,
+          type: 'timed circuit',
+          time: null,
+          rounds: 15,
+          exercises: [
+            {name: 'Pull Ups', reps: '5', load: null},
+            {name: 'Push Ups', reps: '10', load: null},
+            {name: 'Squats', reps: '15', load: null}
+          ],
+          finalResult: null,
+        },
+        likes: 89,
+        comments: 22
+      }
+    ]
 };
 
 var setCards = function(cards){

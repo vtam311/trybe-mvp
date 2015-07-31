@@ -34,31 +34,12 @@ var styles = StyleSheet.create({
 });
 
 var Trybe = React.createClass({
-  componentWillMount: function(){
-    feedStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function(){
-    feedStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      cards: feedStore.getCards()
-    });
-  },
-  getInitialState: function(){
-    var feedView = 1; //temporary placeholder
-
-    return {
-      cards: feedActions.getCards(feedView)
-      // cards: feedStore.getCards()
-    };
-  },
 
   render: function() {
     return (
       <View style={styles.container}>
         <Text>trybe</Text>
-        <Feed cards={this.state.cards}/>
+        <Feed store={feedStore}/>
       </View>
     );
   }

@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var feedStore = require('../../stores/feedStore');
 var feedActions = require('../../actions/feedActions');
 
 //Load components
@@ -14,25 +13,26 @@ var {
 } = React;
 
 var Feed = React.createClass({
-  // getInitialState: function(){
-  //   return {
-  //     cards: feedActions.getCards()
-  //   };
-  // },
-  // componentDidMount: function(){
-  //   feedStore.addChangeListener(this._onChange);
-  // },
-  // componentWillUnmount: function(){
-  //   feedStore.removeChangeListener(this._onChange);
-  // },
-  // _onChange: function(){
-  //   this.setState({
-  //     list: feedStore.getCards()
-  //   });
-  // },
+  getInitialState: function(){
+    return {
+      cards: this.props.store.getCards()
+    };
+  },
+  componentDidMount: function(){
+    this.props.store.addChangeListener(this._onChange);
+    feedActions.getCards();
+  },
+  componentWillUnmount: function(){
+    this.props.store.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
+    this.setState({
+      cards: this.props.store.getCards()
+    });
+  },
   render: function(){
-    if (this.props.cards) {
-      var cards = this.props.cards
+    if (this.state.cards) {
+      var cards = this.state.cards
       .map(function(card, idx) {
         return ([
           /* jshint ignore:start */
