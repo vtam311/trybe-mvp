@@ -38,7 +38,7 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  if(action.data instanceof feedEvents.SetCard) {
+  if(action.data instanceof feedEvents.SetCards) {
     setCards(action.data.cards);
       feedStore.emit(CHANGE_EVENT);
   }

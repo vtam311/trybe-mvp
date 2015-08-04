@@ -13,7 +13,7 @@ var feedEvents = {
   		this.cards = cards;
   	}
   },
-  SetCard: class SetCard {
+  SetCards: class SetCards {
   	constructor(cards) {
   		this.cards = cards;
   	}

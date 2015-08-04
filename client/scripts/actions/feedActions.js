@@ -42,7 +42,7 @@ var feedActions = {
   setCards: function(cards) {
     console.log('in feedActions, setCards called');
     AppDispatcher.handleAction({
-      data: new feedEvents.SetCard(cards)
+      data: new feedEvents.SetCards(cards)
     });
   },
   addCard: function(card){
