@@ -8,7 +8,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var feedConstants = require('../constants/feedConstants');
+var feedEvents = require('../events/feedEvents.js');
 
 //To Do: update action properties
 var feedActions = {
@@ -42,14 +42,12 @@ var feedActions = {
   setCards: function(cards) {
     console.log('in feedActions, setCards called');
     AppDispatcher.handleAction({
-      actionType: feedConstants.SET_CARDS,
-      data: cards
+      data: new feedEvents.SetCards(cards)
     });
   },
   addCard: function(card){
     AppDispatcher.handleAction({
-      actionType: feedConstants.ADD_CARD,
-      data: card
+      data: new feedEvents.AddCard(cards)
     });
   }
 };
