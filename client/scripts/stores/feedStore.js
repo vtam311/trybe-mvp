@@ -2,41 +2,19 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 21:14:49
+* @Last Modified time: 2015-07-30 20:04:24
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var feedConstants = require('../constants/feedConstants');
+var feedEvents = require('../events/feedEvents');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  // cards: []
-  cards: [
-      {
-        username: 'feedStore Default',
-        activity: 'assigned today\'s workout',
-        createdAt: '3 hours ago',
-        trybe: 'NorCal Strength & Conditioning CF On-Ramp',
-        workout: {
-          id: 23,
-          type: 'timed circuit',
-          time: null,
-          rounds: 15,
-          exercises: [
-            {name: 'Pull Ups', reps: '5', load: null},
-            {name: 'Push Ups', reps: '10', load: null},
-            {name: 'Squats', reps: '15', load: null}
-          ],
-          finalResult: null,
-        },
-        likes: 89,
-        comments: 22
-      }
-    ]
+  cards: []
 };
 
 var setCards = function(cards){
@@ -60,13 +38,9 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  switch(action.actionType){
-    case feedConstants.SET_CARDS:
-      setCards(action.data);
+  if(action.data instanceof feedEvents.SetCard) {
+    setCards(action.data.cards);
       feedStore.emit(CHANGE_EVENT);
-      break;
-    default:
-      return true;
   }
 });
 
