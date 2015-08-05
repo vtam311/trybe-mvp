@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:26
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-08-04 19:20:16
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-08-04 19:27:39
 */
 
 'use strict';
@@ -19,7 +19,7 @@ var {
   View,
 } = React;
 
-var DoWorkoutPreview = React.createClass({
+var DoWorkoutHeader = React.createClass({
 
   render: function(){
     var trybe = this.props.workout.trybe;
@@ -43,4 +43,4 @@ var DoWorkoutPreview = React.createClass({
   }
 });
 
-module.exports = DoWorkoutPreview;
+module.exports = DoWorkoutHeader;

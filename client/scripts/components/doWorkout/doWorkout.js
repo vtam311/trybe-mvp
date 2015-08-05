@@ -4,7 +4,7 @@ var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
-var DoWorkoutPreview = require('./doWorkoutPreview.js');
+var DoWorkoutHeader = require('./doWorkoutHeader.js');
 var DoWorkoutDetails = require('./doWorkoutDetails.js');
 
 var {
@@ -35,7 +35,7 @@ var DoWorkout = React.createClass({
     return (
       <View>
         <Text>Workout</Text>
-        <DoWorkoutPreview workout={this.state.workout}/>
+        <DoWorkoutHeader workout={this.state.workout}/>
         <DoWorkoutDetails workout={this.state.workout}/>
         <Text>Start</Text>
       </View>
