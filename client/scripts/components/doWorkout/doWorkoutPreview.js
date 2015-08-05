@@ -2,13 +2,16 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:26
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-04 17:54:11
+* @Last Modified time: 2015-08-04 18:24:15
 */
 
 'use strict';
 
 var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
+
+//Load components
+var DoWorkoutBar = require('./doWorkoutBar');
 
 var {
   StyleSheet,
@@ -27,10 +30,13 @@ var DoWorkoutPreview = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <Text>{trybe}</Text>
-        <Text>Day {day}</Text>
-        <Text>{workoutType}</Text>
-        <Text>{instructions}</Text>
+        <View>
+          <Text>{trybe}</Text>
+          <Text>Day {day}</Text>
+          <Text>{workoutType}</Text>
+          <Text>{instructions}</Text>
+        </View>
+        <DoWorkoutBar />
       </View>
       /* jshint ignore:end */
     );
