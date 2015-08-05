@@ -4,8 +4,9 @@ var React = require('react-native');
 
 //Load components
 var Feed = require('./client/scripts/components/feed/feed');
-var feedActions = require('./client/scripts/actions/feedActions');
 var feedStore = require('./client/scripts/stores/feedStore');
+var DoWorkout = require('./client/scripts/components/doWorkout/doWorkout');
+var doWorkoutStore = require('./client/scripts/stores/doWorkoutStore');
 
 var {
   AppRegistry,
@@ -40,6 +41,7 @@ var Trybe = React.createClass({
       <View style={styles.container}>
         <Text>trybe</Text>
         <Feed store={feedStore}/>
+        <DoWorkout store={doWorkoutStore}/>
       </View>
     );
   }
