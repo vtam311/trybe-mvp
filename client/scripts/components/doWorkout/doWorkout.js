@@ -36,9 +36,10 @@ var DoWorkout = React.createClass({
       <View>
         <Text>Workout</Text>
         <DoWorkoutPreview workout={this.state.workout}/>
+        <DoWorkoutDetails workout={this.state.workout}/>
+        <Text>Start</Text>
       </View>
     );
-        // <DoWorkoutDetails workout={this.state.workout}/>
   }
 });
 
