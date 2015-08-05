@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 14:29:14
+* @Last Modified time: 2015-08-04 16:47:08
 */
 
 'use strict';
@@ -27,7 +27,6 @@ var FeedCardBody = React.createClass({
       /* jshint ignore:start */
       <View>
         <Text>{type}</Text>
-        <Text>Rounds {rounds}</Text>
         <Text>{exercises}</Text>
       </View>
       /* jshint ignore:end */

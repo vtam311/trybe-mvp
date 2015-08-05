@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 20:04:24
+* @Last Modified time: 2015-08-04 14:29:13
 */
 
 'use strict';
@@ -19,19 +19,19 @@ var _store = {
 
 var setCards = function(cards){
   _store.cards = cards;
-  console.log('in feedStore setCards, cards now:', _store.cards);
+  // console.log('in feedStore setCards, cards now:', _store.cards);
 };
 
 var feedStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
-    console.log('in feedStore, addChangeListener called');
+    // console.log('in feedStore, addChangeListener called');
   },
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
   getCards: function(){
-    console.log('in feedStore, getCards called, cards:', _store.cards);
+    // console.log('in feedStore, getCards called, cards:', _store.cards);
     return _store.cards;
   },
 });

@@ -4,7 +4,6 @@ var React = require('react-native');
 
 //Load components
 var Feed = require('./client/scripts/components/feed/feed');
-var feedActions = require('./client/scripts/actions/feedActions');
 var feedStore = require('./client/scripts/stores/feedStore');
 
 var {
