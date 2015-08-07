@@ -12,47 +12,44 @@ var {
 var Progressions = React.createClass({
 
   render: function(){
-    //renderRounds is an array of rounds.
-    //Each round is an array of exercises
-    var renderRounds = [];
-
+    //Each roundElement is an array of exercises
+    var roundsElements = [];
     var workout = this.props.workout;
     var roundsData = this.props.workout.rounds;
 
-    //If rounds repeat, traverse exercises in round1
-    //And input each exercise into the <Exercise/> component
-    //Then add each ex component to the round array element
-    if(roundsData.repeat) {
-      //Populate current round
-      renderRounds[0] = [];
-      var roundNum = 1;
+    //Traverse each round
+    for(var i = 1; i <= roundsData.numRounds; i++) {
+      roundsElements[i] = [];
+      var currRound;
+      //If repeat is true, set currRound to round1
+      if(roundsData.repeat) {
+        currRound = roundsData['round1'];
+      } else {
+        currRound = roundsData['round' + i];
+      }
 
       //Add roundHeader to title round
       /* jshint ignore:start */
-      var roundHeader = <Text>Round {roundNum}</Text>
-      renderRounds[0].push(roundHeader);
+      var roundHeader = <Text>Round {i}</Text>
+      /* jshint ignore:end */
 
-      var currRound = roundsData['round' + roundNum];
-      //Traverse exercises of round
+      roundsElements[i].push(roundHeader);
+
+      //Traverse exercises of round, push exercises
       for(var ex in currRound) {
-        //for each ex, push <Exercise exercise={ex}/>
-        //into the current round's array element
         var currExercise = currRound[ex];
+        /* jshint ignore:start */
         var exerciseElement = <Text>{currExercise.name}</Text>;
-        renderRounds[0].push(exerciseElement);
         /* jshint ignore:end */
-      }
-      //At end, duplicate rounds by numRounds
-      for(let n = 1; n < roundsData.numRounds; n++) {
-        renderRounds[n] = renderRounds[0];
-      }
 
+        roundsElements[i].push(exerciseElement);
+      }
     }
 
     return (
       /* jshint ignore:start */
       <View>
-        {renderRounds}
+        {roundsElements}
       </View>
       /* jshint ignore:end */
     );
