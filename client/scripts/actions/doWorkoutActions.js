@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-08-06 17:30:07
+* @Last Modified time: 2015-08-06 18:11:15
 */
 
 'use strict';
@@ -18,8 +18,8 @@ var doWorkoutActions = {
       username: 'John_Snow',
       trybe: 'Ryan Hurst\'s Muscle Up Program',
       day: 17,
-      type: 'Progressions',
-      instructions: null,
+      type: 'Custom',
+      instructions: 'Custom Instructions',
       time: null,
       rounds: {
         numRounds: 5,

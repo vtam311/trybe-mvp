@@ -18,6 +18,7 @@ var CustomWorkout = React.createClass({
       /* jshint ignore:start */
       <View>
         <Text>{instructions}</Text>
+        <Text>Test</Text>
       </View>
       /* jshint ignore:end */
     );
