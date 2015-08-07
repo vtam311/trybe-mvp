@@ -5,7 +5,7 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
-var DoWorkoutDetails = require('./doWorkoutDetails.js');
+var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
 
 var {
   StyleSheet,
@@ -36,7 +36,7 @@ var DoWorkout = React.createClass({
       <View>
         <Text>Workout</Text>
         <DoWorkoutHeader workout={this.state.workout}/>
-        <DoWorkoutDetails workout={this.state.workout}/>
+        <DoWorkoutInstructions workout={this.state.workout}/>
         <Text>Start</Text>
       </View>
     );
