@@ -9,20 +9,19 @@ var {
   View,
 } = React;
 
-var DoWorkoutExercise = React.createClass({
+var CustomWorkout = React.createClass({
 
   render: function(){
-    var name = this.props.exercise.name;
-    var reps = this.props.exercise.reps;
+    var instructions = this.props.workout.instructions;
 
     return (
       /* jshint ignore:start */
       <View>
-        <Text>{reps} {name}</Text>
+        <Text>{instructions}</Text>
       </View>
       /* jshint ignore:end */
     );
   }
 });
 
-module.exports = DoWorkoutExercise;
+module.exports = CustomWorkout;
