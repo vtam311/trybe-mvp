@@ -204,9 +204,9 @@ var amrapWorkout = {
         video: null
       },
       exercise3: {
-        name: 'Air Squats',
+        name: 'Squats',
         reps: 15,
-        load: {units: 'lbs', val: null},
+        load: {units: 'lbs', val: 95},
         hold: null,
         standard: {type: null, value: null},
         focusArea: {name: null, progression: null},
