@@ -1,13 +1,14 @@
 /*
 * @Author: nimi
 * @Date:   2015-05-05 16:15:10
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-07-09 18:10:42
+* @Last Modified by:   nimi
+* @Last Modified time: 2015-08-10 15:57:11
 */
 
 'use strict';
 
 var LocalStrategy = require ('passport-local').Strategy;
+var InstagramStrategy = require('passport-instagram').Strategy;
 var User = require('../models').user;
 var Trybe = require('../models').trybe;
 var Plan = require('../models').plan;
@@ -87,4 +88,38 @@ passport.use('local-signup', new LocalStrategy(
     });
   }));
 
+// this function will set up the strategy for user sign up via Instagram
+passport.use(new InstagramStrategy({
+  clientID: config.INSTAGRAM_CLIENT_ID,
+  clientSecret: config.INSTAGRAM_CLIENT_SECRET,
+  callbackURL: 'http://localhost:3444/users/instagram/callback'
+  },
+  function(accessToken, refreshToken, profile, done){
+    User.findOrCreate({instagramId: profile.id}, function(err, user){
+      if(err){
+        return done(err)
+      } else {
+         //temporarily, all new users will have a default association to HR 26/27
+        Trybe.find({ where: {name: 'HR 26/27'} }).then(function(trybe){
+          user.setTrybes(trybe).then(function() {
+            console.log('relationship set!');
+          });
+        });
+        //set new plan for user
+        Plan.build({UserId: user.get('id')})
+        .save()
+        //create 7 days for each user
+        .then(function(plan){
+          for(var i = 1; i <= 7; i++) {
+            Day.build({
+              PlanId: plan.get('id'),
+              val: i
+            })
+            .save()
+          }
+        })
+        return done(null, user);
+      }
+    })
+  }))
 };
