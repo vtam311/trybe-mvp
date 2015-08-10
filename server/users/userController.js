@@ -1,8 +1,8 @@
 /* 
 * @Author: vokoshyv
 * @Date:   2015-05-05 09:56:42
-* @Last Modified by:   vokoshyv
-* @Last Modified time: 2015-05-11 14:30:44
+* @Last Modified by:   nimi
+* @Last Modified time: 2015-08-10 16:04:19
 */
 
 'use strict';
@@ -45,6 +45,23 @@ module.exports = {
         module.exports.signin(req,res,next) // redirect to sign in function
       }
     })(req, res, next);
+  },
+
+  instagramLogin: function(req,res,next){
+    passport.authenticate('instagram')(req,res,next);
+  },
+
+  instagramCallback: function(req,res, next){
+    passport.authenticate('instagram', function(error, user, info){
+      if(error){
+        console.error("There is an error with the Instagram callback", error)
+        next (new Error(info))
+      } else{
+        var token = jwt.encode(user.get('name'), 'lighthoney');
+        var username = user.get('name');
+        res.redirect('/?' + querystring.stringify({name: username}) + '&' + querystring.stringify({token: token}));
+      }
+    })(req,res,next);
   },
 
   checkAuth: function(req, res, next){
