@@ -2,7 +2,7 @@
 * @Author: vokoshyv
 * @Date:   2015-05-05 09:56:42
 * @Last Modified by:   nimi
-* @Last Modified time: 2015-08-10 16:04:19
+* @Last Modified time: 2015-08-10 16:05:19
 */
 
 'use strict';
@@ -47,7 +47,7 @@ module.exports = {
     })(req, res, next);
   },
 
-  instagramLogin: function(req,res,next){
+  instagramSignin: function(req,res,next){
     passport.authenticate('instagram')(req,res,next);
   },
 
