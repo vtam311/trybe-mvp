@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>03A5FBD3-34A3-4286-8C8E-0CACC9E7D7F5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Trybe</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>92A4CD782D9CC361CB7416DB45622B2EEE07D042</key>
 		<string>https://github.com/waterdoo/trybe-mvp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Trybe.xcodeproj</string>
+	<string>Trybe.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>92A4CD782D9CC361CB7416DB45622B2EEE07D042</key>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-10 18:51:01
+* @Last Modified time: 2015-08-10 20:22:17
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 var Custom = require('./workoutTypes/doCustom');
 var Progressions = require('./workoutTypes/doProgressions');
 var AMRAP = require('./workoutTypes/doAMRAP');
+var Lift = require('./workoutTypes/doLift');
 
 var {
   StyleSheet,
@@ -33,6 +34,9 @@ var DoWorkoutInstructions = React.createClass({
         break;
       case 'AMRAP':
         instructions = <AMRAP workout={this.props.workout}/>;
+        break;
+      case 'Lift':
+        instructions = <Lift workout={this.props.workout}/>;
         break;
       default:
         instructions = <Custom workout={this.props.workout}/>;

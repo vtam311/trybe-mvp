@@ -45,9 +45,9 @@ var AMRAP = React.createClass({
       if(sec && sec.charAt(0) === '0') sec = sec.charAt(1);
 
       //Create result text
-      if(hour) result += hour + ' Hour(s)';
-      if(min) result += min + ' Min(s)';
-      if(sec) result += sec + ' Sec(s)';
+      if(hour) result += hour + ' hour(s)';
+      if(min) result += min + 'min';
+      if(sec) result += sec + 'sec';
 
       return result;
     };
