@@ -1,8 +1,8 @@
 /*
 * @Author: nimi
 * @Date:   2015-05-05 13:30:36
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-05-26 15:21:13
+* @Last Modified by:   nimi
+* @Last Modified time: 2015-08-10 16:07:04
 */
 
 'use strict';
@@ -13,6 +13,8 @@ module.exports = function(sequelize, DataTypes){
   return sequelize.define('Users', {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
+    instagramID: DataTypes.INTEGER,
+    instagramName: DataTypes.STRING
   }, {
     instanceMethods : {
       comparePassword : function(inputPassword, callback) {

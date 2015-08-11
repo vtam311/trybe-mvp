@@ -9,6 +9,7 @@
   "dependencies": {
     "events": "^1.0.2",
     "flux": "^2.0.3",
+    "passport-instagram": "^0.1.2",
     "react-native": "^0.8.0"
   }
 }
