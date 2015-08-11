@@ -3,6 +3,9 @@
 var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
 
+//Load components
+var ExerciseExpand = require('./doExerciseExpand');
+
 var {
   StyleSheet,
   Text,
@@ -13,19 +16,19 @@ var Exercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
-    var renderText;
+    var renderDescr;
 
     var renderRepsOrHold = function(exercise) {
       if(exercise.hold) {
-        renderText = exercise.hold + ' Sec ' + exercise.name;
+        renderDescr = exercise.hold + ' Sec ' + exercise.name;
       } else if(exercise.reps) {
-        renderText = exercise.reps + ' ' + exercise.name;
+        renderDescr = exercise.reps + ' ' + exercise.name;
       }
     };
 
     var renderLoad = function(exercise) {
       if(exercise.load.val) {
-        renderText += ' at ' + exercise.load.val + exercise.load.units;
+        renderDescr += ' at ' + exercise.load.val + exercise.load.units;
       }
     };
 
@@ -35,7 +38,8 @@ var Exercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <Text>{renderText}</Text>
+        <Text>{renderDescr}</Text>
+        <ExerciseExpand exercise={exercise}/>
       </View>
       /* jshint ignore:end */
     );
