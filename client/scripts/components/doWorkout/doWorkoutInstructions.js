@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-08 15:53:15
+* @Last Modified time: 2015-08-10 18:51:01
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 //Load components
 var Custom = require('./workoutTypes/doCustom');
 var Progressions = require('./workoutTypes/doProgressions');
+var AMRAP = require('./workoutTypes/doAMRAP');
 
 var {
   StyleSheet,
@@ -29,6 +30,9 @@ var DoWorkoutInstructions = React.createClass({
       /* jshint ignore:start */
       case 'Progressions':
         instructions = <Progressions workout={this.props.workout}/>;
+        break;
+      case 'AMRAP':
+        instructions = <AMRAP workout={this.props.workout}/>;
         break;
       default:
         instructions = <Custom workout={this.props.workout}/>;
