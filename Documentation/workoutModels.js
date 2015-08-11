@@ -162,7 +162,7 @@ var timedCircuitWorkout = {
         name: 'Thrusters',
         reps: 15,
         load: {units: 'lbs', val: 95},
-        hold: 60,
+        hold: null,
         standard: {type: null, value: null},
         focusArea: {name: null, progression: null},
         video: null
