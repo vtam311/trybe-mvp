@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-10 18:49:52
+* @Last Modified time: 2015-08-10 20:23:32
 */
 
 'use strict';
@@ -16,46 +16,72 @@ var doWorkoutActions = {
     var dummyWorkout = {
       id: 24,
       username: 'John_Snow',
-      trybe: 'Chris Spealler\'s CF Conditioning',
+      trybe: 'Smolov\'s Squat Program',
       day: 17,
-      type: 'AMRAP',
+      type: 'Lift',
       instructions: null,
-      time: '00:20:00',
+      time: null,
       rounds: {
-        numRounds: null,
-        repeat: true,
+        numRounds: 5,
+        repeat: false,
         round1: {
           exercise1: {
-            name: 'Pull Ups',
-            reps: 5,
-            load: {units: 'lbs', val: null},
-            hold: null,
-            standard: {type: null, value: null},
-            focusArea: {name: null, progression: null},
-            video: null
-          },
-          exercise2: {
-            name: 'Push ups',
-            reps: 10,
-            load: {units: 'lbs', val: null},
-            hold: null,
-            standard: {type: null, value: null},
-            focusArea: {name: null, progression: null},
-            video: null
-          },
-          exercise3: {
             name: 'Squats',
-            reps: 15,
-            load: {units: 'lbs', val: 95},
+            reps: 5,
+            load: {units: 'lbs', val: 185},
             hold: null,
             standard: {type: null, value: null},
             focusArea: {name: null, progression: null},
             video: null
           }
-        }
+        },
+        round2: {
+          exercise1: {
+            name: 'Squats',
+            reps: 5,
+            load: {units: 'lbs', val: 190},
+            hold: null,
+            standard: {type: null, value: null},
+            focusArea: {name: null, progression: null},
+            video: null
+          }
+        },
+        round3: {
+          exercise1: {
+            name: 'Squats',
+            reps: 5,
+            load: {units: 'lbs', val: 195},
+            hold: null,
+            standard: {type: null, value: null},
+            focusArea: {name: null, progression: null},
+            video: null
+          }
+        },
+        round4: {
+          exercise1: {
+            name: 'Front Squats',
+            reps: 5,
+            load: {units: 'lbs', val: 175},
+            hold: null,
+            standard: {type: null, value: null},
+            focusArea: {name: null, progression: null},
+            video: null
+          }
+        },
+        round5: {
+          exercise1: {
+            name: 'Front Squats',
+            reps: 5,
+            load: {units: 'lbs', val: 185},
+            hold: null,
+            standard: {type: null, value: null},
+            focusArea: {name: null, progression: null},
+            video: null
+          }
+        },
       },
       origin: 23, //copied from workout id 23
-      finalResult: {type: 'Rounds', value: '23'}
+      finalResult: {type: null, value: null}
     };
 
     this.setWorkout(dummyWorkout);
