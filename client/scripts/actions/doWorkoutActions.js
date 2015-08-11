@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-11 10:23:31
+* @Last Modified time: 2015-08-11 13:30:29
 */
 
 'use strict';
@@ -18,16 +18,16 @@ var doWorkoutActions = {
       username: 'John_Snow',
       trybe: 'Chris Spealler\'s CF Conditioning',
       day: 17,
-      type: 'Timed Circuit',
+      type: 'AMRAP',
       instructions: null,
-      time: null,
+      time: '00:20:00',
       rounds: {
-        numRounds: 5,
+        numRounds: null,
         repeat: true,
         round1: {
           exercise1: {
             name: 'Pull Ups',
-            reps: 15,
+            reps: 5,
             load: {units: 'lbs', val: null},
             hold: null,
             standard: {type: null, value: null},
@@ -35,7 +35,16 @@ var doWorkoutActions = {
             video: null
           },
           exercise2: {
-            name: 'Thrusters',
+            name: 'Push ups',
+            reps: 10,
+            load: {units: 'lbs', val: null},
+            hold: null,
+            standard: {type: null, value: null},
+            focusArea: {name: null, progression: null},
+            video: null
+          },
+          exercise3: {
+            name: 'Squats',
             reps: 15,
             load: {units: 'lbs', val: 95},
             hold: null,
@@ -46,7 +55,7 @@ var doWorkoutActions = {
         }
       },
       origin: 23, //copied from workout id 23
-      finalResult: {type: 'Time', value: '8:38'}
+      finalResult: {type: 'Rounds', value: '23'}
     };
 
     this.setWorkout(dummyWorkout);
