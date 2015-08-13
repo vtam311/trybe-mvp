@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-04 16:46:55
+* @Last Modified time: 2015-08-13 15:56:35
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var FeedCard = React.createClass({
           rounds={card.workout.rounds}/>
         <FeedCardFooter
           likes={card.likes}
-          comments={card.comments} />
+          comments={card.comments}/>
       </View>
       /* jshint ignore:end */
     );

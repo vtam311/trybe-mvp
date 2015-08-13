@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-07-30 14:23:17
+* @Last Modified time: 2015-08-13 15:56:48
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight
 } = React;
 
 var FeedCardFooter = React.createClass({
@@ -25,7 +26,9 @@ var FeedCardFooter = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <Text>Do Workout</Text>
+        <TouchableHighlight>
+          <Text>Do Workout</Text>
+        </TouchableHighlight>
         <Text>Likes {likes}</Text>
         <Text>Comments {comments}</Text>
       </View>

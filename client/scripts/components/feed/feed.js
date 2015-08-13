@@ -36,20 +36,33 @@ var Feed = React.createClass({
       .map(function(card, idx) {
         return ([
           /* jshint ignore:start */
-          <FeedCard index={idx} card={card} />,
+          <FeedCard index={idx} card={card}/>,
           /* jshint ignore:end */
         ]);
       });
     }
 
     return (
-      <View>
-        <Text>Feed</Text>
-        <View>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text>trybe</Text>
+        </View>
+        <View style={styles.content}>
           {cards}
         </View>
       </View>
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  header: {
+    height: 40,
+    backgroundColor: '#4dba97'
   }
 });
 

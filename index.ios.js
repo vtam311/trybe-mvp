@@ -1,18 +1,21 @@
 'use strict';
 
 var React = require('react-native');
+var indexStore = require('./client/scripts/stores/indexStore');
+var feedStore = require('./client/scripts/stores/feedStore');
+var doWorkoutStore = require('./client/scripts/stores/doWorkoutStore');
+var indexActions = require('./client/scripts/actions/indexActions');
 
 //Load components
 var Feed = require('./client/scripts/components/feed/feed');
-var feedStore = require('./client/scripts/stores/feedStore');
 var DoWorkout = require('./client/scripts/components/doWorkout/doWorkout');
-var doWorkoutStore = require('./client/scripts/stores/doWorkoutStore');
 
 var {
   AppRegistry,
   StyleSheet,
   Text,
   TabBarIOS,
+  StatusBarIOS,
   View,
 } = React;
 
@@ -20,14 +23,23 @@ var {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      selectedTab: 'feed'
+      selectedTab: indexStore.getTab()
     };
   },
-
-  changeTab: function(tabName) {
+  componentDidMount: function(){
+    indexStore.addChangeListener(this._onChange);
+    StatusBarIOS.setStyle(1);
+  },
+  componentWillUnmount: function(){
+    indexStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
     this.setState({
-      selectedTab: tabName
+      selectedTab: indexStore.getTab()
     });
+  },
+  changeTab: function(tabName) {
+    indexActions.setTab(tabName);
   },
 
   render: function() {
@@ -48,7 +60,7 @@ var Trybe = React.createClass({
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
           <View style={ styles.pageView }>
-            <Feed store={ feedStore } />
+            <Feed store={ feedStore }/>
           </View>
         </TabBarIOS.Item>
         <TabBarIOS.Item
