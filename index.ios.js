@@ -20,8 +20,14 @@ var {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      selectedTab: 'home'
+      selectedTab: 'feed'
     };
+  },
+
+  changeTab: function(tabName) {
+    this.setState({
+      selectedTab: tabName
+    });
   },
 
   render: function() {
@@ -30,6 +36,7 @@ var Trybe = React.createClass({
         <TabBarIOS.Item
           title='Profile'
           icon={ require('image!profile') }
+          onPress={ () => this.changeTab('profile') }
           selected={ this.state.selectedTab === 'profile' }>
           <View style={ styles.pageView }>
             <Text>Profile</Text>
@@ -38,7 +45,8 @@ var Trybe = React.createClass({
         <TabBarIOS.Item
           title='Home'
           icon={ require('image!home') }
-          selected={ this.state.selectedTab === 'home' }>
+          onPress={ () => this.changeTab('feed') }
+          selected={ this.state.selectedTab === 'feed' }>
           <View style={ styles.pageView }>
             <Feed store={ feedStore } />
           </View>
@@ -46,6 +54,7 @@ var Trybe = React.createClass({
         <TabBarIOS.Item
           title='Workout'
           icon={ require('image!workout') }
+          onPress={ () => this.changeTab('doWorkout') }
           selected={ this.state.selectedTab === 'doWorkout' }>
           <View style={ styles.pageView }>
             <DoWorkout store={ doWorkoutStore } />
