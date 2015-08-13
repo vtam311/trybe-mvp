@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:26
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-11 13:44:54
+* @Last Modified time: 2015-08-11 13:52:45
 */
 
 'use strict';
@@ -25,19 +25,20 @@ var DoWorkoutHeader = React.createClass({
     var workout = this.props.workout;
     var trybe = workout.trybe;
     var day = workout.day;
-    var overview = workout.type;
+    var overview;
 
     var generateOverview = function(workout) {
       if(workout.type === 'AMRAP') {
-        var time = generateOverviewTime(workout.time);
+        var time = generateTime(workout.time);
         var instructions = ' As Many Rounds As Possible';
         overview = time + instructions;
+      } else {
+        overview = workout.type;
       }
     };
 
-    var generateOverviewTime = function(time) {
+    var generateTime = function(time) {
       var result = '';
-
       var hour = time.slice(0,2);
       var min = time.slice(3,5);
       var sec = time.slice(6,8);

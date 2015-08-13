@@ -12,8 +12,49 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
+  TabBarIOS,
   View,
 } = React;
+
+
+var Trybe = React.createClass({
+  getInitialState: function(){
+    return {
+      selectedTab: 'home'
+    };
+  },
+
+  render: function() {
+    return (
+      <TabBarIOS>
+        <TabBarIOS.Item
+          title='Profile'
+          icon={ require('image!profile') }
+          selected={ this.state.selectedTab === 'profile' }>
+          <View style={ styles.pageView }>
+            <Text>Profile</Text>
+          </View>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          title='Home'
+          icon={ require('image!home') }
+          selected={ this.state.selectedTab === 'home' }>
+          <View style={ styles.pageView }>
+            <Feed store={ feedStore } />
+          </View>
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          title='Workout'
+          icon={ require('image!workout') }
+          selected={ this.state.selectedTab === 'doWorkout' }>
+          <View style={ styles.pageView }>
+            <DoWorkout store={ doWorkoutStore } />
+          </View>
+        </TabBarIOS.Item>
+      </TabBarIOS>
+    );
+  }
+});
 
 var styles = StyleSheet.create({
   container: {
@@ -22,29 +63,10 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-var Trybe = React.createClass({
-
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text>trybe</Text>
-        <Feed store={feedStore}/>
-        <DoWorkout store={doWorkoutStore}/>
-      </View>
-    );
+  pageView: {
+    backgroundColor: '#fff',
+    flex: 1
   }
 });
 
-AppRegistry.registerComponent('Trybe', function() {return Trybe});
+AppRegistry.registerComponent('Trybe', () => Trybe);
