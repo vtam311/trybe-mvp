@@ -16,7 +16,7 @@ var {
 var DoWorkout = React.createClass({
   getInitialState: function(){
     return {
-      isSelectedWorkout: this.props.store.isSelectedWorkout,
+      isSelectedWorkout: this.props.store.getIsSelectedWorkout(),
       workout: this.props.store.getWorkout()
     };
   },

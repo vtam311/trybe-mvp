@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:21:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 17:53:59
+* @Last Modified time: 2015-08-13 18:14:27
 */
 
 'use strict';
@@ -48,7 +48,7 @@ AppDispatcher.register(function(payload){
       doWorkoutStore.emit(CHANGE_EVENT);
   }
   if(action.data instanceof doWorkoutEvents.SetSelectedWorkout) {
-    setIsSelectedWorkout(false);
+    setIsSelectedWorkout(true);
     setWorkout(action.data.workout);
       doWorkoutStore.emit(CHANGE_EVENT);
   }
