@@ -16,12 +16,15 @@ var {
 var DoWorkout = React.createClass({
   getInitialState: function(){
     return {
+      isSelectedWorkout: this.props.store.isSelectedWorkout,
       workout: this.props.store.getWorkout()
     };
   },
   componentDidMount: function(){
     this.props.store.addChangeListener(this._onChange);
-    doWorkoutActions.getWorkout();
+
+    //Only load trybe's default workout if user has not selected one already
+    if(!this.state.isSelectedWorkout) doWorkoutActions.getWorkout();
   },
   componentWillUnmount: function(){
     this.props.store.removeChangeListener(this._onChange);

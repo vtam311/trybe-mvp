@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 17:14:25
+* @Last Modified time: 2015-08-13 17:47:14
 */
 
 'use strict';
@@ -49,12 +49,16 @@ var doWorkoutActions = {
       finalResult: {type: null, value: null}
     };
 
-    this.setWorkout(dummyWorkout);
+    this.setDefaultWorkout(dummyWorkout);
   },
-  setWorkout: function(workout) {
-    console.log('in doWorkoutActions, setWorkout called');
+  setDefaultWorkout: function(workout) {
     AppDispatcher.handleAction({
-      data: new doWorkoutEvents.SetWorkout(workout)
+      data: new doWorkoutEvents.SetDefaultWorkout(workout)
+    });
+  },
+  setSelectedWorkout: function(workout) {
+    AppDispatcher.handleAction({
+      data: new doWorkoutEvents.SetSelectedWorkout(workout)
     });
   }
 };
