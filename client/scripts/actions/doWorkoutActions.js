@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-11 13:30:29
+* @Last Modified time: 2015-08-13 17:14:25
 */
 
 'use strict';
@@ -16,46 +16,37 @@ var doWorkoutActions = {
     var dummyWorkout = {
       id: 24,
       username: 'John_Snow',
-      trybe: 'Chris Spealler\'s CF Conditioning',
+      trybe: 'Ryan Hurst\'s Muscle Up Program',
       day: 17,
-      type: 'AMRAP',
+      type: 'Progressions',
       instructions: null,
-      time: '00:20:00',
+      time: null,
       rounds: {
-        numRounds: null,
+        numRounds: 5,
         repeat: true,
         round1: {
           exercise1: {
             name: 'Pull Ups',
-            reps: 5,
-            load: {units: 'lbs', val: null},
-            hold: null,
-            standard: {type: null, value: null},
-            focusArea: {name: null, progression: null},
-            video: null
-          },
-          exercise2: {
-            name: 'Push ups',
             reps: 10,
             load: {units: 'lbs', val: null},
             hold: null,
-            standard: {type: null, value: null},
-            focusArea: {name: null, progression: null},
+            standard: {type: 'reps', value: 10},
+            focusArea: {name: 'Strength', progression: 1},
             video: null
           },
-          exercise3: {
-            name: 'Squats',
-            reps: 15,
-            load: {units: 'lbs', val: 95},
-            hold: null,
-            standard: {type: null, value: null},
-            focusArea: {name: null, progression: null},
+          exercise2: {
+            name: 'False Grip Hang',
+            reps: null,
+            load: {units: 'lbs', val: null},
+            hold: 60,
+            standard: {type: 'time', value: 60},
+            focusArea: {name: 'Grip', progression: 3},
             video: null
           }
         }
       },
       origin: 23, //copied from workout id 23
-      finalResult: {type: 'Rounds', value: '23'}
+      finalResult: {type: null, value: null}
     };
 
     this.setWorkout(dummyWorkout);
