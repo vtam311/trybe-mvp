@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 16:21:34
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-08-13 17:33:46
 */
 
 'use strict';
@@ -42,7 +42,7 @@ var feedActions = {
                 video: null
               },
               exercise2: {
-                name: 'Push ups',
+                name: 'Push Ups',
                 reps: 10,
                 load: {units: 'lbs', val: null},
                 hold: null,
