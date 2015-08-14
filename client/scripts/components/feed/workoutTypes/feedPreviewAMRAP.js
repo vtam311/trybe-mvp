@@ -18,14 +18,27 @@ var FeedPreviewAMRAP = React.createClass({
     var generateInstructions = function(workout) {
       var time = generateTime(workout.time);
       var type = ' As Many Rounds As Possible';
-      var instructionsText = time + type;
+      var overviewText = time + type;
 
        /* jshint ignore:start */
-      instructions = <Text>{ instructionsText }</Text>;
+      instructions = <Text>{ overviewText }</Text>;
        /* jshint ignore:end */
 
-      for(var key in workout.rounds.round1) {
-        var exercise = workout.rounds.round1[key].name;
+      var round = workout.rounds.round1;
+      for(var key in round) {
+        var exercise = '';
+        var exerciseName = round[key].name;
+        var reps = round[key].reps;
+        var load = round[key].load.val;
+        var loadUnits = round[key].load.units;
+
+        if(round[key].load.val) {
+          exercise += reps + ' ' + exerciseName + ' at ' +
+            load + loadUnits;
+        } else {
+          exercise += reps + ' ' + exerciseName;
+        }
+
        /* jshint ignore:start */
         var exerciseElement = <Text>{ exercise }</Text>;
         exercises.push(exerciseElement);

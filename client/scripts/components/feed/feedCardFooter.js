@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 16:11:16
+* @Last Modified time: 2015-08-13 17:50:45
 */
 
 'use strict';
@@ -21,7 +21,7 @@ var {
 
 var FeedCardFooter = React.createClass({
   doWorkout: function(workout) {
-    doWorkoutActions.setWorkout(workout);
+    doWorkoutActions.setSelectedWorkout(workout);
     indexActions.setTab('doWorkout');
   },
 
