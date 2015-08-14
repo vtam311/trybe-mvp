@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 16:01:40
+* @Last Modified time: 2015-08-13 16:11:16
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 var indexActions = require('../../actions/indexActions');
+var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 var {
   StyleSheet,
@@ -20,21 +21,23 @@ var {
 
 var FeedCardFooter = React.createClass({
   doWorkout: function(workout) {
+    doWorkoutActions.setWorkout(workout);
     indexActions.setTab('doWorkout');
   },
 
   render: function(){
+    var workout = this.props.workout;
     var likes = this.props.likes;
     var comments = this.props.comments;
 
     return (
       /* jshint ignore:start */
       <View>
-        <TouchableHighlight onPress={ () => this.doWorkout() }>
+        <TouchableHighlight onPress={ () => this.doWorkout(workout) }>
           <Text>Do Workout</Text>
         </TouchableHighlight>
-        <Text>Likes {likes}</Text>
-        <Text>Comments {comments}</Text>
+        <Text>Likes { likes }</Text>
+        <Text>Comments { comments }</Text>
       </View>
       /* jshint ignore:end */
     );

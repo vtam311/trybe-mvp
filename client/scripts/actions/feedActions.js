@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-04 16:53:57
+* @Last Modified time: 2015-08-13 16:21:34
 */
 
 'use strict';
@@ -21,16 +21,48 @@ var feedActions = {
         trybe: 'NorCal Strength & Conditioning CF On-Ramp',
         day: 17, //for day number in training program
         workout: {
-          id: 23,
+          id: 24,
+          username: 'Robb_Wolf',
+          trybe: 'NorCal Strength & Conditioning CF On-Ramp',
+          day: 17,
           type: 'AMRAP',
-          time: null,
-          rounds: null,
-          exercises: [
-            {name: 'Pull Ups', reps: '5', load: null},
-            {name: 'Push Ups', reps: '10', load: null},
-            {name: 'Squats', reps: '15', load: null}
-          ],
-          finalResult: {type: 'rounds', result: null},
+          instructions: null,
+          time: '00:20:00',
+          rounds: {
+            numRounds: null,
+            repeat: true,
+            round1: {
+              exercise1: {
+                name: 'Pull Ups',
+                reps: 5,
+                load: {units: 'lbs', val: null},
+                hold: null,
+                standard: {type: null, value: null},
+                focusArea: {name: null, progression: null},
+                video: null
+              },
+              exercise2: {
+                name: 'Push ups',
+                reps: 10,
+                load: {units: 'lbs', val: null},
+                hold: null,
+                standard: {type: null, value: null},
+                focusArea: {name: null, progression: null},
+                video: null
+              },
+              exercise3: {
+                name: 'Squats',
+                reps: 15,
+                load: {units: 'lbs', val: 95},
+                hold: null,
+                standard: {type: null, value: null},
+                focusArea: {name: null, progression: null},
+                video: null
+              }
+            }
+          },
+          origin: null,
+          finalResult: {type: 'Rounds', value: '23'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 89,
