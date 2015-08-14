@@ -10,11 +10,15 @@ var {
   StyleSheet,
   Text,
   View,
+  ListView
 } = React;
 
 var Feed = React.createClass({
   getInitialState: function(){
     return {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      }),
       cards: this.props.store.getCards()
     };
   },
