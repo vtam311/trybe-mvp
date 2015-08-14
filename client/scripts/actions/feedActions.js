@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-14 12:46:23
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-08-14 13:59:28
 */
 
 'use strict';
@@ -129,7 +129,6 @@ var feedActions = {
     this.setCards(dummyCards);
   },
   setCards: function(cards) {
-    // console.log('in feedActions, setCards called');
     AppDispatcher.handleAction({
       data: new feedEvents.SetCards(cards)
     });

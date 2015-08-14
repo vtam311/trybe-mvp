@@ -19,7 +19,6 @@ var Feed = React.createClass({
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }),
-      cards: this.props.store.getCards()
     };
   },
   componentDidMount: function(){
@@ -30,32 +29,30 @@ var Feed = React.createClass({
     this.props.store.removeChangeListener(this._onChange);
   },
   _onChange: function(){
+    var cards = this.props.store.getCards();
+    console.log('in feed _onChange, cards:', cards);
     this.setState({
-      cards: this.props.store.getCards()
+      dataSource: this.state.dataSource.cloneWithRows(cards)
     });
   },
-  render: function(){
-    if (this.state.cards) {
-      var cards = this.state.cards
-      .map(function(card, idx) {
-        return ([
-          /* jshint ignore:start */
-          <FeedCard index={idx} card={card}/>,
-          /* jshint ignore:end */
-        ]);
-      });
-    }
 
+  renderRow: function(card){
     return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text>trybe</Text>
-        </View>
-        <View style={styles.content}>
-          {cards}
-        </View>
+      /* jshint ignore:start */
+      <View>
+        <FeedCard card={card}/>
       </View>
+      /* jshint ignore:end */
     );
+  },
+  render: function(){
+    /* jshint ignore:start */
+    return (
+      <View style={ styles.container }>
+        <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow } />
+      </View>
+      );
+    /* jshint ignore:end */
   }
 });
 
