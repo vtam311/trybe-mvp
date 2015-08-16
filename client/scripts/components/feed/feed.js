@@ -30,7 +30,7 @@ var Feed = React.createClass({
   },
   _onChange: function(){
     var cards = this.props.store.getCards();
-    console.log('in feed _onChange, cards:', cards);
+    // console.log('in feed _onChange, cards:', cards);
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(cards)
     });
