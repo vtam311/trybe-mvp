@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-08-14 13:59:28
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-08-16 10:52:24
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var feedEvents = require('../events/feedEvents.js');
+var feedConstants = require('../constants/feedConstants');
 
 var feedActions = {
   getCards: function(feedView) {
@@ -130,7 +130,8 @@ var feedActions = {
   },
   setCards: function(cards) {
     AppDispatcher.handleAction({
-      data: new feedEvents.SetCards(cards)
+      actionType: feedConstants.SET_CARDS,
+      data: cards
     });
   }
 };

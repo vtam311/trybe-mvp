@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:20:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 17:47:14
+* @Last Modified time: 2015-08-16 10:53:27
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var doWorkoutEvents = require('../events/doWorkoutEvents.js');
+var doWorkoutConstants = require('../constants/doWorkoutConstants');
 
 var doWorkoutActions = {
   getWorkout: function() {
@@ -53,12 +53,14 @@ var doWorkoutActions = {
   },
   setDefaultWorkout: function(workout) {
     AppDispatcher.handleAction({
-      data: new doWorkoutEvents.SetDefaultWorkout(workout)
+      actionType: doWorkoutConstants.SET_DEFAULT_WORKOUT,
+      data: workout
     });
   },
   setSelectedWorkout: function(workout) {
     AppDispatcher.handleAction({
-      data: new doWorkoutEvents.SetSelectedWorkout(workout)
+      actionType: doWorkoutConstants.SET_SELECTED_WORKOUT,
+      data: workout
     });
   }
 };

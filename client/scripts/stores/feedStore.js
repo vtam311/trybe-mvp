@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-08-14 14:00:03
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-08-16 11:11:08
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var feedEvents = require('../events/feedEvents');
+var feedConstants = require('../constants/feedConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -37,9 +37,13 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  if(action.data instanceof feedEvents.SetCards) {
-    setCards(action.data.cards);
-    feedStore.emit(CHANGE_EVENT);
+  switch (action.actionType) {
+    case feedConstants.SET_CARDS:
+      setCards(action.data);
+      feedStore.emit(CHANGE_EVENT);
+      break;
+    default:
+      return true;
   }
 });
 
