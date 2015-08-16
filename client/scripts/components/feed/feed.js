@@ -49,6 +49,9 @@ var Feed = React.createClass({
     /* jshint ignore:start */
     return (
       <View style={ styles.container }>
+        <View style={ styles.header }>
+          <Text>trybe</Text>
+        </View>
         <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow } />
       </View>
       );
