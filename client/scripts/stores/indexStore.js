@@ -1,7 +1,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var indexEvents = require('../events/indexEvents');
+var indexConstants = require('../constants/indexConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -28,9 +28,14 @@ var indexStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  if(action.data instanceof indexEvents.SetTab) {
-    setTab(action.data.tab);
+
+  switch (action.actionType) {
+    case indexConstants.SET_TAB:
+      setTab(action.data);
       indexStore.emit(CHANGE_EVENT);
+      break;
+    default:
+      return true;
   }
 });
 

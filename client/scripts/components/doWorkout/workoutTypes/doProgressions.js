@@ -20,6 +20,22 @@ var Progressions = React.createClass({
     var workout = this.props.workout;
     var rounds = this.props.workout.rounds;
 
+    var renderRounds = function(rounds) {
+      for(let i = 1; i <= rounds.numRounds; i++) {
+        roundElements[i] = [];
+        var currRound;
+        //If workout has repreating rounds, set currRound to round1
+        if(rounds.repeat) {
+          currRound = rounds['round1'];
+        } else {
+          currRound = rounds['round' + i];
+        }
+
+        titleRound(currRound, i);
+        addExercisesToRound(currRound, i);
+      }
+    };
+
     var titleRound = function(round, roundNum){
       /* jshint ignore:start */
       var roundHeader = <Text>Round {roundNum}</Text>;
@@ -34,22 +50,6 @@ var Progressions = React.createClass({
         var exerciseElement = <Exercise exercise={currExercise}/>;
         roundElements[roundNum].push(exerciseElement);
         /* jshint ignore:end */
-      }
-    };
-
-    var renderRounds = function(rounds) {
-      for(let i = 1; i <= rounds.numRounds; i++) {
-        roundElements[i] = [];
-        var currRound;
-        //If workout has repreating rounds, set currRound to round1
-        if(rounds.repeat) {
-          currRound = rounds['round1'];
-        } else {
-          currRound = rounds['round' + i];
-        }
-
-        titleRound(currRound, i);
-        addExercisesToRound(currRound, i);
       }
     };
 

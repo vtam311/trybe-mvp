@@ -90,4 +90,4 @@ var styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Trybe', () => Trybe);
+AppRegistry.registerComponent('trybe', () => Trybe);

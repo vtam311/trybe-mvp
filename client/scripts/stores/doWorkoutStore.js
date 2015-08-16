@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:21:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-13 18:14:27
+* @Last Modified time: 2015-08-16 11:11:11
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var doWorkoutEvents = require('../events/doWorkoutEvents');
+var doWorkoutConstants = require('../constants/doWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -43,14 +43,18 @@ var doWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  if(action.data instanceof doWorkoutEvents.SetDefaultWorkout) {
-    setWorkout(action.data.workout);
+  switch (action.actionType) {
+    case doWorkoutConstants.SET_DEFAULT_WORKOUT:
+      setWorkout(action.data);
       doWorkoutStore.emit(CHANGE_EVENT);
-  }
-  if(action.data instanceof doWorkoutEvents.SetSelectedWorkout) {
-    setIsSelectedWorkout(true);
-    setWorkout(action.data.workout);
+      break;
+    case doWorkoutConstants.SET_SELECTED_WORKOUT:
+      setIsSelectedWorkout(true);
+      setWorkout(action.data);
       doWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    default:
+      return true;
   }
 });
 
