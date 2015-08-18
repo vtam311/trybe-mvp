@@ -35,6 +35,7 @@ var DoWorkout = React.createClass({
     });
   },
   render: function(){
+
     return (
       <View>
         <Text>Workout</Text>

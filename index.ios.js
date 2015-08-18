@@ -9,6 +9,7 @@ var indexActions = require('./client/scripts/actions/indexActions');
 //Load components
 var Feed = require('./client/scripts/components/feed/feed');
 var DoWorkout = require('./client/scripts/components/doWorkout/doWorkout');
+var Workout = require('./client/scripts/components/workout/workout');
 
 var {
   AppRegistry,
