@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var indexStore = require('./client/scripts/stores/indexStore');
-var feedStore = require('./client/scripts/stores/feedStore');
 var indexActions = require('./client/scripts/actions/indexActions');
 
 //Load components
@@ -57,7 +56,7 @@ var Trybe = React.createClass({
           icon={ require('image!home') }
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
-          <FeedTab store={ feedStore }/>
+          <FeedTab/>
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

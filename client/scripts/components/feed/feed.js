@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var feedStore = require('../../stores/feedStore');
 var feedActions = require('../../actions/feedActions');
 
 //Load components
@@ -22,14 +23,14 @@ var Feed = React.createClass({
     };
   },
   componentDidMount: function(){
-    this.props.store.addChangeListener(this._onChange);
+    feedStore.addChangeListener(this._onChange);
     feedActions.getCards();
   },
   componentWillUnmount: function(){
-    this.props.store.removeChangeListener(this._onChange);
+    feedStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    var cards = this.props.store.getCards();
+    var cards = feedStore.getCards();
     // console.log('in feed _onChange, cards:', cards);
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(cards)
