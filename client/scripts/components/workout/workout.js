@@ -2,29 +2,34 @@
 
 var React = require('react-native');
 
+//Load components
+var DoWorkout = require('../doWorkout/doWorkout');
+
 var {
   StyleSheet,
-  NavigatorIOS,
   Text,
   View,
+  NavigatorIOS
 } = React;
 
 var Workout = React.createClass({
   render: function() {
     return (
-      <View>
-        <Text>Workout Page</Text>
-      </View>
+      /* jshint ignore:start */
+      <NavigatorIOS
+        style={styles.wrapper}
+        initialRoute={{
+          title: 'Workout',
+          component: DoWorkout
+        }}/>
+      /* jshint ignore:end */
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  wrapper: {
+    flex: 1
   }
 });
 
