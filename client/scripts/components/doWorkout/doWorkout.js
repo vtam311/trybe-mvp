@@ -7,6 +7,7 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
 var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
+var CreateWorkout = require('../createWorkout/createWorkout.js');
 
 var {
   StyleSheet,
@@ -36,14 +37,24 @@ var DoWorkout = React.createClass({
       workout: doWorkoutStore.getWorkout()
     });
   },
+  _handleBackButtonPress: function() {
+    this.props.navigator.pop();
+  },
+  _handleModifyWorkoutPress: function(workout) {
+    this.props.navigator.push({
+      title: 'Modify Workout',
+      component: CreateWorkout,
+      passProps: {workout: workout}
+    });
+  },
   render: function(){
-    console.log('doWorkout view triggered!');
     return (
       <View>
         <DoWorkoutHeader workout={this.state.workout}/>
         <DoWorkoutInstructions workout={this.state.workout}/>
-        <TouchableHighlight>
-          <Text>New Workout</Text>
+        <TouchableHighlight
+          onPress={this._handleModifyWorkoutPress.bind(this, this.state.workout)}>
+          <Text>Modify</Text>
         </TouchableHighlight>
         <Text>Start</Text>
       </View>
