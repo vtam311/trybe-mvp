@@ -67,7 +67,7 @@ var styles = StyleSheet.create({
   },
   header: {
     height: 40,
-    backgroundColor: '#4dba97'
+    backgroundColor: '#4dba97',
   }
 });
 

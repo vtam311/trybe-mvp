@@ -11,7 +11,8 @@ var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
 var {
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } = React;
 
 var DoWorkout = React.createClass({
@@ -39,9 +40,11 @@ var DoWorkout = React.createClass({
     console.log('doWorkout view triggered!');
     return (
       <View>
-        <Text>Workout</Text>
         <DoWorkoutHeader workout={this.state.workout}/>
         <DoWorkoutInstructions workout={this.state.workout}/>
+        <TouchableHighlight>
+          <Text>New Workout</Text>
+        </TouchableHighlight>
         <Text>Start</Text>
       </View>
     );
