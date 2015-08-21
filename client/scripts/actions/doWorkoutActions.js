@@ -1,10 +1,3 @@
-/*
-* @Author: vincetam
-* @Date:   2015-08-04 16:20:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-16 10:53:27
-*/
-
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
