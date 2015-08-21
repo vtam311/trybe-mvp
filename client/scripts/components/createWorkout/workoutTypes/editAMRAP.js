@@ -4,7 +4,7 @@ var React = require('react-native');
 var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
 //Load components
-var Exercise = require('../doExercise');
+var Exercise = require('../../doWorkout/doExercise');
 
 var {
   StyleSheet,
@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var AMRAP = React.createClass({
+var EditAMRAP = React.createClass({
 
   render: function(){
     //The round is an array of exercises
@@ -56,4 +56,4 @@ var AMRAP = React.createClass({
   }
 });
 
-module.exports = AMRAP;
+module.exports = EditAMRAP;

@@ -5,7 +5,7 @@ var createWorkoutStore = require('../../stores/createWorkoutStore');
 var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
-
+var EditAMRAP = require('./workoutTypes/editAMRAP');
 
 var {
   StyleSheet,
@@ -44,15 +44,26 @@ var CreateWorkout = React.createClass({
     });
   },
   render: function(){
+    var workout = this.state.workout;
+    var instructions;
+
+    switch(workout.type) {
+      /* jshint ignore:start */
+      case 'AMRAP':
+        instructions = <EditAMRAP workout={workout}/>;
+        break;
+      default:
+        instructions = <Text>Add Custom Component</Text>;
+      /* jshint ignore:end */
+    }
+
     return (
       <View>
         <Text>Type: {this.state.workout.type}</Text>
         <Text>Type: {this.state.workout.type}</Text>
         <Text>Type: {this.state.workout.type}</Text>
         <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
+        {instructions}
       </View>
     );
   }
