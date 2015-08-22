@@ -10,6 +10,7 @@ var {
   StyleSheet,
   Text,
   View,
+  TouchableHighlight,
   PickerIOS
 } = React;
 
@@ -22,8 +23,13 @@ var EditAMRAP = React.createClass({
   getInitialState: function() {
     return {
       workout: this.props.workout,
-      time: 15
+      isEditingTime: false,
     };
+  },
+  toggleEditTime: function() {
+    this.setState({
+      isEditingTime: !this.state.isEditingTime
+    });
   },
   setTime: function(num){
     //If num is not two digits, add zero to front
@@ -70,8 +76,10 @@ var EditAMRAP = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <Text>{this.state.workout.time}</Text>
-        {roundElements}
+        <TouchableHighlight
+          onPress={ () => this.toggleEditTime() }>
+          <Text>{this.state.workout.time}</Text>
+        </TouchableHighlight>
         <PickerIOS
           selectedValue={Number(this.state.workout.time.slice(3,5))}
           onValueChange={(num) => this.setTime(num)}>
@@ -82,7 +90,9 @@ var EditAMRAP = React.createClass({
               label={num.toString() + ' min'}/>
           )}
         </PickerIOS>
+        {roundElements}
       </View>
+
       /* jshint ignore:end */
     );
   },

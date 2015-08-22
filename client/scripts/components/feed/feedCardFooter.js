@@ -33,7 +33,8 @@ var FeedCardFooter = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <TouchableHighlight onPress={ () => this.doWorkout(workout) }>
+        <TouchableHighlight
+          onPress={ () => this.doWorkout(workout) }>
           <Text>Do Workout</Text>
         </TouchableHighlight>
         <Text>Likes { likes }</Text>
