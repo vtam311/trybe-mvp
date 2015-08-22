@@ -27,12 +27,12 @@ var EditAMRAP = React.createClass({
   },
   setTime: function(num){
     //If num is not two digits, add zero to front
-    if(!num.toString().indexOf(1)) num = '0' + num;
+    num = ('0' + num).slice(-2);
     var time = '00:' + num + ':00';
-    var updatedWorkout = this.state.workout;
-    updatedWorkout.time = time;
+    this.state.workout.time = time;
+
     this.setState({
-      workout: updatedWorkout
+      workout: this.state.workout
     });
   },
   render: function(){
@@ -68,10 +68,12 @@ var EditAMRAP = React.createClass({
     renderRound(rounds);
 
     return (
+      /* jshint ignore:start */
       <View>
         <Text>{this.state.workout.time}</Text>
+        {roundElements}
         <PickerIOS
-          selectedValue={this.state.time}
+          selectedValue={Number(this.state.workout.time.slice(3,5))}
           onValueChange={(num) => this.setTime(num)}>
           {TIME_CHOICES.map((num) =>
             <PickerItemIOS
@@ -81,15 +83,9 @@ var EditAMRAP = React.createClass({
           )}
         </PickerIOS>
       </View>
+      /* jshint ignore:end */
     );
   },
 });
-    // return (
-    //   /* jshint ignore:start */
-    //   <View>
-    //     {roundElements}
-    //   </View>
-    //   /* jshint ignore:end */
-    // );
 
 module.exports = EditAMRAP;
