@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var doWorkoutActions = require('../../../actions/doWorkoutActions');
+var renderTimeHelper = require('../../../helpers/renderTimeHelper');
 
 //Load components
 var Exercise = require('../../doWorkout/doExercise');
@@ -26,7 +27,8 @@ var EditAMRAP = React.createClass({
       isEditingTime: false,
     };
   },
-  toggleEditTime: function() {
+  toggleTimeEdit: function() {
+    //Instead use createWorkout action?
     this.setState({
       isEditingTime: !this.state.isEditingTime
     });
@@ -46,6 +48,9 @@ var EditAMRAP = React.createClass({
     var roundElements = [];
     var workout = this.state.workout;
     var rounds = this.state.workout.rounds;
+
+    //Declare components to edit workout
+    var timeEdit;
 
     var renderRound = function(rounds) {
       //AMRAP workout obj only has 1 round
@@ -71,15 +76,9 @@ var EditAMRAP = React.createClass({
       }
     };
 
-    renderRound(rounds);
-
-    return (
-      /* jshint ignore:start */
-      <View>
-        <TouchableHighlight
-          onPress={ () => this.toggleEditTime() }>
-          <Text>{this.state.workout.time}</Text>
-        </TouchableHighlight>
+    //timeEdit only renders if user is editing time
+    if(this.state.isEditingTime) {
+      timeEdit = (
         <PickerIOS
           selectedValue={Number(this.state.workout.time.slice(3,5))}
           onValueChange={(num) => this.setTime(num)}>
@@ -90,6 +89,21 @@ var EditAMRAP = React.createClass({
               label={num.toString() + ' min'}/>
           )}
         </PickerIOS>
+      );
+    } else {
+      timeEdit = null;
+    }
+
+    renderRound(rounds);
+
+    return (
+      /* jshint ignore:start */
+      <View>
+        <TouchableHighlight
+          onPress={ () => this.toggleTimeEdit() }>
+          <Text>{renderTimeHelper(this.state.workout.time) + ' As Many Rounds as Possible'}</Text>
+        </TouchableHighlight>
+        {timeEdit}
         {roundElements}
       </View>
 

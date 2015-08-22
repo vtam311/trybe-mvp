@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var renderTimeHelper = require('../../../helpers/renderTime');
+var renderTimeHelper = require('../../../helpers/renderTimeHelper');
 
 var {
   StyleSheet,
