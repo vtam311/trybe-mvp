@@ -59,10 +59,15 @@ var CreateWorkout = React.createClass({
 
     return (
       <View>
-        <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
-        <Text>Type: {this.state.workout.type}</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
+        <Text>Filler</Text>
         {instructions}
       </View>
     );

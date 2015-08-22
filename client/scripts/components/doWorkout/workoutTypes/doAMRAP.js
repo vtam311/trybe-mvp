@@ -16,7 +16,7 @@ var AMRAP = React.createClass({
 
   render: function(){
     //The round is an array of exercises
-    var roundElement = [];
+    var roundElements = [];
     var workout = this.props.workout;
     var rounds = this.props.workout.rounds;
 
@@ -30,7 +30,7 @@ var AMRAP = React.createClass({
     var titleRound = function(round){
       /* jshint ignore:start */
       var roundHeader = <Text>Each Round</Text>;
-      roundElement.push(roundHeader);
+      roundElements.push(roundHeader);
       /* jshint ignore:end */
     };
 
@@ -39,7 +39,7 @@ var AMRAP = React.createClass({
         var currExercise = round[ex];
         /* jshint ignore:start */
         var exerciseElement = <Exercise exercise={currExercise}/>;
-        roundElement.push(exerciseElement);
+        roundElements.push(exerciseElement);
         /* jshint ignore:end */
       }
     };
@@ -49,7 +49,7 @@ var AMRAP = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        {roundElement}
+        {roundElements}
       </View>
       /* jshint ignore:end */
     );
