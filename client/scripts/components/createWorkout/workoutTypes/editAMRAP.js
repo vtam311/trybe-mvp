@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../../actions/doWorkoutActions');
 var renderTimeHelper = require('../../../helpers/renderTimeHelper');
 
 //Load components
@@ -16,22 +15,22 @@ var {
 } = React;
 
 //Create picker options for modifying workout
-var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30];
+var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30,45,60,90];
 
 var PickerItemIOS = PickerIOS.Item;
 
 var EditAMRAP = React.createClass({
   getInitialState: function() {
     return {
-      //receive store from createWorkout, get workout and isEditingTime
-      workout: this.props.workout,
-      isEditingTime: false,
+      workout: this.props.store.getWorkout(),
+      isEditingTime: this.props.store.getIsEditingTime(),
     };
   },
   toggleTimeEdit: function() {
-    //Use createWorkout action to update store, then set state from store
+    this.props.actions.toggleTimeEdit();
+
     this.setState({
-      isEditingTime: !this.state.isEditingTime
+      isEditingTime: this.props.store.getIsEditingTime()
     });
   },
   setTime: function(num){
@@ -40,11 +39,12 @@ var EditAMRAP = React.createClass({
     var time = '00:' + num + ':00';
 
     //update createWorkoutStore's workout
-    this.state.workout.time = time;
+    var updatedWorkout = this.state.workout;
+    updatedWorkout.time = time;
+    this.props.actions.modifyWorkout(updatedWorkout);
 
-    //set state to updated createWorkoutStore's obj
     this.setState({
-      workout: this.state.workout
+      workout: this.props.store.getWorkout()
     });
   },
   render: function(){
@@ -84,7 +84,7 @@ var EditAMRAP = React.createClass({
     if(this.state.isEditingTime) {
       timeEdit = (
         <PickerIOS
-          selectedValue={Number(this.state.workout.time.slice(3,5))}
+          selectedValue={Number(workout.time.slice(3,5))}
           onValueChange={(num) => this.setTime(num)}>
           {TIME_CHOICES.map((num) =>
             <PickerItemIOS
@@ -105,7 +105,7 @@ var EditAMRAP = React.createClass({
       <View>
         <TouchableHighlight
           onPress={ () => this.toggleTimeEdit() }>
-          <Text>{renderTimeHelper(this.state.workout.time) + ' As Many Rounds as Possible'}</Text>
+          <Text>{renderTimeHelper(workout.time) + ' As Many Rounds as Possible'}</Text>
         </TouchableHighlight>
         {timeEdit}
         {roundElements}

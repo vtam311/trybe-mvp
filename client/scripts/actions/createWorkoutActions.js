@@ -15,6 +15,18 @@ var createWorkoutActions = {
       actionType: createWorkoutConstants.MODIFY_WORKOUT,
       data: workout
     });
+  },
+  updateWorkout: function(workout) {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.UPDATE_WORKOUT,
+      data: workout
+    });
+  },
+  toggleTimeEdit: function() {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.TOGGLE_TIME_EDIT,
+      data: null
+    });
   }
 };
 
