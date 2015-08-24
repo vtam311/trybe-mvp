@@ -23,12 +23,13 @@ var PickerItemIOS = PickerIOS.Item;
 var EditAMRAP = React.createClass({
   getInitialState: function() {
     return {
+      //receive store from createWorkout, get workout and isEditingTime
       workout: this.props.workout,
       isEditingTime: false,
     };
   },
   toggleTimeEdit: function() {
-    //Instead use createWorkout action?
+    //Use createWorkout action to update store, then set state from store
     this.setState({
       isEditingTime: !this.state.isEditingTime
     });
@@ -37,8 +38,11 @@ var EditAMRAP = React.createClass({
     //If num is not two digits, add zero to front
     num = ('0' + num).slice(-2);
     var time = '00:' + num + ':00';
+
+    //update createWorkoutStore's workout
     this.state.workout.time = time;
 
+    //set state to updated createWorkoutStore's obj
     this.setState({
       workout: this.state.workout
     });

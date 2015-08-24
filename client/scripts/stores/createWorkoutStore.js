@@ -63,8 +63,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case createWorkoutConstants.SET_WORKOUT:
+    case createWorkoutConstants.MODIFY_WORKOUT:
       setWorkout(action.data);
+      setIsModifyingWorkout(true);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

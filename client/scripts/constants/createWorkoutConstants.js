@@ -2,7 +2,7 @@
 
 var createWorkoutConstants = {
   GET_WORKOUT: 'GET_WORKOUT',
-  SET_WORKOUT: 'SET_WORKOUT'
+  MODIFY_WORKOUT: 'MODIFY_WORKOUT'
 };
 
 module.exports = createWorkoutConstants;

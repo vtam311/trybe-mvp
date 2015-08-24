@@ -15,25 +15,13 @@ var {
 
 var CreateWorkout = React.createClass({
   getInitialState: function() {
-    //If user is modifying workout, load that workout
-    if(this.props.workout) {
-      return {
-        isModifyingWorkout: true,
-        workout: this.props.workout
-      };
-    } else {
-    //Else load a blank workout
-      return {
-        isModifyingWorkout: false,
-        workout: createWorkoutStore.getWorkout()
-      };
-    }
+    return {
+      isModifyingWorkout: createWorkoutStore.getIsModifyingWorkout(),
+      workout: createWorkoutStore.getWorkout()
+    };
   },
   componentDidMount: function() {
     createWorkoutStore.addChangeListener(this._onChange);
-
-    //Load default blank workout if user is not modifying
-    if(!this.state.isModifyingWorkout) createWorkoutActions.getWorkout();
   },
   componentWillUnmount: function() {
     createWorkoutStore.removeChangeListener(this._onChange);
@@ -50,7 +38,7 @@ var CreateWorkout = React.createClass({
     switch(workout.type) {
       /* jshint ignore:start */
       case 'AMRAP':
-        instructions = <EditAMRAP workout={workout}/>;
+        instructions = <EditAMRAP store={createWorkoutStore} actions={createWorkoutActions} workout={workout}/>;
         break;
       default:
         instructions = <Text>Add Custom Component</Text>;
@@ -59,11 +47,6 @@ var CreateWorkout = React.createClass({
 
     return (
       <View>
-        <Text>Filler</Text>
-        <Text>Filler</Text>
-        <Text>Filler</Text>
-        <Text>Filler</Text>
-        <Text>Filler</Text>
         <Text>Filler</Text>
         <Text>Filler</Text>
         <Text>Filler</Text>

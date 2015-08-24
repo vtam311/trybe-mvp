@@ -10,9 +10,9 @@ var createWorkoutActions = {
       data: null
     });
   },
-  setWorkout: function(workout) {
+  modifyWorkout: function(workout) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_WORKOUT,
+      actionType: createWorkoutConstants.MODIFY_WORKOUT,
       data: workout
     });
   }
