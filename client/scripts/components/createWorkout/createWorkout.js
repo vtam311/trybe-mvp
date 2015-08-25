@@ -29,7 +29,8 @@ var CreateWorkout = React.createClass({
   _onChange: function(){
     this.setState({
       workout: createWorkoutStore.getWorkout(),
-      isEditingTime: createWorkoutStore.getIsEditingTime()
+      isEditingTime: createWorkoutStore.getIsEditingTime(),
+      isEditingReps: createWorkoutStore.getIsEditingReps()
     });
   },
   render: function(){

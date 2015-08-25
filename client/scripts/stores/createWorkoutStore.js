@@ -36,7 +36,8 @@ var BLANK_WORKOUT = {
 var _store = {
   isModifyingWorkout: false,
   workout: BLANK_WORKOUT,
-  isEditingTime: false
+  isEditingTime: false,
+  isEditingReps: false
 };
 
 var setIsModifyingWorkout = function(bool) {
@@ -49,6 +50,14 @@ var setWorkout = function(workout) {
 
 var toggleTimeEdit = function() {
   _store.isEditingTime = !_store.isEditingTime;
+};
+
+var toggleRepEdit = function() {
+  _store.isEditingReps = !_store.isEditingReps;
+};
+
+var setReps = function(reps, exercise, roundNum) {
+  _store.workout.rounds['round' + roundNum][exercise].reps = reps;
 };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -66,6 +75,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   getIsEditingTime: function(){
     return _store.isEditingTime;
+  },
+  getIsEditingReps: function(){
+    return _store.isEditingReps;
   }
 });
 
@@ -83,6 +95,14 @@ AppDispatcher.register(function(payload){
       break;
     case createWorkoutConstants.TOGGLE_TIME_EDIT:
       toggleTimeEdit();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.TOGGLE_REP_EDIT:
+      toggleRepEdit();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_REPS:
+      toggleRepEdit();
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

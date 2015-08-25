@@ -20,12 +20,6 @@ var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30,45,60,90];
 var PickerItemIOS = PickerIOS.Item;
 
 var EditAMRAP = React.createClass({
-  // getInitialState: function() {
-  //   return {
-  //     workout: this.props.workout,
-  //     isEditingTime: this.props.isEditingTime,
-  //   };
-  // },
   toggleTimeEdit: function() {
     this.props.actions.toggleTimeEdit();
   },
@@ -78,7 +72,7 @@ var EditAMRAP = React.createClass({
     renderRound(rounds);
 
     //timeEdit only renders if user is editing time
-    if(this.props.isEditingTime) {
+    if(store.getIsEditingTime()) {
       timeEdit = (
         <PickerIOS
           selectedValue={Number(workout.time.slice(3,5))}
