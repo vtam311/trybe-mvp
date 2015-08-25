@@ -4,6 +4,7 @@ var React = require('react-native');
 var doWorkoutStore = require('../../stores/doWorkoutStore');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
 var createWorkoutActions = require('../../actions/createWorkoutActions');
+var copyObjectHelper = require('../../helpers/copyObjectHelper');
 
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
@@ -44,7 +45,8 @@ var DoWorkout = React.createClass({
   },
   _handleModifyWorkoutPress: function(workout) {
     //pass workout to createWorkoutStore
-    createWorkoutActions.modifyWorkout(workout);
+    var newWorkout = copyObjectHelper(workout);
+    createWorkoutActions.modifyWorkout(newWorkout);
 
     this.props.navigator.push({
       title: 'Modify Workout',
