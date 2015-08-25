@@ -27,6 +27,18 @@ var createWorkoutActions = {
       actionType: createWorkoutConstants.TOGGLE_TIME_EDIT,
       data: null
     });
+  },
+  toggleRepEdit: function() {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
+      data: null
+    });
+  },
+  setReps: function(reps, exercise, roundNum) {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SET_REPS,
+      data: reps
+    });
   }
 };
 
