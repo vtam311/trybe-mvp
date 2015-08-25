@@ -21,7 +21,8 @@ var {
 
 var FeedCardFooter = React.createClass({
   doWorkout: function(workout) {
-    doWorkoutActions.setSelectedWorkout(workout);
+    var separateWorkout = JSON.parse(JSON.stringify(workout));
+    doWorkoutActions.setSelectedWorkout(separateWorkout);
     indexActions.setTab('workout');
   },
 

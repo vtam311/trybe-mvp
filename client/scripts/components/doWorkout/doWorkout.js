@@ -35,6 +35,7 @@ var DoWorkout = React.createClass({
   },
   _onChange: function(){
     this.setState({
+      isSelectedWorkout: doWorkoutStore.getIsSelectedWorkout(),
       workout: doWorkoutStore.getWorkout()
     });
   },
@@ -47,13 +48,18 @@ var DoWorkout = React.createClass({
 
     this.props.navigator.push({
       title: 'Modify Workout',
-      component: CreateWorkout,
-      passProps: {workout: workout}
+      component: CreateWorkout
     });
   },
   render: function(){
     return (
       <View>
+        <View>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+        </View>
         <DoWorkoutHeader workout={this.state.workout}/>
         <DoWorkoutInstructions workout={this.state.workout}/>
         <TouchableHighlight

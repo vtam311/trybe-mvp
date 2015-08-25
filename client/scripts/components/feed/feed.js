@@ -31,7 +31,6 @@ var Feed = React.createClass({
   },
   _onChange: function(){
     var cards = feedStore.getCards();
-    // console.log('in feed _onChange, cards:', cards);
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(cards)
     });
