@@ -52,9 +52,9 @@ var toggleTimeEdit = function() {
   _store.isEditingTime = !_store.isEditingTime;
 };
 
-var toggleRepEdit = function() {
-  _store.isEditingReps = !_store.isEditingReps;
-};
+// var toggleRepEdit = function() {
+//   _store.isEditingReps = !_store.isEditingReps;
+// };
 
 var setReps = function(data) {
   //To do: correct the exercise name
@@ -102,10 +102,10 @@ AppDispatcher.register(function(payload){
       toggleTimeEdit();
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.TOGGLE_REP_EDIT:
-      toggleRepEdit();
-      createWorkoutStore.emit(CHANGE_EVENT);
-      break;
+    // case createWorkoutConstants.TOGGLE_REP_EDIT:
+    //   toggleRepEdit();
+    //   createWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
     case createWorkoutConstants.SET_REPS:
       setReps(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
