@@ -34,10 +34,14 @@ var createWorkoutActions = {
       data: null
     });
   },
-  setReps: function(reps, exercise, roundNum) {
+  setReps: function(reps, roundNum, exNum) {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_REPS,
-      data: reps
+      data: {
+        reps: reps,
+        roundNum: roundNum,
+        exNum: exNum
+      }
     });
   }
 };

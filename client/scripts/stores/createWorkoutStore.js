@@ -56,8 +56,13 @@ var toggleRepEdit = function() {
   _store.isEditingReps = !_store.isEditingReps;
 };
 
-var setReps = function(reps, exercise, roundNum) {
-  _store.workout.rounds['round' + roundNum][exercise].reps = reps;
+var setReps = function(data) {
+  //To do: correct the exercise name
+  var reps = data.reps;
+  var roundNum = data.roundNum;
+  var exNum = data.exNum;
+
+  _store.workout.rounds['round' + roundNum][exNum].reps = reps;
 };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -102,7 +107,7 @@ AppDispatcher.register(function(payload){
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     case createWorkoutConstants.SET_REPS:
-      toggleRepEdit();
+      setReps(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

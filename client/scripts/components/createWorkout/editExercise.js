@@ -21,12 +21,13 @@ var EditReps = React.createClass({
     //must be passed in the workout, action, and store
     this.props.actions.toggleRepEdit();
   },
-  setReps: function(reps, exercise, roundNum){
-    this.props.actions.setReps(reps, exercise, roundNum);
+  setReps: function(reps, roundNum, exNum){
+    this.props.actions.setReps(reps, roundNum, exNum);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
+    var exNum = this.props.exNum;
     var roundNum = this.props.roundNum;
     var actions = this.props.actions;
     var store = this.props.store;
@@ -35,11 +36,11 @@ var EditReps = React.createClass({
     var repEdit;
 
     //how to know when to show repEdit?
-    if(this.props.store.getIsEditingReps()){
+    // if(this.props.store.getIsEditingReps()){
       repEdit = (
         <PickerIOS
           selectedValue={exercise.reps}
-          onValueChange={(reps) => this.setReps(reps, exercise, roundNum)}>
+          onValueChange={(val) => this.setReps(val, roundNum, exNum)}>
           {REP_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -48,9 +49,9 @@ var EditReps = React.createClass({
           )}
         </PickerIOS>
       );
-    }else{
-      repEdit = null;
-    }
+    // }else{
+    //   repEdit = null;
+    // }
 
     return (
       <View>
@@ -69,6 +70,7 @@ var EditExercise = React.createClass({
   render: function(){
     //Load props
     var exercise = this.props.exercise;
+    var exNum = this.props.exNum;
     var roundNum = this.props.roundNum;
     var actions = this.props.actions;
     var store = this.props.store;
@@ -80,7 +82,7 @@ var EditExercise = React.createClass({
 
     var renderRepsOrHold = function(exercise) {
       if(exercise.reps) {
-        repsOrHold = <EditReps exercise={exercise} roundNum={roundNum} store={store} actions={actions}/>;
+        repsOrHold = <EditReps exercise={exercise} exNum={exNum} roundNum={roundNum} store={store} actions={actions}/>;
       }else if(exercise.hold) {
         //TO DO: enable user to edit hold and name on click
         repsOrHold = exercise.hold;

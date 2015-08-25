@@ -29,7 +29,7 @@ var EditAMRAP = React.createClass({
     var time = '00:' + num + ':00';
 
     //TO DO: only update time portion of workout
-    var updatedWorkout = this.state.workout;
+    var updatedWorkout = this.props.workout;
     updatedWorkout.time = time;
     this.props.actions.updateWorkout(updatedWorkout);
   },
@@ -63,7 +63,7 @@ var EditAMRAP = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <EditExercise exercise={currExercise} roundNum={roundNum} actions={actions} store={store}/>;
+        var exerciseElement = <EditExercise exercise={currExercise} exNum={ex} roundNum={roundNum} actions={actions} store={store}/>;
         roundElements.push(exerciseElement);
         /* jshint ignore:end */
       }
