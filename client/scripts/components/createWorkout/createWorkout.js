@@ -29,8 +29,8 @@ var CreateWorkout = React.createClass({
   _onChange: function(){
     this.setState({
       workout: createWorkoutStore.getWorkout(),
+      //To do: move to separate editTime component
       isEditingTime: createWorkoutStore.getIsEditingTime(),
-      isEditingReps: createWorkoutStore.getIsEditingReps()
     });
   },
   render: function(){

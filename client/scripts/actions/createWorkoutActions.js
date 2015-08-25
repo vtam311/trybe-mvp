@@ -28,12 +28,12 @@ var createWorkoutActions = {
       data: null
     });
   },
-  toggleRepEdit: function() {
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
-      data: null
-    });
-  },
+  // toggleRepEdit: function() {
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
+  //     data: null
+  //   });
+  // },
   setReps: function(reps, roundNum, exNum) {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_REPS,
