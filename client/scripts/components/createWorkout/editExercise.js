@@ -1,6 +1,10 @@
 'use strict';
 
 var React = require('react-native');
+var createWorkoutStore = require('../../stores/createWorkoutStore');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
+
+
 
 //Load components
 var EditReps = require('./editReps');
@@ -19,8 +23,6 @@ var EditExercise = React.createClass({
     var exercise = this.props.exercise;
     var exNum = this.props.exNum;
     var roundNum = this.props.roundNum;
-    var actions = this.props.actions;
-    var store = this.props.store;
 
     //Declare variables for exercise
     var repsOrHold;
@@ -30,7 +32,7 @@ var EditExercise = React.createClass({
     var renderRepsOrHold = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps) {
-        repsOrHold = <EditReps exercise={exercise} exNum={exNum} roundNum={roundNum} store={store} actions={actions}/>;
+        repsOrHold = <EditReps exercise={exercise} exNum={exNum} roundNum={roundNum}/>;
       }else if(exercise.hold) {
         //TO DO: enable user to edit hold and name on click
         repsOrHold = exercise.hold;

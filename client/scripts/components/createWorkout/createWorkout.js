@@ -40,7 +40,7 @@ var CreateWorkout = React.createClass({
     switch(workout.type) {
       /* jshint ignore:start */
       case 'AMRAP':
-        instructions = <EditAMRAP store={createWorkoutStore} actions={createWorkoutActions} workout={workout} isEditingTime={this.state.isEditingTime}/>;
+        instructions = <EditAMRAP workout={workout}/>;
         break;
       default:
         instructions = <Text>Add Custom Component</Text>;

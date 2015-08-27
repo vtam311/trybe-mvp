@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var createWorkoutStore = require('../../stores/createWorkoutStore');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 var {
   StyleSheet,
@@ -27,15 +29,13 @@ var EditReps = React.createClass({
     });
   },
   setReps: function(reps, roundNum, exNum){
-    this.props.actions.setReps(reps, roundNum, exNum);
+    createWorkoutActions.setReps(reps, roundNum, exNum);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
     var exNum = this.props.exNum;
     var roundNum = this.props.roundNum;
-    var actions = this.props.actions;
-    var store = this.props.store;
 
     var repEdit;
 
