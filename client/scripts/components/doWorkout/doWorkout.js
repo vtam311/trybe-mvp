@@ -3,11 +3,12 @@
 var React = require('react-native');
 var doWorkoutStore = require('../../stores/doWorkoutStore');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
+// var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
 var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
-var CreateWorkout = require('../createWorkout/createWorkout.js');
+// var CreateWorkout = require('../createWorkout/createWorkout.js');
 
 var {
   StyleSheet,
@@ -34,6 +35,7 @@ var DoWorkout = React.createClass({
   },
   _onChange: function(){
     this.setState({
+      isSelectedWorkout: doWorkoutStore.getIsSelectedWorkout(),
       workout: doWorkoutStore.getWorkout()
     });
   },
@@ -41,21 +43,26 @@ var DoWorkout = React.createClass({
     this.props.navigator.pop();
   },
   _handleModifyWorkoutPress: function(workout) {
+    createWorkoutActions.modifyWorkout(workout);
+
     this.props.navigator.push({
       title: 'Modify Workout',
-      component: CreateWorkout,
-      passProps: {workout: workout}
+      component: CreateWorkout
     });
   },
   render: function(){
+    var workout = this.state.workout;
+
     return (
       <View>
-        <DoWorkoutHeader workout={this.state.workout}/>
-        <DoWorkoutInstructions workout={this.state.workout}/>
-        <TouchableHighlight
-          onPress={this._handleModifyWorkoutPress.bind(this, this.state.workout)}>
-          <Text>Modify</Text>
-        </TouchableHighlight>
+        <View>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+          <Text>Fill</Text>
+        </View>
+        <DoWorkoutHeader workout={workout} navigator={this.props.navigator}/>
+        <DoWorkoutInstructions workout={workout}/>
         <Text>Start</Text>
       </View>
     );

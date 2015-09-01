@@ -48,7 +48,7 @@ var DoWorkoutHeader = React.createClass({
           <Text>Day {day}</Text>
           <Text>{overview}</Text>
         </View>
-        <DoWorkoutBar />
+        <DoWorkoutBar workout={workout} navigator={this.props.navigator}/>
       </View>
       /* jshint ignore:end */
     );

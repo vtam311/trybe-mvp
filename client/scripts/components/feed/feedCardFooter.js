@@ -11,6 +11,7 @@ var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 var indexActions = require('../../actions/indexActions');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
+var copyObjectHelper = require('../../helpers/copyObjectHelper');
 
 var {
   StyleSheet,
@@ -21,7 +22,8 @@ var {
 
 var FeedCardFooter = React.createClass({
   doWorkout: function(workout) {
-    doWorkoutActions.setSelectedWorkout(workout);
+    var separateWorkout = copyObjectHelper(workout);
+    doWorkoutActions.setSelectedWorkout(separateWorkout);
     indexActions.setTab('workout');
   },
 
