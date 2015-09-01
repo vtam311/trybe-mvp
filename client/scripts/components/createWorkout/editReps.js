@@ -48,8 +48,7 @@ var EditReps = React.createClass({
 
     var repEdit;
 
-    //Refactor to use store?
-    console.log('in editReps, this.state.showRepSelection:', this.state.showRepSelection);
+    //Show repEdit options if the exercise's reps are being edited
     if(this.state.showRepSelection){
       repEdit = (
         <PickerIOS

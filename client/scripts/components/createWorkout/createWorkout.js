@@ -29,8 +29,6 @@ var CreateWorkout = React.createClass({
   _onChange: function(){
     this.setState({
       workout: createWorkoutStore.getWorkout(),
-      //To do: move to separate editTime component
-      isEditingTime: createWorkoutStore.getIsEditingTime(),
     });
   },
   render: function(){
@@ -39,11 +37,12 @@ var CreateWorkout = React.createClass({
 
     switch(workout.type) {
       /* jshint ignore:start */
+      case 'Custom':
       case 'AMRAP':
         instructions = <EditAMRAP workout={workout}/>;
         break;
       default:
-        instructions = <Text>Add Custom Component</Text>;
+        instructions = <Text>Temp Default Text</Text>;
       /* jshint ignore:end */
     }
 

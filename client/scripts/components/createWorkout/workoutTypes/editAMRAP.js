@@ -25,10 +25,22 @@ var EditAMRAP = React.createClass({
     var roundElements = []; //Each round is an array of exercise components
 
     var renderRound = function(rounds) {
-      //AMRAP workout obj only has 1 round
-      var currRound = rounds.round1;
-      titleRound(currRound);
-      renderExercisesOfRound(currRound, 1);
+      switch(workout.type) {
+        case 'AMRAP':
+          //AMRAP workout obj can only have 1 round that repeats
+          var currRound = rounds.round1;
+          titleRound(currRound);
+          renderExercisesOfRound(currRound, 1);
+          break;
+        case 'Custom':
+          /* jshint ignore:start */
+          var instructions = <Text>{workout.instructions}</Text>;
+          roundElements.push(instructions);
+          /* jshint ignore:end */
+          break;
+        default:
+          return undefined;
+      }
     };
 
     var titleRound = function(round){
