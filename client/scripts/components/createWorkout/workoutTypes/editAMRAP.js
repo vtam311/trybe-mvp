@@ -42,7 +42,7 @@ var EditAMRAP = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <EditExercise exercise={currExercise} exNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <EditExercise exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
         roundElements.push(exerciseElement);
         /* jshint ignore:end */
       }

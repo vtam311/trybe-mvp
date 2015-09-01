@@ -20,31 +20,41 @@ var PickerItemIOS = PickerIOS.Item;
 var EditReps = React.createClass({
   getInitialState: function() {
     return {
-      showRepSelection: false
+      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
     };
   },
-  toggleRepEdit: function(){
+  componentDidMount: function() {
+    createWorkoutStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    createWorkoutStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
     this.setState({
-      showRepSelection: !this.state.showRepSelection
+      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
     });
   },
-  setReps: function(reps, roundNum, exNum){
-    createWorkoutActions.setReps(reps, roundNum, exNum);
+  toggleRepEdit: function(exerciseNum){
+    createWorkoutActions.toggleRepEdit(exerciseNum);
+  },
+  setReps: function(reps, roundNum, exerciseNum){
+    createWorkoutActions.setReps(reps, roundNum, exerciseNum);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exNum = this.props.exNum;
+    var exerciseNum = this.props.exerciseNum;
     var roundNum = this.props.roundNum;
 
     var repEdit;
 
     //Refactor to use store?
+    console.log('in editReps, this.state.showRepSelection:', this.state.showRepSelection);
     if(this.state.showRepSelection){
       repEdit = (
         <PickerIOS
           selectedValue={exercise.reps}
-          onValueChange={(val) => this.setReps(val, roundNum, exNum)}>
+          onValueChange={(val) => this.setReps(val, roundNum, exerciseNum)}>
           {REP_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -60,7 +70,7 @@ var EditReps = React.createClass({
     return (
       <View>
         <TouchableHighlight
-          onPress={ () => this.toggleRepEdit() }>
+          onPress={ () => this.toggleRepEdit(exerciseNum) }>
           <Text>{exercise.reps}</Text>
         </TouchableHighlight>
         {repEdit}

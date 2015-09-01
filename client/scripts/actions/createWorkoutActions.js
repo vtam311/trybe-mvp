@@ -28,19 +28,19 @@ var createWorkoutActions = {
       data: null
     });
   },
-  // toggleRepEdit: function() {
-  //   AppDispatcher.handleAction({
-  //     actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
-  //     data: null
-  //   });
-  // },
-  setReps: function(reps, roundNum, exNum) {
+  toggleRepEdit: function(exerciseNum) {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
+      data: exerciseNum
+    });
+  },
+  setReps: function(reps, roundNum, exerciseNum) {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_REPS,
       data: {
         reps: reps,
         roundNum: roundNum,
-        exNum: exNum
+        exerciseNum: exerciseNum
       }
     });
   }

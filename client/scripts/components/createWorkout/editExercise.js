@@ -21,7 +21,7 @@ var EditExercise = React.createClass({
   render: function(){
     //Load props
     var exercise = this.props.exercise;
-    var exNum = this.props.exNum;
+    var exerciseNum = this.props.exerciseNum;
     var roundNum = this.props.roundNum;
 
     //Declare variables for exercise
@@ -32,7 +32,7 @@ var EditExercise = React.createClass({
     var renderRepsOrHold = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps) {
-        repsOrHold = <EditReps exercise={exercise} exNum={exNum} roundNum={roundNum}/>;
+        repsOrHold = <EditReps exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
       }else if(exercise.hold) {
         //TO DO: enable user to edit hold and name on click
         repsOrHold = exercise.hold;
@@ -55,7 +55,7 @@ var EditExercise = React.createClass({
       /* jshint ignore:start*/
       if(exercise.load.val) {
         load = <Text>{'at ' + exercise.load.val + exercise.load.units}</Text>;
-      } else{
+      }else{
         load = null;
       }
       /* jshint ignore:end*/
