@@ -3,12 +3,12 @@
 var React = require('react-native');
 var doWorkoutStore = require('../../stores/doWorkoutStore');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+// var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
 var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
-var CreateWorkout = require('../createWorkout/createWorkout.js');
+// var CreateWorkout = require('../createWorkout/createWorkout.js');
 
 var {
   StyleSheet,
@@ -51,6 +51,8 @@ var DoWorkout = React.createClass({
     });
   },
   render: function(){
+    var workout = this.state.workout;
+
     return (
       <View>
         <View>
@@ -59,12 +61,8 @@ var DoWorkout = React.createClass({
           <Text>Fill</Text>
           <Text>Fill</Text>
         </View>
-        <DoWorkoutHeader workout={this.state.workout}/>
-        <DoWorkoutInstructions workout={this.state.workout}/>
-        <TouchableHighlight
-          onPress={this._handleModifyWorkoutPress.bind(this, this.state.workout)}>
-          <Text>Modify</Text>
-        </TouchableHighlight>
+        <DoWorkoutHeader workout={workout} navigator={this.props.navigator}/>
+        <DoWorkoutInstructions workout={workout}/>
         <Text>Start</Text>
       </View>
     );
