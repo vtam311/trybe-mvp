@@ -46,7 +46,7 @@ var TimeEdit = React.createClass({
     createWorkoutActions.updateWorkout(updatedWorkout);
   },
   render: function() {
-    if(this.state.showTimeSelection){
+    if(this.state.showTimeSelection && this.props.workout.time){
       return (
         /* jshint ignore:start */
         <View>
@@ -67,7 +67,7 @@ var TimeEdit = React.createClass({
         </View>
         /* jshint ignore:end */
       );
-    }else{
+    } else if(this.props.workout.time) {
       return (
         /* jshint ignore:start */
         <View>
@@ -78,6 +78,8 @@ var TimeEdit = React.createClass({
         </View>
         /* jshint ignore:end */
       );
+    } else {
+      return null;
     }
   }
 });

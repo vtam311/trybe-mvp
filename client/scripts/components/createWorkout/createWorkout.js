@@ -37,12 +37,16 @@ var CreateWorkout = React.createClass({
 
     switch(workout.type) {
       /* jshint ignore:start */
-      case 'Custom':
       case 'AMRAP':
+      case 'Custom':
+      case 'Lift':
+      case 'Progressions':
+      case 'Timed Circuit':
         instructions = <EditAMRAP workout={workout}/>;
         break;
       default:
-        instructions = <Text>Temp Default Text</Text>;
+        instructions = <Text>{workout.instructions}</Text>;
+        console.log('in createWorkout, unknown workout type');
       /* jshint ignore:end */
     }
 

@@ -37,7 +37,7 @@ var _store = {
   isModifyingWorkout: false,
   workout: BLANK_WORKOUT,
   isEditingTime: false,
-  isEditingReps: {}
+  // isEditingReps: {}
 };
 
 var setIsModifyingWorkout = function(bool) {
@@ -52,13 +52,13 @@ var toggleTimeEdit = function() {
   _store.isEditingTime = !_store.isEditingTime;
 };
 
-var toggleRepEdit = function(exerciseNum) {
-  if(_store.isEditingReps[exerciseNum] === undefined){
-    _store.isEditingReps[exerciseNum] = true;
-  } else {
-    _store.isEditingReps[exerciseNum] = !_store.isEditingReps[exerciseNum];
-  }
-};
+// var toggleRepEdit = function(exerciseNum) {
+//   if(_store.isEditingReps[exerciseNum] === undefined){
+//     _store.isEditingReps[exerciseNum] = true;
+//   } else {
+//     _store.isEditingReps[exerciseNum] = !_store.isEditingReps[exerciseNum];
+//   }
+// };
 
 var setReps = function(data) {
   //To do: correct the exercise name
@@ -85,9 +85,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getIsEditingTime: function(){
     return _store.isEditingTime;
   },
-  getIsEditingReps: function(exerciseNum){
-    return _store.isEditingReps[exerciseNum];
-  }
+  // getIsEditingReps: function(exerciseNum){
+  //   return _store.isEditingReps[exerciseNum];
+  // }
 });
 
 AppDispatcher.register(function(payload){
@@ -106,10 +106,10 @@ AppDispatcher.register(function(payload){
       toggleTimeEdit();
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.TOGGLE_REP_EDIT:
-      toggleRepEdit(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
-      break;
+    // case createWorkoutConstants.TOGGLE_REP_EDIT:
+    //   toggleRepEdit(action.data);
+    //   createWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
     case createWorkoutConstants.SET_REPS:
       setReps(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);

@@ -117,7 +117,7 @@ var liftWorkout = {
       exercise1: {
         name: 'Front Squats',
         reps: 5,
-        load: {units: 'lbs', val: 175},
+        load: {units: 'lbs', val: 200},
         hold: null,
         standard: {type: null, value: null},
         focusArea: {name: null, progression: null},
@@ -128,7 +128,7 @@ var liftWorkout = {
       exercise1: {
         name: 'Front Squats',
         reps: 5,
-        load: {units: 'lbs', val: 185},
+        load: {units: 'lbs', val: 205},
         hold: null,
         standard: {type: null, value: null},
         focusArea: {name: null, progression: null},

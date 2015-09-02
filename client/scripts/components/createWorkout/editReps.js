@@ -18,24 +18,29 @@ var PickerItemIOS = PickerIOS.Item;
 
 
 var EditReps = React.createClass({
+  /*EditReps state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
   getInitialState: function() {
     return {
-      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
+      // showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
+      showRepSelection: false
     };
   },
-  componentDidMount: function() {
-    createWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
-    });
-  },
+  // componentDidMount: function() {
+  //   createWorkoutStore.addChangeListener(this._onChange);
+  // },
+  // componentWillUnmount: function() {
+  //   createWorkoutStore.removeChangeListener(this._onChange);
+  // },
+  // _onChange: function(){
+  //   this.setState({
+  //     showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
+  //   });
+  // },
   toggleRepEdit: function(exerciseNum){
-    createWorkoutActions.toggleRepEdit(exerciseNum);
+    // createWorkoutActions.toggleRepEdit(exerciseNum);
+    this.setState({
+      showRepSelection: !this.state.showRepSelection
+    });
   },
   setReps: function(reps, roundNum, exerciseNum){
     createWorkoutActions.setReps(reps, roundNum, exerciseNum);

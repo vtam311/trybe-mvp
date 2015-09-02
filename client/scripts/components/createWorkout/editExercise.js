@@ -35,7 +35,7 @@ var EditExercise = React.createClass({
         repsOrHold = <EditReps exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
       }else if(exercise.hold) {
         //TO DO: enable user to edit hold and name on click
-        repsOrHold = exercise.hold;
+        repsOrHold = <Text>{exercise.hold}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -43,9 +43,9 @@ var EditExercise = React.createClass({
     var renderMovement = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps){
-        movement = <Text>{ exercise.name}</Text>
+        movement = <Text>{exercise.name}</Text>
       }else if(exercise.hold){
-        movement = <Text>{ ' Sec ' + exercise.name}</Text>
+        movement = <Text>{'Second ' + exercise.name}</Text>
       }
       /* jshint ignore:end*/
     };
