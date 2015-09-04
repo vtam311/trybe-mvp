@@ -35,8 +35,11 @@ var ModifyWorkout = React.createClass({
   render: function(){
     var workout = this.state.workout;
     var rounds = workout.rounds;
-    var roundElements = []; //Each round is an array of exercise components
+    var roundElements = [];
 
+    //renderRound titles and renders the exercises of each round
+    //by pushing info such as instructions, titles, and exercises
+    //into the roundElements array
     var renderRound = function(rounds) {
       /* jshint ignore:start */
       switch(workout.type) {
@@ -51,9 +54,9 @@ var ModifyWorkout = React.createClass({
           renderExercisesOfRound(currRound, 1);
           break;
         case 'Lift':
+          //Lift workout uses rounds, but they're same as sets
         case 'Progressions':
         case 'Timed Circuit':
-          //Lift workout uses rounds, but they're same as sets
           for(let i = 1; i <= rounds.numRounds; i++) {
             roundElements[i] = [];
             var currRound;
