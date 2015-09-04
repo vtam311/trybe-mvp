@@ -34,15 +34,15 @@ var BLANK_WORKOUT = {
 };
 
 var _store = {
-  isModifyingWorkout: false,
+  // isModifyingWorkout: false, //commented all isModifyingWorkout bools on 9/4/15
   workout: BLANK_WORKOUT,
   // isEditingTime: false,
   // isEditingReps: {}
 };
 
-var setIsModifyingWorkout = function(bool) {
-  _store.IsModifyingWorkout = bool;
-};
+// var setIsModifyingWorkout = function(bool) {
+//   _store.IsModifyingWorkout = bool;
+// };
 
 var setWorkout = function(workout) {
   _store.workout = workout;
@@ -76,9 +76,9 @@ var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getIsModifyingWorkout: function() {
-    return _store.isModifyingWorkout;
-  },
+  // getIsModifyingWorkout: function() {
+  //   return _store.isModifyingWorkout;
+  // },
   getWorkout: function(){
     return _store.workout;
   },
@@ -95,7 +95,7 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case modifyWorkoutConstants.MODIFY_WORKOUT:
       setWorkout(action.data);
-      setIsModifyingWorkout(true);
+      // setIsModifyingWorkout(true);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     case modifyWorkoutConstants.UPDATE_WORKOUT:
