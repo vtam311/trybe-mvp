@@ -54,7 +54,7 @@ var ModifyWorkout = React.createClass({
           renderExercisesOfRound(currRound, 1);
           break;
         case 'Lift':
-          //Lift workout uses rounds, but they're same as sets
+          //Lift workout obj uses rounds as sets
         case 'Progressions':
         case 'Timed Circuit':
           for(let i = 1; i <= rounds.numRounds; i++) {
@@ -79,10 +79,6 @@ var ModifyWorkout = React.createClass({
     var titleRound = function(round, roundNum){
       /* jshint ignore:start */
       switch(workout.type) {
-        case 'Custom':
-          var instructions = <Text>{workout.instructions}</Text>;
-          roundElements.push(instructions);
-          break;
         case 'AMRAP':
           var roundHeader = <Text>Each Round</Text>;
           roundElements.push(roundHeader);
