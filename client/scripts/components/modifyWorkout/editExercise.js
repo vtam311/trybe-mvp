@@ -7,6 +7,7 @@ var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 //Load components
 var EditReps = require('./editReps');
 var EditLoad = require('./editLoad');
+var EditHold = require('./editHold');
 
 var {
   StyleSheet,
@@ -30,11 +31,11 @@ var EditExercise = React.createClass({
 
     var renderRepsOrHold = function(exercise) {
       /* jshint ignore:start*/
-      if(exercise.reps) {
+      if(exercise.reps){
         repsOrHold = <EditReps exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
-      }else if(exercise.hold) {
+      }else if(exercise.hold){
         //TO DO: enable user to edit hold and name on click
-        repsOrHold = <Text>{exercise.hold}</Text>;
+        repsOrHold = <EditHold exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
       }
       /* jshint ignore:end*/
     };

@@ -7,7 +7,8 @@ var modifyWorkoutConstants = {
   TOGGLE_TIME_EDIT: 'TOGGLE_TIME_EDIT',
   // TOGGLE_REP_EDIT: 'TOGGLE_REP_EDIT',
   SET_REPS: 'SET_REPS',
-  SET_LOAD: 'SET_LOAD'
+  SET_LOAD: 'SET_LOAD',
+  SET_LOAD: 'SET_HOLD'
 };
 
 module.exports = modifyWorkoutConstants;

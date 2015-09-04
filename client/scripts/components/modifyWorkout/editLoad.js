@@ -23,7 +23,7 @@ var EditLoad = React.createClass({
       showLoadSelection: false
     };
   },
-  toggleLoadEdit: function(exerciseNum){
+  toggleLoadEdit: function(){
     this.setState({
       showLoadSelection: !this.state.showLoadSelection
     });
@@ -36,7 +36,6 @@ var EditLoad = React.createClass({
     var exercise = this.props.exercise;
     var exerciseNum = this.props.exerciseNum;
     var roundNum = this.props.roundNum;
-
     var loadEdit;
 
     //Show loadEdit options if the exercise's load are being edited
@@ -60,7 +59,7 @@ var EditLoad = React.createClass({
     return (
       <View>
         <TouchableHighlight
-          onPress={ () => this.toggleLoadEdit(exerciseNum) }>
+          onPress={ () => this.toggleLoadEdit() }>
           <Text>at {exercise.load.val} {exercise.load.units}</Text>
         </TouchableHighlight>
         {loadEdit}

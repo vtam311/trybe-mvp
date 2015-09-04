@@ -23,7 +23,7 @@ var EditReps = React.createClass({
       showRepSelection: false
     };
   },
-  toggleRepEdit: function(exerciseNum){
+  toggleRepEdit: function(){
     this.setState({
       showRepSelection: !this.state.showRepSelection
     });
@@ -36,7 +36,6 @@ var EditReps = React.createClass({
     var exercise = this.props.exercise;
     var exerciseNum = this.props.exerciseNum;
     var roundNum = this.props.roundNum;
-
     var repEdit;
 
     //Show repEdit options if the exercise's reps are being edited
@@ -60,7 +59,7 @@ var EditReps = React.createClass({
     return (
       <View>
         <TouchableHighlight
-          onPress={ () => this.toggleRepEdit(exerciseNum) }>
+          onPress={ () => this.toggleRepEdit() }>
           <Text>{exercise.reps}</Text>
         </TouchableHighlight>
         {repEdit}

@@ -53,6 +53,16 @@ var modifyWorkoutActions = {
         exerciseNum: exerciseNum
       }
     });
+  },
+  setHold: function(hold, roundNum, exerciseNum) {
+    AppDispatcher.handleAction({
+      actionType: modifyWorkoutConstants.SET_HOLD,
+      data: {
+        hold: hold,
+        roundNum: roundNum,
+        exerciseNum: exerciseNum
+      }
+    });
   }
 };
 
