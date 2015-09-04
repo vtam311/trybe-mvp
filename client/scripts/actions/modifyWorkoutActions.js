@@ -22,12 +22,12 @@ var modifyWorkoutActions = {
       data: workout
     });
   },
-  toggleTimeEdit: function() {
-    AppDispatcher.handleAction({
-      actionType: modifyWorkoutConstants.TOGGLE_TIME_EDIT,
-      data: null
-    });
-  },
+  // toggleTimeEdit: function() {
+  //   AppDispatcher.handleAction({
+  //     actionType: modifyWorkoutConstants.TOGGLE_TIME_EDIT,
+  //     data: null
+  //   });
+  // },
   // toggleRepEdit: function(exerciseNum) {
   //   AppDispatcher.handleAction({
   //     actionType: modifyWorkoutConstants.TOGGLE_REP_EDIT,

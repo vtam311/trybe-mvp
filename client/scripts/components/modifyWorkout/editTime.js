@@ -19,31 +19,33 @@ var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30,45,60,90];
 var TimeEdit = React.createClass({
   getInitialState: function() {
     return {
-      showTimeSelection: modifyWorkoutStore.getIsEditingTime()
+      // showTimeSelection: modifyWorkoutStore.getIsEditingTime()
+      showTimeSelection: false
     };
   },
-  componentDidMount: function() {
-    modifyWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    modifyWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      showTimeSelection: modifyWorkoutStore.getIsEditingTime(),
-    });
-  },
+  // componentDidMount: function() {
+  //   modifyWorkoutStore.addChangeListener(this._onChange);
+  // },
+  // componentWillUnmount: function() {
+  //   modifyWorkoutStore.removeChangeListener(this._onChange);
+  // },
+  // _onChange: function(){
+  //   this.setState({
+  //     showTimeSelection: modifyWorkoutStore.getIsEditingTime(),
+  //   });
+  // },
   toggleTimeEdit: function() {
-    modifyWorkoutActions.toggleTimeEdit();
+    // modifyWorkoutActions.toggleTimeEdit();
+    this.setState({
+      showTimeSelection: !this.state.showTimeSelection
+    });
   },
   setTime: function(num){
     //If num is not two digits, add zero to front
     num = ('0' + num).slice(-2);
     var time = '00:' + num + ':00';
-
-    var updatedWorkout = this.props.workout;
-    updatedWorkout.time = time;
-    modifyWorkoutActions.updateWorkout(updatedWorkout);
+    this.props.workout.time = time;
+    modifyWorkoutActions.updateWorkout(this.props.workout);
   },
   render: function() {
     if(this.state.showTimeSelection && this.props.workout.time){
