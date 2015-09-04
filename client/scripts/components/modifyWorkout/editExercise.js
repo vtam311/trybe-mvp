@@ -4,10 +4,9 @@ var React = require('react-native');
 var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
-
-
 //Load components
 var EditReps = require('./editReps');
+var EditLoad = require('./editLoad');
 
 var {
   StyleSheet,
@@ -44,7 +43,7 @@ var EditExercise = React.createClass({
       /* jshint ignore:start*/
       if(exercise.reps){
         movement = <Text>{exercise.name}</Text>
-      }else if(exercise.hold){
+      } else if (exercise.hold){
         movement = <Text>{'Second ' + exercise.name}</Text>
       }
       /* jshint ignore:end*/
@@ -54,8 +53,8 @@ var EditExercise = React.createClass({
       //TO DO: enable user to edit load on click
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <Text>{'at ' + exercise.load.val + exercise.load.units}</Text>;
-      }else{
+        load = <EditLoad exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
+      } else {
         load = null;
       }
       /* jshint ignore:end*/

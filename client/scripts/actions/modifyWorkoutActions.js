@@ -43,6 +43,16 @@ var modifyWorkoutActions = {
         exerciseNum: exerciseNum
       }
     });
+  },
+  setLoad: function(load, roundNum, exerciseNum) {
+    AppDispatcher.handleAction({
+      actionType: modifyWorkoutConstants.SET_LOAD,
+      data: {
+        load: load,
+        roundNum: roundNum,
+        exerciseNum: exerciseNum
+      }
+    });
   }
 };
 

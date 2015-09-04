@@ -69,6 +69,14 @@ var setReps = function(data) {
   _store.workout.rounds['round' + roundNum][exerciseNum].reps = reps;
 };
 
+var setLoad = function(data) {
+  var load = data.load;
+  var roundNum = data.roundNum;
+  var exerciseNum = data.exerciseNum;
+
+  _store.workout.rounds['round' + roundNum][exerciseNum].load.val = load;
+};
+
 var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -112,6 +120,10 @@ AppDispatcher.register(function(payload){
     //   break;
     case modifyWorkoutConstants.SET_REPS:
       setReps(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_LOAD:
+      setLoad(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
