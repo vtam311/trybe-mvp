@@ -1,6 +1,6 @@
 'use strict';
 
-var createWorkoutConstants = {
+var modifyWorkoutConstants = {
   GET_WORKOUT: 'GET_WORKOUT',
   MODIFY_WORKOUT: 'MODIFY_WORKOUT',
   UPDATE_WORKOUT: 'UPDATE_WORKOUT',
@@ -9,4 +9,4 @@ var createWorkoutConstants = {
   SET_REPS: 'SET_REPS'
 };
 
-module.exports = createWorkoutConstants;
+module.exports = modifyWorkoutConstants;

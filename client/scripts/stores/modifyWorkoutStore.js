@@ -1,7 +1,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var createWorkoutConstants = require('../constants/createWorkoutConstants');
+var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -69,7 +69,7 @@ var setReps = function(data) {
   _store.workout.rounds['round' + roundNum][exerciseNum].reps = reps;
 };
 
-var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
+var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
@@ -93,30 +93,30 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case createWorkoutConstants.MODIFY_WORKOUT:
+    case modifyWorkoutConstants.MODIFY_WORKOUT:
       setWorkout(action.data);
       setIsModifyingWorkout(true);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.UPDATE_WORKOUT:
+    case modifyWorkoutConstants.UPDATE_WORKOUT:
       setWorkout(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.TOGGLE_TIME_EDIT:
+    case modifyWorkoutConstants.TOGGLE_TIME_EDIT:
       toggleTimeEdit();
-      createWorkoutStore.emit(CHANGE_EVENT);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
-    // case createWorkoutConstants.TOGGLE_REP_EDIT:
+    // case modifyWorkoutConstants.TOGGLE_REP_EDIT:
     //   toggleRepEdit(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
+    //   modifyWorkoutStore.emit(CHANGE_EVENT);
     //   break;
-    case createWorkoutConstants.SET_REPS:
+    case modifyWorkoutConstants.SET_REPS:
       setReps(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
       return true;
   }
 });
 
-module.exports = createWorkoutStore;
+module.exports = modifyWorkoutStore;

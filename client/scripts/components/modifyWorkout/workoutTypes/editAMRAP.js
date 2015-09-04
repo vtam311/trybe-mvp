@@ -2,8 +2,8 @@
 
 var React = require('react-native');
 var renderTimeHelper = require('../../../helpers/renderTimeHelper');
-var createWorkoutStore = require('../../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var modifyWorkoutStore = require('../../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../../actions/modifyWorkoutActions');
 
 //Load components
 var EditExercise = require('../editExercise');

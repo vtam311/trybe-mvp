@@ -1,42 +1,42 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var createWorkoutConstants = require('../constants/createWorkoutConstants');
+var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
 
-var createWorkoutActions = {
+var modifyWorkoutActions = {
   getWorkout: function() {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.GET_WORKOUT,
+      actionType: modifyWorkoutConstants.GET_WORKOUT,
       data: null
     });
   },
   modifyWorkout: function(workout) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.MODIFY_WORKOUT,
+      actionType: modifyWorkoutConstants.MODIFY_WORKOUT,
       data: workout
     });
   },
   updateWorkout: function(workout) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.UPDATE_WORKOUT,
+      actionType: modifyWorkoutConstants.UPDATE_WORKOUT,
       data: workout
     });
   },
   toggleTimeEdit: function() {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.TOGGLE_TIME_EDIT,
+      actionType: modifyWorkoutConstants.TOGGLE_TIME_EDIT,
       data: null
     });
   },
   // toggleRepEdit: function(exerciseNum) {
   //   AppDispatcher.handleAction({
-  //     actionType: createWorkoutConstants.TOGGLE_REP_EDIT,
+  //     actionType: modifyWorkoutConstants.TOGGLE_REP_EDIT,
   //     data: exerciseNum
   //   });
   // },
   setReps: function(reps, roundNum, exerciseNum) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_REPS,
+      actionType: modifyWorkoutConstants.SET_REPS,
       data: {
         reps: reps,
         roundNum: roundNum,
@@ -46,4 +46,4 @@ var createWorkoutActions = {
   }
 };
 
-module.exports = createWorkoutActions;
+module.exports = modifyWorkoutActions;

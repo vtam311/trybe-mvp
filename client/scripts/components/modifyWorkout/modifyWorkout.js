@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
 var EditAMRAP = require('./workoutTypes/editAMRAP');
@@ -13,22 +13,22 @@ var {
   View
 } = React;
 
-var CreateWorkout = React.createClass({
+var ModifyWorkout = React.createClass({
   getInitialState: function() {
     return {
-      isModifyingWorkout: createWorkoutStore.getIsModifyingWorkout(),
-      workout: createWorkoutStore.getWorkout()
+      isModifyingWorkout: modifyWorkoutStore.getIsModifyingWorkout(),
+      workout: modifyWorkoutStore.getWorkout()
     };
   },
   componentDidMount: function() {
-    createWorkoutStore.addChangeListener(this._onChange);
+    modifyWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
+    modifyWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      workout: createWorkoutStore.getWorkout(),
+      workout: modifyWorkoutStore.getWorkout(),
     });
   },
   render: function(){
@@ -46,7 +46,7 @@ var CreateWorkout = React.createClass({
         break;
       default:
         instructions = <Text>{workout.instructions}</Text>;
-        console.log('in createWorkout, unknown workout type');
+        console.log('in modifyWorkout, unknown workout type');
       /* jshint ignore:end */
     }
 
@@ -62,4 +62,4 @@ var CreateWorkout = React.createClass({
   }
 });
 
-module.exports = CreateWorkout;
+module.exports = ModifyWorkout;
