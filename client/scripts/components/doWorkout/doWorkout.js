@@ -42,14 +42,14 @@ var DoWorkout = React.createClass({
   _handleBackButtonPress: function() {
     this.props.navigator.pop();
   },
-  _handleModifyWorkoutPress: function(workout) {
-    modifyWorkoutActions.modifyWorkout(workout);
+  // _handleModifyWorkoutPress: function(workout) {
+  //   modifyWorkoutActions.modifyWorkout(workout);
 
-    this.props.navigator.push({
-      title: 'Modify Workout',
-      component: ModifyWorkout
-    });
-  },
+  //   this.props.navigator.push({
+  //     title: 'Modify Workout',
+  //     component: ModifyWorkout
+  //   });
+  // },
   render: function(){
     var workout = this.state.workout;
 

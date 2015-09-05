@@ -70,7 +70,7 @@ var feedActions = {
         comments: 22
       },
       {
-        username: 'Jonny Ive',
+        username: 'Jonny Custom Ive',
         activity: 'modified today\'s workout',
         createdAt: '3 hours ago',
         trybe: 'NorCal Strength & Conditioning CF On-Ramp',
@@ -193,15 +193,15 @@ var feedActions = {
         comments: 3
       },
       {
-        username: 'Custom Casper',
+        username: 'Parkour Progressor',
         activity: 'modified today\'s workout',
         createdAt: '2 hours ago',
-        trybe: 'NorCal Strength & Conditioning CF On-Ramp',
+        trybe: 'APEX Movement Parkour Fundamentals',
         day: 17, //for day number in training program
         workout: {
           id: 24,
-          username: 'Custom_Casper',
-          trybe: 'Ryan Hurst\'s Muscle Up Program',
+          username: 'Parkour Progressor',
+          trybe: 'APEX Movement Parkour Fundamentals',
           day: 17,
           createdAt: '2015-06-28T02:16:44.000Z',
           type: 'Progressions',
