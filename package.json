@@ -4,7 +4,7 @@
   "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh --reset-cache"
+    "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
     "events": "^1.0.2",

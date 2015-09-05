@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 var {
   StyleSheet,
@@ -16,36 +16,26 @@ var REP_CHOICES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2
 
 var PickerItemIOS = PickerIOS.Item;
 
-
 var EditReps = React.createClass({
+  /*EditReps state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
   getInitialState: function() {
     return {
-      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
+      showRepSelection: false
     };
   },
-  componentDidMount: function() {
-    createWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
+  toggleRepEdit: function(){
     this.setState({
-      showRepSelection: createWorkoutStore.getIsEditingReps(this.props.exerciseNum)
+      showRepSelection: !this.state.showRepSelection
     });
   },
-  toggleRepEdit: function(exerciseNum){
-    createWorkoutActions.toggleRepEdit(exerciseNum);
-  },
   setReps: function(reps, roundNum, exerciseNum){
-    createWorkoutActions.setReps(reps, roundNum, exerciseNum);
+    modifyWorkoutActions.setReps(reps, roundNum, exerciseNum);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
     var exerciseNum = this.props.exerciseNum;
     var roundNum = this.props.roundNum;
-
     var repEdit;
 
     //Show repEdit options if the exercise's reps are being edited
@@ -69,7 +59,7 @@ var EditReps = React.createClass({
     return (
       <View>
         <TouchableHighlight
-          onPress={ () => this.toggleRepEdit(exerciseNum) }>
+          onPress={ () => this.toggleRepEdit() }>
           <Text>{exercise.reps}</Text>
         </TouchableHighlight>
         {repEdit}

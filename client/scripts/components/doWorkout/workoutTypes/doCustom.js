@@ -1,27 +1,29 @@
-'use strict';
+//Not using since 9/4/15
 
-var React = require('react-native');
-var doWorkoutActions = require('../../../actions/doWorkoutActions');
+// 'use strict';
 
-var {
-  StyleSheet,
-  Text,
-  View,
-} = React;
+// var React = require('react-native');
+// var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
-var CustomWorkout = React.createClass({
+// var {
+//   StyleSheet,
+//   Text,
+//   View,
+// } = React;
 
-  render: function(){
-    var instructions = this.props.workout.instructions;
+// var CustomWorkout = React.createClass({
 
-    return (
-      /* jshint ignore:start */
-      <View>
-        <Text>{instructions}</Text>
-      </View>
-      /* jshint ignore:end */
-    );
-  }
-});
+//   render: function(){
+//     var instructions = this.props.workout.instructions;
 
-module.exports = CustomWorkout;
+//     return (
+//       /* jshint ignore:start */
+//       <View>
+//         <Text>{instructions}</Text>
+//       </View>
+//       /* jshint ignore:end */
+//     );
+//   }
+// });
+
+// module.exports = CustomWorkout;

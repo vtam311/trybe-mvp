@@ -2,8 +2,8 @@
 
 var React = require('react-native');
 var renderTimeHelper = require('../../helpers/renderTimeHelper');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 var {
   StyleSheet,
@@ -19,34 +19,36 @@ var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30,45,60,90];
 var TimeEdit = React.createClass({
   getInitialState: function() {
     return {
-      showTimeSelection: createWorkoutStore.getIsEditingTime()
+      // showTimeSelection: modifyWorkoutStore.getIsEditingTime()
+      showTimeSelection: false
     };
   },
-  componentDidMount: function() {
-    createWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      showTimeSelection: createWorkoutStore.getIsEditingTime(),
-    });
-  },
+  // componentDidMount: function() {
+  //   modifyWorkoutStore.addChangeListener(this._onChange);
+  // },
+  // componentWillUnmount: function() {
+  //   modifyWorkoutStore.removeChangeListener(this._onChange);
+  // },
+  // _onChange: function(){
+  //   this.setState({
+  //     showTimeSelection: modifyWorkoutStore.getIsEditingTime(),
+  //   });
+  // },
   toggleTimeEdit: function() {
-    createWorkoutActions.toggleTimeEdit();
+    // modifyWorkoutActions.toggleTimeEdit();
+    this.setState({
+      showTimeSelection: !this.state.showTimeSelection
+    });
   },
   setTime: function(num){
     //If num is not two digits, add zero to front
     num = ('0' + num).slice(-2);
     var time = '00:' + num + ':00';
-
-    var updatedWorkout = this.props.workout;
-    updatedWorkout.time = time;
-    createWorkoutActions.updateWorkout(updatedWorkout);
+    this.props.workout.time = time;
+    modifyWorkoutActions.updateWorkout(this.props.workout);
   },
   render: function() {
-    if(this.state.showTimeSelection){
+    if(this.state.showTimeSelection && this.props.workout.time){
       return (
         /* jshint ignore:start */
         <View>
@@ -67,7 +69,7 @@ var TimeEdit = React.createClass({
         </View>
         /* jshint ignore:end */
       );
-    }else{
+    } else if(this.props.workout.time) {
       return (
         /* jshint ignore:start */
         <View>
@@ -78,6 +80,8 @@ var TimeEdit = React.createClass({
         </View>
         /* jshint ignore:end */
       );
+    } else {
+      return null;
     }
   }
 });

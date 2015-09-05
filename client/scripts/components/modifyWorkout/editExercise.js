@@ -1,13 +1,13 @@
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
-
-
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
 var EditReps = require('./editReps');
+var EditLoad = require('./editLoad');
+var EditHold = require('./editHold');
 
 var {
   StyleSheet,
@@ -31,11 +31,11 @@ var EditExercise = React.createClass({
 
     var renderRepsOrHold = function(exercise) {
       /* jshint ignore:start*/
-      if(exercise.reps) {
+      if(exercise.reps){
         repsOrHold = <EditReps exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
-      }else if(exercise.hold) {
+      }else if(exercise.hold){
         //TO DO: enable user to edit hold and name on click
-        repsOrHold = exercise.hold;
+        repsOrHold = <EditHold exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
       }
       /* jshint ignore:end*/
     };
@@ -43,9 +43,9 @@ var EditExercise = React.createClass({
     var renderMovement = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps){
-        movement = <Text>{ exercise.name}</Text>
-      }else if(exercise.hold){
-        movement = <Text>{ ' Sec ' + exercise.name}</Text>
+        movement = <Text>{exercise.name}</Text>
+      } else if (exercise.hold){
+        movement = <Text>{'Second ' + exercise.name}</Text>
       }
       /* jshint ignore:end*/
     };
@@ -54,8 +54,8 @@ var EditExercise = React.createClass({
       //TO DO: enable user to edit load on click
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <Text>{'at ' + exercise.load.val + exercise.load.units}</Text>;
-      }else{
+        load = <EditLoad exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
+      } else {
         load = null;
       }
       /* jshint ignore:end*/

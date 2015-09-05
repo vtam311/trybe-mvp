@@ -1,68 +1,70 @@
-'use strict';
+//Not using since 9/4/15
 
-var React = require('react-native');
-var doWorkoutActions = require('../../../actions/doWorkoutActions');
+// 'use strict';
 
-//Load components
-var Exercise = require('../doExercise');
+// var React = require('react-native');
+// var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
-var {
-  StyleSheet,
-  Text,
-  View,
-} = React;
+// //Load components
+// var Exercise = require('../doExercise');
 
-var Progressions = React.createClass({
+// var {
+//   StyleSheet,
+//   Text,
+//   View,
+// } = React;
 
-  render: function(){
-    //Each round is an array of exercises
-    var roundElements = [];
-    var workout = this.props.workout;
-    var rounds = this.props.workout.rounds;
+// var Progressions = React.createClass({
 
-    var renderRounds = function(rounds) {
-      for(let i = 1; i <= rounds.numRounds; i++) {
-        roundElements[i] = [];
-        var currRound;
-        //If workout has repreating rounds, set currRound to round1
-        if(rounds.repeat) {
-          currRound = rounds['round1'];
-        } else {
-          currRound = rounds['round' + i];
-        }
+//   render: function(){
+//     //Each round is an array of exercises
+//     var roundElements = [];
+//     var workout = this.props.workout;
+//     var rounds = this.props.workout.rounds;
 
-        titleRound(currRound, i);
-        addExercisesToRound(currRound, i);
-      }
-    };
+//     var renderRounds = function(rounds) {
+//       for(let i = 1; i <= rounds.numRounds; i++) {
+//         roundElements[i] = [];
+//         var currRound;
+//         //If workout has repreating rounds, set currRound to round1
+//         if(rounds.repeat) {
+//           currRound = rounds['round1'];
+//         } else {
+//           currRound = rounds['round' + i];
+//         }
 
-    var titleRound = function(round, roundNum){
-      /* jshint ignore:start */
-      var roundHeader = <Text>Round {roundNum}</Text>;
-      roundElements[roundNum].push(roundHeader);
-      /* jshint ignore:end */
-    };
+//         titleRound(currRound, i);
+//         addExercisesToRound(currRound, i);
+//       }
+//     };
 
-    var addExercisesToRound = function(round, roundNum) {
-      for(var ex in round) {
-        var currExercise = round[ex];
-        /* jshint ignore:start */
-        var exerciseElement = <Exercise exercise={currExercise}/>;
-        roundElements[roundNum].push(exerciseElement);
-        /* jshint ignore:end */
-      }
-    };
+//     var titleRound = function(round, roundNum){
+//       /* jshint ignore:start */
+//       var roundHeader = <Text>Round {roundNum}</Text>;
+//       roundElements[roundNum].push(roundHeader);
+//       /* jshint ignore:end */
+//     };
 
-    renderRounds(rounds);
+//     var addExercisesToRound = function(round, roundNum) {
+//       for(var ex in round) {
+//         var currExercise = round[ex];
+//         /* jshint ignore:start */
+//         var exerciseElement = <Exercise exercise={currExercise}/>;
+//         roundElements[roundNum].push(exerciseElement);
+//         /* jshint ignore:end */
+//       }
+//     };
 
-    return (
-      /* jshint ignore:start */
-      <View>
-        {roundElements}
-      </View>
-      /* jshint ignore:end */
-    );
-  }
-});
+//     renderRounds(rounds);
 
-module.exports = Progressions;
+//     return (
+//       /* jshint ignore:start */
+//       <View>
+//         {roundElements}
+//       </View>
+//       /* jshint ignore:end */
+//     );
+//   }
+// });
+
+// module.exports = Progressions;

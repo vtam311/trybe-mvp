@@ -2,10 +2,10 @@
 
 var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var CreateWorkout = require('../createWorkout/createWorkout.js');
+var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
 
 var {
   StyleSheet,
@@ -16,11 +16,11 @@ var {
 
 var DoWorkoutBar = React.createClass({
   _handleModifyWorkoutPress: function(workout) {
-    createWorkoutActions.modifyWorkout(workout);
+    modifyWorkoutActions.modifyWorkout(workout);
 
     this.props.navigator.push({
       title: 'Modify Workout',
-      component: CreateWorkout
+      component: ModifyWorkout
     });
   },
   render: function(){

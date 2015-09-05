@@ -1,43 +1,47 @@
-//Not using since 9/4/15
+//No longer used on 9/4/15
 
 // 'use strict';
 
 // var React = require('react-native');
-// var doWorkoutActions = require('../../../actions/doWorkoutActions');
+// var modifyWorkoutStore = require('../../../stores/modifyWorkoutStore');
+// var modifyWorkoutActions = require('../../../actions/modifyWorkoutActions');
 
 // //Load components
-// var Exercise = require('../doExercise');
+// var EditExercise = require('../editExercise');
+// var TimeEdit = require('../editTime');
 
 // var {
 //   StyleSheet,
 //   Text,
 //   View,
+//   TouchableHighlight
 // } = React;
 
-// var AMRAP = React.createClass({
 
+// var EditAMRAP = React.createClass({
 //   render: function(){
-//     //The round is an array of exercises
-//     var roundElements = [];
 //     var workout = this.props.workout;
 //     var rounds = workout.rounds;
+//     var timeEdit;
+//     var roundElements = []; //Each round is an array of exercise components
 
 //     var renderRound = function(rounds) {
+//       /* jshint ignore:start */
 //       switch(workout.type) {
 //         case 'Custom':
 //           var instructions = <Text>{workout.instructions}</Text>;
 //           roundElements.push(instructions);
 //           break;
 //         case 'AMRAP':
-//           //AMRAP workout obj only has 1 round
+//           //AMRAP workout obj only has 1 round that repeats
 //           var currRound = rounds.round1;
 //           titleRound(currRound);
-//           renderExercisesOfRound(currRound);
+//           renderExercisesOfRound(currRound, 1);
 //           break;
 //         case 'Lift':
-//           //Lift workout obj uses rounds as sets
 //         case 'Progressions':
 //         case 'Timed Circuit':
+//           //Lift workout uses rounds, but they're same as sets
 //           for(let i = 1; i <= rounds.numRounds; i++) {
 //             roundElements[i] = [];
 //             var currRound;
@@ -52,13 +56,18 @@
 //           }
 //           break;
 //         default:
-//           console.log('Unrecognized workout type');
+//           console.log('workout type unknown');
 //       }
+//       /* jshint ignore:end */
 //     };
 
 //     var titleRound = function(round, roundNum){
 //       /* jshint ignore:start */
 //       switch(workout.type) {
+//         case 'Custom':
+//           var instructions = <Text>{workout.instructions}</Text>;
+//           roundElements.push(instructions);
+//           break;
 //         case 'AMRAP':
 //           var roundHeader = <Text>Each Round</Text>;
 //           roundElements.push(roundHeader);
@@ -73,17 +82,16 @@
 //           roundElements[roundNum].push(roundHeader);
 //           break;
 //         default:
-//           console.log('Unrecognized workout type');
+//           console.log('workout type unknown');
 //       }
 //       /* jshint ignore:end */
 //     };
 
 //     var renderExercisesOfRound = function(round, roundNum) {
-//       /* jshint ignore:start */
 //       for(var ex in round) {
 //         var currExercise = round[ex];
-//         var exerciseElement = <Exercise exercise={currExercise}/>;
-
+//         /* jshint ignore:start */
+//         var exerciseElement = <EditExercise exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
 //         switch(workout.type) {
 //           case 'AMRAP':
 //             roundElements.push(exerciseElement);
@@ -94,10 +102,10 @@
 //             roundElements[roundNum].push(exerciseElement);
 //             break;
 //           default:
-//             console.log('Unrecognized workout type');
+//             console.log('workout type unknown');
 //         }
+//         /* jshint ignore:end */
 //       }
-//       /* jshint ignore:end */
 //     };
 
 //     renderRound(rounds);
@@ -105,11 +113,12 @@
 //     return (
 //       /* jshint ignore:start */
 //       <View>
+//         <TimeEdit workout={workout}/>
 //         {roundElements}
 //       </View>
 //       /* jshint ignore:end */
 //     );
-//   }
+//   },
 // });
 
-// module.exports = AMRAP;
+// module.exports = EditAMRAP;

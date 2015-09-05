@@ -3,12 +3,12 @@
 var React = require('react-native');
 var doWorkoutStore = require('../../stores/doWorkoutStore');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
-// var createWorkoutActions = require('../../actions/createWorkoutActions');
+// var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
 var DoWorkoutHeader = require('./doWorkoutHeader.js');
 var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
-// var CreateWorkout = require('../createWorkout/createWorkout.js');
+// var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
 
 var {
   StyleSheet,
@@ -42,14 +42,14 @@ var DoWorkout = React.createClass({
   _handleBackButtonPress: function() {
     this.props.navigator.pop();
   },
-  _handleModifyWorkoutPress: function(workout) {
-    createWorkoutActions.modifyWorkout(workout);
+  // _handleModifyWorkoutPress: function(workout) {
+  //   modifyWorkoutActions.modifyWorkout(workout);
 
-    this.props.navigator.push({
-      title: 'Modify Workout',
-      component: CreateWorkout
-    });
-  },
+  //   this.props.navigator.push({
+  //     title: 'Modify Workout',
+  //     component: ModifyWorkout
+  //   });
+  // },
   render: function(){
     var workout = this.state.workout;
 
