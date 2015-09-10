@@ -1,7 +1,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var doWorkoutConstants = require('../constants/doWorkoutConstants');
+var viewWorkoutConstants = require('../constants/viewWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -19,7 +19,7 @@ var setWorkout = function(workout) {
   _store.workout = workout;
 };
 
-var doWorkoutStore = Object.assign({}, EventEmitter.prototype, {
+var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
@@ -37,18 +37,18 @@ var doWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case doWorkoutConstants.SET_DEFAULT_WORKOUT:
+    case viewWorkoutConstants.SET_DEFAULT_WORKOUT:
       setWorkout(action.data);
-      doWorkoutStore.emit(CHANGE_EVENT);
+      viewWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case doWorkoutConstants.SET_SELECTED_WORKOUT:
+    case viewWorkoutConstants.SET_SELECTED_WORKOUT:
       setIsSelectedWorkout(true);
       setWorkout(action.data);
-      doWorkoutStore.emit(CHANGE_EVENT);
+      viewWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
       return true;
   }
 });
 
-module.exports = doWorkoutStore;
+module.exports = viewWorkoutStore;

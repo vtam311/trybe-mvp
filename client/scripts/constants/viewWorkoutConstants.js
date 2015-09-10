@@ -1,8 +1,8 @@
 'use strict';
 
-var doWorkoutConstants = {
+var viewWorkoutConstants = {
   SET_DEFAULT_WORKOUT: 'SET_DEFAULT_WORKOUT',
   SET_SELECTED_WORKOUT: 'SET_SELECTED_WORKOUT'
 };
 
-module.exports = doWorkoutConstants;
+module.exports = viewWorkoutConstants;

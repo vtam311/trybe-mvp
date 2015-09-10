@@ -1,13 +1,13 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutStore = require('../../stores/doWorkoutStore');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutStore = require('../../stores/viewWorkoutStore');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 // var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var DoWorkoutHeader = require('./doWorkoutHeader.js');
-var DoWorkoutInstructions = require('./doWorkoutInstructions.js');
+var ViewWorkoutHeader = require('./viewWorkoutHeader.js');
+var ViewWorkoutInstructions = require('./viewWorkoutInstructions.js');
 // var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
 
 var {
@@ -17,26 +17,26 @@ var {
   TouchableHighlight
 } = React;
 
-var DoWorkout = React.createClass({
+var ViewWorkout = React.createClass({
   getInitialState: function(){
     return {
-      isSelectedWorkout: doWorkoutStore.getIsSelectedWorkout(),
-      workout: doWorkoutStore.getWorkout()
+      isSelectedWorkout: viewWorkoutStore.getIsSelectedWorkout(),
+      workout: viewWorkoutStore.getWorkout()
     };
   },
   componentDidMount: function(){
-    doWorkoutStore.addChangeListener(this._onChange);
+    viewWorkoutStore.addChangeListener(this._onChange);
 
     //Load trybe's daily workout if user has not selected one
-    if(!this.state.isSelectedWorkout) doWorkoutActions.getWorkout();
+    if(!this.state.isSelectedWorkout) viewWorkoutActions.getWorkout();
   },
   componentWillUnmount: function(){
-    doWorkoutStore.removeChangeListener(this._onChange);
+    viewWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      isSelectedWorkout: doWorkoutStore.getIsSelectedWorkout(),
-      workout: doWorkoutStore.getWorkout()
+      isSelectedWorkout: viewWorkoutStore.getIsSelectedWorkout(),
+      workout: viewWorkoutStore.getWorkout()
     });
   },
   _handleBackButtonPress: function() {
@@ -61,12 +61,12 @@ var DoWorkout = React.createClass({
           <Text>Fill</Text>
           <Text>Fill</Text>
         </View>
-        <DoWorkoutHeader workout={workout} navigator={this.props.navigator}/>
-        <DoWorkoutInstructions workout={workout}/>
+        <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
+        <ViewWorkoutInstructions workout={workout}/>
         <Text>Start</Text>
       </View>
     );
   }
 });
 
-module.exports = DoWorkout;
+module.exports = ViewWorkout;

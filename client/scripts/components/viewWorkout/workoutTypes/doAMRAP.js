@@ -3,10 +3,9 @@
 // 'use strict';
 
 // var React = require('react-native');
-// var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
 // //Load components
-// var Exercise = require('../doExercise');
+// var Exercise = require('../viewExercise');
 
 // var {
 //   StyleSheet,
