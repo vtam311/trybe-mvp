@@ -6,11 +6,11 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 //Load components
 var Exercise = require('./doExercise');
 
-var Custom = require('./workoutTypes/doCustom'); //not using since 9/4/15
-var Progressions = require('./workoutTypes/doProgressions');
-var AMRAP = require('./workoutTypes/doAMRAP');
-var Lift = require('./workoutTypes/doLift');
-var TimedCircuit = require('./workoutTypes/doTimedCircuit');
+// var Custom = require('./workoutTypes/doCustom'); //not using since 9/4/15
+// var Progressions = require('./workoutTypes/doProgressions');
+// var AMRAP = require('./workoutTypes/doAMRAP');
+// var Lift = require('./workoutTypes/doLift');
+// var TimedCircuit = require('./workoutTypes/doTimedCircuit');
 
 var {
   StyleSheet,
@@ -25,51 +25,53 @@ var DoWorkoutInstructions = React.createClass({
     var rounds = workout.rounds;
     var roundElements = [];
 
-    // Load exercise UI based on workout type
     var renderRound = function(rounds) {
-      switch(workout.type) {
-      /* jshint ignore:start */
-        case 'Custom':
-          var instructions = <Text>{workout.instructions}</Text>;
-          roundElements.push(instructions);
-          break;
-        case 'AMRAP':
-          //AMRAP workout obj only has 1 round
-          var currRound = rounds.round1;
-          titleRound(currRound);
-          renderExercisesOfRound(currRound);
-          break;
-        case 'Lift':
-          //Lift workout obj uses rounds as sets
-        case 'Progressions':
-        case 'Timed Circuit':
-          for(let i = 1; i <= rounds.numRounds; i++) {
-            roundElements[i] = [];
-            var currRound;
-            //If workout repeats rounds, set currRound to round1
-            if(rounds.repeat) {
-              currRound = rounds['round1'];
-            } else {
-              currRound = rounds['round' + i];
-            }
-            titleRound(currRound, i);
-            renderExercisesOfRound(currRound, i);
-          }
-          break;
-        default:
-          console.log('Unrecognized workout type');
-      /* jshint ignore:end */
+      var currRound;
+      //If workout type is Custom, simply render instructions
+      if(workout.type === 'Custom') {
+        /* jshint ignore:start */
+        roundElements.push(<Text>{workout.instructions}</Text>);
+        /* jshint ignore:end */
+      //Otherwise render each round's heading and exercises
+      } else if(rounds.repeat) {
+        //workouts with repeating rounds only use 1 round obj
+        //so we set currRound to that one
+        currRound = rounds.round1;
+        titleRepeatRound(currRound);
+        renderRepeatExercisesOfRound(currRound, 1);
+      } else {
+        //workouts with unique rounds have separate round objs
+        for(let i = 1; i <= rounds.numRounds; i++) {
+          roundElements[i] = [];
+          currRound = rounds['round' + i];
+          titleUniqueRound(currRound, i);
+          renderUniqueExercisesOfRound(currRound, i);
+        }
       }
     };
 
-    var titleRound = function(round, roundNum){
-      switch(workout.type) {
+    var titleRepeatRound = function(round) {
       /* jshint ignore:start */
-
+      switch(workout.type) {
+        case 'Lift':
+            var setHeader = <Text>{rounds.numRounds} sets of</Text>;
+            roundElements.push(roundHeader);
+          break;
+        case 'Progressions':
+        case 'Timed Circuit':
         case 'AMRAP':
           var roundHeader = <Text>Each Round</Text>;
           roundElements.push(roundHeader);
           break;
+        default:
+          console.log('workout type unknown');
+      }
+      /* jshint ignore:end */
+    };
+
+    var titleUniqueRound = function(round, roundNum) {
+      /* jshint ignore:start */
+      switch(workout.type) {
         case 'Lift':
           var setHeader = <Text>Set {roundNum}</Text>;
           roundElements[roundNum].push(setHeader);
@@ -80,31 +82,46 @@ var DoWorkoutInstructions = React.createClass({
           roundElements[roundNum].push(roundHeader);
           break;
         default:
-          console.log('Unrecognized workout type');
+          console.log('workout type unknown');
+      }
       /* jshint ignore:end */
+    };
+
+    var renderRepeatExercisesOfRound = function(round, roundNum) {
+      for(var ex in round) {
+        /* jshint ignore:start */
+        var currExercise = round[ex];
+        var exerciseElement = <Exercise exercise={currExercise}/>;
+        switch(workout.type) {
+          case 'AMRAP':
+          case 'Lift':
+          case 'Progressions':
+          case 'Timed Circuit':
+            roundElements.push(exerciseElement);
+            break;
+          default:
+            console.log('workout type unknown');
+        }
+        /* jshint ignore:end */
       }
     };
 
-    var renderExercisesOfRound = function(round, roundNum) {
-      /* jshint ignore:start */
+    var renderUniqueExercisesOfRound = function(round, roundNum) {
       for(var ex in round) {
         var currExercise = round[ex];
+        /* jshint ignore:start */
         var exerciseElement = <Exercise exercise={currExercise}/>;
-
         switch(workout.type) {
-          case 'AMRAP':
-            roundElements.push(exerciseElement);
-            break;
           case 'Lift':
           case 'Progressions':
           case 'Timed Circuit':
             roundElements[roundNum].push(exerciseElement);
             break;
           default:
-            console.log('Unrecognized workout type');
+            console.log('workout type unknown');
         }
+        /* jshint ignore:end */
       }
-      /* jshint ignore:end */
     };
 
     renderRound(rounds);
