@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
@@ -14,7 +14,7 @@ var {
   TouchableHighlight
 } = React;
 
-var DoWorkoutBar = React.createClass({
+var ViewWorkoutBar = React.createClass({
   _handleModifyWorkoutPress: function(workout) {
     modifyWorkoutActions.modifyWorkout(workout);
 
@@ -38,4 +38,4 @@ var DoWorkoutBar = React.createClass({
   }
 });
 
-module.exports = DoWorkoutBar;
+module.exports = ViewWorkoutBar;

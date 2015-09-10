@@ -1,10 +1,10 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
-var ExerciseExpand = require('./doExerciseExpand');
+var ExerciseExpand = require('./viewExerciseExpand');
 
 var {
   StyleSheet,
@@ -12,7 +12,7 @@ var {
   View,
 } = React;
 
-var Exercise = React.createClass({
+var viewExercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
@@ -46,4 +46,4 @@ var Exercise = React.createClass({
   }
 });
 
-module.exports = Exercise;
+module.exports = viewExercise;

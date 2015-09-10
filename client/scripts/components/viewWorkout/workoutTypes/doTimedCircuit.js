@@ -3,10 +3,9 @@
 // 'use strict';
 
 // var React = require('react-native');
-// var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
 // //Load components
-// var Exercise = require('../doExercise');
+// var Exercise = require('../viewExercise');
 
 // var {
 //   StyleSheet,
@@ -14,7 +13,7 @@
 //   View,
 // } = React;
 
-// var Lift = React.createClass({
+// var TimedCircuit = React.createClass({
 
 //   render: function(){
 //     //Each round is an array of exercises
@@ -22,9 +21,7 @@
 //     var workout = this.props.workout;
 //     var rounds = this.props.workout.rounds;
 
-//     var renderSets = function(rounds) {
-//       //Workout obj uses rounds, but they're synonymous
-//       //in functionality with sets
+//     var renderRounds = function(rounds) {
 //       for(let i = 1; i <= rounds.numRounds; i++) {
 //         roundElements[i] = [];
 //         var currRound;
@@ -35,29 +32,29 @@
 //           currRound = rounds['round' + i];
 //         }
 
-//         titleSet(currRound, i);
-//         addExercisesToSet(currRound, i);
+//         titleRound(currRound, i);
+//         addExercisesToRound(currRound, i);
 //       }
 //     };
 
-//     var titleSet = function(round, setNum){
+//     var titleRound = function(round, roundNum){
 //       /* jshint ignore:start */
-//       var setHeader = <Text>Set {setNum}</Text>;
-//       roundElements[setNum].push(setHeader);
+//       var roundHeader = <Text>Round {roundNum}</Text>;
+//       roundElements[roundNum].push(roundHeader);
 //       /* jshint ignore:end */
 //     };
 
-//     var addExercisesToSet = function(round, setNum) {
+//     var addExercisesToRound = function(round, roundNum) {
 //       for(var ex in round) {
 //         var currExercise = round[ex];
 //         /* jshint ignore:start */
 //         var exerciseElement = <Exercise exercise={currExercise}/>;
-//         roundElements[setNum].push(exerciseElement);
+//         roundElements[roundNum].push(exerciseElement);
 //         /* jshint ignore:end */
 //       }
 //     };
 
-//     renderSets(rounds);
+//     renderRounds(rounds);
 
 //     return (
 //       /* jshint ignore:start */
@@ -69,4 +66,4 @@
 //   }
 // });
 
-// module.exports = Lift;
+// module.exports = TimedCircuit;

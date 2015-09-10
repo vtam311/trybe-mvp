@@ -1,9 +1,9 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var doWorkoutConstants = require('../constants/doWorkoutConstants');
+var viewWorkoutConstants = require('../constants/viewWorkoutConstants');
 
-var doWorkoutActions = {
+var viewWorkoutActions = {
   getWorkout: function() {
     //To do: make get req to server
     var dummyWorkout = {
@@ -46,16 +46,16 @@ var doWorkoutActions = {
   },
   setDefaultWorkout: function(workout) {
     AppDispatcher.handleAction({
-      actionType: doWorkoutConstants.SET_DEFAULT_WORKOUT,
+      actionType: viewWorkoutConstants.SET_DEFAULT_WORKOUT,
       data: workout
     });
   },
   setSelectedWorkout: function(workout) {
     AppDispatcher.handleAction({
-      actionType: doWorkoutConstants.SET_SELECTED_WORKOUT,
+      actionType: viewWorkoutConstants.SET_SELECTED_WORKOUT,
       data: workout
     });
   }
 };
 
-module.exports = doWorkoutActions;
+module.exports = viewWorkoutActions;

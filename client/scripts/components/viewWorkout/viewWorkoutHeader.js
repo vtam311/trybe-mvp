@@ -8,11 +8,11 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var renderTimeHelper = require('../../helpers/renderTimeHelper');
 
 //Load components
-var DoWorkoutBar = require('./doWorkoutBar');
+var ViewWorkoutBar = require('./viewWorkoutBar');
 
 var {
   StyleSheet,
@@ -20,7 +20,7 @@ var {
   View,
 } = React;
 
-var DoWorkoutHeader = React.createClass({
+var ViewWorkoutHeader = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
@@ -48,11 +48,11 @@ var DoWorkoutHeader = React.createClass({
           <Text>Day {day}</Text>
           <Text>{overview}</Text>
         </View>
-        <DoWorkoutBar workout={workout} navigator={this.props.navigator}/>
+        <ViewWorkoutBar workout={workout} navigator={this.props.navigator}/>
       </View>
       /* jshint ignore:end */
     );
   }
 });
 
-module.exports = DoWorkoutHeader;
+module.exports = ViewWorkoutHeader;

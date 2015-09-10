@@ -1,10 +1,10 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
-var Exercise = require('./doExercise');
+var ViewExercise = require('./viewExercise');
 
 // var Custom = require('./workoutTypes/doCustom'); //not using since 9/4/15
 // var Progressions = require('./workoutTypes/doProgressions');
@@ -18,7 +18,7 @@ var {
   View,
 } = React;
 
-var DoWorkoutInstructions = React.createClass({
+var ViewWorkoutInstructions = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
@@ -91,7 +91,7 @@ var DoWorkoutInstructions = React.createClass({
       for(var ex in round) {
         /* jshint ignore:start */
         var currExercise = round[ex];
-        var exerciseElement = <Exercise exercise={currExercise}/>;
+        var exerciseElement = <ViewExercise exercise={currExercise}/>;
         switch(workout.type) {
           case 'AMRAP':
           case 'Lift':
@@ -110,7 +110,7 @@ var DoWorkoutInstructions = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <Exercise exercise={currExercise}/>;
+        var exerciseElement = <ViewExercise exercise={currExercise}/>;
         switch(workout.type) {
           case 'Lift':
           case 'Progressions':
@@ -166,4 +166,4 @@ var DoWorkoutInstructions = React.createClass({
   }
 });
 
-module.exports = DoWorkoutInstructions;
+module.exports = ViewWorkoutInstructions;

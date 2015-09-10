@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 var {
   StyleSheet,

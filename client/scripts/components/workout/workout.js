@@ -3,7 +3,7 @@
 var React = require('react-native');
 
 //Load components
-var DoWorkout = require('../doWorkout/doWorkout');
+var ViewWorkout = require('../viewWorkout/viewWorkout');
 
 var {
   StyleSheet,
@@ -20,7 +20,7 @@ var Workout = React.createClass({
         style={styles.wrapper}
         initialRoute={{
           title: 'Workout',
-          component: DoWorkout
+          component: ViewWorkout
         }}/>
       /* jshint ignore:end */
     );

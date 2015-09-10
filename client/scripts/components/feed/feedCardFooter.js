@@ -10,7 +10,7 @@
 var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 var indexActions = require('../../actions/indexActions');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var copyObjectHelper = require('../../helpers/copyObjectHelper');
 
 var {
@@ -21,9 +21,9 @@ var {
 } = React;
 
 var FeedCardFooter = React.createClass({
-  doWorkout: function(workout) {
+  viewWorkout: function(workout) {
     var separateWorkout = copyObjectHelper(workout);
-    doWorkoutActions.setSelectedWorkout(separateWorkout);
+    viewWorkoutActions.setSelectedWorkout(separateWorkout);
     indexActions.setTab('workout');
   },
 
@@ -36,7 +36,7 @@ var FeedCardFooter = React.createClass({
       /* jshint ignore:start */
       <View>
         <TouchableHighlight
-          onPress={ () => this.doWorkout(workout) }>
+          onPress={ () => this.viewWorkout(workout) }>
           <Text>Do Workout</Text>
         </TouchableHighlight>
         <Text>Likes { likes }</Text>
