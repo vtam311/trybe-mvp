@@ -6,12 +6,6 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 //Load components
 var ViewExercise = require('./viewExercise');
 
-// var Custom = require('./workoutTypes/doCustom'); //not using since 9/4/15
-// var Progressions = require('./workoutTypes/doProgressions');
-// var AMRAP = require('./workoutTypes/doAMRAP');
-// var Lift = require('./workoutTypes/doLift');
-// var TimedCircuit = require('./workoutTypes/doTimedCircuit');
-
 var {
   StyleSheet,
   Text,
@@ -54,13 +48,16 @@ var ViewWorkoutInstructions = React.createClass({
       /* jshint ignore:start */
       switch(workout.type) {
         case 'Lift':
-            var setHeader = <Text>{rounds.numRounds} sets of</Text>;
+            var setHeader = <Text>{rounds.numRounds} Sets of</Text>;
             roundElements.push(roundHeader);
           break;
         case 'Progressions':
         case 'Timed Circuit':
+          var roundHeader = <Text>{rounds.numRounds} Rounds of</Text>;
+          roundElements.push(roundHeader);
+          break;
         case 'AMRAP':
-          var roundHeader = <Text>Each Round</Text>;
+          var roundHeader = <Text>Each Round</Text>
           roundElements.push(roundHeader);
           break;
         default:
