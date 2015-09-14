@@ -10,7 +10,7 @@ var {
 } = React;
 
 
-var EditCustom = React.createClass({
+var CustomEdit = React.createClass({
   render: function(){
     var workout = this.props.workout;
 
@@ -25,4 +25,4 @@ var EditCustom = React.createClass({
   },
 });
 
-module.exports = EditCustom;
+module.exports = CustomEdit;

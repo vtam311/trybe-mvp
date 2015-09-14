@@ -5,9 +5,9 @@ var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var EditExercise = require('./editExercise');
-var TimeEdit = require('../../common/editWorkoutComponents/editTime');
-var EditCustom = require('./workoutTypes/editCustom');
+var ExerciseEdit = require('./exerciseEdit');
+var TimeEdit = require('../../common/editWorkoutComponents/timeEdit');
+var CustomEdit = require('./workoutTypes/customEdit');
 
 var {
   StyleSheet,
@@ -46,7 +46,7 @@ var ModifyWorkout = React.createClass({
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
         // roundElements.push(<Text>{workout.instructions}</Text>);
-        roundElements.push(<EditCustom workout={workout}/>);
+        roundElements.push(<CustomEdit workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {
@@ -109,7 +109,7 @@ var ModifyWorkout = React.createClass({
       for(var ex in round) {
         /* jshint ignore:start */
         var currExercise = round[ex];
-        var exerciseElement = <EditExercise exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'AMRAP':
           case 'Lift':
@@ -128,7 +128,7 @@ var ModifyWorkout = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <EditExercise exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'Lift':
           case 'Progressions':
