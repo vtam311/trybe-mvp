@@ -1,13 +1,19 @@
+/*
+* @Author: vincetam
+* @Date:   2015-09-14 11:24:06
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-09-14 16:00:30
+*/
+
 'use strict';
 
 var React = require('react-native');
-var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
-var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var doWorkoutActions = require('../../actions/doWorkoutActions');
+var doWorkoutStore = require('../../stores/doWorkoutStore');
 
 //Load components
 var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
-var TimeEdit = require('../../common/editWorkoutComponents/timeEdit');
-var ModifyCustom = require('./workoutTypes/modifyCustom');
+var DoCustom = require('./workoutTypes/doCustom');
 
 var {
   StyleSheet,
@@ -17,21 +23,21 @@ var {
   TextInput
 } = React;
 
-var ModifyWorkout = React.createClass({
+var DoWorkout = React.createClass({
   getInitialState: function() {
     return {
-      workout: modifyWorkoutStore.getWorkout(),
+      workout: doWorkoutStore.getWorkout(),
     };
   },
   componentDidMount: function() {
-    modifyWorkoutStore.addChangeListener(this._onChange);
+    doWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    modifyWorkoutStore.removeChangeListener(this._onChange);
+    doWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      workout: modifyWorkoutStore.getWorkout(),
+      workout: doWorkoutStore.getWorkout(),
     });
   },
   render: function(){
@@ -44,7 +50,7 @@ var ModifyWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        roundElements.push(<ModifyCustom workout={workout} isEditable={true}/>);
+        roundElements.push(<DoCustom workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {
@@ -149,7 +155,6 @@ var ModifyWorkout = React.createClass({
         <Text>Filler</Text>
         <Text>Filler</Text>
         <Text>Filler</Text>
-        <TimeEdit workout={workout}/>
         {roundElements}
       </View>
       /* jshint ignore:end */
@@ -157,4 +162,4 @@ var ModifyWorkout = React.createClass({
   }
 });
 
-module.exports = ModifyWorkout;
+module.exports = DoWorkout;

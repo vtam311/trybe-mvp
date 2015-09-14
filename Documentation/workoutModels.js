@@ -7,6 +7,27 @@ var skillWorkout = {
   type: 'Progressions',
   instructions: null,
   time: null,
+  //Would an array of rounds be better?
+  // rounds: [
+  //   {
+    //   name: 'Pull Ups',
+    //   reps: 10,
+    //   load: {units: 'lbs', val: null},
+    //   hold: null,
+    //   standard: {type: 'reps', value: 10},
+    //   focusArea: {name: 'Strength', progression: 1},
+    //   video: null
+    // },
+  //   {
+  //     name: 'False Grip Hang',
+  //     reps: null,
+  //     load: {units: 'lbs', val: null},
+  //     hold: 60,
+  //     standard: {type: 'time', value: 60},
+  //     focusArea: {name: 'Grip', progression: 3},
+  //     video: null
+  //   }
+  // ],
   rounds: {
     numRounds: 5,
     repeat: true,
@@ -48,20 +69,11 @@ var customWorkout = {
       '185-lb. front squats, 2 reps \n' +
     'Continue adding 2 reps to the front squat each interval for as long as you are able. \n' +
     'Track number of minutes completed',
-  time: null,
-  rounds: {
-    numRounds: null,
-    repeat: null,
-    round1: {
-      exercise1: {
-        name: null,
-        reps: null,
-        load: {units: 'lbs', val: null},
-        hold: null,
-        standard: {type: null, value: null},
-        focusArea: {name: null, progression: null},
-        video: null
-      }
+  notes: 'If You Do Not Have a Rope, Substitute 5 Towel Pull Ups for One Rope Climb',
+  tutorials: {
+    'rope clmb': {
+      media: 'url_here',
+      cues: 'When climbing, sandwich the rope between your feet as shown in the short video.'
     }
   },
   origin: 23, //copied from workout id 23

@@ -28,39 +28,39 @@ var modifyWorkoutActions = {
   //     data: null
   //   });
   // },
-  // toggleRepEdit: function(exerciseNum) {
+  // toggleRepEdit: function(exerciseKey) {
   //   AppDispatcher.handleAction({
   //     actionType: modifyWorkoutConstants.TOGGLE_REP_EDIT,
-  //     data: exerciseNum
+  //     data: exerciseKey
   //   });
   // },
-  setReps: function(reps, roundNum, exerciseNum) {
+  setReps: function(reps, roundNum, exerciseKey) {
     AppDispatcher.handleAction({
       actionType: modifyWorkoutConstants.SET_REPS,
       data: {
         reps: reps,
         roundNum: roundNum,
-        exerciseNum: exerciseNum
+        exerciseKey: exerciseKey
       }
     });
   },
-  setLoad: function(load, roundNum, exerciseNum) {
+  setLoad: function(load, roundNum, exerciseKey) {
     AppDispatcher.handleAction({
       actionType: modifyWorkoutConstants.SET_LOAD,
       data: {
         load: load,
         roundNum: roundNum,
-        exerciseNum: exerciseNum
+        exerciseKey: exerciseKey
       }
     });
   },
-  setHold: function(hold, roundNum, exerciseNum) {
+  setHold: function(hold, roundNum, exerciseKey) {
     AppDispatcher.handleAction({
       actionType: modifyWorkoutConstants.SET_HOLD,
       data: {
         hold: hold,
         roundNum: roundNum,
-        exerciseNum: exerciseNum
+        exerciseKey: exerciseKey
       }
     });
   }

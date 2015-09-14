@@ -3,12 +3,12 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-// var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
+var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
-var ViewWorkoutHeader = require('./viewWorkoutHeader.js');
-var ViewWorkoutInstructions = require('./viewWorkoutInstructions.js');
-// var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
+var ViewWorkoutHeader = require('./viewWorkoutHeader');
+var ViewWorkoutInstructions = require('./viewWorkoutInstructions');
+var DoWorkout = require('../doWorkout/doWorkout');
 
 var {
   StyleSheet,
@@ -42,14 +42,13 @@ var ViewWorkout = React.createClass({
   _handleBackButtonPress: function() {
     this.props.navigator.pop();
   },
-  // _handleModifyWorkoutPress: function(workout) {
-  //   modifyWorkoutActions.modifyWorkout(workout);
-
-  //   this.props.navigator.push({
-  //     title: 'Modify Workout',
-  //     component: ModifyWorkout
-  //   });
-  // },
+  _handleStartButtonPress: function(workout) {
+    doWorkoutActions.setWorkout(workout);
+    this.props.navigator.push({
+      title: 'Do Workout',
+      component: DoWorkout
+    });
+  },
   render: function(){
     var workout = this.state.workout;
 
@@ -63,7 +62,10 @@ var ViewWorkout = React.createClass({
         </View>
         <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
         <ViewWorkoutInstructions workout={workout}/>
-        <Text>Start</Text>
+        <TouchableHighlight
+          onPress={this._handleStartButtonPress.bind(this, workout)}>
+          <Text>Start</Text>
+        </TouchableHighlight>
       </View>
     );
   }

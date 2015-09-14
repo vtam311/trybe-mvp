@@ -16,8 +16,8 @@ var REP_CHOICES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2
 
 var PickerItemIOS = PickerIOS.Item;
 
-var EditReps = React.createClass({
-  /*EditReps state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
+var RepEdit = React.createClass({
+  /*RepEdit state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
   getInitialState: function() {
     return {
       showRepSelection: false
@@ -28,13 +28,13 @@ var EditReps = React.createClass({
       showRepSelection: !this.state.showRepSelection
     });
   },
-  setReps: function(reps, roundNum, exerciseNum){
-    modifyWorkoutActions.setReps(reps, roundNum, exerciseNum);
+  setReps: function(reps, roundNum, exerciseKey){
+    modifyWorkoutActions.setReps(reps, roundNum, exerciseKey);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseNum = this.props.exerciseNum;
+    var exerciseKey = this.props.exerciseKey;
     var roundNum = this.props.roundNum;
     var repEdit;
 
@@ -43,7 +43,7 @@ var EditReps = React.createClass({
       repEdit = (
         <PickerIOS
           selectedValue={exercise.reps}
-          onValueChange={(val) => this.setReps(val, roundNum, exerciseNum)}>
+          onValueChange={(val) => this.setReps(val, roundNum, exerciseKey)}>
           {REP_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -68,4 +68,4 @@ var EditReps = React.createClass({
   }
 });
 
-module.exports = EditReps;
+module.exports = RepEdit;

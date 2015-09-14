@@ -16,8 +16,8 @@ var HOLD_CHOICES = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,
 
 var PickerItemIOS = PickerIOS.Item;
 
-var EditHold = React.createClass({
-  /*EditHold state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
+var HoldEdit = React.createClass({
+  /*HoldEdit state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
   getInitialState: function() {
     return {
       showHoldSelection: false
@@ -28,13 +28,13 @@ var EditHold = React.createClass({
       showHoldSelection: !this.state.showHoldSelection
     });
   },
-  setHold: function(hold, roundNum, exerciseNum){
-    modifyWorkoutActions.setHold(hold, roundNum, exerciseNum);
+  setHold: function(hold, roundNum, exerciseKey){
+    modifyWorkoutActions.setHold(hold, roundNum, exerciseKey);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseNum = this.props.exerciseNum;
+    var exerciseKey = this.props.exerciseKey;
     var roundNum = this.props.roundNum;
     var holdEdit;
 
@@ -43,7 +43,7 @@ var EditHold = React.createClass({
       holdEdit = (
         <PickerIOS
           selectedValue={exercise.hold}
-          onValueChange={(seconds) => this.setHold(seconds, roundNum, exerciseNum)}>
+          onValueChange={(seconds) => this.setHold(seconds, roundNum, exerciseKey)}>
           {HOLD_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -68,4 +68,4 @@ var EditHold = React.createClass({
   }
 });
 
-module.exports = EditHold;
+module.exports = HoldEdit;
