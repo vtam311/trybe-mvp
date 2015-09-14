@@ -3,12 +3,10 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-// var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
 var ViewWorkoutHeader = require('./viewWorkoutHeader.js');
 var ViewWorkoutInstructions = require('./viewWorkoutInstructions.js');
-// var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
 
 var {
   StyleSheet,
@@ -19,12 +17,15 @@ var {
 
 var ViewWorkout = React.createClass({
   getInitialState: function(){
+    console.log('in viewWorkout getInitialState, isSelectedWorkout:', viewWorkoutStore.getIsSelectedWorkout());
+    console.log('in viewWorkout getInitialState, workout:', viewWorkoutStore.getWorkout());
     return {
       isSelectedWorkout: viewWorkoutStore.getIsSelectedWorkout(),
       workout: viewWorkoutStore.getWorkout()
     };
   },
   componentDidMount: function(){
+    console.log('in viewWorkout compDidMount, workout:', viewWorkoutStore.getWorkout());
     viewWorkoutStore.addChangeListener(this._onChange);
 
     //Load trybe's daily workout if user has not selected one

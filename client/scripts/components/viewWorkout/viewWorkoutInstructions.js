@@ -121,7 +121,10 @@ var ViewWorkoutInstructions = React.createClass({
       }
     };
 
-    renderRound(rounds);
+    //Render workout once viewWorkoutStore has loaded it
+    if(workout.rounds) {
+      renderRound(workout.rounds);
+    }
 
     return (
       /* jshint ignore:start */
