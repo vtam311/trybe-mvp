@@ -7,18 +7,21 @@ var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 //Load components
 var EditExercise = require('./editExercise');
 var TimeEdit = require('./editTime');
+var EditCustom = require('./workoutTypes/editCustom');
 
 var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } = React;
 
 var ModifyWorkout = React.createClass({
   getInitialState: function() {
     return {
-      workout: modifyWorkoutStore.getWorkout()
+      workout: modifyWorkoutStore.getWorkout(),
+      text: ''
     };
   },
   componentDidMount: function() {
@@ -42,7 +45,8 @@ var ModifyWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        roundElements.push(<Text>{workout.instructions}</Text>);
+        // roundElements.push(<Text>{workout.instructions}</Text>);
+        roundElements.push(<EditCustom workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {

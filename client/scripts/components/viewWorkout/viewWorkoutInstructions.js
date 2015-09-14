@@ -133,36 +133,6 @@ var ViewWorkoutInstructions = React.createClass({
       </View>
       /* jshint ignore:end */
     );
-
-    // var instructions; //not using since 9/4/15
-    // switch (this.props.workout.type) {
-    //   /* jshint ignore:start */
-    //   case 'Progressions':
-    //     instructions = <Progressions workout={workout}/>;
-    //     break;
-    //   case 'AMRAP':
-    //   case 'Custom':
-    //   case 'Lift':
-    //     instructions = <AMRAP workout={workout}/>;
-    //     break;
-    //   // case 'Lift':
-    //   //   instructions = <Lift workout={workout}/>;
-    //   //   break;
-    //   case 'Timed Circuit':
-    //     instructions = <TimedCircuit workout={workout}/>;
-    //     break;
-    //   default:
-    //     instructions = <Custom workout={workout}/>;
-    //   /* jshint ignore:end */
-    // }
-
-    // return (
-    //   /* jshint ignore:start */
-    //   <View>
-    //     {instructions}
-    //   </View>
-    //   /* jshint ignore:end */
-    // );
   }
 });
 
