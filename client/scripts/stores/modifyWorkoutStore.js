@@ -46,8 +46,8 @@ var setReps = function(data) {
   //To do: correct the exercise name
   var reps = data.reps;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
+  var exerciseKey = data.exerciseKey;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
 
   targetExercise.reps = reps;
 };
@@ -55,8 +55,8 @@ var setReps = function(data) {
 var setLoad = function(data) {
   var load = data.load;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
+  var exerciseKey = data.exerciseKey;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
 
   targetExercise.load.val = load;
 };
@@ -64,8 +64,8 @@ var setLoad = function(data) {
 var setHold = function(data) {
   var hold = data.hold;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
+  var exerciseKey = data.exerciseKey;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
 
   targetExercise.hold = hold;
 };

@@ -28,13 +28,13 @@ var HoldEdit = React.createClass({
       showHoldSelection: !this.state.showHoldSelection
     });
   },
-  setHold: function(hold, roundNum, exerciseNum){
-    modifyWorkoutActions.setHold(hold, roundNum, exerciseNum);
+  setHold: function(hold, roundNum, exerciseKey){
+    modifyWorkoutActions.setHold(hold, roundNum, exerciseKey);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseNum = this.props.exerciseNum;
+    var exerciseKey = this.props.exerciseKey;
     var roundNum = this.props.roundNum;
     var holdEdit;
 
@@ -43,7 +43,7 @@ var HoldEdit = React.createClass({
       holdEdit = (
         <PickerIOS
           selectedValue={exercise.hold}
-          onValueChange={(seconds) => this.setHold(seconds, roundNum, exerciseNum)}>
+          onValueChange={(seconds) => this.setHold(seconds, roundNum, exerciseKey)}>
           {HOLD_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-09-14 11:42:21
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-14 14:47:06
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-09-14 14:51:43
 */
 
 'use strict';
@@ -32,31 +32,31 @@ var setReps = function(data) {
   //To do: correct the exercise name
   var reps = data.reps;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
+  var exerciseKey = data.exerciseKey;
   var targetRound = _store.workout.rounds['round' + roundNum];
 
   prepRoundEdit(targetRound, roundNum);
-  targetRound[exerciseNum].reps = reps;
+  targetRound[exerciseKey].reps = reps;
 };
 
 var setLoad = function(data) {
   var load = data.load;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
+  var exerciseKey = data.exerciseKey;
   var targetRound = _store.workout.rounds['round' + roundNum];
 
   prepRoundEdit(targetRound, roundNum);
-  targetRound[exerciseNum].load.val = load;
+  targetRound[exerciseKey].load.val = load;
 };
 
 var setHold = function(data) {
   var hold = data.hold;
   var roundNum = data.roundNum;
-  var exerciseNum = data.exerciseNum;
+  var exerciseKey = data.exerciseKey;
   var targetRound = _store.workout.rounds['round' + roundNum];
 
   prepRoundEdit(targetRound, roundNum);
-  targetRound[exerciseNum].hold = hold;
+  targetRound[exerciseKey].hold = hold;
 };
 
 var DoWorkoutStore = Object.assign({}, EventEmitter.prototype, {

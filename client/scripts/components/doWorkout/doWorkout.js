@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:24:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 14:44:16
+* @Last Modified time: 2015-09-14 14:50:55
 */
 
 'use strict';
@@ -50,7 +50,6 @@ var DoWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        // roundElements.push(<Text>{workout.instructions}</Text>);
         roundElements.push(<CustomEdit workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
@@ -114,7 +113,7 @@ var DoWorkout = React.createClass({
       for(var ex in round) {
         /* jshint ignore:start */
         var currExercise = round[ex];
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'AMRAP':
           case 'Lift':
@@ -133,7 +132,7 @@ var DoWorkout = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'Lift':
           case 'Progressions':

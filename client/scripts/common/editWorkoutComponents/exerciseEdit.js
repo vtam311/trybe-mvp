@@ -21,7 +21,7 @@ var ExerciseEdit = React.createClass({
   render: function(){
     //Load props
     var exercise = this.props.exercise;
-    var exerciseNum = this.props.exerciseNum;
+    var exerciseKey = this.props.exerciseKey;
     var roundNum = this.props.roundNum;
 
     //Declare variables for exercise
@@ -32,10 +32,10 @@ var ExerciseEdit = React.createClass({
     var renderRepsOrHold = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps){
-        repsOrHold = <RepEdit exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
+        repsOrHold = <RepEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
       } else if (exercise.hold){
         //TO DO: enable user to edit hold and name on click
-        repsOrHold = <HoldEdit exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
+        repsOrHold = <HoldEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
       }
       /* jshint ignore:end*/
     };
@@ -54,7 +54,7 @@ var ExerciseEdit = React.createClass({
       //TO DO: enable user to edit load on click
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <LoadEdit exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
+        load = <LoadEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
       } else {
         load = null;
       }

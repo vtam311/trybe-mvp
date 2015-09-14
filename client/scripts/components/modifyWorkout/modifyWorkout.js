@@ -107,7 +107,7 @@ var ModifyWorkout = React.createClass({
       for(var ex in round) {
         /* jshint ignore:start */
         var currExercise = round[ex];
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'AMRAP':
           case 'Lift':
@@ -126,7 +126,7 @@ var ModifyWorkout = React.createClass({
       for(var ex in round) {
         var currExercise = round[ex];
         /* jshint ignore:start */
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseNum={ex} roundNum={roundNum}/>;
+        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
         switch(workout.type) {
           case 'Lift':
           case 'Progressions':

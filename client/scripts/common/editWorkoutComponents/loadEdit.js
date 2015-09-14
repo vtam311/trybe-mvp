@@ -28,13 +28,13 @@ var LoadEdit = React.createClass({
       showLoadSelection: !this.state.showLoadSelection
     });
   },
-  setLoad: function(load, roundNum, exerciseNum){
-    modifyWorkoutActions.setLoad(load, roundNum, exerciseNum);
+  setLoad: function(load, roundNum, exerciseKey){
+    modifyWorkoutActions.setLoad(load, roundNum, exerciseKey);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseNum = this.props.exerciseNum;
+    var exerciseKey = this.props.exerciseKey;
     var roundNum = this.props.roundNum;
     var loadEdit;
 
@@ -43,7 +43,7 @@ var LoadEdit = React.createClass({
       loadEdit = (
         <PickerIOS
           selectedValue={exercise.load.val}
-          onValueChange={(weight) => this.setLoad(weight, roundNum, exerciseNum)}>
+          onValueChange={(weight) => this.setLoad(weight, roundNum, exerciseKey)}>
           {LOAD_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
