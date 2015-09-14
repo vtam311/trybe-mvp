@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:38:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 14:49:06
+* @Last Modified time: 2015-09-14 15:49:30
 */
 
 'use strict';
@@ -10,6 +10,12 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var doWorkoutConstants = require('../constants/doWorkoutConstants');
 
 var doWorkoutActions = {
+  setWorkout: function(workout) {
+    AppDispatcher.handleAction({
+      actionType: doWorkoutConstants.SET_WORKOUT,
+      data: workout
+    });
+  },
   setReps: function(reps, roundNum, exerciseKey) {
     AppDispatcher.handleAction({
       actionType: doWorkoutConstants.SET_REPS,

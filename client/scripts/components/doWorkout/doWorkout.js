@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:24:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 14:50:55
+* @Last Modified time: 2015-09-14 16:00:30
 */
 
 'use strict';
@@ -13,7 +13,7 @@ var doWorkoutStore = require('../../stores/doWorkoutStore');
 
 //Load components
 var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
-var CustomEdit = require('./workoutTypes/customEdit');
+var DoCustom = require('./workoutTypes/doCustom');
 
 var {
   StyleSheet,
@@ -50,7 +50,7 @@ var DoWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        roundElements.push(<CustomEdit workout={workout}/>);
+        roundElements.push(<DoCustom workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {
@@ -155,7 +155,6 @@ var DoWorkout = React.createClass({
         <Text>Filler</Text>
         <Text>Filler</Text>
         <Text>Filler</Text>
-        <TimeEdit workout={workout}/>
         {roundElements}
       </View>
       /* jshint ignore:end */

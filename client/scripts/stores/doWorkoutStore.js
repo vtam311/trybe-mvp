@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:42:21
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 14:51:43
+* @Last Modified time: 2015-09-14 15:54:24
 */
 
 'use strict';
@@ -65,12 +65,22 @@ var DoWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
+  },
+  getWorkout: function() {
+    return _store.workout;
+  },
+  getNotes: function() {
+    return _store.workout.notes || '';
   }
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case doWorkoutConstants.SET_WORKOUT:
+      setWorkout(action.data);
+      DoWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case doWorkoutConstants.SET_REPS:
       setReps(action.data);
       DoWorkoutStore.emit(CHANGE_EVENT);

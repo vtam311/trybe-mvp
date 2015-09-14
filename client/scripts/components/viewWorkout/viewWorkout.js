@@ -3,10 +3,12 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
-var ViewWorkoutHeader = require('./viewWorkoutHeader.js');
-var ViewWorkoutInstructions = require('./viewWorkoutInstructions.js');
+var ViewWorkoutHeader = require('./viewWorkoutHeader');
+var ViewWorkoutInstructions = require('./viewWorkoutInstructions');
+var DoWorkout = require('../doWorkout/doWorkout');
 
 var {
   StyleSheet,
@@ -17,15 +19,12 @@ var {
 
 var ViewWorkout = React.createClass({
   getInitialState: function(){
-    console.log('in viewWorkout getInitialState, isSelectedWorkout:', viewWorkoutStore.getIsSelectedWorkout());
-    console.log('in viewWorkout getInitialState, workout:', viewWorkoutStore.getWorkout());
     return {
       isSelectedWorkout: viewWorkoutStore.getIsSelectedWorkout(),
       workout: viewWorkoutStore.getWorkout()
     };
   },
   componentDidMount: function(){
-    console.log('in viewWorkout compDidMount, workout:', viewWorkoutStore.getWorkout());
     viewWorkoutStore.addChangeListener(this._onChange);
 
     //Load trybe's daily workout if user has not selected one
@@ -43,6 +42,13 @@ var ViewWorkout = React.createClass({
   _handleBackButtonPress: function() {
     this.props.navigator.pop();
   },
+  _handleStartButtonPress: function(workout) {
+    doWorkoutActions.setWorkout(workout);
+    this.props.navigator.push({
+      title: 'Do Workout',
+      component: DoWorkout
+    });
+  },
   render: function(){
     var workout = this.state.workout;
 
@@ -56,7 +62,10 @@ var ViewWorkout = React.createClass({
         </View>
         <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
         <ViewWorkoutInstructions workout={workout}/>
-        <Text>Start</Text>
+        <TouchableHighlight
+          onPress={this._handleStartButtonPress.bind(this, workout)}>
+          <Text>Start</Text>
+        </TouchableHighlight>
       </View>
     );
   }

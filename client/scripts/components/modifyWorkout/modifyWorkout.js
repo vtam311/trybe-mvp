@@ -7,7 +7,7 @@ var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 //Load components
 var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
 var TimeEdit = require('../../common/editWorkoutComponents/timeEdit');
-var CustomEdit = require('./workoutTypes/customEdit');
+var ModifyCustom = require('./workoutTypes/modifyCustom');
 
 var {
   StyleSheet,
@@ -44,7 +44,7 @@ var ModifyWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        roundElements.push(<CustomEdit workout={workout}/>);
+        roundElements.push(<ModifyCustom workout={workout} isEditable={true}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {
