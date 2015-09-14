@@ -1,11 +1,11 @@
 'use strict';
 
 var React = require('react-native');
-var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 
 //Load components
-var ExerciseEdit = require('./exerciseEdit');
+var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
 var TimeEdit = require('../../common/editWorkoutComponents/timeEdit');
 var CustomEdit = require('./workoutTypes/customEdit');
 
@@ -21,7 +21,6 @@ var ModifyWorkout = React.createClass({
   getInitialState: function() {
     return {
       workout: modifyWorkoutStore.getWorkout(),
-      text: ''
     };
   },
   componentDidMount: function() {
@@ -45,7 +44,6 @@ var ModifyWorkout = React.createClass({
       //If workout type is Custom, simply render instructions
       if(workout.type === 'Custom') {
         /* jshint ignore:start */
-        // roundElements.push(<Text>{workout.instructions}</Text>);
         roundElements.push(<CustomEdit workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises

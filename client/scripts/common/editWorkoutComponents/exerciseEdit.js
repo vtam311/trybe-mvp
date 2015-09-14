@@ -33,7 +33,7 @@ var ExerciseEdit = React.createClass({
       /* jshint ignore:start*/
       if(exercise.reps){
         repsOrHold = <RepEdit exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
-      }else if(exercise.hold){
+      } else if (exercise.hold){
         //TO DO: enable user to edit hold and name on click
         repsOrHold = <HoldEdit exercise={exercise} exerciseNum={exerciseNum} roundNum={roundNum}/>;
       }

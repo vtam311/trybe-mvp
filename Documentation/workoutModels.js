@@ -7,6 +7,27 @@ var skillWorkout = {
   type: 'Progressions',
   instructions: null,
   time: null,
+  //Would an array of rounds be better?
+  // rounds: [
+  //   {
+    //   name: 'Pull Ups',
+    //   reps: 10,
+    //   load: {units: 'lbs', val: null},
+    //   hold: null,
+    //   standard: {type: 'reps', value: 10},
+    //   focusArea: {name: 'Strength', progression: 1},
+    //   video: null
+    // },
+  //   {
+  //     name: 'False Grip Hang',
+  //     reps: null,
+  //     load: {units: 'lbs', val: null},
+  //     hold: 60,
+  //     standard: {type: 'time', value: 60},
+  //     focusArea: {name: 'Grip', progression: 3},
+  //     video: null
+  //   }
+  // ],
   rounds: {
     numRounds: 5,
     repeat: true,

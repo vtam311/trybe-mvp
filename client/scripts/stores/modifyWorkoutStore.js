@@ -3,7 +3,6 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
-
 var CHANGE_EVENT = 'change';
 var BLANK_WORKOUT = {
   id: null, //must assign unique id
@@ -29,60 +28,46 @@ var BLANK_WORKOUT = {
       }
     }
   },
+  // notes: '',
+  // tutorials: {},
   origin: null,
   finalResult: {type: null, value: null}
 };
 
 var _store = {
-  // isModifyingWorkout: false, //commented all isModifyingWorkout bools on 9/4/15
   workout: BLANK_WORKOUT,
-  // isEditingTime: false,
-  // isEditingReps: {}
 };
-
-// var setIsModifyingWorkout = function(bool) {
-//   _store.IsModifyingWorkout = bool;
-// };
 
 var setWorkout = function(workout) {
   _store.workout = workout;
 };
-
-// var toggleTimeEdit = function() {
-//   _store.isEditingTime = !_store.isEditingTime;
-// };
-
-// var toggleRepEdit = function(exerciseNum) {
-//   if(_store.isEditingReps[exerciseNum] === undefined){
-//     _store.isEditingReps[exerciseNum] = true;
-//   } else {
-//     _store.isEditingReps[exerciseNum] = !_store.isEditingReps[exerciseNum];
-//   }
-// };
 
 var setReps = function(data) {
   //To do: correct the exercise name
   var reps = data.reps;
   var roundNum = data.roundNum;
   var exerciseNum = data.exerciseNum;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
 
-  _store.workout.rounds['round' + roundNum][exerciseNum].reps = reps;
+  targetExercise.reps = reps;
 };
 
 var setLoad = function(data) {
   var load = data.load;
   var roundNum = data.roundNum;
   var exerciseNum = data.exerciseNum;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
 
-  _store.workout.rounds['round' + roundNum][exerciseNum].load.val = load;
+  targetExercise.load.val = load;
 };
 
 var setHold = function(data) {
   var hold = data.hold;
   var roundNum = data.roundNum;
   var exerciseNum = data.exerciseNum;
+  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseNum];
 
-  _store.workout.rounds['round' + roundNum][exerciseNum].hold = hold;
+  targetExercise.hold = hold;
 };
 
 var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -92,18 +77,9 @@ var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  // getIsModifyingWorkout: function() {
-  //   return _store.isModifyingWorkout;
-  // },
   getWorkout: function(){
     return _store.workout;
   },
-  // getIsEditingTime: function(){
-  //   return _store.isEditingTime;
-  // },
-  // getIsEditingReps: function(exerciseNum){
-  //   return _store.isEditingReps[exerciseNum];
-  // }
 });
 
 AppDispatcher.register(function(payload){
@@ -111,21 +87,12 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case modifyWorkoutConstants.MODIFY_WORKOUT:
       setWorkout(action.data);
-      // setIsModifyingWorkout(true);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     case modifyWorkoutConstants.UPDATE_WORKOUT:
       setWorkout(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
-    // case modifyWorkoutConstants.TOGGLE_TIME_EDIT:
-    //   toggleTimeEdit();
-    //   modifyWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case modifyWorkoutConstants.TOGGLE_REP_EDIT:
-    //   toggleRepEdit(action.data);
-    //   modifyWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
     case modifyWorkoutConstants.SET_REPS:
       setReps(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
