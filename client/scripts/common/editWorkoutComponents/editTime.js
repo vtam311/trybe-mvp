@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var renderTimeHelper = require('../../helpers/renderTimeHelper');
+var renderTimeHelper = require('../../common/renderTimeHelper');
 var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 

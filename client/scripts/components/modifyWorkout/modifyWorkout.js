@@ -6,7 +6,7 @@ var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
 var EditExercise = require('./editExercise');
-var TimeEdit = require('./editTime');
+var TimeEdit = require('../../common/editWorkoutComponents/editTime');
 var EditCustom = require('./workoutTypes/editCustom');
 
 var {
@@ -50,7 +50,7 @@ var ModifyWorkout = React.createClass({
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
       } else if(rounds.repeat) {
-        //workouts with repeating rounds only use 1 round obj
+        //workouts with repeating rounds only use 1 round prop
         //so we set currRound to that one
         currRound = rounds.round1;
         titleRepeatRound(currRound);
@@ -58,6 +58,8 @@ var ModifyWorkout = React.createClass({
       } else {
         //workouts with unique rounds have separate round objs
         for(let i = 1; i <= rounds.numRounds; i++) {
+          //We push the round's title and exercises into
+          //an element in roundElements
           roundElements[i] = [];
           currRound = rounds['round' + i];
           titleUniqueRound(currRound, i);

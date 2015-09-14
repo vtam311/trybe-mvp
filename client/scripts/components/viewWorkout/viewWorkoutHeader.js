@@ -9,7 +9,7 @@
 
 var React = require('react-native');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-var renderTimeHelper = require('../../helpers/renderTimeHelper');
+var renderTimeHelper = require('../../common/renderTimeHelper');
 
 //Load components
 var ViewWorkoutBar = require('./viewWorkoutBar');

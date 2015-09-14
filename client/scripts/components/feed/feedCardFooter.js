@@ -11,7 +11,7 @@ var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 var indexActions = require('../../actions/indexActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-var copyObjectHelper = require('../../helpers/copyObjectHelper');
+var copyObjectHelper = require('../../common/copyObjectHelper');
 
 var {
   StyleSheet,

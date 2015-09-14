@@ -5,9 +5,9 @@ var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var EditReps = require('./editReps');
-var EditLoad = require('./editLoad');
-var EditHold = require('./editHold');
+var EditReps = require('../../common/editWorkoutComponents/editReps');
+var EditLoad = require('../../common/editWorkoutComponents/editLoad');
+var EditHold = require('../../common/editWorkoutComponents/editHold');
 
 var {
   StyleSheet,

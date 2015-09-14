@@ -48,20 +48,11 @@ var customWorkout = {
       '185-lb. front squats, 2 reps \n' +
     'Continue adding 2 reps to the front squat each interval for as long as you are able. \n' +
     'Track number of minutes completed',
-  time: null,
-  rounds: {
-    numRounds: null,
-    repeat: null,
-    round1: {
-      exercise1: {
-        name: null,
-        reps: null,
-        load: {units: 'lbs', val: null},
-        hold: null,
-        standard: {type: null, value: null},
-        focusArea: {name: null, progression: null},
-        video: null
-      }
+  notes: 'If You Do Not Have a Rope, Substitute 5 Towel Pull Ups for One Rope Climb',
+  tutorials: {
+    'rope clmb': {
+      media: 'url_here',
+      cues: 'When climbing, sandwich the rope between your feet as shown in the short video.'
     }
   },
   origin: 23, //copied from workout id 23
