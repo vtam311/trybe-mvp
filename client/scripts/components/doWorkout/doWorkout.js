@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-09-14 11:24:06
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 16:00:30
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-09-15 17:28:16
 */
 
 'use strict';
@@ -53,7 +53,7 @@ var DoWorkout = React.createClass({
         roundElements.push(<DoCustom workout={workout}/>);
         /* jshint ignore:end */
       //Otherwise render each round's heading and exercises
-      } else if(rounds.repeat) {
+      } else if (rounds.repeat) {
         //workouts with repeating rounds only use 1 round prop
         //so we set currRound to that one
         currRound = rounds.round1;

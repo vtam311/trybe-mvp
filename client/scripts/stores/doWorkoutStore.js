@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:42:21
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-14 15:54:24
+* @Last Modified time: 2015-09-15 17:22:25
 */
 
 'use strict';
@@ -16,19 +16,27 @@ var _store = {
   workout: {},
 };
 
-var setWorkout = function(workout) {
+var setWorkout = function(workout){
   _store.workout = workout;
 };
 
-var prepRoundEdit = function(targetRound, roundNum) {
-  //If workout obj has repeating rounds and so only one round,
+var prepRoundEdit = function(targetRound, roundNum){
+  //If workout obj has repeating rounds and so only one round property,
   //duplicate the round1 object to enable saving workout results
-  if(!targetRound) {
+  if(!targetRound){
     targetRound = _store.workout.rounds.round1;
   }
 };
 
-var setReps = function(data) {
+// var setInstructions = function(data){
+//   _store.workout.instructions = data;
+// };
+
+// var setNotes = function(data){
+//   _store.workout.notes = data;
+// };
+
+var setReps = function(data){
   //To do: correct the exercise name
   var reps = data.reps;
   var roundNum = data.roundNum;
@@ -39,7 +47,7 @@ var setReps = function(data) {
   targetRound[exerciseKey].reps = reps;
 };
 
-var setLoad = function(data) {
+var setLoad = function(data){
   var load = data.load;
   var roundNum = data.roundNum;
   var exerciseKey = data.exerciseKey;
@@ -49,7 +57,7 @@ var setLoad = function(data) {
   targetRound[exerciseKey].load.val = load;
 };
 
-var setHold = function(data) {
+var setHold = function(data){
   var hold = data.hold;
   var roundNum = data.roundNum;
   var exerciseKey = data.exerciseKey;
@@ -66,21 +74,32 @@ var DoWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getWorkout: function() {
+  getWorkout: function(){
     return _store.workout;
   },
-  getNotes: function() {
-    return _store.workout.notes || '';
-  }
+  // getInstructions: function(){
+  //   return _store.workout.instructions;
+  // },
+  // getNotes: function(){
+  //   return _store.workout.notes || '';
+  // }
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
-  switch (action.actionType) {
+  switch (action.actionType){
     case doWorkoutConstants.SET_WORKOUT:
       setWorkout(action.data);
       DoWorkoutStore.emit(CHANGE_EVENT);
       break;
+    // case doWorkoutConstants.SET_INSTRUCTIONS:
+    //   setInstructions(action.data);
+    //   DoWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
+    // case doWorkoutConstants.SET_NOTES:
+    //   setNotes(action.data);
+    //   DoWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
     case doWorkoutConstants.SET_REPS:
       setReps(action.data);
       DoWorkoutStore.emit(CHANGE_EVENT);

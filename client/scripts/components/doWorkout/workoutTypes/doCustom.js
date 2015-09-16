@@ -1,15 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-09-14 15:37:12
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-14 16:02:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-09-15 17:31:50
 */
 
 'use strict';
 
 var React =  require('react-native');
-var doWorkoutStore = require('../../../stores/doWorkoutStore');
-var doWorkoutActions = require('../../../actions/doWorkoutActions');
+// var doWorkoutStore = require('../../../stores/doWorkoutStore');
+// var doWorkoutActions = require('../../../actions/doWorkoutActions');
 
 var {
   View,
@@ -20,21 +20,35 @@ var {
 
 
 var DoCustom = React.createClass({
-  getInitialState: function() {
-    return {
-      notes: doWorkoutStore.getNotes()
-    };
+  //Disabling due to logic in setInstructions. Deprecated 9/15/15
+  // getInitialState: function() {
+  //   return {
+  //     instructions: doWorkoutStore.getInstructions(),
+  //     notes: doWorkoutStore.getNotes()
+  //   };
+  // },
+  // componentDidMount: function() {
+  //   doWorkoutStore.addChangeListener(this._onChange);
+  // },
+  // componentWillUnmount: function() {
+  //   doWorkoutStore.removeChangeListener(this._onChange);
+  // },
+  // _onChange: function(){
+  //   this.setState({
+  //     notes: doWorkoutStore.getNotes(),
+  //   });
+  // },
+  setInstructions: function(instr){
+    //Opting to not use doWorkoutActions, as onChangeText continually
+    //updates state of store as user inputs text, which triggers
+    //refresh & interrupts user text input if typing quickly
+    // doWorkoutActions.setInstructions(instr);
+    this.props.workout.instructions = instr;
   },
-  componentDidMount: function() {
-    doWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    doWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      notes: doWorkoutStore.getNotes(),
-    });
+  setNotes: function(notes){
+    //Same logic as setInstructions
+    // doWorkoutActions.setNotes(notes);
+    this.props.workout.notes = notes;
   },
   render: function(){
     var workout = this.props.workout;
@@ -47,17 +61,19 @@ var DoCustom = React.createClass({
           style={{height: 100}}
           multiline={true}
           editable={isEditable}
-          value={workout.instructions}/>
+          value={workout.instructions}
+          onChangeText={(text) => this.setInstructions(text)}/>
         <Text>Notes</Text>
         <TextInput
           style={{height: 150}}
           multiline={true}
           editable={isEditable}
-          value={this.state.notes}/>
+          value={workout.notes}
+          onChangeText={(text) => this.setNotes(text)}/>
       </View>
       /* jshint ignore:end */
     );
-  },
+  }
 });
 
 module.exports = DoCustom;
