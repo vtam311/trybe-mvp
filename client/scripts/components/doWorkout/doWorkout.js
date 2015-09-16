@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:24:06
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-15 17:28:16
+* @Last Modified time: 2015-09-15 18:26:27
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var doWorkoutStore = require('../../stores/doWorkoutStore');
 //Load components
 var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
 var DoCustom = require('./workoutTypes/doCustom');
+var RoundTally = require('./roundTally');
 
 var {
   StyleSheet,
@@ -55,10 +56,11 @@ var DoWorkout = React.createClass({
       //Otherwise render each round's heading and exercises
       } else if (rounds.repeat) {
         //workouts with repeating rounds only use 1 round prop
-        //so we set currRound to that one
+        //so we set currRound to the single round1 key/val
         currRound = rounds.round1;
         titleRepeatRound(currRound);
         renderRepeatExercisesOfRound(currRound, 1);
+        renderComponentsOfType();
       } else {
         //workouts with unique rounds have separate round objs
         for(let i = 1; i <= rounds.numRounds; i++) {
@@ -68,6 +70,7 @@ var DoWorkout = React.createClass({
           currRound = rounds['round' + i];
           titleUniqueRound(currRound, i);
           renderUniqueExercisesOfRound(currRound, i);
+          renderComponentsOfType();
         }
       }
     };
@@ -143,6 +146,18 @@ var DoWorkout = React.createClass({
             console.log('workout type unknown');
         }
         /* jshint ignore:end */
+      }
+    };
+
+    var renderComponentsOfType = function(){
+      switch(workout.type){
+        case 'AMRAP':
+          /* jshint ignore:start */
+          roundElements.push(<RoundTally workout={workout}/>);
+          break;
+          /* jshint ignore:end */
+        default:
+          console.log('workout type unknown');
       }
     };
 
