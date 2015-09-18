@@ -7,7 +7,7 @@ var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
 var ViewWorkoutHeader = require('./viewWorkoutHeader');
-var ViewWorkoutInstructions = require('./viewWorkoutInstructions');
+var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var DoWorkout = require('../doWorkout/doWorkout');
 
 var {
@@ -52,22 +52,29 @@ var ViewWorkout = React.createClass({
   render: function(){
     var workout = this.state.workout;
 
-    return (
-      <View>
+    //Load workout once it's loaded
+    if(workout.parts) {
+      return (
         <View>
           <Text>Fill</Text>
           <Text>Fill</Text>
           <Text>Fill</Text>
           <Text>Fill</Text>
+          <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
+          <ViewWorkoutBody workout={workout}/>
+          <TouchableHighlight
+            onPress={this._handleStartButtonPress.bind(this, workout)}>
+            <Text>Start</Text>
+          </TouchableHighlight>
         </View>
-        <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
-        <ViewWorkoutInstructions workout={workout}/>
-        <TouchableHighlight
-          onPress={this._handleStartButtonPress.bind(this, workout)}>
-          <Text>Start</Text>
-        </TouchableHighlight>
-      </View>
-    );
+      );
+    } else {
+      return (
+        <View>
+          <Text>Workout has not yet loaded</Text>
+        </View>
+      );
+    }
   }
 });
 

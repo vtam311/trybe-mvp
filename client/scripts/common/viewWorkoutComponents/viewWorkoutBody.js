@@ -2,13 +2,12 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-18 12:13:20
+* @Last Modified time: 2015-09-18 12:27:15
 */
 
 'use strict';
 
 var React = require('react-native');
-var feedActions = require('../../actions/feedActions');
 
 //Load components
 var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
@@ -19,7 +18,7 @@ var {
   View,
 } = React;
 
-var FeedCardBody = React.createClass({
+var ViewWorkoutBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
@@ -44,7 +43,6 @@ var FeedCardBody = React.createClass({
         /* jshint ignore:start */
         partView.push(<ViewExercise exercise={currExercise}/>);
         /* jshint ignore:end */
-
       }
     }
 
@@ -58,4 +56,4 @@ var FeedCardBody = React.createClass({
   }
 });
 
-module.exports = FeedCardBody;
+module.exports = ViewWorkoutBody;

@@ -1,50 +1,52 @@
-'use strict';
+//Deprecated since 9/18/15
 
-var React = require('react-native');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+// 'use strict';
 
-var {
-  StyleSheet,
-  Text,
-  View,
-} = React;
+// var React = require('react-native');
+// var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
-var ExerciseExpand = React.createClass({
+// var {
+//   StyleSheet,
+//   Text,
+//   View,
+// } = React;
 
-  render: function(){
-    var exercise = this.props.exercise;
-    var renderDetails = [];
+// var ExerciseExpand = React.createClass({
 
-    //Show focus area if exercise is part of progression plan
-    var renderForProgressions = function(exercise) {
-      if(exercise.focusArea.name) {
-        /* jshint ignore:start */
-        renderDetails.push(<Text>Focus: {exercise.focusArea.name}</Text>);
-        renderDetails.push(<Text>Standard: {exercise.standard.value} {exercise.standard.type}</Text>);
-        renderDetails.push(<Text>Progress</Text>);
-        /* jshint ignore:end */
-      }
-    };
+//   render: function(){
+//     var exercise = this.props.exercise;
+//     var renderDetails = [];
 
-    var renderVideo= function(exercise) {
-      if(exercise.video) {
-        /* jshint ignore:start */
-        renderDetails.push(<Text>Video Preview</Text>);
-        /* jshint ignore:end */
-      }
-    };
+//     //Show focus area if exercise is part of progression plan
+//     var renderForProgressions = function(exercise) {
+//       if(exercise.focusArea.name) {
+//         /* jshint ignore:start */
+//         renderDetails.push(<Text>Focus: {exercise.focusArea.name}</Text>);
+//         renderDetails.push(<Text>Standard: {exercise.standard.value} {exercise.standard.type}</Text>);
+//         renderDetails.push(<Text>Progress</Text>);
+//         /* jshint ignore:end */
+//       }
+//     };
 
-    renderForProgressions(exercise);
-    renderVideo(exercise);
+//     var renderVideo= function(exercise) {
+//       if(exercise.video) {
+//         /* jshint ignore:start */
+//         renderDetails.push(<Text>Video Preview</Text>);
+//         /* jshint ignore:end */
+//       }
+//     };
 
-    return (
-      /* jshint ignore:start */
-      <View>
-        {renderDetails}
-      </View>
-      /* jshint ignore:end */
-    );
-  }
-});
+//     renderForProgressions(exercise);
+//     renderVideo(exercise);
 
-module.exports = ExerciseExpand;
+//     return (
+//       /* jshint ignore:start */
+//       <View>
+//         {renderDetails}
+//       </View>
+//       /* jshint ignore:end */
+//     );
+//   }
+// });
+
+// module.exports = ExerciseExpand;

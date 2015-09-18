@@ -9,37 +9,42 @@ var viewWorkoutActions = {
     var dummyWorkout = {
       id: 24,
       username: 'John_Snow',
-      trybe: 'Ryan Hurst\'s Muscle Up Program',
+      trybe: 'CF San Mateo Team Elite',
       day: 17,
-      type: 'Progressions',
-      instructions: null,
-      time: null,
-      rounds: {
-        numRounds: 5,
-        repeat: true,
-        round1: {
-          exercise1: {
-            name: 'Pull Ups',
-            reps: 10,
-            load: {units: 'lbs', val: null},
-            hold: null,
-            standard: {type: 'reps', value: 10},
-            focusArea: {name: 'Strength', progression: 1},
-            video: null
+      createdAt: '2015-06-28T02:16:44.000Z',
+      type: 'Custom',
+      parts: [
+        {
+          instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+          media: {
+            title: 'Speed and Efficiency',
+            url: 'www.youtube.com'
           },
-          exercise2: {
-            name: 'False Grip Hang',
-            reps: null,
-            load: {units: 'lbs', val: null},
-            hold: 60,
-            standard: {type: 'time', value: 60},
-            focusArea: {name: 'Grip', progression: 3},
-            video: null
-          }
+          exercises: [
+            {
+              name: 'Rope Climb',
+              reps: null,
+              load: {units: 'lbs', val: null},
+              time: null,
+              distance: '15ft',
+              url: null
+            },
+            {
+              name: 'Front Squats',
+              reps: 2,
+              load: {units: 'lbs', val: 185},
+              time: null,
+              distance: null,
+              url: null
+            },
+          ],
+          notes:
+            'Continue Adding 2 Reps to the Front Squat Each Interval. \n' +
+            'Track number of minutes completed',
         }
-      },
+      ],
       origin: 23, //copied from workout id 23
-      finalResult: {type: null, value: null}
+      finalResult: {type: 'Time', value: '00:16:23'}
     };
 
     this.setDefaultWorkout(dummyWorkout);
