@@ -63,21 +63,38 @@ var customWorkout = {
   day: 17,
   createdAt: '2015-06-28T02:16:44.000Z',
   type: 'Custom',
-  instructions:
-    'Every 2 minutes for as long as possible complete: \n' +
-      '15-ft. rope climbs, 2 ascents \n' +
-      '185-lb. front squats, 2 reps \n' +
-    'Continue adding 2 reps to the front squat each interval for as long as you are able. \n' +
-    'Track number of minutes completed',
-  notes: 'If You Do Not Have a Rope, Substitute 5 Towel Pull Ups for One Rope Climb',
-  tutorials: {
-    'rope clmb': {
-      media: 'url_here',
-      cues: 'When climbing, sandwich the rope between your feet as shown in the short video.'
+  parts: [
+    {
+      instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+      media: {
+        title: 'Speed and Efficiency',
+        url: 'www.youtube.com'
+      },
+      exercises: [
+        {
+          name: 'Rope Climb',
+          reps: null,
+          load: {units: 'lbs', val: null},
+          time: null,
+          distance: '15ft',
+          url: null
+        },
+        {
+          name: 'Front Squats',
+          reps: 2,
+          load: {units: 'lbs', val: 185},
+          time: null,
+          distance: null,
+          url: null
+        },
+      ],
+      notes:
+        'Continue Adding 2 Reps to the Front Squat Each Interval. \n' +
+        'Track number of minutes completed',
     }
-  },
+  ],
   origin: 23, //copied from workout id 23
-  finalResult: {type: 'Time', value: '00:16:00'}
+  finalResult: {type: 'Time', value: '00:16:23'}
 };
 
 var liftWorkout = {

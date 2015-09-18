@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-08-13 16:49:02
+* @Last Modified time: 2015-09-18 11:58:15
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 
 //Load components
-var AMRAP = require('./workoutTypes/feedPreviewAMRAP');
+var ViewExercise = require('../viewWorkout/viewExercise');
 
 var {
   StyleSheet,
@@ -23,31 +23,25 @@ var FeedCardBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    var workoutPreview;
+    var partsRender = [];
 
-    switch (workout.type) {
-      /* jshint ignore:start */
-      // case 'Progressions':
-      //   workoutPreview = <Progressions workout={workout}/>;
-      //   break;
-      // case 'AMRAP':
-      //   workoutPreview = <AMRAP workout={workout}/>;
-      //   break;
-      // case 'Lift':
-      //   workoutPreview = <Lift workout={workout}/>;
-      //   break;
-      // case 'Timed Circuit':
-      //   workoutPreview = <TimedCircuit workout={workout}/>;
-      //   break;
-      default:
-        workoutPreview = <AMRAP workout={workout}/>;
-      /* jshint ignore:end */
+    for(var i = 0; i < workout.parts.length; i++){
+      partsRender[i] = [];
+      var currPart = workout.parts[i];
+      var instructions = currPart.instructions;
+      //Add instructions to part
+      partsRender[i].push(<Text>{instructions}</Text>);
+
+      for(var n = 0; n < currPart.exercises.length; n++){
+        var currExercise = currPart.exercises[n];
+        partsRender[i].push(<ViewExercise exercise={currExercise}/>);
+      }
     }
 
     return (
       /* jshint ignore:start */
       <View>
-        {{ workoutPreview }}
+        { partsRender }
       </View>
       /* jshint ignore:end */
     );
