@@ -3,9 +3,6 @@
 var React = require('react-native');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
-//Load components
-// var ExerciseExpand = require('./viewExerciseExpand'); //Depr 9/18/15
-
 var {
   StyleSheet,
   Text,

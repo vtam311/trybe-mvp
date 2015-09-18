@@ -4,7 +4,7 @@ var React = require('react-native');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
-var ViewExercise = require('./viewExercise');
+var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
 
 var {
   StyleSheet,
