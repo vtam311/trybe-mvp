@@ -24,7 +24,7 @@ var BLANK_WORKOUT = {
           reps: null,
           load: {units: 'lbs', val: null},
           time: null,
-          distance: null,
+          distance: {units: null, val: null},
           url: null
         }
       ],
@@ -72,6 +72,24 @@ var setHold = function(data) {
   targetExercise.hold = hold;
 };
 
+var setDist = function(data) {
+  var dist = data.dist;
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+  targetExercise.distance.val = dist;
+};
+
+var setDistUnit = function(data) {
+  var unit = data.unit;
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+  targetExercise.distance.units = unit;
+};
+
 var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -105,6 +123,14 @@ AppDispatcher.register(function(payload){
       break;
     case modifyWorkoutConstants.SET_HOLD:
       setHold(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_DIST:
+      setDist(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_DISTUNIT:
+      setDistUnit(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

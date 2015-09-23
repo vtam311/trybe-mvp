@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-09-23 15:41:03
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-23 16:13:37
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-09-23 16:25:19
 */
 
 'use strict';
@@ -20,7 +20,7 @@ var {
 } = React;
 
 var DIST_CHOICES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,45,50,100,200,400,600,800,1200,1600];
-var DIST_UNITS = ['ft', 'yd', 'm', 'km', 'mile'];
+var DIST_UNITS = ['ft', 'yd', 'm', 'km', 'mi'];
 
 var PickerItemIOS = PickerIOS.Item;
 
@@ -38,6 +38,9 @@ var DistEdit = React.createClass({
   },
   setDist: function(dist, partIdx, exIdx){
     modifyWorkoutActions.setDist(dist, partIdx, exIdx);
+  },
+  setDistUnits: function(unit, partIdx, exIdx){
+    modifyWorkoutActions.setDistUnit(unit, partIdx, exIdx);
   },
   render: function() {
     console.log('distanceEdit comp rendered');

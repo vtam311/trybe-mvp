@@ -63,6 +63,26 @@ var modifyWorkoutActions = {
         exIdx: exIdx
       }
     });
+  },
+  setDist: function(dist, partIdx, exIdx){
+    AppDispatcher.handleAction({
+      actionType: modifyWorkoutConstants.SET_DIST,
+      data: {
+        dist: dist,
+        partIdx: partIdx,
+        exIdx: exIdx
+      }
+    });
+  },
+  setDistUnit: function(unit, partIdx, exIdx){
+    AppDispatcher.handleAction({
+      actionType: modifyWorkoutConstants.SET_DISTUNIT,
+      data: {
+        unit: unit,
+        partIdx: partIdx,
+        exIdx: exIdx
+      }
+    });
   }
 };
 
