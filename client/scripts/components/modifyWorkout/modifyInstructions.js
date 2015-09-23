@@ -29,8 +29,8 @@ var ModifyInstructions = React.createClass({
       workout: modifyWorkoutStore.getWorkout()
     });
   },
-  saveInstructions: function(){
-
+  saveInstructions: function(text){
+    this.props.part.instructions = text;
   },
   render: function(){
     var part = this.props.part;
@@ -44,7 +44,7 @@ var ModifyInstructions = React.createClass({
         multiline={true}
         editable={isEditable}
         value={part.instructions}
-        onSubmitEditing={this.saveInstructions()}/>
+        onChangeText={(text) => this.saveInstructions(text)}/>
       /* jshint ignore:end */
     );
   },
