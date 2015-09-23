@@ -24,9 +24,9 @@ var viewWorkoutActions = {
             {
               name: 'Rope Climb',
               reps: null,
-              load: {units: 'lbs', val: null},
+              load: {units: 'lb', val: null},
               time: null,
-              distance: '15ft',
+              distance: {units: 'ft', val: 15},
               url: null
             },
             {

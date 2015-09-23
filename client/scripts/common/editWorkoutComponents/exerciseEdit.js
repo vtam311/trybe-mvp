@@ -8,6 +8,7 @@ var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 var RepEdit = require('../../common/editWorkoutComponents/repEdit');
 var LoadEdit = require('../../common/editWorkoutComponents/loadEdit');
 var HoldEdit = require('../../common/editWorkoutComponents/holdEdit');
+var DistEdit = require('../../common/editWorkoutComponents/distanceEdit');
 
 var {
   StyleSheet,
@@ -37,7 +38,7 @@ var ExerciseEdit = React.createClass({
         amount = <HoldEdit exercise={exercise} partIdx={partIdx} exIdx={exIdx}/>;
       } else if (exercise.distance.val){
         //ADD EDIT FEATURE
-        amount = <Text>{exercise.distance.val}{exercise.distance.units}</Text>;
+        amount = <DistEdit exercise={exercise} partIdx={partIdx} exIdx={exIdx}/>;
       }
       /* jshint ignore:end*/
     };
