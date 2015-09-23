@@ -19,21 +19,9 @@ var TIME_CHOICES = [1,2,3,4,5,6,7,8,9,10,15,20,25,30,45,60,90];
 var TimeEdit = React.createClass({
   getInitialState: function() {
     return {
-      // showTimeSelection: modifyWorkoutStore.getIsEditingTime()
       showTimeSelection: false
     };
   },
-  // componentDidMount: function() {
-  //   modifyWorkoutStore.addChangeListener(this._onChange);
-  // },
-  // componentWillUnmount: function() {
-  //   modifyWorkoutStore.removeChangeListener(this._onChange);
-  // },
-  // _onChange: function(){
-  //   this.setState({
-  //     showTimeSelection: modifyWorkoutStore.getIsEditingTime(),
-  //   });
-  // },
   toggleTimeEdit: function() {
     // modifyWorkoutActions.toggleTimeEdit();
     this.setState({

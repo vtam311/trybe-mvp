@@ -21,56 +21,54 @@ var ExerciseEdit = React.createClass({
   render: function(){
     //Load props
     var exercise = this.props.exercise;
-    var exerciseKey = this.props.exerciseKey;
-    var roundNum = this.props.roundNum;
+    var partIdx = this.props.partIdx;
+    var exIdx = this.props.exIdx;
 
     //Declare variables for exercise
-    var repsOrHold;
+    var amount;
     var movement;
     var load;
 
-    var renderRepsOrHold = function(exercise) {
+    var renderAmount = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps){
-        repsOrHold = <RepEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
+        amount = <RepEdit exercise={exercise} partIdx={partIdx} exIdx={exIdx}/>;
       } else if (exercise.hold){
-        //TO DO: enable user to edit hold and name on click
-        repsOrHold = <HoldEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
+        amount = <HoldEdit exercise={exercise} partIdx={partIdx} exIdx={exIdx}/>;
+      } else if (exercise.distance.val){
+        //ADD EDIT FEATURE
+        amount = <Text>{exercise.distance.val}{exercise.distance.units}</Text>;
+      }
+      /* jshint ignore:end*/
+    };
+
+    var renderLoad = function(exercise) {
+      /* jshint ignore:start*/
+      if(exercise.load.val) {
+        load = <LoadEdit exercise={exercise} partIdx={partIdx} exIdx={exIdx}/>;
       }
       /* jshint ignore:end*/
     };
 
     var renderMovement = function(exercise) {
       /* jshint ignore:start*/
-      if(exercise.reps){
-        movement = <Text>{exercise.name}</Text>
-      } else if (exercise.hold){
-        movement = <Text>{'Second ' + exercise.name}</Text>
-      }
+      //ADD EDIT FEATURE
+      movement = <Text>{exercise.name}</Text>;
       /* jshint ignore:end*/
     };
 
-    var renderLoad = function(exercise) {
-      //TO DO: enable user to edit load on click
-      /* jshint ignore:start*/
-      if(exercise.load.val) {
-        load = <LoadEdit exercise={exercise} exerciseKey={exerciseKey} roundNum={roundNum}/>;
-      } else {
-        load = null;
-      }
-      /* jshint ignore:end*/
-    };
-
-    renderRepsOrHold(exercise);
-    renderMovement(exercise);
+    //Render exercise description such that order is
+    // Amount(Reps/Time/Dist) Weight ExerciseName
+    renderAmount(exercise);
     renderLoad(exercise);
+    renderMovement(exercise);
 
     return (
       /* jshint ignore:start */
       <View>
-        {repsOrHold}
-        {movement}
+        {amount}
         {load}
+        {movement}
       </View>
       /* jshint ignore:end */
     );

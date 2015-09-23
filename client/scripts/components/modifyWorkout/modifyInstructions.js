@@ -13,22 +13,22 @@ var {
 
 
 var ModifyInstructions = React.createClass({
-  getInitialState: function() {
-    return {
-      workout: modifyWorkoutStore.getWorkout()
-    };
-  },
-  componentDidMount: function() {
-    modifyWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    modifyWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      workout: modifyWorkoutStore.getWorkout()
-    });
-  },
+  // getInitialState: function() {
+  //   return {
+  //     workout: modifyWorkoutStore.getWorkout()
+  //   };
+  // },
+  // componentDidMount: function() {
+  //   modifyWorkoutStore.addChangeListener(this._onChange);
+  // },
+  // componentWillUnmount: function() {
+  //   modifyWorkoutStore.removeChangeListener(this._onChange);
+  // },
+  // _onChange: function(){
+  //   this.setState({
+  //     workout: modifyWorkoutStore.getWorkout()
+  //   });
+  // },
   saveInstructions: function(text){
     this.props.part.instructions = text;
   },

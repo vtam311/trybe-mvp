@@ -34,10 +34,6 @@ var ModifyWorkout = React.createClass({
       workout: modifyWorkoutStore.getWorkout(),
     });
   },
-  _handleBackButtonPress: function() {
-    console.log('in modifyWorkout, back button pressed');
-    this.props.navigator.pop();
-  },
   render: function(){
     var workout = this.state.workout;
     var modifyParts = [];
@@ -50,6 +46,13 @@ var ModifyWorkout = React.createClass({
 
       //For each part, add modifyInstructions component
       modifyPart.push(<ModifyInstructions part={currPart} isEditable={true} />);
+
+      //Traverse through each exercise in part,
+      //add editExercise component to each part
+      for(var n = 0; n < currPart.exercises.length; n++){
+        var currExercise = currPart.exercises[n];
+        modifyPart.push(<ExerciseEdit exercise={currExercise} partIdx={i} exIdx={n}/>);
+      }
 
       //Push each modifyPart into modifyParts
       modifyParts.push(modifyPart);

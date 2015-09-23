@@ -13,42 +13,48 @@ var viewExercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
-    var renderDescr = '';
+    var amount;
+    var load;
+    var movement;
 
-    var renderReps = function() {
-      if(exercise.reps) {
-        renderDescr = exercise.reps + ' ' + exercise.name;
+    var renderAmount = function(exercise) {
+      /* jshint ignore:start*/
+      if(exercise.reps){
+        amount = <Text>{exercise.reps}</Text>;
+      } else if (exercise.hold){
+        amount = <Text>{exercise.hold}</Text>;
+      } else if (exercise.distance.val){
+        amount = <Text>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
+      /* jshint ignore:end*/
     };
 
-    var renderDistance = function() {
-      if(exercise.distance) {
-        renderDescr = exercise.distance + ' ' + exercise.name;
-      }
-    };
-
-    var renderTime = function() {
-      if(exercise.time) {
-        renderDescr += exercise.time + ' Sec ' + exercise.name;
-      }
-    };
-
-    var renderLoad = function() {
+    var renderLoad = function(exercise) {
+      /* jshint ignore:start*/
       if(exercise.load.val) {
-        renderDescr += ' at ' + exercise.load.val + exercise.load.units;
+        load = <Text>{exercise.load.val}{exercise.load.units}</Text>;
       }
+      /* jshint ignore:end*/
     };
 
+    var renderMovement = function(exercise) {
+      /* jshint ignore:start*/
+      movement = <Text>{exercise.name}</Text>;
+      /* jshint ignore:end*/
+    };
 
-    renderReps();
-    renderDistance();
-    renderTime();
-    renderLoad();
+    //Render exercise description such that order is
+    // Amount(Reps/Time/Dist) Weight ExerciseName
+    renderAmount(exercise);
+    renderLoad(exercise);
+    renderMovement(exercise);
 
     return (
       /* jshint ignore:start */
       <View>
-        <Text>{renderDescr}</Text>
+        {amount}
+        {load}
+        {movement}
       </View>
       /* jshint ignore:end */
     );

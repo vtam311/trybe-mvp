@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:42:21
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-15 17:22:25
+* @Last Modified time: 2015-09-23 15:16:55
 */
 
 'use strict';
@@ -100,18 +100,20 @@ AppDispatcher.register(function(payload){
     //   setNotes(action.data);
     //   DoWorkoutStore.emit(CHANGE_EVENT);
     //   break;
-    case doWorkoutConstants.SET_REPS:
-      setReps(action.data);
-      DoWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case doWorkoutConstants.SET_LOAD:
-      setLoad(action.data);
-      DoWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case doWorkoutConstants.SET_HOLD:
-      setHold(action.data);
-      DoWorkoutStore.emit(CHANGE_EVENT);
-      break;
+    //Commented set reps, load, and hold since catching payloads
+    //from modifyWorkoutConstants and workout obj not updated here yet
+    // case doWorkoutConstants.SET_REPS:
+    //   setReps(action.data);
+    //   DoWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
+    // case doWorkoutConstants.SET_LOAD:
+    //   setLoad(action.data);
+    //   DoWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
+    // case doWorkoutConstants.SET_HOLD:
+    //   setHold(action.data);
+    //   DoWorkoutStore.emit(CHANGE_EVENT);
+    //   break;
     default:
       return true;
   }

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-18 11:57:21
+* @Last Modified time: 2015-09-23 15:48:46
 */
 
 'use strict';
@@ -40,7 +40,7 @@ var feedActions = {
                   reps: null,
                   load: {units: 'lbs', val: null},
                   time: null,
-                  distance: '15ft',
+                  distance: {units: 'ft', val: 15},
                   url: null
                 },
                 {

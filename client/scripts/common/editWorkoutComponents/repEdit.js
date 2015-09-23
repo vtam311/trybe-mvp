@@ -28,14 +28,15 @@ var RepEdit = React.createClass({
       showRepSelection: !this.state.showRepSelection
     });
   },
-  setReps: function(reps, roundNum, exerciseKey){
-    modifyWorkoutActions.setReps(reps, roundNum, exerciseKey);
+  setReps: function(reps, partIdx, exIdx){
+    modifyWorkoutActions.setReps(reps, partIdx, exIdx);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseKey = this.props.exerciseKey;
-    var roundNum = this.props.roundNum;
+    var partIdx = this.props.partIdx;
+    var exIdx = this.props.exIdx;
+
     var repEdit;
 
     //Show repEdit options if the exercise's reps are being edited
@@ -43,7 +44,7 @@ var RepEdit = React.createClass({
       repEdit = (
         <PickerIOS
           selectedValue={exercise.reps}
-          onValueChange={(val) => this.setReps(val, roundNum, exerciseKey)}>
+          onValueChange={(val) => this.setReps(val, partIdx, exIdx)}>
           {REP_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
