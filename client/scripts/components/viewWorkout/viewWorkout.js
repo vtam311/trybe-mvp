@@ -39,9 +39,9 @@ var ViewWorkout = React.createClass({
       workout: viewWorkoutStore.getWorkout()
     });
   },
-  _handleBackButtonPress: function() {
-    this.props.navigator.pop();
-  },
+  // _handleBackButtonPress: function() {
+  //   this.props.navigator.pop();
+  // },
   _handleStartButtonPress: function(workout) {
     doWorkoutActions.setWorkout(workout);
     this.props.navigator.push({

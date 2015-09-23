@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var modifyWorkoutStore = require('../../../stores/modifyWorkoutStore');
-var modifyWorkoutActions = require('../../../actions/modifyWorkoutActions');
+var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 var {
   View,
@@ -12,7 +12,7 @@ var {
 } = React;
 
 
-var ModifyCustom = React.createClass({
+var ModifyInstructions = React.createClass({
   getInitialState: function() {
     return {
       workout: modifyWorkoutStore.getWorkout()
@@ -29,20 +29,25 @@ var ModifyCustom = React.createClass({
       workout: modifyWorkoutStore.getWorkout()
     });
   },
+  saveInstructions: function(){
+
+  },
   render: function(){
-    var workout = this.state.workout;
+    var part = this.props.part;
     var isEditable = this.props.isEditable;
 
     return (
       /* jshint ignore:start */
       <TextInput
+        ref="instr"
         style={{height: 100}}
         multiline={true}
         editable={isEditable}
-        value={workout.instructions}/>
+        value={part.instructions}
+        onSubmitEditing={this.saveInstructions()}/>
       /* jshint ignore:end */
     );
   },
 });
 
-module.exports = ModifyCustom;
+module.exports = ModifyInstructions;
