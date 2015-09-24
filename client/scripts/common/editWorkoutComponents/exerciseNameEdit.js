@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-23 16:55:04
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-23 17:10:47
+* @Last Modified time: 2015-09-23 17:18:44
 */
 
 'use strict';
@@ -17,6 +17,9 @@ var {
 } = React;
 
 var ExerciseEdit = React.createClass({
+  saveName: function(text){
+    this.props.exercise.name = text;
+  },
 
   render: function(){
     //Load props
@@ -27,10 +30,9 @@ var ExerciseEdit = React.createClass({
     return (
       /* jshint ignore:start */
       <TextInput
-        ref="instr"
         style={{height: 20}}
         value={exercise.name}
-        onChangeText={(text) => this.saveInstructions(text)}/>
+        onChangeText={(text) => this.saveName(text)}/>
       /* jshint ignore:end */
     );
   }
