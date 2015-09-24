@@ -5,33 +5,34 @@ var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 var BLANK_WORKOUT = {
-  id: null, //must assign unique id
-  username: null, //must assign
+  id: null,
+  username: null,
   trybe: null,
   day: null,
   createdAt: null,
   type: null,
-  instructions: null,
-  time: null,
-  rounds: {
-    numRounds: null,
-    repeat: null,
-    round1: {
-      exercise1: {
-        name: null,
-        reps: null,
-        load: {units: 'lbs', val: null},
-        hold: null,
-        standard: {type: 'reps', value: null},
-        focusArea: {name: null, progression: null},
-        video: null
-      }
+  parts: [
+    {
+      instructions: null,
+      media: {
+        title: null,
+        url: null
+      },
+      exercises: [
+        {
+          name: null,
+          reps: null,
+          load: {units: 'lbs', val: null},
+          time: null,
+          distance: {units: null, val: null},
+          url: null
+        }
+      ],
+      notes: null
     }
-  },
-  // notes: '',
-  // tutorials: {},
+  ],
   origin: null,
-  finalResult: {type: null, value: null}
+  finalResult: {type: 'Time', value: null}
 };
 
 var _store = {
@@ -45,29 +46,48 @@ var setWorkout = function(workout) {
 var setReps = function(data) {
   //To do: correct the exercise name
   var reps = data.reps;
-  var roundNum = data.roundNum;
-  var exerciseKey = data.exerciseKey;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
   targetExercise.reps = reps;
 };
 
 var setLoad = function(data) {
   var load = data.load;
-  var roundNum = data.roundNum;
-  var exerciseKey = data.exerciseKey;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
   targetExercise.load.val = load;
 };
 
 var setHold = function(data) {
   var hold = data.hold;
-  var roundNum = data.roundNum;
-  var exerciseKey = data.exerciseKey;
-  var targetExercise = _store.workout.rounds['round' + roundNum][exerciseKey];
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
   targetExercise.hold = hold;
+};
+
+var setDist = function(data) {
+  var dist = data.dist;
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+  targetExercise.distance.val = dist;
+};
+
+var setDistUnit = function(data) {
+  var unit = data.unit;
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+  targetExercise.distance.units = unit;
 };
 
 var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -103,6 +123,14 @@ AppDispatcher.register(function(payload){
       break;
     case modifyWorkoutConstants.SET_HOLD:
       setHold(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_DIST:
+      setDist(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_DISTUNIT:
+      setDistUnit(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

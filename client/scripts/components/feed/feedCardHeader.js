@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-07-30 13:47:24
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-09-18 11:32:50
 */
 
 'use strict';
@@ -21,7 +21,7 @@ var FeedCardHeader = React.createClass({
   render: function(){
     var username = this.props.username;
     var activity = this.props.activity;
-    var when = this.props.when;
+    var when = this.props.when; //must convert createdAt to 'x hours ago'
 
     return (
       /* jshint ignore:start */

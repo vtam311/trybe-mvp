@@ -28,14 +28,15 @@ var HoldEdit = React.createClass({
       showHoldSelection: !this.state.showHoldSelection
     });
   },
-  setHold: function(hold, roundNum, exerciseKey){
-    modifyWorkoutActions.setHold(hold, roundNum, exerciseKey);
+  setHold: function(hold, partIdx, exIdx){
+    modifyWorkoutActions.setHold(hold, partIdx, exIdx);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseKey = this.props.exerciseKey;
-    var roundNum = this.props.roundNum;
+    var partIdx = this.props.partIdx;
+    var exIdx = this.props.exIdx;
+
     var holdEdit;
 
     //Show holdEdit options if the exercise's load are being edited
@@ -43,7 +44,7 @@ var HoldEdit = React.createClass({
       holdEdit = (
         <PickerIOS
           selectedValue={exercise.hold}
-          onValueChange={(seconds) => this.setHold(seconds, roundNum, exerciseKey)}>
+          onValueChange={(seconds) => this.setHold(seconds, partIdx, exIdx)}>
           {HOLD_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -60,7 +61,7 @@ var HoldEdit = React.createClass({
       <View>
         <TouchableHighlight
           onPress={ () => this.toggleHoldEdit() }>
-          <Text>{exercise.hold}</Text>
+          <Text>{exercise.hold} Seconds</Text>
         </TouchableHighlight>
         {holdEdit}
       </View>

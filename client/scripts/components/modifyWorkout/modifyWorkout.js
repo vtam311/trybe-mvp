@@ -7,7 +7,7 @@ var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 //Load components
 var ExerciseEdit = require('../../common/editWorkoutComponents/exerciseEdit');
 var TimeEdit = require('../../common/editWorkoutComponents/timeEdit');
-var ModifyCustom = require('./workoutTypes/modifyCustom');
+var ModifyInstructions = require('./modifyInstructions');
 
 var {
   StyleSheet,
@@ -36,111 +36,26 @@ var ModifyWorkout = React.createClass({
   },
   render: function(){
     var workout = this.state.workout;
-    var rounds = workout.rounds;
-    var roundElements = [];
+    var modifyParts = [];
 
-    var renderRound = function(rounds) {
-      var currRound;
-      //If workout type is Custom, simply render instructions
-      if(workout.type === 'Custom') {
-        /* jshint ignore:start */
-        roundElements.push(<ModifyCustom workout={workout} isEditable={true}/>);
-        /* jshint ignore:end */
-      //Otherwise render each round's heading and exercises
-      } else if(rounds.repeat) {
-        //workouts with repeating rounds only use 1 round prop
-        //so we set currRound to that one
-        currRound = rounds.round1;
-        titleRepeatRound(currRound);
-        renderRepeatExercisesOfRound(currRound, 1);
-      } else {
-        //workouts with unique rounds have separate round objs
-        for(let i = 1; i <= rounds.numRounds; i++) {
-          //We push the round's title and exercises into
-          //an element in roundElements
-          roundElements[i] = [];
-          currRound = rounds['round' + i];
-          titleUniqueRound(currRound, i);
-          renderUniqueExercisesOfRound(currRound, i);
-        }
+    //Traverse parts of workout
+    for(var i = 0; i < workout.parts.length; i++) {
+      var modifyPart = [];
+      var currPart = workout.parts[i];
+
+      //For each part, add modifyInstructions component
+      modifyPart.push(<ModifyInstructions part={currPart} isEditable={true} />);
+
+      //Traverse through each exercise in part,
+      //add editExercise component to each part
+      for(var n = 0; n < currPart.exercises.length; n++){
+        var currExercise = currPart.exercises[n];
+        modifyPart.push(<ExerciseEdit exercise={currExercise} partIdx={i} exIdx={n}/>);
       }
-    };
 
-    var titleRepeatRound = function(round) {
-      /* jshint ignore:start */
-      switch(workout.type) {
-        case 'Lift':
-            var setHeader = <Text>{rounds.numRounds} sets of</Text>;
-            roundElements.push(roundHeader);
-          break;
-        case 'Progressions':
-        case 'Timed Circuit':
-        case 'AMRAP':
-          var roundHeader = <Text>Each Round</Text>;
-          roundElements.push(roundHeader);
-          break;
-        default:
-          console.log('workout type unknown');
-      }
-      /* jshint ignore:end */
-    };
-
-    var titleUniqueRound = function(round, roundNum) {
-      /* jshint ignore:start */
-      switch(workout.type) {
-        case 'Lift':
-          var setHeader = <Text>Set {roundNum}</Text>;
-          roundElements[roundNum].push(setHeader);
-          break;
-        case 'Progressions':
-        case 'Timed Circuit':
-          var roundHeader = <Text>Round {roundNum}</Text>;
-          roundElements[roundNum].push(roundHeader);
-          break;
-        default:
-          console.log('workout type unknown');
-      }
-      /* jshint ignore:end */
-    };
-
-    var renderRepeatExercisesOfRound = function(round, roundNum) {
-      for(var ex in round) {
-        /* jshint ignore:start */
-        var currExercise = round[ex];
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
-        switch(workout.type) {
-          case 'AMRAP':
-          case 'Lift':
-          case 'Progressions':
-          case 'Timed Circuit':
-            roundElements.push(exerciseElement);
-            break;
-          default:
-            console.log('workout type unknown');
-        }
-        /* jshint ignore:end */
-      }
-    };
-
-    var renderUniqueExercisesOfRound = function(round, roundNum) {
-      for(var ex in round) {
-        var currExercise = round[ex];
-        /* jshint ignore:start */
-        var exerciseElement = <ExerciseEdit exercise={currExercise} exerciseKey={ex} roundNum={roundNum}/>;
-        switch(workout.type) {
-          case 'Lift':
-          case 'Progressions':
-          case 'Timed Circuit':
-            roundElements[roundNum].push(exerciseElement);
-            break;
-          default:
-            console.log('workout type unknown');
-        }
-        /* jshint ignore:end */
-      }
-    };
-
-    renderRound(rounds);
+      //Push each modifyPart into modifyParts
+      modifyParts.push(modifyPart);
+    }
 
     return (
       /* jshint ignore:start */
@@ -149,8 +64,7 @@ var ModifyWorkout = React.createClass({
         <Text>Filler</Text>
         <Text>Filler</Text>
         <Text>Filler</Text>
-        <TimeEdit workout={workout}/>
-        {roundElements}
+        {modifyParts}
       </View>
       /* jshint ignore:end */
     );

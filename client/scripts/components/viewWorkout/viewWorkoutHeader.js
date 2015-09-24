@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-08-04 16:17:26
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-08-11 13:52:45
+* @Last Modified time: 2015-09-18 12:22:18
 */
 
 'use strict';
@@ -12,7 +12,7 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var renderTimeHelper = require('../../common/renderTimeHelper');
 
 //Load components
-var ViewWorkoutBar = require('./viewWorkoutBar');
+var ViewWorkoutToolbar = require('./viewWorkoutToolbar');
 
 var {
   StyleSheet,
@@ -26,19 +26,6 @@ var ViewWorkoutHeader = React.createClass({
     var workout = this.props.workout;
     var trybe = workout.trybe;
     var day = workout.day;
-    var overview;
-
-    var generateOverview = function(workout) {
-      if(workout.type === 'AMRAP') {
-        var time = renderTimeHelper(workout.time);
-        var instructions = ' As Many Rounds As Possible';
-        overview = time + instructions;
-      } else {
-        overview = workout.type;
-      }
-    };
-
-    generateOverview(workout);
 
     return (
       /* jshint ignore:start */
@@ -46,9 +33,8 @@ var ViewWorkoutHeader = React.createClass({
         <View>
           <Text>{trybe}</Text>
           <Text>Day {day}</Text>
-          <Text>{overview}</Text>
         </View>
-        <ViewWorkoutBar workout={workout} navigator={this.props.navigator}/>
+        <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
       </View>
       /* jshint ignore:end */
     );

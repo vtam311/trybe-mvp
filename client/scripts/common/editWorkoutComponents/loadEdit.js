@@ -28,14 +28,14 @@ var LoadEdit = React.createClass({
       showLoadSelection: !this.state.showLoadSelection
     });
   },
-  setLoad: function(load, roundNum, exerciseKey){
-    modifyWorkoutActions.setLoad(load, roundNum, exerciseKey);
+  setLoad: function(load, partIdx, exIdx){
+    modifyWorkoutActions.setLoad(load, partIdx, exIdx);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var exerciseKey = this.props.exerciseKey;
-    var roundNum = this.props.roundNum;
+    var partIdx = this.props.partIdx;
+    var exIdx = this.props.exIdx;
     var loadEdit;
 
     //Show loadEdit options if the exercise's load are being edited
@@ -43,7 +43,7 @@ var LoadEdit = React.createClass({
       loadEdit = (
         <PickerIOS
           selectedValue={exercise.load.val}
-          onValueChange={(weight) => this.setLoad(weight, roundNum, exerciseKey)}>
+          onValueChange={(weight) => this.setLoad(weight, partIdx, exIdx)}>
           {LOAD_CHOICES.map((num) =>
             <PickerItemIOS
               key={num}
@@ -60,7 +60,7 @@ var LoadEdit = React.createClass({
       <View>
         <TouchableHighlight
           onPress={ () => this.toggleLoadEdit() }>
-          <Text>at {exercise.load.val} {exercise.load.units}</Text>
+          <Text>{exercise.load.val} {exercise.load.units}</Text>
         </TouchableHighlight>
         {loadEdit}
       </View>

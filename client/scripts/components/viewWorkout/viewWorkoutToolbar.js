@@ -14,7 +14,7 @@ var {
   TouchableHighlight
 } = React;
 
-var ViewWorkoutBar = React.createClass({
+var ViewWorkoutToolbar = React.createClass({
   _handleModifyWorkoutPress: function(workout) {
     modifyWorkoutActions.modifyWorkout(workout);
 
@@ -31,11 +31,11 @@ var ViewWorkoutBar = React.createClass({
           onPress={this._handleModifyWorkoutPress.bind(this, this.props.workout)}>
           <Text>Modify</Text>
         </TouchableHighlight>
-        <Text>Try Later | Custom Workout</Text>
+        <Text>Save</Text>
       </View>
       /* jshint ignore:end */
     );
   }
 });
 
-module.exports = ViewWorkoutBar;
+module.exports = ViewWorkoutToolbar;
