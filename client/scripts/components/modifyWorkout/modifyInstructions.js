@@ -39,7 +39,6 @@ var ModifyInstructions = React.createClass({
     return (
       /* jshint ignore:start */
       <TextInput
-        ref="instr"
         style={{height: 100}}
         multiline={true}
         editable={isEditable}

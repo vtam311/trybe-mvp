@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-23 15:41:03
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-23 16:25:19
+* @Last Modified time: 2015-09-23 16:51:14
 */
 
 'use strict';
@@ -43,7 +43,6 @@ var DistEdit = React.createClass({
     modifyWorkoutActions.setDistUnit(unit, partIdx, exIdx);
   },
   render: function() {
-    console.log('distanceEdit comp rendered');
     //Load props
     var exercise = this.props.exercise;
     var partIdx = this.props.partIdx;

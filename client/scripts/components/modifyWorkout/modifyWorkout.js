@@ -37,7 +37,6 @@ var ModifyWorkout = React.createClass({
   render: function(){
     var workout = this.state.workout;
     var modifyParts = [];
-    console.log('in modifyWorkout, workout', workout);
 
     //Traverse parts of workout
     for(var i = 0; i < workout.parts.length; i++) {
