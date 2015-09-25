@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-14 11:24:06
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 11:08:31
+* @Last Modified time: 2015-09-25 11:39:49
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var doWorkoutStore = require('../../stores/doWorkoutStore');
 //Load components
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var EditNotes = require('../../common/editWorkoutComponents/editNotes');
+var CompleteWorkoutButton = require('./completeWorkoutButton');
 
 var {
   StyleSheet,
@@ -52,6 +53,7 @@ var DoWorkout = React.createClass({
         <Text>Filler</Text>
         <ViewWorkoutBody workout={workout}/>
         <EditNotes workout={workout} isEditable={true}/>
+        <CompleteWorkoutButton workout={workout}/>
       </View>
       /* jshint ignore:end */
     );

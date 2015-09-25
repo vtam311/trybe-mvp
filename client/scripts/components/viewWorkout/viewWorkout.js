@@ -38,16 +38,6 @@ var ViewWorkout = React.createClass({
       workout: viewWorkoutStore.getWorkout()
     });
   },
-  // _handleBackButtonPress: function() {
-  //   this.props.navigator.pop();
-  // },
-  // _handleStartButtonPress: function(workout) {
-  //   doWorkoutActions.setWorkout(workout);
-  //   this.props.navigator.push({
-  //     title: 'Do Workout',
-  //     component: DoWorkout
-  //   });
-  // },
   render: function(){
     var workout = this.state.workout;
 
@@ -67,7 +57,7 @@ var ViewWorkout = React.createClass({
     } else {
       return (
         <View>
-          <Text>You don't have a workout yet. Join a trybe to get one.</Text>
+          <Text>You do not have a workout yet. Join a trybe to get one.</Text>
         </View>
       );
     }
