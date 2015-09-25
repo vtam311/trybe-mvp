@@ -1,15 +1,14 @@
 /*
-* @Author: vincetam
-* @Date:   2015-07-30 13:09:33
+* @Author: VINCE
+* @Date:   2015-09-25 11:53:20
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 13:27:07
+* @Last Modified time: 2015-09-25 14:32:50
 */
 
 'use strict';
 
 var React = require('react-native');
 var indexActions = require('../../actions/indexActions');
-var workoutTabActions = require('../../actions/workoutTabActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var copyObjectHelper = require('../../common/copyObjectHelper');
 
@@ -21,15 +20,14 @@ var {
 } = React;
 
 var FeedCardFooter = React.createClass({
-  viewWorkout: function(workout) {
+  editWorkout: function(workout) {
+    //change viewWorkoutBody to editWorkout in logCard?
+  },
+  doWorkout: function(workout) {
     var separateWorkout = copyObjectHelper(workout);
     viewWorkoutActions.setSelectedWorkout(separateWorkout);
-
-    //To do: clear workout tab's nav stack
-    workoutTabActions.setView('Today\'s Workout');
     indexActions.setTab('workout');
   },
-
   render: function(){
     var workout = this.props.workout;
     var likes = this.props.likes;
@@ -39,11 +37,13 @@ var FeedCardFooter = React.createClass({
       /* jshint ignore:start */
       <View>
         <TouchableHighlight
-          onPress={ () => this.viewWorkout(workout) }>
-          <Text>Do Workout</Text>
+          onPress={ () => this.editWorkout(workout) }>
+          <Text>Edit</Text>
         </TouchableHighlight>
-        <Text>Likes { likes }</Text>
-        <Text>Comments { comments }</Text>
+        <TouchableHighlight
+          onPress={ () => this.doWorkout(workout) }>
+          <Text>Do Again</Text>
+        </TouchableHighlight>
       </View>
       /* jshint ignore:end */
     );
