@@ -3,12 +3,11 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-var doWorkoutActions = require('../../actions/doWorkoutActions');
 
 //Load components
 var ViewWorkoutHeader = require('./viewWorkoutHeader');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
-var DoWorkout = require('../doWorkout/doWorkout');
+var StartWorkoutButton = require('./startWorkoutButton');
 
 var {
   StyleSheet,
@@ -42,13 +41,13 @@ var ViewWorkout = React.createClass({
   // _handleBackButtonPress: function() {
   //   this.props.navigator.pop();
   // },
-  _handleStartButtonPress: function(workout) {
-    doWorkoutActions.setWorkout(workout);
-    this.props.navigator.push({
-      title: 'Do Workout',
-      component: DoWorkout
-    });
-  },
+  // _handleStartButtonPress: function(workout) {
+  //   doWorkoutActions.setWorkout(workout);
+  //   this.props.navigator.push({
+  //     title: 'Do Workout',
+  //     component: DoWorkout
+  //   });
+  // },
   render: function(){
     var workout = this.state.workout;
 
@@ -62,16 +61,13 @@ var ViewWorkout = React.createClass({
           <Text>Fill</Text>
           <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
           <ViewWorkoutBody workout={workout}/>
-          <TouchableHighlight
-            onPress={this._handleStartButtonPress.bind(this, workout)}>
-            <Text>Start</Text>
-          </TouchableHighlight>
+          <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
         </View>
       );
     } else {
       return (
         <View>
-          <Text>Workout has not yet loaded</Text>
+          <Text>You don't have a workout yet. Join a trybe to get one.</Text>
         </View>
       );
     }
