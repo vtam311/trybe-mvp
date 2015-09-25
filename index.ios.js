@@ -6,7 +6,7 @@ var indexActions = require('./client/scripts/actions/indexActions');
 
 //Load components
 var FeedTab = require('./client/scripts/components/feed/feed');
-var WorkoutTab = require('./client/scripts/components/workout/workout');
+var WorkoutTab = require('./client/scripts/components/workoutTab/workoutTab');
 
 var {
   AppRegistry,
