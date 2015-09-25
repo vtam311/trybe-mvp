@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:10:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:48:38
+* @Last Modified time: 2015-09-25 15:05:21
 */
 
 'use strict';
@@ -22,8 +22,6 @@ var {
 var CompleteWorkoutButton = React.createClass({
   sendWorkoutToLog: function(workout){
     //Should send to db. This is temp solution for prototype
-
-    console.log('in CompleteWorkoutButton, workout', workout);
     var card = {
       workout: workout
     }
