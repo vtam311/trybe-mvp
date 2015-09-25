@@ -2,15 +2,15 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:10:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 11:41:00
+* @Last Modified time: 2015-09-25 14:48:38
 */
 
 'use strict';
 
 var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
-//Create action to send workout to log
 var indexActions = require('../../actions/indexActions');
+var logActions = require('../../actions/logActions');
 
 
 var {
@@ -21,7 +21,13 @@ var {
 
 var CompleteWorkoutButton = React.createClass({
   sendWorkoutToLog: function(workout){
+    //Should send to db. This is temp solution for prototype
 
+    console.log('in CompleteWorkoutButton, workout', workout);
+    var card = {
+      workout: workout
+    }
+    logActions.tempAddCard(card);
   },
   sendWorkoutToFeed: function(workout){
     //TO DO: send workout to trybe feed
@@ -30,7 +36,7 @@ var CompleteWorkoutButton = React.createClass({
     indexActions.setTab('profile');
   },
   _handleCompleteButtonPress: function(workout){
-    //send workout to log
+    this.sendWorkoutToLog(workout);
     this.sendUserToLog();
   },
   render: function(){

@@ -2,13 +2,12 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 12:28:56
+* @Last Modified time: 2015-09-25 14:32:50
 */
 
 'use strict';
 
 var React = require('react-native');
-var feedActions = require('../../actions/feedActions');
 var indexActions = require('../../actions/indexActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var copyObjectHelper = require('../../common/copyObjectHelper');
@@ -22,8 +21,7 @@ var {
 
 var FeedCardFooter = React.createClass({
   editWorkout: function(workout) {
-    //send user to modifyWorkout view
-    indexActions.setTab('workout');
+    //change viewWorkoutBody to editWorkout in logCard?
   },
   doWorkout: function(workout) {
     var separateWorkout = copyObjectHelper(workout);
@@ -39,11 +37,11 @@ var FeedCardFooter = React.createClass({
       /* jshint ignore:start */
       <View>
         <TouchableHighlight
-          onPress={ () => this.editWorkout.bind(this, workout) }>
+          onPress={ () => this.editWorkout(workout) }>
           <Text>Edit</Text>
         </TouchableHighlight>
         <TouchableHighlight
-          onPress={ () => this.doWorkout.bind(this, workout) }>
+          onPress={ () => this.doWorkout(workout) }>
           <Text>Do Again</Text>
         </TouchableHighlight>
       </View>

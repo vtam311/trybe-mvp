@@ -7,6 +7,7 @@ var indexActions = require('./client/scripts/actions/indexActions');
 //Load components
 var FeedTab = require('./client/scripts/components/feed/feed');
 var WorkoutTab = require('./client/scripts/components/workoutTab/workoutTab');
+var LogTab = require('./client/scripts/components/log/log');
 
 var {
   AppRegistry,
@@ -48,7 +49,7 @@ var Trybe = React.createClass({
           icon={ require('image!profile') }
           onPress={ () => this.changeTab('profile') }
           selected={ this.state.selectedTab === 'profile' }>
-          <Text>Profile</Text>
+          <LogTab/>
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

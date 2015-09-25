@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 11:56:36
+* @Last Modified time: 2015-09-25 15:01:34
 */
 
 'use strict';
@@ -30,11 +30,11 @@ var LogCard = React.createClass({
       /* jshint ignore:start */
       <View>
         <LogCardHeader
-          when={ card.createdAt }/>
+          createdAt={card.workout.createdAt}/>
         <ViewWorkoutBody
-          workout={ card.workout }/>
+          workout={card.workout}/>
         <LogCardFooter
-          workout={ card.workout }/>
+          workout={card.workout}/>
       </View>
       /* jshint ignore:end */
     );
