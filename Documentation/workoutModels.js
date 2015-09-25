@@ -82,7 +82,7 @@ var customWorkout = {
         {
           name: 'Front Squats',
           reps: 2,
-          load: {units: 'lbs', val: 185},
+          load: {units: 'lb', val: 185},
           time: null,
           distance: null,
           url: null

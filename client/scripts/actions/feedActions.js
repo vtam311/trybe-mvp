@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-23 15:48:46
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-09-25 10:34:43
 */
 
 'use strict';
@@ -38,7 +38,7 @@ var feedActions = {
                 {
                   name: 'Rope Climb',
                   reps: null,
-                  load: {units: 'lbs', val: null},
+                  load: {units: 'lb', val: null},
                   time: null,
                   distance: {units: 'ft', val: 15},
                   url: null
@@ -46,7 +46,7 @@ var feedActions = {
                 {
                   name: 'Front Squats',
                   reps: 2,
-                  load: {units: 'lbs', val: 185},
+                  load: {units: 'lb', val: 185},
                   time: null,
                   distance: null,
                   url: null

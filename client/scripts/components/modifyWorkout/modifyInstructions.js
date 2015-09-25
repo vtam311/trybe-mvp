@@ -13,23 +13,10 @@ var {
 
 
 var ModifyInstructions = React.createClass({
-  // getInitialState: function() {
-  //   return {
-  //     workout: modifyWorkoutStore.getWorkout()
-  //   };
-  // },
-  // componentDidMount: function() {
-  //   modifyWorkoutStore.addChangeListener(this._onChange);
-  // },
-  // componentWillUnmount: function() {
-  //   modifyWorkoutStore.removeChangeListener(this._onChange);
-  // },
-  // _onChange: function(){
-  //   this.setState({
-  //     workout: modifyWorkoutStore.getWorkout()
-  //   });
-  // },
   saveInstructions: function(text){
+    //Opting to not use modifyWorkoutActions, as onChangeText continually
+    //updates state of store as user inputs text, which triggers
+    //refresh & interrupts user text input if typing quickly
     this.props.part.instructions = text;
   },
   render: function(){
