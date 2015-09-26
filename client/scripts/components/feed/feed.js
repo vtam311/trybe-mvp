@@ -39,7 +39,7 @@ var Feed = React.createClass({
   renderRow: function(card){
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={ styles.feedCard }>
         <FeedCard card={card}/>
       </View>
       /* jshint ignore:end */
@@ -50,9 +50,11 @@ var Feed = React.createClass({
     return (
       <View style={ styles.container }>
         <View style={ styles.header }>
-          <Text>trybe</Text>
+          <Text style={ styles.headerText }>trybe</Text>
         </View>
-        <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow } />
+        <View style={ styles.content }>
+          <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
+        </View>
       </View>
       );
     /* jshint ignore:end */
@@ -61,12 +63,30 @@ var Feed = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#f3f3f3'
   },
   header: {
-    height: 40,
+    flex: .1,
     backgroundColor: '#4dba97',
+  },
+  headerText: {
+    marginTop: 20,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 28,
+    fontFamily: 'Avenir Next'
+  },
+  content: {
+    flex: .9
+  },
+  feedCard: {
+    flex: 1,
+    backgroundColor: '#fff',
+    //Uncomment if want cards to not span length of pg
+    // marginLeft: 10,
+    // marginRight: 10
   }
 });
 

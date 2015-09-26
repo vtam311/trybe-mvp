@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-18 12:28:03
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-09-25 20:27:21
 */
 
 'use strict';
@@ -28,20 +28,44 @@ var FeedCard = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
-        <FeedCardHeader
-          username={ card.username }
-          activity={ card.activity }
-          when={ card.createdAt }/>
-        <ViewWorkoutBody
-          workout={ card.workout }/>
-        <FeedCardFooter
-          workout={ card.workout }
-          likes={ card.likes }
-          comments={ card.comments }/>
+      <View style={styles.cardContainer}>
+        <View style={styles.cardHeader}>
+          <FeedCardHeader
+            username={ card.username }
+            activity={ card.activity }
+            when={ card.createdAt }/>
+        </View>
+        <View style={styles.cardBody}>
+          <ViewWorkoutBody
+            workout={ card.workout }/>
+        </View>
+        <View style={styles.cardFooter}>
+          <FeedCardFooter
+            workout={ card.workout }
+            likes={ card.likes }
+            comments={ card.comments }/>
+        </View>
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  cardContainer: {
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10,
+    marginBottom: 10
+  },
+  cardHeader: {
+    flex: .25,
+  },
+  cardBody: {
+    flex: .5,
+  },
+  cardFooter: {
+    flex: .25,
   }
 });
 

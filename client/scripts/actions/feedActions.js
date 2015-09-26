@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 10:34:43
+* @Last Modified time: 2015-09-25 20:01:54
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var feedActions = {
       {
         username: 'John Snow',
         activity: 'completed today\'s workout',
-        createdAt: '3 hours ago',
+        createdAt: '3hr',
         trybe: 'NorCal Strength & Conditioning CF On-Ramp',
         day: 17, //for day number in training program
         workout: {
