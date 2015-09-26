@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-09-18 12:27:15
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-09-26 12:05:36
 */
 
 'use strict';
@@ -34,7 +34,7 @@ var ViewWorkoutBody = React.createClass({
 
       //Add instructions to partView
       /* jshint ignore:start */
-      partView.push(<Text>{instructions}</Text>);
+      partView.push(<Text style={styles.instructionText}>{instructions}</Text>);
       /* jshint ignore:end */
 
       //Add exercises to partView
@@ -48,11 +48,20 @@ var ViewWorkoutBody = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.workoutBody}>
         { partsView }
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  workoutBody: {
+  },
+  instructionText: {
+    fontFamily: 'Helvetica',
+    marginBottom: 10
   }
 });
 

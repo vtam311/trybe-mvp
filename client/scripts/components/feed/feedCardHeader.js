@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 20:25:54
+* @Last Modified time: 2015-09-26 10:55:24
 */
 
 'use strict';
@@ -43,6 +43,9 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10
   },
   headerUserText: {
     color: 'grey',

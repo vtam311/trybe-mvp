@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 20:27:21
+* @Last Modified time: 2015-09-26 10:57:52
 */
 
 'use strict';
@@ -53,16 +53,19 @@ var FeedCard = React.createClass({
 
 var styles = StyleSheet.create({
   cardContainer: {
-    marginLeft: 10,
-    marginTop: 10,
-    marginRight: 10,
-    marginBottom: 10
+    // marginLeft: 10,
+    // marginTop: 10,
+    // marginRight: 10,
+    // marginBottom: 10
   },
   cardHeader: {
     flex: .25,
   },
   cardBody: {
     flex: .5,
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10
   },
   cardFooter: {
     flex: .25,
