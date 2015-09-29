@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-26 10:57:52
+* @Last Modified time: 2015-09-26 12:53:55
 */
 
 'use strict';
@@ -35,7 +35,7 @@ var FeedCard = React.createClass({
             activity={ card.activity }
             when={ card.createdAt }/>
         </View>
-        <View style={styles.cardBody}>
+        <View style={styles.cardWorkout}>
           <ViewWorkoutBody
             workout={ card.workout }/>
         </View>
@@ -61,7 +61,7 @@ var styles = StyleSheet.create({
   cardHeader: {
     flex: .25,
   },
-  cardBody: {
+  cardWorkout: {
     flex: .5,
     marginLeft: 10,
     marginTop: 10,
@@ -69,7 +69,7 @@ var styles = StyleSheet.create({
   },
   cardFooter: {
     flex: .25,
-  }
+  },
 });
 
 module.exports = FeedCard;

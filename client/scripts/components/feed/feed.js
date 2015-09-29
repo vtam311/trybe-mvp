@@ -84,9 +84,11 @@ var styles = StyleSheet.create({
   feedCard: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingBottom: 10
     //Uncomment if want cards to not span length of pg
     // marginLeft: 10,
     // marginRight: 10
+
   }
 });
 

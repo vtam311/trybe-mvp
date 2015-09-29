@@ -66,11 +66,13 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    marginTop: 5,
     marginLeft: 10
   },
   exerciseText: {
-    fontFamily: 'Helvetica',
     marginRight: 4,
+    fontFamily: 'Helvetica',
+    color: '#434343'
   }
 });
 

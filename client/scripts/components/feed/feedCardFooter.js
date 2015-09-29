@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 13:27:07
+* @Last Modified time: 2015-09-26 12:20:53
 */
 
 'use strict';
@@ -37,16 +37,32 @@ var FeedCardFooter = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.footerContainer}>
+        <Text style={styles.footerText}>{ likes } Likes</Text>
+        <Text style={styles.footerText}>{ comments } Comments</Text>
         <TouchableHighlight
           onPress={ () => this.viewWorkout(workout) }>
-          <Text>Do Workout</Text>
+          <Text style={styles.footerText}>Do Now</Text>
         </TouchableHighlight>
-        <Text>Likes { likes }</Text>
-        <Text>Comments { comments }</Text>
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  footerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10
+  },
+  footerText: {
+    color: 'grey',
+    fontFamily: 'Helvetica',
+    color: '#434343'
   }
 });
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-26 12:05:36
+* @Last Modified time: 2015-09-29 10:44:08
 */
 
 'use strict';
@@ -10,7 +10,8 @@
 var React = require('react-native');
 
 //Load components
-var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
+var ViewExercise = require('./viewExercise');
+var ViewResults = require('./viewResults');
 
 var {
   StyleSheet,
@@ -22,8 +23,8 @@ var ViewWorkoutBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    //partsView is an array of partViews, which renders
-    //a workout part's instructions and exercises
+    //workouts are made of parts. partsView is an array of partViews,
+    //which renders a part's instructions and exercises
     var partsView = [];
 
     //Traverse parts
@@ -33,23 +34,32 @@ var ViewWorkoutBody = React.createClass({
       var instructions = currPart.instructions;
 
       //Add instructions to partView
-      /* jshint ignore:start */
-      partView.push(<Text style={styles.instructionText}>{instructions}</Text>);
-      /* jshint ignore:end */
+      partView.push(
+        /* jshint ignore:start */
+        <View style={styles.instructions}>
+          <Text style={styles.instructionText}>{instructions}</Text>
+        </View>
+        /* jshint ignore:end */
+      );
 
       //Add exercises to partView
       for(var n = 0; n < currPart.exercises.length; n++){
         var currExercise = currPart.exercises[n];
-        /* jshint ignore:start */
-        partView.push(<ViewExercise exercise={currExercise}/>);
-        /* jshint ignore:end */
+        partView.push(
+          /* jshint ignore:start */
+          <View style={styles.exercises}>
+            <ViewExercise exercise={currExercise}/>
+          </View>
+          /* jshint ignore:end */
+        );
       }
     }
 
     return (
       /* jshint ignore:start */
-      <View style={styles.workoutBody}>
+      <View style={styles.workoutContainer}>
         { partsView }
+        <ViewResults/>
       </View>
       /* jshint ignore:end */
     );
@@ -57,11 +67,18 @@ var ViewWorkoutBody = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  workoutBody: {
-  },
+  // workoutContainer: {
+  //   flex: 1,
+  //   flexDirection: 'column'
+  // },
+  // workoutBody: {
+  //   flex: .25
+  // },
   instructionText: {
+    marginBottom: 10,
+    color: 'grey',
     fontFamily: 'Helvetica',
-    marginBottom: 10
+    color: '#434343'
   }
 });
 
