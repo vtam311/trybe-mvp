@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-26 12:53:55
+* @Last Modified time: 2015-09-29 15:24:24
 */
 
 'use strict';
@@ -35,10 +35,14 @@ var FeedCard = React.createClass({
             activity={ card.activity }
             when={ card.createdAt }/>
         </View>
+
         <View style={styles.cardWorkout}>
           <ViewWorkoutBody
             workout={ card.workout }/>
         </View>
+
+        <View style={styles.separatorLine}></View>
+
         <View style={styles.cardFooter}>
           <FeedCardFooter
             workout={ card.workout }
@@ -53,10 +57,9 @@ var FeedCard = React.createClass({
 
 var styles = StyleSheet.create({
   cardContainer: {
-    // marginLeft: 10,
-    // marginTop: 10,
-    // marginRight: 10,
-    // marginBottom: 10
+    borderTopWidth: .5,
+    borderBottomWidth: .5,
+    borderColor: '#d9d9d9',
   },
   cardHeader: {
     flex: .25,
@@ -66,6 +69,13 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     marginRight: 10
+  },
+  separatorLine: {
+    marginLeft: 10,
+    marginRight: 10,
+    height: .5,
+    borderBottomWidth: .5,
+    borderBottomColor: '#d9d9d9',
   },
   cardFooter: {
     flex: .25,

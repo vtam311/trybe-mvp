@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-26 12:20:53
+* @Last Modified time: 2015-09-29 15:29:41
 */
 
 'use strict';
@@ -55,6 +55,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingBottom: 10,
     marginLeft: 10,
     marginTop: 10,
     marginRight: 10

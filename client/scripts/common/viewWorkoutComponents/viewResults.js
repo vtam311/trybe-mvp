@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 10:43:57
+* @Last Modified time: 2015-09-29 15:43:38
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var viewExercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.workoutResult}>
-        <Text style={styles.resultText}>Completed in 14min</Text>
+        <Text style={styles.resultText}>14min</Text>
       </View>
       /* jshint ignore:end */
     );
