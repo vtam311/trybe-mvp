@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:50:52
+* @Last Modified time: 2015-09-29 16:23:39
 */
 
 'use strict';
@@ -67,7 +67,6 @@ var ViewWorkoutBody = React.createClass({
 var styles = StyleSheet.create({
   instructionText: {
     marginBottom: 10,
-    color: 'grey',
     fontFamily: 'Helvetica',
     color: '#434343'
   }

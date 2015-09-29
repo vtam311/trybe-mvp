@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:30:08
+* @Last Modified time: 2015-09-29 16:31:43
 */
 
 'use strict';
@@ -48,7 +48,6 @@ var styles = StyleSheet.create({
     marginRight: 10
   },
   headerUserText: {
-    color: 'grey',
     fontFamily: 'Helvetica',
     color: '#434343'
   },

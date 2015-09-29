@@ -63,23 +63,22 @@ var Feed = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     flex: 1,
-    backgroundColor: '#f3f3f3'
+    backgroundColor: '#f3f3f3',
   },
   header: {
     flex: .1,
-    backgroundColor: '#4dba97',
+    backgroundColor: '#4dba97'
   },
   headerText: {
-    marginTop: 20,
+    marginTop: 17,
     textAlign: 'center',
     color: 'white',
     fontSize: 28,
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: .9
+    flex: .9,
   },
   feedCard: {
     flex: 1,

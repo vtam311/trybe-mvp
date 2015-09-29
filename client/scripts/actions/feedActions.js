@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 20:01:54
+* @Last Modified time: 2015-09-29 15:57:30
 */
 
 'use strict';
@@ -18,12 +18,12 @@ var feedActions = {
         username: 'John Snow',
         activity: 'completed today\'s workout',
         createdAt: '3hr',
-        trybe: 'NorCal Strength & Conditioning CF On-Ramp',
+        trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
         workout: {
           id: 24,
           username: 'John_Snow',
-          trybe: 'CF San Mateo Team Elite',
+          trybe: 'APEX Ninja Warriors',
           day: 17,
           createdAt: '2015-06-28T02:16:44.000Z',
           type: 'Custom',
@@ -63,6 +63,106 @@ var feedActions = {
         origin: null, //to track if workout is inspired by another user
         likes: 17,
         comments: 3
+      },
+      {
+        username: 'Arnold Stan',
+        activity: 'modified today\'s workout',
+        createdAt: '3hr',
+        trybe: 'APEX Ninja Warriors',
+        day: 17, //for day number in training program
+        workout: {
+          id: 24,
+          username: 'Arnie247',
+          trybe: 'APEX Ninja Warriors',
+          day: 17,
+          createdAt: '2015-06-28T02:16:44.000Z',
+          type: 'Custom',
+          parts: [
+            {
+              instructions:'Every 3 Minutes For As Long As Possible, Complete:',
+              media: {
+                title: 'Speed and Efficiency',
+                url: 'www.youtube.com'
+              },
+              exercises: [
+                {
+                  name: 'Rope Climb',
+                  reps: null,
+                  load: {units: 'lb', val: null},
+                  time: null,
+                  distance: {units: 'ft', val: 25},
+                  url: null
+                },
+                {
+                  name: 'Front Squats',
+                  reps: 5,
+                  load: {units: 'lb', val: 225},
+                  time: null,
+                  distance: null,
+                  url: null
+                },
+              ],
+              notes:
+                'Continue Adding 2 Reps to the Front Squat Each Interval. \n' +
+                'Track number of minutes completed',
+            }
+          ],
+          origin: 23, //copied from workout id 23
+          finalResult: {type: 'Time', value: '00:14:22'}
+        },
+        origin: null, //to track if workout is inspired by another user
+        likes: 24,
+        comments: 6
+      },
+      {
+        username: 'Jacob Greensbury',
+        activity: 'modified today\'s workout',
+        createdAt: '3hr',
+        trybe: 'APEX Ninja Warriors',
+        day: 17, //for day number in training program
+        workout: {
+          id: 24,
+          username: 'Greens17',
+          trybe: 'APEX Ninja Warriors',
+          day: 17,
+          createdAt: '2015-06-28T02:16:44.000Z',
+          type: 'Custom',
+          parts: [
+            {
+              instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+              media: {
+                title: 'Speed and Efficiency',
+                url: 'www.youtube.com'
+              },
+              exercises: [
+                {
+                  name: 'Towel Pull Ups',
+                  reps: 7,
+                  load: {units: 'lb', val: null},
+                  time: null,
+                  distance: {units: 'ft', val: null},
+                  url: null
+                },
+                {
+                  name: 'Front Squats',
+                  reps: 3,
+                  load: {units: 'lb', val: 155},
+                  time: null,
+                  distance: null,
+                  url: null
+                },
+              ],
+              notes:
+                'Continue Adding 2 Reps to the Front Squat Each Interval. \n' +
+                'Track number of minutes completed',
+            }
+          ],
+          origin: 23, //copied from workout id 23
+          finalResult: {type: 'Time', value: '00:15:46'}
+        },
+        origin: null, //to track if workout is inspired by another user
+        likes: 19,
+        comments: 8
       }
     ];
 

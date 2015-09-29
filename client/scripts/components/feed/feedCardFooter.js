@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:29:41
+* @Last Modified time: 2015-09-29 16:20:23
 */
 
 'use strict';
@@ -61,7 +61,6 @@ var styles = StyleSheet.create({
     marginRight: 10
   },
   footerText: {
-    color: 'grey',
     fontFamily: 'Helvetica',
     color: '#434343'
   }
