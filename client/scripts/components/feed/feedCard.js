@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:24:24
+* @Last Modified time: 2015-09-29 15:51:09
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var feedActions = require('../../actions/feedActions');
 //Load components
 var FeedCardHeader = require('./feedCardHeader');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
+var ViewResults = require('../../common/viewWorkoutComponents/viewResults');
 var FeedCardFooter = require('./feedCardFooter');
 
 var {
@@ -39,6 +40,10 @@ var FeedCard = React.createClass({
         <View style={styles.cardWorkout}>
           <ViewWorkoutBody
             workout={ card.workout }/>
+        </View>
+
+        <View>
+          <ViewResults/>
         </View>
 
         <View style={styles.separatorLine}></View>

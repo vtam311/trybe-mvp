@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 10:44:08
+* @Last Modified time: 2015-09-29 15:50:52
 */
 
 'use strict';
@@ -11,7 +11,6 @@ var React = require('react-native');
 
 //Load components
 var ViewExercise = require('./viewExercise');
-var ViewResults = require('./viewResults');
 
 var {
   StyleSheet,
@@ -59,7 +58,6 @@ var ViewWorkoutBody = React.createClass({
       /* jshint ignore:start */
       <View style={styles.workoutContainer}>
         { partsView }
-        <ViewResults/>
       </View>
       /* jshint ignore:end */
     );
@@ -67,13 +65,6 @@ var ViewWorkoutBody = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  // workoutContainer: {
-  //   flex: 1,
-  //   flexDirection: 'column'
-  // },
-  // workoutBody: {
-  //   flex: .25
-  // },
   instructionText: {
     marginBottom: 10,
     color: 'grey',

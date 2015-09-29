@@ -85,10 +85,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     marginBottom: 10
-    //Uncomment if want cards to not span length of pg
-    // marginLeft: 10,
-    // marginRight: 10
-
   }
 });
 
