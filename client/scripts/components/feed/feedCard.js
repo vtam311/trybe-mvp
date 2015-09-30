@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:51:09
+* @Last Modified time: 2015-09-30 13:22:09
 */
 
 'use strict';
@@ -62,6 +62,8 @@ var FeedCard = React.createClass({
 
 var styles = StyleSheet.create({
   cardContainer: {
+    flex: 1,
+    flexDirection: 'column',
     borderTopWidth: .5,
     borderBottomWidth: .5,
     borderColor: '#d9d9d9',

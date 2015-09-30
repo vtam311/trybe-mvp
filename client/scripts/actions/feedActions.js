@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:57:30
+* @Last Modified time: 2015-09-30 12:52:53
 */
 
 'use strict';
@@ -11,6 +11,58 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants');
 
 var feedActions = {
+  getTrybeWorkout: function(){
+    //To do: make a get req to server
+    var dummyWorkout = {
+      id: 24,
+      username: 'Ryan Ford',
+      trybe: 'APEX Ninja Warriors',
+      day: 3,
+      createdAt: '2015-06-28T02:16:44.000Z',
+      type: 'Custom',
+      parts: [
+        {
+          instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+          media: {
+            title: 'Speed and Efficiency',
+            url: 'www.youtube.com'
+          },
+          exercises: [
+            {
+              name: 'Rope Climb',
+              reps: null,
+              load: {units: 'lb', val: null},
+              time: null,
+              distance: {units: 'ft', val: 15},
+              url: null
+            },
+            {
+              name: 'Front Squats',
+              reps: 3,
+              load: {units: 'lb', val: 185},
+              time: null,
+              distance: null,
+              url: null
+            },
+          ],
+          notes:
+            'Continue Adding 2 Reps to the Front Squat Each Interval. \n' +
+            'Track number of minutes completed',
+        }
+      ],
+      origin: 23,
+      finalResult: {type: 'Time', value: '00:16:23'}
+    };
+    console.log('getTrybeWorkout called');
+    this.setTrybeWorkout(dummyWorkout);
+  },
+  setTrybeWorkout: function(workout){
+    console.log('setTrybeWorkout called');
+    AppDispatcher.handleAction({
+      actionType: feedConstants.SET_TRYBE_WORKOUT,
+      data: workout
+    });
+  },
   getCards: function(feedView) {
     //To do: make get req to server
     var dummyCards = [
