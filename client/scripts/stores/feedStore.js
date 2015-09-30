@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:21:08
+* @Last Modified time: 2015-09-30 12:53:59
 */
 
 'use strict';
@@ -14,11 +14,17 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
+  trybeWorkout: {},
   cards: []
 };
 
 var setCards = function(cards){
   _store.cards = cards;
+};
+
+var setTrybeWorkout = function(workout){
+  console.log('feedStore setTrybeWorkout', workout);
+  _store.trybeWorkout = workout;
 };
 
 var feedStore = Object.assign({}, EventEmitter.prototype, {
@@ -28,6 +34,10 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
+  getTrybeWorkout: function(){
+    console.log('feedStore returning trybe workout', _store.trybeWorkout);
+    return _store.trybeWorkout;
+  },
   getCards: function(){
     return _store.cards;
   },
@@ -36,6 +46,10 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case feedConstants.SET_TRYBE_WORKOUT:
+      setTrybeWorkout(action.data);
+      feedStore.emit(CHANGE_EVENT);
+      break;
     case feedConstants.SET_CARDS:
       setCards(action.data);
       feedStore.emit(CHANGE_EVENT);

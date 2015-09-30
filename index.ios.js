@@ -74,7 +74,7 @@ var Trybe = React.createClass({
 
 var styles = StyleSheet.create({
   tabView: {
-    // flex: 1
+    // fontFamily: 'Avenir'
   }
 });
 

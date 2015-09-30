@@ -20,11 +20,11 @@ var viewExercise = React.createClass({
     var renderAmount = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.reps){
-        amount = <Text>{exercise.reps}</Text>;
+        amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
       } else if (exercise.hold){
-        amount = <Text>{exercise.hold}</Text>;
+        amount = <Text style={styles.exerciseText}>{exercise.hold}</Text>;
       } else if (exercise.distance.val){
-        amount = <Text>{exercise.distance.val}{exercise.distance.units}</Text>;
+        amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -32,14 +32,14 @@ var viewExercise = React.createClass({
     var renderLoad = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <Text>{exercise.load.val}{exercise.load.units}</Text>;
+        load = <Text style={styles.exerciseText}>{exercise.load.val}{exercise.load.units}</Text>;
       }
       /* jshint ignore:end*/
     };
 
     var renderMovement = function(exercise) {
       /* jshint ignore:start*/
-      movement = <Text>{exercise.name}</Text>;
+      movement = <Text style={styles.exerciseText}>{exercise.name}</Text>;
       /* jshint ignore:end*/
     };
 
@@ -51,13 +51,28 @@ var viewExercise = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.exerciseContainer}>
         {amount}
         {load}
         {movement}
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  exerciseContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: 5,
+    marginLeft: 10
+  },
+  exerciseText: {
+    marginRight: 4,
+    fontFamily: 'Helvetica',
+    color: '#434343'
   }
 });
 
