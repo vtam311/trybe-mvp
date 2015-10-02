@@ -85,9 +85,9 @@ var Feed = React.createClass({
                 <Text style={styles.dayText}>{trybeWorkout.trybe} - Day {trybeWorkout.day}</Text>
                 <View style={ styles.progress }>
                   <ProgressBar
-                    fillStyle={{backgroundColor: '#4dba97', height: 15}}
+                    fillStyle={{backgroundColor: '#4dba97', height: 10}}
                     backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
-                    style={{marginTop: 10, marginBottom: 5, width: 300, height: 15}}
+                    style={{marginTop: 10, marginBottom: 5, width: 300, height: 10}}
                     easingDuration={3000}
                     progress={this.state.progressBar}/>
                 </View>
@@ -97,7 +97,7 @@ var Feed = React.createClass({
                 <View style={ styles.chatBarContainer }>
                   <TextInput
                     style={styles.chatBar}
-                    placeholder={'Send Message'}/>
+                    placeholder={'Send Message...'}/>
                 </View>
               </View>
 
@@ -120,6 +120,7 @@ var Feed = React.createClass({
   }
 });
 
+
 var styles = StyleSheet.create({
   container: {
     flex: 100,
@@ -139,7 +140,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: 80
+    flex: 90,
   },
   contentContainer: {
     flex: 100,
@@ -148,32 +149,38 @@ var styles = StyleSheet.create({
   dayProgress: {
     flex: 10,
     alignItems: 'center',
+    backgroundColor: 'white',
+    marginBottom: -20,
   },
   dayText: {
     marginTop: 5
   },
   progress: {
-    alignItems: 'center',
+    alignItems: 'center'
   },
   chat: {
-    flex: 10
+    flex: 10,
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   chatBar: {
     height: 30,
-    backgroundColor: 'white',
-    textAlign: 'center'
+    width: 300,
+    backgroundColor: '#fff',
+    textAlign: 'center',
   },
   // chatBarContainer: {
   //   flex: .1
   // },
   cards: {
-    flex: 80
+    flex: 80,
+    marginTop: -35,
   },
   feedCard: {
     backgroundColor: '#fff',
     marginBottom: 10,
     //removes gray space between header and content,
-    //but isn't a true fix
+    //but it makes cards collide.
     // marginTop: -20
   },
 });
