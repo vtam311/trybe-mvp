@@ -67,7 +67,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginTop: 5,
-    marginLeft: 10
+    marginLeft: 0
   },
   exerciseText: {
     marginRight: 4,

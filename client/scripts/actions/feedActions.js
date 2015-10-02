@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-30 12:52:53
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-02 12:22:38
 */
 
 'use strict';
@@ -22,7 +22,7 @@ var feedActions = {
       type: 'Custom',
       parts: [
         {
-          instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+          instructions:'Every 2 Minutes For As Long As Possible, Perform',
           media: {
             title: 'Speed and Efficiency',
             url: 'www.youtube.com'
@@ -68,7 +68,7 @@ var feedActions = {
     var dummyCards = [
       {
         username: 'John Snow',
-        activity: 'completed today\'s workout',
+        activity: 'completed',
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
@@ -81,7 +81,7 @@ var feedActions = {
           type: 'Custom',
           parts: [
             {
-              instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+              instructions:'Every 2 Minutes For As Long As Possible, Perform',
               media: {
                 title: 'Speed and Efficiency',
                 url: 'www.youtube.com'
@@ -118,7 +118,7 @@ var feedActions = {
       },
       {
         username: 'Arnold Stan',
-        activity: 'modified today\'s workout',
+        activity: 'modified',
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
@@ -131,7 +131,7 @@ var feedActions = {
           type: 'Custom',
           parts: [
             {
-              instructions:'Every 3 Minutes For As Long As Possible, Complete:',
+              instructions:'Every 3 Minutes For As Long As Possible, Perform',
               media: {
                 title: 'Speed and Efficiency',
                 url: 'www.youtube.com'
@@ -168,7 +168,7 @@ var feedActions = {
       },
       {
         username: 'Jacob Greensbury',
-        activity: 'modified today\'s workout',
+        activity: 'modified',
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
@@ -181,7 +181,7 @@ var feedActions = {
           type: 'Custom',
           parts: [
             {
-              instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+              instructions:'Every 2 Minutes For As Long As Possible, Perform',
               media: {
                 title: 'Speed and Efficiency',
                 url: 'www.youtube.com'

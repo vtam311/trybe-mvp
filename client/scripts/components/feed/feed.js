@@ -82,7 +82,7 @@ var Feed = React.createClass({
             <View style={styles.contentContainer}>
               <View style={ styles.trybeDay }>
                 <Text>{trybeWorkout.trybe}</Text>
-                <Text>Day {trybeWorkout.day}</Text>
+                <Text style={styles.dayText}>Day {trybeWorkout.day}</Text>
               </View>
 
               <View style={ styles.progress }>
@@ -92,17 +92,10 @@ var Feed = React.createClass({
                   style={{marginTop: 10, marginBottom: 10, width: 300, height: 15}}
                   easingDuration={3000}
                   progress={this.state.progressBar}/>
-
-                <View style={ styles.completedList }>
-                  <View>
-
-                  </View>
-                  <View>
-                  </View>
-                </View>
+                <Text>trybe Completion</Text>
               </View>
 
-              <View style={ styles.results }>
+              <View style={ styles.cards }>
                 <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
               </View>
             </View>
@@ -127,7 +120,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#f3f3f3',
   },
   header: {
-    flex: .08,
+    flex: .1,
     backgroundColor: '#4dba97',
     justifyContent: 'center'
   },
@@ -139,7 +132,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: .92,
+    flex: .9
   },
   contentContainer: {
     flex: 1,
@@ -152,10 +145,13 @@ var styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10
   },
+  dayText: {
+    marginTop: 5
+  },
   progress: {
     alignItems: 'center'
   },
-  results: {
+  cards: {
     flex: 1
   },
   feedCard: {

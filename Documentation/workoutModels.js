@@ -65,7 +65,7 @@ var customWorkout = {
   type: 'Custom',
   parts: [
     {
-      instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+      instructions:'Every 2 Minutes For As Long As Possible, Perform:',
       media: {
         title: 'Speed and Efficiency',
         url: 'www.youtube.com'
