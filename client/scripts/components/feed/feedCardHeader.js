@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 16:31:43
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-02 12:24:54
 */
 
 'use strict';
@@ -26,11 +26,16 @@ var FeedCardHeader = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.headerContainer}>
-        <View>
-          <Text style={styles.headerUserText}>{username}</Text>
+        <View style={styles.usernameActivity}>
+          <View style={styles.username}>
+            <Text style={styles.userText}>{username}</Text>
+          </View>
+          <View>
+            <Text style={styles.activityText}>{activity}</Text>
+          </View>
         </View>
         <View>
-          <Text style={styles.headerTimeText}>{when}</Text>
+          <Text style={styles.timeText}>{when}</Text>
         </View>
       </View>
       /* jshint ignore:end */
@@ -45,13 +50,26 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginLeft: 10,
     marginTop: 10,
-    marginRight: 10
+    marginRight: 10,
+    marginBottom: 10
   },
-  headerUserText: {
+  usernameActivity: {
+    flexDirection: 'row',
+  },
+  username: {
+    marginRight: 4
+  },
+  userText: {
     fontFamily: 'Helvetica',
-    color: '#434343'
+    color: '#434343',
+    fontWeight: 'bold'
   },
-  headerTimeText: {
+  activityText: {
+    fontFamily: 'Helvetica',
+    color: 'grey',
+    // fontWeight: 'bold'
+  },
+  timeText: {
     color: 'grey'
   }
 });

@@ -7,6 +7,7 @@ var feedActions = require('../../actions/feedActions');
 //Load components
 var FeedCard = require('./feedCard');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
+var ProgressBar = require('react-native-progress-bar');
 
 var {
   StyleSheet,
@@ -19,6 +20,16 @@ var Feed = React.createClass({
   getInitialState: function(){
     return {
       trybeWorkout: feedStore.getTrybeWorkout(),
+      //To do: retrieve from feedStore
+      userStatuses: [
+        {user: 'Vince', completed: true},
+        {user: 'Wilbert', completed: false},
+        {user: 'George', completed: true},
+        {user: 'Andy', completed: false}
+      ],
+      progressBar: 0,
+      //To do: retrieve from feedStore
+      progress: .75,
       //For rendering a ListView of users' results
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
@@ -52,6 +63,11 @@ var Feed = React.createClass({
   },
   render: function(){
     var trybeWorkout = this.state.trybeWorkout;
+    setTimeout((function() {
+      if(this.state.progressBar < this.state.progress){
+        this.setState({ progressBar: Math.min(this.state.progressBar + .10, this.state.progress)});
+      }
+    }).bind(this), 1000);
 
     //Load page once the trybeWorkout is loaded
     if(trybeWorkout.trybe) {
@@ -64,22 +80,22 @@ var Feed = React.createClass({
 
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
-              <View style={ styles.trybeWorkout }>
+              <View style={ styles.trybeDay }>
                 <Text>{trybeWorkout.trybe}</Text>
-                <Text>Day {trybeWorkout.day}</Text>
+                <Text style={styles.dayText}>Day {trybeWorkout.day}</Text>
               </View>
 
               <View style={ styles.progress }>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
-                <Text>Progress Bar</Text>
+                <ProgressBar
+                  fillStyle={{backgroundColor: '#4dba97', height: 15}}
+                  backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
+                  style={{marginTop: 10, marginBottom: 10, width: 300, height: 15}}
+                  easingDuration={3000}
+                  progress={this.state.progressBar}/>
+                <Text>trybe Completion</Text>
               </View>
 
-              <View style={ styles.results }>
+              <View style={ styles.cards }>
                 <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
               </View>
             </View>
@@ -89,7 +105,9 @@ var Feed = React.createClass({
       );
     } else {
       return (
+        /* jshint ignore:start */
         <View><Text>Loading Workout</Text></View>
+        /* jshint ignore:end */
       );
     }
   }
@@ -102,7 +120,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#f3f3f3',
   },
   header: {
-    flex: .08,
+    flex: .1,
     backgroundColor: '#4dba97',
     justifyContent: 'center'
   },
@@ -114,23 +132,26 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: .92,
+    flex: .9
   },
   contentContainer: {
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap'
   },
-  trybeWorkout: {
-    // flex: .1,
+  trybeDay: {
+    alignItems: 'center',
     marginLeft: 10,
     marginTop: 10,
     marginRight: 10
   },
-  progress: {
-    // flex: .3
+  dayText: {
+    marginTop: 5
   },
-  results: {
+  progress: {
+    alignItems: 'center'
+  },
+  cards: {
     flex: 1
   },
   feedCard: {
