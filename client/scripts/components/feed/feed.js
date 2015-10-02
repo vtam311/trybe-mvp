@@ -13,7 +13,9 @@ var {
   StyleSheet,
   Text,
   View,
-  ListView
+  ListView,
+  ScrollView,
+  TextInput
 } = React;
 
 var Feed = React.createClass({
@@ -51,7 +53,6 @@ var Feed = React.createClass({
       dataSource: this.state.dataSource.cloneWithRows(cards)
     });
   },
-
   renderRow: function(card){
     return (
       /* jshint ignore:start */
@@ -80,19 +81,24 @@ var Feed = React.createClass({
 
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
-              <View style={ styles.trybeDay }>
-                <Text>{trybeWorkout.trybe}</Text>
-                <Text style={styles.dayText}>Day {trybeWorkout.day}</Text>
+              <View style={styles.dayProgress}>
+                <Text style={styles.dayText}>{trybeWorkout.trybe} - Day {trybeWorkout.day}</Text>
+                <View style={ styles.progress }>
+                  <ProgressBar
+                    fillStyle={{backgroundColor: '#4dba97', height: 15}}
+                    backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
+                    style={{marginTop: 10, marginBottom: 5, width: 300, height: 15}}
+                    easingDuration={3000}
+                    progress={this.state.progressBar}/>
+                </View>
               </View>
 
-              <View style={ styles.progress }>
-                <ProgressBar
-                  fillStyle={{backgroundColor: '#4dba97', height: 15}}
-                  backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
-                  style={{marginTop: 10, marginBottom: 10, width: 300, height: 15}}
-                  easingDuration={3000}
-                  progress={this.state.progressBar}/>
-                <Text>trybe Completion</Text>
+              <View style={ styles.chat }>
+                <View style={ styles.chatBarContainer }>
+                  <TextInput
+                    style={styles.chatBar}
+                    placeholder={'Send Message'}/>
+                </View>
               </View>
 
               <View style={ styles.cards }>
@@ -100,6 +106,7 @@ var Feed = React.createClass({
               </View>
             </View>
           </View>
+
         </View>
         /* jshint ignore:end */
       );
@@ -115,12 +122,12 @@ var Feed = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 100,
     flexDirection: 'column',
     backgroundColor: '#f3f3f3',
   },
   header: {
-    flex: .1,
+    flex: 10,
     backgroundColor: '#4dba97',
     justifyContent: 'center'
   },
@@ -132,27 +139,35 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: .9
+    flex: 80
   },
   contentContainer: {
-    flex: 1,
+    flex: 100,
     flexDirection: 'column',
-    flexWrap: 'wrap'
   },
-  trybeDay: {
+  dayProgress: {
+    flex: 10,
     alignItems: 'center',
-    marginLeft: 10,
-    marginTop: 10,
-    marginRight: 10
   },
   dayText: {
     marginTop: 5
   },
   progress: {
-    alignItems: 'center'
+    alignItems: 'center',
   },
+  chat: {
+    flex: 10
+  },
+  chatBar: {
+    height: 30,
+    backgroundColor: 'white',
+    textAlign: 'center'
+  },
+  // chatBarContainer: {
+  //   flex: .1
+  // },
   cards: {
-    flex: 1
+    flex: 80
   },
   feedCard: {
     backgroundColor: '#fff',
@@ -160,7 +175,7 @@ var styles = StyleSheet.create({
     //removes gray space between header and content,
     //but isn't a true fix
     // marginTop: -20
-  }
+  },
 });
 
 module.exports = Feed;
