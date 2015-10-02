@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 15:43:38
+* @Last Modified time: 2015-10-02 12:42:55
 */
 
 'use strict';
@@ -36,10 +36,11 @@ var styles = StyleSheet.create({
     marginBottom: 10
   },
   resultText: {
-    textAlign: 'center',
-    fontSize: 14,
+    // textAlign: 'center',
     fontFamily: 'Helvetica',
-    color: 'grey'
+    color: 'grey',
+    fontSize: 14,
+    fontWeight: '600'
   }
 });
 

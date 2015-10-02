@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-30 13:22:09
+* @Last Modified time: 2015-10-02 12:41:23
 */
 
 'use strict';
@@ -42,7 +42,7 @@ var FeedCard = React.createClass({
             workout={ card.workout }/>
         </View>
 
-        <View>
+        <View style={styles.cardWorkoutResults}>
           <ViewResults/>
         </View>
 
@@ -66,7 +66,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#d9d9d9',
+    borderColor: '#d9d9d9'
   },
   cardHeader: {
     flex: .25,
@@ -76,6 +76,12 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     marginRight: 10
+  },
+  cardWorkoutResults: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginLeft: 10,
+    marginRight: 10,
   },
   separatorLine: {
     marginLeft: 10,
