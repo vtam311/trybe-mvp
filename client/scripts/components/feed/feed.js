@@ -81,8 +81,8 @@ var Feed = React.createClass({
 
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
-              <View style={styles.dayProgress}>
-                <Text style={styles.dayText}>{trybeWorkout.trybe}</Text>
+              <View style={styles.trybeProgress}>
+                <Text style={styles.trybeName}>{trybeWorkout.trybe}</Text>
                 <View style={ styles.progress }>
                   <ProgressBar
                     fillStyle={{backgroundColor: '#4dba97', height: 10}}
@@ -97,7 +97,7 @@ var Feed = React.createClass({
                 <View style={ styles.chatBarContainer }>
                   <TextInput
                     style={styles.chatBar}
-                    placeholder={'Send Message...'}/>
+                    placeholder={'How can we support you?'}/>
                 </View>
               </View>
 
@@ -146,13 +146,13 @@ var styles = StyleSheet.create({
     flex: 100,
     flexDirection: 'column',
   },
-  dayProgress: {
+  trybeProgress: {
     flex: 10,
     alignItems: 'center',
     backgroundColor: 'white',
     marginBottom: -20,
   },
-  dayText: {
+  trybeName: {
     marginTop: 5
   },
   progress: {
