@@ -82,7 +82,7 @@ var Feed = React.createClass({
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
               <View style={styles.dayProgress}>
-                <Text style={styles.dayText}>{trybeWorkout.trybe} - Day {trybeWorkout.day}</Text>
+                <Text style={styles.dayText}>{trybeWorkout.trybe}</Text>
                 <View style={ styles.progress }>
                   <ProgressBar
                     fillStyle={{backgroundColor: '#4dba97', height: 10}}
