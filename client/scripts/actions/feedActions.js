@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-06 11:57:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-06 15:48:10
 */
 
 'use strict';
@@ -53,11 +53,9 @@ var feedActions = {
       origin: 23,
       finalResult: {type: 'Time', value: '00:00:23'}
     };
-    console.log('getTrybeWorkout called');
     this.setTrybeWorkout(dummyWorkout);
   },
   setTrybeWorkout: function(workout){
-    console.log('setTrybeWorkout called');
     AppDispatcher.handleAction({
       actionType: feedConstants.SET_TRYBE_WORKOUT,
       data: workout
@@ -224,6 +222,27 @@ var feedActions = {
     AppDispatcher.handleAction({
       actionType: feedConstants.SET_CARDS,
       data: cards
+    });
+  },
+  sendMessage: function(text){
+    //To do: post to server
+    //To do: call getCards
+
+    //Temp solution: create dummy card, dispatch for store
+    var DUMMY_COMMENT_CARD = {
+      username: 'Jacob Greensbury',
+      activity: 'comment',
+      createdAt: '3hr',
+      trybe: 'APEX Ninja Warriors',
+      day: 17, //for day number in training program
+      comment: text,
+      likes: 3,
+      comments: 3
+    };
+
+    AppDispatcher.handleAction({
+      actionType: feedConstants.SEND_MESSAGE,
+      data: DUMMY_COMMENT_CARD
     });
   }
 };

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-06 11:27:33
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-06 16:34:58
 */
 
 'use strict';
@@ -26,7 +26,32 @@ var FeedCard = React.createClass({
 
   render: function(){
     var card = this.props.card;
+    var body;
+    console.log('in feedCard, card:', card);
 
+    //If card is for rendering workout, render workout card
+    if(card.workout) {
+      //set body to ViewWorkoutBody
+      body = (
+        <View>
+          <View style={styles.cardWorkout}>
+            <ViewWorkoutBody
+              workout={ card.workout }/>
+          </View>
+          <View style={styles.body}>
+            <ViewResults
+              workout={ card.workout }/>
+          </View>
+        </View>
+      );
+    } else {
+      //else set body to cardComment
+      body = (
+        <View style={styles.cardComment}>
+          <Text>{card.comment}</Text>
+        </View>
+      );
+    }
     return (
       /* jshint ignore:start */
       <View style={styles.cardContainer}>
@@ -37,15 +62,7 @@ var FeedCard = React.createClass({
             when={ card.createdAt }/>
         </View>
 
-        <View style={styles.cardWorkout}>
-          <ViewWorkoutBody
-            workout={ card.workout }/>
-        </View>
-
-        <View style={styles.cardWorkoutResults}>
-          <ViewResults
-            workout={ card.workout }/>
-        </View>
+        {body}
 
         <View style={styles.separatorLine}></View>
 
@@ -58,6 +75,35 @@ var FeedCard = React.createClass({
       </View>
       /* jshint ignore:end */
     );
+    // } else {
+    // //Else render comment card
+    //   return (
+    //     /* jshint ignore:start */
+    //     <View style={styles.cardContainer}>
+    //      <View style={styles.cardHeader}>
+    //        <FeedCardHeader
+    //          username={ card.username }
+    //          activity={ card.activity }
+    //          when={ card.createdAt }/>
+    //      </View>
+
+    //      <View style={styles.cardComment}>
+    //        <Text>{card.comment}</Text>
+    //      </View>
+
+    //      <View style={styles.separatorLine}></View>
+
+    //      <View style={styles.cardFooter}>
+    //        <FeedCardFooter
+    //          workout={ card.workout }
+    //          likes={ card.likes }
+    //          comments={ card.comments }/>
+    //      </View>
+    //     </View>
+    //     /* jshint ignore:end */
+    //   );
+    // }
+
   }
 });
 
@@ -78,7 +124,7 @@ var styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10
   },
-  cardWorkoutResults: {
+  body: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginLeft: 10,
@@ -94,6 +140,13 @@ var styles = StyleSheet.create({
   cardFooter: {
     flex: .25,
   },
+  cardComment: {
+    flex: .5,
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10,
+    marginBottom: 10
+  }
 });
 
 module.exports = FeedCard;

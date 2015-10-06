@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:16
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-06 11:28:47
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-06 15:50:25
 */
 
 'use strict';
@@ -24,6 +24,10 @@ var setCards = function(cards){
 
 var setTrybeWorkout = function(workout){
   _store.trybeWorkout = workout;
+};
+
+var addCard = function(card){
+  _store.cards.push(card);
 };
 
 var feedStore = Object.assign({}, EventEmitter.prototype, {
@@ -50,6 +54,10 @@ AppDispatcher.register(function(payload){
       break;
     case feedConstants.SET_CARDS:
       setCards(action.data);
+      feedStore.emit(CHANGE_EVENT);
+      break;
+    case feedConstants.SEND_MESSAGE:
+      addCard(action.data);
       feedStore.emit(CHANGE_EVENT);
       break;
     default:

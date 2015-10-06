@@ -8,6 +8,7 @@ var feedActions = require('../../actions/feedActions');
 var FeedCard = require('./feedCard');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var ProgressBar = require('react-native-progress-bar');
+var ChatBar = require('./chatBar');
 
 var {
   StyleSheet,
@@ -22,17 +23,8 @@ var Feed = React.createClass({
   getInitialState: function(){
     return {
       trybeWorkout: feedStore.getTrybeWorkout(),
-      //To do: retrieve from feedStore
-      userStatuses: [
-        {user: 'Vince', completed: true},
-        {user: 'Wilbert', completed: false},
-        {user: 'George', completed: true},
-        {user: 'Andy', completed: false}
-      ],
       progressBar: 0,
-      //To do: retrieve from feedStore
-      progress: .75,
-      //For rendering a ListView of users' results
+      progress: .75, //To do: retrieve from feedStore
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }),
@@ -94,11 +86,7 @@ var Feed = React.createClass({
               </View>
 
               <View style={ styles.chat }>
-                <View style={ styles.chatBarContainer }>
-                  <TextInput
-                    style={styles.chatBar}
-                    placeholder={'What\'s going on?'}/>
-                </View>
+                <ChatBar />
               </View>
 
               <View style={ styles.cards }>
@@ -163,15 +151,6 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff'
   },
-  chatBar: {
-    height: 30,
-    width: 300,
-    backgroundColor: '#fff',
-    textAlign: 'center',
-  },
-  // chatBarContainer: {
-  //   flex: .1
-  // },
   cards: {
     flex: 80,
     marginTop: -35,

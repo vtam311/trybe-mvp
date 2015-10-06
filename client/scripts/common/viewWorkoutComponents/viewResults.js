@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-06 11:34:19
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-06 15:36:26
 */
 
 'use strict';
@@ -24,7 +24,6 @@ var viewExercise = React.createClass({
   },
   render: function(){
     var workout = this.props.workout;
-    console.log('in viewResults, workout:', workout);
 
     return (
       /* jshint ignore:start */
