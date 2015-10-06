@@ -89,6 +89,9 @@ var Feed = React.createClass({
                 <ChatBar />
               </View>
 
+              //Doesn't show up. Why?
+              <View style={styles.separatorLine}></View>
+
               <View style={ styles.cards }>
                 <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
               </View>
@@ -150,6 +153,13 @@ var styles = StyleSheet.create({
     flex: 10,
     alignItems: 'center',
     backgroundColor: '#fff'
+  },
+  separatorLine: {
+    marginLeft: 10,
+    marginRight: 10,
+    height: .5,
+    borderBottomWidth: .5,
+    borderBottomColor: '#d9d9d9',
   },
   cards: {
     flex: 80,

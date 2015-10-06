@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-06 16:34:58
+* @Last Modified time: 2015-10-06 16:37:35
 */
 
 'use strict';
@@ -27,12 +27,12 @@ var FeedCard = React.createClass({
   render: function(){
     var card = this.props.card;
     var body;
-    console.log('in feedCard, card:', card);
 
-    //If card is for rendering workout, render workout card
+    //If card has workout, render workout card
     if(card.workout) {
       //set body to ViewWorkoutBody
       body = (
+        /* jshint ignore:start */
         <View>
           <View style={styles.cardWorkout}>
             <ViewWorkoutBody
@@ -43,13 +43,16 @@ var FeedCard = React.createClass({
               workout={ card.workout }/>
           </View>
         </View>
+        /* jshint ignore:end */
       );
     } else {
-      //else set body to cardComment
+    //Else render a comment card
       body = (
+        /* jshint ignore:start */
         <View style={styles.cardComment}>
           <Text>{card.comment}</Text>
         </View>
+        /* jshint ignore:end */
       );
     }
     return (
@@ -75,35 +78,6 @@ var FeedCard = React.createClass({
       </View>
       /* jshint ignore:end */
     );
-    // } else {
-    // //Else render comment card
-    //   return (
-    //     /* jshint ignore:start */
-    //     <View style={styles.cardContainer}>
-    //      <View style={styles.cardHeader}>
-    //        <FeedCardHeader
-    //          username={ card.username }
-    //          activity={ card.activity }
-    //          when={ card.createdAt }/>
-    //      </View>
-
-    //      <View style={styles.cardComment}>
-    //        <Text>{card.comment}</Text>
-    //      </View>
-
-    //      <View style={styles.separatorLine}></View>
-
-    //      <View style={styles.cardFooter}>
-    //        <FeedCardFooter
-    //          workout={ card.workout }
-    //          likes={ card.likes }
-    //          comments={ card.comments }/>
-    //      </View>
-    //     </View>
-    //     /* jshint ignore:end */
-    //   );
-    // }
-
   }
 });
 
