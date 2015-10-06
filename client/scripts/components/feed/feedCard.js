@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-02 12:41:23
+* @Last Modified time: 2015-10-06 11:27:33
 */
 
 'use strict';
@@ -43,7 +43,8 @@ var FeedCard = React.createClass({
         </View>
 
         <View style={styles.cardWorkoutResults}>
-          <ViewResults/>
+          <ViewResults
+            workout={ card.workout }/>
         </View>
 
         <View style={styles.separatorLine}></View>

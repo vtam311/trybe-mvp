@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-02 12:22:38
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-06 11:57:25
 */
 
 'use strict';
@@ -51,7 +51,7 @@ var feedActions = {
         }
       ],
       origin: 23,
-      finalResult: {type: 'Time', value: '00:16:23'}
+      finalResult: {type: 'Time', value: '00:00:23'}
     };
     console.log('getTrybeWorkout called');
     this.setTrybeWorkout(dummyWorkout);
@@ -110,7 +110,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:16:23'}
+          finalResult: {type: 'Time', value: '00:15:23'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 17,
@@ -160,7 +160,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:14:22'}
+          finalResult: {type: 'Time', value: '01:00:01'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 24,
@@ -210,7 +210,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:15:46'}
+          finalResult: {type: 'Time', value: '00:09:06'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 19,

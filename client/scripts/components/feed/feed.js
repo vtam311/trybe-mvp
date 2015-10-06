@@ -97,7 +97,7 @@ var Feed = React.createClass({
                 <View style={ styles.chatBarContainer }>
                   <TextInput
                     style={styles.chatBar}
-                    placeholder={'How can we support you?'}/>
+                    placeholder={'What\'s going on?'}/>
                 </View>
               </View>
 
