@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-06 15:48:10
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-07 16:34:39
 */
 
 'use strict';
@@ -51,7 +51,7 @@ var feedActions = {
         }
       ],
       origin: 23,
-      finalResult: {type: 'Time', value: '00:00:23'}
+      finalResult: {type: 'Time', value: '00:21:23'}
     };
     this.setTrybeWorkout(dummyWorkout);
   },

@@ -8,14 +8,14 @@ var viewWorkoutActions = {
     //To do: make get req to server
     var dummyWorkout = {
       id: 24,
-      username: 'John_Snow',
-      trybe: 'CF San Mateo Team Elite',
-      day: 17,
+      username: 'Ryan Ford',
+      trybe: 'APEX Ninja Warriors',
+      day: 3,
       createdAt: '2015-06-28T02:16:44.000Z',
       type: 'Custom',
       parts: [
         {
-          instructions:'Every 2 Minutes For As Long As Possible, Complete:',
+          instructions:'Every 2 Minutes For As Long As Possible, Perform',
           media: {
             title: 'Speed and Efficiency',
             url: 'www.youtube.com'
@@ -31,8 +31,8 @@ var viewWorkoutActions = {
             },
             {
               name: 'Front Squats',
-              reps: 2,
-              load: {units: 'lbs', val: 185},
+              reps: 3,
+              load: {units: 'lb', val: 185},
               time: null,
               distance: null,
               url: null
@@ -43,8 +43,8 @@ var viewWorkoutActions = {
             'Track number of minutes completed',
         }
       ],
-      origin: 23, //copied from workout id 23
-      finalResult: {type: 'Time', value: '00:16:23'}
+      origin: 23,
+      finalResult: {type: 'Time', value: '00:21:23'}
     };
 
     this.setDefaultWorkout(dummyWorkout);

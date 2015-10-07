@@ -5,7 +5,7 @@ var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
-var ViewWorkoutHeader = require('./viewWorkoutHeader');
+var ViewWorkoutToolbar = require('./viewWorkoutToolbar');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var StartWorkoutButton = require('./startWorkoutButton');
 
@@ -41,17 +41,24 @@ var ViewWorkout = React.createClass({
   render: function(){
     var workout = this.state.workout;
 
-    //Load workout once it's loaded
+    //Render workout once it's loaded
     if(workout.parts) {
       return (
-        <View>
-          <Text>Fill</Text>
-          <Text>Fill</Text>
-          <Text>Fill</Text>
-          <Text>Fill</Text>
-          <ViewWorkoutHeader workout={workout} navigator={this.props.navigator}/>
-          <ViewWorkoutBody workout={workout}/>
-          <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
+        <View style={styles.container}>
+          <View style={styles.navBarFill}></View>
+          <View style={styles.trybeDay}>
+            <Text>{workout.trybe}</Text>
+            <Text>Day {workout.day}</Text>
+          </View>
+          <View style={styles.workout}>
+            <ViewWorkoutBody workout={workout}/>
+          </View>
+          <View style={styles.toolbar}>
+            <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+          </View>
+          <View style={styles.startButton}>
+            <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
+          </View>
         </View>
       );
     } else {
@@ -61,6 +68,28 @@ var ViewWorkout = React.createClass({
         </View>
       );
     }
+  }
+});
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 100,
+    flexDirection: 'column',
+  },
+  navBarFill: {
+    flex: 10
+  },
+  trybeDay: {
+    alignItems: 'center'
+  },
+  workout: {
+    flex: 70
+  },
+  toolbar: {
+    flex: 10
+  },
+  startButton: {
+    flex: 10
   }
 });
 
