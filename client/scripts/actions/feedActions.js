@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-02 12:22:38
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-07 16:34:39
 */
 
 'use strict';
@@ -51,13 +51,11 @@ var feedActions = {
         }
       ],
       origin: 23,
-      finalResult: {type: 'Time', value: '00:16:23'}
+      finalResult: {type: 'Time', value: '00:21:23'}
     };
-    console.log('getTrybeWorkout called');
     this.setTrybeWorkout(dummyWorkout);
   },
   setTrybeWorkout: function(workout){
-    console.log('setTrybeWorkout called');
     AppDispatcher.handleAction({
       actionType: feedConstants.SET_TRYBE_WORKOUT,
       data: workout
@@ -110,7 +108,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:16:23'}
+          finalResult: {type: 'Time', value: '00:15:23'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 17,
@@ -160,7 +158,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:14:22'}
+          finalResult: {type: 'Time', value: '01:00:01'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 24,
@@ -210,7 +208,7 @@ var feedActions = {
             }
           ],
           origin: 23, //copied from workout id 23
-          finalResult: {type: 'Time', value: '00:15:46'}
+          finalResult: {type: 'Time', value: '00:09:06'}
         },
         origin: null, //to track if workout is inspired by another user
         likes: 19,
@@ -224,6 +222,27 @@ var feedActions = {
     AppDispatcher.handleAction({
       actionType: feedConstants.SET_CARDS,
       data: cards
+    });
+  },
+  sendMessage: function(text){
+    //To do: post to server
+    //To do: call getCards
+
+    //Temp solution: create dummy card, dispatch for store
+    var DUMMY_COMMENT_CARD = {
+      username: 'Jacob Greensbury',
+      activity: 'comment',
+      createdAt: '3hr',
+      trybe: 'APEX Ninja Warriors',
+      day: 17, //for day number in training program
+      comment: text,
+      likes: 3,
+      comments: 3
+    };
+
+    AppDispatcher.handleAction({
+      actionType: feedConstants.SEND_MESSAGE,
+      data: DUMMY_COMMENT_CARD
     });
   }
 };

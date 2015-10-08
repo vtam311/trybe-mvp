@@ -26,15 +26,23 @@ var ViewWorkoutToolbar = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.toolbarContainer}>
+        <Text>Save</Text>
         <TouchableHighlight
           onPress={this._handleModifyWorkoutPress.bind(this, this.props.workout)}>
           <Text>Modify</Text>
         </TouchableHighlight>
-        <Text>Save</Text>
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  toolbarContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });
 

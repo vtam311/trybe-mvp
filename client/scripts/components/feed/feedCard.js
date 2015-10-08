@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-30 13:22:09
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-06 16:37:35
 */
 
 'use strict';
@@ -26,7 +26,35 @@ var FeedCard = React.createClass({
 
   render: function(){
     var card = this.props.card;
+    var body;
 
+    //If card has workout, render workout card
+    if(card.workout) {
+      //set body to ViewWorkoutBody
+      body = (
+        /* jshint ignore:start */
+        <View>
+          <View style={styles.cardWorkout}>
+            <ViewWorkoutBody
+              workout={ card.workout }/>
+          </View>
+          <View style={styles.body}>
+            <ViewResults
+              workout={ card.workout }/>
+          </View>
+        </View>
+        /* jshint ignore:end */
+      );
+    } else {
+    //Else render a comment card
+      body = (
+        /* jshint ignore:start */
+        <View style={styles.cardComment}>
+          <Text>{card.comment}</Text>
+        </View>
+        /* jshint ignore:end */
+      );
+    }
     return (
       /* jshint ignore:start */
       <View style={styles.cardContainer}>
@@ -37,14 +65,7 @@ var FeedCard = React.createClass({
             when={ card.createdAt }/>
         </View>
 
-        <View style={styles.cardWorkout}>
-          <ViewWorkoutBody
-            workout={ card.workout }/>
-        </View>
-
-        <View>
-          <ViewResults/>
-        </View>
+        {body}
 
         <View style={styles.separatorLine}></View>
 
@@ -66,7 +87,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#d9d9d9',
+    borderColor: '#d9d9d9'
   },
   cardHeader: {
     flex: .25,
@@ -76,6 +97,12 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 10,
     marginRight: 10
+  },
+  body: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginLeft: 10,
+    marginRight: 10,
   },
   separatorLine: {
     marginLeft: 10,
@@ -87,6 +114,13 @@ var styles = StyleSheet.create({
   cardFooter: {
     flex: .25,
   },
+  cardComment: {
+    flex: .5,
+    marginLeft: 10,
+    marginTop: 10,
+    marginRight: 10,
+    marginBottom: 10
+  }
 });
 
 module.exports = FeedCard;
