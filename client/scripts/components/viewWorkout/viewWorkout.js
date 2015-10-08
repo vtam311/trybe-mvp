@@ -50,11 +50,13 @@ var ViewWorkout = React.createClass({
             <Text>{workout.trybe}</Text>
             <Text>Day {workout.day}</Text>
           </View>
-          <View style={styles.workout}>
-            <ViewWorkoutBody workout={workout}/>
-          </View>
-          <View style={styles.toolbar}>
-            <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+          <View style={styles.workoutAndToolbar}>
+            <View style={styles.workout}>
+              <ViewWorkoutBody workout={workout}/>
+            </View>
+            <View style={styles.toolbar}>
+              <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+            </View>
           </View>
           <View style={styles.startButton}>
             <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
@@ -80,16 +82,24 @@ var styles = StyleSheet.create({
     flex: 10
   },
   trybeDay: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  workoutAndToolbar: {
+    flex: 80,
+    marginLeft: 10,
+    marginRight: 10
   },
   workout: {
-    flex: 70
+    marginTop: 20
   },
   toolbar: {
-    flex: 10
+    marginTop: 20
   },
   startButton: {
-    flex: 10
+    flex: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
   }
 });
 

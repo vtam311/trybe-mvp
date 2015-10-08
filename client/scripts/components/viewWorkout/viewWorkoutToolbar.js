@@ -27,11 +27,11 @@ var ViewWorkoutToolbar = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.toolbarContainer}>
+        <Text>Save</Text>
         <TouchableHighlight
           onPress={this._handleModifyWorkoutPress.bind(this, this.props.workout)}>
           <Text>Modify</Text>
         </TouchableHighlight>
-        <Text>Save</Text>
       </View>
       /* jshint ignore:end */
     );
