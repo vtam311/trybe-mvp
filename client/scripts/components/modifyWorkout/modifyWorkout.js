@@ -46,7 +46,7 @@ var ModifyWorkout = React.createClass({
       //For each part, add modifyInstructions component
       modifyPart.push(<ModifyInstructions part={currPart} isEditable={true} />);
 
-      //Traverse through each exercise in part,
+      //Traverse through exercises in part,
       //add editExercise component to each part
       for(var n = 0; n < currPart.exercises.length; n++){
         var currExercise = currPart.exercises[n];

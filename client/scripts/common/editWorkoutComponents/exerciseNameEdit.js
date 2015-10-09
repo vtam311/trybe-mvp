@@ -1,13 +1,14 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-23 16:55:04
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-23 17:18:44
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-08 19:36:40
 */
 
 'use strict';
 
 var React = require('react-native');
+var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 var {
   StyleSheet,
@@ -17,22 +18,25 @@ var {
 } = React;
 
 var ExerciseEdit = React.createClass({
-  saveName: function(text){
-    this.props.exercise.name = text;
+  getInitialState: function(){
+    return {
+      exerciseName: this.props.exercise.name,
+    };
   },
-
+  saveName: function(){
+    modifyWorkoutActions.setExerciseName(this.state.exerciseName, this.props.partIdx, this.props.exIdx);
+  },
   render: function(){
     //Load props
     var exercise = this.props.exercise;
-    var partIdx = this.props.partIdx;
-    var exIdx = this.props.exIdx;
 
     return (
       /* jshint ignore:start */
       <TextInput
         style={{height: 20}}
-        value={exercise.name}
-        onChangeText={(text) => this.saveName(text)}/>
+        value={this.state.exerciseName}
+        onChangeText={ (text) => this.setState({exerciseName: text}) }
+        onEndEditing={ () => this.saveName() }/>
       /* jshint ignore:end */
     );
   }

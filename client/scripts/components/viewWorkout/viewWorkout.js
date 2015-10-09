@@ -52,7 +52,9 @@ var ViewWorkout = React.createClass({
           </View>
           <View style={styles.workoutAndToolbar}>
             <View style={styles.workout}>
+              <View style={styles.separatorLine}></View>
               <ViewWorkoutBody workout={workout}/>
+              <View style={styles.separatorLine}></View>
             </View>
             <View style={styles.toolbar}>
               <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
@@ -61,6 +63,7 @@ var ViewWorkout = React.createClass({
           <View style={styles.startButton}>
             <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
           </View>
+          <View style={styles.tabBarFill}></View>
         </View>
       );
     } else {
@@ -83,23 +86,34 @@ var styles = StyleSheet.create({
   },
   trybeDay: {
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 10,
   },
   workoutAndToolbar: {
-    flex: 80,
+    flex: 70,
     marginLeft: 10,
     marginRight: 10
   },
   workout: {
-    marginTop: 20
+    marginTop: 15
+  },
+  separatorLine: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: .5,
+    borderBottomWidth: .5,
+    borderBottomColor: '#d9d9d9',
   },
   toolbar: {
-    marginTop: 20
+    // marginTop: 20
   },
   startButton: {
     flex: 10,
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: 'grey'
+  },
+  tabBarFill: {
+    flex: 10
   }
 });
 

@@ -43,12 +43,20 @@ var setWorkout = function(workout) {
   _store.workout = workout;
 };
 
+var setExerciseName = function(data) {
+  var exName = data.exName;
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+  targetExercise.name = exName;
+};
+
 var setReps = function(data) {
   //To do: correct the exercise name
   var reps = data.reps;
   var partIdx = data.partIdx;
   var exIdx = data.exIdx;
-
   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
   targetExercise.reps = reps;
@@ -111,6 +119,10 @@ AppDispatcher.register(function(payload){
       break;
     case modifyWorkoutConstants.UPDATE_WORKOUT:
       setWorkout(action.data);
+      modifyWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case modifyWorkoutConstants.SET_EXERCISE_NAME:
+      setExerciseName(action.data);
       modifyWorkoutStore.emit(CHANGE_EVENT);
       break;
     case modifyWorkoutConstants.SET_REPS:

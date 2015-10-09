@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:00:09
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 11:12:26
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-08 19:55:25
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var DoWorkout = require('../doWorkout/doWorkout');
 
 var {
   StyleSheet,
+  View,
   Text,
   TouchableHighlight
 } = React;
@@ -33,11 +34,22 @@ var StartWorkoutButton = React.createClass({
     return (
       /* jshint ignore:start */
       <TouchableHighlight
-        onPress={this._handleStartButtonPress.bind(this, workout)}>
-        <Text>Start</Text>
+        onPress={this._handleStartButtonPress.bind(this, workout)}
+        underlayColor={'green'}
+        activeOpacity={50}>
+        <View style={styles.button}>
+          <Text>Start</Text>
+        </View>
       </TouchableHighlight>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'grey',
+    height: 20
   }
 });
 

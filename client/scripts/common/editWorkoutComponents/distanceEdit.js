@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-09-23 15:41:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-23 16:51:14
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-08 19:30:09
 */
 
 'use strict';
@@ -37,16 +37,16 @@ var DistEdit = React.createClass({
     });
   },
   setDist: function(dist, partIdx, exIdx){
-    modifyWorkoutActions.setDist(dist, partIdx, exIdx);
+    modifyWorkoutActions.setDist(dist, this.props.partIdx, this.props.exIdx);
   },
   setDistUnits: function(unit, partIdx, exIdx){
-    modifyWorkoutActions.setDistUnit(unit, partIdx, exIdx);
+    modifyWorkoutActions.setDistUnit(unit, this.props.partIdx, this.props.exIdx);
   },
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    var partIdx = this.props.partIdx;
-    var exIdx = this.props.exIdx;
+    // var partIdx = this.props.partIdx;
+    // var exIdx = this.props.exIdx;
 
     var distEdit;
 
@@ -56,7 +56,7 @@ var DistEdit = React.createClass({
         <View>
           <PickerIOS
             selectedValue={exercise.distance.val}
-            onValueChange={(val) => this.setDist(val, partIdx, exIdx)}>
+            onValueChange={(val) => this.setDist(val)}>
             {DIST_CHOICES.map((num) =>
               <PickerItemIOS
                 key={num}
@@ -66,7 +66,7 @@ var DistEdit = React.createClass({
           </PickerIOS>
           <PickerIOS
             selectedValue={exercise.distance.units}
-            onValueChange={(val) => this.setDistUnits(val, partIdx, exIdx)}>
+            onValueChange={(val) => this.setDistUnits(val)}>
             {DIST_UNITS.map((unit) =>
               <PickerItemIOS
                 key={unit}
