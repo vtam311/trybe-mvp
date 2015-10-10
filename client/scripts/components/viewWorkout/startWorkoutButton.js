@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:00:09
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-08 19:55:25
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-09 14:02:26
 */
 
 'use strict';
@@ -35,10 +35,9 @@ var StartWorkoutButton = React.createClass({
       /* jshint ignore:start */
       <TouchableHighlight
         onPress={this._handleStartButtonPress.bind(this, workout)}
-        underlayColor={'green'}
         activeOpacity={50}>
         <View style={styles.button}>
-          <Text>Start</Text>
+          <Text style={styles.buttonText}>Start</Text>
         </View>
       </TouchableHighlight>
       /* jshint ignore:end */
@@ -48,8 +47,14 @@ var StartWorkoutButton = React.createClass({
 
 var styles = StyleSheet.create({
   button: {
-    backgroundColor: 'grey',
-    height: 20
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // width: 100
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white'
   }
 });
 

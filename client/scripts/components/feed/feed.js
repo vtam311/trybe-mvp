@@ -111,12 +111,12 @@ var Feed = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 100,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: '#f3f3f3',
   },
   header: {
-    flex: 10,
+    flex: .1,
     backgroundColor: '#4dba97',
     justifyContent: 'center'
   },
@@ -128,14 +128,15 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   content: {
-    flex: 90,
+    flex: .9,
   },
   contentContainer: {
-    flex: 100,
+    flex: 1,
     flexDirection: 'column',
+    justifyContent: 'space-around' //doesn't do as expected
   },
   trybeProgress: {
-    flex: 10,
+    flex: .1,
     alignItems: 'center',
     backgroundColor: 'white',
     marginBottom: -20,
@@ -147,12 +148,12 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   chat: {
-    flex: 10,
+    flex: .1,
     alignItems: 'center',
     backgroundColor: '#fff'
   },
   cards: {
-    flex: 80,
+    flex: .8,
     marginTop: -35,
   },
   feedCard: {
