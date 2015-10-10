@@ -48,7 +48,7 @@ var ViewWorkout = React.createClass({
         <View style={styles.container}>
           <ScrollView contentContainerStyle={styles.scrollViewContainer}>
             <View style={styles.trybeDay}>
-              <Text>{workout.trybe}</Text>
+              <Text style={styles.trybeNameText}>{workout.trybe}</Text>
               <Text>Day {workout.day}</Text>
             </View>
             <View style={styles.workoutAndToolbar}>
@@ -93,30 +93,25 @@ var styles = StyleSheet.create({
     // alignItems: 'stretch',
     // justifyContent: 'space-between'
   },
-  navBarFill: {
-    // flex: .1
-  },
   trybeDay: {
     flex: .1,
     alignItems: 'center',
-    marginTop: 10,
+    // marginTop: 10,
     backgroundColor: 'yellow'
   },
+  trybeNameText: {
+    marginTop: 10
+  },
   workoutAndToolbar: {
-    flex: .8, //why doesn't this take 80% of scrollView?
+    flex: .8,
+    backgroundColor: 'green',
+  },
+  workoutToolbarContainer: {
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: 'green',
-    alignSelf: 'stretch',
-    alignItems: 'stretch'
-    // height: 300
   },
-  // workoutToolbarContainer: {
-  //   flex: 1,
-  //   flexDirection: 'column'
-  // },
   workout: {
-    flex: .5,
+    // flex: .5,
     marginTop: 15
   },
   separatorLine: {
@@ -127,7 +122,7 @@ var styles = StyleSheet.create({
     borderBottomColor: '#d9d9d9',
   },
   toolbar: {
-    flex: .5
+    // flex: .5
   },
   startButton: {
     flex: .1,
