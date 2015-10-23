@@ -4,10 +4,6 @@ var React = require('react-native');
 var workoutTabActions = require('../../actions/workoutTabActions');
 var workoutTabStore = require('../../stores/workoutTabStore');
 
-//Load components
-// var ModifyWorkout = require('../modifyWorkout/modifyWorkout');
-// var ViewWorkout = require('../viewWorkout/viewWorkout');
-
 var {
   StyleSheet,
   Text,
@@ -23,7 +19,7 @@ var WorkoutTab = React.createClass({
   },
   componentDidMount: function(){
     workoutTabStore.addChangeListener(this._onChange);
-    workoutTabStore.getNavView();
+    // workoutTabStore.getNavView();
   },
   componentWillUnmount: function(){
     workoutTabStore.removeChangeListener(this._onChange);
@@ -33,14 +29,6 @@ var WorkoutTab = React.createClass({
       navView: workoutTabStore.getNavView()
     });
   },
-  // _handleNavigationRequest: function() {
-  //   var otherRoute = {
-  //     title: 'Modify Workout',
-  //     component: ModifyWorkout
-  //   }
-
-  //   this.refs.nav.push(otherRoute);
-  // },
   render: function() {
     return (
       /* jshint ignore:start */
@@ -55,7 +43,8 @@ var WorkoutTab = React.createClass({
 
 var styles = StyleSheet.create({
   wrapper: {
-    flex: 1
+    flex: 1,
+    // height: 700
   }
 });
 

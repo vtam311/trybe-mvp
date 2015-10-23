@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:00:09
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 11:12:26
+* @Last Modified time: 2015-10-09 14:02:26
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var DoWorkout = require('../doWorkout/doWorkout');
 
 var {
   StyleSheet,
+  View,
   Text,
   TouchableHighlight
 } = React;
@@ -33,11 +34,27 @@ var StartWorkoutButton = React.createClass({
     return (
       /* jshint ignore:start */
       <TouchableHighlight
-        onPress={this._handleStartButtonPress.bind(this, workout)}>
-        <Text>Start</Text>
+        onPress={this._handleStartButtonPress.bind(this, workout)}
+        activeOpacity={50}>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Start</Text>
+        </View>
       </TouchableHighlight>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  button: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    // width: 100
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white'
   }
 });
 

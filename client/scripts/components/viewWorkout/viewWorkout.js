@@ -13,6 +13,7 @@ var {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   TouchableHighlight
 } = React;
 
@@ -45,22 +46,27 @@ var ViewWorkout = React.createClass({
     if(workout.parts) {
       return (
         <View style={styles.container}>
-          <View style={styles.navBarFill}></View>
-          <View style={styles.trybeDay}>
-            <Text>{workout.trybe}</Text>
-            <Text>Day {workout.day}</Text>
-          </View>
-          <View style={styles.workoutAndToolbar}>
-            <View style={styles.workout}>
-              <ViewWorkoutBody workout={workout}/>
+          <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+            <View style={styles.trybeDay}>
+              <Text style={styles.trybeNameText}>{workout.trybe}</Text>
+              <Text>Day {workout.day}</Text>
             </View>
-            <View style={styles.toolbar}>
-              <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+            <View style={styles.workoutAndToolbar}>
+              <View style={styles.workoutToolbarContainer}>
+                <View style={styles.workout}>
+                  <View style={styles.separatorLine}></View>
+                  <ViewWorkoutBody workout={workout}/>
+                  <View style={styles.separatorLine}></View>
+                </View>
+                <View style={styles.toolbar}>
+                  <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+                </View>
+              </View>
             </View>
-          </View>
-          <View style={styles.startButton}>
-            <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
-          </View>
+            <View style={styles.startButton}>
+              <StartWorkoutButton workout={workout} navigator={this.props.navigator}/>
+            </View>
+          </ScrollView>
         </View>
       );
     } else {
@@ -75,31 +81,54 @@ var ViewWorkout = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 100,
-    flexDirection: 'column',
+    flex: 1,
+    // flexDirection: 'column',
+    // marginBottom: 49, //height of tabBar
+    backgroundColor: 'red',
   },
-  navBarFill: {
-    flex: 10
+  scrollViewContainer: {
+    flex: 1,
+    backgroundColor: 'orange',
+    // flexDirection: 'column',
+    // alignItems: 'stretch',
+    // justifyContent: 'space-between'
   },
   trybeDay: {
+    flex: .1,
     alignItems: 'center',
-    marginTop: 5,
+    // marginTop: 10,
+    backgroundColor: 'yellow'
+  },
+  trybeNameText: {
+    marginTop: 10
   },
   workoutAndToolbar: {
-    flex: 80,
+    flex: .8,
+    backgroundColor: 'green',
+  },
+  workoutToolbarContainer: {
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
   },
   workout: {
-    marginTop: 20
+    // flex: .5,
+    marginTop: 15
+  },
+  separatorLine: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: .5,
+    borderBottomWidth: .5,
+    borderBottomColor: '#d9d9d9',
   },
   toolbar: {
-    marginTop: 20
+    // flex: .5
   },
   startButton: {
-    flex: 10,
+    flex: .1,
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: 'grey',
   }
 });
 

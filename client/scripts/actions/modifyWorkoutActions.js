@@ -34,6 +34,16 @@ var modifyWorkoutActions = {
   //     data: exerciseKey
   //   });
   // },
+  setExerciseName: function(exName, partIdx, exIdx){
+    AppDispatcher.handleAction({
+      actionType: modifyWorkoutConstants.SET_EXERCISE_NAME,
+      data: {
+        exName: exName,
+        partIdx: partIdx,
+        exIdx: exIdx
+      }
+    });
+  },
   setReps: function(reps, partIdx, exIdx) {
     AppDispatcher.handleAction({
       actionType: modifyWorkoutConstants.SET_REPS,
