@@ -5,7 +5,8 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var ModifyWorkout = require('../modifyWorkout/modifyWorkout.js');
+var ModifyWorkout = require('../modifyWorkout/modifyWorkout');
+var CreateWorkout = require('../createWorkout/createWorkout');
 
 var {
   StyleSheet,
@@ -20,7 +21,8 @@ var ViewWorkoutToolbar = React.createClass({
 
     this.props.navigator.push({
       title: 'Modify Workout',
-      component: ModifyWorkout
+      // component: ModifyWorkout
+      component: CreateWorkout
     });
   },
   render: function(){
