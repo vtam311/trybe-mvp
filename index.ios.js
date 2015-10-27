@@ -1,6 +1,6 @@
 'use strict';
 
-// import React, { AppRegistry, StyleSheet, Text, TabBarIOS, StatusBarIOS, View } from 'react-native';
+require("babel/register");
 
 var React = require('react-native');
 var indexStore = require('./client/scripts/stores/indexStore');
