@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-23 17:05:08
+* @Last Modified time: 2015-10-26 17:58:45
 */
 
 'use strict';
@@ -53,8 +53,11 @@ var ModifyWorkout = React.createClass({
           <Section arrow={true}>
             <Item value="Today" detail="Today">Workout Date</Item>
           </Section>
-          <Section label="Part 1">
-            <Item value="Today" detail="Today">Workout Date</Item>
+          <Section>
+            <Item detail="In 20 min, perform as many rounds as possible of" arrow={true}>Instructions</Item>
+            <Item arrow={true}>5 Pull Ups</Item>
+            <Item arrow={true}>10 Push Ups</Item>
+            <Item arrow={true}>15 Squats</Item>
           </Section>
         </TableView>
       /* jshint ignore:end */
