@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-27 13:28:15
+* @Last Modified time: 2015-10-27 18:39:20
 */
 
 'use strict';
@@ -23,10 +23,12 @@ var {
   Text,
   View,
   TouchableHighlight,
-  TextInput
+  TextInput,
+  ActivityIndicatorIOS, //delete later
+  Image
 } = React;
 
-import {TableView, Section, Cell} from 'react-native-tableview-simple';
+import {TableView, Section, Cell, CustomCell} from 'react-native-tableview-simple';
 
 var ModifyWorkout = React.createClass({
   getInitialState: function() {
@@ -52,8 +54,20 @@ var ModifyWorkout = React.createClass({
       /* jshint ignore:start */
       <ScrollView contentContainerStyle={styles.stage}>
         <TableView>
-          <Section header="ACCESSORY">
-            <Cell cellstyle="RightDetail" accessory="DisclosureIndicator" title="RightDetail" detail="Detail" />
+          <Section>
+            <Cell cellstyle="RightDetail" accessory="DisclosureIndicator" title="Workout Date" detail="Today" />
+          </Section>
+          <Section header="Workout Details">
+            <Cell cellstyle="Subtitle" title="Instructions" detail="In 20 min, perform as many rounds as possible of" accessory="DisclosureIndicator"/>
+            <Cell cellstyle="Basic" accessory="DisclosureIndicator" title="5 Pull Ups" onPress={() => {console.log('Heyho!')}}/>
+            <Cell cellstyle="Basic" accessory="DisclosureIndicator" title="10 Push Ups" onPress={() => {console.log('Heyho!')}}/>
+            <Cell cellstyle="Basic" accessory="DisclosureIndicator" title="15 Squats" onPress={() => {console.log('Heyho!')}}/>
+            <CustomCell customHeight={44} onPress={() => {console.log('Heyho!')}}>
+              <Image
+                style={{height: 16, width: 16, marginRight: 5}}
+                source={require('image!addButton')} />
+              <Text style={{flex: 1, fontSize: 16}}>Add Exercise</Text>
+            </CustomCell>
           </Section>
         </TableView>
       </ScrollView>
@@ -68,6 +82,9 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
+  customCell: {
+    height: 100
+  }
 });
 
 module.exports = ModifyWorkout;
