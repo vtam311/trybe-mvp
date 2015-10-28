@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-28 15:29:00
+* @Last Modified time: 2015-10-28 15:36:38
 */
 
 'use strict';
@@ -51,20 +51,20 @@ var ModifyWorkout = React.createClass({
             <Section>
               <CustomCell onPress={() => {console.log('Heyho!')}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <Text style={{fontSize: 16, color: '#9B9B9B'}}>Date</Text>
+                  <Text style={{fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Date</Text>
                   <View style={{flexDirection: 'row'}}>
-                    <Text style={{fontSize: 16}}>Today</Text>
+                    <Text style={{fontSize: 16, fontFamily: 'Avenir Next'}}>Today</Text>
                     <Image
-                      style={{height: 13, width: 8, marginTop: 4, marginLeft: 5}}
+                      style={{height: 13, width: 8, marginTop: 4, marginLeft: 15}}
                       source={require('image!disclosureIndicator')} />
                   </View>
                 </View>
               </CustomCell>
             </Section>
-            <Section header="Part 1">
+            <Section header="PART 1">
               <CustomCell customHeight={70}>
                 <View style={{flex: 1, flexDirection: 'column', marginTop: 5}}>
-                  <Text style={{fontSize: 14, color: '#9B9B9B'}}>Instructions</Text>
+                  <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
                   <TextInput
                       style={{height: 40}}/>
                 </View>
@@ -73,7 +73,7 @@ var ModifyWorkout = React.createClass({
                 <Image
                   style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
                   source={require('image!clearButton')} />
-                <Text style={{flex: 1, fontSize: 16}}>5 Pull Ups</Text>
+                <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>5 Pull Ups</Text>
                 <Image
                   style={{height: 13, width: 8}}
                   source={require('image!disclosureIndicator')} />
@@ -82,14 +82,14 @@ var ModifyWorkout = React.createClass({
                 <Image
                   style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
                   source={require('image!addButton')} />
-                <Text style={{flex: 1, fontSize: 16}}>Add Exercise</Text>
+                <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>Add Exercise</Text>
               </CustomCell>
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image
                 style={{height: 14, width: 14, marginTop: 4, marginRight: 8}}
                 source={require('image!addButton')} />
-              <Text style={{flex: 1, fontSize: 16}}>Add Part</Text>
+              <Text style={{flex: 1, fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Add Part</Text>
             </View>
           </TableView>
         </ScrollView>
