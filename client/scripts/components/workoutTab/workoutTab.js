@@ -37,6 +37,7 @@ var WorkoutTab = React.createClass({
     return (
       /* jshint ignore:start */
       <Navigator
+        ref="nav"
         initialRoute={{name: 'Today', index: 0}}
         renderScene={(route, navigator) =>
           <ViewWorkout
