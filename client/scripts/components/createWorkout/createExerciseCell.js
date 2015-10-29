@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-28 20:05:08
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-28 20:15:40
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var CreateExerciseCell = React.createClass({
       /* jshint ignore:start */
       <CustomCell onPress={() => {console.log('Exercise Cell')}}>
         <Image
-          style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
+          style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
           source={require('image!clearButton')} />
         <ViewExercise exercise={this.props.exercise} />
         <Image

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-28 20:04:50
+* @Last Modified time: 2015-10-28 20:07:48
 */
 
 'use strict';
@@ -25,6 +25,7 @@ import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 
 var CreateInstructionsCell = require('./createInstructionsCell');
 var CreateExerciseCell = require('./createExerciseCell');
+var AddExerciseCell = require('./addExerciseCell');
 
 var ModifyWorkout = React.createClass({
   getInitialState: function() {
@@ -76,12 +77,7 @@ var ModifyWorkout = React.createClass({
             <Section header="PART 1">
               <CreateInstructionsCell/>
               <CreateExerciseCell exercise={TEMP_EXERCISE}/>
-              <CustomCell onPress={() => {console.log('Add Exercise Button')}}>
-                <Image
-                  style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
-                  source={require('image!addButton')} />
-                <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>Add Exercise</Text>
-              </CustomCell>
+              <AddExerciseCell />
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image

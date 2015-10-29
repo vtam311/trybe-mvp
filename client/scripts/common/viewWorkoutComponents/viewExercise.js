@@ -71,8 +71,9 @@ var styles = StyleSheet.create({
   },
   exerciseText: {
     marginRight: 4,
-    fontFamily: 'Helvetica',
-    color: '#434343'
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    color: '#000000'
   }
 });
 
