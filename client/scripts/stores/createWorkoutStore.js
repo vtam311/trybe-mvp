@@ -2,53 +2,60 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-23 16:34:19
+* @Last Modified time: 2015-10-28 19:40:55
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
+var createWorkoutConstants = require('../constants/createWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
-var BLANK_WORKOUT = {
+var EXERCISE_TEMPLATE = {
+  name: null,
+  reps: null,
+  load: {units: 'lbs', val: null},
+  time: null,
+  distance: {units: null, val: null},
+  url: null
+};
+
+var PART_TEMPLATE = {
+  instructions: null,
+  media: {
+    title: null,
+    url: null
+  },
+  exercises: [EXERCISE_TEMPLATE],
+  notes: null
+};
+
+
+var WORKOUT_TEMPLATE = {
   id: null,
   username: null,
   trybe: null,
   day: null,
   createdAt: null,
   type: null,
-  parts: [
-    {
-      instructions: null,
-      media: {
-        title: null,
-        url: null
-      },
-      exercises: [
-        {
-          name: null,
-          reps: null,
-          load: {units: 'lbs', val: null},
-          time: null,
-          distance: {units: null, val: null},
-          url: null
-        }
-      ],
-      notes: null
-    }
-  ],
+  parts: [PART_TEMPLATE],
   origin: null,
   finalResult: {type: 'Time', value: null}
 };
 
 var _store = {
-  workout: BLANK_WORKOUT,
+  workout: WORKOUT_TEMPLATE,
+  getIsCreatingOrModifying: 'CREATING' //by default is creating
 };
 
-var setWorkout = function(workout) {
-  _store.workout = workout;
+var addExercise = function(partIdx, exercise){
+  //finds relevant part, push exercise to the array
+  _store.workout.parts[partIdx].exercsies.push(exercise);
+};
+
+var addPart = function(){
+  _store.workout.parts.push(PART_TEMPLATE);
 };
 
 var findExercise = function(data){
@@ -104,40 +111,35 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getWorkout: function(){
     return _store.workout;
   },
+  getIsCreatingOrModifying: function(){
+    return _store.getIsCreatingOrModifying;
+  }
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case modifyWorkoutConstants.MODIFY_WORKOUT:
-      setWorkout(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.UPDATE_WORKOUT:
-      setWorkout(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_EXERCISE_NAME:
+    case createWorkoutConstants.SET_EXERCISE_NAME:
       setExerciseName(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case modifyWorkoutConstants.SET_REPS:
+    case createWorkoutConstants.SET_REPS:
       setReps(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case modifyWorkoutConstants.SET_LOAD:
+    case createWorkoutConstants.SET_LOAD:
       setLoad(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case modifyWorkoutConstants.SET_HOLD:
+    case createWorkoutConstants.SET_HOLD:
       setHold(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case modifyWorkoutConstants.SET_DIST:
+    case createWorkoutConstants.SET_DIST:
       setDist(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case modifyWorkoutConstants.SET_DISTUNIT:
+    case createWorkoutConstants.SET_DISTUNIT:
       setDistUnit(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;

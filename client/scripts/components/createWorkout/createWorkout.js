@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-28 15:36:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-28 19:43:50
 */
 
 'use strict';
@@ -21,12 +21,12 @@ var {
   Dimensions
 } = React;
 
-import {TableView, Section, Cell, CustomCell} from 'react-native-tableview-simple';
+import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 
 var ModifyWorkout = React.createClass({
   getInitialState: function() {
     return {
-      // isCreating: createWorkoutStore.getIsCreating(),
+      // isCreatingOrModifying: createWorkoutStore.getIsCreatingOrModifying(),
       workout: createWorkoutStore.getWorkout(),
     };
   },
@@ -69,7 +69,7 @@ var ModifyWorkout = React.createClass({
                       style={{height: 40}}/>
                 </View>
               </CustomCell>
-              <CustomCell onPress={() => {console.log('Heyho!')}}>
+              <CustomCell onPress={() => {console.log('Exercise 1')}}>
                 <Image
                   style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
                   source={require('image!clearButton')} />
@@ -78,7 +78,7 @@ var ModifyWorkout = React.createClass({
                   style={{height: 13, width: 8}}
                   source={require('image!disclosureIndicator')} />
               </CustomCell>
-              <CustomCell onPress={() => {console.log('Heyho!')}}>
+              <CustomCell onPress={() => {console.log('Add Exercise Button')}}>
                 <Image
                   style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
                   source={require('image!addButton')} />
