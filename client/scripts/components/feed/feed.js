@@ -7,7 +7,6 @@ var feedActions = require('../../actions/feedActions');
 //Load components
 var FeedCard = require('./feedCard');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
-var ProgressBar = require('react-native-progress-bar');
 var ChatBar = require('./chatBar');
 
 var {
@@ -23,8 +22,6 @@ var Feed = React.createClass({
   getInitialState: function(){
     return {
       trybeWorkout: feedStore.getTrybeWorkout(),
-      progressBar: 0,
-      progress: .75, //To do: retrieve from feedStore
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }),
@@ -56,11 +53,6 @@ var Feed = React.createClass({
   },
   render: function(){
     var trybeWorkout = this.state.trybeWorkout;
-    setTimeout((function() {
-      if(this.state.progressBar < this.state.progress){
-        this.setState({ progressBar: Math.min(this.state.progressBar + .10, this.state.progress)});
-      }
-    }).bind(this), 1000);
 
     //Load page once the trybeWorkout is loaded
     if(trybeWorkout.trybe) {
@@ -73,17 +65,6 @@ var Feed = React.createClass({
 
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
-              <View style={styles.trybeProgress}>
-                <Text style={styles.trybeName}>{trybeWorkout.trybe}</Text>
-                <View style={ styles.progress }>
-                  <ProgressBar
-                    fillStyle={{backgroundColor: '#4dba97', height: 10}}
-                    backgroundStyle={{backgroundColor: '#cccccc', borderRadius: 2}}
-                    style={{marginTop: 10, marginBottom: 5, width: 300, height: 10}}
-                    easingDuration={3000}
-                    progress={this.state.progressBar}/>
-                </View>
-              </View>
 
               <View style={ styles.chat }>
                 <ChatBar />
@@ -135,17 +116,8 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around' //doesn't do as expected
   },
-  trybeProgress: {
-    flex: .1,
-    alignItems: 'center',
-    backgroundColor: 'white',
-    marginBottom: -20,
-  },
   trybeName: {
     marginTop: 5
-  },
-  progress: {
-    alignItems: 'center'
   },
   chat: {
     flex: .1,

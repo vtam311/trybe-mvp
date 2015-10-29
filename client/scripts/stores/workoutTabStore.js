@@ -1,69 +1,71 @@
+//Deprecated on 10.29.15
+
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 13:05:50
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 13:23:07
+* @Last Modified time: 2015-10-29 15:53:36
 */
 
-'use strict';
+// 'use strict';
 
-var AppDispatcher = require('../dispatchers/AppDispatcher');
-var workoutTabConstants = require('../constants/workoutTabConstants');
-var EventEmitter = require('events').EventEmitter;
-var CHANGE_EVENT = 'change';
+// var AppDispatcher = require('../dispatchers/AppDispatcher');
+// var workoutTabConstants = require('../constants/workoutTabConstants');
+// var EventEmitter = require('events').EventEmitter;
+// var CHANGE_EVENT = 'change';
 
-//Load components
-var ViewWorkout = require('../components/viewWorkout/viewWorkout');
-var ModifyWorkout = require('../components/modifyWorkout/modifyWorkout');
+// //Load components
+// var ViewWorkout = require('../components/viewWorkout/viewWorkout');
+// var ModifyWorkout = require('../components/modifyWorkout/modifyWorkout');
 
-var _store = {
-  navView: {
-    title: 'Today\'s Workout',
-    component: ViewWorkout
-  }
-};
+// var _store = {
+//   navView: {
+//     title: 'Today\'s Workout',
+//     component: ViewWorkout
+//   }
+// };
 
-var setNavView = function(viewTitle){
-  _store.navView.title = viewTitle;
-};
+// var setNavView = function(viewTitle){
+//   _store.navView.title = viewTitle;
+// };
 
-var setViewComponent = function(){
-  switch(_store.navView.title) {
-    case 'Today\'s Workout':
-      _store.navView.component = ViewWorkout;
-      break;
-    case 'Modify Workout':
-      _store.navView.component = ModifyWorkout;
-      break;
-    default:
-      console.log('Unknown workoutTab viewTitle');
-  }
-};
+// var setViewComponent = function(){
+//   switch(_store.navView.title) {
+//     case 'Today':
+//       _store.navView.component = ViewWorkout;
+//       break;
+//     case 'Modify':
+//       _store.navView.component = ModifyWorkout;
+//       break;
+//     default:
+//       console.log('Unknown workoutTab viewTitle');
+//   }
+// };
 
-var workoutTabStore = Object.assign({}, EventEmitter.prototype, {
-  addChangeListener: function(cb){
-    this.on(CHANGE_EVENT, cb);
-  },
-  removeChangeListener: function(cb){
-    this.removeListener(CHANGE_EVENT, cb);
-  },
-  getNavView: function(){
-    return _store.navView;
-  },
-});
+// var workoutTabStore = Object.assign({}, EventEmitter.prototype, {
+//   addChangeListener: function(cb){
+//     this.on(CHANGE_EVENT, cb);
+//   },
+//   removeChangeListener: function(cb){
+//     this.removeListener(CHANGE_EVENT, cb);
+//   },
+//   getNavView: function(){
+//     return _store.navView;
+//   },
+// });
 
-AppDispatcher.register(function(payload){
-  var action = payload.action;
+// AppDispatcher.register(function(payload){
+//   var action = payload.action;
 
-  switch (action.actionType) {
-    case workoutTabConstants.SET_WORKOUT_TAB_VIEW:
-      setNavView(action.data);
-      setViewComponent();
-      workoutTabStore.emit(CHANGE_EVENT);
-      break;
-    default:
-      return true;
-  }
-});
+//   switch (action.actionType) {
+//     case workoutTabConstants.SET_WORKOUT_TAB_VIEW:
+//       setNavView(action.data);
+//       setViewComponent();
+//       workoutTabStore.emit(CHANGE_EVENT);
+//       break;
+//     default:
+//       return true;
+//   }
+// });
 
-module.exports = workoutTabStore;
+// module.exports = workoutTabStore;

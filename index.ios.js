@@ -1,5 +1,7 @@
 'use strict';
 
+require("babel/register");
+
 var React = require('react-native');
 var indexStore = require('./client/scripts/stores/indexStore');
 var indexActions = require('./client/scripts/actions/indexActions');
