@@ -32,7 +32,7 @@ var viewExercise = React.createClass({
     var renderLoad = function(exercise) {
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <Text style={styles.exerciseText}>{exercise.load.val}{exercise.load.units}</Text>;
+        load = <Text style={styles.exerciseText}>at {exercise.load.val}{exercise.load.units}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -53,8 +53,8 @@ var viewExercise = React.createClass({
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
         {amount}
-        {load}
         {movement}
+        {load}
       </View>
       /* jshint ignore:end */
     );

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-28 19:43:50
+* @Last Modified time: 2015-10-28 20:04:50
 */
 
 'use strict';
@@ -22,6 +22,9 @@ var {
 } = React;
 
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
+
+var CreateInstructionsCell = require('./createInstructionsCell');
+var CreateExerciseCell = require('./createExerciseCell');
 
 var ModifyWorkout = React.createClass({
   getInitialState: function() {
@@ -43,6 +46,15 @@ var ModifyWorkout = React.createClass({
   },
 
   render: function(){
+    var TEMP_EXERCISE = {
+      name: 'Pull Ups',
+      reps: 5,
+      load: {units: 'lb', val: 45},
+      time: null,
+      distance: {units: null, val: null},
+      url: null
+    };
+
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
@@ -62,22 +74,8 @@ var ModifyWorkout = React.createClass({
               </CustomCell>
             </Section>
             <Section header="PART 1">
-              <CustomCell customHeight={70}>
-                <View style={{flex: 1, flexDirection: 'column', marginTop: 5}}>
-                  <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
-                  <TextInput
-                      style={{height: 40}}/>
-                </View>
-              </CustomCell>
-              <CustomCell onPress={() => {console.log('Exercise 1')}}>
-                <Image
-                  style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
-                  source={require('image!clearButton')} />
-                <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>5 Pull Ups</Text>
-                <Image
-                  style={{height: 13, width: 8}}
-                  source={require('image!disclosureIndicator')} />
-              </CustomCell>
+              <CreateInstructionsCell/>
+              <CreateExerciseCell exercise={TEMP_EXERCISE}/>
               <CustomCell onPress={() => {console.log('Add Exercise Button')}}>
                 <Image
                   style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
