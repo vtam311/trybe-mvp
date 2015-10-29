@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 15:04:05
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-10-29 15:41:25
 */
 
 'use strict';
@@ -15,10 +15,8 @@ var {
   ScrollView,
   Text,
   View,
-  TouchableHighlight,
-  TextInput,
   Image,
-  Dimensions
+  Modal
 } = React;
 
 //Load components
@@ -28,7 +26,7 @@ var CreateInstructionsCell = require('./createInstructionsCell');
 var CreateExerciseCell = require('./createExerciseCell');
 var AddExerciseCell = require('./addExerciseCell');
 
-var ModifyWorkout = React.createClass({
+var CreateWorkout = React.createClass({
   getInitialState: function() {
     return {
       // isCreatingOrModifying: createWorkoutStore.getIsCreatingOrModifying(),
@@ -81,6 +79,9 @@ var ModifyWorkout = React.createClass({
       </View>
       /* jshint ignore:end */
     );
+        // <Modal visible={this.state.modalVisible}>
+        //   <Text>Modal</Text>
+        // </Modal>
   }
 });
 
@@ -96,4 +97,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = ModifyWorkout;
+module.exports = CreateWorkout;

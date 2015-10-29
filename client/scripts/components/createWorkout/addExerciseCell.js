@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-28 20:20:26
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-29 15:10:07
 */
 
 'use strict';
@@ -18,10 +18,13 @@ var {
 import {CustomCell} from 'react-native-tableview-simple';
 
 var AddExerciseCell = React.createClass({
-  render: function(){
-    var exercise = this.props.exercise;
-    var exerciseDisplay;
+  addExercise: function(){
+    //pulls up modal on screen
+    //adds exercise object to createWorkoutStore
+    //allows for any adjustments to directly alter that exercise object
+  },
 
+  render: function(){
     return (
       /* jshint ignore:start */
       <CustomCell onPress={() => {console.log('Add Exercise Button')}}>
@@ -32,7 +35,6 @@ var AddExerciseCell = React.createClass({
       </CustomCell>
       /* jshint ignore:start */
     );
-        // <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>5 Pull Ups</Text>
   }
 });
 

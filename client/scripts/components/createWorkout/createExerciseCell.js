@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-28 20:15:40
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-29 15:08:07
 */
 
 'use strict';
@@ -23,7 +23,6 @@ import {CustomCell} from 'react-native-tableview-simple';
 var CreateExerciseCell = React.createClass({
   render: function(){
     var exercise = this.props.exercise;
-    var exerciseDisplay;
 
     return (
       /* jshint ignore:start */
