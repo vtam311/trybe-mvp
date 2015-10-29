@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-28 20:07:48
+* @Last Modified time: 2015-10-29 15:04:05
 */
 
 'use strict';
@@ -21,8 +21,9 @@ var {
   Dimensions
 } = React;
 
+//Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
-
+var DateCell = require('./dateCell');
 var CreateInstructionsCell = require('./createInstructionsCell');
 var CreateExerciseCell = require('./createExerciseCell');
 var AddExerciseCell = require('./addExerciseCell');
@@ -62,17 +63,7 @@ var ModifyWorkout = React.createClass({
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
             <Section>
-              <CustomCell onPress={() => {console.log('Heyho!')}}>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                  <Text style={{fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Date</Text>
-                  <View style={{flexDirection: 'row'}}>
-                    <Text style={{fontSize: 16, fontFamily: 'Avenir Next'}}>Today</Text>
-                    <Image
-                      style={{height: 13, width: 8, marginTop: 4, marginLeft: 15}}
-                      source={require('image!disclosureIndicator')} />
-                  </View>
-                </View>
-              </CustomCell>
+              <DateCell />
             </Section>
             <Section header="PART 1">
               <CreateInstructionsCell/>
