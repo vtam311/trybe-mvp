@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-30 15:59:29
+* @Last Modified time: 2015-10-30 16:41:46
 */
 
 'use strict';
@@ -56,11 +56,15 @@ var CreateExerciseModal = React.createClass({
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text style={{color: '#4DBA97'}}>Cancel</Text>
-            <Text style={{color: '#4A4A4A'}}>New Exercise</Text>
-            <TouchableOpacity onPress={this.closeModal}>
-              <Text style={{color: '#4DBA97'}}>Done</Text>
-            </TouchableOpacity>
+            <View style={styles.headerContainer}>
+              <TouchableOpacity onPress={this.closeModal}>
+                <Text style={styles.headerButtonText}>Cancel</Text>
+              </TouchableOpacity>
+              <Text style={styles.headerTitleText}>New Exercise</Text>
+              <TouchableOpacity onPress={this.closeModal}>
+                <Text style={styles.headerButtonText}>Done</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Animated.View>
@@ -75,7 +79,7 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    backgroundColor: 'rgba(155, 155, 155, 0.4)'
+    backgroundColor: 'rgba(155, 155, 155, 0.4)',
   },
   flexCenter: {
     flex: 1,
@@ -86,12 +90,37 @@ var styles = StyleSheet.create({
     height: 400,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
+    borderRadius: 3,
+    shadowColor: '#9B9B9B',
+    shadowOpacity: 8,
   },
   header: {
     height: 40,
-    flex: 1,
-    flexDirection: 'row'
+    borderBottomWidth: .5,
+    borderBottomColor: 'rgba(155, 155, 155, 0.7)',
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 3,
   },
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
+  },
+  headerTitleText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#4A4A4A'
+  },
+  headerButtonText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#4DBA97',
+  }
 });
 
 module.exports = CreateExerciseModal;
