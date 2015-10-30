@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 17:11:48
+* @Last Modified time: 2015-10-29 17:51:25
 */
 
 'use strict';
@@ -73,7 +73,7 @@ var TabBar = React.createClass({
           icon={ require('image!workout') }
           onPress={ () => this.changeTab('workout') }
           selected={ this.state.selectedTab === 'workout' }>
-          <WorkoutTab/>
+          <WorkoutTab rootNav={this.props.rootNav} />
         </TabBarIOS.Item>
       </TabBarIOS>
       /* jshint ignore:end */

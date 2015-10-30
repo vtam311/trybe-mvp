@@ -15,55 +15,35 @@ var {
   Navigator
 } = React;
 
+var RouteStack = {
+  app: {
+    component: ViewWorkout
+  }
+};
+
 var WorkoutTab = React.createClass({
   getInitialState: function(){
     return {
-      // navView: workoutTabStore.getNavView()
     };
   },
-  componentDidMount: function(){
-    // workoutTabStore.addChangeListener(this._onChange);
-    // workoutTabStore.getNavView();
-  },
-  componentWillUnmount: function(){
-    // workoutTabStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      // navView: workoutTabStore.getNavView()
-    });
+  renderScene: function(route, navigator){
+    var Component = route.component;
+
+    return (
+      <Component navigator={this.props.rootNav} workoutNav={this.refs.workoutNav} />
+    );
   },
   render: function() {
     return (
       /* jshint ignore:start */
       <Navigator
-        ref="nav"
-        initialRoute={{name: 'Today', index: 0}}
-        renderScene={(route, navigator) =>
-          <ViewWorkout
-            name={route.name}
-            onForward={() => {
-              var nextIndex = route.index + 1;
-              navigator.push({
-                name: 'Scene ' + nextIndex,
-                index: nextIndex,
-              });
-            }}
-            onBack={() => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
-          />
-        }/>
+        ref="workoutNav"
+        initialRoute={RouteStack.app}
+        renderScene={this.renderScene} />
       /* jshint ignore:end */
     );
   }
 });
-      // <NavigatorIOS
-      //   ref="nav"
-      //   style={styles.wrapper}
-      //   initialRoute={{title: 'Today', component: ViewWorkout}}/>
 
 var styles = StyleSheet.create({
   wrapper: {
