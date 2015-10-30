@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-30 11:18:03
+* @Last Modified time: 2015-10-30 11:34:19
 */
 
 'use strict';
@@ -73,11 +73,6 @@ var CreateWorkout = React.createClass({
                 style={{height: 14, width: 14, marginTop: 4, marginRight: 8}}
                 source={require('image!addButton')} />
               <Text style={{flex: 1, fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Add Part</Text>
-            </View>
-            <View style={styles.flexCenter}>
-              <TouchableOpacity onPress={this.props.openExerciseModal}>
-                <Text>Open Modal</Text>
-              </TouchableOpacity>
             </View>
           </TableView>
         </ScrollView>
