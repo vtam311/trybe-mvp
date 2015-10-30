@@ -18,13 +18,7 @@ var {
 var ViewWorkoutToolbar = React.createClass({
   _handleModifyWorkoutPress: function(workout) {
     modifyWorkoutActions.modifyWorkout(workout);
-
-    this.props.handleNavRequest(CreateWorkout);
-    // this.props.workoutNav.push({
-    //   title: 'Modify Workout',
-    //   // component: ModifyWorkout
-    //   component: CreateWorkout
-    // });
+    this.props.goToScene(CreateWorkout);
   },
   render: function(){
     return (

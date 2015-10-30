@@ -23,46 +23,46 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-//Keeping to later move to other areas of code base
-// var TopModal = React.createClass({
-//   getInitialState: function() {
-//     return { offset: new Animated.Value(deviceHeight) }
-//   },
-//   componentDidMount: function() {
-//     Animated.timing(this.state.offset, {
-//       duration: 100,
-//       toValue: 0
-//     }).start();
-//   },
-//   closeModal: function() {
-//     Animated.timing(this.state.offset, {
-//       duration: 100,
-//       toValue: deviceHeight
-//     }).start(this.props.closeModal);
-//   },
-//   render: function() {
-//     return (
-//         <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-//           <TouchableOpacity onPress={this.closeModal}>
-//             <Text style={{color: '#FFF'}}>Close Menu</Text>
-//           </TouchableOpacity>
-//         </Animated.View>
-//     )
-//   }
-// });
+// Keeping for reference
+var TopModal = React.createClass({
+  getInitialState: function() {
+    return { offset: new Animated.Value(deviceHeight) }
+  },
+  componentDidMount: function() {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: 0
+    }).start();
+  },
+  closeModal: function() {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: deviceHeight
+    }).start(this.props.closeModal);
+  },
+  render: function() {
+    return (
+        <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
+          <TouchableOpacity onPress={this.closeModal}>
+            <Text style={{color: '#FFF'}}>Close Menu</Text>
+          </TouchableOpacity>
+        </Animated.View>
+    )
+  }
+});
 
-// //props of App is from renderScene's Component
-// var App = React.createClass({
-//     render: function() {
-//       return (
-//         <View style={styles.flexCenter}>
-//           <TouchableOpacity onPress={this.props.openModal}>
-//             <Text>Open Modal</Text>
-//           </TouchableOpacity>
-//         </View>
-//       )
-//     }
-// });
+//keeping for reference
+var App = React.createClass({
+    render: function() {
+      return (
+        <View style={styles.flexCenter}>
+          <TouchableOpacity onPress={this.props.openModal}>
+            <Text>Open Modal</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+});
 
 var RouteStack = {
   app: {
@@ -76,11 +76,14 @@ var Trybe = React.createClass({
       modalVisible: false
     };
   },
+  openModal: function(){
+    this.setState({modalVisible: true});
+  },
   renderScene: function(route, navigator){
     var Component = route.component;
 
     return (
-      <Component rootNav={this.refs.rootNav} openModal={() => this.setState({modalVisible: true})}/>
+      <Component rootNav={this.refs.rootNav} openModal={this.openModal}/>
     );
   },
 

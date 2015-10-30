@@ -26,8 +26,7 @@ var WorkoutTab = React.createClass({
     return {
     };
   },
-  handleNavRequest: function(component){
-    // RouteStack.app.component = component;
+  goToScene: function(component){
     this.refs.workoutNav.push({
       component: component
     });
@@ -36,7 +35,7 @@ var WorkoutTab = React.createClass({
     var Component = route.component;
 
     return (
-      <Component handleNavRequest={this.handleNavRequest}/>
+      <Component goToScene={this.goToScene} />
     );
   },
   render: function() {

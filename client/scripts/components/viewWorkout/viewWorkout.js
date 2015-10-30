@@ -41,8 +41,6 @@ var ViewWorkout = React.createClass({
   },
   render: function(){
     var workout = this.state.workout;
-    //Why undefined?
-    console.log('in viewWorkout, this.props.workoutNav', this.props.workoutNav);
 
     //Render workout once it's loaded
     if(workout.parts) {
@@ -61,7 +59,7 @@ var ViewWorkout = React.createClass({
                   <View style={styles.separatorLine}></View>
                 </View>
                 <View style={styles.toolbar}>
-                  <ViewWorkoutToolbar workout={workout} handleNavRequest={this.props.handleNavRequest}/>
+                  <ViewWorkoutToolbar workout={workout} goToScene={this.props.goToScene}/>
                 </View>
               </View>
             </View>
