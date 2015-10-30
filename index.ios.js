@@ -13,10 +13,7 @@ var {
   StyleSheet,
   Text,
   View,
-  Navigator,
-  TouchableOpacity, //need?
-  Animated,
-  Dimensions
+  Navigator
 } = React;
 
 var RouteStack = {
@@ -41,7 +38,7 @@ var Trybe = React.createClass({
     var Component = route.component;
 
     return (
-      <Component rootNav={this.refs.rootNav} openExerciseModal={this.openExerciseModal}/>
+      <Component rootNav={this.refs.rootNav} openExerciseModal={this.openExerciseModal} />
     );
   },
 

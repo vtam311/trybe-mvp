@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 18:55:09
+* @Last Modified time: 2015-10-29 19:07:04
 */
 
 'use strict';
@@ -13,7 +13,7 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity, //need?
+  TouchableOpacity,
   Animated,
   Dimensions
 } = React;
