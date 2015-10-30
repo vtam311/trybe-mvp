@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-29 15:41:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-10-29 19:04:25
 */
 
 'use strict';
@@ -16,7 +16,7 @@ var {
   Text,
   View,
   Image,
-  Modal
+  TouchableOpacity
 } = React;
 
 //Load components
@@ -74,14 +74,16 @@ var CreateWorkout = React.createClass({
                 source={require('image!addButton')} />
               <Text style={{flex: 1, fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Add Part</Text>
             </View>
+            <View style={styles.flexCenter}>
+              <TouchableOpacity onPress={this.props.openExerciseModal}>
+                <Text>Open Modal</Text>
+              </TouchableOpacity>
+            </View>
           </TableView>
         </ScrollView>
       </View>
       /* jshint ignore:end */
     );
-        // <Modal visible={this.state.modalVisible}>
-        //   <Text>Modal</Text>
-        // </Modal>
   }
 });
 
@@ -94,6 +96,11 @@ var styles = StyleSheet.create({
     backgroundColor: '#EFEFF4',
     paddingTop: 20,
     paddingBottom: 20,
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

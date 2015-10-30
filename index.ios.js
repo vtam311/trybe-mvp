@@ -6,6 +6,7 @@ var React = require('react-native');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
+var CreateExerciseModal = require('./client/scripts/components/createWorkout/createExerciseModal');
 
 var {
   AppRegistry,
@@ -18,52 +19,6 @@ var {
   Dimensions
 } = React;
 
-//Gets device height for animating app
-var {
-  height: deviceHeight
-} = Dimensions.get('window');
-
-// Keeping for reference
-var TopModal = React.createClass({
-  getInitialState: function() {
-    return { offset: new Animated.Value(deviceHeight) }
-  },
-  componentDidMount: function() {
-    Animated.timing(this.state.offset, {
-      duration: 100,
-      toValue: 0
-    }).start();
-  },
-  closeModal: function() {
-    Animated.timing(this.state.offset, {
-      duration: 100,
-      toValue: deviceHeight
-    }).start(this.props.closeModal);
-  },
-  render: function() {
-    return (
-        <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-          <TouchableOpacity onPress={this.closeModal}>
-            <Text style={{color: '#FFF'}}>Close Menu</Text>
-          </TouchableOpacity>
-        </Animated.View>
-    )
-  }
-});
-
-//keeping for reference
-var App = React.createClass({
-    render: function() {
-      return (
-        <View style={styles.flexCenter}>
-          <TouchableOpacity onPress={this.props.openModal}>
-            <Text>Open Modal</Text>
-          </TouchableOpacity>
-        </View>
-      )
-    }
-});
-
 var RouteStack = {
   app: {
     component: TabBar
@@ -73,17 +28,20 @@ var RouteStack = {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      modalVisible: false
+      exerciseModalVisible: false
     };
   },
-  openModal: function(){
-    this.setState({modalVisible: true});
+  openExerciseModal: function(){
+    this.setState({exerciseModalVisible: true});
+  },
+  closeExerciseModal: function(){
+    this.setState({exerciseModalVisible: false});
   },
   renderScene: function(route, navigator){
     var Component = route.component;
 
     return (
-      <Component rootNav={this.refs.rootNav} openModal={this.openModal}/>
+      <Component rootNav={this.refs.rootNav} openExerciseModal={this.openExerciseModal}/>
     );
   },
 
@@ -95,30 +53,16 @@ var Trybe = React.createClass({
           ref="rootNav"
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
-        {this.state.modalVisible ? <TopModal closeModal={() => this.setState({modalVisible: false}) }/> : null }
+        {this.state.exerciseModalVisible ? <CreateExerciseModal closeModal={this.closeExerciseModal}/> : null }
       </View>
       /* jshint ignore:end */
     );
   }
 });
-        // <Text>Hi</Text>
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  flexCenter: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  modal: {
-    backgroundColor: 'rgba(0,0,0,.8)',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
   }
 });
 

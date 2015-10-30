@@ -2,12 +2,28 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 17:29:00
+* @Last Modified time: 2015-10-29 18:55:09
 */
 
 'use strict';
 
-var TopModal = React.createClass({
+var React = require('react-native');
+
+var {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity, //need?
+  Animated,
+  Dimensions
+} = React;
+
+//Gets device height for animating app
+var {
+  height: deviceHeight
+} = Dimensions.get('window');
+
+var CreateExerciseModal = React.createClass({
   getInitialState: function() {
     return { offset: new Animated.Value(deviceHeight) }
   },
@@ -33,3 +49,21 @@ var TopModal = React.createClass({
     )
   }
 });
+
+var styles = StyleSheet.create({
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modal: {
+    backgroundColor: 'rgba(0,0,0,.8)',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  }
+});
+
+module.exports = CreateExerciseModal;
