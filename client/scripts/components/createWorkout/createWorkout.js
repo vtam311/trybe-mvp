@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 19:04:25
+* @Last Modified time: 2015-10-30 11:12:10
 */
 
 'use strict';
@@ -66,7 +66,7 @@ var CreateWorkout = React.createClass({
             <Section header="PART 1">
               <CreateInstructionsCell/>
               <CreateExerciseCell exercise={TEMP_EXERCISE}/>
-              <AddExerciseCell />
+              <AddExerciseCell openExerciseModal={this.props.openExerciseModal} />
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image
