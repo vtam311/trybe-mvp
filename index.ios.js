@@ -11,37 +11,108 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
-  TabBarIOS,
-  StatusBarIOS,
   View,
+  Navigator,
+  TouchableOpacity, //need?
+  Animated,
+  Dimensions
 } = React;
 
+//Gets device height for animating app
+var {
+  height: deviceHeight
+} = Dimensions.get('window');
+
+var TopModal = React.createClass({
+  getInitialState: function() {
+    return { offset: new Animated.Value(deviceHeight) }
+  },
+  componentDidMount: function() {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: 0
+    }).start();
+  },
+  closeModal: function() {
+    Animated.timing(this.state.offset, {
+      duration: 100,
+      toValue: deviceHeight
+    }).start(this.props.closeModal);
+  },
+  render: function() {
+    return (
+        <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
+          <TouchableOpacity onPress={this.closeModal}>
+            <Text style={{color: '#FFF'}}>Close Menu</Text>
+          </TouchableOpacity>
+        </Animated.View>
+    )
+  }
+});
+
+var App = React.createClass({
+    render: function() {
+      return (
+        <View style={styles.flexCenter}>
+          <TouchableOpacity onPress={this.props.openModal}>
+            <Text>Open Modal</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+});
+
+var RouteStack = {
+  app: {
+    component: App
+  }
+};
 
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
+      modalVisible: false
     };
   },
-  componentDidMount: function(){
-  },
-  componentWillUnmount: function(){
-  },
-  _onChange: function(){
+  renderScene: function(route, navigator){
+    var Component = route.component;
+
+    return (
+      <Component openModal={() => this.setState({modalVisible: true})}/>
+    );
   },
 
   render: function() {
     return (
       /* jshint ignore:start */
-      <TabBar />
+      <View style={styles.container}>
+        <Navigator
+          initialRoute={RouteStack.app}
+          renderScene={this.renderScene} />
+        {this.state.modalVisible ? <TopModal closeModal={() => this.setState({modalVisible: false}) }/> : null }
+      </View>
       /* jshint ignore:end */
     );
   }
 });
-
+        // <Text>Hi</Text>
 
 var styles = StyleSheet.create({
-  tabView: {
-    // fontFamily: 'Avenir'
+  container: {
+    flex: 1,
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modal: {
+    backgroundColor: 'rgba(0,0,0,.8)',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
   }
 });
 
