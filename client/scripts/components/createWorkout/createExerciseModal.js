@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-30 16:41:46
+* @Last Modified time: 2015-10-30 17:59:47
 */
 
 'use strict';
@@ -15,7 +15,8 @@ var {
   View,
   TouchableOpacity,
   Animated,
-  Dimensions
+  Dimensions,
+  TextInput
 } = React;
 
 //Gets device height for animating app
@@ -66,11 +67,21 @@ var CreateExerciseModal = React.createClass({
               </TouchableOpacity>
             </View>
           </View>
+          <View style={styles.body}>
+            <View style={styles.bodyContainer}>
+              <TextInput
+                style={{height: 40, textDecorationLine: 'underline', textDecorationStyle: 'solid', textDecorationColor: 'black'}}
+                placeholder={'Exercise'}
+                placeholderTextColor={'#9B9B9B'}/>
+            </View>
+          </View>
         </View>
       </Animated.View>
     )
   }
 });
+
+//Note to self: underline in textInput is not showing up
 
 var styles = StyleSheet.create({
   modal: {
@@ -120,6 +131,17 @@ var styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     color: '#4DBA97',
+  },
+  body: {
+    height: 360
+  },
+  bodyContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10
   }
 });
 
