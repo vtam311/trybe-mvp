@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 20:21:10
+* @Last Modified time: 2015-11-18 20:35:51
 */
 
 'use strict';
@@ -57,12 +57,14 @@ var CreateWorkout = React.createClass({
       url: null
     };
 
-    var createdExercisesOfPart1 = this.state.workout.parts[0].exercises
+    var exercisesOfPart1 = this.state.workout.parts[0].exercises
     .map((exercise, index) =>
-        <CreateExerciseCell
-          exercise={exercise}
-          openExerciseModal={this.props.openExerciseModal}
-          key={index} />
+      /* jshint ignore:start */
+      <CreateExerciseCell
+        exercise={exercise}
+        openExerciseModal={this.props.openExerciseModal}
+        key={index} />
+      /* jshint ignore:end */
     );
 
 
@@ -76,7 +78,7 @@ var CreateWorkout = React.createClass({
             </Section>
             <Section header="PART 1">
               <CreateInstructionsCell/>
-              {createdExercisesOfPart1}
+              {exercisesOfPart1}
               <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>

@@ -2,12 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 18:05:08
+* @Last Modified time: 2015-11-18 21:36:14
 */
 
 'use strict';
 
 var React = require('react-native');
+var createWorkoutStore = require('../../stores/createWorkoutStore');
 
 var {
   StyleSheet,
@@ -40,7 +41,9 @@ var CreateExerciseModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
-      isNewOrEdit: 'new'
+      partIdx: createWorkoutStore.getTargetPartIdx(),
+      exIdx: createWorkoutStore.getTargetExerciseIdx(),
+      targetExercise: createWorkoutStore.getTargetExercise()
     };
   },
   componentDidMount: function() {
@@ -48,6 +51,17 @@ var CreateExerciseModal = React.createClass({
       duration: 100,
       toValue: 0
     }).start();
+    createWorkoutStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    createWorkoutStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
+    this.setState({
+      partIdx: createWorkoutStore.getTargetPartIdx(),
+      exIdx: createWorkoutStore.getTargetExerciseIdx(),
+      targetExercise: createWorkoutStore.getTargetExercise()
+    });
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -77,8 +91,13 @@ var CreateExerciseModal = React.createClass({
                 placeholder={'Exercise Name'}
                 placeholderTextColor={'#9B9B9B'}/>
               <View style={{marginTop: 15}}>
-                <SegmentedControlIOS values={['Reps', 'Weight', 'Distance', 'Time']} tintColor={'#4DBA97'}/>
-                <RepPicker />
+                <SegmentedControlIOS
+                  values={['Reps', 'Weight', 'Distance', 'Time']}
+                  tintColor={'#4DBA97'}/>
+                <RepPicker
+                  partIdx={this.state.partIdx}
+                  exIdx={this.state.exIdx}
+                  targetExercise={this.state.targetExercise}/>
               </View>
             </View>
           </View>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 18:26:05
+* @Last Modified time: 2015-11-18 21:33:02
 */
 
 'use strict';
@@ -18,15 +18,13 @@ var {
 } = React;
 
 var PickerItemIOS = PickerIOS.Item;
-var REP_CHOICES = ['Not Selected',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,30,35,40,45,50,55,60];
-var TEMP_PART_IDX = 0;
-var TEMP_EX_IDX = 0;
+var REP_CHOICES = ['No Reps',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,30,35,40,45,50,55,60];
 
 var RepPicker = React.createClass({
   getInitialState: function() {
     return {
       isNewOrCreating: 'NEW',
-      currVal: this.props.repVal
+      reps: this.props.targetExercise.reps
     };
   },
   setReps: function(reps, partIdx, exIdx){
@@ -34,22 +32,20 @@ var RepPicker = React.createClass({
     createWorkoutActions.setReps(reps, partIdx, exIdx);
   },
   setLabels: function(choice){
+    //If the user selected a number from REP_CHOICES, stringify
     if(typeof choice === 'number') {
-      return choice.toString() + ' Reps';
+      return choice.toString();
     } else {
       return choice;
     }
   },
   render: function() {
-    //Load props
-    // var exercise = this.props.exercise;
-    // var partIdx = this.props.partIdx;
-    // var exIdx = this.props.exIdx;
+    console.log('repPicker reps', this.props.targetExercise.reps);
 
     return (
       <PickerIOS
-        selectedValue={this.state.currVal}
-        onValueChange={(val) => this.setReps(val, TEMP_PART_IDX, TEMP_EX_IDX)}>
+        selectedValue={this.state.reps}
+        onValueChange={(val) => this.setReps(val, this.props.partIdx, this.props.exIdx)}>
         {REP_CHOICES.map((choice) =>
           <PickerItemIOS
             key={choice}

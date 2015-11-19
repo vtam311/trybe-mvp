@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 20:05:35
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-11-18 21:34:27
 */
 
 'use strict';
@@ -45,13 +45,14 @@ var WORKOUT_TEMPLATE = {
 
 var _store = {
   workout: WORKOUT_TEMPLATE,
-  getIsCreatingOrModifying: 'CREATING' //by default is creating
+  getIsCreatingOrModifying: 'CREATING', //set default to creating
+  targetPartIdx: 0, //default val for editing workout
+  targetExerciseIdx: 0, //default val for editing workout
 };
 
 var addExercise = function(data){
   var partIdx = data.partIdx;
   _store.workout.parts[partIdx].exercises.push(EXERCISE_TEMPLATE);
-  console.log('createWorkoutStore addExercise called. num exercises:', _store.workout.parts[partIdx].exercises.length);
 };
 
 var addPart = function(){
@@ -75,6 +76,7 @@ var setReps = function(data) {
   var reps = data.reps;
   var targetExercise = findExercise(data);
   targetExercise.reps = reps;
+  console.log('createWorkoutStore setReps changed reps to', reps);
 };
 
 var setLoad = function(data) {
@@ -113,6 +115,19 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   getIsCreatingOrModifying: function(){
     return _store.getIsCreatingOrModifying;
+  },
+  getTargetPartIdx: function(){
+    return _store.targetPartIdx;
+  },
+  getTargetExerciseIdx: function(){
+    return _store.targetExerciseIdx;
+  },
+  //Target exercise being modified or created.
+  //Used for reference in createExerciseModal
+  getTargetExercise: function(){
+    var partIdx = _store.targetPartIdx;
+    var exIdx = _store.targetExerciseIdx;
+    return _store.workout.parts[partIdx].exercises[exIdx];
   }
 });
 
