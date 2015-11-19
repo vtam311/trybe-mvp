@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-30 17:59:47
+* @Last Modified time: 2015-11-18 17:16:46
 */
 
 'use strict';
@@ -16,7 +16,8 @@ var {
   TouchableOpacity,
   Animated,
   Dimensions,
-  TextInput
+  TextInput,
+  SegmentedControlIOS,
 } = React;
 
 //Gets device height for animating app
@@ -37,7 +38,7 @@ var CreateExerciseModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
-      newOrEdit: 'New'
+      isNewOrEdit: 'new'
     };
   },
   componentDidMount: function() {
@@ -70,9 +71,12 @@ var CreateExerciseModal = React.createClass({
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <TextInput
-                style={{height: 40, textDecorationLine: 'underline', textDecorationStyle: 'solid', textDecorationColor: 'black'}}
-                placeholder={'Exercise'}
+                style={styles.textInput}
+                placeholder={'Exercise Name'}
                 placeholderTextColor={'#9B9B9B'}/>
+              <View style={{marginTop: 15}}>
+                <SegmentedControlIOS values={['Reps', 'Weight', 'Distance', 'Time']} tintColor={'#4DBA97'}/>
+              </View>
             </View>
           </View>
         </View>
@@ -137,11 +141,15 @@ var styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    // justifyContent: 'center',
-    marginLeft: 10,
-    marginRight: 10
+    marginLeft: 15,
+    marginRight: 15
+  },
+  textInput: {
+    height: 40,
+    marginTop: 15,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
+    textDecorationColor: 'black'
   }
 });
 
