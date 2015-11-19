@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 18:00:00
+* @Last Modified time: 2015-11-18 20:05:35
 */
 
 'use strict';
@@ -27,7 +27,7 @@ var PART_TEMPLATE = {
     title: null,
     url: null
   },
-  exercises: [EXERCISE_TEMPLATE],
+  exercises: [],
   notes: null
 };
 
@@ -48,9 +48,10 @@ var _store = {
   getIsCreatingOrModifying: 'CREATING' //by default is creating
 };
 
-var addExercise = function(partIdx, exercise){
-  //finds relevant part, push exercise to the array
-  _store.workout.parts[partIdx].exercsies.push(exercise);
+var addExercise = function(data){
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].exercises.push(EXERCISE_TEMPLATE);
+  console.log('createWorkoutStore addExercise called. num exercises:', _store.workout.parts[partIdx].exercises.length);
 };
 
 var addPart = function(){
@@ -118,6 +119,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case createWorkoutConstants.ADD_EXERCISE:
+      addExercise(action.data);
+      break;
     case createWorkoutConstants.SET_EXERCISE_NAME:
       setExerciseName(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);

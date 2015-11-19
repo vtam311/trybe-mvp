@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 18:24:24
+* @Last Modified time: 2015-11-18 18:26:05
 */
 
 'use strict';
@@ -33,11 +33,11 @@ var RepPicker = React.createClass({
     if(reps === 'Not Selected') reps = null;
     createWorkoutActions.setReps(reps, partIdx, exIdx);
   },
-  setLabels: function(option){
-    if(typeof option === 'number') {
-      return option.toString() + ' Reps';
+  setLabels: function(choice){
+    if(typeof choice === 'number') {
+      return choice.toString() + ' Reps';
     } else {
-      return option;
+      return choice;
     }
   },
   render: function() {
@@ -50,11 +50,11 @@ var RepPicker = React.createClass({
       <PickerIOS
         selectedValue={this.state.currVal}
         onValueChange={(val) => this.setReps(val, TEMP_PART_IDX, TEMP_EX_IDX)}>
-        {REP_CHOICES.map((option) =>
+        {REP_CHOICES.map((choice) =>
           <PickerItemIOS
-            key={option}
-            value={option}
-            label={this.setLabels(option)}/>
+            key={choice}
+            value={choice}
+            label={this.setLabels(choice)}/>
         )}
       </PickerIOS>
     );

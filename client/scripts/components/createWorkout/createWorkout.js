@@ -2,12 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-30 11:34:19
+* @Last Modified time: 2015-11-18 20:21:10
 */
 
 'use strict';
 
 var React = require('react-native');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 var createWorkoutStore = require('../../stores/createWorkoutStore');
 
 var {
@@ -46,6 +47,7 @@ var CreateWorkout = React.createClass({
   },
 
   render: function(){
+    var TEMP_PART_INDEX = 0;
     var TEMP_EXERCISE = {
       name: 'Pull Ups',
       reps: 5,
@@ -54,6 +56,15 @@ var CreateWorkout = React.createClass({
       distance: {units: null, val: null},
       url: null
     };
+
+    var createdExercisesOfPart1 = this.state.workout.parts[0].exercises
+    .map((exercise, index) =>
+        <CreateExerciseCell
+          exercise={exercise}
+          openExerciseModal={this.props.openExerciseModal}
+          key={index} />
+    );
+
 
     return (
       /* jshint ignore:start */
@@ -65,8 +76,8 @@ var CreateWorkout = React.createClass({
             </Section>
             <Section header="PART 1">
               <CreateInstructionsCell/>
-              <CreateExerciseCell exercise={TEMP_EXERCISE} openExerciseModal={this.props.openExerciseModal}/>
-              <AddExerciseCell openExerciseModal={this.props.openExerciseModal} />
+              {createdExercisesOfPart1}
+              <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image
