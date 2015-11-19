@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-28 19:40:55
+* @Last Modified time: 2015-11-18 18:00:00
 */
 
 'use strict';
@@ -30,7 +30,6 @@ var PART_TEMPLATE = {
   exercises: [EXERCISE_TEMPLATE],
   notes: null
 };
-
 
 var WORKOUT_TEMPLATE = {
   id: null,

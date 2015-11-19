@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 17:16:46
+* @Last Modified time: 2015-11-18 18:05:08
 */
 
 'use strict';
@@ -19,6 +19,8 @@ var {
   TextInput,
   SegmentedControlIOS,
 } = React;
+
+var RepPicker = require('./pickers/repPicker');
 
 //Gets device height for animating app
 var {
@@ -76,6 +78,7 @@ var CreateExerciseModal = React.createClass({
                 placeholderTextColor={'#9B9B9B'}/>
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS values={['Reps', 'Weight', 'Distance', 'Time']} tintColor={'#4DBA97'}/>
+                <RepPicker />
               </View>
             </View>
           </View>
