@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 20:35:51
+* @Last Modified time: 2015-11-30 17:22:15
 */
 
 'use strict';
@@ -30,7 +30,6 @@ var AddExerciseCell = require('./addExerciseCell');
 var CreateWorkout = React.createClass({
   getInitialState: function() {
     return {
-      // isCreatingOrModifying: createWorkoutStore.getIsCreatingOrModifying(),
       workout: createWorkoutStore.getWorkout(),
     };
   },
@@ -48,14 +47,6 @@ var CreateWorkout = React.createClass({
 
   render: function(){
     var TEMP_PART_INDEX = 0;
-    var TEMP_EXERCISE = {
-      name: 'Pull Ups',
-      reps: 5,
-      load: {units: 'lb', val: 45},
-      time: null,
-      distance: {units: null, val: null},
-      url: null
-    };
 
     var exercisesOfPart1 = this.state.workout.parts[0].exercises
     .map((exercise, index) =>

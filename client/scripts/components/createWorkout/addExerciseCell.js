@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 20:04:24
+* @Last Modified time: 2015-11-30 17:30:03
 */
 
 'use strict';
@@ -25,6 +25,7 @@ var AddExerciseCell = React.createClass({
     //adds exercise object to createWorkoutStore
     createWorkoutActions.addExercise(this.props.partIdx);
     //allows for any adjustments to directly alter that exercise object
+    createWorkoutActions.setTargetExerciseIdx(this.props.partIdx);
   },
 
   render: function(){

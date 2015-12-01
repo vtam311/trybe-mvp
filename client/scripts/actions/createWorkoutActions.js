@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 19:48:15
+* @Last Modified time: 2015-11-30 17:30:11
 */
 
 'use strict';
@@ -29,6 +29,14 @@ var createWorkoutActions = {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.ADD_PART,
       data: null
+    });
+  },
+  setTargetExerciseIdx: function(partIdx){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SET_TARGET_EXERCISE_IDX,
+      data: {
+        partIdx: partIdx
+      }
     });
   },
   setExerciseName: function(exName, partIdx, exIdx){
