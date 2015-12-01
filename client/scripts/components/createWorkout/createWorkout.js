@@ -1,13 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-29 15:41:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-11-18 20:35:51
 */
 
 'use strict';
 
 var React = require('react-native');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 var createWorkoutStore = require('../../stores/createWorkoutStore');
 
 var {
@@ -16,7 +17,7 @@ var {
   Text,
   View,
   Image,
-  Modal
+  TouchableOpacity
 } = React;
 
 //Load components
@@ -46,6 +47,7 @@ var CreateWorkout = React.createClass({
   },
 
   render: function(){
+    var TEMP_PART_INDEX = 0;
     var TEMP_EXERCISE = {
       name: 'Pull Ups',
       reps: 5,
@@ -54,6 +56,17 @@ var CreateWorkout = React.createClass({
       distance: {units: null, val: null},
       url: null
     };
+
+    var exercisesOfPart1 = this.state.workout.parts[0].exercises
+    .map((exercise, index) =>
+      /* jshint ignore:start */
+      <CreateExerciseCell
+        exercise={exercise}
+        openExerciseModal={this.props.openExerciseModal}
+        key={index} />
+      /* jshint ignore:end */
+    );
+
 
     return (
       /* jshint ignore:start */
@@ -65,8 +78,8 @@ var CreateWorkout = React.createClass({
             </Section>
             <Section header="PART 1">
               <CreateInstructionsCell/>
-              <CreateExerciseCell exercise={TEMP_EXERCISE}/>
-              <AddExerciseCell />
+              {exercisesOfPart1}
+              <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
             </Section>
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image
@@ -79,9 +92,6 @@ var CreateWorkout = React.createClass({
       </View>
       /* jshint ignore:end */
     );
-        // <Modal visible={this.state.modalVisible}>
-        //   <Text>Modal</Text>
-        // </Modal>
   }
 });
 
@@ -94,6 +104,11 @@ var styles = StyleSheet.create({
     backgroundColor: '#EFEFF4',
     paddingTop: 20,
     paddingBottom: 20,
+  },
+  flexCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

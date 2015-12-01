@@ -17,7 +17,9 @@ var REP_CHOICES = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2
 var PickerItemIOS = PickerIOS.Item;
 
 var RepEdit = React.createClass({
-  /*RepEdit state does not reflect store's state because each workout has many exercises which can be modified. If it did, the number of listeners would be too high. */
+  /*RepEdit state does not reflect store's state because
+  each workout has many exercises that can be modified.
+  If it did, the number of listeners would be too high. */
   getInitialState: function() {
     return {
       showRepSelection: false

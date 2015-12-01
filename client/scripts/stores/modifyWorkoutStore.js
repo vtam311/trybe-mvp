@@ -1,153 +1,155 @@
-'use strict';
+//DEPR as of 11/18/2015
 
-var AppDispatcher = require('../dispatchers/AppDispatcher');
-var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
-var EventEmitter = require('events').EventEmitter;
-var CHANGE_EVENT = 'change';
-var BLANK_WORKOUT = {
-  id: null,
-  username: null,
-  trybe: null,
-  day: null,
-  createdAt: null,
-  type: null,
-  parts: [
-    {
-      instructions: null,
-      media: {
-        title: null,
-        url: null
-      },
-      exercises: [
-        {
-          name: null,
-          reps: null,
-          load: {units: 'lbs', val: null},
-          time: null,
-          distance: {units: null, val: null},
-          url: null
-        }
-      ],
-      notes: null
-    }
-  ],
-  origin: null,
-  finalResult: {type: 'Time', value: null}
-};
+// 'use strict';
 
-var _store = {
-  workout: BLANK_WORKOUT,
-};
+// var AppDispatcher = require('../dispatchers/AppDispatcher');
+// var modifyWorkoutConstants = require('../constants/modifyWorkoutConstants');
+// var EventEmitter = require('events').EventEmitter;
+// var CHANGE_EVENT = 'change';
+// var BLANK_WORKOUT = {
+//   id: null,
+//   username: null,
+//   trybe: null,
+//   day: null,
+//   createdAt: null,
+//   type: null,
+//   parts: [
+//     {
+//       instructions: null,
+//       media: {
+//         title: null,
+//         url: null
+//       },
+//       exercises: [
+//         {
+//           name: null,
+//           reps: null,
+//           load: {units: 'lbs', val: null},
+//           time: null,
+//           distance: {units: null, val: null},
+//           url: null
+//         }
+//       ],
+//       notes: null
+//     }
+//   ],
+//   origin: null,
+//   finalResult: {type: 'Time', value: null}
+// };
 
-var setWorkout = function(workout) {
-  _store.workout = workout;
-};
+// var _store = {
+//   workout: BLANK_WORKOUT,
+// };
 
-var setExerciseName = function(data) {
-  var exName = data.exName;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+// var setWorkout = function(workout) {
+//   _store.workout = workout;
+// };
 
-  targetExercise.name = exName;
-};
+// var setExerciseName = function(data) {
+//   var exName = data.exName;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var setReps = function(data) {
-  //To do: correct the exercise name
-  var reps = data.reps;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+//   targetExercise.name = exName;
+// };
 
-  targetExercise.reps = reps;
-};
+// var setReps = function(data) {
+//   //To do: correct the exercise name
+//   var reps = data.reps;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var setLoad = function(data) {
-  var load = data.load;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+//   targetExercise.reps = reps;
+// };
 
-  targetExercise.load.val = load;
-};
+// var setLoad = function(data) {
+//   var load = data.load;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var setHold = function(data) {
-  var hold = data.hold;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+//   targetExercise.load.val = load;
+// };
 
-  targetExercise.hold = hold;
-};
+// var setHold = function(data) {
+//   var hold = data.hold;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var setDist = function(data) {
-  var dist = data.dist;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+//   targetExercise.hold = hold;
+// };
 
-  targetExercise.distance.val = dist;
-};
+// var setDist = function(data) {
+//   var dist = data.dist;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var setDistUnit = function(data) {
-  var unit = data.unit;
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+//   targetExercise.distance.val = dist;
+// };
 
-  targetExercise.distance.units = unit;
-};
+// var setDistUnit = function(data) {
+//   var unit = data.unit;
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
 
-var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
-  addChangeListener: function(cb){
-    this.on(CHANGE_EVENT, cb);
-  },
-  removeChangeListener: function(cb){
-    this.removeListener(CHANGE_EVENT, cb);
-  },
-  getWorkout: function(){
-    return _store.workout;
-  },
-});
+//   targetExercise.distance.units = unit;
+// };
 
-AppDispatcher.register(function(payload){
-  var action = payload.action;
-  switch (action.actionType) {
-    case modifyWorkoutConstants.MODIFY_WORKOUT:
-      setWorkout(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.UPDATE_WORKOUT:
-      setWorkout(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_EXERCISE_NAME:
-      setExerciseName(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_REPS:
-      setReps(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_LOAD:
-      setLoad(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_HOLD:
-      setHold(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_DIST:
-      setDist(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case modifyWorkoutConstants.SET_DISTUNIT:
-      setDistUnit(action.data);
-      modifyWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    default:
-      return true;
-  }
-});
+// var modifyWorkoutStore = Object.assign({}, EventEmitter.prototype, {
+//   addChangeListener: function(cb){
+//     this.on(CHANGE_EVENT, cb);
+//   },
+//   removeChangeListener: function(cb){
+//     this.removeListener(CHANGE_EVENT, cb);
+//   },
+//   getWorkout: function(){
+//     return _store.workout;
+//   },
+// });
 
-module.exports = modifyWorkoutStore;
+// AppDispatcher.register(function(payload){
+//   var action = payload.action;
+//   switch (action.actionType) {
+//     case modifyWorkoutConstants.MODIFY_WORKOUT:
+//       setWorkout(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.UPDATE_WORKOUT:
+//       setWorkout(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_EXERCISE_NAME:
+//       setExerciseName(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_REPS:
+//       setReps(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_LOAD:
+//       setLoad(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_HOLD:
+//       setHold(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_DIST:
+//       setDist(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     case modifyWorkoutConstants.SET_DISTUNIT:
+//       setDistUnit(action.data);
+//       modifyWorkoutStore.emit(CHANGE_EVENT);
+//       break;
+//     default:
+//       return true;
+//   }
+// });
+
+// module.exports = modifyWorkoutStore;

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 15:08:07
+* @Last Modified time: 2015-10-30 11:32:09
 */
 
 'use strict';
@@ -15,7 +15,8 @@ var {
   View,
   Text,
   TextInput,
-  Image
+  Image,
+  TouchableHighlight
 } = React;
 
 import {CustomCell} from 'react-native-tableview-simple';
@@ -26,10 +27,12 @@ var CreateExerciseCell = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <CustomCell onPress={() => {console.log('Exercise Cell')}}>
-        <Image
-          style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
-          source={require('image!clearButton')} />
+      <CustomCell onPress={this.props.openExerciseModal}>
+        <TouchableHighlight onPress={() => console.log('Clear Button Clicked')}>
+          <Image
+            style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
+            source={require('image!clearButton')} />
+        </TouchableHighlight>
         <ViewExercise exercise={this.props.exercise} />
         <Image
           style={{height: 13, width: 8}}

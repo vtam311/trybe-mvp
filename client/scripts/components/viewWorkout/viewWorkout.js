@@ -59,7 +59,7 @@ var ViewWorkout = React.createClass({
                   <View style={styles.separatorLine}></View>
                 </View>
                 <View style={styles.toolbar}>
-                  <ViewWorkoutToolbar workout={workout} navigator={this.props.navigator}/>
+                  <ViewWorkoutToolbar workout={workout} goToScene={this.props.goToScene}/>
                 </View>
               </View>
             </View>
