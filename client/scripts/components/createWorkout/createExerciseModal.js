@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 17:21:47
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-11-30 17:58:14
 */
 
 'use strict';
@@ -44,9 +44,9 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise()
-      //All change in reps only affect 1st exercise
-      //Fix: Is it because exIdx is not being updated? Yes.
-      //Fix: Update it from createWorkout.js
+      //Clicking on any existing exercise brings up the most recently
+      //created exercise. It should bring up the one that's clicked.
+      //Fix: Clicking on each exercise cell should update the part and ex idx.
     };
   },
   componentDidMount: function() {

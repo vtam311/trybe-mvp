@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 17:01:03
+* @Last Modified time: 2015-11-30 18:10:12
 */
 
 'use strict';
@@ -44,7 +44,6 @@ var RepPicker = React.createClass({
   },
   render: function() {
     console.log('repPicker targetExercise', this.props.targetExercise);
-    console.log('repPicker reps', this.props.targetExercise.reps);
 
     return (
       <PickerIOS

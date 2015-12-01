@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 17:30:11
+* @Last Modified time: 2015-11-30 18:04:38
 */
 
 'use strict';
@@ -31,11 +31,12 @@ var createWorkoutActions = {
       data: null
     });
   },
-  setTargetExerciseIdx: function(partIdx){
+  setTargetExerciseIdx: function(partIdx, exIdx){
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_TARGET_EXERCISE_IDX,
       data: {
-        partIdx: partIdx
+        partIdx: partIdx,
+        exIdx: exIdx
       }
     });
   },

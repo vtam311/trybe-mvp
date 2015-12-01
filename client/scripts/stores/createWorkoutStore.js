@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-11-18 21:34:27
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-11-30 18:31:24
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var createWorkoutConstants = require('../constants/createWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
+var copyObjectHelper = require('../common/copyObjectHelper');
 
 var EXERCISE_TEMPLATE = {
   name: null,
@@ -45,18 +46,32 @@ var WORKOUT_TEMPLATE = {
 
 var _store = {
   workout: WORKOUT_TEMPLATE,
-  getIsCreatingOrModifying: 'CREATING', //set default to creating
   targetPartIdx: 0, //default val for editing workout
   targetExerciseIdx: 0, //default val for editing workout
 };
 
 var addExercise = function(data){
   var partIdx = data.partIdx;
-  _store.workout.parts[partIdx].exercises.push(EXERCISE_TEMPLATE);
+  var newExerciseObj = copyObjectHelper(EXERCISE_TEMPLATE);
+  _store.workout.parts[partIdx].exercises.push(newExerciseObj);
 };
 
 var addPart = function(){
   _store.workout.parts.push(PART_TEMPLATE);
+};
+
+var setTargetExerciseIdx = function(data){
+  var partIdx = data.partIdx;
+  var exIdx;
+  //If creating a new exercise, exIdx will not be supplied.
+  //So default to next index val
+  if(data.exIdx === undefined) {
+    exIdx = _store.workout.parts[partIdx].exercises.length - 1;
+  } else {
+    exIdx = data.exIdx;
+  }
+  _store.targetExerciseIdx = exIdx;
+  console.log('createWorkoutStore setTargetExerciseIdx exIdx', exIdx);
 };
 
 var findExercise = function(data){
@@ -76,7 +91,6 @@ var setReps = function(data) {
   var reps = data.reps;
   var targetExercise = findExercise(data);
   targetExercise.reps = reps;
-  console.log('createWorkoutStore setReps changed reps to', reps);
 };
 
 var setLoad = function(data) {
@@ -113,9 +127,6 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getWorkout: function(){
     return _store.workout;
   },
-  getIsCreatingOrModifying: function(){
-    return _store.getIsCreatingOrModifying;
-  },
   getTargetPartIdx: function(){
     return _store.targetPartIdx;
   },
@@ -127,6 +138,7 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getTargetExercise: function(){
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
+    console.log('createWorkoutStore getTargetExercise exIdx', exIdx);
     return _store.workout.parts[partIdx].exercises[exIdx];
   }
 });
@@ -136,6 +148,9 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case createWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
+      break;
+    case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
+      setTargetExerciseIdx(action.data);
       break;
     case createWorkoutConstants.SET_EXERCISE_NAME:
       setExerciseName(action.data);

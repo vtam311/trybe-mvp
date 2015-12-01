@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 17:22:15
+* @Last Modified time: 2015-11-30 18:13:08
 */
 
 'use strict';
@@ -53,6 +53,8 @@ var CreateWorkout = React.createClass({
       /* jshint ignore:start */
       <CreateExerciseCell
         exercise={exercise}
+        partIdx={TEMP_PART_INDEX}
+        exIdx={index}
         openExerciseModal={this.props.openExerciseModal}
         key={index} />
       /* jshint ignore:end */
