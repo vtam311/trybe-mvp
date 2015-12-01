@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 21:36:14
+* @Last Modified time: 2015-11-30 16:47:04
 */
 
 'use strict';
@@ -44,6 +44,10 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise()
+      //Change in reps aren't reflected in view
+        //Fix: Update reps in store, have it update state
+        //here, and pass that down as props to repPicker
+        //via the targetExercise property
     };
   },
   componentDidMount: function() {

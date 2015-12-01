@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 21:33:02
+* @Last Modified time: 2015-11-30 16:53:43
 */
 
 'use strict';
@@ -23,15 +23,17 @@ var REP_CHOICES = ['No Reps',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
 var RepPicker = React.createClass({
   getInitialState: function() {
     return {
-      isNewOrCreating: 'NEW',
       reps: this.props.targetExercise.reps
     };
   },
   setReps: function(reps, partIdx, exIdx){
     if(reps === 'Not Selected') reps = null;
     createWorkoutActions.setReps(reps, partIdx, exIdx);
+    //Why is this needed? Shouldn't react native update
+    //this itself?
+    this.setState({reps: reps});
   },
-  setLabels: function(choice){
+  showChoiceLabels: function(choice){
     //If the user selected a number from REP_CHOICES, stringify
     if(typeof choice === 'number') {
       return choice.toString();
@@ -40,6 +42,7 @@ var RepPicker = React.createClass({
     }
   },
   render: function() {
+    console.log('repPicker targetExercise', this.props.targetExercise);
     console.log('repPicker reps', this.props.targetExercise.reps);
 
     return (
@@ -50,7 +53,7 @@ var RepPicker = React.createClass({
           <PickerItemIOS
             key={choice}
             value={choice}
-            label={this.setLabels(choice)}/>
+            label={this.showChoiceLabels(choice)}/>
         )}
       </PickerIOS>
     );
