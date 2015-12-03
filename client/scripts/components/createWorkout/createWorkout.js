@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-02 15:31:39
+* @Last Modified time: 2015-12-02 16:04:38
 */
 
 'use strict';
@@ -75,7 +75,7 @@ var CreateWorkout = React.createClass({
             <Section>
               <DateCell />
             </Section>
-            <Section header="PART 1">
+            <Section header="PART 1" hideSeparator={true}>
               <CreateInstructionsCell/>
               {exercisesOfPart1}
               <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
