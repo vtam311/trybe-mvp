@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 18:31:24
+* @Last Modified time: 2015-12-02 14:31:27
 */
 
 'use strict';
@@ -12,6 +12,33 @@ var createWorkoutConstants = require('../constants/createWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 var copyObjectHelper = require('../common/copyObjectHelper');
+
+var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
+  {
+    name: 'Kongs',
+    reps: 5,
+    load: {units: 'lbs', val: null},
+    time: null,
+    distance: {units: null, val: null},
+    url: null
+  },
+  {
+    name: 'Tic Tacs',
+    reps: 5,
+    load: {units: 'lbs', val: null},
+    time: null,
+    distance: {units: null, val: null},
+    url: null
+  },
+  {
+    name: 'Precisions',
+    reps: 5,
+    load: {units: 'lbs', val: null},
+    time: null,
+    distance: {units: null, val: null},
+    url: null
+  },
+];
 
 var EXERCISE_TEMPLATE = {
   name: null,
@@ -28,7 +55,8 @@ var PART_TEMPLATE = {
     title: null,
     url: null
   },
-  exercises: [],
+  // exercises: [],
+  exercises: TEMP_EXERCISES_ARRAY_FOR_DEBUGGING,
   notes: null
 };
 

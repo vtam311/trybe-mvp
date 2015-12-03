@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 18:13:08
+* @Last Modified time: 2015-12-02 15:31:39
 */
 
 'use strict';
@@ -51,17 +51,23 @@ var CreateWorkout = React.createClass({
     var exercisesOfPart1 = this.state.workout.parts[0].exercises
     .map((exercise, index) =>
       /* jshint ignore:start */
-      <CreateExerciseCell
-        exercise={exercise}
-        partIdx={TEMP_PART_INDEX}
-        exIdx={index}
-        openExerciseModal={this.props.openExerciseModal}
-        key={index} />
+      <View style={styles.customCellBackground}>
+        <CreateExerciseCell
+          exercise={exercise}
+          partIdx={TEMP_PART_INDEX}
+          exIdx={index}
+          openExerciseModal={this.props.openExerciseModal}
+          key={index} />
+        <View style={styles.cellSeparatorBackground}>
+          <View style={styles.cellSeparatorLine}></View>
+        </View>
+      </View>
       /* jshint ignore:end */
     );
 
 
     return (
+
       /* jshint ignore:start */
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.stage}>
@@ -98,10 +104,13 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
-  flexCenter: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  cellSeparatorBackground: {
+    backgroundColor: '#fff',
+  },
+  cellSeparatorLine: {
+    marginLeft: 15,
+    height: 0.5,
+    backgroundColor: '#c8c7cc',
   }
 });
 
