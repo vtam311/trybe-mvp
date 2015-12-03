@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-02 13:49:02
+* @Last Modified time: 2015-12-02 16:08:04
 */
 
 'use strict';
@@ -22,15 +22,31 @@ var CreateInstructionsCell = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <CustomCell customHeight={70}>
-        <View style={{flex: 1, flexDirection: 'column', marginTop: 5}}>
-          <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
-          <TextInput
-              style={{height: 40}}/>
+      <View>
+        <CustomCell customHeight={70}>
+          <View style={{flex: 1, flexDirection: 'column', marginTop: 5}}>
+            <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
+            <TextInput
+                style={{height: 40}}/>
+          </View>
+        </CustomCell>
+        <View style={styles.cellSeparatorBackground}>
+          <View style={styles.cellSeparatorLine}></View>
         </View>
-      </CustomCell>
+      </View>
       /* jshint ignore:start */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  cellSeparatorBackground: {
+    backgroundColor: '#fff',
+  },
+  cellSeparatorLine: {
+    marginLeft: 15,
+    height: 0.5,
+    backgroundColor: '#c8c7cc',
   }
 });
 

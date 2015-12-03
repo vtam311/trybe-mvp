@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-02 16:04:38
+* @Last Modified time: 2015-12-02 16:09:01
 */
 
 'use strict';
@@ -51,13 +51,12 @@ var CreateWorkout = React.createClass({
     var exercisesOfPart1 = this.state.workout.parts[0].exercises
     .map((exercise, index) =>
       /* jshint ignore:start */
-      <View style={styles.customCellBackground}>
+      <View style={styles.customCellBackground} key={index}>
         <CreateExerciseCell
           exercise={exercise}
           partIdx={TEMP_PART_INDEX}
           exIdx={index}
-          openExerciseModal={this.props.openExerciseModal}
-          key={index} />
+          openExerciseModal={this.props.openExerciseModal} />
         <View style={styles.cellSeparatorBackground}>
           <View style={styles.cellSeparatorLine}></View>
         </View>
