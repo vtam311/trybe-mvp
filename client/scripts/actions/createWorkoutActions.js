@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 18:04:38
+* @Last Modified time: 2015-12-03 15:51:04
 */
 
 'use strict';
@@ -40,66 +40,66 @@ var createWorkoutActions = {
       }
     });
   },
-  setExerciseName: function(exName, partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_EXERCISE_NAME,
-      data: {
-        exName: exName,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setReps: function(reps, partIdx, exIdx) {
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_REPS,
-      data: {
-        reps: reps,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setLoad: function(load, partIdx, exIdx) {
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_LOAD,
-      data: {
-        load: load,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setHold: function(hold, partIdx, exIdx) {
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_HOLD,
-      data: {
-        hold: hold,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setDist: function(dist, partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_DIST,
-      data: {
-        dist: dist,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setDistUnit: function(unit, partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_DISTUNIT,
-      data: {
-        unit: unit,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  }
+  // setExerciseName: function(exName, partIdx, exIdx){
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_EXERCISE_NAME,
+  //     data: {
+  //       exName: exName,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // },
+  // setReps: function(reps, partIdx, exIdx) {
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_REPS,
+  //     data: {
+  //       reps: reps,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // },
+  // setLoad: function(load, partIdx, exIdx) {
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_LOAD,
+  //     data: {
+  //       load: load,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // },
+  // setHold: function(hold, partIdx, exIdx) {
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_HOLD,
+  //     data: {
+  //       hold: hold,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // },
+  // setDist: function(dist, partIdx, exIdx){
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_DIST,
+  //     data: {
+  //       dist: dist,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // },
+  // setDistUnit: function(unit, partIdx, exIdx){
+  //   AppDispatcher.handleAction({
+  //     actionType: createWorkoutConstants.SET_DISTUNIT,
+  //     data: {
+  //       unit: unit,
+  //       partIdx: partIdx,
+  //       exIdx: exIdx
+  //     }
+  //   });
+  // }
 };
 
 module.exports = createWorkoutActions;
