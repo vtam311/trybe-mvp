@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:43:04
+* @Last Modified time: 2015-12-04 08:56:50
 */
 
 'use strict';
@@ -11,16 +11,20 @@
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var editExerciseConstants = require('../constants/editExerciseConstants');
+
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
+var copyObjHelper = require('../common/copyObjectHelper');
 
 var _store = {
-  //will be filled by createExerciseModal's targetExercise
   exercise: null
 };
 
 var initializeExercise = function(data) {
-  var ex = data.exercise;
+  //Initializes exercise with createWorkoutStore's targetExercise
+  //Using copyObjHelper to prevent changes in this store to auto
+  //change in createWorkoutStore, as obj would reference memory
+  var ex = copyObjHelper(data.exercise);
   _store.exercise = ex;
 };
 
