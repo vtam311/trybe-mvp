@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:50:06
+* @Last Modified time: 2015-12-04 10:57:36
 */
 
 'use strict';
@@ -24,7 +24,8 @@ var {
   SegmentedControlIOS,
 } = React;
 
-var RepPicker = require('./pickers/repPicker');
+var SelectedSegment = require('./selectedSegment');
+// var RepPicker = require('./pickers/repPicker');
 
 //Gets device height for animating app
 var {
@@ -46,6 +47,7 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
+      segmCtrlVal: 0,
       //Initially set currentExercise to reflect targetExercise
       //so downstream components can load with data. However,
       //currentExercise will effectively reflect editExerciseStore's exercise
@@ -76,6 +78,14 @@ var CreateExerciseModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
+  setSegmCtrlVal: function(val){
+    //Depending on the selected val, the picker should change
+    //Picker should be a variable. Selected Val can be a state.
+    console.log('setSegmCtrlVal val', val);
+    this.setState({
+      segmCtrlval: val
+    });
+  },
   saveExercise: function(){
     //save exercise from editExerciseStore into createWorkoutStore
     var exercise = this.state.currentExercise;
@@ -83,6 +93,9 @@ var CreateExerciseModal = React.createClass({
     this.closeModal();
   },
   render: function() {
+    //Set picker based on the selected segmented.
+    //Should switch statement be here, or in a sep component?
+
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <View style={styles.container}>
@@ -106,12 +119,15 @@ var CreateExerciseModal = React.createClass({
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}
-                  selectedIndex={0}
+                  selectedIndex={this.state.segmCtrlVal}
+                  //click changes state's segControlIdx
+                  onValueChange={(val) => this.setSegmCtrlVal(val)}
                   tintColor={'#4DBA97'}/>
-                <RepPicker
+                <SelectedSegment
+                  segmCtrlVal={this.state.segmCtrlVal}
                   partIdx={this.state.partIdx}
                   exIdx={this.state.exIdx}
-                  currentExercise={this.state.currentExercise}/>
+                  currentExercise={this.state.currentExercise} />
               </View>
             </View>
           </View>
