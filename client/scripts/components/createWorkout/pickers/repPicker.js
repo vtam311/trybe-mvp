@@ -2,14 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:21:53
+* @Last Modified time: 2015-12-04 08:43:47
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
 
 var React = require('react-native');
 
@@ -31,14 +30,12 @@ var RepPicker = React.createClass({
       reps: this.props.currentExercise.reps
     };
   },
-  renderReps: function(reps, partIdx, exIdx){
-    this.setState({reps: reps});
-  },
-  saveReps: function(reps, partIdx, exIdx){
-    //Save reps after clicking 'Done' - otherwise
-    //leave currentExercise as is.
+  setReps: function(reps, partIdx, exIdx){
+    //Any changes to reps in picker should be reflected in editExerciseStore
+    //If user saves, editExerciseStore's exercise replaces targetExercise in createWorkoutStore
     if(reps === 'Not Selected') reps = null;
-    createWorkoutActions.setReps(reps, partIdx, exIdx);
+    editExerciseActions.setReps(reps, partIdx, exIdx);
+    this.setState({reps: reps});
   },
   showChoiceLabels: function(choice){
     //If the user selected a number from REP_CHOICES, stringify
@@ -55,7 +52,7 @@ var RepPicker = React.createClass({
     return (
       <PickerIOS
         selectedValue={this.state.reps}
-        onValueChange={(val) => this.renderReps(val, this.props.partIdx, this.props.exIdx)}>
+        onValueChange={(val) => this.setReps(val, this.props.partIdx, this.props.exIdx)}>
         {REP_CHOICES.map((choice) =>
           <PickerItemIOS
             key={choice}

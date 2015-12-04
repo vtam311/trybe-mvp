@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:26:43
+* @Last Modified time: 2015-12-04 08:43:04
 */
 
 'use strict';
@@ -30,9 +30,9 @@ var setExerciseName = function(data) {
 };
 
 var setReps = function(data) {
-  //To do: correct the exercise name
   var reps = data.reps;
   _store.exercise.reps = reps;
+  console.log('editExerciseStore setReps reps', _store.exercise.reps);
 };
 
 var setLoad = function(data) {
@@ -64,7 +64,7 @@ var editExerciseStore = Object.assign({}, EventEmitter.prototype, {
   },
   //Target exercise being modified or created.
   //Used for reference in createExerciseModal
-  getTargetExercise: function(){
+  getExercise: function(){
     return _store.exercise;
   }
 });

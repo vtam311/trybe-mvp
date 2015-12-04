@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:22:22
+* @Last Modified time: 2015-12-04 08:38:25
 */
 
 'use strict';
@@ -50,7 +50,9 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
-      currentExercise: null
+      //Initially set currentExercise to reflect targetExercise
+      //so downstream components can load with data.
+      currentExercise: createWorkoutStore.getTargetExercise(),
     };
   },
   componentDidMount: function() {
@@ -60,7 +62,7 @@ var CreateExerciseModal = React.createClass({
     }).start();
     editExerciseStore.addChangeListener(this._onChange);
 
-    //use createWorkoutStore's targetExercise to initialize currentExercise
+    //initialize currentExercise with targetExercise
     editExerciseActions.initializeExercise(this.state.targetExercise);
 
     //Depr 12.4.15
@@ -73,9 +75,9 @@ var CreateExerciseModal = React.createClass({
     // createWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
+    console.log('createExerciseModal _onChange called from componentDidMount');
     this.setState({
-      //Constantly reflects workout in editExerciseStore
-      currentExercise: editExerciseStore.getWorkout()
+      currentExercise: editExerciseStore.getExercise()
 
       //Depr 12.4.15
       // partIdx: createWorkoutStore.getTargetPartIdx(),
