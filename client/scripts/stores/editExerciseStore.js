@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:56:50
+* @Last Modified time: 2015-12-04 09:56:01
 */
 
 'use strict';
@@ -21,9 +21,11 @@ var _store = {
 };
 
 var initializeExercise = function(data) {
-  //Initializes exercise with createWorkoutStore's targetExercise
+  //Initializes exercise with exercise user selected
+  //Retrieved from createWorkoutStore's targetExercise
   //Using copyObjHelper to prevent changes in this store to auto
-  //change in createWorkoutStore, as obj would reference memory
+  //change in createWorkoutStore, as assignment would reference
+  //same place in memory
   var ex = copyObjHelper(data.exercise);
   _store.exercise = ex;
 };
@@ -66,9 +68,9 @@ var editExerciseStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  //Target exercise being modified or created.
-  //Used for reference in createExerciseModal
   getExercise: function(){
+    //Exercise being modified or created.
+    //Used in createExerciseModal
     return _store.exercise;
   }
 });

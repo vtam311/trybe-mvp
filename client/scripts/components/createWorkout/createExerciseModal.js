@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:39:16
+* @Last Modified time: 2015-12-04 09:50:06
 */
 
 'use strict';
@@ -31,18 +31,13 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-//Architect the system: a temp exercise obj in editExerciseStore
-//that, when CreateExerciseModal loads, copies the target exercise
-//obj from createWorkoutStore (can't be a prop, as modal exists in root).
-  //editExerciseStore is loaded with createExerciseStore's targetExercise
-  //currentExercise, from editExerciseStore, should be what I use to work off of
-//On any edits from repPicker, the temp exercise obj gets updated.
-  //the state of the exercise obj should be reflected from editExerciseStore
-  //use editExerciseActions to update exercise obj
-//On save, the temp exercise obj overwrites the target exercise obj
-  //this state's workout can be used to overwrite createExerciseStore's
-  //reference spot for targetExercise
-//On cancel, nothing changes.
+//Big Picture:
+//This modal lets user edit or create a new exercise.
+//If editing an existing exercise, we copy that exercise from createWorkoutStore
+//and store a temp exercise obj in editExerciseStore which reflects that copy.
+//All changes from user to the exercise go to the editExerciseStore.
+//When user saves changes, the exercise obj in editExerciseStore overwrites
+//the original targetExercise in createWorkoutStore.
 
 var CreateExerciseModal = React.createClass({
   getInitialState: function() {
@@ -52,7 +47,8 @@ var CreateExerciseModal = React.createClass({
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
       //Initially set currentExercise to reflect targetExercise
-      //so downstream components can load with data.
+      //so downstream components can load with data. However,
+      //currentExercise will effectively reflect editExerciseStore's exercise
       currentExercise: createWorkoutStore.getTargetExercise(),
     };
   },
@@ -63,27 +59,15 @@ var CreateExerciseModal = React.createClass({
     }).start();
     editExerciseStore.addChangeListener(this._onChange);
 
-    //initialize currentExercise with targetExercise
+    //initialize currentExercise with the targetExercise user is editting
     editExerciseActions.initializeExercise(this.state.targetExercise);
-
-    //Depr 12.4.15
-    // createWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
     editExerciseStore.removeChangeListener(this._onChange);
-
-    //Depr 12.4.15
-    // createWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    console.log('createExerciseModal _onChange called from componentDidMount');
     this.setState({
       currentExercise: editExerciseStore.getExercise()
-
-      //Depr 12.4.15
-      // partIdx: createWorkoutStore.getTargetPartIdx(),
-      // exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      // targetExercise: createWorkoutStore.getTargetExercise()
     });
   },
   closeModal: function() {
@@ -136,8 +120,6 @@ var CreateExerciseModal = React.createClass({
     )
   }
 });
-
-//Note to self: underline in textInput is not showing up
 
 var styles = StyleSheet.create({
   modal: {

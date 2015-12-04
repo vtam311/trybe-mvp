@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:39:45
+* @Last Modified time: 2015-12-04 09:53:38
 */
 
 'use strict';
@@ -74,8 +74,8 @@ var WORKOUT_TEMPLATE = {
 
 var _store = {
   workout: WORKOUT_TEMPLATE,
-  targetPartIdx: 0, //default val for editing workout
-  targetExerciseIdx: 0, //default val for editing workout
+  targetPartIdx: 0, //set to null once setTargetPartIdx is written
+  targetExerciseIdx: null,
 };
 
 var addExercise = function(data){
@@ -91,14 +91,15 @@ var addPart = function(){
 var setTargetExerciseIdx = function(data){
   var partIdx = data.partIdx;
   var exIdx;
-  //If creating a new exercise, exIdx will not be supplied.
-  //So default to next index val
+  //If creating a new exercise, exIdx will not be supplied,
+  //and addExercise will have already been called.
+  //So set to last index val of exercises array
   if(data.exIdx === undefined) {
     exIdx = _store.workout.parts[partIdx].exercises.length - 1;
-    //Error occurs here, after saveExercise. Why?? This shouldn't be called.
   } else {
     exIdx = data.exIdx;
   }
+
   _store.targetExerciseIdx = exIdx;
 };
 
@@ -108,48 +109,6 @@ var saveExercise = function(data){
   var exercise = data.exercise;
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
 };
-
-// var findExercise = function(data){
-//   var partIdx = data.partIdx;
-//   var exIdx = data.exIdx;
-//   return _store.workout.parts[partIdx].exercises[exIdx];
-// };
-
-// var setExerciseName = function(data) {
-//   var exName = data.exName;
-//   var targetExercise = findExercise(data);
-//   targetExercise.name = exName;
-// };
-
-// var setReps = function(data) {
-//   var reps = data.reps;
-//   var targetExercise = findExercise(data);
-//   targetExercise.reps = reps;
-// };
-
-// var setLoad = function(data) {
-//   var load = data.load;
-//   var targetExercise = findExercise(data);
-//   targetExercise.load.val = load;
-// };
-
-// var setHold = function(data) {
-//   var hold = data.hold;
-//   var targetExercise = findExercise(data);
-//   targetExercise.hold = hold;
-// };
-
-// var setDist = function(data) {
-//   var dist = data.dist;
-//   var targetExercise = findExercise(data);
-//   targetExercise.distance.val = dist;
-// };
-
-// var setDistUnit = function(data) {
-//   var unit = data.unit;
-//   var targetExercise = findExercise(data);
-//   targetExercise.distance.units = unit;
-// };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
@@ -167,9 +126,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getTargetExerciseIdx: function(){
     return _store.targetExerciseIdx;
   },
-  //Target exercise being modified or created.
-  //Used for reference in createExerciseModal
   getTargetExercise: function(){
+    //Target exercise being modified or created.
+    //Used for reference in createExerciseModal
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
     return _store.workout.parts[partIdx].exercises[exIdx];
@@ -189,30 +148,6 @@ AppDispatcher.register(function(payload){
     case createWorkoutConstants.SAVE_EXERCISE:
       saveExercise(action.data);
       break;
-    // case createWorkoutConstants.SET_EXERCISE_NAME:
-    //   setExerciseName(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case createWorkoutConstants.SET_REPS:
-    //   setReps(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case createWorkoutConstants.SET_LOAD:
-    //   setLoad(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case createWorkoutConstants.SET_HOLD:
-    //   setHold(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case createWorkoutConstants.SET_DIST:
-    //   setDist(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
-    // case createWorkoutConstants.SET_DISTUNIT:
-    //   setDistUnit(action.data);
-    //   createWorkoutStore.emit(CHANGE_EVENT);
-    //   break;
     default:
       return true;
   }
