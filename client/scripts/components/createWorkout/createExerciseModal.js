@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 10:57:36
+* @Last Modified time: 2015-12-04 11:18:29
 */
 
 'use strict';
@@ -80,10 +80,14 @@ var CreateExerciseModal = React.createClass({
   },
   setSegmCtrlVal: function(val){
     //Depending on the selected val, the picker should change
-    //Picker should be a variable. Selected Val can be a state.
-    console.log('setSegmCtrlVal val', val);
+    var seg;
+    if(val === 'Reps') seg = 0;
+    if(val === 'Weight') seg = 1;
+    if(val === 'Distance') seg = 2;
+    if(val === 'Time') seg = 3;
+
     this.setState({
-      segmCtrlval: val
+      segmCtrlVal: seg
     });
   },
   saveExercise: function(){
@@ -93,8 +97,6 @@ var CreateExerciseModal = React.createClass({
     this.closeModal();
   },
   render: function() {
-    //Set picker based on the selected segmented.
-    //Should switch statement be here, or in a sep component?
 
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
