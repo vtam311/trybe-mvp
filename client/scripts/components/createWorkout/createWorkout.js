@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-03 22:47:05
+* @Last Modified time: 2015-12-04 09:34:11
 */
 
 'use strict';
@@ -48,7 +48,7 @@ var CreateWorkout = React.createClass({
   render: function(){
     var TEMP_PART_INDEX = 0;
 
-    var exercisesOfPart1 = this.state.workout.parts[0].exercises
+    var exercisesOfPart1 = this.state.workout.parts[TEMP_PART_INDEX].exercises
     .map((exercise, index) =>
       /* jshint ignore:start */
       <View style={styles.customCellBackground} key={index}>

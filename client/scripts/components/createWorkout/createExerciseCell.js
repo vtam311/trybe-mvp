@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-11-30 18:32:32
+* @Last Modified time: 2015-12-04 09:33:36
 */
 
 'use strict';
@@ -31,7 +31,6 @@ var CreateExerciseCell = React.createClass({
     this.props.openExerciseModal();
   },
   render: function(){
-    var exercise = this.props.exercise;
 
     return (
       /* jshint ignore:start */

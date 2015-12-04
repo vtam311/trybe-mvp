@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:38:25
+* @Last Modified time: 2015-12-04 09:39:16
 */
 
 'use strict';
 
 var React = require('react-native');
 var createWorkoutStore = require('../../stores/createWorkoutStore');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 var editExerciseActions = require('../../actions/editExerciseActions');
 var editExerciseStore = require('../../stores/editExerciseStore');
 
@@ -93,6 +94,8 @@ var CreateExerciseModal = React.createClass({
   },
   saveExercise: function(){
     //save exercise from editExerciseStore into createWorkoutStore
+    var exercise = this.state.currentExercise;
+    createWorkoutActions.saveExercise(exercise);
     this.closeModal();
   },
   render: function() {
@@ -105,7 +108,7 @@ var CreateExerciseModal = React.createClass({
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Exercise</Text>
-              <TouchableOpacity onPress={this.closeModal}>
+              <TouchableOpacity onPress={this.saveExercise}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>

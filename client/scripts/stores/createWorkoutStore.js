@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:40:08
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-04 09:39:45
 */
 
 'use strict';
@@ -95,18 +95,25 @@ var setTargetExerciseIdx = function(data){
   //So default to next index val
   if(data.exIdx === undefined) {
     exIdx = _store.workout.parts[partIdx].exercises.length - 1;
+    //Error occurs here, after saveExercise. Why?? This shouldn't be called.
   } else {
     exIdx = data.exIdx;
   }
   _store.targetExerciseIdx = exIdx;
-  console.log('createWorkoutStore setTargetExerciseIdx exIdx', exIdx);
 };
 
-var findExercise = function(data){
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  return _store.workout.parts[partIdx].exercises[exIdx];
+var saveExercise = function(data){
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  var exercise = data.exercise;
+  _store.workout.parts[partIdx].exercises[exIdx] = exercise;
 };
+
+// var findExercise = function(data){
+//   var partIdx = data.partIdx;
+//   var exIdx = data.exIdx;
+//   return _store.workout.parts[partIdx].exercises[exIdx];
+// };
 
 // var setExerciseName = function(data) {
 //   var exName = data.exName;
@@ -165,7 +172,6 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getTargetExercise: function(){
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
-    console.log('createWorkoutStore getTargetExercise exIdx', exIdx);
     return _store.workout.parts[partIdx].exercises[exIdx];
   }
 });
@@ -176,8 +182,12 @@ AppDispatcher.register(function(payload){
     case createWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
       break;
+    //Add ADD_PART
     case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
       setTargetExerciseIdx(action.data);
+      break;
+    case createWorkoutConstants.SAVE_EXERCISE:
+      saveExercise(action.data);
       break;
     // case createWorkoutConstants.SET_EXERCISE_NAME:
     //   setExerciseName(action.data);

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:41:38
+* @Last Modified time: 2015-12-04 09:29:18
 */
 
 'use strict';
@@ -39,7 +39,15 @@ var createWorkoutActions = {
         exIdx: exIdx
       }
     });
-  }
+  },
+  saveExercise: function(exercise){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SAVE_EXERCISE,
+      data: {
+        exercise: exercise
+      }
+    });
+  },
 };
 
 module.exports = createWorkoutActions;

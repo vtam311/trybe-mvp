@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 17:30:03
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-04 09:30:12
 */
 
 'use strict';
@@ -20,12 +20,12 @@ import {CustomCell} from 'react-native-tableview-simple';
 
 var AddExerciseCell = React.createClass({
   _handleAddExercisePress: function(){
-    //pulls up modal on screen
-    this.props.openExerciseModal();
     //adds exercise object to createWorkoutStore
     createWorkoutActions.addExercise(this.props.partIdx);
     //allows for any adjustments to directly alter that exercise object
     createWorkoutActions.setTargetExerciseIdx(this.props.partIdx);
+    //pulls up modal on screen
+    this.props.openExerciseModal();
   },
 
   render: function(){
