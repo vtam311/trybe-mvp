@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-11-30 17:58:14
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-03 15:02:19
 */
 
 'use strict';
@@ -44,9 +44,6 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise()
-      //Clicking on any existing exercise brings up the most recently
-      //created exercise. It should bring up the one that's clicked.
-      //Fix: Clicking on each exercise cell should update the part and ex idx.
     };
   },
   componentDidMount: function() {
@@ -96,6 +93,7 @@ var CreateExerciseModal = React.createClass({
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}
+                  selectedIndex={0}
                   tintColor={'#4DBA97'}/>
                 <RepPicker
                   partIdx={this.state.partIdx}
