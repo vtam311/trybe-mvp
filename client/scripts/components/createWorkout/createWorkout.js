@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:54:47
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-03 22:47:05
 */
 
 'use strict';
@@ -10,8 +10,6 @@
 var React = require('react-native');
 var createWorkoutActions = require('../../actions/createWorkoutActions');
 var createWorkoutStore = require('../../stores/createWorkoutStore');
-var editExerciseActions = require('../../actions/editExerciseActions');
-var editExerciseStore = require('../../stores/editExerciseStore');
 
 var {
   StyleSheet,

@@ -1,14 +1,16 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:13:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-03 23:04:52
 */
 
 'use strict';
 
 var React = require('react-native');
 var createWorkoutStore = require('../../stores/createWorkoutStore');
+var editExerciseActions = require('../../actions/editExerciseActions');
+var editExerciseStore = require('../../stores/editExerciseStore');
 
 var {
   StyleSheet,
@@ -37,13 +39,26 @@ var EXERCISE_TEMPLATE = {
   url: null
 };
 
+//Architect the system: a temp exercise obj in editExerciseStore
+//that, when CreateExerciseModal loads, copies the target exercise
+//obj from createExerciseStore.
+  //editExerciseStore is loaded with createExerciseStore's targetExercise
+  //currentExercise, from editExerciseStore, should be what I use to work off of
+//On any edits from repPicker, the temp exercise obj gets updated.
+  //the state of the exercise obj should be reflected from editExerciseStore
+  //use editExerciseActions to update exercise obj
+//On save, the temp exercise obj overwrites the target exercise obj
+  //this state's workout can be used to overwrite createExerciseStore's
+  //reference spot for targetExercise
+//On cancel, nothing changes.
+
 var CreateExerciseModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      targetExercise: createWorkoutStore.getTargetExercise()
+      targetExercise: createWorkoutStore.getTargetExercise(),
     };
   },
   componentDidMount: function() {
@@ -68,6 +83,10 @@ var CreateExerciseModal = React.createClass({
       duration: 100,
       toValue: deviceHeight
     }).start(this.props.closeModal);
+  },
+  saveExercise: function(){
+    //save exercise from editExerciseStore into createWorkoutStore
+    this.closeModal();
   },
   render: function() {
     return (

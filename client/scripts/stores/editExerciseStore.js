@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:48:08
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-03 22:58:28
 */
 
 'use strict';
@@ -14,17 +14,10 @@ var editExerciseConstants = require('../constants/editExerciseConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
-var EXERCISE_TEMPLATE = {
-  name: null,
-  reps: null,
-  load: {units: 'lbs', val: null},
-  time: null,
-  distance: {units: null, val: null},
-  url: null
-};
-
 var _store = {
-  exercise: EXERCISE_TEMPLATE
+  //will be filled by createExerciseModal's
+  //targetExercise
+  exercise: null
 };
 
 var setExerciseName = function(data) {
