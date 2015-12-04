@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-03 23:04:52
+* @Last Modified time: 2015-12-04 08:22:22
 */
 
 'use strict';
@@ -30,18 +30,9 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-var EXERCISE_TEMPLATE = {
-  name: null,
-  reps: null,
-  load: {units: 'lbs', val: null},
-  time: null,
-  distance: {units: null, val: null},
-  url: null
-};
-
 //Architect the system: a temp exercise obj in editExerciseStore
 //that, when CreateExerciseModal loads, copies the target exercise
-//obj from createExerciseStore.
+//obj from createWorkoutStore (can't be a prop, as modal exists in root).
   //editExerciseStore is loaded with createExerciseStore's targetExercise
   //currentExercise, from editExerciseStore, should be what I use to work off of
 //On any edits from repPicker, the temp exercise obj gets updated.
@@ -59,6 +50,7 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
+      currentExercise: null
     };
   },
   componentDidMount: function() {
@@ -66,16 +58,29 @@ var CreateExerciseModal = React.createClass({
       duration: 100,
       toValue: 0
     }).start();
-    createWorkoutStore.addChangeListener(this._onChange);
+    editExerciseStore.addChangeListener(this._onChange);
+
+    //use createWorkoutStore's targetExercise to initialize currentExercise
+    editExerciseActions.initializeExercise(this.state.targetExercise);
+
+    //Depr 12.4.15
+    // createWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
+    editExerciseStore.removeChangeListener(this._onChange);
+
+    //Depr 12.4.15
+    // createWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      partIdx: createWorkoutStore.getTargetPartIdx(),
-      exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      targetExercise: createWorkoutStore.getTargetExercise()
+      //Constantly reflects workout in editExerciseStore
+      currentExercise: editExerciseStore.getWorkout()
+
+      //Depr 12.4.15
+      // partIdx: createWorkoutStore.getTargetPartIdx(),
+      // exIdx: createWorkoutStore.getTargetExerciseIdx(),
+      // targetExercise: createWorkoutStore.getTargetExercise()
     });
   },
   closeModal: function() {
@@ -117,7 +122,7 @@ var CreateExerciseModal = React.createClass({
                 <RepPicker
                   partIdx={this.state.partIdx}
                   exIdx={this.state.exIdx}
-                  targetExercise={this.state.targetExercise}/>
+                  currentExercise={this.state.currentExercise}/>
               </View>
             </View>
           </View>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-03 22:58:28
+* @Last Modified time: 2015-12-04 08:26:43
 */
 
 'use strict';
@@ -15,9 +15,13 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  //will be filled by createExerciseModal's
-  //targetExercise
+  //will be filled by createExerciseModal's targetExercise
   exercise: null
+};
+
+var initializeExercise = function(data) {
+  var ex = data.exercise;
+  _store.exercise = ex;
 };
 
 var setExerciseName = function(data) {
@@ -68,6 +72,10 @@ var editExerciseStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case editExerciseConstants.INITIALIZE_EXERCISE:
+      initializeExercise(action.data);
+      editExerciseStore.emit(CHANGE_EVENT);
+      break;
     case editExerciseConstants.SET_EXERCISE_NAME:
       setExerciseName(action.data);
       editExerciseStore.emit(CHANGE_EVENT);

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:23:35
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-04 08:21:53
 */
 
 'use strict';
@@ -28,7 +28,7 @@ var REP_CHOICES = [
 var RepPicker = React.createClass({
   getInitialState: function() {
     return {
-      reps: this.props.targetExercise.reps
+      reps: this.props.currentExercise.reps
     };
   },
   renderReps: function(reps, partIdx, exIdx){
@@ -36,7 +36,7 @@ var RepPicker = React.createClass({
   },
   saveReps: function(reps, partIdx, exIdx){
     //Save reps after clicking 'Done' - otherwise
-    //leave targetExercise as is.
+    //leave currentExercise as is.
     if(reps === 'Not Selected') reps = null;
     createWorkoutActions.setReps(reps, partIdx, exIdx);
   },
@@ -50,7 +50,7 @@ var RepPicker = React.createClass({
     }
   },
   render: function() {
-    console.log('repPicker targetExercise', this.props.targetExercise);
+    console.log('repPicker currentExercise', this.props.currentExercise);
 
     return (
       <PickerIOS

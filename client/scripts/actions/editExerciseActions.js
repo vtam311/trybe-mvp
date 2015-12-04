@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-03 15:52:31
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-04 08:24:49
 */
 
 'use strict';
@@ -11,6 +11,14 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var editExerciseConstants = require('../constants/editExerciseConstants');
 
 var editExerciseActions = {
+  initializeExercise: function(exercise){
+    AppDispatcher.handleAction({
+      actionType: editExerciseConstants.INITIALIZE_EXERCISE,
+      data: {
+        exercise: exercise
+      }
+    });
+  },
   setExerciseName: function(exName, partIdx, exIdx){
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_EXERCISE_NAME,
