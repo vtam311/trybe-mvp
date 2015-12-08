@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 08:26:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 08:29:40
 */
 
 'use strict';
@@ -34,7 +34,7 @@ var LoadPicker = React.createClass({
     editExerciseActions.setLoadVal(val);
 
     //Update picker's state
-    this.setState({val: val});
+    this.setState({loadVal: val});
   },
   showChoiceLabels: function(choice){
     //If user selects number from WEIGHT_CHOICES, stringify

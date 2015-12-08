@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 08:26:50
+* @Last Modified time: 2015-12-08 08:28:09
 */
 
 'use strict';
@@ -30,9 +30,7 @@ var RepPicker = React.createClass({
       reps: this.props.currentExercise.reps
     };
   },
-  setReps: function(reps, partIdx, exIdx){
-    //Any changes to reps in picker should be reflected in editExerciseStore
-    //If user saves, editExerciseStore's exercise replaces targetExercise in createWorkoutStore
+  setReps: function(reps){
     if(reps === 'No Reps') reps = null;
     editExerciseActions.setReps(reps);
     this.setState({reps: reps});
