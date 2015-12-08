@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 08:22:32
+* @Last Modified time: 2015-12-08 09:29:44
 */
 
 'use strict';
@@ -43,6 +43,11 @@ var setReps = function(data) {
 var setLoadVal = function(data) {
   var load = data.load;
   _store.exercise.load.val = load;
+};
+
+var setLoadUnits = function(data) {
+  var units = data.units;
+  _store.exercise.load.units = units;
 };
 
 var setHold = function(data) {
@@ -91,6 +96,10 @@ AppDispatcher.register(function(payload){
       break;
     case editExerciseConstants.SET_LOAD_VAL:
       setLoadVal(action.data);
+      editExerciseStore.emit(CHANGE_EVENT);
+      break;
+    case editExerciseConstants.SET_LOAD_UNITS:
+      setLoadUnits(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     case editExerciseConstants.SET_HOLD:

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 08:28:09
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 09:16:52
 */
 
 'use strict';
@@ -30,11 +30,6 @@ var RepPicker = React.createClass({
       reps: this.props.currentExercise.reps
     };
   },
-  setReps: function(reps){
-    if(reps === 'No Reps') reps = null;
-    editExerciseActions.setReps(reps);
-    this.setState({reps: reps});
-  },
   showChoiceLabels: function(choice){
     //If the user selected a number from REP_CHOICES, stringify
     //for display
@@ -44,11 +39,16 @@ var RepPicker = React.createClass({
       return choice;
     }
   },
+  _setReps: function(reps){
+    if(reps === 'No Reps') reps = null;
+    editExerciseActions.setReps(reps);
+    this.setState({reps: reps});
+  },
   render: function() {
     return (
       <PickerIOS
         selectedValue={this.state.reps}
-        onValueChange={(val) => this.setReps(val)}>
+        onValueChange={(val) => this._setReps(val)}>
         {REP_CHOICES.map((choice) =>
           <PickerItemIOS
             key={choice}

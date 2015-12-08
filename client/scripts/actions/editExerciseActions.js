@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 08:22:05
+* @Last Modified time: 2015-12-08 09:38:26
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var editExerciseActions = {
       }
     });
   },
-  setReps: function(reps, partIdx, exIdx) {
+  setReps: function(reps) {
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_REPS,
       data: {
@@ -37,11 +37,20 @@ var editExerciseActions = {
       }
     });
   },
-  setLoadVal: function(load, partIdx, exIdx) {
+  setLoadVal: function(load) {
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_LOAD_VAL,
       data: {
         load: load,
+      }
+    });
+  },
+  setLoadUnits: function(units) {
+    console.log('editExerciseActions setLoadUnits called');
+    AppDispatcher.handleAction({
+      actionType: editExerciseConstants.SET_LOAD_UNITS,
+      data: {
+        units: units,
       }
     });
   },
