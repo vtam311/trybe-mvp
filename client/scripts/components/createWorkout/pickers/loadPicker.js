@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 11:16:35
+* @Last Modified time: 2015-12-08 08:24:31
 */
 
 'use strict';
@@ -22,18 +22,18 @@ var WEIGHT_CHOICES = ['No Weight',5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80
 var LoadPicker = React.createClass({
   getInitialState: function() {
     return {
-      val: this.props.currentExercise.load.val,
+      loadVal: this.props.currentExercise.load.val,
       //change units here too?
       //units: this.props.currentExist.load.units
     };
   },
   setLoadVal: function(val){
-    var partIdx = this.props.partIdx;
-    var exIdx = this.props.exIdx;
-
     if(val === 'Not Selected') val = null;
-    //To do:
-    // editExerciseActions.setLoadVal(val, partIdx, exIdx);
+
+    //Set load val in editExerciseStore
+    editExerciseActions.setLoadVal(val);
+
+    //Update picker's state
     this.setState({val: val});
   },
   showChoiceLabels: function(choice){
@@ -49,7 +49,7 @@ var LoadPicker = React.createClass({
 
     return (
       <PickerIOS
-        selectedValue={this.state.reps}
+        selectedValue={this.state.loadVal}
         onValueChange={(val) => this.setLoadVal(val)}>
         {WEIGHT_CHOICES.map((choice) =>
           <PickerItemIOS

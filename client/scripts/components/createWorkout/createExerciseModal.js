@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 11:18:29
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 08:15:55
 */
 
 'use strict';
@@ -32,8 +32,7 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-//Big Picture:
-//This modal lets user edit or create a new exercise.
+//Gist: This modal lets user edit or create a new exercise.
 //If editing an existing exercise, we copy that exercise from createWorkoutStore
 //and store a temp exercise obj in editExerciseStore which reflects that copy.
 //All changes from user to the exercise go to the editExerciseStore.
@@ -97,6 +96,10 @@ var CreateExerciseModal = React.createClass({
     this.closeModal();
   },
   render: function() {
+    //Gist: Renders a modal for creating or editing an exercise object
+    //SelectedSegment component shows a PickerIOS component to edit
+    //either reps, load, time, distance, etc. based on user's selection
+    //from SegmentedControlIOS
 
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>

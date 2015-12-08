@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:56:01
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 08:22:32
 */
 
 'use strict';
@@ -38,10 +38,9 @@ var setExerciseName = function(data) {
 var setReps = function(data) {
   var reps = data.reps;
   _store.exercise.reps = reps;
-  console.log('editExerciseStore setReps reps', _store.exercise.reps);
 };
 
-var setLoad = function(data) {
+var setLoadVal = function(data) {
   var load = data.load;
   _store.exercise.load.val = load;
 };
@@ -90,8 +89,8 @@ AppDispatcher.register(function(payload){
       setReps(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
-    case editExerciseConstants.SET_LOAD:
-      setLoad(action.data);
+    case editExerciseConstants.SET_LOAD_VAL:
+      setLoadVal(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     case editExerciseConstants.SET_HOLD:

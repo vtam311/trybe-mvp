@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 08:24:49
+* @Last Modified time: 2015-12-08 08:22:05
 */
 
 'use strict';
@@ -34,18 +34,14 @@ var editExerciseActions = {
       actionType: editExerciseConstants.SET_REPS,
       data: {
         reps: reps,
-        partIdx: partIdx,
-        exIdx: exIdx
       }
     });
   },
-  setLoad: function(load, partIdx, exIdx) {
+  setLoadVal: function(load, partIdx, exIdx) {
     AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_LOAD,
+      actionType: editExerciseConstants.SET_LOAD_VAL,
       data: {
         load: load,
-        partIdx: partIdx,
-        exIdx: exIdx
       }
     });
   },

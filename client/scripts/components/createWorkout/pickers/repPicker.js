@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 11:08:36
+* @Last Modified time: 2015-12-08 08:19:59
 */
 
 'use strict';
@@ -34,7 +34,7 @@ var RepPicker = React.createClass({
     //Any changes to reps in picker should be reflected in editExerciseStore
     //If user saves, editExerciseStore's exercise replaces targetExercise in createWorkoutStore
     if(reps === 'Not Selected') reps = null;
-    editExerciseActions.setReps(reps, partIdx, exIdx);
+    editExerciseActions.setReps(reps);
     this.setState({reps: reps});
   },
   showChoiceLabels: function(choice){
@@ -50,7 +50,7 @@ var RepPicker = React.createClass({
     return (
       <PickerIOS
         selectedValue={this.state.reps}
-        onValueChange={(val) => this.setReps(val, this.props.partIdx, this.props.exIdx)}>
+        onValueChange={(val) => this.setReps(val)}>
         {REP_CHOICES.map((choice) =>
           <PickerItemIOS
             key={choice}

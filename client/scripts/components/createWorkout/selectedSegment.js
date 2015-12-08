@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 11:16:47
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 08:16:43
 */
 
 'use strict';
@@ -17,6 +17,9 @@ var RepPicker = require('./pickers/repPicker');
 var LoadPicker = require('./pickers/loadPicker');
 
 var SelectedSegment = React.createClass({
+  //Gist: shows a PickerIOS component to edit
+  //either reps, load, time, distance, etc. based on user's selection
+  //from SegmentedControlIOS
   render: function() {
     var picker;
     console.log('SelectedSegment segment', this.props.segmCtrlVal);
