@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 09:40:58
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 09:56:17
 */
 
 'use strict';
@@ -53,7 +53,7 @@ var LoadPicker = React.createClass({
     var unit = choiceObj.newValue;
 
     //Set load units in editExerciseStore
-    editExerciseActions.setLoadUnits(unit);
+    editExerciseActions.setLoadUnit(unit);
 
     //Update picker's state
     this.setState({units: unit});
@@ -66,8 +66,9 @@ var LoadPicker = React.createClass({
         key={index} />
     );
 
+    //bug: selectedValue not pre-rendering default value
     return (
-      <MultiPickerIOS style={styles.pickerContainer}>
+      <MultiPickerIOS>
         <Group selectedValue={this.state.loadVal} onChange={this._setLoadVal}>
           {loadValItems}
         </Group>

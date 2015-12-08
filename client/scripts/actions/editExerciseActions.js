@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 09:38:26
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 09:56:39
 */
 
 'use strict';
@@ -19,13 +19,11 @@ var editExerciseActions = {
       }
     });
   },
-  setExerciseName: function(exName, partIdx, exIdx){
+  setExerciseName: function(exName){
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_EXERCISE_NAME,
       data: {
-        exName: exName,
-        partIdx: partIdx,
-        exIdx: exIdx
+        exName: exName
       }
     });
   },
@@ -33,7 +31,7 @@ var editExerciseActions = {
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_REPS,
       data: {
-        reps: reps,
+        reps: reps
       }
     });
   },
@@ -41,49 +39,43 @@ var editExerciseActions = {
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_LOAD_VAL,
       data: {
-        load: load,
+        load: load
       }
     });
   },
-  setLoadUnits: function(units) {
-    console.log('editExerciseActions setLoadUnits called');
+  setLoadUnit: function(units) {
     AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_LOAD_UNITS,
+      actionType: editExerciseConstants.SET_LOAD_UNIT,
       data: {
-        units: units,
+        units: units
       }
     });
   },
-  setHold: function(hold, partIdx, exIdx) {
+  setDistVal: function(dist){
+    console.log('editExerciseActions setDistVal dist', dist);
+    AppDispatcher.handleAction({
+      actionType: editExerciseConstants.SET_DIST_VAL,
+      data: {
+        dist: dist
+      }
+    });
+  },
+  setDistUnit: function(unit){
+    AppDispatcher.handleAction({
+      actionType: editExerciseConstants.SET_DIST_UNIT,
+      data: {
+        unit: unit
+      }
+    });
+  },
+  setHold: function(hold) {
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_HOLD,
       data: {
-        hold: hold,
-        partIdx: partIdx,
-        exIdx: exIdx
+        hold: hold
       }
     });
   },
-  setDist: function(dist, partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_DIST,
-      data: {
-        dist: dist,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
-  setDistUnit: function(unit, partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_DISTUNIT,
-      data: {
-        unit: unit,
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  }
 };
 
 module.exports = editExerciseActions;

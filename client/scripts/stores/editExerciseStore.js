@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:29:44
+* @Last Modified time: 2015-12-08 09:54:04
 */
 
 'use strict';
@@ -45,7 +45,7 @@ var setLoadVal = function(data) {
   _store.exercise.load.val = load;
 };
 
-var setLoadUnits = function(data) {
+var setLoadUnit = function(data) {
   var units = data.units;
   _store.exercise.load.units = units;
 };
@@ -55,7 +55,7 @@ var setHold = function(data) {
   _store.exercise.hold = hold;
 };
 
-var setDist = function(data) {
+var setDistVal = function(data) {
   var dist = data.dist;
   _store.exercise.distance.val = dist;
 };
@@ -98,20 +98,20 @@ AppDispatcher.register(function(payload){
       setLoadVal(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
-    case editExerciseConstants.SET_LOAD_UNITS:
-      setLoadUnits(action.data);
+    case editExerciseConstants.SET_LOAD_UNIT:
+      setLoadUnit(action.data);
+      editExerciseStore.emit(CHANGE_EVENT);
+      break;
+    case editExerciseConstants.SET_DIST_VAL:
+      setDistVal(action.data);
+      editExerciseStore.emit(CHANGE_EVENT);
+      break;
+    case editExerciseConstants.SET_DIST_UNIT:
+      setDistUnit(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     case editExerciseConstants.SET_HOLD:
       setHold(action.data);
-      editExerciseStore.emit(CHANGE_EVENT);
-      break;
-    case editExerciseConstants.SET_DIST:
-      setDist(action.data);
-      editExerciseStore.emit(CHANGE_EVENT);
-      break;
-    case editExerciseConstants.SET_DISTUNIT:
-      setDistUnit(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     default:

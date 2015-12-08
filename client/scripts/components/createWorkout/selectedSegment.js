@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 08:16:43
+* @Last Modified time: 2015-12-08 09:52:48
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var {
 
 var RepPicker = require('./pickers/repPicker');
 var LoadPicker = require('./pickers/loadPicker');
+var DistPicker = require('./pickers/distancePicker');
 
 var SelectedSegment = React.createClass({
   //Gist: shows a PickerIOS component to edit
@@ -22,20 +23,22 @@ var SelectedSegment = React.createClass({
   //from SegmentedControlIOS
   render: function() {
     var picker;
-    console.log('SelectedSegment segment', this.props.segmCtrlVal);
 
     switch (this.props.segmCtrlVal) {
       case 0:
-        picker = <RepPicker
-                    partIdx={this.props.partIdx}
-                    exIdx={this.props.exIdx}
-                    currentExercise={this.props.currentExercise}/>
+        picker =
+          <RepPicker
+            currentExercise={this.props.currentExercise}/>
         break;
       case 1:
-        picker = <LoadPicker
-                    partIdx={this.props.partIdx}
-                    exIdx={this.props.exIdx}
-                    currentExercise={this.props.currentExercise}/>
+        picker =
+          <LoadPicker
+            currentExercise={this.props.currentExercise}/>
+        break;
+      case 2:
+        picker =
+          <DistPicker
+            currentExercise={this.props.currentExercise}/>
         break;
       default:
         console.log('Selected Segment Unknown');
