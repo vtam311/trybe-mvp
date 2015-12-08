@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 08:24:31
+* @Last Modified time: 2015-12-08 08:26:25
 */
 
 'use strict';
@@ -28,7 +28,7 @@ var LoadPicker = React.createClass({
     };
   },
   setLoadVal: function(val){
-    if(val === 'Not Selected') val = null;
+    if(val === 'No Weight') val = null;
 
     //Set load val in editExerciseStore
     editExerciseActions.setLoadVal(val);
