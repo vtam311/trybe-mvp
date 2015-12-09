@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:53:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-08 20:43:15
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
   {
     name: 'Kongs',
     reps: 5,
-    load: {units: 'lbs', val: null},
+    load: {units: 'lb', val: null},
     time: null,
     distance: {units: null, val: null},
     url: null
@@ -25,7 +25,7 @@ var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
   {
     name: 'Tic Tacs',
     reps: 5,
-    load: {units: 'lbs', val: null},
+    load: {units: 'lb', val: null},
     time: null,
     distance: {units: null, val: null},
     url: null
@@ -33,7 +33,7 @@ var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
   {
     name: 'Precisions',
     reps: 5,
-    load: {units: 'lbs', val: null},
+    load: {units: 'lb', val: null},
     time: null,
     distance: {units: null, val: null},
     url: null
@@ -43,7 +43,7 @@ var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
 var EXERCISE_TEMPLATE = {
   name: null,
   reps: null,
-  load: {units: 'lbs', val: null},
+  load: {units: 'lb', val: null},
   time: null,
   distance: {units: null, val: null},
   url: null
