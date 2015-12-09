@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:53:14
+* @Last Modified time: 2015-12-08 21:01:56
 */
 
 'use strict';
@@ -32,14 +32,6 @@ var DistancePicker = React.createClass({
       units: this.props.currentExercise.distance.units
     };
   },
-  showChoiceLabels: function(choice){
-    //If user selects number from DIST_CHOICES, stringify
-    if(typeof choice === 'number') {
-      return choice.toString();
-    } else {
-      return choice;
-    }
-  },
   _setDistVal: function(choiceObj){
     var dist = choiceObj.newValue;
     if(dist === 'No Distance') dist = null;
@@ -59,6 +51,47 @@ var DistancePicker = React.createClass({
     //Update picker's state
     this.setState({units: unit});
   },
+  showChoiceLabels: function(choice){
+    //If user selects number from DIST_CHOICES, stringify
+    if(typeof choice === 'number') {
+      return choice.toString();
+    } else {
+      return choice;
+    }
+  },
+  getDistSelectedIndex: function(){
+    //MultiPicker's selectedValue does not work, must use selectedIndex
+    //returns the associated index val of DIST_CHOICES
+    if(this.state.distVal === null) {
+      return 0;
+    } else if (this.state.distVal <= 20) {
+      return this.state.distVal;
+    } else if (this.state.distVal <= 50) {
+      return ((this.state.distVal - 20) / 5) + 20;
+    } else if (this.state.distVal === 100){
+      return 27;
+    } else if (this.state.distVal === 200){
+      return 28;
+    } else if (this.state.distVal === 400){
+      return 29;
+    } else if (this.state.distVal === 600){
+      return 30;
+    } else if (this.state.distVal === 800){
+      return 31;
+    } else if (this.state.distVal === 1200){
+      return 32;
+    } else if (this.state.distVal === 1600){
+      return 33;
+    }
+  },
+  getUnitSelectedIndex: function(){
+    //returns the associated index val of units
+    if(this.state.units === 'ft') return 0;
+    if(this.state.units === 'yd') return 1;
+    if(this.state.units === 'm') return 2;
+    if(this.state.units === 'km') return 3;
+    if(this.state.units === 'mi') return 4;
+  },
   render: function() {
     var distValItems = DIST_CHOICES.map((choice, index) =>
       <Item
@@ -69,10 +102,10 @@ var DistancePicker = React.createClass({
 
     return (
       <MultiPickerIOS>
-        <Group selectedValue={this.state.distVal} onChange={this._setDistVal}>
+        <Group selectedIndex={this.getDistSelectedIndex()} onChange={this._setDistVal}>
           {distValItems}
         </Group>
-        <Group selectedValue={this.state.units} onChange={this._setDistUnits}>
+        <Group selectedIndex={this.getUnitSelectedIndex()} onChange={this._setDistUnits}>
           <Item value="ft" label="ft" />
           <Item value="yd" label="yd" />
           <Item value="m" label="m" />
