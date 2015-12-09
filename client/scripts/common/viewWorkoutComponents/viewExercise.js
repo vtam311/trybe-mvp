@@ -19,12 +19,19 @@ var viewExercise = React.createClass({
     var distance;
 
     var renderAmount = function() {
+      //Renders amount for reps, hold, or distance
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
       } else if (exercise.hold){
         amount = <Text style={styles.exerciseText}>{exercise.hold}</Text>;
       }
+      //Will there ever be both reps and a distance?
+      //If not, distance should come before exercise, ie.
+      //100m Sprint
+      // else if (exercise.distance && exercise.distance.val) {
+      //   distance = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
+      // }
       /* jshint ignore:end*/
     };
 
@@ -46,7 +53,7 @@ var viewExercise = React.createClass({
       if(exercise.distance && exercise.distance.val) {
         distance = <Text style={styles.exerciseText}>for {exercise.distance.val}{exercise.distance.units}</Text>;
       }
-    }
+    };
 
     //Render exercise description such that order is
     // Amount(Reps/Time/Dist) Weight ExerciseName
