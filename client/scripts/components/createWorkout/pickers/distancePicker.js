@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:14:46
+* @Last Modified time: 2015-12-08 21:18:34
 */
 
 'use strict';
@@ -41,6 +41,9 @@ var DistancePicker = React.createClass({
 
     //Update picker's state
     this.setState({distVal: dist});
+
+    //Ensure a default unit is selected
+    this.checkUnits();
   },
   _setDistUnits: function(choiceObj){
     var unit = choiceObj.newValue;
@@ -50,6 +53,12 @@ var DistancePicker = React.createClass({
 
     //Update picker's state
     this.setState({units: unit});
+  },
+  checkUnits: function(){
+    //If no unit has been selected, pre-set to ft
+    if(this.state.units === null) {
+      editExerciseActions.setDistUnit('ft');
+    }
   },
   showChoiceLabels: function(choice){
     //If user selects number from DIST_CHOICES, stringify
