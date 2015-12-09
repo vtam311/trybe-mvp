@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:54:04
+* @Last Modified time: 2015-12-08 21:12:48
 */
 
 'use strict';
@@ -50,11 +50,6 @@ var setLoadUnit = function(data) {
   _store.exercise.load.units = units;
 };
 
-var setHold = function(data) {
-  var hold = data.hold;
-  _store.exercise.hold = hold;
-};
-
 var setDistVal = function(data) {
   var dist = data.dist;
   _store.exercise.distance.val = dist;
@@ -63,6 +58,12 @@ var setDistVal = function(data) {
 var setDistUnit = function(data) {
   var unit = data.unit;
   _store.exercise.distance.units = unit;
+  console.log('editExerciseStore setDistUnit _store.exercise.distance.units', _store.exercise.distance.units);
+};
+
+var setHold = function(data) {
+  var hold = data.hold;
+  _store.exercise.hold = hold;
 };
 
 var editExerciseStore = Object.assign({}, EventEmitter.prototype, {

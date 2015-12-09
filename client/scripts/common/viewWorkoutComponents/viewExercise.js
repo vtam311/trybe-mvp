@@ -18,7 +18,7 @@ var viewExercise = React.createClass({
     var movement;
     var distance;
 
-    var renderAmount = function(exercise) {
+    var renderAmount = function() {
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
@@ -28,7 +28,7 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    var renderLoad = function(exercise) {
+    var renderLoad = function() {
       /* jshint ignore:start*/
       if(exercise.load.val) {
         load = <Text style={styles.exerciseText}>at {exercise.load.val}{exercise.load.units}</Text>;
@@ -36,13 +36,13 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    var renderMovement = function(exercise) {
+    var renderMovement = function() {
       /* jshint ignore:start*/
       movement = <Text style={styles.exerciseText}>{exercise.name}</Text>;
       /* jshint ignore:end*/
     };
 
-    var renderDistance = function(distance) {
+    var renderDistance = function() {
       if(exercise.distance && exercise.distance.val) {
         distance = <Text style={styles.exerciseText}>for {exercise.distance.val}{exercise.distance.units}</Text>;
       }
@@ -50,10 +50,10 @@ var viewExercise = React.createClass({
 
     //Render exercise description such that order is
     // Amount(Reps/Time/Dist) Weight ExerciseName
-    renderAmount(exercise);
-    renderLoad(exercise);
-    renderMovement(exercise);
-    renderDistance(exercise);
+    renderAmount();
+    renderLoad();
+    renderMovement();
+    renderDistance();
 
     return (
       /* jshint ignore:start */

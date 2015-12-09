@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:56:39
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-08 21:10:55
 */
 
 'use strict';
@@ -52,7 +52,6 @@ var editExerciseActions = {
     });
   },
   setDistVal: function(dist){
-    console.log('editExerciseActions setDistVal dist', dist);
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_DIST_VAL,
       data: {
@@ -61,6 +60,7 @@ var editExerciseActions = {
     });
   },
   setDistUnit: function(unit){
+    console.log('editExerciseActions setDistUnit unit', unit);
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_DIST_UNIT,
       data: {
