@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 20:47:01
+* @Last Modified time: 2015-12-08 21:38:02
 */
 
 'use strict';
@@ -41,6 +41,9 @@ var LoadPicker = React.createClass({
 
     //Update picker's state
     this.setState({loadVal: load});
+
+    //Ensure a default unit is selected
+    this.checkUnits();
   },
   _setLoadUnits: function(choiceObj){
     var unit = choiceObj.newValue;
@@ -50,6 +53,12 @@ var LoadPicker = React.createClass({
 
     //Update picker's state
     this.setState({units: unit});
+  },
+  checkUnits: function(){
+    //If no unit has been selected, pre-set to ft
+    if(this.state.units === null) {
+      editExerciseActions.setLoadUnit('lb');
+    }
   },
   showChoiceLabels: function(choice){
     //If user selects number from WEIGHT_CHOICES, stringify

@@ -20,18 +20,16 @@ var viewExercise = React.createClass({
 
     var renderAmount = function() {
       //Renders amount for reps, hold, or distance
+      //Will there ever be both reps and a distance? - For now, no.
+      //If not, distance should come before exercise, ie. 100m Sprint
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
       } else if (exercise.hold){
         amount = <Text style={styles.exerciseText}>{exercise.hold}</Text>;
+      } else if (exercise.distance && exercise.distance.val) {
+        amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
-      //Will there ever be both reps and a distance?
-      //If not, distance should come before exercise, ie.
-      //100m Sprint
-      // else if (exercise.distance && exercise.distance.val) {
-      //   distance = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
-      // }
       /* jshint ignore:end*/
     };
 
@@ -49,18 +47,18 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    var renderDistance = function() {
-      if(exercise.distance && exercise.distance.val) {
-        distance = <Text style={styles.exerciseText}>for {exercise.distance.val}{exercise.distance.units}</Text>;
-      }
-    };
+    // var renderDistance = function() {
+    //   if(exercise.distance && exercise.distance.val) {
+    //     distance = <Text style={styles.exerciseText}>for {exercise.distance.val}{exercise.distance.units}</Text>;
+    //   }
+    // };
 
     //Render exercise description such that order is
     // Amount(Reps/Time/Dist) Weight ExerciseName
     renderAmount();
     renderLoad();
     renderMovement();
-    renderDistance();
+    // renderDistance();
 
     return (
       /* jshint ignore:start */
@@ -68,7 +66,6 @@ var viewExercise = React.createClass({
         {amount}
         {movement}
         {load}
-        {distance}
       </View>
       /* jshint ignore:end */
     );

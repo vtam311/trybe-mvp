@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 20:43:15
+* @Last Modified time: 2015-12-08 21:34:26
 */
 
 'use strict';
@@ -23,16 +23,16 @@ var TEMP_EXERCISES_ARRAY_FOR_DEBUGGING = [
     url: null
   },
   {
-    name: 'Tic Tacs',
-    reps: 5,
-    load: {units: 'lb', val: null},
+    name: 'Squats',
+    reps: null,
+    load: {units: 'lb', val: 185},
     time: null,
     distance: {units: null, val: null},
     url: null
   },
   {
-    name: 'Precisions',
-    reps: 5,
+    name: 'Sprint',
+    reps: null,
     load: {units: 'lb', val: null},
     time: null,
     distance: {units: null, val: null},

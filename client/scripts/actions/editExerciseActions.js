@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 21:10:55
+* @Last Modified time: 2015-12-08 21:35:17
 */
 
 'use strict';
@@ -60,7 +60,6 @@ var editExerciseActions = {
     });
   },
   setDistUnit: function(unit){
-    console.log('editExerciseActions setDistUnit unit', unit);
     AppDispatcher.handleAction({
       actionType: editExerciseConstants.SET_DIST_UNIT,
       data: {

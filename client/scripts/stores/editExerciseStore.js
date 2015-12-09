@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:12:48
+* @Last Modified time: 2015-12-08 21:35:21
 */
 
 'use strict';
@@ -58,7 +58,6 @@ var setDistVal = function(data) {
 var setDistUnit = function(data) {
   var unit = data.unit;
   _store.exercise.distance.units = unit;
-  console.log('editExerciseStore setDistUnit _store.exercise.distance.units', _store.exercise.distance.units);
 };
 
 var setHold = function(data) {
