@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-10 14:39:02
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-10 14:44:01
 */
 
 'use strict';
@@ -24,7 +24,7 @@ var {
   SegmentedControlIOS,
 } = React;
 
-var CreateExerciseName = require('./createExerciseName');
+var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
 
 //Gets device height for animating app
@@ -117,7 +117,7 @@ var CreateExerciseModal = React.createClass({
           </View>
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <CreateExerciseName exerciseName={this.state.currentExercise.name} />
+              <EditExerciseName exerciseName={this.state.currentExercise.name} />
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}

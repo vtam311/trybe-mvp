@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-10 14:31:06
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-10 14:40:07
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-10 14:43:42
 */
 
 'use strict';
@@ -18,7 +18,7 @@ var {
   TextInput
 } = React;
 
-var CreateExerciseName = React.createClass({
+var EditExerciseName = React.createClass({
   getInitialState: function() {
     return {
       exerciseName: this.props.exerciseName
@@ -55,4 +55,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = CreateExerciseName;
+module.exports = EditExerciseName;
