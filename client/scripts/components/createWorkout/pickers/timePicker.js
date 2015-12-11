@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-10 14:52:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 17:38:52
+* @Last Modified time: 2015-12-10 18:21:04
 */
 
 'use strict';
@@ -96,7 +96,7 @@ var TimePicker = React.createClass({
       return timeSection;
     };
 
-    var prepSections = function() {
+    var setTimeValues = function() {
       //Updates hour, min, or sec
       //Since state vals aren't updated immediately,
       //Must update targetSection val without referencing state
@@ -120,15 +120,13 @@ var TimePicker = React.createClass({
       }
     };
 
-    prepSections();
+    setTimeValues();
 
     var newTime = hour + ':' + min + ':' + sec;
+    //If user sets all time values back to zero, set to null
+    if(newTime === '00:00:00') newTime = null;
 
     editExerciseActions.setTime(newTime);
-
-    this.setState({
-      time: newTime
-    });
   },
 
   showChoiceLabels: function(choice){

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:48:29
+* @Last Modified time: 2015-12-10 18:12:40
 */
 
 'use strict';
@@ -31,7 +31,7 @@ var EditExerciseCell = React.createClass({
     this.props.openExerciseModal();
   },
   render: function(){
-
+    console.log('editExerciseCell this.props.exercise', this.props.exercise);
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>

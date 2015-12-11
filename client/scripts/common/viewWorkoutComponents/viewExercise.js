@@ -19,6 +19,7 @@ var viewExercise = React.createClass({
     var renderAmount = function() {
       //Renders amount for reps, hold, or distance
       //For now, there will only ever one of: reps, hold, or distance.
+      //
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
