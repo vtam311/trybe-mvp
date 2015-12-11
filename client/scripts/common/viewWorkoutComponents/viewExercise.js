@@ -21,7 +21,7 @@ var viewExercise = React.createClass({
       //ie. 5x 50m Sprints.
 
       /* jshint ignore:start*/
-      if(exercise.reps && exercise.time || exercise.distance && exercise.distance.val) {
+      if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
         rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
       } else if (exercise.reps) {
         rep = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
