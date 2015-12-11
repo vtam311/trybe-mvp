@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:34:11
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-10 14:48:56
 */
 
 'use strict';
@@ -23,8 +23,8 @@ var {
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
-var CreateInstructionsCell = require('./createInstructionsCell');
-var CreateExerciseCell = require('./createExerciseCell');
+var EditInstructionsCell = require('./editInstructionsCell');
+var EditExerciseCell = require('./editExerciseCell');
 var AddExerciseCell = require('./addExerciseCell');
 
 var CreateWorkout = React.createClass({
@@ -52,7 +52,7 @@ var CreateWorkout = React.createClass({
     .map((exercise, index) =>
       /* jshint ignore:start */
       <View style={styles.customCellBackground} key={index}>
-        <CreateExerciseCell
+        <EditExerciseCell
           exercise={exercise}
           partIdx={TEMP_PART_INDEX}
           exIdx={index}
@@ -75,7 +75,7 @@ var CreateWorkout = React.createClass({
               <DateCell />
             </Section>
             <Section header="PART 1" hideSeparator={true}>
-              <CreateInstructionsCell/>
+              <EditInstructionsCell/>
               {exercisesOfPart1}
               <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
             </Section>

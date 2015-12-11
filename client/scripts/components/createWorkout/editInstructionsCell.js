@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:20:35
+* @Last Modified time: 2015-12-10 14:46:23
 */
 
 'use strict';
@@ -18,7 +18,7 @@ var {
 
 import {CustomCell} from 'react-native-tableview-simple';
 
-var CreateInstructionsCell = React.createClass({
+var EditInstructionsCell = React.createClass({
   getInitialState: function() {
     return {
       instructions: this.props.instructions
@@ -57,4 +57,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = CreateInstructionsCell;
+module.exports = EditInstructionsCell;

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:33:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-10 14:48:29
 */
 
 'use strict';
@@ -24,7 +24,7 @@ var {
 
 import {CustomCell} from 'react-native-tableview-simple';
 
-var CreateExerciseCell = React.createClass({
+var EditExerciseCell = React.createClass({
   _handlePress: function(){
     //sets the target exercise for user to edit, then opens createExerciseModal
     createWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
@@ -47,8 +47,7 @@ var CreateExerciseCell = React.createClass({
       </CustomCell>
       /* jshint ignore:start */
     );
-        // <Text style={{flex: 1, fontSize: 16, fontFamily: 'Avenir Next'}}>5 Pull Ups</Text>
   }
 });
 
-module.exports = CreateExerciseCell;
+module.exports = EditExerciseCell;
