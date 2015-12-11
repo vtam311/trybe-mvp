@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:24:53
+* @Last Modified time: 2015-12-10 14:29:25
 */
 
 'use strict';
@@ -24,7 +24,7 @@ var SelectedExercisePicker = React.createClass({
   render: function() {
     var picker;
 
-    switch (this.props.segmCtrlVal) {
+    switch (this.props.exPickerIdx) {
       case 0:
         picker =
           <RepPicker

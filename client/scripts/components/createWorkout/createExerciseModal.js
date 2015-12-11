@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:25:49
+* @Last Modified time: 2015-12-10 14:29:07
 */
 
 'use strict';
@@ -45,7 +45,7 @@ var CreateExerciseModal = React.createClass({
       partIdx: createWorkoutStore.getTargetPartIdx(),
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
-      segmCtrlVal: 0,
+      exPickerIdx: 0,
       //Initially set currentExercise to reflect targetExercise
       //so downstream components can load with data. However,
       //currentExercise will effectively reflect editExerciseStore's exercise
@@ -76,7 +76,7 @@ var CreateExerciseModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
-  setSegmCtrlVal: function(val){
+  setExercisePicker: function(val){
     //Depending on the selected val, the picker should change
     var seg;
     if(val === 'Reps') seg = 0;
@@ -85,7 +85,7 @@ var CreateExerciseModal = React.createClass({
     if(val === 'Time') seg = 3;
 
     this.setState({
-      segmCtrlVal: seg
+      exPickerIdx: seg
     });
   },
   saveExercise: function(){
@@ -125,12 +125,12 @@ var CreateExerciseModal = React.createClass({
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}
-                  selectedIndex={this.state.segmCtrlVal}
+                  selectedIndex={this.state.exPickerIdx}
                   //click changes state's segControlIdx
-                  onValueChange={(val) => this.setSegmCtrlVal(val)}
+                  onValueChange={(val) => this.setExercisePicker(val)}
                   tintColor={'#4DBA97'}/>
                 <SelectedExercisePicker
-                  segmCtrlVal={this.state.segmCtrlVal}
+                  exPickerIdx={this.state.exPickerIdx}
                   partIdx={this.state.partIdx}
                   exIdx={this.state.exIdx}
                   currentExercise={this.state.currentExercise} />
