@@ -6,7 +6,7 @@ var React = require('react-native');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
-var CreateExerciseModal = require('./client/scripts/components/createWorkout/createExerciseModal');
+var EditExerciseModal = require('./client/scripts/components/createWorkout/editExerciseModal');
 
 var {
   AppRegistry,
@@ -50,7 +50,7 @@ var Trybe = React.createClass({
           ref="rootNav"
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
-        {this.state.exerciseModalVisible ? <CreateExerciseModal closeModal={this.closeExerciseModal}/> : null }
+        {this.state.exerciseModalVisible ? <EditExerciseModal closeModal={this.closeExerciseModal}/> : null }
       </View>
       /* jshint ignore:end */
     );

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:44:01
+* @Last Modified time: 2015-12-10 14:50:39
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var {
 //When user saves changes, the exercise obj in editExerciseStore overwrites
 //the original targetExercise in createWorkoutStore.
 
-var CreateExerciseModal = React.createClass({
+var EditExerciseModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
@@ -197,4 +197,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = CreateExerciseModal;
+module.exports = EditExerciseModal;
