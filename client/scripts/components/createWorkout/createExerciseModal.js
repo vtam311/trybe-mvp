@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:29:07
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-10 14:39:02
 */
 
 'use strict';
@@ -24,6 +24,7 @@ var {
   SegmentedControlIOS,
 } = React;
 
+var CreateExerciseName = require('./createExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
 
 //Gets device height for animating app
@@ -116,17 +117,11 @@ var CreateExerciseModal = React.createClass({
           </View>
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <TextInput
-                value={this.state.exerciseName}
-                onChangeText={(text) => this.setExerciseName(text)}
-                style={styles.textInput}
-                placeholder={'Exercise Name'}
-                placeholderTextColor={'#9B9B9B'}/>
+              <CreateExerciseName exerciseName={this.state.currentExercise.name} />
               <View style={{marginTop: 15}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}
                   selectedIndex={this.state.exPickerIdx}
-                  //click changes state's segControlIdx
                   onValueChange={(val) => this.setExercisePicker(val)}
                   tintColor={'#4DBA97'}/>
                 <SelectedExercisePicker
@@ -200,13 +195,6 @@ var styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15
   },
-  textInput: {
-    height: 40,
-    marginTop: 15,
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'solid',
-    textDecorationColor: 'black'
-  }
 });
 
 module.exports = CreateExerciseModal;
