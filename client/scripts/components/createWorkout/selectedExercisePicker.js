@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:52:48
+* @Last Modified time: 2015-12-10 14:24:53
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var RepPicker = require('./pickers/repPicker');
 var LoadPicker = require('./pickers/loadPicker');
 var DistPicker = require('./pickers/distancePicker');
 
-var SelectedSegment = React.createClass({
+var SelectedExercisePicker = React.createClass({
   //Gist: shows a PickerIOS component to edit
   //either reps, load, time, distance, etc. based on user's selection
   //from SegmentedControlIOS
@@ -48,4 +48,4 @@ var SelectedSegment = React.createClass({
   }
 });
 
-module.exports = SelectedSegment;
+module.exports = SelectedExercisePicker;

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 08:15:55
+* @Last Modified time: 2015-12-10 14:25:49
 */
 
 'use strict';
@@ -24,8 +24,7 @@ var {
   SegmentedControlIOS,
 } = React;
 
-var SelectedSegment = require('./selectedSegment');
-// var RepPicker = require('./pickers/repPicker');
+var SelectedExercisePicker = require('./selectedExercisePicker');
 
 //Gets device height for animating app
 var {
@@ -97,7 +96,7 @@ var CreateExerciseModal = React.createClass({
   },
   render: function() {
     //Gist: Renders a modal for creating or editing an exercise object
-    //SelectedSegment component shows a PickerIOS component to edit
+    //SelectedExercisePicker component shows a PickerIOS component to edit
     //either reps, load, time, distance, etc. based on user's selection
     //from SegmentedControlIOS
 
@@ -118,6 +117,8 @@ var CreateExerciseModal = React.createClass({
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <TextInput
+                value={this.state.exerciseName}
+                onChangeText={(text) => this.setExerciseName(text)}
                 style={styles.textInput}
                 placeholder={'Exercise Name'}
                 placeholderTextColor={'#9B9B9B'}/>
@@ -128,7 +129,7 @@ var CreateExerciseModal = React.createClass({
                   //click changes state's segControlIdx
                   onValueChange={(val) => this.setSegmCtrlVal(val)}
                   tintColor={'#4DBA97'}/>
-                <SelectedSegment
+                <SelectedExercisePicker
                   segmCtrlVal={this.state.segmCtrlVal}
                   partIdx={this.state.partIdx}
                   exIdx={this.state.exIdx}

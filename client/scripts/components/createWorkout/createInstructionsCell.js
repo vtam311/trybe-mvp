@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-02 16:08:04
+* @Last Modified time: 2015-12-10 14:20:35
 */
 
 'use strict';
@@ -19,6 +19,11 @@ var {
 import {CustomCell} from 'react-native-tableview-simple';
 
 var CreateInstructionsCell = React.createClass({
+  getInitialState: function() {
+    return {
+      instructions: this.props.instructions
+    };
+  },
   render: function(){
     return (
       /* jshint ignore:start */
@@ -27,7 +32,9 @@ var CreateInstructionsCell = React.createClass({
           <View style={{flex: 1, flexDirection: 'column', marginTop: 5}}>
             <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
             <TextInput
-                style={{height: 40}}/>
+              value={this.state.instructions}
+              onChangeText={(text) => this.setInstructions(text)}
+              style={{height: 40}}/>
           </View>
         </CustomCell>
         <View style={styles.cellSeparatorBackground}>
