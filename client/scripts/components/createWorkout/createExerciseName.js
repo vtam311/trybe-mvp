@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-10 14:31:06
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:39:16
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-10 14:40:07
 */
 
 'use strict';
@@ -26,8 +26,7 @@ var CreateExerciseName = React.createClass({
   },
 
   _setExerciseName: function(text){
-    //TO DO:
-    // editExerciseActions.setExerciseName(text);
+    editExerciseActions.setExerciseName(text);
 
     this.setState({
       exerciseName: text
