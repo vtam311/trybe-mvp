@@ -14,16 +14,27 @@ var viewExercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
-    var amount, load, movement;
+    var rep, amount, load, exerciseName;
+
+    var renderReps = function() {
+      //If there are both reps and an amount, add 'x' to reps
+      //ie. 5x 50m Sprints.
+
+      /* jshint ignore:start*/
+      if(exercise.reps && exercise.time || exercise.distance && exercise.distance.val) {
+        rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
+      } else if (exercise.reps) {
+        rep = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
+      }
+      /* jshint ignore:end*/
+    };
 
     var renderAmount = function() {
-      //Renders amount for reps, hold, or distance
-      //For now, there will only ever one of: reps, hold, or distance.
-      //
+      //Renders amount for time or distance
+      //For now, there will only ever be one.
+
       /* jshint ignore:start*/
-      if(exercise.reps){
-        amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
-      } else if (exercise.time){
+      if (exercise.time){
         amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;
       } else if (exercise.distance && exercise.distance.val) {
         amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
@@ -39,18 +50,19 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    var renderMovement = function() {
+    var renderExerciseName = function() {
       /* jshint ignore:start*/
-      movement = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+      exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
       /* jshint ignore:end*/
     };
 
     var renderExercise = function() {
       //Render exercise description such that order is
-      //Amount(Reps/Time/Dist), Weight, ExerciseName
+      //Rep, Amount(Time or Dist), Weight, ExerciseName
+      renderReps();
       renderAmount();
       renderLoad();
-      renderMovement();
+      renderExerciseName();
     };
 
     renderExercise();
@@ -58,8 +70,9 @@ var viewExercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
+        {rep}
         {amount}
-        {movement}
+        {exerciseName}
         {load}
       </View>
       /* jshint ignore:end */
