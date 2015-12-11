@@ -1,4 +1,4 @@
-var renderTime = function(time) {
+var renderResultsTime = function(time) {
   var result;
   if(time){
     result = '';
@@ -30,4 +30,4 @@ var renderTime = function(time) {
   return result;
 };
 
-module.exports = renderTime;
+module.exports = renderResultsTime;
