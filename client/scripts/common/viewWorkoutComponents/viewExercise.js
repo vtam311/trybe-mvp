@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var renderTimeHelper = require('../renderTimeHelper');
 
 var {
   StyleSheet,
@@ -21,8 +22,8 @@ var viewExercise = React.createClass({
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
-      } else if (exercise.hold){
-        amount = <Text style={styles.exerciseText}>{exercise.hold}</Text>;
+      } else if (exercise.time){
+        amount = <Text style={styles.exerciseText}>{renderTimeHelper(exercise.time)}</Text>;
       } else if (exercise.distance && exercise.distance.val) {
         amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }

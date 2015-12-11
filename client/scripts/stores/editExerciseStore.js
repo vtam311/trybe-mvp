@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:35:21
+* @Last Modified time: 2015-12-10 17:39:05
 */
 
 'use strict';
@@ -60,9 +60,9 @@ var setDistUnit = function(data) {
   _store.exercise.distance.units = unit;
 };
 
-var setHold = function(data) {
-  var hold = data.hold;
-  _store.exercise.hold = hold;
+var setTime = function(data) {
+  var time = data.time;
+  _store.exercise.time = time;
 };
 
 var editExerciseStore = Object.assign({}, EventEmitter.prototype, {
@@ -110,8 +110,8 @@ AppDispatcher.register(function(payload){
       setDistUnit(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
-    case editExerciseConstants.SET_HOLD:
-      setHold(action.data);
+    case editExerciseConstants.SET_TIME:
+      setTime(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     default:

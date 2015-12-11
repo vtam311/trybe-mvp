@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-08 21:35:17
+* @Last Modified time: 2015-12-10 17:39:12
 */
 
 'use strict';
@@ -67,11 +67,11 @@ var editExerciseActions = {
       }
     });
   },
-  setHold: function(hold) {
+  setTime: function(time) {
     AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_HOLD,
+      actionType: editExerciseConstants.SET_TIME,
       data: {
-        hold: hold
+        time: time
       }
     });
   },
