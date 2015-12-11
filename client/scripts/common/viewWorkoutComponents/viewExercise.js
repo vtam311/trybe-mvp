@@ -13,15 +13,11 @@ var viewExercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
-    var amount;
-    var load;
-    var movement;
-    var distance;
+    var amount, load, movement;
 
     var renderAmount = function() {
       //Renders amount for reps, hold, or distance
-      //Will there ever be both reps and a distance? - For now, no.
-      //If not, distance should come before exercise, ie. 100m Sprint
+      //For now, there will only ever one of: reps, hold, or distance.
       /* jshint ignore:start*/
       if(exercise.reps){
         amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
@@ -47,18 +43,15 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    // var renderDistance = function() {
-    //   if(exercise.distance && exercise.distance.val) {
-    //     distance = <Text style={styles.exerciseText}>for {exercise.distance.val}{exercise.distance.units}</Text>;
-    //   }
-    // };
+    var renderExercise = function() {
+      //Render exercise description such that order is
+      //Amount(Reps/Time/Dist), Weight, ExerciseName
+      renderAmount();
+      renderLoad();
+      renderMovement();
+    };
 
-    //Render exercise description such that order is
-    // Amount(Reps/Time/Dist) Weight ExerciseName
-    renderAmount();
-    renderLoad();
-    renderMovement();
-    // renderDistance();
+    renderExercise();
 
     return (
       /* jshint ignore:start */
