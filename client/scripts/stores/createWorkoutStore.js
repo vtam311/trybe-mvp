@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 17:20:08
+* @Last Modified time: 2015-12-11 17:22:25
 */
 
 'use strict';
@@ -93,8 +93,6 @@ var addExercise = function(data){
 var removeExercise = function(data){
   var partIdx = data.partIdx;
   var exIdx = data.exIdx;
-
-  console.log('createWorkoutStore removeExercise called, removing', _store.workout.parts[partIdx].exercises[exIdx]);
   _store.workout.parts[partIdx].exercises.splice(exIdx, 1);
 };
 

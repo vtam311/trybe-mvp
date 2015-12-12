@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:57:54
+* @Last Modified time: 2015-12-11 17:22:16
 */
 
 'use strict';
@@ -34,7 +34,6 @@ var EditExerciseCell = React.createClass({
     //notify createWorkoutStore which targetExerciseIdx to remove
     //remove that one
     createWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
-    console.log('editExerciseCell removeExercise called');
   },
   render: function(){
     return (
