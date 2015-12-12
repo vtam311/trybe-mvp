@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:41:24
+* @Last Modified time: 2015-12-11 17:20:08
 */
 
 'use strict';
@@ -90,16 +90,25 @@ var addExercise = function(data){
   _store.workout.parts[partIdx].exercises.push(newExerciseObj);
 };
 
+var removeExercise = function(data){
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+
+  console.log('createWorkoutStore removeExercise called, removing', _store.workout.parts[partIdx].exercises[exIdx]);
+  _store.workout.parts[partIdx].exercises.splice(exIdx, 1);
+};
+
 var addPart = function(){
   _store.workout.parts.push(PART_TEMPLATE);
 };
 
+//Specifies which exercise of workout to edit
 var setTargetExerciseIdx = function(data){
   var partIdx = data.partIdx;
   var exIdx;
   //If creating a new exercise, exIdx will not be supplied,
-  //and addExercise will have already been called.
-  //So set to last index val of exercises array
+  //and addExercise will have already been called,
+  //so set to last index val of exercises array
   if(data.exIdx === undefined) {
     exIdx = _store.workout.parts[partIdx].exercises.length - 1;
   } else {
@@ -146,16 +155,24 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case createWorkoutConstants.SET_INSTRUCTIONS:
       setInstructions(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
       break;
     case createWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.REMOVE_EXERCISE:
+      removeExercise(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
       break;
     //Add ADD_PART
     case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
       setTargetExerciseIdx(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
       break;
     case createWorkoutConstants.SAVE_EXERCISE:
       saveExercise(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
       return true;

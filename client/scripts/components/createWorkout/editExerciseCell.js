@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 18:22:28
+* @Last Modified time: 2015-12-11 16:57:54
 */
 
 'use strict';
@@ -30,11 +30,17 @@ var EditExerciseCell = React.createClass({
     createWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     this.props.openExerciseModal();
   },
+  removeExercise: function(){
+    //notify createWorkoutStore which targetExerciseIdx to remove
+    //remove that one
+    createWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
+    console.log('editExerciseCell removeExercise called');
+  },
   render: function(){
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>
-        <TouchableHighlight onPress={() => console.log('Clear Button Clicked')}>
+        <TouchableHighlight onPress={this.removeExercise}>
           <Image
             style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
             source={require('image!clearButton')} />

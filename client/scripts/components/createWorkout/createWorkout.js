@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-11 16:38:28
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-11 17:17:59
 */
 
 'use strict';
@@ -43,6 +43,7 @@ var CreateWorkout = React.createClass({
     this.setState({
       workout: createWorkoutStore.getWorkout(),
     });
+    console.log('createWorkout noticed change');
   },
 
   render: function(){
