@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:14:38
+* @Last Modified time: 2015-12-11 17:32:15
 */
 
 'use strict';
@@ -22,7 +22,13 @@ var MultiPickerIOS = require('react-native-multipicker');
 var { Group, Item } = MultiPickerIOS;
 
 var PickerItemIOS = PickerIOS.Item;
-var DIST_CHOICES = ['No Distance',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,25,30,35,40,45,50,100,200,400,600,800,1200,1600];
+
+var DIST_CHOICES = [
+  'No Distance',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+  16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,
+  35,40,45,50,55,60,65,70,75,80,85,90,95,100,
+  200,300,400,500,600,700,800,900,1000,
+  1200,1400,1600,1800,2000];
 var DIST_UNITS = ['ft', 'yd', 'm', 'km', 'mi'];
 
 var DistancePicker = React.createClass({
@@ -73,24 +79,14 @@ var DistancePicker = React.createClass({
     //returns the associated index val of DIST_CHOICES
     if(this.state.distVal === null) {
       return 0;
-    } else if (this.state.distVal <= 20) {
+    } else if (this.state.distVal <= 30) {
       return this.state.distVal;
-    } else if (this.state.distVal <= 50) {
-      return ((this.state.distVal - 20) / 5) + 20;
-    } else if (this.state.distVal === 100){
-      return 27;
-    } else if (this.state.distVal === 200){
-      return 28;
-    } else if (this.state.distVal === 400){
-      return 29;
-    } else if (this.state.distVal === 600){
-      return 30;
-    } else if (this.state.distVal === 800){
-      return 31;
-    } else if (this.state.distVal === 1200){
-      return 32;
-    } else if (this.state.distVal === 1600){
-      return 33;
+    } else if (this.state.distVal <= 100) {
+      return ((this.state.distVal - 30) / 5) + 30;
+    } else if (this.state.distVal <= 1000) {
+      return ((this.state.distVal - 100) / 100) + 44;
+    } else if (this.state.distVal <= 2000) {
+      return ((this.state.distVal - 1000) / 200) + 53;
     }
   },
   getUnitSelectedIndex: function(){
