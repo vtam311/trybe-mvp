@@ -16,10 +16,9 @@ var viewExercise = React.createClass({
     var exercise = this.props.exercise;
     var rep, amount, load, exerciseName;
 
+    //If there are both reps and an amount, add 'x' to reps
+    //ie. 5x 50m Sprints.
     var renderReps = function() {
-      //If there are both reps and an amount, add 'x' to reps
-      //ie. 5x 50m Sprints.
-
       /* jshint ignore:start*/
       if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
         rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
@@ -29,10 +28,9 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
+    //Renders amount for time or distance
+    //For now, there will only ever be one.
     var renderAmount = function() {
-      //Renders amount for time or distance
-      //For now, there will only ever be one.
-
       /* jshint ignore:start*/
       if (exercise.time){
         amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;

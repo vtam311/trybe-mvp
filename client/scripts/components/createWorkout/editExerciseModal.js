@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:50:39
+* @Last Modified time: 2015-12-11 22:48:42
 */
 
 'use strict';
@@ -24,8 +24,10 @@ var {
   SegmentedControlIOS,
 } = React;
 
+//Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
+var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
 
 //Gets device height for animating app
 var {
@@ -47,9 +49,9 @@ var EditExerciseModal = React.createClass({
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
       exPickerIdx: 0,
-      //Initially set currentExercise to reflect targetExercise
+      //Initially set currentExercise to createWorkoutStore's targetExercise
       //so downstream components can load with data. However,
-      //currentExercise will effectively reflect editExerciseStore's exercise
+      //currentExercise will reflect editExerciseStore's exercise
       currentExercise: createWorkoutStore.getTargetExercise(),
     };
   },
@@ -115,10 +117,11 @@ var EditExerciseModal = React.createClass({
               </TouchableOpacity>
             </View>
           </View>
+
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <EditExerciseName exerciseName={this.state.currentExercise.name} />
-              <View style={{marginTop: 15}}>
+              <View style={{marginTop: 10}}>
                 <SegmentedControlIOS
                   values={['Reps', 'Weight', 'Distance', 'Time']}
                   selectedIndex={this.state.exPickerIdx}
@@ -132,6 +135,11 @@ var EditExerciseModal = React.createClass({
               </View>
             </View>
           </View>
+
+          <View style={styles.footer}>
+            <ViewExercise exercise={this.state.currentExercise} />
+          </View>
+
         </View>
       </Animated.View>
     )
@@ -188,12 +196,24 @@ var styles = StyleSheet.create({
     color: '#4DBA97',
   },
   body: {
-    height: 360
+    height: 320
   },
   bodyContainer: {
     flex: 1,
     marginLeft: 15,
-    marginRight: 15
+    marginRight: 15,
+    // backgroundColor: 'grey'
+  },
+  footer: {
+    height: 40,
+    flex: 1,
+    borderTopColor: '#9B9B9B',
+    borderTopWidth: .5,
+    borderTopColor: 'rgba(155, 155, 155, 0.7)',
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+    alignItems: 'center',
+    marginTop: 5
   },
 });
 
