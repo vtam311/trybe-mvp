@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-10 14:52:32
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 18:21:04
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-11 22:53:19
 */
 
 'use strict';
@@ -26,12 +26,14 @@ var PickerItemIOS = PickerIOS.Item;
 var HOUR_CHOICES = [
   0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
   16,17,18,19,20,21,22,23];
+
 var MIN_CHOICES = [
   0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
   16,17,18,19,20,21,22,23,24,25,26,27,28,
   29,30,31,32,33,34,35,36,37,38,39,40,41,
   42,43,44,45,46,47,48,49,50,51,52,53,54,
   55,56,57,58,59];
+
 var SEC_CHOICES = [
   0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
   16,17,18,19,20,21,22,23,24,25,26,27,28,
@@ -49,7 +51,6 @@ var TimePicker = React.createClass({
   componentWillMount: function() {
     this.initializePickers();
   },
-
   initializePickers: function(){
     //if time is null, set hour, min, and sec to 0
     if(this.state.time === null) {
@@ -65,9 +66,7 @@ var TimePicker = React.createClass({
         sec: Number(this.props.time.slice(6,8)),
       });
     }
-
   },
-
   setHour: function(choiceObj){
     var newHour = choiceObj.newValue;
     this.setState({hour: newHour});
@@ -83,7 +82,6 @@ var TimePicker = React.createClass({
     this.setState({sec: newSec});
     this.setTime('sec', newSec);
   },
-
   setTime: function(targetSection, val){
     var hour = this.state.hour;
     var min = this.state.min;
@@ -95,7 +93,6 @@ var TimePicker = React.createClass({
       if (timeSection.charAt(1) === '') timeSection = '0' + timeSection;
       return timeSection;
     };
-
     var setTimeValues = function() {
       //Updates hour, min, or sec
       //Since state vals aren't updated immediately,
@@ -137,11 +134,6 @@ var TimePicker = React.createClass({
       return choice;
     }
   },
-  getDistSelectedIndex: function(){
-    //returns the associated index val of units
-  },
-  getUnitSelectedIndex: function(){
-  },
   render: function() {
     var hourItems = HOUR_CHOICES.map((choice, index) =>
       <Item
@@ -164,8 +156,8 @@ var TimePicker = React.createClass({
         key={index} />
     );
 
-    //Currently not rendering choices for hour, since clutters
-    //user view. But functionality is set for editing of hours
+    //Not rendering choices for hour, since clutters
+    //user view. But functionality is ready
     return (
       <MultiPickerIOS>
         <Group selectedIndex={this.state.min} onChange={this.setMin}>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-10 17:45:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:17:26
+* @Last Modified time: 2015-12-11 23:13:03
 */
 
 'use strict';
@@ -33,16 +33,16 @@ var renderExerciseTime = function(time) {
         result = null;
       } else {
         //Only seconds provided - show seconds
-        result = removeZeroes(sec) + ' Sec';
+        result = removeZeroes(sec) + 's';
       }
     } else {
       //If min isn't empty, check if sec is empty
       if(sec == '00') {
         //If only min are given, show only min
-        result = removeZeroes(min) + ' Min';
+        result = removeZeroes(min) + 'min';
       } else {
         //If both min and sec given
-        result = removeZeroes(min) + ':' + sec + ' Sec';
+        result = removeZeroes(min) + ':' + sec + 's';
       }
     }
 

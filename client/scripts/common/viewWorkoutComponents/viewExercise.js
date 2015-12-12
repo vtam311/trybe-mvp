@@ -16,25 +16,34 @@ var viewExercise = React.createClass({
     var exercise = this.props.exercise;
     var rep, amount, load, exerciseName;
 
-    //If there are both reps and an amount, add 'x' to reps
-    //ie. 5x 50m Sprints.
     var renderReps = function() {
       /* jshint ignore:start*/
+      //If there are both reps and an a distance or time,
+      //add 'x' to reps - ie. 5x 50m Sprints.
       if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
         rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
       } else if (exercise.reps) {
+      //Otherwise just show reps
         rep = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
       }
       /* jshint ignore:end*/
     };
 
-    //Renders amount for time or distance
-    //For now, there will only ever be one.
-    var renderAmount = function() {
+    var renderTimeAndDistance = function() {
       /* jshint ignore:start*/
       if (exercise.time){
-        amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;
+        if(exercise.distance && exercise.distance.val) {
+          //If both time and dist, show like: 60 Sec 400m Sprint
+          amount =
+            <Text style={styles.exerciseText}>
+              {renderExerciseTime(exercise.time)} {exercise.distance.val}{exercise.distance.units}
+            </Text>;
+        } else {
+          //If only time, show like: 60 Sec Sprint
+          amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;
+        }
       } else if (exercise.distance && exercise.distance.val) {
+        //If only dist, show like: 400m Sprint
         amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
       /* jshint ignore:end*/
@@ -58,7 +67,7 @@ var viewExercise = React.createClass({
       //Render exercise description such that order is
       //Rep, Amount(Time or Dist), Weight, ExerciseName
       renderReps();
-      renderAmount();
+      renderTimeAndDistance();
       renderLoad();
       renderExerciseName();
     };
