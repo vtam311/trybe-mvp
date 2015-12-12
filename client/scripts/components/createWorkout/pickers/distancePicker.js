@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 17:32:15
+* @Last Modified time: 2015-12-11 17:34:58
 */
 
 'use strict';
@@ -77,16 +77,20 @@ var DistancePicker = React.createClass({
   getDistSelectedIndex: function(){
     //MultiPicker's selectedValue does not work, must use selectedIndex
     //returns the associated index val of DIST_CHOICES
+    var lastOnesIdx = 30;
+    var lastFivesIdx = 44;
+    var lastHundredsIdx = 53;
+
     if(this.state.distVal === null) {
       return 0;
     } else if (this.state.distVal <= 30) {
       return this.state.distVal;
     } else if (this.state.distVal <= 100) {
-      return ((this.state.distVal - 30) / 5) + 30;
+      return ((this.state.distVal - 30) / 5) + lastOnesIdx;
     } else if (this.state.distVal <= 1000) {
-      return ((this.state.distVal - 100) / 100) + 44;
+      return ((this.state.distVal - 100) / 100) + lastFivesIdx;
     } else if (this.state.distVal <= 2000) {
-      return ((this.state.distVal - 1000) / 200) + 53;
+      return ((this.state.distVal - 1000) / 200) + lastHundredsIdx;
     }
   },
   getUnitSelectedIndex: function(){
