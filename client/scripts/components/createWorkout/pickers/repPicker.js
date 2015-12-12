@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 09:16:52
+* @Last Modified time: 2015-12-11 16:09:56
 */
 
 'use strict';
@@ -27,7 +27,7 @@ var REP_CHOICES = [
 var RepPicker = React.createClass({
   getInitialState: function() {
     return {
-      reps: this.props.currentExercise.reps
+      reps: this.props.reps
     };
   },
   showChoiceLabels: function(choice){

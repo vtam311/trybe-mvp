@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:38:02
+* @Last Modified time: 2015-12-11 16:13:29
 */
 
 'use strict';
@@ -28,8 +28,8 @@ var UNIT_CHOICES = ['lb','kg'];
 var LoadPicker = React.createClass({
   getInitialState: function() {
     return {
-      loadVal: this.props.currentExercise.load.val,
-      units: this.props.currentExercise.load.units
+      loadVal: this.props.loadVal,
+      units: this.props.units
     };
   },
   _setLoadVal: function(choiceObj){

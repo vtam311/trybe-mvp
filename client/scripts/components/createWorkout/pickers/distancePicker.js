@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:18:34
+* @Last Modified time: 2015-12-11 16:14:38
 */
 
 'use strict';
@@ -28,8 +28,8 @@ var DIST_UNITS = ['ft', 'yd', 'm', 'km', 'mi'];
 var DistancePicker = React.createClass({
   getInitialState: function() {
     return {
-      distVal: this.props.currentExercise.distance.val,
-      units: this.props.currentExercise.distance.units
+      distVal: this.props.distVal,
+      units: this.props.units
     };
   },
   _setDistVal: function(choiceObj){
