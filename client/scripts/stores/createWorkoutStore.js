@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-08 21:34:26
+* @Last Modified time: 2015-12-11 16:41:24
 */
 
 'use strict';
@@ -78,6 +78,12 @@ var _store = {
   targetExerciseIdx: null,
 };
 
+var setInstructions = function(data){
+  var instructions = data.instructions;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].instructions = instructions;
+};
+
 var addExercise = function(data){
   var partIdx = data.partIdx;
   var newExerciseObj = copyObjectHelper(EXERCISE_TEMPLATE);
@@ -138,6 +144,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case createWorkoutConstants.SET_INSTRUCTIONS:
+      setInstructions(action.data);
+      break;
     case createWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
       break;

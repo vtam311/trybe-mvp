@@ -2,12 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:46:23
+* @Last Modified time: 2015-12-11 16:40:33
 */
 
 'use strict';
 
 var React = require('react-native');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 var {
   StyleSheet,
@@ -21,8 +22,15 @@ import {CustomCell} from 'react-native-tableview-simple';
 var EditInstructionsCell = React.createClass({
   getInitialState: function() {
     return {
-      instructions: this.props.instructions
+      instructions: this.props.instructions,
     };
+  },
+  setInstructions: function(instructions) {
+    createWorkoutActions.setInstructions(instructions, this.props.partIdx);
+
+    this.setState({
+      instructions: instructions
+    });
   },
   render: function(){
     return (

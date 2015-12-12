@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:48:56
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-11 16:38:28
 */
 
 'use strict';
@@ -64,9 +64,7 @@ var CreateWorkout = React.createClass({
       /* jshint ignore:end */
     );
 
-
     return (
-
       /* jshint ignore:start */
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.stage}>
@@ -75,7 +73,9 @@ var CreateWorkout = React.createClass({
               <DateCell />
             </Section>
             <Section header="PART 1" hideSeparator={true}>
-              <EditInstructionsCell/>
+              <EditInstructionsCell
+                instructions={this.state.workout.parts[TEMP_PART_INDEX].instructions}
+                partIdx={TEMP_PART_INDEX} />
               {exercisesOfPart1}
               <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
             </Section>

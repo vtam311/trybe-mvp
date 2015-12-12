@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:29:18
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-11 16:32:49
 */
 
 'use strict';
@@ -11,10 +11,13 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var createWorkoutConstants = require('../constants/createWorkoutConstants');
 
 var createWorkoutActions = {
-  getWorkout: function() {
+  setInstructions: function(instructions, partIdx) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.GET_WORKOUT,
-      data: null
+      actionType: createWorkoutConstants.SET_INSTRUCTIONS,
+      data: {
+        instructions: instructions,
+        partIdx: partIdx
+      }
     });
   },
   addExercise: function(partIdx) {

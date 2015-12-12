@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-04 09:06:10
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-11 16:33:00
 */
 
 'use strict';
@@ -10,7 +10,7 @@
 'use strict';
 
 var createWorkoutConstants = {
-  GET_WORKOUT: 'GET_WORKOUT',
+  SET_INSTRUCTIONS: 'SET_INSTRUCTIONS',
   ADD_EXERCISE: 'ADD_EXERCISE',
   ADD_PART: 'ADD_PART',
   SET_TARGET_EXERCISE_INDEX: 'SET_TARGET_EXERCISE_INDEX',
