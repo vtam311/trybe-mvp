@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 23:17:50
+* @Last Modified time: 2015-12-12 16:12:00
 */
 
 'use strict';
@@ -57,9 +57,9 @@ var setInstructions = function(data){
 };
 
 var addExercise = function(data){
-  var partIdx = data.partIdx;
-  var newExerciseObj = copyObjectHelper(EXERCISE_TEMPLATE);
-  _store.workout.parts[partIdx].exercises.push(newExerciseObj);
+  // var partIdx = data.partIdx;
+  // var newExerciseObj = copyObjectHelper(EXERCISE_TEMPLATE);
+  // _store.workout.parts[partIdx].exercises.push(newExerciseObj);
 };
 
 var removeExercise = function(data){
@@ -74,13 +74,14 @@ var addPart = function(){
 
 //Specifies which exercise of workout to edit
 var setTargetExerciseIdx = function(data){
-  var partIdx = data.partIdx;
-  var exIdx;
+  var exIdx, partIdx = data.partIdx;
+  // var exIdx;
   //If creating a new exercise, exIdx will not be supplied,
-  //and addExercise will have already been called,
+  //and addExercise will have already been called, //not anymore
   //so set to last index val of exercises array
   if(data.exIdx === undefined) {
-    exIdx = _store.workout.parts[partIdx].exercises.length - 1;
+    // exIdx = _store.workout.parts[partIdx].exercises.length - 1;
+    exIdx = _store.workout.parts[partIdx].exercises.length;
   } else {
     exIdx = data.exIdx;
   }
@@ -116,7 +117,16 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     //Used for reference in createExerciseModal
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
-    return _store.workout.parts[partIdx].exercises[exIdx];
+    var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+    //If partIdx and exIdx are pointing to an existing
+    //exercise, send it. Otherwise, user is creating new
+    //exercise, so send exercise template.
+    if(targetExercise) {
+      return _store.workout.parts[partIdx].exercises[exIdx];
+    } else {
+      return EXERCISE_TEMPLATE;
+    }
   }
 });
 
