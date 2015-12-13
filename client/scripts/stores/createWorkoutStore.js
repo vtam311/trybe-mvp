@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-12 16:12:00
+* @Last Modified time: 2015-12-12 16:25:45
 */
 
 'use strict';
@@ -57,9 +57,11 @@ var setInstructions = function(data){
 };
 
 var addExercise = function(data){
-  // var partIdx = data.partIdx;
-  // var newExerciseObj = copyObjectHelper(EXERCISE_TEMPLATE);
-  // _store.workout.parts[partIdx].exercises.push(newExerciseObj);
+  var partIdx = data.partIdx;
+  //Set exIdx to the next empty index of exercises array
+  //Adding of exercise happens once saveExercise is called
+  var exIdx = _store.workout.parts[partIdx].exercises.length;
+  _store.targetExerciseIdx = exIdx;
 };
 
 var removeExercise = function(data){
@@ -74,18 +76,8 @@ var addPart = function(){
 
 //Specifies which exercise of workout to edit
 var setTargetExerciseIdx = function(data){
-  var exIdx, partIdx = data.partIdx;
-  // var exIdx;
-  //If creating a new exercise, exIdx will not be supplied,
-  //and addExercise will have already been called, //not anymore
-  //so set to last index val of exercises array
-  if(data.exIdx === undefined) {
-    // exIdx = _store.workout.parts[partIdx].exercises.length - 1;
-    exIdx = _store.workout.parts[partIdx].exercises.length;
-  } else {
-    exIdx = data.exIdx;
-  }
-
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
   _store.targetExerciseIdx = exIdx;
 };
 
