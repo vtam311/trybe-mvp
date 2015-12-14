@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-12 16:25:45
+* @Last Modified time: 2015-12-13 16:45:04
 */
 
 'use strict';
@@ -19,16 +19,17 @@ var EXERCISE_TEMPLATE = {
   load: {units: 'lb', val: null},
   time: null,
   distance: {units: null, val: null},
-  url: null
+  src: null
 };
 
 var PART_TEMPLATE = {
   instructions: null,
   media: {
     title: null,
-    url: null
+    src: null
   },
   exercises: [],
+  result: {type: null, val: null},
   notes: null
 };
 
@@ -41,7 +42,6 @@ var WORKOUT_TEMPLATE = {
   type: null,
   parts: [PART_TEMPLATE],
   origin: null,
-  finalResult: {type: 'Time', value: null}
 };
 
 var _store = {

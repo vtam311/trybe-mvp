@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 17:22:29
+* @Last Modified time: 2015-12-13 17:18:11
 */
 
 'use strict';
@@ -23,9 +23,7 @@ var {
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
-var EditInstructionsCell = require('./editInstructionsCell');
-var EditExerciseCell = require('./editExerciseCell');
-var AddExerciseCell = require('./addExerciseCell');
+var Part = require('./part');
 
 var CreateWorkout = React.createClass({
   getInitialState: function() {
@@ -48,22 +46,6 @@ var CreateWorkout = React.createClass({
   render: function(){
     var TEMP_PART_INDEX = 0;
 
-    var exercisesOfPart1 = this.state.workout.parts[TEMP_PART_INDEX].exercises
-    .map((exercise, index) =>
-      /* jshint ignore:start */
-      <View style={styles.customCellBackground} key={index}>
-        <EditExerciseCell
-          exercise={exercise}
-          partIdx={TEMP_PART_INDEX}
-          exIdx={index}
-          openExerciseModal={this.props.openExerciseModal} />
-        <View style={styles.cellSeparatorBackground}>
-          <View style={styles.cellSeparatorLine}></View>
-        </View>
-      </View>
-      /* jshint ignore:end */
-    );
-
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
@@ -72,13 +54,12 @@ var CreateWorkout = React.createClass({
             <Section>
               <DateCell />
             </Section>
-            <Section header="PART 1" hideSeparator={true}>
-              <EditInstructionsCell
-                instructions={this.state.workout.parts[TEMP_PART_INDEX].instructions}
-                partIdx={TEMP_PART_INDEX} />
-              {exercisesOfPart1}
-              <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
-            </Section>
+
+            <Part
+              part={this.state.workout.parts[TEMP_PART_INDEX]}
+              partIdx={TEMP_PART_INDEX}
+              openExerciseModal={this.props.openExerciseModal}/>
+
             <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
               <Image
                 style={{height: 14, width: 14, marginTop: 4, marginRight: 8}}
@@ -103,14 +84,6 @@ var styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
   },
-  cellSeparatorBackground: {
-    backgroundColor: '#fff',
-  },
-  cellSeparatorLine: {
-    marginLeft: 15,
-    height: 0.5,
-    backgroundColor: '#c8c7cc',
-  }
 });
 
 module.exports = CreateWorkout;
