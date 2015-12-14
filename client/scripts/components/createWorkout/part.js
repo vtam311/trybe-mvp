@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 17:16:27
+* @Last Modified time: 2015-12-13 17:45:27
 */
 
 'use strict';
@@ -12,17 +12,20 @@ var React = require('react-native');
 var {
   StyleSheet,
   View,
-  Image
 } = React;
 
 import {Section, CustomCell} from 'react-native-tableview-simple';
 var EditInstructionsCell = require('./editInstructionsCell');
 var EditExerciseCell = require('./editExerciseCell');
 var AddExerciseCell = require('./addExerciseCell');
+var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
-  render: function(){
+  renderPartLabel: function(){
+    return 'Part ' + (this.props.partIdx + 1);
+  },
 
+  render: function(){
     var partExercises = this.props.part.exercises
     .map((exercise, index) =>
       /* jshint ignore:start */
@@ -41,13 +44,19 @@ var Part = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <Section header="PART 1" hideSeparator={true}>
-        <EditInstructionsCell
-          instructions={this.props.part.instructions}
-          partIdx={this.props.partIdx} />
-        {partExercises}
-        <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
-      </Section>
+      <View>
+        <Section header={this.renderPartLabel()} hideSeparator={true}>
+          <EditInstructionsCell
+            instructions={this.props.part.instructions}
+            partIdx={this.props.partIdx} />
+          {partExercises}
+          <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
+        </Section>
+
+        <Section hideSeparator={true}>
+          <ResultsCell />
+        </Section>
+      </View>
       /* jshint ignore:start */
     );
   }
