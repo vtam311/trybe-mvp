@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 19:21:54
+* @Last Modified time: 2015-12-13 20:27:53
 */
 
 'use strict';
@@ -42,6 +42,7 @@ var Part = React.createClass({
       /* jshint ignore:end */
     );
 
+    console.log('in part.js, resultType is', this.props.part.result.type);
     return (
       /* jshint ignore:start */
       <View>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:24:36
+* @Last Modified time: 2015-12-13 20:33:19
 */
 
 'use strict';
@@ -41,13 +41,17 @@ var ResultOptions = React.createClass({
 
   render: function(){
     var resultType = this.props.resultType;
+    //Need to declare to pass to showOrHideCustomInput
+    var setResultType = this.setResultType;
+
     var showOrHideCustomInput = function(){
       //If resultType is a custom one, show TextInput
       if(resultType !== 'Time' || 'Rounds' || 'Max Load') {
         return (
           <TextInput
             placeholder="Custom Metric..."
-            style={{height:44, marginTop: 5}} />
+            style={{height:44, marginTop: 5}}
+            onChangeText={(text) => setResultType(text)} />
         );
       } else {
         return null;
@@ -60,7 +64,7 @@ var ResultOptions = React.createClass({
         <SegmentedControlIOS
           values={['Time', 'Rounds', 'Max Load', 'Custom']}
           selectedIndex={this.getResultTypeIdx()}
-          onValueChange={(val) => this.setResultType(val)}
+          onValueChange={(val) => setResultType(val)}
           tintColor={'#4DBA97'}/>
         {showOrHideCustomInput()}
       </View>
