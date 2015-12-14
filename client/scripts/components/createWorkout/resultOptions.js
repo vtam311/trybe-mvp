@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:33:19
+* @Last Modified time: 2015-12-14 12:02:39
 */
 
 'use strict';
@@ -18,18 +18,16 @@ var {
 
 
 var ResultOptions = React.createClass({
-  // getInitialState: function() {
-  //   return {
-  //     resultType: 0,
-  //   };
-  // },
   setResultType: function(val){
+    //If user selects Custom in SegmCtrl, preset to
+    //null, as user will specify what custom metric is with
+    //showOrHideCustomInput's TextInput.
+    if(val === 'Custom') val = null;
     createWorkoutActions.setResultType(val, this.props.partIdx)
   },
   getResultTypeIdx: function(){
-    //Change segmCtrlIdx based on result type
-    var idx;
-    var resultType = this.props.resultType;
+    //Changes segmCtrlIdx based on result type
+    var idx, resultType = this.props.resultType;
 
     if(resultType === 'Time') idx = 0;
     else if(resultType === 'Rounds') idx = 1;
@@ -40,17 +38,20 @@ var ResultOptions = React.createClass({
   },
 
   render: function(){
-    var resultType = this.props.resultType;
     //Need to declare to pass to showOrHideCustomInput
+    var resultType = this.props.resultType;
     var setResultType = this.setResultType;
 
     var showOrHideCustomInput = function(){
       //If resultType is a custom one, show TextInput
-      if(resultType !== 'Time' || 'Rounds' || 'Max Load') {
+      if(resultType !== 'Time' &&
+        resultType !== 'Rounds' &&
+        resultType !==  'Max Load') {
         return (
           <TextInput
+            value={resultType}
             placeholder="Custom Metric..."
-            style={{height:44, marginTop: 5}}
+            style={{height:38, marginTop: 5}}
             onChangeText={(text) => setResultType(text)} />
         );
       } else {

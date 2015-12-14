@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:23:50
+* @Last Modified time: 2015-12-14 11:52:24
 */
 
 'use strict';
@@ -32,23 +32,24 @@ var ResultsCell = React.createClass({
 
     //Manually set state without store, as component is basic
     this.setState({recordingSwitchIsOn: bool});
-    console.log('resultsCell toggleRecording setting switch to', bool);
   },
 
-  //When switch is on, adjust height to show ResultOptions
-  //When off, only show cell.
+  //Adjust height to show components in ResultsCell
   adjustHeight: function() {
     if(this.state.recordingSwitchIsOn){
-      //If recording custom result, need room to show
+      //If recording custom result, show
       //both SegmCtrl and text input from ResultOptions
-      if(this.props.resultType !== 'Time' || 'Rounds' || 'Max Load'){
+      if(this.props.resultType !== 'Time' &&
+        this.props.resultType !== 'Rounds' &&
+        this.props.resultType !==  'Max Load'){
         return 132;
       } else {
-        //Adjust to fit SegmCtrl in ResultOptions
+        //If recording Time, Rounds, or Max Load,
+        //adjust to fit SegmCtrl in ResultOptions
         return 88;
       }
     } else {
-      //Set height to default cell height
+      //If not recording, just show cell with SwitchIOS
       return 44;
     }
   },
