@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:10:50
+* @Last Modified time: 2015-12-13 20:23:50
 */
 
 'use strict';
@@ -41,7 +41,7 @@ var ResultsCell = React.createClass({
     if(this.state.recordingSwitchIsOn){
       //If recording custom result, need room to show
       //both SegmCtrl and text input from ResultOptions
-      if(this.props.resultType === 'Custom'){
+      if(this.props.resultType !== 'Time' || 'Rounds' || 'Max Load'){
         return 132;
       } else {
         //Adjust to fit SegmCtrl in ResultOptions

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 16:45:04
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-13 20:13:53
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var PART_TEMPLATE = {
     src: null
   },
   exercises: [],
-  result: {type: null, val: null},
+  result: {isRecording: false, type: 'Test', val: null},
   notes: null
 };
 
@@ -70,10 +70,6 @@ var removeExercise = function(data){
   _store.workout.parts[partIdx].exercises.splice(exIdx, 1);
 };
 
-var addPart = function(){
-  _store.workout.parts.push(PART_TEMPLATE);
-};
-
 //Specifies which exercise of workout to edit
 var setTargetExerciseIdx = function(data){
   var partIdx = data.partIdx;
@@ -86,6 +82,22 @@ var saveExercise = function(data){
   var exIdx = _store.targetExerciseIdx;
   var exercise = data.exercise;
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
+};
+
+var toggleRecording = function(data){
+  var bool = data.bool;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].result.isRecording = bool;
+};
+
+var setResultType = function(data){
+  var type = data.type;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].result.type = type;
+};
+
+var addPart = function(){
+  _store.workout.parts.push(PART_TEMPLATE);
 };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -137,7 +149,6 @@ AppDispatcher.register(function(payload){
       removeExercise(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    //Add ADD_PART
     case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
       setTargetExerciseIdx(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
@@ -146,6 +157,15 @@ AppDispatcher.register(function(payload){
       saveExercise(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
+    case createWorkoutConstants.TOGGLE_RECORDING:
+      toggleRecording(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_RESULT_TYPE:
+      setResultType(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    //Add ADD_PART
     default:
       return true;
   }

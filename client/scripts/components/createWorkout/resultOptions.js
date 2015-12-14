@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:21:25
+* @Last Modified time: 2015-12-13 20:24:36
 */
 
 'use strict';
@@ -42,10 +42,11 @@ var ResultOptions = React.createClass({
   render: function(){
     var resultType = this.props.resultType;
     var showOrHideCustomInput = function(){
-      if(resultType === 'Custom') {
+      //If resultType is a custom one, show TextInput
+      if(resultType !== 'Time' || 'Rounds' || 'Max Load') {
         return (
           <TextInput
-            placeholder="Custom Metric"
+            placeholder="Custom Metric..."
             style={{height:44, marginTop: 5}} />
         );
       } else {
