@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 17:41:20
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-13 18:15:07
 */
 
 'use strict';
@@ -41,11 +41,12 @@ var DateCell = React.createClass({
 var styles = StyleSheet.create({
   cellPrompt: {
     fontSize: 16,
-    color: '#9B9B9B',
+    color: '#4A4A4A',
     fontFamily: 'Avenir Next'
   },
   cellStatus: {
     fontSize: 16,
+    color: '#9B9B9B',
     fontFamily: 'Avenir Next'
   }
 });

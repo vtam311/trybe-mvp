@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:56:42
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-13 19:58:22
 */
 
 'use strict';
@@ -37,12 +37,6 @@ var createWorkoutActions = {
       }
     });
   },
-  addPart: function(){
-    AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.ADD_PART,
-      data: null
-    });
-  },
   setTargetExerciseIdx: function(partIdx, exIdx){
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_TARGET_EXERCISE_IDX,
@@ -58,6 +52,30 @@ var createWorkoutActions = {
       data: {
         exercise: exercise
       }
+    });
+  },
+  toggleRecording: function(bool, partIdx){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.TOGGLE_RECORDING,
+      data: {
+        bool: bool,
+        partIdx: partIdx
+      }
+    });
+  },
+  setResultType: function(type, partIdx){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SET_RESULT_TYPE,
+      data: {
+        type: type,
+        partIdx: partIdx
+      }
+    });
+  },
+  addPart: function(){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.ADD_PART,
+      data: null
     });
   },
 };

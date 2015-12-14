@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 17:45:27
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-13 19:21:54
 */
 
 'use strict';
@@ -54,7 +54,10 @@ var Part = React.createClass({
         </Section>
 
         <Section hideSeparator={true}>
-          <ResultsCell />
+          <ResultsCell
+            isRecording={this.props.part.result.isRecording}
+            resultType={this.props.part.result.type}
+            partIdx={this.props.partIdx} />
         </Section>
       </View>
       /* jshint ignore:start */

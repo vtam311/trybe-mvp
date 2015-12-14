@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-12 16:21:21
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-13 19:48:03
 */
 
 'use strict';
@@ -24,6 +24,7 @@ var AddExerciseCell = React.createClass({
     //exercise in workout
     createWorkoutActions.addExercise(this.props.partIdx);
     this.props.openExerciseModal();
+    console.log('AddExerciseCell button pressed');
   },
 
   render: function(){
