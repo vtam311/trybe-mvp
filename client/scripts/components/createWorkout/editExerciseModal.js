@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 12:09:43
+* @Last Modified time: 2015-12-15 13:47:11
 */
 
 'use strict';
@@ -22,6 +22,7 @@ var {
   Dimensions,
   TextInput,
   SegmentedControlIOS,
+  Image
 } = React;
 
 //Load components
@@ -137,8 +138,12 @@ var EditExerciseModal = React.createClass({
           </View>
 
           <View style={styles.footer}>
-            <Text style={{fontSize: 14, color: '#FA6F80'}}>Delete</Text>
-            <ViewExercise exercise={this.state.currentExercise} />
+            <Image
+              style={{height: 18, width: 18, marginLeft: 10}}
+              source={require('image!deleteButton')} />
+            <View style={{marginLeft: 5}}>
+              <ViewExercise exercise={this.state.currentExercise} />
+            </View>
           </View>
 
         </View>
@@ -197,13 +202,14 @@ var styles = StyleSheet.create({
     color: '#4DBA97',
   },
   body: {
-    height: 320
+    height: 320,
+    justifyContent: 'center',
+    // alignItems: 'center',
   },
   bodyContainer: {
     flex: 1,
     marginLeft: 15,
     marginRight: 15,
-    // backgroundColor: 'grey'
   },
   footer: {
     flex: 1,
@@ -213,9 +219,8 @@ var styles = StyleSheet.create({
     borderTopColor: 'rgba(155, 155, 155, 0.7)',
     borderBottomLeftRadius: 3,
     borderBottomRightRadius: 3,
-    // marginTop: 5
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 10,
     marginRight: 10
