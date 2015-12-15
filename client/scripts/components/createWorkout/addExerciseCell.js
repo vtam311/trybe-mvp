@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 12:07:00
+* @Last Modified time: 2015-12-14 18:50:04
 */
 
 'use strict';
@@ -11,7 +11,6 @@ var React = require('react-native');
 var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 var {
-  StyleSheet,
   Text,
   Image
 } = React;
