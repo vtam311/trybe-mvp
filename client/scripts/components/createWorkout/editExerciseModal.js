@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 19:05:22
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-15 11:50:21
 */
 
 'use strict';
@@ -145,6 +145,7 @@ var EditExerciseModal = React.createClass({
     )
   }
 });
+            // <Text style={{fontSize: 14, color: '#FA6F80'}}>Delete</Text>
 
 var styles = StyleSheet.create({
   modal: {
@@ -212,8 +213,12 @@ var styles = StyleSheet.create({
     borderTopColor: 'rgba(155, 155, 155, 0.7)',
     borderBottomLeftRadius: 3,
     borderBottomRightRadius: 3,
+    // marginTop: 5
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 5
+    marginLeft: 10,
+    marginRight: 10
   },
 });
 

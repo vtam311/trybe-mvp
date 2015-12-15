@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 18:03:21
+* @Last Modified time: 2015-12-15 12:02:15
 */
 
 'use strict';
@@ -33,19 +33,26 @@ var EditExerciseCell = React.createClass({
   removeExercise: function(){
     createWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
   },
+
+  //One parent view - sets flexDirection to row, and space-between
+  //Two child views
   render: function(){
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>
-        <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+            <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+              <Image
+                style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
+                source={require('image!clearButton')} />
+            </TouchableHighlight>
+            <ViewExercise exercise={this.props.exercise} />
+          </View>
           <Image
-            style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
-            source={require('image!clearButton')} />
-        </TouchableHighlight>
-        <ViewExercise exercise={this.props.exercise} />
-        <Image
-          style={{height: 13, width: 8}}
-          source={require('image!disclosureIndicator')} />
+            style={{height: 13, width: 8}}
+            source={require('image!disclosureIndicator')} />
+        </View>
       </CustomCell>
       /* jshint ignore:start */
     );

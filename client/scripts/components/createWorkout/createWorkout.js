@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 18:13:23
+* @Last Modified time: 2015-12-15 11:35:50
 */
 
 'use strict';
@@ -22,7 +22,6 @@ var {
 
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
-var Swipeout = require('react-native-swipeout');
 var DateCell = require('./dateCell');
 var Part = require('./part');
 
@@ -48,31 +47,16 @@ var CreateWorkout = React.createClass({
   },
 
   render: function(){
-    var swipeoutBtns = [
-      {
-        text: 'Delete',
-        backgroundColor: 'rgba(255,255,255,0)',
-        color: 'red'
-      }
-    ];
 
     var parts = this.state.workout.parts.map((part, index) =>
-      //Each part is a swipable component which can be removed.
-      <Swipeout right={swipeoutBtns} backgroundColor={'rgba(255,255,255,0)'} onOpen={() => null}>
-        <Part
-          part={part}
-          partIdx={index}
-          openExerciseModal={this.props.openExerciseModal}
-          key={index} />
-      </Swipeout>
+      <Part
+        part={part}
+        partIdx={index}
+        openExerciseModal={this.props.openExerciseModal}
+        key={index} />
     );
 
-    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and lost.
-    //Seems to be an issue with ScrollView - adding a new section with a cell still has that issue.
-      //Nevermind. Adding just a view within TableView makes that problem way worse. The entire view is eclipsed.
-      //If in a Section, only about 1/3 of it is. Weird.
-
-    //Do I want Add Part to be surrounded by lines like the sections, or off on its own?
+    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and covered.
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
