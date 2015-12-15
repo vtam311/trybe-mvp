@@ -2,16 +2,16 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:02:09
+* @Last Modified time: 2015-12-15 15:16:21
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
-var editExerciseActions = require('../../actions/editExerciseActions');
-var editExerciseStore = require('../../stores/editExerciseStore');
+var createWorkoutStore = require('../../../stores/createWorkoutStore');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
+var editExerciseStore = require('../../../stores/editExerciseStore');
 
 var {
   StyleSheet,
@@ -29,7 +29,7 @@ var {
 //Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
-var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
+var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
 
 //Gets device height for animating app
 var {

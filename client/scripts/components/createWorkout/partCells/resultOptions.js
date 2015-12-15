@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 12:02:39
+* @Last Modified time: 2015-12-15 15:12:45
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
 
 var {
   SegmentedControlIOS,

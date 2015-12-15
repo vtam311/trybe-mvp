@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 16:14:26
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-15 15:16:59
 */
 
 'use strict';
@@ -13,10 +13,10 @@ var {
   View,
 } = React;
 
-var RepPicker = require('./pickers/repPicker');
-var LoadPicker = require('./pickers/loadPicker');
-var DistPicker = require('./pickers/distancePicker');
-var TimePicker = require('./pickers/timePicker');
+var RepPicker = require('../pickers/repPicker');
+var LoadPicker = require('../pickers/loadPicker');
+var DistPicker = require('../pickers/distancePicker');
+var TimePicker = require('../pickers/timePicker');
 
 var SelectedExercisePicker = React.createClass({
   //Gist: shows a PickerIOS component to edit reps, load,

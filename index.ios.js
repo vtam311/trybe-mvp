@@ -6,7 +6,7 @@ var React = require('react-native');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
-var EditExerciseModal = require('./client/scripts/components/createWorkout/editExerciseModal');
+var EditExerciseModal = require('./client/scripts/components/createWorkout/editExercise/editExerciseModal');
 
 var {
   AppRegistry,

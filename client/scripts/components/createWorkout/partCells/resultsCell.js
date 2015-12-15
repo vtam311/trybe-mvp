@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 11:52:24
+* @Last Modified time: 2015-12-15 15:12:48
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
 
 var {
   SwitchIOS,

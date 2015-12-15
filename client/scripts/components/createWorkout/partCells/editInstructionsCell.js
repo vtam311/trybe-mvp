@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 14:27:16
+* @Last Modified time: 2015-12-15 15:12:41
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
 
 var {
   StyleSheet,

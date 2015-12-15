@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-10 14:31:06
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 14:43:42
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-15 15:16:39
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../actions/editExerciseActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
 
 var React = require('react-native');
 

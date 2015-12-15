@@ -2,16 +2,16 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 13:55:07
+* @Last Modified time: 2015-12-15 15:13:00
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
 
 //Load components
-var ViewExercise = require('../../common/viewWorkoutComponents/viewExercise');
+var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
 
 var {
   StyleSheet,

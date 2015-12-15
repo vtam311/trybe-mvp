@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 12:36:26
+* @Last Modified time: 2015-12-15 15:11:42
 */
 
 'use strict';
@@ -15,10 +15,10 @@ var {
 } = React;
 
 import {Section, CustomCell} from 'react-native-tableview-simple';
-var EditInstructionsCell = require('./editInstructionsCell');
-var EditExerciseCell = require('./editExerciseCell');
-var AddExerciseCell = require('./addExerciseCell');
-var ResultsCell = require('./resultsCell');
+var EditInstructionsCell = require('./partCells/editInstructionsCell');
+var EditExerciseCell = require('./partCells/editExerciseCell');
+var AddExerciseCell = require('./partCells/addExerciseCell');
+var ResultsCell = require('./partCells/resultsCell');
 
 var Part = React.createClass({
   renderPartLabel: function(){
