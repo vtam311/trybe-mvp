@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 11:50:21
+* @Last Modified time: 2015-12-15 12:09:43
 */
 
 'use strict';
@@ -137,6 +137,7 @@ var EditExerciseModal = React.createClass({
           </View>
 
           <View style={styles.footer}>
+            <Text style={{fontSize: 14, color: '#FA6F80'}}>Delete</Text>
             <ViewExercise exercise={this.state.currentExercise} />
           </View>
 
@@ -145,7 +146,6 @@ var EditExerciseModal = React.createClass({
     )
   }
 });
-            // <Text style={{fontSize: 14, color: '#FA6F80'}}>Delete</Text>
 
 var styles = StyleSheet.create({
   modal: {
@@ -206,8 +206,8 @@ var styles = StyleSheet.create({
     // backgroundColor: 'grey'
   },
   footer: {
-    height: 40,
     flex: 1,
+    height: 40,
     borderTopColor: '#9B9B9B',
     borderTopWidth: .5,
     borderTopColor: 'rgba(155, 155, 155, 0.7)',
@@ -215,7 +215,7 @@ var styles = StyleSheet.create({
     borderBottomRightRadius: 3,
     // marginTop: 5
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: 10,
     marginRight: 10

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 12:02:15
+* @Last Modified time: 2015-12-15 12:11:02
 */
 
 'use strict';
@@ -40,11 +40,11 @@ var EditExerciseCell = React.createClass({
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+        <View style={styles.cellContainer}>
+          <View style={styles.exercisePreview}>
             <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
               <Image
-                style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
+                style={{height: 14, width: 14, marginRight: 8}}
                 source={require('image!clearButton')} />
             </TouchableHighlight>
             <ViewExercise exercise={this.props.exercise} />
@@ -57,6 +57,19 @@ var EditExerciseCell = React.createClass({
       /* jshint ignore:start */
     );
   }
+});
+
+var styles = StyleSheet.create({
+  cellContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  exercisePreview: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
 });
 
 module.exports = EditExerciseCell;
