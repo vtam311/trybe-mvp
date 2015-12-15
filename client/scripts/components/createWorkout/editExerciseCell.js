@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 22:15:38
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-14 17:19:44
 */
 
 'use strict';
@@ -37,7 +37,7 @@ var EditExerciseCell = React.createClass({
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>
-        <TouchableHighlight onPress={this.removeExercise}>
+        <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
           <Image
             style={{height: 14, width: 14, marginTop: 5, marginRight: 8}}
             source={require('image!clearButton')} />

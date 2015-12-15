@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 19:47:44
+* @Last Modified time: 2015-12-14 17:16:51
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableHighlight
 } = React;
 
 //Load components
@@ -46,6 +46,12 @@ var CreateWorkout = React.createClass({
   render: function(){
     var TEMP_PART_INDEX = 0;
 
+    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and lost.
+    //Seems to be an issue with ScrollView - adding a new section with a cell still has that issue.
+      //Nevermind. Adding just a view within TableView makes that problem way worse. The entire view is eclipsed.
+      //If in a Section, only about 1/3 of it is. Weird.
+
+    //Do I want Add Part to be surrounded by lines like the sections, or off on its own?
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
@@ -60,12 +66,19 @@ var CreateWorkout = React.createClass({
               partIdx={TEMP_PART_INDEX}
               openExerciseModal={this.props.openExerciseModal}/>
 
-            <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
-              <Image
-                style={{height: 14, width: 14, marginTop: 4, marginRight: 8}}
-                source={require('image!addButton')} />
-              <Text style={{flex: 1, fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Add Part</Text>
-            </View>
+            <Section>
+              <TouchableHighlight onPress={console.log('Add Part Pressed')} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+                <View style={{flexDirection: 'column', justifyContent: 'space-around', height: 44}}>
+                  <View style={{flexDirection: 'row', marginLeft: 10}}>
+                    <Image
+                      style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
+                      source={require('image!addButton')} />
+                    <Text style={{flex: 1, fontSize: 14, color: '#767676', fontFamily: 'ArialMT'}}>ADD PART</Text>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </Section>
+
           </TableView>
         </ScrollView>
       </View>
@@ -80,7 +93,6 @@ var styles = StyleSheet.create({
     backgroundColor: '#EFEFF4',
   },
   stage: {
-    backgroundColor: '#EFEFF4',
     paddingTop: 20,
     paddingBottom: 20,
   },

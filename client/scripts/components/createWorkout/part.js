@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 12:07:04
+* @Last Modified time: 2015-12-14 12:36:26
 */
 
 'use strict';
@@ -22,7 +22,7 @@ var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
   renderPartLabel: function(){
-    return 'Part ' + (this.props.partIdx + 1);
+    return 'PART ' + (this.props.partIdx + 1);
   },
 
   render: function(){
