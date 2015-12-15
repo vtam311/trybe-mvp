@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 17:26:21
+* @Last Modified time: 2015-12-14 18:10:15
 */
 
 'use strict';
@@ -22,6 +22,7 @@ var {
 
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
+var Swipeout = require('react-native-swipeout');
 var DateCell = require('./dateCell');
 var Part = require('./part');
 
@@ -47,12 +48,25 @@ var CreateWorkout = React.createClass({
   },
 
   render: function(){
+    //Testing swipeout
+    // Buttons
+    var swipeoutBtns = [
+      {
+        text: 'Delete',
+        backgroundColor: 'rgba(255,255,255,0)',
+        color: 'red'
+      }
+    ];
+
     var parts = this.state.workout.parts.map((part, index) =>
-      <Part
-        part={part}
-        partIdx={index}
-        openExerciseModal={this.props.openExerciseModal}
-        key={index} />
+      <Swipeout right={swipeoutBtns} backgroundColor={'rgba(255,255,255,0)'} onOpen={() => null}>
+        <Part
+          part={part}
+          partIdx={index}
+          openExerciseModal={this.props.openExerciseModal}
+          key={index} />
+      </Swipeout>
+
     );
 
     //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and lost.
@@ -66,6 +80,12 @@ var CreateWorkout = React.createClass({
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
+            <Swipeout right={swipeoutBtns}>
+              <View>
+                <Text>Swipe me left</Text>
+              </View>
+            </Swipeout>
+
             <Section>
               <DateCell />
             </Section>

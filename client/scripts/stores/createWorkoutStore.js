@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 17:22:51
+* @Last Modified time: 2015-12-14 17:57:04
 */
 
 'use strict';
@@ -40,7 +40,8 @@ var WORKOUT_TEMPLATE = {
   day: null,
   createdAt: null,
   type: null,
-  parts: [PART_TEMPLATE],
+  //copyObject so parts don't refer to same obj
+  parts: [copyObjectHelper(PART_TEMPLATE)],
   origin: null,
 };
 
@@ -97,7 +98,8 @@ var setResultType = function(data){
 };
 
 var addPart = function(){
-  _store.workout.parts.push(PART_TEMPLATE);
+  var newPart = copyObjectHelper(PART_TEMPLATE)
+  _store.workout.parts.push(newPart);
   console.log('createWorkoutStore addPart called, workout parts now', _store.workout.parts);
 };
 

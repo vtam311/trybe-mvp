@@ -12,6 +12,7 @@
     "passport-instagram": "^0.1.2",
     "react-native": "~0.13.0",
     "react-native-multipicker": "^0.1.1",
+    "react-native-swipeout": "^2.0.9",
     "react-native-tableview-simple": "^0.3.2"
   },
   "devDependencies": {
