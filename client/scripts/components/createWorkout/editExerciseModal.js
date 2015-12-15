@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 13:47:11
+* @Last Modified time: 2015-12-15 13:54:29
 */
 
 'use strict';
@@ -22,7 +22,8 @@ var {
   Dimensions,
   TextInput,
   SegmentedControlIOS,
-  Image
+  Image,
+  TouchableHighlight
 } = React;
 
 //Load components
@@ -98,6 +99,10 @@ var EditExerciseModal = React.createClass({
     createWorkoutActions.saveExercise(exercise);
     this.closeModal();
   },
+  removeExercise: function(){
+    createWorkoutActions.removeExercise(this.state.partIdx, this.state.exIdx);
+    this.closeModal();
+  },
   render: function() {
     //Gist: Renders a modal for creating or editing an exercise object
     //SelectedExercisePicker component shows a PickerIOS component to edit
@@ -138,9 +143,11 @@ var EditExerciseModal = React.createClass({
           </View>
 
           <View style={styles.footer}>
-            <Image
-              style={{height: 18, width: 18, marginLeft: 10}}
-              source={require('image!deleteButton')} />
+            <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+              <Image
+                style={{height: 18, width: 18, marginLeft: 10}}
+                source={require('image!deleteButton')} />
+            </TouchableHighlight>
             <View style={{marginLeft: 5}}>
               <ViewExercise exercise={this.state.currentExercise} />
             </View>

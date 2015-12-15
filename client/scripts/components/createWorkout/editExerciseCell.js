@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 12:11:02
+* @Last Modified time: 2015-12-15 13:55:07
 */
 
 'use strict';
@@ -30,23 +30,13 @@ var EditExerciseCell = React.createClass({
     createWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     this.props.openExerciseModal();
   },
-  removeExercise: function(){
-    createWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
-  },
 
-  //One parent view - sets flexDirection to row, and space-between
-  //Two child views
   render: function(){
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this._handlePress}>
         <View style={styles.cellContainer}>
           <View style={styles.exercisePreview}>
-            <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
-              <Image
-                style={{height: 14, width: 14, marginRight: 8}}
-                source={require('image!clearButton')} />
-            </TouchableHighlight>
             <ViewExercise exercise={this.props.exercise} />
           </View>
           <Image
