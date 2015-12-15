@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 13:54:29
+* @Last Modified time: 2015-12-15 15:02:09
 */
 
 'use strict';
@@ -109,6 +109,24 @@ var EditExerciseModal = React.createClass({
     //either reps, load, time, distance, etc. based on user's selection
     //from SegmentedControlIOS
 
+    //Declare for reference in showExercisePreviewIfFilled
+    var currentExercise = this.state.currentExercise;
+    var removeExercise = this.removeExercise;
+    var showExercisePreviewIfFilled = function(){
+      if(currentExercise.name){
+        //If the user provides an exercise name, show preview
+        return <ViewExercise exercise={currentExercise} />;
+      }else{
+        //Otherwise render the delete text next to the delete icon
+        return (
+          <TouchableHighlight onPress={removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+            <Text style={styles.deleteText}>Delete</Text>
+          </TouchableHighlight>
+        );
+
+      }
+    };
+
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <View style={styles.container}>
@@ -145,11 +163,11 @@ var EditExerciseModal = React.createClass({
           <View style={styles.footer}>
             <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
               <Image
-                style={{height: 18, width: 18, marginLeft: 10}}
+                style={{height: 18, width: 18, marginLeft: 0}}
                 source={require('image!deleteButton')} />
             </TouchableHighlight>
             <View style={{marginLeft: 5}}>
-              <ViewExercise exercise={this.state.currentExercise} />
+              {showExercisePreviewIfFilled()}
             </View>
           </View>
 
@@ -232,6 +250,11 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10
   },
+  deleteText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    color: '#FA6F80'
+  }
 });
 
 module.exports = EditExerciseModal;
