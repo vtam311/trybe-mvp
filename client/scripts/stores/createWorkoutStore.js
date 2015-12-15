@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 20:13:53
+* @Last Modified time: 2015-12-14 17:22:51
 */
 
 'use strict';
@@ -98,6 +98,7 @@ var setResultType = function(data){
 
 var addPart = function(){
   _store.workout.parts.push(PART_TEMPLATE);
+  console.log('createWorkoutStore addPart called, workout parts now', _store.workout.parts);
 };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -165,7 +166,10 @@ AppDispatcher.register(function(payload){
       setResultType(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    //Add ADD_PART
+    case createWorkoutConstants.ADD_PART:
+      addPart();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
     default:
       return true;
   }

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 17:16:51
+* @Last Modified time: 2015-12-14 17:26:21
 */
 
 'use strict';
@@ -42,9 +42,18 @@ var CreateWorkout = React.createClass({
       workout: createWorkoutStore.getWorkout(),
     });
   },
+  addPart: function(){
+    createWorkoutActions.addPart();
+  },
 
   render: function(){
-    var TEMP_PART_INDEX = 0;
+    var parts = this.state.workout.parts.map((part, index) =>
+      <Part
+        part={part}
+        partIdx={index}
+        openExerciseModal={this.props.openExerciseModal}
+        key={index} />
+    );
 
     //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and lost.
     //Seems to be an issue with ScrollView - adding a new section with a cell still has that issue.
@@ -61,13 +70,10 @@ var CreateWorkout = React.createClass({
               <DateCell />
             </Section>
 
-            <Part
-              part={this.state.workout.parts[TEMP_PART_INDEX]}
-              partIdx={TEMP_PART_INDEX}
-              openExerciseModal={this.props.openExerciseModal}/>
+            {parts}
 
             <Section>
-              <TouchableHighlight onPress={console.log('Add Part Pressed')} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+              <TouchableHighlight onPress={this.addPart} activeOpacity={.8} underlayColor={'#BFBFBF'}>
                 <View style={{flexDirection: 'column', justifyContent: 'space-around', height: 44}}>
                   <View style={{flexDirection: 'row', marginLeft: 10}}>
                     <Image
