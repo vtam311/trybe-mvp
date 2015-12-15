@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-14 18:10:15
+* @Last Modified time: 2015-12-14 18:13:23
 */
 
 'use strict';
@@ -48,8 +48,6 @@ var CreateWorkout = React.createClass({
   },
 
   render: function(){
-    //Testing swipeout
-    // Buttons
     var swipeoutBtns = [
       {
         text: 'Delete',
@@ -59,6 +57,7 @@ var CreateWorkout = React.createClass({
     ];
 
     var parts = this.state.workout.parts.map((part, index) =>
+      //Each part is a swipable component which can be removed.
       <Swipeout right={swipeoutBtns} backgroundColor={'rgba(255,255,255,0)'} onOpen={() => null}>
         <Part
           part={part}
@@ -66,7 +65,6 @@ var CreateWorkout = React.createClass({
           openExerciseModal={this.props.openExerciseModal}
           key={index} />
       </Swipeout>
-
     );
 
     //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and lost.
@@ -80,11 +78,6 @@ var CreateWorkout = React.createClass({
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
-            <Swipeout right={swipeoutBtns}>
-              <View>
-                <Text>Swipe me left</Text>
-              </View>
-            </Swipeout>
 
             <Section>
               <DateCell />
