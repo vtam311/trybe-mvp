@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:50:08
+* @Last Modified time: 2015-12-15 17:05:04
 */
 
 'use strict';
@@ -19,7 +19,6 @@ var {
   Animated,
   Dimensions,
   TextInput,
-  TouchableHighlight,
   Image
 } = React;
 
@@ -33,6 +32,7 @@ var EditPartModal = React.createClass({
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: createWorkoutStore.getTargetPartIdx(),
+      partName: createWorkoutStore.getPartName()
     };
   },
   componentDidMount: function() {
@@ -46,6 +46,11 @@ var EditPartModal = React.createClass({
       duration: 100,
       toValue: deviceHeight
     }).start(this.props.closeModal);
+  },
+  setPartName: function(text){
+    createWorkoutActions.setPartName(text);
+
+    this.setState({partName: text});
   },
   savePart: function(){
     console.log('save part pressed');
@@ -72,19 +77,23 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text>Body</Text>
+              <TextInput
+                value={this.state.partName}
+                placeholder={'Part Name'}
+                onChangeText={(text) => this.setPartName(text)}
+                style={{height: 40}}/>
             </View>
           </View>
 
           <View style={styles.footer}>
-            <TouchableHighlight onPress={this.removePart} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+            <TouchableOpacity>
               <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Image
                   style={{height: 18, width: 18}}
                   source={require('image!deleteButton')} />
                 <Text style={styles.deleteText}>Delete</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
 
         </View>

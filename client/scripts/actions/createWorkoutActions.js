@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 19:58:22
+* @Last Modified time: 2015-12-15 16:56:25
 */
 
 'use strict';
@@ -76,6 +76,22 @@ var createWorkoutActions = {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.ADD_PART,
       data: null
+    });
+  },
+  setTargetPartIdx: function(partIdx){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SET_TARGET_PART_IDX,
+      data: {
+        partIdx: partIdx
+      }
+    });
+  },
+  setPartName: function(name){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SET_PART_NAME,
+      data: {
+        name: name
+      }
     });
   },
 };

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:41:34
+* @Last Modified time: 2015-12-15 17:09:35
 */
 
 'use strict';
@@ -16,7 +16,7 @@ var {
   Text,
   TextInput,
   Image,
-  TouchableHighlight
+  TouchableOpacity,
 } = React;
 
 import {CustomCell} from 'react-native-tableview-simple';
@@ -34,6 +34,11 @@ var EditInstructionsCell = React.createClass({
       instructions: instructions
     });
   },
+  handlePartDisclosurePress: function(){
+    //Let createWorkoutStore know which part we are editing
+    createWorkoutActions.setTargetPartIdx(this.props.partIdx);
+    this.props.openPartModal();
+  },
   render: function(){
     return (
       /* jshint ignore:start */
@@ -42,11 +47,11 @@ var EditInstructionsCell = React.createClass({
           <View style={{flex: 1, flexDirection: 'column', marginTop: 8}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
-              <TouchableHighlight onPress={this.props.openPartModal}>
+              <TouchableOpacity onPress={this.handlePartDisclosurePress}>
                 <Image
                   style={{height: 13, width: 8, marginTop: 6}}
                   source={require('image!disclosureIndicator')} />
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
             <TextInput
               value={this.state.instructions}

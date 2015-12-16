@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:16:21
+* @Last Modified time: 2015-12-15 17:07:30
 */
 
 'use strict';
@@ -23,7 +23,6 @@ var {
   TextInput,
   SegmentedControlIOS,
   Image,
-  TouchableHighlight
 } = React;
 
 //Load components
@@ -119,9 +118,9 @@ var EditExerciseModal = React.createClass({
       }else{
         //Otherwise render the delete text next to the delete icon
         return (
-          <TouchableHighlight onPress={removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+          <TouchableOpacity>
             <Text style={styles.deleteText}>Delete</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         );
 
       }
@@ -161,11 +160,11 @@ var EditExerciseModal = React.createClass({
           </View>
 
           <View style={styles.footer}>
-            <TouchableHighlight onPress={this.removeExercise} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+            <TouchableOpacity>
               <Image
                 style={{height: 18, width: 18, marginLeft: 0}}
                 source={require('image!deleteButton')} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <View style={{marginLeft: 5}}>
               {showExercisePreviewIfFilled()}
             </View>

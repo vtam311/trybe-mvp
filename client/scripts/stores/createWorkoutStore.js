@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 14:21:33
+* @Last Modified time: 2015-12-15 16:59:07
 */
 
 'use strict';
@@ -23,6 +23,7 @@ var EXERCISE_TEMPLATE = {
 };
 
 var PART_TEMPLATE = {
+  name: null,
   instructions: null,
   media: {
     title: null,
@@ -103,6 +104,21 @@ var addPart = function(){
   console.log('createWorkoutStore addPart called, workout parts now', _store.workout.parts);
 };
 
+//Specifies which part of workout to edit
+var setTargetPartIdx = function(data){
+  var partIdx = data.partIdx;
+  _store.targetPartIdx = partIdx;
+  console.log('setTargetPartIdx set target part idx to', _store.targetPartIdx);
+};
+
+var setPartName = function(data){
+  var name = data.name;
+  var partIdx = _store.targetPartIdx;
+  _store.workout.parts[partIdx].name = name;
+  console.log('setPartName set name to', _store.workout.parts[partIdx].name);
+  console.log('at partIdx', partIdx);
+};
+
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -134,6 +150,10 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     } else {
       return EXERCISE_TEMPLATE;
     }
+  },
+  getPartName: function(){
+    var partIdx = _store.targetPartIdx;
+    return _store.workout.parts[partIdx].name;
   }
 });
 
@@ -170,6 +190,14 @@ AppDispatcher.register(function(payload){
       break;
     case createWorkoutConstants.ADD_PART:
       addPart();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_TARGET_PART_IDX:
+      setTargetPartIdx(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_PART_NAME:
+      setPartName(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

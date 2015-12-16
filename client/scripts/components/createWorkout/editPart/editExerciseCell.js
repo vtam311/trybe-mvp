@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:13:00
+* @Last Modified time: 2015-12-15 17:08:02
 */
 
 'use strict';
@@ -19,7 +19,6 @@ var {
   Text,
   TextInput,
   Image,
-  TouchableHighlight
 } = React;
 
 import {CustomCell} from 'react-native-tableview-simple';
