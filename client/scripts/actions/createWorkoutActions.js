@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 16:56:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-15 17:40:22
 */
 
 'use strict';
@@ -75,7 +75,11 @@ var createWorkoutActions = {
   addPart: function(){
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.ADD_PART,
-      data: null
+    });
+  },
+  removePart: function(){
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.REMOVE_PART,
     });
   },
   setTargetPartIdx: function(partIdx){

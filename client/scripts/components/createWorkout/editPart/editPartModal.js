@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:37:55
+* @Last Modified time: 2015-12-15 17:43:53
 */
 
 'use strict';
@@ -48,7 +48,6 @@ var EditPartModal = React.createClass({
     }).start(this.props.closeModal);
   },
   renderPartName: function(text){
-
     this.setState({partName: text});
   },
   savePart: function(){
@@ -56,7 +55,8 @@ var EditPartModal = React.createClass({
     this.closeModal();
   },
   removePart: function(){
-    console.log('remove part pressed');
+    createWorkoutActions.removePart();
+    this.closeModal();
   },
   render: function() {
 
