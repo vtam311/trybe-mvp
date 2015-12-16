@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 17:07:30
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-15 17:24:11
 */
 
 'use strict';
@@ -118,7 +118,7 @@ var EditExerciseModal = React.createClass({
       }else{
         //Otherwise render the delete text next to the delete icon
         return (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={removeExercise}>
             <Text style={styles.deleteText}>Delete</Text>
           </TouchableOpacity>
         );
@@ -160,7 +160,7 @@ var EditExerciseModal = React.createClass({
           </View>
 
           <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.removeExercise}>
               <Image
                 style={{height: 18, width: 18, marginLeft: 0}}
                 source={require('image!deleteButton')} />
