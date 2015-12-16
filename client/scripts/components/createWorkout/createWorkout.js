@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:31:07
+* @Last Modified time: 2015-12-15 16:14:47
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var {
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
-var Part = require('./part');
+var Part = require('./editPart/part');
 
 var CreateWorkout = React.createClass({
   getInitialState: function() {
