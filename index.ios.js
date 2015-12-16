@@ -7,6 +7,7 @@ var React = require('react-native');
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
 var EditExerciseModal = require('./client/scripts/components/createWorkout/editExercise/editExerciseModal');
+var EditPartModal = require('./client/scripts/components/createWorkout/editPart/editPartModal');
 
 var {
   AppRegistry,
@@ -25,7 +26,8 @@ var RouteStack = {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      exerciseModalVisible: false
+      exerciseModalVisible: false,
+      partModalVisible: false
     };
   },
   openExerciseModal: function(){
@@ -34,11 +36,20 @@ var Trybe = React.createClass({
   closeExerciseModal: function(){
     this.setState({exerciseModalVisible: false});
   },
+  openPartModal: function(){
+    this.setState({partModalVisible: true});
+  },
+  closePartModal: function(){
+    this.setState({partModalVisible: false});
+  },
   renderScene: function(route, navigator){
     var Component = route.component;
 
     return (
-      <Component rootNav={this.refs.rootNav} openExerciseModal={this.openExerciseModal} />
+      <Component
+        rootNav={this.refs.rootNav}
+        openExerciseModal={this.openExerciseModal}
+        openPartModal={this.openPartModal} />
     );
   },
 
@@ -51,6 +62,7 @@ var Trybe = React.createClass({
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
         {this.state.exerciseModalVisible ? <EditExerciseModal closeModal={this.closeExerciseModal}/> : null }
+        {this.state.partModalVisible ? <EditPartModal closeModal={this.closePartModal}/> : null }
       </View>
       /* jshint ignore:end */
     );

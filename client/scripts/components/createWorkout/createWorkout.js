@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 11:35:50
+* @Last Modified time: 2015-12-15 15:31:07
 */
 
 'use strict';
@@ -53,6 +53,7 @@ var CreateWorkout = React.createClass({
         part={part}
         partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
+        openPartModal={this.props.openPartModal}
         key={index} />
     );
 

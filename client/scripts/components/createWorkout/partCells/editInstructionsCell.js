@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:12:41
+* @Last Modified time: 2015-12-15 15:41:34
 */
 
 'use strict';
@@ -15,7 +15,8 @@ var {
   View,
   Text,
   TextInput,
-  Image
+  Image,
+  TouchableHighlight
 } = React;
 
 import {CustomCell} from 'react-native-tableview-simple';
@@ -41,9 +42,11 @@ var EditInstructionsCell = React.createClass({
           <View style={{flex: 1, flexDirection: 'column', marginTop: 8}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
-              <Image
-                style={{height: 13, width: 8, marginTop: 6}}
-                source={require('image!disclosureIndicator')} />
+              <TouchableHighlight onPress={this.props.openPartModal}>
+                <Image
+                  style={{height: 13, width: 8, marginTop: 6}}
+                  source={require('image!disclosureIndicator')} />
+              </TouchableHighlight>
             </View>
             <TextInput
               value={this.state.instructions}

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:11:42
+* @Last Modified time: 2015-12-15 15:40:09
 */
 
 'use strict';
@@ -48,7 +48,8 @@ var Part = React.createClass({
         <Section header={this.renderPartLabel()} hideSeparator={true}>
           <EditInstructionsCell
             instructions={this.props.part.instructions}
-            partIdx={this.props.partIdx} />
+            partIdx={this.props.partIdx}
+            openPartModal={this.props.openPartModal} />
           {partExercises}
           <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
         </Section>

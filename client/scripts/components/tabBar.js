@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-29 19:00:50
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-15 15:30:46
 */
 
 'use strict';
@@ -73,7 +73,9 @@ var TabBar = React.createClass({
           icon={ require('image!workout') }
           onPress={ () => this.changeTab('workout') }
           selected={ this.state.selectedTab === 'workout' }>
-          <WorkoutTab openExerciseModal={this.props.openExerciseModal}/>
+          <WorkoutTab
+            openExerciseModal={this.props.openExerciseModal}
+            openPartModal={this.props.openPartModal} />
         </TabBarIOS.Item>
       </TabBarIOS>
       /* jshint ignore:end */
