@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:32:55
+* @Last Modified time: 2015-12-15 17:37:55
 */
 
 'use strict';
@@ -47,13 +47,13 @@ var EditPartModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
-  setPartName: function(text){
-    createWorkoutActions.setPartName(text);
+  renderPartName: function(text){
 
     this.setState({partName: text});
   },
   savePart: function(){
-    console.log('save part pressed');
+    createWorkoutActions.setPartName(this.state.partName);
+    this.closeModal();
   },
   removePart: function(){
     console.log('remove part pressed');
@@ -81,13 +81,13 @@ var EditPartModal = React.createClass({
                 Part Name</Text>
               <TextInput
                 value={this.state.partName}
-                onChangeText={(text) => this.setPartName(text)}
+                onChangeText={(text) => this.renderPartName(text)}
                 style={{height: 40}}/>
             </View>
           </View>
 
           <View style={styles.footer}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.removePart}>
               <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Image
                   style={{height: 18, width: 18}}
