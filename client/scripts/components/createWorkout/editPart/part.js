@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 16:15:08
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-15 17:47:59
 */
 
 'use strict';
@@ -22,7 +22,11 @@ var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
   renderPartLabel: function(){
-    return 'PART ' + (this.props.partIdx + 1);
+    if(this.props.part.name) {
+      return this.props.part.name.toUpperCase();
+    } else {
+      return 'PART ' + (this.props.partIdx + 1);
+    }
   },
 
   render: function(){
