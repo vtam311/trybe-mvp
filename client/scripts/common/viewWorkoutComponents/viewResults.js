@@ -2,13 +2,13 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-06 15:36:26
+* @Last Modified time: 2015-12-10 17:43:55
 */
 
 'use strict';
 
 var React = require('react-native');
-var renderTimeHelper = require('../renderTimeHelper');
+var renderResultsTime = require('../renderResultsTime');
 
 var {
   StyleSheet,
@@ -28,7 +28,7 @@ var viewExercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.workoutResult}>
-        <Text style={styles.resultText}>{renderTimeHelper(workout.finalResult.value)}</Text>
+        <Text style={styles.resultText}>{renderResultsTime(workout.finalResult.value)}</Text>
       </View>
       /* jshint ignore:end */
     );

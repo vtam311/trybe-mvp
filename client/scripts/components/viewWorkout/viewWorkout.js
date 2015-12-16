@@ -118,8 +118,7 @@ var styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     height: .5,
-    borderBottomWidth: .5,
-    borderBottomColor: '#d9d9d9',
+    backgroundColor: '#d9d9d9'
   },
   toolbar: {
     // flex: .5

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-11-18 21:34:27
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-15 17:43:24
 */
 
 'use strict';
@@ -11,23 +11,26 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var createWorkoutConstants = require('../constants/createWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
+var copyObjectHelper = require('../common/copyObjectHelper');
 
 var EXERCISE_TEMPLATE = {
   name: null,
   reps: null,
-  load: {units: 'lbs', val: null},
+  load: {units: 'lb', val: null},
   time: null,
   distance: {units: null, val: null},
-  url: null
+  src: null
 };
 
 var PART_TEMPLATE = {
+  name: null,
   instructions: null,
   media: {
     title: null,
-    url: null
+    src: null
   },
   exercises: [],
+  result: {isRecording: false, type: 'Test', val: null},
   notes: null
 };
 
@@ -38,69 +41,85 @@ var WORKOUT_TEMPLATE = {
   day: null,
   createdAt: null,
   type: null,
-  parts: [PART_TEMPLATE],
+  //copyObject so parts don't refer to same obj
+  parts: [copyObjectHelper(PART_TEMPLATE)],
   origin: null,
-  finalResult: {type: 'Time', value: null}
 };
 
 var _store = {
   workout: WORKOUT_TEMPLATE,
-  getIsCreatingOrModifying: 'CREATING', //set default to creating
-  targetPartIdx: 0, //default val for editing workout
-  targetExerciseIdx: 0, //default val for editing workout
+  targetPartIdx: 0, //set to null once setTargetPartIdx is written
+  targetExerciseIdx: null,
+};
+
+var setInstructions = function(data){
+  var instructions = data.instructions;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].instructions = instructions;
 };
 
 var addExercise = function(data){
   var partIdx = data.partIdx;
-  _store.workout.parts[partIdx].exercises.push(EXERCISE_TEMPLATE);
+  //Set exIdx to the next empty index of exercises array
+  //Adding of exercise happens once saveExercise is called
+  var exIdx = _store.workout.parts[partIdx].exercises.length;
+  _store.targetExerciseIdx = exIdx;
+};
+
+var removeExercise = function(data){
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  _store.workout.parts[partIdx].exercises.splice(exIdx, 1);
+};
+
+//Specifies which exercise of workout to edit
+var setTargetExerciseIdx = function(data){
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  _store.targetExerciseIdx = exIdx;
+};
+
+var saveExercise = function(data){
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  var exercise = data.exercise;
+  _store.workout.parts[partIdx].exercises[exIdx] = exercise;
+};
+
+var toggleRecording = function(data){
+  var bool = data.bool;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].result.isRecording = bool;
+};
+
+var setResultType = function(data){
+  var type = data.type;
+  var partIdx = data.partIdx;
+  _store.workout.parts[partIdx].result.type = type;
 };
 
 var addPart = function(){
-  _store.workout.parts.push(PART_TEMPLATE);
+  var newPart = copyObjectHelper(PART_TEMPLATE);
+  _store.workout.parts.push(newPart);
 };
 
-var findExercise = function(data){
+var removePart = function(){
+  var partIdx = _store.targetPartIdx;
+  _store.workout.parts.splice(partIdx, 1);
+  console.log('removePart removed part idx of', partIdx);
+  console.log('parts now', _store.workout.parts);
+};
+
+//Specifies which part of workout to edit
+var setTargetPartIdx = function(data){
   var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  return _store.workout.parts[partIdx].exercises[exIdx];
+  _store.targetPartIdx = partIdx;
 };
 
-var setExerciseName = function(data) {
-  var exName = data.exName;
-  var targetExercise = findExercise(data);
-  targetExercise.name = exName;
-};
-
-var setReps = function(data) {
-  //To do: correct the exercise name
-  var reps = data.reps;
-  var targetExercise = findExercise(data);
-  targetExercise.reps = reps;
-  console.log('createWorkoutStore setReps changed reps to', reps);
-};
-
-var setLoad = function(data) {
-  var load = data.load;
-  var targetExercise = findExercise(data);
-  targetExercise.load.val = load;
-};
-
-var setHold = function(data) {
-  var hold = data.hold;
-  var targetExercise = findExercise(data);
-  targetExercise.hold = hold;
-};
-
-var setDist = function(data) {
-  var dist = data.dist;
-  var targetExercise = findExercise(data);
-  targetExercise.distance.val = dist;
-};
-
-var setDistUnit = function(data) {
-  var unit = data.unit;
-  var targetExercise = findExercise(data);
-  targetExercise.distance.units = unit;
+var setPartName = function(data){
+  var name = data.name;
+  var partIdx = _store.targetPartIdx;
+  _store.workout.parts[partIdx].name = name;
 };
 
 var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -113,52 +132,79 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getWorkout: function(){
     return _store.workout;
   },
-  getIsCreatingOrModifying: function(){
-    return _store.getIsCreatingOrModifying;
-  },
   getTargetPartIdx: function(){
     return _store.targetPartIdx;
   },
   getTargetExerciseIdx: function(){
     return _store.targetExerciseIdx;
   },
-  //Target exercise being modified or created.
-  //Used for reference in createExerciseModal
   getTargetExercise: function(){
+    //Target exercise being modified or created.
+    //Used for reference in createExerciseModal
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
-    return _store.workout.parts[partIdx].exercises[exIdx];
+    var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
+
+    //If partIdx and exIdx are pointing to an existing
+    //exercise, send it. Otherwise, user is creating new
+    //exercise, so send exercise template.
+    if(targetExercise) {
+      return _store.workout.parts[partIdx].exercises[exIdx];
+    } else {
+      return EXERCISE_TEMPLATE;
+    }
+  },
+  getPartName: function(){
+    var partIdx = _store.targetPartIdx;
+    return _store.workout.parts[partIdx].name;
   }
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case createWorkoutConstants.SET_INSTRUCTIONS:
+      setInstructions(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case createWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
-      break;
-    case createWorkoutConstants.SET_EXERCISE_NAME:
-      setExerciseName(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_REPS:
-      setReps(action.data);
+    case createWorkoutConstants.REMOVE_EXERCISE:
+      removeExercise(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_LOAD:
-      setLoad(action.data);
+    case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
+      setTargetExerciseIdx(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_HOLD:
-      setHold(action.data);
+    case createWorkoutConstants.SAVE_EXERCISE:
+      saveExercise(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_DIST:
-      setDist(action.data);
+    case createWorkoutConstants.TOGGLE_RECORDING:
+      toggleRecording(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_DISTUNIT:
-      setDistUnit(action.data);
+    case createWorkoutConstants.SET_RESULT_TYPE:
+      setResultType(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.ADD_PART:
+      addPart();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.REMOVE_PART:
+      removePart();
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_TARGET_PART_IDX:
+      setTargetPartIdx(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case createWorkoutConstants.SET_PART_NAME:
+      setPartName(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

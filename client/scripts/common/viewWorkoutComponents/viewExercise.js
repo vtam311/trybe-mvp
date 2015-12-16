@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var renderExerciseTime = require('../renderExerciseTime');
 
 var {
   StyleSheet,
@@ -13,23 +14,42 @@ var viewExercise = React.createClass({
 
   render: function(){
     var exercise = this.props.exercise;
-    var amount;
-    var load;
-    var movement;
+    var rep, amount, load, exerciseName;
 
-    var renderAmount = function(exercise) {
+    var renderReps = function() {
       /* jshint ignore:start*/
-      if(exercise.reps){
-        amount = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
-      } else if (exercise.hold){
-        amount = <Text style={styles.exerciseText}>{exercise.hold}</Text>;
-      } else if (exercise.distance.val){
+      //If there are both reps and an a distance or time,
+      //add 'x' to reps - ie. 5x 50m Sprints.
+      if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
+        rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
+      } else if (exercise.reps) {
+      //Otherwise just show reps
+        rep = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
+      }
+      /* jshint ignore:end*/
+    };
+
+    var renderTimeAndDistance = function() {
+      /* jshint ignore:start*/
+      if (exercise.time){
+        if(exercise.distance && exercise.distance.val) {
+          //If both time and dist, show like: 60 Sec 400m Sprint
+          amount =
+            <Text style={styles.exerciseText}>
+              {renderExerciseTime(exercise.time)} {exercise.distance.val}{exercise.distance.units}
+            </Text>;
+        } else {
+          //If only time, show like: 60 Sec Sprint
+          amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;
+        }
+      } else if (exercise.distance && exercise.distance.val) {
+        //If only dist, show like: 400m Sprint
         amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
       /* jshint ignore:end*/
     };
 
-    var renderLoad = function(exercise) {
+    var renderLoad = function() {
       /* jshint ignore:start*/
       if(exercise.load.val) {
         load = <Text style={styles.exerciseText}>at {exercise.load.val}{exercise.load.units}</Text>;
@@ -37,23 +57,29 @@ var viewExercise = React.createClass({
       /* jshint ignore:end*/
     };
 
-    var renderMovement = function(exercise) {
+    var renderExerciseName = function() {
       /* jshint ignore:start*/
-      movement = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+      exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
       /* jshint ignore:end*/
     };
 
-    //Render exercise description such that order is
-    // Amount(Reps/Time/Dist) Weight ExerciseName
-    renderAmount(exercise);
-    renderLoad(exercise);
-    renderMovement(exercise);
+    var renderExercise = function() {
+      //Render exercise description such that order is
+      //Rep, Amount(Time or Dist), Weight, ExerciseName
+      renderReps();
+      renderTimeAndDistance();
+      renderLoad();
+      renderExerciseName();
+    };
+
+    renderExercise();
 
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
+        {rep}
         {amount}
-        {movement}
+        {exerciseName}
         {load}
       </View>
       /* jshint ignore:end */
@@ -63,11 +89,8 @@ var viewExercise = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginTop: 5,
-    marginLeft: 0
   },
   exerciseText: {
     marginRight: 4,

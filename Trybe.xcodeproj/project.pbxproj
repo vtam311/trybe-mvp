@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2706C5C01BDAF008006C58C7 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = 2706C5BF1BDAF008006C58C7 /* node_modules */; };
 		2706C5D11BDAF1FA006C58C7 /* libRNTableView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2706C5D01BDAF1E5006C58C7 /* libRNTableView.a */; };
+		27127BB01C17608D00E9F1B9 /* libRNMultiPickerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27127BAE1C17605100E9F1B9 /* libRNMultiPickerIOS.a */; };
 		279F44251BB32A9500D99458 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279F44241BB32A9500D99458 /* Images.xcassets */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,13 @@
 			remoteGlobalIDString = 873769951B7CD6E900F7C3C2;
 			remoteInfo = RNTableView;
 		};
+		27127BAD1C17605100E9F1B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27127B9F1C17605000E9F1B9 /* RNMultiPicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7A37E20C1AE588B100920C3B;
+			remoteInfo = RNMultiPickerIOS;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -137,6 +145,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2706C5BF1BDAF008006C58C7 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
 		2706C5CB1BDAF1E4006C58C7 /* RNTableView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNTableView.xcodeproj; path = "node_modules/react-native-tableview/RNTableView.xcodeproj"; sourceTree = "<group>"; };
+		27127B9F1C17605000E9F1B9 /* RNMultiPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMultiPicker.xcodeproj; path = "node_modules/react-native-multipicker/RNMultiPicker.xcodeproj"; sourceTree = "<group>"; };
 		279F44241BB32A9500D99458 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Trybe/Images.xcassets; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -154,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27127BB01C17608D00E9F1B9 /* libRNMultiPickerIOS.a in Frameworks */,
 				2706C5D11BDAF1FA006C58C7 /* libRNTableView.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -275,6 +285,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		27127BA01C17605000E9F1B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27127BAE1C17605100E9F1B9 /* libRNMultiPickerIOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +304,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				27127B9F1C17605000E9F1B9 /* RNMultiPicker.xcodeproj */,
 				2706C5CB1BDAF1E4006C58C7 /* RNTableView.xcodeproj */,
 				2706C5BF1BDAF008006C58C7 /* node_modules */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -437,6 +456,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 27127BA01C17605000E9F1B9 /* Products */;
+					ProjectRef = 27127B9F1C17605000E9F1B9 /* RNMultiPicker.xcodeproj */;
+				},
+				{
 					ProductGroup = 2706C5CC1BDAF1E4006C58C7 /* Products */;
 					ProjectRef = 2706C5CB1BDAF1E4006C58C7 /* RNTableView.xcodeproj */;
 				},
@@ -511,6 +534,13 @@
 			fileType = archive.ar;
 			path = libRNTableView.a;
 			remoteRef = 2706C5CF1BDAF1E5006C58C7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27127BAE1C17605100E9F1B9 /* libRNMultiPickerIOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMultiPickerIOS.a;
+			remoteRef = 27127BAD1C17605100E9F1B9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {

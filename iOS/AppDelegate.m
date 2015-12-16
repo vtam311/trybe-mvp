@@ -31,9 +31,8 @@
    * on the same Wi-Fi network.
    */
 
-  // jsCodeLocation = [NSURL URLWithString:@"http://192.168.1.62:8081/index.ios.bundle"];
+  //Note: if running on phone using Xcode, manually set machine's IP
   jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"];
-  // jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=false"];
 
   /**
    * OPTION 2

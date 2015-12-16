@@ -1,14 +1,15 @@
 /*
-* @Author: vincetam
-* @Date:   2015-10-29 17:28:28
+* @Author: VINCE
+* @Date:   2015-12-15 15:19:09
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-30 16:47:04
+* @Last Modified time: 2015-12-15 18:02:16
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
+var createWorkoutStore = require('../../../stores/createWorkoutStore');
+var createWorkoutActions = require('../../../actions/createWorkoutActions');
 
 var {
   StyleSheet,
@@ -18,36 +19,20 @@ var {
   Animated,
   Dimensions,
   TextInput,
-  SegmentedControlIOS,
+  Image
 } = React;
-
-var RepPicker = require('./pickers/repPicker');
 
 //Gets device height for animating app
 var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-var EXERCISE_TEMPLATE = {
-  name: null,
-  reps: null,
-  load: {units: 'lbs', val: null},
-  time: null,
-  distance: {units: null, val: null},
-  url: null
-};
-
-var CreateExerciseModal = React.createClass({
+var EditPartModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: createWorkoutStore.getTargetPartIdx(),
-      exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      targetExercise: createWorkoutStore.getTargetExercise()
-      //Change in reps aren't reflected in view
-        //Fix: Update reps in store, have it update state
-        //here, and pass that down as props to repPicker
-        //via the targetExercise property
+      partName: createWorkoutStore.getPartName()
     };
   },
   componentDidMount: function() {
@@ -55,17 +40,6 @@ var CreateExerciseModal = React.createClass({
       duration: 100,
       toValue: 0
     }).start();
-    createWorkoutStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
-  },
-  _onChange: function(){
-    this.setState({
-      partIdx: createWorkoutStore.getTargetPartIdx(),
-      exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      targetExercise: createWorkoutStore.getTargetExercise()
-    });
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -73,7 +47,19 @@ var CreateExerciseModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
+  renderPartName: function(text){
+    this.setState({partName: text});
+  },
+  savePart: function(){
+    createWorkoutActions.setPartName(this.state.partName);
+    this.closeModal();
+  },
+  removePart: function(){
+    createWorkoutActions.removePart();
+    this.closeModal();
+  },
   render: function() {
+
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <View style={styles.container}>
@@ -82,36 +68,41 @@ var CreateExerciseModal = React.createClass({
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>New Exercise</Text>
-              <TouchableOpacity onPress={this.closeModal}>
+              <Text style={styles.headerTitleText}>Edit Part</Text>
+              <TouchableOpacity onPress={this.savePart}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
+
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
+              <Text style={{fontSize: 14, color: 'black', fontFamily: 'Avenir Next'}}>
+                Purpose</Text>
               <TextInput
-                style={styles.textInput}
-                placeholder={'Exercise Name'}
-                placeholderTextColor={'#9B9B9B'}/>
-              <View style={{marginTop: 15}}>
-                <SegmentedControlIOS
-                  values={['Reps', 'Weight', 'Distance', 'Time']}
-                  tintColor={'#4DBA97'}/>
-                <RepPicker
-                  partIdx={this.state.partIdx}
-                  exIdx={this.state.exIdx}
-                  targetExercise={this.state.targetExercise}/>
-              </View>
+                value={this.state.partName}
+                placeholder={'Warmup, Strength, etc.'}
+                onChangeText={(text) => this.renderPartName(text)}
+                style={{height: 40}}/>
             </View>
           </View>
+
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={this.removePart}>
+              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                  style={{height: 18, width: 18}}
+                  source={require('image!deleteButton')} />
+                <Text style={styles.deleteText}>Delete</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
         </View>
       </Animated.View>
     )
   }
 });
-
-//Note to self: underline in textInput is not showing up
 
 var styles = StyleSheet.create({
   modal: {
@@ -128,7 +119,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 400,
+    height: 180,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 3,
@@ -163,20 +154,35 @@ var styles = StyleSheet.create({
     color: '#4DBA97',
   },
   body: {
-    height: 360
+    height: 100,
+    justifyContent: 'center',
   },
   bodyContainer: {
     flex: 1,
     marginLeft: 15,
-    marginRight: 15
-  },
-  textInput: {
-    height: 40,
+    marginRight: 15,
     marginTop: 15,
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'solid',
-    textDecorationColor: 'black'
+  },
+  footer: {
+    flex: 1,
+    height: 40,
+    borderTopColor: '#9B9B9B',
+    borderTopWidth: .5,
+    borderTopColor: 'rgba(155, 155, 155, 0.7)',
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10
+  },
+  deleteText: {
+    marginLeft: 5,
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    color: '#FA6F80'
   }
 });
 
-module.exports = CreateExerciseModal;
+module.exports = EditPartModal;

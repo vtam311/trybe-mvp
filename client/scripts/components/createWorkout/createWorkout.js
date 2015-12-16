@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-11-18 20:35:51
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-15 16:14:47
 */
 
 'use strict';
@@ -17,20 +17,17 @@ var {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableHighlight
 } = React;
 
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
-var CreateInstructionsCell = require('./createInstructionsCell');
-var CreateExerciseCell = require('./createExerciseCell');
-var AddExerciseCell = require('./addExerciseCell');
+var Part = require('./editPart/part');
 
 var CreateWorkout = React.createClass({
   getInitialState: function() {
     return {
-      // isCreatingOrModifying: createWorkoutStore.getIsCreatingOrModifying(),
       workout: createWorkoutStore.getWorkout(),
     };
   },
@@ -45,48 +42,47 @@ var CreateWorkout = React.createClass({
       workout: createWorkoutStore.getWorkout(),
     });
   },
+  addPart: function(){
+    createWorkoutActions.addPart();
+  },
 
   render: function(){
-    var TEMP_PART_INDEX = 0;
-    var TEMP_EXERCISE = {
-      name: 'Pull Ups',
-      reps: 5,
-      load: {units: 'lb', val: 45},
-      time: null,
-      distance: {units: null, val: null},
-      url: null
-    };
 
-    var exercisesOfPart1 = this.state.workout.parts[0].exercises
-    .map((exercise, index) =>
-      /* jshint ignore:start */
-      <CreateExerciseCell
-        exercise={exercise}
+    var parts = this.state.workout.parts.map((part, index) =>
+      <Part
+        part={part}
+        partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
+        openPartModal={this.props.openPartModal}
         key={index} />
-      /* jshint ignore:end */
     );
 
-
+    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and covered.
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
+
             <Section>
               <DateCell />
             </Section>
-            <Section header="PART 1">
-              <CreateInstructionsCell/>
-              {exercisesOfPart1}
-              <AddExerciseCell partIdx={TEMP_PART_INDEX} openExerciseModal={this.props.openExerciseModal} />
+
+            {parts}
+
+            <Section>
+              <TouchableHighlight onPress={this.addPart} activeOpacity={.8} underlayColor={'#BFBFBF'}>
+                <View style={{flexDirection: 'column', justifyContent: 'space-around', height: 44}}>
+                  <View style={{flexDirection: 'row', marginLeft: 10}}>
+                    <Image
+                      style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
+                      source={require('image!addButton')} />
+                    <Text style={{flex: 1, fontSize: 14, color: '#767676', fontFamily: 'ArialMT'}}>ADD PART</Text>
+                  </View>
+                </View>
+              </TouchableHighlight>
             </Section>
-            <View style={{flex: 1, flexDirection: 'row', marginLeft: 10}}>
-              <Image
-                style={{height: 14, width: 14, marginTop: 4, marginRight: 8}}
-                source={require('image!addButton')} />
-              <Text style={{flex: 1, fontSize: 16, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Add Part</Text>
-            </View>
+
           </TableView>
         </ScrollView>
       </View>
@@ -101,15 +97,9 @@ var styles = StyleSheet.create({
     backgroundColor: '#EFEFF4',
   },
   stage: {
-    backgroundColor: '#EFEFF4',
     paddingTop: 20,
     paddingBottom: 20,
   },
-  flexCenter: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 });
 
 module.exports = CreateWorkout;

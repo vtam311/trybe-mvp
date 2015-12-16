@@ -2,7 +2,6 @@
 
 var React = require('react-native');
 var workoutTabActions = require('../../actions/workoutTabActions');
-// var workoutTabStore = require('../../stores/workoutTabStore'); //not using since 10.29.15
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
@@ -35,7 +34,10 @@ var WorkoutTab = React.createClass({
     var Component = route.component;
 
     return (
-      <Component goToScene={this.goToScene} openExerciseModal={this.props.openExerciseModal} />
+      <Component
+        goToScene={this.goToScene}
+        openExerciseModal={this.props.openExerciseModal}
+        openPartModal={this.props.openPartModal} />
     );
   },
   render: function() {

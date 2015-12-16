@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var renderTimeHelper = require('../../common/renderTimeHelper');
+var renderResultsTime = require('../../common/renderResultsTime');
 var modifyWorkoutStore = require('../../stores/modifyWorkoutStore');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
@@ -42,7 +42,7 @@ var TimeEdit = React.createClass({
         <View>
           <TouchableHighlight
             onPress={ () => this.toggleTimeEdit() }>
-            <Text>{renderTimeHelper(this.props.workout.time) + ' As Many Rounds as Possible'}</Text>
+            <Text>{renderResultsTime(this.props.workout.time) + ' As Many Rounds as Possible'}</Text>
           </TouchableHighlight>
           <PickerIOS
             selectedValue={Number(this.props.workout.time.slice(3,5))}
@@ -63,7 +63,7 @@ var TimeEdit = React.createClass({
         <View>
           <TouchableHighlight
             onPress={ () => this.toggleTimeEdit() }>
-            <Text>{renderTimeHelper(this.props.workout.time) + ' As Many Rounds as Possible'}</Text>
+            <Text>{renderResultsTime(this.props.workout.time) + ' As Many Rounds as Possible'}</Text>
           </TouchableHighlight>
         </View>
         /* jshint ignore:end */

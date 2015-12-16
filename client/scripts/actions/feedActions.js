@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-10-07 16:34:39
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-13 16:43:42
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var feedConstants = require('../constants/feedConstants');
 var feedActions = {
   getTrybeWorkout: function(){
     //To do: make a get req to server
+    //To do: update workout obj to finalized version in createWorkoutStore
     var dummyWorkout = {
       id: 24,
       username: 'Ryan Ford',
