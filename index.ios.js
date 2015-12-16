@@ -14,7 +14,7 @@ var {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
 } = React;
 
 var RouteStack = {
@@ -27,7 +27,7 @@ var Trybe = React.createClass({
   getInitialState: function(){
     return {
       exerciseModalVisible: false,
-      partModalVisible: false
+      partModalVisible: false,
     };
   },
   openExerciseModal: function(){

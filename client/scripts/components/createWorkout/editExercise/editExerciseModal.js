@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 14:57:23
+* @Last Modified time: 2015-12-16 15:16:04
 */
 
 'use strict';
@@ -54,14 +54,15 @@ var EditExerciseModal = React.createClass({
       exIdx: createWorkoutStore.getTargetExerciseIdx(),
       targetExercise: createWorkoutStore.getTargetExercise(),
       exPickerIdx: 0,
-      //Init currentExercise to createWorkoutStore's targetExercise
-      //so downstream components can load with data. However,
-      //currentExercise will reflect editExerciseStore's exercise
-      currentExercise: createWorkoutStore.getTargetExercise(),
+      currentExercise: null,
       visibleHeight: Dimensions.get('window').height //
     };
   },
   componentWillMount: function() {
+    editExerciseStore.addChangeListener(this._onChange);
+    //initialize currentExercise with the targetExercise user is editting
+    editExerciseActions.initializeExercise(this.state.targetExercise);
+
     DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
@@ -70,18 +71,12 @@ var EditExerciseModal = React.createClass({
       duration: 100,
       toValue: 0
     }).start();
-    editExerciseStore.addChangeListener(this._onChange);
-
-    //initialize currentExercise with the targetExercise user is editting
-    editExerciseActions.initializeExercise(this.state.targetExercise);
   },
   componentWillUnmount: function() {
     editExerciseStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    this.setState({
-      currentExercise: editExerciseStore.getExercise()
-    });
+    this.setState({currentExercise: editExerciseStore.getExercise()});
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
