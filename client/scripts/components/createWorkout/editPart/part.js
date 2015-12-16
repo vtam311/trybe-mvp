@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:47:59
+* @Last Modified time: 2015-12-15 17:50:07
 */
 
 'use strict';
@@ -22,9 +22,11 @@ var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
   renderPartLabel: function(){
+    //If a name is provided for part, render it
     if(this.props.part.name) {
       return this.props.part.name.toUpperCase();
     } else {
+      //Otherwise show default name of PART (num)
       return 'PART ' + (this.props.partIdx + 1);
     }
   },

@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:43:53
+* @Last Modified time: 2015-12-15 18:02:16
 */
 
 'use strict';
@@ -77,10 +77,11 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>
-                Part Name</Text>
+              <Text style={{fontSize: 14, color: 'black', fontFamily: 'Avenir Next'}}>
+                Purpose</Text>
               <TextInput
                 value={this.state.partName}
+                placeholder={'Warmup, Strength, etc.'}
                 onChangeText={(text) => this.renderPartName(text)}
                 style={{height: 40}}/>
             </View>
