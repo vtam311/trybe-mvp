@@ -15,7 +15,13 @@ var {
   Text,
   View,
   Navigator,
+  Dimensions, //
+  DeviceEventEmitter, //
 } = React;
+
+//To dismiss keyboard
+var TouchableWithoutFeedback = require('TouchableWithoutFeedback'); //
+var dismissKeyboard = require('dismissKeyboard'); //
 
 var RouteStack = {
   app: {
@@ -28,7 +34,12 @@ var Trybe = React.createClass({
     return {
       exerciseModalVisible: false,
       partModalVisible: false,
+      visibleHeight: Dimensions.get('window').height
     };
+  },
+  componentWillMount: function() {
+    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   openExerciseModal: function(){
     this.setState({exerciseModalVisible: true});
@@ -42,6 +53,19 @@ var Trybe = React.createClass({
   closePartModal: function(){
     this.setState({partModalVisible: false});
   },
+  keyboardWillShow: function(e) {
+    console.log('rootNav keyboardWillShow called');
+    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    this.setState({visibleHeight: newSize});
+  },
+  keyboardWillHide: function(e) {
+    console.log('rootNav keyboardWillHide called');
+    this.setState({visibleHeight: Dimensions.get('window').height});
+  },
+  hideKeyboard: function(){
+    console.log('rootNav hideKeyboard called');
+    dismissKeyboard();
+  },
   renderScene: function(route, navigator){
     var Component = route.component;
 
@@ -52,11 +76,13 @@ var Trybe = React.createClass({
         openPartModal={this.openPartModal} />
     );
   },
+      // <TouchableWithoutFeedback onPress={this.hideKeyboard}>
+      // </TouchableWithoutFeedback>
 
   render: function() {
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
+      <View style={[styles.container, {height: this.state.visibleHeight}]}>
         <Navigator
           ref="rootNav"
           initialRoute={RouteStack.app}

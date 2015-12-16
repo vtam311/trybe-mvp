@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 15:16:04
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-16 15:56:40
 */
 
 'use strict';
@@ -74,15 +74,21 @@ var EditExerciseModal = React.createClass({
   },
   componentWillUnmount: function() {
     editExerciseStore.removeChangeListener(this._onChange);
+
+    //Issue: DeviceEventEmitter still seems to be listening after unmount
+    // DeviceEventEmitter.removeListener('keyboardWillShow', this.keyboardWillShow);
+    // DeviceEventEmitter.removeListener('keyboardWillHide', this.keyboardWillHide);
   },
   _onChange: function(){
     this.setState({currentExercise: editExerciseStore.getExercise()});
   },
   keyboardWillShow: function(e) {
+    console.log('editExerciseModal keyboardWillShow called');
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
     this.setState({visibleHeight: newSize});
   },
   keyboardWillHide: function(e) {
+    console.log('editExerciseModal keyboardWillHide called');
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   closeModal: function() {
@@ -114,7 +120,7 @@ var EditExerciseModal = React.createClass({
     this.closeModal();
   },
   hideKeyboard: function(){
-    console.log('hideKeyboard called');
+    console.log('editExerciseModal hideKeyboard called');
     dismissKeyboard();
   },
   render: function() {
