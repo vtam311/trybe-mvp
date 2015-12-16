@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 17:05:04
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-15 17:32:55
 */
 
 'use strict';
@@ -77,9 +77,10 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
+              <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>
+                Part Name</Text>
               <TextInput
                 value={this.state.partName}
-                placeholder={'Part Name'}
                 onChangeText={(text) => this.setPartName(text)}
                 style={{height: 40}}/>
             </View>
@@ -159,6 +160,7 @@ var styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
     marginRight: 15,
+    marginTop: 15,
   },
   footer: {
     flex: 1,
