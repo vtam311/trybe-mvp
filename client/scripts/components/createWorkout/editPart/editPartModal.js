@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 18:02:16
+* @Last Modified time: 2015-12-16 11:34:46
 */
 
 'use strict';
@@ -77,8 +77,7 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text style={{fontSize: 14, color: 'black', fontFamily: 'Avenir Next'}}>
-                Purpose</Text>
+              <Text style={styles.partNamePrompt}>Purpose</Text>
               <TextInput
                 value={this.state.partName}
                 placeholder={'Warmup, Strength, etc.'}
@@ -162,6 +161,11 @@ var styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     marginTop: 15,
+  },
+  partNamePrompt: {
+    fontSize: 14,
+    color: 'black',
+    fontFamily: 'Avenir Next'
   },
   footer: {
     flex: 1,

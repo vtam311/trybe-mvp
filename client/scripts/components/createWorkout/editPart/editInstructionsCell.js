@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 17:09:35
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-16 11:36:30
 */
 
 'use strict';
@@ -43,15 +43,13 @@ var EditInstructionsCell = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <CustomCell customHeight={70}>
+        <CustomCell customHeight={70} onPress={this.handlePartDisclosurePress}>
           <View style={{flex: 1, flexDirection: 'column', marginTop: 8}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
-              <TouchableOpacity onPress={this.handlePartDisclosurePress}>
-                <Image
-                  style={{height: 13, width: 8, marginTop: 6}}
-                  source={require('image!disclosureIndicator')} />
-              </TouchableOpacity>
+              <Image
+                style={{height: 13, width: 8, marginTop: 6}}
+                source={require('image!disclosureIndicator')} />
             </View>
             <TextInput
               value={this.state.instructions}
