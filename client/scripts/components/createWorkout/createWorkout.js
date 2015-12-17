@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 18:25:32
+* @Last Modified time: 2015-12-17 11:20:19
 */
 
 'use strict';
@@ -19,7 +19,8 @@ var {
   Image,
   TouchableHighlight,
   Dimensions,
-  DeviceEventEmitter
+  DeviceEventEmitter,
+  TextInput //temp to test
 } = React;
 
 var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
@@ -37,6 +38,7 @@ var CreateWorkout = React.createClass({
     };
   },
   componentWillMount: function() {
+    // Looks like this isn't necessary - scrollComponentToView handles this.
     DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
@@ -60,19 +62,32 @@ var CreateWorkout = React.createClass({
     console.log('createWorkout keyboardWillHide called');
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
+  scrollComponentToView: function(refName) {
+    console.log('scrollComponentToView refName is', refName);
+
+    setTimeout( () => {
+      let scrollResponder = this.refs.scrollView.getScrollResponder();
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+        React.findNodeHandle(this.refs[refName]),
+        110, //more offset
+        true
+      );
+    }, 50);
+  },
   addPart: function(){
     createWorkoutActions.addPart();
   },
 
   render: function(){
-    console.log('createWorkout rendering height of', this.state.visibleHeight);
     var parts = this.state.workout.parts.map((part, index) =>
       /* jshint ignore:start */
       <Part
+        ref={'part' + index}
         part={part}
         partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
         openPartModal={this.props.openPartModal}
+        scrollComponentToView={this.scrollComponentToView}
         key={index} />
       /* jshint ignore:end */
     );
@@ -80,7 +95,10 @@ var CreateWorkout = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={[styles.container, {height: this.state.visibleHeight}]}>
-        <ScrollView contentContainerStyle={styles.stage}>
+        <ScrollView
+          ref='scrollView'
+          keyboardDismissMode='on-drag'
+          contentContainerStyle={styles.contentContainerStyle}>
           <TableView>
 
             <Section>
@@ -114,7 +132,7 @@ var styles = StyleSheet.create({
   container: {
     backgroundColor: '#EFEFF4',
   },
-  stage: {
+  contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
   },

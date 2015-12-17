@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 11:36:30
+* @Last Modified time: 2015-12-17 11:16:44
 */
 
 'use strict';
@@ -39,7 +39,13 @@ var EditInstructionsCell = React.createClass({
     createWorkoutActions.setTargetPartIdx(this.props.partIdx);
     this.props.openPartModal();
   },
+
+
   render: function(){
+    //Gets the ref of parent component in createWorkout,
+    //so onFocus of TextInput can scroll component to view
+    var parentRef = 'part' + this.props.partIdx;
+
     return (
       /* jshint ignore:start */
       <View>
@@ -51,10 +57,14 @@ var EditInstructionsCell = React.createClass({
                 style={{height: 13, width: 8, marginTop: 6}}
                 source={require('image!disclosureIndicator')} />
             </View>
-            <TextInput
-              value={this.state.instructions}
-              onChangeText={(text) => this.setInstructions(text)}
-              style={{height: 40}}/>
+            <View ref='instructionsTextInput'>
+              <TextInput
+                value={this.state.instructions}
+                onChangeText={(text) => this.setInstructions(text)}
+                style={{height: 40}}
+                onFocus={this.props.scrollComponentToView.bind(this, parentRef)}
+                />
+            </View>
           </View>
         </CustomCell>
         <View style={styles.cellSeparatorBackground}>
