@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-16 15:56:40
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-16 16:23:01
 */
 
 'use strict';
@@ -121,7 +121,7 @@ var EditExerciseModal = React.createClass({
   },
   hideKeyboard: function(){
     console.log('editExerciseModal hideKeyboard called');
-    dismissKeyboard();
+    // dismissKeyboard();
   },
   render: function() {
     //Gist: Renders a modal for creating or editing an exercise object

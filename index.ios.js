@@ -69,11 +69,14 @@ var Trybe = React.createClass({
   renderScene: function(route, navigator){
     var Component = route.component;
 
+    var visibleHeight = this.state.visibleHeight;
     return (
-      <Component
-        rootNav={this.refs.rootNav}
-        openExerciseModal={this.openExerciseModal}
-        openPartModal={this.openPartModal} />
+      <View style={{height: visibleHeight}}>
+        <Component
+          rootNav={this.refs.rootNav}
+          openExerciseModal={this.openExerciseModal}
+          openPartModal={this.openPartModal} />
+      </View>
     );
   },
       // <TouchableWithoutFeedback onPress={this.hideKeyboard}>
@@ -82,7 +85,7 @@ var Trybe = React.createClass({
   render: function() {
     return (
       /* jshint ignore:start */
-      <View style={[styles.container, {height: this.state.visibleHeight}]}>
+      <View style={styles.container}>
         <Navigator
           ref="rootNav"
           initialRoute={RouteStack.app}
