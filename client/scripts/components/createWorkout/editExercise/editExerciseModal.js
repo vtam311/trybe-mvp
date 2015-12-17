@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 17:27:08
+* @Last Modified time: 2015-12-16 18:17:00
 */
 
 'use strict';
@@ -146,9 +146,7 @@ var EditExerciseModal = React.createClass({
       }
     };
 
-    //Lowers modal to make user inputting easier, and to keep
-    //modal from rising so high from keyboard entry
-    //that Cancel and Done buttons are blocked
+    //Lowers modal to make user inputting easier
     var modalPaddingTop = 100;
 
     return (

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 17:29:05
+* @Last Modified time: 2015-12-16 18:25:32
 */
 
 'use strict';
@@ -17,8 +17,12 @@ var {
   Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions,
+  DeviceEventEmitter
 } = React;
+
+var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
 
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
@@ -29,7 +33,12 @@ var CreateWorkout = React.createClass({
   getInitialState: function() {
     return {
       workout: createWorkoutStore.getWorkout(),
+      visibleHeight: Dimensions.get('window').height
     };
+  },
+  componentWillMount: function() {
+    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     createWorkoutStore.addChangeListener(this._onChange);
@@ -42,25 +51,35 @@ var CreateWorkout = React.createClass({
       workout: createWorkoutStore.getWorkout(),
     });
   },
+  keyboardWillShow: function(e) {
+    console.log('createWorkout keyboardWillShow called');
+    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    this.setState({visibleHeight: newSize});
+  },
+  keyboardWillHide: function(e) {
+    console.log('createWorkout keyboardWillHide called');
+    this.setState({visibleHeight: Dimensions.get('window').height});
+  },
   addPart: function(){
     createWorkoutActions.addPart();
   },
 
   render: function(){
-
+    console.log('createWorkout rendering height of', this.state.visibleHeight);
     var parts = this.state.workout.parts.map((part, index) =>
+      /* jshint ignore:start */
       <Part
         part={part}
         partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
         openPartModal={this.props.openPartModal}
         key={index} />
+      /* jshint ignore:end */
     );
 
-    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and covered.
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
+      <View style={[styles.container, {height: this.state.visibleHeight}]}>
         <ScrollView contentContainerStyle={styles.stage}>
           <TableView>
 
@@ -93,7 +112,6 @@ var CreateWorkout = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#EFEFF4',
   },
   stage: {
