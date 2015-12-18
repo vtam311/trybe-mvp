@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:38:42
+* @Last Modified time: 2015-12-17 16:45:02
 */
 
 'use strict';
@@ -232,7 +232,6 @@ var styles = StyleSheet.create({
   body: {
     height: 320,
     justifyContent: 'center',
-    // alignItems: 'center',
   },
   bodyContainer: {
     flex: 1,

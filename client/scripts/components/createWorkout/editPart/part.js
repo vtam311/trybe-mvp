@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 18:57:04
+* @Last Modified time: 2015-12-17 16:46:02
 */
 
 'use strict';
@@ -56,7 +56,7 @@ var Part = React.createClass({
             instructions={this.props.part.instructions}
             partIdx={this.props.partIdx}
             openPartModal={this.props.openPartModal}
-            scrollComponentToView={this.props.scrollComponentToView} />
+            scrollToComponent={this.props.scrollToComponent} />
           {partExercises}
           <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
         </Section>

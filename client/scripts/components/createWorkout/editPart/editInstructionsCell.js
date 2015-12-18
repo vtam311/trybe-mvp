@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 15:49:06
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-17 16:46:18
 */
 
 'use strict';
@@ -62,7 +62,7 @@ var EditInstructionsCell = React.createClass({
                 value={this.state.instructions}
                 onChangeText={(text) => this.setInstructions(text)}
                 style={{height: 40}}
-                onFocus={this.props.scrollComponentToView.bind(this, parentRef)} />
+                onFocus={this.props.scrollToComponent.bind(this, parentRef)} />
             </View>
           </View>
         </CustomCell>

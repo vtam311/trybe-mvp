@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:33:09
+* @Last Modified time: 2015-12-17 16:45:46
 */
 
 'use strict';
@@ -63,8 +63,8 @@ var CreateWorkout = React.createClass({
     console.log('createWorkout keyboardWillHide called');
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
-  scrollComponentToView: function(refName) {
-    console.log('createWorkout scrollComponentToView to ref', refName);
+  scrollToComponent: function(refName) {
+    console.log('createWorkout scrollToComponent to ref', refName);
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
@@ -87,7 +87,7 @@ var CreateWorkout = React.createClass({
         partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
         openPartModal={this.props.openPartModal}
-        scrollComponentToView={this.scrollComponentToView}
+        scrollToComponent={this.scrollToComponent}
         key={index} />
       /* jshint ignore:end */
     );
