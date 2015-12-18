@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:35:43
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-18 13:26:59
 */
 
 'use strict';
@@ -80,7 +80,7 @@ var EditPartModal = React.createClass({
               <Text style={styles.partNamePrompt}>Purpose</Text>
               <TextInput
                 value={this.state.partName}
-                placeholder={'Warmup, Strength, etc.'}
+                placeholder={'Warmup, Strength, Etc.'}
                 onChangeText={(text) => this.renderPartName(text)}
                 style={{height: 40}}/>
             </View>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 12:39:43
+* @Last Modified time: 2015-12-18 13:25:52
 */
 
 'use strict';
@@ -13,7 +13,8 @@ var createWorkoutActions = require('../../../actions/createWorkoutActions');
 var {
   SegmentedControlIOS,
   TextInput,
-  View
+  View,
+  StyleSheet
 } = React;
 
 
@@ -55,13 +56,15 @@ var ResultOptions = React.createClass({
         resultType !== 'Rounds' &&
         resultType !==  'Max Load') {
         return (
-          <TextInput
-            value={showCustomTextInputVal.bind(this)}
-            placeholder="Distance, Reps, etc"
-            style={{height:38, marginTop: 5}}
-            autoCapitalize='words'
-            onChangeText={(text) => setResultType.bind(this, text)}
-            onFocus={scrollToComponent.bind(this, parentRef, 'customTextInput')} />
+          <View style={styles.cellRow}>
+            <TextInput
+              value={showCustomTextInputVal.bind(this)}
+              style={{height: 40}}
+              placeholder="Distance, Reps, Etc."
+              autoCapitalize='words'
+              onChangeText={(text) => setResultType.bind(this, text)}
+              onFocus={scrollToComponent.bind(this, parentRef, 'customTextInput')} />
+          </View>
         );
       } else {
         return null;
@@ -70,16 +73,29 @@ var ResultOptions = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={{marginBottom: 0}}>
-        <SegmentedControlIOS
-          values={['Time', 'Rounds', 'Max Load', 'Custom']}
-          selectedIndex={this.getResultTypeIdx()}
-          onValueChange={(val) => setResultType(val)}
-          tintColor={'#4DBA97'}/>
+      <View>
+        <View style={styles.largeCellRow}>
+          <SegmentedControlIOS
+            values={['Time', 'Rounds', 'Max Load', 'Custom']}
+            selectedIndex={this.getResultTypeIdx()}
+            onValueChange={(val) => setResultType(val)}
+            tintColor={'#4DBA97'}/>
+        </View>
         {showOrHideCustomInput()}
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  cellRow: {
+    justifyContent: 'center',
+    height: 44,
+  },
+  largeCellRow: {
+    justifyContent: 'center',
+    height: 56,
   }
 });
 

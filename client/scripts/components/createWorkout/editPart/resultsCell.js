@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 12:51:04
+* @Last Modified time: 2015-12-18 13:25:59
 */
 
 'use strict';
@@ -43,11 +43,11 @@ var ResultsCell = React.createClass({
         this.props.resultType !== 'Time' &&
         this.props.resultType !== 'Rounds' &&
         this.props.resultType !==  'Max Load'){
-        return 132;
+        return 144;
       } else {
         //If recording Time, Rounds, or Max Load,
         //adjust to fit SegmCtrl in ResultOptions
-        return 88;
+        return 100;
       }
     } else {
       //If not recording, just show cell with SwitchIOS
@@ -78,8 +78,8 @@ var ResultsCell = React.createClass({
     return (
       /* jshint ignore:start */
       <CustomCell customHeight={this.adjustHeight()}>
-        <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-around', height: this.adjustHeight()}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={[styles.cellContainer, {height: this.adjustHeight()}]}>
+          <View style={styles.cellRow}>
             <Text style={styles.cellPrompt}>Record Results</Text>
             <SwitchIOS
               onTintColor="#4dba97"
@@ -91,16 +91,27 @@ var ResultsCell = React.createClass({
       </CustomCell>
       /* jshint ignore:end */
     );
-  }
+  },
+
 });
 
 var styles = StyleSheet.create({
+  cellContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  cellRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 44,
+  },
   cellPrompt: {
     fontSize: 16,
     color: '#4A4A4A',
     fontFamily: 'Avenir Next',
-    marginTop: 5
-  },
+  }
 });
 
 
