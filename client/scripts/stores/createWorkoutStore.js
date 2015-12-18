@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 15:42:53
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-17 17:19:00
 */
 
 'use strict';
@@ -60,10 +60,12 @@ var setInstructions = function(data){
 
 var addExercise = function(data){
   var partIdx = data.partIdx;
+
   //Set exIdx to the next empty index of exercises array
   //Adding of exercise happens once saveExercise is called
   var exIdx = _store.workout.parts[partIdx].exercises.length;
   _store.targetExerciseIdx = exIdx;
+  _store.targetPartIdx = partIdx;
 };
 
 var removeExercise = function(data){
@@ -84,6 +86,7 @@ var saveExercise = function(data){
   var exIdx = _store.targetExerciseIdx;
   var exercise = data.exercise;
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
+  console.log('createWorkoutStore saveExercise, workout now', _store.workout);
 };
 
 var toggleRecording = function(data){

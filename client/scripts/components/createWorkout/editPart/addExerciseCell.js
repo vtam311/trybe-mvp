@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:12:31
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-17 17:17:43
 */
 
 'use strict';
@@ -21,6 +21,7 @@ var AddExerciseCell = React.createClass({
   _handleAddExercisePress: function(){
     //Sets up editExerciseModal to point to the correct
     //exercise in workout
+    console.log('_handleAddExercisePress called, partIdx is', this.props.partIdx);
     createWorkoutActions.addExercise(this.props.partIdx);
     this.props.openExerciseModal();
   },
