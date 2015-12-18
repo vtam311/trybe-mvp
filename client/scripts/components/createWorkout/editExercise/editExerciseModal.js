@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-17 17:16:31
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-17 17:23:15
 */
 
 'use strict';
@@ -102,13 +102,9 @@ var EditExerciseModal = React.createClass({
     this.closeModal();
   },
   hideKeyboard: function(){
-    console.log('editExerciseModal hideKeyboard called');
     dismissKeyboard();
   },
   render: function() {
-    console.log('editExerciseModal partIdx', this.state.partIdx);
-    console.log('editExerciseModal exIdx', this.state.exIdx);
-
     //Gist: Renders a modal for creating or editing an exercise object
     //SelectedExercisePicker component shows a PickerIOS component to edit
     //either reps, load, time, distance, etc. based on user's selection

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:45:46
+* @Last Modified time: 2015-12-17 17:23:52
 */
 
 'use strict';
@@ -55,16 +55,13 @@ var CreateWorkout = React.createClass({
     });
   },
   keyboardWillShow: function(e) {
-    console.log('createWorkout keyboardWillShow called');
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
     this.setState({visibleHeight: newSize});
   },
   keyboardWillHide: function(e) {
-    console.log('createWorkout keyboardWillHide called');
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollToComponent: function(refName) {
-    console.log('createWorkout scrollToComponent to ref', refName);
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(

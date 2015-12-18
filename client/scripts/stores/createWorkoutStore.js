@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-17 17:19:00
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-17 17:23:29
 */
 
 'use strict';
@@ -86,7 +86,6 @@ var saveExercise = function(data){
   var exIdx = _store.targetExerciseIdx;
   var exercise = data.exercise;
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
-  console.log('createWorkoutStore saveExercise, workout now', _store.workout);
 };
 
 var toggleRecording = function(data){
@@ -109,8 +108,6 @@ var addPart = function(){
 var removePart = function(){
   var partIdx = _store.targetPartIdx;
   _store.workout.parts.splice(partIdx, 1);
-  console.log('removePart removed part idx of', partIdx);
-  console.log('parts now', _store.workout.parts);
 };
 
 //Specifies which part of workout to edit
