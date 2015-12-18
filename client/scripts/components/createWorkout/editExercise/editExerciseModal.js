@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-16 18:17:00
+* @Last Modified time: 2015-12-17 16:15:57
 */
 
 'use strict';
@@ -63,8 +63,8 @@ var EditExerciseModal = React.createClass({
     //initialize currentExercise with the targetExercise user is editting
     editExerciseActions.initializeExercise(this.state.targetExercise);
 
-    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
+    // DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    // DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -147,10 +147,13 @@ var EditExerciseModal = React.createClass({
     };
 
     //Lowers modal to make user inputting easier
-    var modalPaddingTop = 100;
+    var modalPaddingTop = 0;
+
+    //Raises modal so keyboard doesn't cover options
+    var modalPaddingBottom = 0;
 
     return (
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}, {height: this.state.visibleHeight, paddingTop: modalPaddingTop}]}>
+      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}, {height: this.state.visibleHeight, paddingTop: modalPaddingTop, paddingBottom: modalPaddingBottom}]}>
         <TouchableWithoutFeedback onPress={this.hideKeyboard}>
           <View style={styles.container} >
             <View style={styles.header}>

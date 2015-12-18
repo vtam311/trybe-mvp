@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 11:20:19
+* @Last Modified time: 2015-12-17 16:33:09
 */
 
 'use strict';
@@ -38,15 +38,16 @@ var CreateWorkout = React.createClass({
     };
   },
   componentWillMount: function() {
-    // Looks like this isn't necessary - scrollComponentToView handles this.
-    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
+    this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     createWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
     createWorkoutStore.removeChangeListener(this._onChange);
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
   },
   _onChange: function(){
     this.setState({
@@ -63,8 +64,7 @@ var CreateWorkout = React.createClass({
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollComponentToView: function(refName) {
-    console.log('scrollComponentToView refName is', refName);
-
+    console.log('createWorkout scrollComponentToView to ref', refName);
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
