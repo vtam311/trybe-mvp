@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 17:23:29
+* @Last Modified time: 2015-12-18 11:51:37
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var PART_TEMPLATE = {
     src: null
   },
   exercises: [],
-  result: {isRecording: false, type: 'Test', val: null},
+  result: {isRecording: false, type: null, val: null},
   notes: null
 };
 

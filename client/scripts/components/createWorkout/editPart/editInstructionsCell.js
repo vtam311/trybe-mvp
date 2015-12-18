@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-17 16:46:18
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 11:44:29
 */
 
 'use strict';
@@ -60,6 +60,7 @@ var EditInstructionsCell = React.createClass({
             <View ref='instructionsTextInput'>
               <TextInput
                 value={this.state.instructions}
+                autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
                 style={{height: 40}}
                 onFocus={this.props.scrollToComponent.bind(this, parentRef)} />

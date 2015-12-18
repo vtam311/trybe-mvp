@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-10 14:31:06
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:16:39
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 11:43:24
 */
 
 'use strict';
@@ -37,8 +37,9 @@ var EditExerciseName = React.createClass({
     return (
       <TextInput
         value={this.state.exerciseName}
-        onChangeText={(text) => this._setExerciseName(text)}
         style={styles.exerciseNameTextInput}
+        autoCapitalize='words'
+        onChangeText={(text) => this._setExerciseName(text)}
         placeholder={'Exercise Name'}
         placeholderTextColor={'#9B9B9B'}/>
     );

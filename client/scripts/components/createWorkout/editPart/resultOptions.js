@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 17:42:44
+* @Last Modified time: 2015-12-18 12:09:19
 */
 
 'use strict';
@@ -19,10 +19,6 @@ var {
 
 var ResultOptions = React.createClass({
   setResultType: function(val){
-    //If user selects Custom in SegmCtrl, preset to
-    //null, as user will specify what custom metric is with
-    //showOrHideCustomInput's TextInput.
-    if(val === 'Custom') val = null;
     createWorkoutActions.setResultType(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){
@@ -32,29 +28,39 @@ var ResultOptions = React.createClass({
     if(resultType === 'Time') idx = 0;
     else if(resultType === 'Rounds') idx = 1;
     else if(resultType === 'Max Load') idx = 2;
-    else idx = 3; //else resultType is a custom one
+    else if(resultType) idx = 3; //if defined but none of above, is custom
+    else idx = null; //else not defined
 
     return idx;
+  },
+  showCustomTextInputVal: function(){
+    //if resultType is still 'Custom' and not yet defined by user,
+    //show null so Custom Text Input is not pre-set to 'Custom'
+    if(this.props.resultType === 'Custom') return null;
+    else return this.props.resultType;
   },
 
   render: function(){
     //Must declare props to pass to showOrHideCustomInput
     var resultType = this.props.resultType;
     var setResultType = this.setResultType;
+    var showCustomTextInputVal = this.showCustomTextInputVal;
     var scrollToComponent = this.props.scrollToComponent; //bind here, in onFocus, or both?
     var parentRef = 'part' + this.props.partIdx;
 
     var showOrHideCustomInput = function(){
       //If resultType is a custom one, show TextInput
-      if(resultType !== 'Time' &&
+      if(resultType &&
+        resultType !== 'Time' &&
         resultType !== 'Rounds' &&
         resultType !==  'Max Load') {
         return (
           <TextInput
-            value={resultType}
+            value={showCustomTextInputVal.bind(this)}
             placeholder="Distance, Reps, etc"
             style={{height:38, marginTop: 5}}
-            onChangeText={(text) => setResultType(text)}
+            autoCapitalize='words'
+            onChangeText={(text) => setResultType.bind(this, text)}
             onFocus={scrollToComponent.bind(this, parentRef)} />
         );
       } else {
