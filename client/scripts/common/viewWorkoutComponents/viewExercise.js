@@ -59,14 +59,16 @@ var viewExercise = React.createClass({
 
     var renderExerciseName = function() {
       /* jshint ignore:start*/
-      var lastCharAt = exercise.name.length - 1;
-      if(exercise.name.charAt(lastCharAt) === ' '){
+      if(exercise.name){
+        var lastCharAt = exercise.name.length - 1;
         //If last letter of exercise name is a space, ignore it
-        var exName = exercise.name.slice(0, lastCharAt);
-        exerciseName = <Text style={styles.exerciseText}>{exName}</Text>;
-      } else {
-        exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
-      }
+        if(exercise.name.charAt(lastCharAt) === ' '){
+          var exName = exercise.name.slice(0, lastCharAt);
+          exerciseName = <Text style={styles.exerciseText}>{exName}</Text>;
+        } else {
+          exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+        }
+      } else return null;
       /* jshint ignore:end*/
     };
 

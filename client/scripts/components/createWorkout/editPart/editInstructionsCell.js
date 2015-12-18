@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 11:44:29
+* @Last Modified time: 2015-12-18 12:39:31
 */
 
 'use strict';
@@ -63,7 +63,7 @@ var EditInstructionsCell = React.createClass({
                 autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
                 style={{height: 40}}
-                onFocus={this.props.scrollToComponent.bind(this, parentRef)} />
+                onFocus={this.props.scrollToComponent.bind(this, parentRef, 'instrTextInput')} />
             </View>
           </View>
         </CustomCell>

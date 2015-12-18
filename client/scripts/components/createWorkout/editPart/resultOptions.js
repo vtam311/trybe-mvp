@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 12:09:19
+* @Last Modified time: 2015-12-18 12:39:43
 */
 
 'use strict';
@@ -61,7 +61,7 @@ var ResultOptions = React.createClass({
             style={{height:38, marginTop: 5}}
             autoCapitalize='words'
             onChangeText={(text) => setResultType.bind(this, text)}
-            onFocus={scrollToComponent.bind(this, parentRef)} />
+            onFocus={scrollToComponent.bind(this, parentRef, 'customTextInput')} />
         );
       } else {
         return null;

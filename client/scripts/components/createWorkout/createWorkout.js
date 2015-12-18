@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 17:35:29
+* @Last Modified time: 2015-12-18 12:37:15
 */
 
 'use strict';
@@ -56,18 +56,23 @@ var CreateWorkout = React.createClass({
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    console.log('keyboardWillShow updating height to', newSize);
     this.setState({visibleHeight: newSize});
   },
   keyboardWillHide: function(e) {
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
-  scrollToComponent: function(refName) {
+  scrollToComponent: function(refName, child) {
+    var offset;
+    if(child === 'instrTextInput') offset = -100;
+    if(child === 'customTextInput') offset = 0;
     console.log('scrollToComponent scrolling to ref', refName);
+    console.log('and child', child);
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
         React.findNodeHandle(this.refs[refName]),
-        110, //more offset
+        offset, //more offset
         true
       );
     }, 50);
