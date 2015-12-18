@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:12:48
+* @Last Modified time: 2015-12-17 17:42:16
 */
 
 'use strict';
@@ -55,17 +55,19 @@ var ResultsCell = React.createClass({
   },
 
   render: function(){
-    //Must declare here, as props aren't accessible to ResultOptions
+    //Must declare here, as props aren't accessible to showOrHideResultOptions
     var recordingSwitchIsOn = this.state.recordingSwitchIsOn;
     var resultType = this.props.resultType;
     var partIdx = this.props.partIdx;
+    var scrollToComponent = this.props.scrollToComponent;
 
     var showOrHideResultOptions = function(){
       if(recordingSwitchIsOn) {
         return (
           <ResultOptions
             resultType={resultType}
-            partIdx={partIdx} />
+            partIdx={partIdx}
+            scrollToComponent={scrollToComponent} />
         );
       } else {
         return null;

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:46:02
+* @Last Modified time: 2015-12-17 17:28:38
 */
 
 'use strict';
@@ -65,7 +65,8 @@ var Part = React.createClass({
           <ResultsCell
             isRecording={this.props.part.result.isRecording}
             resultType={this.props.part.result.type}
-            partIdx={this.props.partIdx} />
+            partIdx={this.props.partIdx}
+            scrollToComponent={this.props.scrollToComponent} />
         </Section>
       </View>
       /* jshint ignore:start */

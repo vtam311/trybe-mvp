@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:12:45
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-17 17:42:44
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var ResultOptions = React.createClass({
     //null, as user will specify what custom metric is with
     //showOrHideCustomInput's TextInput.
     if(val === 'Custom') val = null;
-    createWorkoutActions.setResultType(val, this.props.partIdx)
+    createWorkoutActions.setResultType(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){
     //Changes segmCtrlIdx based on result type
@@ -38,9 +38,11 @@ var ResultOptions = React.createClass({
   },
 
   render: function(){
-    //Need to declare to pass to showOrHideCustomInput
+    //Must declare props to pass to showOrHideCustomInput
     var resultType = this.props.resultType;
     var setResultType = this.setResultType;
+    var scrollToComponent = this.props.scrollToComponent; //bind here, in onFocus, or both?
+    var parentRef = 'part' + this.props.partIdx;
 
     var showOrHideCustomInput = function(){
       //If resultType is a custom one, show TextInput
@@ -50,9 +52,10 @@ var ResultOptions = React.createClass({
         return (
           <TextInput
             value={resultType}
-            placeholder="Custom Metric..."
+            placeholder="Distance, Reps, etc"
             style={{height:38, marginTop: 5}}
-            onChangeText={(text) => setResultType(text)} />
+            onChangeText={(text) => setResultType(text)}
+            onFocus={scrollToComponent.bind(this, parentRef)} />
         );
       } else {
         return null;

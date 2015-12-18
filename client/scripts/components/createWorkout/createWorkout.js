@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 17:23:52
+* @Last Modified time: 2015-12-17 17:35:29
 */
 
 'use strict';
@@ -62,6 +62,7 @@ var CreateWorkout = React.createClass({
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollToComponent: function(refName) {
+    console.log('scrollToComponent scrolling to ref', refName);
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
