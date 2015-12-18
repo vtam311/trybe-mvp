@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-17 17:42:16
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 12:12:02
 */
 
 'use strict';
@@ -39,7 +39,8 @@ var ResultsCell = React.createClass({
     if(this.state.recordingSwitchIsOn){
       //If recording custom result, show
       //both SegmCtrl and text input from ResultOptions
-      if(this.props.resultType !== 'Time' &&
+      if(this.props.resultType &&
+        this.props.resultType !== 'Time' &&
         this.props.resultType !== 'Rounds' &&
         this.props.resultType !==  'Max Load'){
         return 132;
