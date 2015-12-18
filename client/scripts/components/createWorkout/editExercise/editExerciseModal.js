@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 16:15:57
+* @Last Modified time: 2015-12-17 16:38:42
 */
 
 'use strict';
@@ -23,7 +23,6 @@ var {
   TextInput,
   SegmentedControlIOS,
   Image,
-  DeviceEventEmitter, //
 } = React;
 
 var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
@@ -55,16 +54,12 @@ var EditExerciseModal = React.createClass({
       targetExercise: createWorkoutStore.getTargetExercise(),
       exPickerIdx: 0,
       currentExercise: null,
-      visibleHeight: Dimensions.get('window').height //
     };
   },
   componentWillMount: function() {
     editExerciseStore.addChangeListener(this._onChange);
     //initialize currentExercise with the targetExercise user is editting
     editExerciseActions.initializeExercise(this.state.targetExercise);
-
-    // DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    // DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -74,22 +69,9 @@ var EditExerciseModal = React.createClass({
   },
   componentWillUnmount: function() {
     editExerciseStore.removeChangeListener(this._onChange);
-
-    //Issue: DeviceEventEmitter still seems to be listening after unmount
-    // DeviceEventEmitter.removeListener('keyboardWillShow', this.keyboardWillShow);
-    // DeviceEventEmitter.removeListener('keyboardWillHide', this.keyboardWillHide);
   },
   _onChange: function(){
     this.setState({currentExercise: editExerciseStore.getExercise()});
-  },
-  keyboardWillShow: function(e) {
-    console.log('editExerciseModal keyboardWillShow called');
-    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
-    this.setState({visibleHeight: newSize});
-  },
-  keyboardWillHide: function(e) {
-    console.log('editExerciseModal keyboardWillHide called');
-    this.setState({visibleHeight: Dimensions.get('window').height});
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -146,14 +128,8 @@ var EditExerciseModal = React.createClass({
       }
     };
 
-    //Lowers modal to make user inputting easier
-    var modalPaddingTop = 0;
-
-    //Raises modal so keyboard doesn't cover options
-    var modalPaddingBottom = 0;
-
     return (
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}, {height: this.state.visibleHeight, paddingTop: modalPaddingTop, paddingBottom: modalPaddingBottom}]}>
+      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <TouchableWithoutFeedback onPress={this.hideKeyboard}>
           <View style={styles.container} >
             <View style={styles.header}>
