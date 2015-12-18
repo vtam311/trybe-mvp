@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-13 18:15:07
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 15:18:03
 */
 
 'use strict';
@@ -22,7 +22,7 @@ var DateCell = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <CustomCell onPress={() => {console.log('Date')}}>
+      <CustomCell onPress={this.props.openDateModal}>
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text style={styles.cellPrompt}>Date</Text>
           <View style={{flexDirection: 'row'}}>

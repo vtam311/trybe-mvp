@@ -37,7 +37,8 @@ var WorkoutTab = React.createClass({
       <Component
         goToScene={this.goToScene}
         openExerciseModal={this.props.openExerciseModal}
-        openPartModal={this.props.openPartModal} />
+        openPartModal={this.props.openPartModal}
+        openDateModal={this.props.openDateModal} />
     );
   },
   render: function() {
