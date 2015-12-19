@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:31:44
+* @Last Modified time: 2015-12-18 16:34:56
 */
 
 'use strict';
@@ -138,6 +138,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getWorkout: function(){
     return _store.workout;
   },
+  getDate: function(){
+    return _store.workout.date;
+  },
   getTargetPartIdx: function(){
     return _store.targetPartIdx;
   },
@@ -164,9 +167,6 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     var partIdx = _store.targetPartIdx;
     return _store.workout.parts[partIdx].name;
   },
-  getDate: function(){
-    return _store.workout.date;
-  }
 });
 
 AppDispatcher.register(function(payload){

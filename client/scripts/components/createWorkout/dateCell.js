@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 15:18:03
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-18 17:21:47
 */
 
 'use strict';
@@ -19,14 +19,20 @@ var {
 import {CustomCell} from 'react-native-tableview-simple';
 
 var DateCell = React.createClass({
+  showPreview: function(){
+    var dateString = this.props.date.toString();
+    var datePreview = dateString.slice(0,10);
+    return datePreview;
+  },
   render: function(){
+
     return (
       /* jshint ignore:start */
       <CustomCell onPress={this.props.openDateModal}>
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text style={styles.cellPrompt}>Date</Text>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.cellStatus}>Today</Text>
+            <Text style={styles.cellStatus}>{this.showPreview()}</Text>
             <Image
               style={{height: 13, width: 8, marginTop: 4, marginLeft: 15}}
               source={require('image!disclosureIndicator')} />

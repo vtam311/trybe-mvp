@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-18 15:03:10
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:31:54
+* @Last Modified time: 2015-12-18 16:48:02
 */
 
 'use strict';
@@ -73,9 +73,9 @@ var EditDateModal = React.createClass({
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <DatePickerIOS
-                mode='datetime'
                 date={this.state.date}
                 onDateChange={this.onDateChange}
+                mode='datetime'
                 minimumDate={new Date(2015,0,1)} />
             </View>
           </View>

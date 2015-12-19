@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:27:46
+* @Last Modified time: 2015-12-18 17:22:57
 */
 
 'use strict';
@@ -107,7 +107,9 @@ var CreateWorkout = React.createClass({
           <TableView>
 
             <Section>
-              <DateCell openDateModal={this.props.openDateModal} />
+              <DateCell
+                date={this.state.workout.date}
+                openDateModal={this.props.openDateModal} />
             </Section>
 
             {parts}
