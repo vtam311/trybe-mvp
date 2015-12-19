@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-18 15:03:10
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-18 15:23:06
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 16:03:30
 */
 
 'use strict';
@@ -46,8 +46,11 @@ var EditDateModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
+  onDateChange: function(date){
+    this.setState({date: date});
+  },
   saveDate: function(){
-    // createWorkoutActions.setDate();
+    createWorkoutActions.saveDate(this.state.date);
     this.closeModal();
   },
   render: function() {
@@ -70,9 +73,10 @@ var EditDateModal = React.createClass({
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <DatePickerIOS
+                mode='datetime'
                 date={this.state.date}
-                mode='date'
-              />
+                onDateChange={this.onDateChange}
+                minimumDate={new Date(2015,0,1)} />
             </View>
           </View>
 

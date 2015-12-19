@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 11:51:37
+* @Last Modified time: 2015-12-18 15:58:42
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var WORKOUT_TEMPLATE = {
   username: null,
   trybe: null,
   day: null,
-  createdAt: null,
+  date: new Date(),
   type: null,
   //copyObject so parts don't refer to same obj
   parts: [copyObjectHelper(PART_TEMPLATE)],
@@ -50,6 +50,12 @@ var _store = {
   workout: WORKOUT_TEMPLATE,
   targetPartIdx: 0, //set to null once setTargetPartIdx is written
   targetExerciseIdx: null,
+};
+
+var saveDate = function(data){
+  var date = data.date;
+  _store.workout.date = date;
+  console.log('createWorkoutStore save date to ', _store.workout.date);
 };
 
 var setInstructions = function(data){
@@ -163,6 +169,10 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case createWorkoutConstants.SAVE_DATE:
+      saveDate(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case createWorkoutConstants.SET_INSTRUCTIONS:
       setInstructions(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);
