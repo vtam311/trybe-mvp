@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:34:56
+* @Last Modified time: 2015-12-18 17:36:51
 */
 
 'use strict';
@@ -55,7 +55,6 @@ var _store = {
 var saveDate = function(data){
   var date = data.date;
   _store.workout.date = date;
-  console.log('createWorkoutStore save date to ', _store.workout.date);
 };
 
 var setInstructions = function(data){

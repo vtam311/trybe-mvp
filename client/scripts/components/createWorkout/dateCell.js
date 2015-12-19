@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-18 17:21:47
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 17:36:23
 */
 
 'use strict';
@@ -20,9 +20,23 @@ import {CustomCell} from 'react-native-tableview-simple';
 
 var DateCell = React.createClass({
   showPreview: function(){
-    var dateString = this.props.date.toString();
-    var datePreview = dateString.slice(0,10);
-    return datePreview;
+    var dateIsToday = function(date){
+      var today = new Date();
+      if(date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getYear() === today.getYear()) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    if(dateIsToday(this.props.date)) return 'Today';
+    else {
+      var dateString = this.props.date.toString();
+      var datePreview = dateString.slice(0,10);
+      return datePreview;
+    }
   },
   render: function(){
 
