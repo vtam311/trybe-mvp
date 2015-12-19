@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-18 15:03:10
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:03:30
+* @Last Modified time: 2015-12-18 16:31:54
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var {
 var EditDateModal = React.createClass({
   getInitialState: function() {
     return {
-      date: new Date(),
+      date: createWorkoutStore.getDate(),
       offset: new Animated.Value(deviceHeight),
     };
   },

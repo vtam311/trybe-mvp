@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 15:58:42
+* @Last Modified time: 2015-12-18 16:31:44
 */
 
 'use strict';
@@ -163,6 +163,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getPartName: function(){
     var partIdx = _store.targetPartIdx;
     return _store.workout.parts[partIdx].name;
+  },
+  getDate: function(){
+    return _store.workout.date;
   }
 });
 

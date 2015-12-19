@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 15:17:32
+* @Last Modified time: 2015-12-18 16:27:46
 */
 
 'use strict';
@@ -56,6 +56,7 @@ var CreateWorkout = React.createClass({
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    console.log('keyboard entry heard');
     this.setState({visibleHeight: newSize});
   },
   keyboardWillHide: function(e) {
@@ -65,6 +66,9 @@ var CreateWorkout = React.createClass({
     var offset;
     if(child === 'instrTextInput') offset = -90;
     else if(child === 'customTextInput') offset = 0;
+
+    console.log('scrollToComponent going to ref', refName);
+    console.log('with child type', child);
 
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();

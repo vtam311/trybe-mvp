@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-18 13:26:59
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 16:09:56
 */
 
 'use strict';
@@ -81,6 +81,7 @@ var EditPartModal = React.createClass({
               <TextInput
                 value={this.state.partName}
                 placeholder={'Warmup, Strength, Etc.'}
+                autoCapitalize='words'
                 onChangeText={(text) => this.renderPartName(text)}
                 style={{height: 40}}/>
             </View>
