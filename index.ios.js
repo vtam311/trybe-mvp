@@ -53,7 +53,6 @@ var Trybe = React.createClass({
   renderScene: function(route, navigator){
     var Component = route.component;
 
-    var visibleHeight = this.state.visibleHeight;
     return (
       <Component
         rootNav={this.refs.rootNav}
