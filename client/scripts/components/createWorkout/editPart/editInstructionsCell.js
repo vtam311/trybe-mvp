@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-22 17:29:51
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-22 17:41:12
 */
 
 'use strict';
@@ -58,12 +58,12 @@ var EditInstructionsCell = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <CustomCell customHeight={70} onPress={this.handlePartDisclosurePress}>
+        <CustomCell customHeight={90} onPress={this.handlePartDisclosurePress}>
           <View style={styles.cellContainer}>
             <View style={styles.cellRow}>
               <Text style={styles.partNameText}>{this.renderPartLabel()}</Text>
               <Image
-                style={{height: 13, width: 8, marginTop: 6}}
+                style={{height: 13, width: 8}}
                 source={require('image!disclosureIndicator')} />
             </View>
             <View ref='instructionsTextInput' style={styles.instructionsContainer}>
@@ -72,6 +72,7 @@ var EditInstructionsCell = React.createClass({
                 placeholder='Instructions'
                 autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
+                multiline={true}
                 style={styles.instructionsTextInput}
                 onFocus={this.props.scrollToComponent.bind(this, parentRef, 'instrTextInput')} />
             </View>
@@ -91,6 +92,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     marginTop: 10,
+    // backgroundColor: 'grey'
   },
   cellRow: {
     flexDirection: 'row',
@@ -102,7 +104,8 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next'
   },
   instructionsContainer: {
-    marginTop: 10
+    marginTop: 10,
+    // backgroundColor: 'black'
   },
   instructionsTextInput: {
     height: 40,
