@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 12:39:31
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-22 17:29:51
 */
 
 'use strict';
@@ -39,6 +39,15 @@ var EditInstructionsCell = React.createClass({
     createWorkoutActions.setTargetPartIdx(this.props.partIdx);
     this.props.openPartModal();
   },
+  renderPartLabel: function(){
+    //If a name is provided for part, render it
+    if(this.props.partName) {
+      return this.props.partName.toUpperCase();
+    } else {
+      //Otherwise show default name of PART (num)
+      return 'PART ' + (this.props.partIdx + 1);
+    }
+  },
 
 
   render: function(){
@@ -50,19 +59,20 @@ var EditInstructionsCell = React.createClass({
       /* jshint ignore:start */
       <View>
         <CustomCell customHeight={70} onPress={this.handlePartDisclosurePress}>
-          <View style={{flex: 1, flexDirection: 'column', marginTop: 8}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={{fontSize: 14, color: '#9B9B9B', fontFamily: 'Avenir Next'}}>Instructions</Text>
+          <View style={styles.cellContainer}>
+            <View style={styles.cellRow}>
+              <Text style={styles.partNameText}>{this.renderPartLabel()}</Text>
               <Image
                 style={{height: 13, width: 8, marginTop: 6}}
                 source={require('image!disclosureIndicator')} />
             </View>
-            <View ref='instructionsTextInput'>
+            <View ref='instructionsTextInput' style={styles.instructionsContainer}>
               <TextInput
                 value={this.state.instructions}
+                placeholder='Instructions'
                 autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
-                style={{height: 40}}
+                style={styles.instructionsTextInput}
                 onFocus={this.props.scrollToComponent.bind(this, parentRef, 'instrTextInput')} />
             </View>
           </View>
@@ -77,6 +87,28 @@ var EditInstructionsCell = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  cellContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    marginTop: 10,
+  },
+  cellRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  partNameText: {
+    fontSize: 14,
+    color: '#9B9B9B',
+    fontFamily: 'Avenir Next'
+  },
+  instructionsContainer: {
+    marginTop: 10
+  },
+  instructionsTextInput: {
+    height: 40,
+    fontFamily: 'Avenir Next',
+    fontSize: 18
+  },
   cellSeparatorBackground: {
     backgroundColor: '#fff',
   },
