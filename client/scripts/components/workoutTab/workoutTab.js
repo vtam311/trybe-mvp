@@ -10,15 +10,18 @@ var {
   StyleSheet,
   Text,
   View,
-  NavigatorIOS,
-  Navigator
+  Navigator,
+  TouchableOpacity
 } = React;
 
 var RouteStack = {
   app: {
-    component: ViewWorkout
+    name: 'Today',
+    index: 0,
+    component: ViewWorkout,
   }
 };
+
 
 var WorkoutTab = React.createClass({
   getInitialState: function(){
@@ -37,7 +40,8 @@ var WorkoutTab = React.createClass({
       <Component
         goToScene={this.goToScene}
         openExerciseModal={this.props.openExerciseModal}
-        openPartModal={this.props.openPartModal} />
+        openPartModal={this.props.openPartModal}
+        openDateModal={this.props.openDateModal} />
     );
   },
   render: function() {
@@ -46,17 +50,67 @@ var WorkoutTab = React.createClass({
       <Navigator
         ref="workoutNav"
         initialRoute={RouteStack.app}
-        renderScene={this.renderScene} />
+        renderScene={this.renderScene}
+        navigationBar={
+          <Navigator.NavigationBar
+            style={styles.navBar}
+            routeMapper={NavBarRouteMapper} />
+        } />
       /* jshint ignore:end */
     );
   }
 });
 
+var NavBarRouteMapper = {
+  LeftButton: function(route, navigator, index, navState) {
+    return (
+      /* jshint ignore:start */
+      <TouchableOpacity
+        style={styles.navBarComponentContainer}
+        onPress={ () => {
+          if(index > 0) {
+            navigator.pop();
+          }
+        }}>
+      </TouchableOpacity>
+      /* jshint ignore:end */
+    );
+  },
+
+  RightButton: function(route, navigator, index, navState) {
+    return null;
+  },
+
+  Title: function(route, navigator, index, navState) {
+    return (
+      /* jshint ignore:start */
+      <View style={styles.navBarComponentContainer}>
+        <Text style={styles.navBarTitleText}>{route.name}</Text>
+      </View>
+      /* jshint ignore:end */
+    );
+  }
+};
+
 var styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    // height: 700
-  }
+  },
+  navBar: {
+    flexDirection: 'row',
+    backgroundColor: '#4DBA97',
+    alignItems: 'center'
+  },
+  navBarComponentContainer: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  navBarTitleText: {
+    margin: 10,
+    fontFamily: 'Avenir',
+    fontSize: 20,
+    color: 'white'
+  },
 });
 
 module.exports = WorkoutTab;

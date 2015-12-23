@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:39:53
+* @Last Modified time: 2015-12-18 15:53:24
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 'use strict';
 
 var createWorkoutConstants = {
+  SAVE_DATE: 'SAVE_DATE',
   SET_INSTRUCTIONS: 'SET_INSTRUCTIONS',
   ADD_EXERCISE: 'ADD_EXERCISE',
   REMOVE_EXERCISE: 'REMOVE_EXERCISE',

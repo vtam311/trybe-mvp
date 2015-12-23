@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:50:07
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-22 17:15:12
 */
 
 'use strict';
@@ -21,16 +21,6 @@ var AddExerciseCell = require('./addExerciseCell');
 var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
-  renderPartLabel: function(){
-    //If a name is provided for part, render it
-    if(this.props.part.name) {
-      return this.props.part.name.toUpperCase();
-    } else {
-      //Otherwise show default name of PART (num)
-      return 'PART ' + (this.props.partIdx + 1);
-    }
-  },
-
   render: function(){
     var partExercises = this.props.part.exercises
     .map((exercise, index) =>
@@ -51,11 +41,13 @@ var Part = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <Section header={this.renderPartLabel()} hideSeparator={true}>
+        <Section hideSeparator={true}>
           <EditInstructionsCell
             instructions={this.props.part.instructions}
             partIdx={this.props.partIdx}
-            openPartModal={this.props.openPartModal} />
+            partName={this.props.part.name}
+            openPartModal={this.props.openPartModal}
+            scrollToComponent={this.props.scrollToComponent} />
           {partExercises}
           <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
         </Section>
@@ -64,7 +56,8 @@ var Part = React.createClass({
           <ResultsCell
             isRecording={this.props.part.result.isRecording}
             resultType={this.props.part.result.type}
-            partIdx={this.props.partIdx} />
+            partIdx={this.props.partIdx}
+            scrollToComponent={this.props.scrollToComponent} />
         </Section>
       </View>
       /* jshint ignore:start */

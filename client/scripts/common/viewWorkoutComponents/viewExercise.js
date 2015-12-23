@@ -18,7 +18,7 @@ var viewExercise = React.createClass({
 
     var renderReps = function() {
       /* jshint ignore:start*/
-      //If there are both reps and an a distance or time,
+      //If there are both reps and a distance or time,
       //add 'x' to reps - ie. 5x 50m Sprints.
       if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
         rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
@@ -59,7 +59,16 @@ var viewExercise = React.createClass({
 
     var renderExerciseName = function() {
       /* jshint ignore:start*/
-      exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+      if(exercise.name){
+        var lastCharAt = exercise.name.length - 1;
+        //If last letter of exercise name is a space, ignore it
+        if(exercise.name.charAt(lastCharAt) === ' '){
+          var exName = exercise.name.slice(0, lastCharAt);
+          exerciseName = <Text style={styles.exerciseText}>{exName}</Text>;
+        } else {
+          exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+        }
+      } else return null;
       /* jshint ignore:end*/
     };
 

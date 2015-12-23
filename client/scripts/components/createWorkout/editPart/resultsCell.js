@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 15:12:48
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 13:25:59
 */
 
 'use strict';
@@ -39,14 +39,15 @@ var ResultsCell = React.createClass({
     if(this.state.recordingSwitchIsOn){
       //If recording custom result, show
       //both SegmCtrl and text input from ResultOptions
-      if(this.props.resultType !== 'Time' &&
+      if(this.props.resultType &&
+        this.props.resultType !== 'Time' &&
         this.props.resultType !== 'Rounds' &&
         this.props.resultType !==  'Max Load'){
-        return 132;
+        return 144;
       } else {
         //If recording Time, Rounds, or Max Load,
         //adjust to fit SegmCtrl in ResultOptions
-        return 88;
+        return 100;
       }
     } else {
       //If not recording, just show cell with SwitchIOS
@@ -55,17 +56,19 @@ var ResultsCell = React.createClass({
   },
 
   render: function(){
-    //Must declare here, as props aren't accessible to ResultOptions
+    //Must declare here, as props aren't accessible to showOrHideResultOptions
     var recordingSwitchIsOn = this.state.recordingSwitchIsOn;
     var resultType = this.props.resultType;
     var partIdx = this.props.partIdx;
+    var scrollToComponent = this.props.scrollToComponent;
 
     var showOrHideResultOptions = function(){
       if(recordingSwitchIsOn) {
         return (
           <ResultOptions
             resultType={resultType}
-            partIdx={partIdx} />
+            partIdx={partIdx}
+            scrollToComponent={scrollToComponent} />
         );
       } else {
         return null;
@@ -75,8 +78,8 @@ var ResultsCell = React.createClass({
     return (
       /* jshint ignore:start */
       <CustomCell customHeight={this.adjustHeight()}>
-        <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-around', height: this.adjustHeight()}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={[styles.cellContainer, {height: this.adjustHeight()}]}>
+          <View style={styles.cellRow}>
             <Text style={styles.cellPrompt}>Record Results</Text>
             <SwitchIOS
               onTintColor="#4dba97"
@@ -88,16 +91,27 @@ var ResultsCell = React.createClass({
       </CustomCell>
       /* jshint ignore:end */
     );
-  }
+  },
+
 });
 
 var styles = StyleSheet.create({
+  cellContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  cellRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 44,
+  },
   cellPrompt: {
     fontSize: 16,
     color: '#4A4A4A',
     fontFamily: 'Avenir Next',
-    marginTop: 5
-  },
+  }
 });
 
 

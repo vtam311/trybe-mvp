@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 16:14:47
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-18 17:22:57
 */
 
 'use strict';
@@ -17,8 +17,13 @@ var {
   Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions,
+  DeviceEventEmitter,
+  TextInput //temp to test
 } = React;
+
+var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
 
 //Load components
 import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
@@ -29,43 +34,82 @@ var CreateWorkout = React.createClass({
   getInitialState: function() {
     return {
       workout: createWorkoutStore.getWorkout(),
+      visibleHeight: Dimensions.get('window').height
     };
+  },
+  componentWillMount: function() {
+    this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     createWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
     createWorkoutStore.removeChangeListener(this._onChange);
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
   },
   _onChange: function(){
     this.setState({
       workout: createWorkoutStore.getWorkout(),
     });
   },
+  keyboardWillShow: function(e) {
+    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    console.log('keyboard entry heard');
+    this.setState({visibleHeight: newSize});
+  },
+  keyboardWillHide: function(e) {
+    this.setState({visibleHeight: Dimensions.get('window').height});
+  },
+  scrollToComponent: function(refName, child) {
+    var offset;
+    if(child === 'instrTextInput') offset = -90;
+    else if(child === 'customTextInput') offset = 0;
+
+    console.log('scrollToComponent going to ref', refName);
+    console.log('with child type', child);
+
+    setTimeout( () => {
+      let scrollResponder = this.refs.scrollView.getScrollResponder();
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+        React.findNodeHandle(this.refs[refName]),
+        offset, //more offset
+        true
+      );
+    }, 50);
+  },
   addPart: function(){
     createWorkoutActions.addPart();
   },
 
   render: function(){
-
     var parts = this.state.workout.parts.map((part, index) =>
+      /* jshint ignore:start */
       <Part
+        ref={'part' + index}
         part={part}
         partIdx={index}
         openExerciseModal={this.props.openExerciseModal}
         openPartModal={this.props.openPartModal}
+        scrollToComponent={this.scrollToComponent}
         key={index} />
+      /* jshint ignore:end */
     );
 
-    //Issue: If a part's exercises take up the screen, the Add Part button gets pushed down and covered.
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.stage}>
+      <View style={[styles.container, {height: this.state.visibleHeight}]}>
+        <ScrollView
+          ref='scrollView'
+          keyboardDismissMode='on-drag'
+          contentContainerStyle={styles.contentContainerStyle}>
           <TableView>
 
             <Section>
-              <DateCell />
+              <DateCell
+                date={this.state.workout.date}
+                openDateModal={this.props.openDateModal} />
             </Section>
 
             {parts}
@@ -93,10 +137,9 @@ var CreateWorkout = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#EFEFF4',
   },
-  stage: {
+  contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
   },

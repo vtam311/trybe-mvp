@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:40:22
+* @Last Modified time: 2015-12-18 15:53:18
 */
 
 'use strict';
@@ -11,6 +11,14 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var createWorkoutConstants = require('../constants/createWorkoutConstants');
 
 var createWorkoutActions = {
+  saveDate: function(date) {
+    AppDispatcher.handleAction({
+      actionType: createWorkoutConstants.SAVE_DATE,
+      data: {
+        date: date
+      }
+    });
+  },
   setInstructions: function(instructions, partIdx) {
     AppDispatcher.handleAction({
       actionType: createWorkoutConstants.SET_INSTRUCTIONS,

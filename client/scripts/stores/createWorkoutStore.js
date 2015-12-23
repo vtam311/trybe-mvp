@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-15 17:43:24
+* @Last Modified time: 2015-12-18 17:36:51
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var PART_TEMPLATE = {
     src: null
   },
   exercises: [],
-  result: {isRecording: false, type: 'Test', val: null},
+  result: {isRecording: false, type: null, val: null},
   notes: null
 };
 
@@ -39,7 +39,7 @@ var WORKOUT_TEMPLATE = {
   username: null,
   trybe: null,
   day: null,
-  createdAt: null,
+  date: new Date(),
   type: null,
   //copyObject so parts don't refer to same obj
   parts: [copyObjectHelper(PART_TEMPLATE)],
@@ -52,6 +52,11 @@ var _store = {
   targetExerciseIdx: null,
 };
 
+var saveDate = function(data){
+  var date = data.date;
+  _store.workout.date = date;
+};
+
 var setInstructions = function(data){
   var instructions = data.instructions;
   var partIdx = data.partIdx;
@@ -60,10 +65,12 @@ var setInstructions = function(data){
 
 var addExercise = function(data){
   var partIdx = data.partIdx;
+
   //Set exIdx to the next empty index of exercises array
   //Adding of exercise happens once saveExercise is called
   var exIdx = _store.workout.parts[partIdx].exercises.length;
   _store.targetExerciseIdx = exIdx;
+  _store.targetPartIdx = partIdx;
 };
 
 var removeExercise = function(data){
@@ -106,8 +113,6 @@ var addPart = function(){
 var removePart = function(){
   var partIdx = _store.targetPartIdx;
   _store.workout.parts.splice(partIdx, 1);
-  console.log('removePart removed part idx of', partIdx);
-  console.log('parts now', _store.workout.parts);
 };
 
 //Specifies which part of workout to edit
@@ -131,6 +136,9 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   getWorkout: function(){
     return _store.workout;
+  },
+  getDate: function(){
+    return _store.workout.date;
   },
   getTargetPartIdx: function(){
     return _store.targetPartIdx;
@@ -157,12 +165,16 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   getPartName: function(){
     var partIdx = _store.targetPartIdx;
     return _store.workout.parts[partIdx].name;
-  }
+  },
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case createWorkoutConstants.SAVE_DATE:
+      saveDate(action.data);
+      createWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case createWorkoutConstants.SET_INSTRUCTIONS:
       setInstructions(action.data);
       createWorkoutStore.emit(CHANGE_EVENT);

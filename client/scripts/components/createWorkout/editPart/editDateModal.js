@@ -1,8 +1,8 @@
 /*
-* @Author: VINCE
-* @Date:   2015-12-15 15:19:09
+* @Author: vincetam
+* @Date:   2015-12-18 15:03:10
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 16:09:56
+* @Last Modified time: 2015-12-18 16:48:02
 */
 
 'use strict';
@@ -18,8 +18,8 @@ var {
   TouchableOpacity,
   Animated,
   Dimensions,
-  TextInput,
-  Image
+  Image,
+  DatePickerIOS
 } = React;
 
 //Gets device height for animating app
@@ -27,12 +27,11 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-var EditPartModal = React.createClass({
+var EditDateModal = React.createClass({
   getInitialState: function() {
     return {
+      date: createWorkoutStore.getDate(),
       offset: new Animated.Value(deviceHeight),
-      partIdx: createWorkoutStore.getTargetPartIdx(),
-      partName: createWorkoutStore.getPartName()
     };
   },
   componentDidMount: function() {
@@ -47,15 +46,11 @@ var EditPartModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
-  renderPartName: function(text){
-    this.setState({partName: text});
+  onDateChange: function(date){
+    this.setState({date: date});
   },
-  savePart: function(){
-    createWorkoutActions.setPartName(this.state.partName);
-    this.closeModal();
-  },
-  removePart: function(){
-    createWorkoutActions.removePart();
+  saveDate: function(){
+    createWorkoutActions.saveDate(this.state.date);
     this.closeModal();
   },
   render: function() {
@@ -68,8 +63,8 @@ var EditPartModal = React.createClass({
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>Edit Part</Text>
-              <TouchableOpacity onPress={this.savePart}>
+              <Text style={styles.headerTitleText}>Workout Date</Text>
+              <TouchableOpacity onPress={this.saveDate}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
@@ -77,25 +72,12 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text style={styles.partNamePrompt}>Purpose</Text>
-              <TextInput
-                value={this.state.partName}
-                placeholder={'Warmup, Strength, Etc.'}
-                autoCapitalize='words'
-                onChangeText={(text) => this.renderPartName(text)}
-                style={{height: 40}}/>
+              <DatePickerIOS
+                date={this.state.date}
+                onDateChange={this.onDateChange}
+                mode='datetime'
+                minimumDate={new Date(2015,0,1)} />
             </View>
-          </View>
-
-          <View style={styles.footer}>
-            <TouchableOpacity onPress={this.removePart}>
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                <Image
-                  style={{height: 18, width: 18}}
-                  source={require('image!deleteButton')} />
-                <Text style={styles.deleteText}>Delete</Text>
-              </View>
-            </TouchableOpacity>
           </View>
 
         </View>
@@ -120,7 +102,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 180,
+    height: 280,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 3,
@@ -155,40 +137,17 @@ var styles = StyleSheet.create({
     color: '#4DBA97',
   },
   body: {
-    height: 100,
+    height: 240,
     justifyContent: 'center',
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
   },
   bodyContainer: {
     flex: 1,
     marginLeft: 15,
     marginRight: 15,
     marginTop: 15,
-  },
-  partNamePrompt: {
-    fontSize: 14,
-    color: 'black',
-    fontFamily: 'Avenir Next'
-  },
-  footer: {
-    flex: 1,
-    height: 40,
-    borderTopColor: '#9B9B9B',
-    borderTopWidth: .5,
-    borderTopColor: 'rgba(155, 155, 155, 0.7)',
-    borderBottomLeftRadius: 3,
-    borderBottomRightRadius: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
-  },
-  deleteText: {
-    marginLeft: 5,
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    color: '#FA6F80'
   }
 });
 
-module.exports = EditPartModal;
+module.exports = EditDateModal;

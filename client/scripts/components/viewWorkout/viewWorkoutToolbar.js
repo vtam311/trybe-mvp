@@ -1,11 +1,9 @@
 'use strict';
 
 var React = require('react-native');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modifyWorkoutActions = require('../../actions/modifyWorkoutActions');
 
 //Load components
-var ModifyWorkout = require('../modifyWorkout/modifyWorkout');
 var CreateWorkout = require('../createWorkout/createWorkout');
 
 var {
