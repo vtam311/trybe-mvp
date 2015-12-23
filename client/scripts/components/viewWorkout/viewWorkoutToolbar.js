@@ -16,7 +16,7 @@ var {
 var ViewWorkoutToolbar = React.createClass({
   _handleModifyWorkoutPress: function(workout) {
     modifyWorkoutActions.modifyWorkout(workout);
-    this.props.goToScene(CreateWorkout);
+    this.props.goToScene(CreateWorkout, 'New Workout');
   },
   render: function(){
     return (

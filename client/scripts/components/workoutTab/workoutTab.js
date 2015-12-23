@@ -17,7 +17,6 @@ var {
 var RouteStack = {
   app: {
     name: 'Today',
-    index: 0,
     component: ViewWorkout,
   }
 };
@@ -28,9 +27,10 @@ var WorkoutTab = React.createClass({
     return {
     };
   },
-  goToScene: function(component){
+  goToScene: function(component, name){
     this.refs.workoutNav.push({
-      component: component
+      component: component,
+      name: name
     });
   },
   renderScene: function(route, navigator){
@@ -63,6 +63,7 @@ var WorkoutTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
+    console.log('NavBarRouteMapper LeftButton index', index);
     return (
       /* jshint ignore:start */
       <TouchableOpacity
@@ -72,6 +73,7 @@ var NavBarRouteMapper = {
             navigator.pop();
           }
         }}>
+      { index > 0 ? <Text>Back</Text> : null }
       </TouchableOpacity>
       /* jshint ignore:end */
     );
