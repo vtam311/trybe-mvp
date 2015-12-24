@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:32:50
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-24 11:38:08
 */
 
 'use strict';
@@ -24,8 +24,12 @@ var FeedCardFooter = React.createClass({
     //change viewWorkoutBody to editWorkout in logCard?
   },
   doWorkout: function(workout) {
+    //copies a separate workout object to send to viewWorkout
     var separateWorkout = copyObjectHelper(workout);
     viewWorkoutActions.setSelectedWorkout(separateWorkout);
+    //reset stack in workout tab to viewWorkout page
+    this.props.onDoWorkout();
+    //set tab to workout tab
     indexActions.setTab('workout');
   },
   render: function(){

@@ -3,6 +3,7 @@
 require("babel/register");
 
 var React = require('react-native');
+var EventEmitter = require('EventEmitter');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
@@ -32,6 +33,14 @@ var Trybe = React.createClass({
       dateModalVisible: false,
     };
   },
+  componentWillMount: function() {
+    this.navListener = new EventEmitter();
+  },
+  onDoWorkout: function() {
+    //emits event to notify workout navigator to reset stack
+    console.log('index onDoWorkout called');
+    this.navListener.emit('doWorkout', { someArg: 'argValue' });
+  },
   openExerciseModal: function(){
     this.setState({exerciseModalVisible: true});
   },
@@ -58,7 +67,9 @@ var Trybe = React.createClass({
         rootNav={this.refs.rootNav}
         openExerciseModal={this.openExerciseModal}
         openPartModal={this.openPartModal}
-        openDateModal={this.openDateModal} />
+        openDateModal={this.openDateModal}
+        onDoWorkout={this.onDoWorkout}
+        events={this.navListener} />
     );
   },
 

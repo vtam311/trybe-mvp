@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var Subscribable = require('Subscribable');
 var workoutTabActions = require('../../actions/workoutTabActions');
 
 //Load components
@@ -23,15 +24,29 @@ var RouteStack = {
 
 
 var WorkoutTab = React.createClass({
+  mixins: [Subscribable.Mixin],
+
   getInitialState: function(){
     return {
+      route: RouteStack.app,
     };
+  },
+  componentDidMount: function(){
+    this.addListenerOn(this.props.events, 'doWorkout', this.resetRoute);
   },
   goToScene: function(component, name){
     this.refs.workoutNav.push({
       component: component,
       name: name
     });
+  },
+  //will be called when event is heard.
+    //resets routeStack to first page
+      //use flux to do this? https://facebook.github.io/react/tips/communicate-between-components.html
+  resetRoute: function(route){
+    console.log('workoutTab resetRoute called');
+    this.refs.workoutNav.popToTop();
+    // this.setState({}); //updates component, needed?
   },
   renderScene: function(route, navigator){
     var Component = route.component;
@@ -49,7 +64,7 @@ var WorkoutTab = React.createClass({
       /* jshint ignore:start */
       <Navigator
         ref="workoutNav"
-        initialRoute={RouteStack.app}
+        initialRoute={this.state.route}
         renderScene={this.renderScene}
         navigationBar={
           <Navigator.NavigationBar
@@ -63,7 +78,8 @@ var WorkoutTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
-    console.log('NavBarRouteMapper LeftButton index', index);
+    console.log('NavBarRouteMapper LeftButton route', route);
+
     return (
       /* jshint ignore:start */
       <TouchableOpacity
@@ -73,13 +89,20 @@ var NavBarRouteMapper = {
             navigator.pop();
           }
         }}>
-      { index > 0 ? <Text>Back</Text> : null }
+        { index > 0 ? <Text>Back</Text> : null }
       </TouchableOpacity>
       /* jshint ignore:end */
     );
   },
 
   RightButton: function(route, navigator, index, navState) {
+    if(route.name === 'New Workout'){
+      return (
+        <TouchableOpacity style={styles.navBarComponentContainer} >
+          <Text>Add Part</Text>
+        </TouchableOpacity>
+      );
+    }
     return null;
   },
 
