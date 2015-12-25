@@ -34,12 +34,12 @@ var Trybe = React.createClass({
     };
   },
   componentWillMount: function() {
-    this.navListener = new EventEmitter();
+    this.rootNavListener = new EventEmitter();
   },
   onDoWorkout: function() {
     //emits event to notify workout navigator to reset stack
     console.log('index onDoWorkout called');
-    this.navListener.emit('doWorkout', { someArg: 'argValue' });
+    this.rootNavListener.emit('doWorkout', { someArg: 'argValue' });
   },
   openExerciseModal: function(){
     this.setState({exerciseModalVisible: true});
@@ -69,7 +69,7 @@ var Trybe = React.createClass({
         openPartModal={this.openPartModal}
         openDateModal={this.openDateModal}
         onDoWorkout={this.onDoWorkout}
-        events={this.navListener} />
+        events={this.rootNavListener} />
     );
   },
 

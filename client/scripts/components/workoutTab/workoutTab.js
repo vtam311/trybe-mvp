@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var EventEmitter = require('EventEmitter');
 //Subscribable used for addListenerOn method
 var Subscribable = require('Subscribable');
 var workoutTabActions = require('../../actions/workoutTabActions');
@@ -70,8 +71,6 @@ var WorkoutTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
-    console.log('NavBarRouteMapper LeftButton route', route);
-
     return (
       /* jshint ignore:start */
       <TouchableOpacity
@@ -88,9 +87,12 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
+    //If in New Workout scene, render 'Add Part' button
     if(route.name === 'New Workout'){
       return (
-        <TouchableOpacity style={styles.navBarComponentContainer} >
+        <TouchableOpacity
+          onPress={() => console.log('Add Part Pressed')}
+          style={styles.navBarComponentContainer} >
           <Text>Add Part</Text>
         </TouchableOpacity>
       );
@@ -106,6 +108,10 @@ var NavBarRouteMapper = {
       </View>
       /* jshint ignore:end */
     );
+  },
+
+  onAddPartPress: function(){
+
   }
 };
 
