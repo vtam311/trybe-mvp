@@ -14,7 +14,8 @@ var {
   Text,
   View,
   Navigator,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } = React;
 
 var RouteStack = {
@@ -81,7 +82,11 @@ var NavBarRouteMapper = {
             navigator.pop();
           }
         }}>
-        { index > 0 ? <Text>Back</Text> : null }
+        { index > 0 ?
+          <Image
+            style={{height: 22, width: 12}}
+            source={ require('image!backArrow') } />
+          : null }
       </TouchableOpacity>
       /* jshint ignore:end */
     );
@@ -132,16 +137,15 @@ var styles = StyleSheet.create({
   },
   navBarComponentContainer: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 10
   },
   navBarTitleText: {
-    margin: 10,
     fontFamily: 'Avenir',
     fontSize: 20,
     color: 'white'
   },
   navBarSideText: {
-    margin: 10,
     fontFamily: 'Helvetica Neue',
     fontSize: 17,
     color: 'white'
