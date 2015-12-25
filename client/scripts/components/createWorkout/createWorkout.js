@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 17:22:57
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-24 18:10:44
 */
 
 'use strict';
@@ -79,9 +79,6 @@ var CreateWorkout = React.createClass({
       );
     }, 50);
   },
-  addPart: function(){
-    createWorkoutActions.addPart();
-  },
 
   render: function(){
     var parts = this.state.workout.parts.map((part, index) =>
@@ -113,19 +110,6 @@ var CreateWorkout = React.createClass({
             </Section>
 
             {parts}
-
-            <Section>
-              <TouchableHighlight onPress={this.addPart} activeOpacity={.8} underlayColor={'#BFBFBF'}>
-                <View style={{flexDirection: 'column', justifyContent: 'space-around', height: 44}}>
-                  <View style={{flexDirection: 'row', marginLeft: 10}}>
-                    <Image
-                      style={{height: 14, width: 14, marginTop: 2, marginRight: 8}}
-                      source={require('image!addButton')} />
-                    <Text style={{flex: 1, fontSize: 14, color: '#767676', fontFamily: 'ArialMT'}}>ADD PART</Text>
-                  </View>
-                </View>
-              </TouchableHighlight>
-            </Section>
 
           </TableView>
         </ScrollView>

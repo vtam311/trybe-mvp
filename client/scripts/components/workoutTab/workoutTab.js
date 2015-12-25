@@ -1,10 +1,10 @@
 'use strict';
 
 var React = require('react-native');
-var EventEmitter = require('EventEmitter');
-//Subscribable used for addListenerOn method
-var Subscribable = require('Subscribable');
+var Subscribable = require('Subscribable'); //used for addListenerOn
+
 var workoutTabActions = require('../../actions/workoutTabActions');
+var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
@@ -87,11 +87,12 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
+    console.log('navState is', navState);
     //If in New Workout scene, render 'Add Part' button
     if(route.name === 'New Workout'){
       return (
         <TouchableOpacity
-          onPress={() => console.log('Add Part Pressed')}
+          onPress={() => createWorkoutActions.addPart()}
           style={styles.navBarComponentContainer} >
           <Text>Add Part</Text>
         </TouchableOpacity>
