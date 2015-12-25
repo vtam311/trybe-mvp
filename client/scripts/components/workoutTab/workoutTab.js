@@ -94,7 +94,7 @@ var NavBarRouteMapper = {
         <TouchableOpacity
           onPress={() => createWorkoutActions.addPart()}
           style={styles.navBarComponentContainer} >
-          <Text>Add Part</Text>
+          <Text style={styles.navBarSideText}>Add Part</Text>
         </TouchableOpacity>
       );
     }
@@ -135,6 +135,12 @@ var styles = StyleSheet.create({
     fontSize: 20,
     color: 'white'
   },
+  navBarSideText: {
+    margin: 10,
+    fontFamily: 'Helvetica Neue',
+    fontSize: 17,
+    color: 'white'
+  }
 });
 
 module.exports = WorkoutTab;
