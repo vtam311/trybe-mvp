@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+//Subscribable used for addListenerOn method
 var Subscribable = require('Subscribable');
 var workoutTabActions = require('../../actions/workoutTabActions');
 
@@ -26,11 +27,6 @@ var RouteStack = {
 var WorkoutTab = React.createClass({
   mixins: [Subscribable.Mixin],
 
-  getInitialState: function(){
-    return {
-      route: RouteStack.app,
-    };
-  },
   componentDidMount: function(){
     this.addListenerOn(this.props.events, 'doWorkout', this.resetRoute);
   },
@@ -40,13 +36,9 @@ var WorkoutTab = React.createClass({
       name: name
     });
   },
-  //will be called when event is heard.
-    //resets routeStack to first page
-      //use flux to do this? https://facebook.github.io/react/tips/communicate-between-components.html
   resetRoute: function(route){
     console.log('workoutTab resetRoute called');
     this.refs.workoutNav.popToTop();
-    // this.setState({}); //updates component, needed?
   },
   renderScene: function(route, navigator){
     var Component = route.component;
@@ -64,7 +56,7 @@ var WorkoutTab = React.createClass({
       /* jshint ignore:start */
       <Navigator
         ref="workoutNav"
-        initialRoute={this.state.route}
+        initialRoute={RouteStack.app}
         renderScene={this.renderScene}
         navigationBar={
           <Navigator.NavigationBar
