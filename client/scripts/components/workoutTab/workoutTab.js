@@ -59,6 +59,7 @@ var WorkoutTab = React.createClass({
         ref="workoutNav"
         initialRoute={RouteStack.app}
         renderScene={this.renderScene}
+        sceneStyle={styles.scene}
         navigationBar={
           <Navigator.NavigationBar
             style={styles.navBar}
@@ -120,10 +121,14 @@ var styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
+  scene: {
+    paddingTop: 64, //offset nav bar from covering scene
+    flex: 1
+  },
   navBar: {
     flexDirection: 'row',
     backgroundColor: '#4DBA97',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   navBarComponentContainer: {
     flex: 1,
