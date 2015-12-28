@@ -124,7 +124,7 @@ var NavBarRouteMapper = {
 
 var styles = StyleSheet.create({
   scene: {
-    flex: 1
+    flex: 1,
     paddingTop: 64, //offset nav bar from covering scene
   },
   navBar: {
