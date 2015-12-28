@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:38:51
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-24 11:36:00
 */
 
 'use strict';
@@ -47,7 +47,9 @@ var Log = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <LogCard card={card}/>
+        <LogCard
+          card={card}
+          onDoWorkout={this.props.onDoWorkout} />
       </View>
       /* jshint ignore:end */
     );
