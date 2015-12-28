@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-24 18:10:44
+* @Last Modified time: 2015-12-27 16:27:42
 */
 
 'use strict';
@@ -94,13 +94,16 @@ var CreateWorkout = React.createClass({
       /* jshint ignore:end */
     );
 
+    //Bottom content inset of ScrollView offsets
+    //tab bar from covering scene
     return (
       /* jshint ignore:start */
       <View style={[styles.container, {height: this.state.visibleHeight}]}>
         <ScrollView
           ref='scrollView'
           keyboardDismissMode='on-drag'
-          contentContainerStyle={styles.contentContainerStyle}>
+          contentContainerStyle={styles.contentContainerStyle}
+          contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
           <TableView>
 
             <Section>

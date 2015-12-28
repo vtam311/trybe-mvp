@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-24 11:50:06
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-27 15:58:08
 */
 
 'use strict';
@@ -51,12 +51,13 @@ var TabBar = React.createClass({
   render: function() {
     return (
       /* jshint ignore:start */
-      <TabBarIOS>
+      <TabBarIOS
+        tintColor='#4DBA97' >
         <TabBarIOS.Item
           title='Profile'
           icon={ require('image!profile') }
           onPress={ () => this.changeTab('profile') }
-          selected={ this.state.selectedTab === 'profile' }>
+          selected={ this.state.selectedTab === 'profile'} >
           <LogTab
             onDoWorkout={this.props.onDoWorkout} />
         </TabBarIOS.Item>
@@ -75,6 +76,7 @@ var TabBar = React.createClass({
           onPress={ () => this.changeTab('workout') }
           selected={ this.state.selectedTab === 'workout' }>
           <WorkoutTab
+            style={styles.tabContent}
             openExerciseModal={this.props.openExerciseModal}
             openPartModal={this.props.openPartModal}
             openDateModal={this.props.openDateModal}
@@ -87,8 +89,8 @@ var TabBar = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  tabView: {
-    // fontFamily: 'Avenir'
+  tabContent: {
+    paddingBottom: 50
   }
 });
 
