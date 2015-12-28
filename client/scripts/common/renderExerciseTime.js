@@ -2,16 +2,20 @@
 * @Author: vincetam
 * @Date:   2015-12-10 17:45:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-11 23:13:03
+* @Last Modified time: 2015-12-27 17:59:22
 */
 
 'use strict';
 
-//Styling:
-//00:00 --> none
-//00:01 --> 1 sec
-//01:00 --> 1 min
-//01:01 --> 1:01 sec
+//renderExerciseTime outputs an exercise's prescribed
+//time to the user. It converts a string in '00:00:00' format
+//to reader text
+
+  //ie. Styling:
+  //00:00 --> none
+  //00:01 --> 1 sec
+  //01:00 --> 1 min
+  //01:01 --> 1:01 sec
 var renderExerciseTime = function(time) {
   var result;
 
