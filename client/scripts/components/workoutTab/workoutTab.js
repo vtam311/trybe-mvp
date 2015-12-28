@@ -8,7 +8,7 @@ var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
-var CreateWorkout = require('../createWorkout/createWorkout'); //temporarily here to test changes to workout model
+var CreateWorkout = require('../createWorkout/createWorkout');
 
 var {
   StyleSheet,
@@ -86,8 +86,7 @@ var NavBarRouteMapper = {
         { index > 0 ?
           <Image
             style={{height: 22, width: 12}}
-            source={ require('image!backArrow') } />
-          : null }
+            source={ require('image!backArrow') } /> : null }
       </TouchableOpacity>
       /* jshint ignore:end */
     );
@@ -95,15 +94,33 @@ var NavBarRouteMapper = {
 
   RightButton: function(route, navigator, index, navState) {
     console.log('navState is', navState);
-    //If in New Workout scene, render 'Add Part' button
-    if(route.name === 'New Workout'){
-      return (
-        <TouchableOpacity
-          onPress={() => createWorkoutActions.addPart()}
-          style={styles.navBarComponentContainer} >
-          <Text style={styles.navBarSideText}>Add Part</Text>
-        </TouchableOpacity>
-      );
+    switch (route.name) {
+      //If viewing today's workout, render create workout button
+      case 'Today':
+        return (
+          <TouchableOpacity
+            onPress={() =>
+              navigator.push({
+                component: CreateWorkout,
+                name: 'New Workout'
+              })}
+            style={styles.navBarComponentContainer} >
+            <Text style={styles.navBarSideText}>+</Text>
+          </TouchableOpacity>
+        );
+        break;
+      //If in New Workout scene, render 'Add Part' button
+      case 'New Workout':
+        return (
+          <TouchableOpacity
+            onPress={() => createWorkoutActions.addPart()}
+            style={styles.navBarComponentContainer} >
+            <Text style={styles.navBarSideText}>Add Part</Text>
+          </TouchableOpacity>
+        );
+        break;
+      default:
+        return true;
     }
     return null;
   },
