@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-01 11:03:23
+* @Last Modified time: 2015-12-27 18:19:09
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var {
 var FeedCardFooter = React.createClass({
   viewWorkout: function(workout) {
     var separateWorkout = copyObjectHelper(workout);
-    viewWorkoutActions.setSelectedWorkout(separateWorkout);
+    viewWorkoutActions.setWorkout(separateWorkout);
 
     //To do: clear workout tab's nav stack
     workoutTabActions.setView('Today\'s Workout');

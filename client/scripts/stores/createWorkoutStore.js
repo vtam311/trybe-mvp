@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 17:36:51
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-27 18:22:38
 */
 
 'use strict';
@@ -40,7 +40,6 @@ var WORKOUT_TEMPLATE = {
   trybe: null,
   day: null,
   date: new Date(),
-  type: null,
   //copyObject so parts don't refer to same obj
   parts: [copyObjectHelper(PART_TEMPLATE)],
   origin: null,

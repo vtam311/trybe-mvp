@@ -8,6 +8,7 @@ var createWorkoutActions = require('../../actions/createWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
+var CreateWorkout = require('../createWorkout/createWorkout'); //temporarily here to test changes to workout model
 
 var {
   StyleSheet,
