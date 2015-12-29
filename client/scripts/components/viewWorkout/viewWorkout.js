@@ -8,7 +8,7 @@ var editWorkoutStore = require('../../stores/editWorkoutStore');
 
 //Load components
 import {TableView} from 'react-native-tableview-simple';
-var DoPart = require('./doPart');
+var ViewPart = require('./viewPart');
 
 var {
   StyleSheet,
@@ -56,7 +56,7 @@ var ViewWorkout = React.createClass({
     if(workout.parts) {
       var parts = this.state.workout.parts.map((part, index) =>
         /* jshint ignore:start */
-        <DoPart
+        <ViewPart
           part={part}
           partIdx={index}
           key={index}
