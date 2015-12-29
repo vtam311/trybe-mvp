@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:51:34
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-28 19:26:13
 */
 
 'use strict';
@@ -12,13 +12,13 @@ var editWorkoutConstants = require('../constants/editWorkoutConstants');
 
 //temp use workout model
 var TEMP_WORKOUT = require('../../../Documentation/workoutModel.js');
-var newObject = require('../common/copyObjectHelper');
+var newObject = require('../common/copyObjectHelper'); //not using, since changes date object
 
 
 var editWorkoutActions = {
   getWorkout: function() {
     //To do: make get req to server
-    var dummyWorkout = newObject(TEMP_WORKOUT);
+    var dummyWorkout = TEMP_WORKOUT;
 
     this.setWorkout(dummyWorkout);
   },

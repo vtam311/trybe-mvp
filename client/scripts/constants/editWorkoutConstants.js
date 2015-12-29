@@ -2,13 +2,12 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:45:00
+* @Last Modified time: 2015-12-28 19:15:07
 */
 
 'use strict';
 
 var editWorkoutConstants = {
-  GET_WORKOUT: 'GET_WORKOUT',
   SET_WORKOUT: 'SET_WORKOUT',
   RESET_WORKOUT: 'RESET_WORKOUT',
   SAVE_DATE: 'SAVE_DATE',

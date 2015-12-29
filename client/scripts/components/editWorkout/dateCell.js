@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 17:58:02
+* @Last Modified time: 2015-12-28 19:14:29
 */
 
 'use strict';
@@ -31,6 +31,7 @@ var DateCell = React.createClass({
       }
     };
 
+    //If day is today, return 'Today' as preview
     if(dateIsToday(this.props.date)) return 'Today';
     else {
       var dateString = this.props.date.toString();
@@ -39,6 +40,7 @@ var DateCell = React.createClass({
     }
   },
   render: function(){
+    console.log('dateCell date is', this.props.date);
 
     return (
       /* jshint ignore:start */

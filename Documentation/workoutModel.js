@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 19:07:25
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-28 19:13:10
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -58,7 +58,6 @@ var WORKOUT_TEMPLATE = {
   trybe: 'ICON Athletes',
   day: null,
   date: new Date(),
-  //copyObject so parts don't refer to same obj
   parts: [copyObjectHelper(PART_TEMPLATE)],
   origin: null,
 };
