@@ -5,22 +5,24 @@ var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
-var ViewWorkoutToolbar = require('./viewWorkoutToolbar');
+import {TableView} from 'react-native-tableview-simple';
+var DoPart = require('./doPart');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
-var StartWorkoutButton = require('./startWorkoutButton');
 
 var {
   StyleSheet,
   Text,
   View,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions,
 } = React;
 
 var ViewWorkout = React.createClass({
   getInitialState: function(){
     return {
-      workout: viewWorkoutStore.getWorkout()
+      workout: viewWorkoutStore.getWorkout(),
+      visibleHeight: Dimensions.get('window').height
     };
   },
   componentDidMount: function(){
@@ -37,16 +39,21 @@ var ViewWorkout = React.createClass({
   },
   render: function(){
     var workout = this.state.workout;
+    var parts = this.state.workout.parts.map((part, index) =>
+      <DoPart part={part} partIdx={index} key={index} />
+    );
 
     //Render workout once it's loaded
     if(workout.parts) {
       return (
-        <View style={styles.container}>
+        <View style={[styles.container, {height: this.state.visibleHeight}]}>
           <ScrollView
-            contentContainerStyle={styles.scrollViewContainer}
+            contentContainerStyle={styles.contentContainerStyle}
             automaticallyAdjustContentInsets={false} >
 
-            <Text>{this.state.workout.parts[0].instructions}</Text>
+            <TableView>
+              {parts}
+            </TableView>
 
           </ScrollView>
         </View>
@@ -63,10 +70,11 @@ var ViewWorkout = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: '#EFEFF4',
   },
-  scrollViewContainer: {
-    flex: 1,
+  contentContainerStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
   },
 });
 

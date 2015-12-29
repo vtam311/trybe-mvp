@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-27 17:32:56
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 17:08:48
 */
 
 'use strict';
@@ -23,12 +23,12 @@ var {
   TextInput //temp to test
 } = React;
 
-var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
-
 //Load components
-import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
+var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
+import {TableView, Section} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
 var Part = require('./editPart/part');
+
 
 var CreateWorkout = React.createClass({
   getInitialState: function() {

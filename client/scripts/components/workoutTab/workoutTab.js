@@ -40,7 +40,6 @@ var WorkoutTab = React.createClass({
     });
   },
   resetRoute: function(route){
-    console.log('workoutTab resetRoute called');
     this.refs.workoutNav.popToTop();
   },
   renderScene: function(route, navigator){
@@ -93,7 +92,6 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
-    console.log('navState is', navState);
     switch (route.name) {
       //If viewing today's workout, render create workout button
       case 'Today':
