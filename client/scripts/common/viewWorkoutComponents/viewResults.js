@@ -2,13 +2,14 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-27 18:01:56
+* @Last Modified time: 2015-12-29 14:23:45
 */
+
+//Still useful, but currently not in use
 
 'use strict';
 
 var React = require('react-native');
-// var renderResultsTime = require('../renderResultsTime');
 
 var {
   StyleSheet,
