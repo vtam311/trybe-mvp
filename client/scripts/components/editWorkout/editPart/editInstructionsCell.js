@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 14:41:10
+* @Last Modified time: 2015-12-29 15:22:51
 */
 
 'use strict';
@@ -22,17 +22,8 @@ var {
 import {CustomCell} from 'react-native-tableview-simple';
 
 var EditInstructionsCell = React.createClass({
-  getInitialState: function() {
-    return {
-      instructions: this.props.instructions,
-    };
-  },
   setInstructions: function(instructions) {
     editWorkoutActions.setInstructions(instructions, this.props.partIdx);
-
-    this.setState({
-      instructions: instructions
-    });
   },
   handlePartDisclosurePress: function(){
     //Let editWorkoutStore know which part we are editing
@@ -68,7 +59,7 @@ var EditInstructionsCell = React.createClass({
             </View>
             <View ref='instructionsTextInput' style={styles.instructionsContainer}>
               <TextInput
-                value={this.state.instructions}
+                value={this.props.instructions}
                 placeholder='Instructions'
                 autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
