@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 15:31:00
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-29 15:48:05
 */
 
 'use strict';
@@ -22,17 +22,9 @@ var {
 var ViewPartHeader = React.createClass({
   getInitialState: function(){
     return {
-      isCollapsed: true,
       isLogged: false
     };
   },
-
-  toggleCollapse: function(){
-    this.setState({
-      isCollapsed: !this.state.isCollapsed
-    });
-  },
-
   logPart: function(){
     this.setState({
       isLogged: true
@@ -42,7 +34,7 @@ var ViewPartHeader = React.createClass({
     var part = this.props.part;
     var partIdx = this.props.partIdx;
 
-    var expandOrCollapseArrow = this.state.isCollapsed ?
+    var expandOrCollapseArrow = this.props.isCollapsed ?
       <Image source={require('image!expandArrow')} /> :
       <Image source={require('image!collapseArrow')} />;
 
@@ -54,7 +46,7 @@ var ViewPartHeader = React.createClass({
       /* jshint ignore:start */
       <View style={styles.container}>
         <Text style={styles.headerText}>{part.name ? part.name : 'Part ' + (partIdx + 1)}</Text>
-        <TouchableOpacity onPress={this.toggleCollapse}>
+        <TouchableOpacity onPress={() => this.props.toggleCollapse()}>
           {expandOrCollapseArrow}
         </TouchableOpacity>
         <TouchableOpacity onPress={this.logPart}>
@@ -71,7 +63,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerText: {
     fontFamily: 'Avenir Next',

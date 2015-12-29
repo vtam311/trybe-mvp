@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 15:30:03
+* @Last Modified time: 2015-12-29 15:48:03
 */
 
 'use strict';
@@ -24,6 +24,17 @@ var EditExerciseCell = require('../editWorkout/editPart/editExerciseCell');
 
 
 var DoPart = React.createClass({
+  getInitialState: function(){
+    return {
+      isCollapsed: true,
+    };
+  },
+  toggleCollapse: function(){
+    console.log('toggleCollapse called');
+    this.setState({
+      isCollapsed: !this.state.isCollapsed
+    });
+  },
   render: function(){
     var part = this.props.part;
     var partIdx = this.props.partIdx;
@@ -43,7 +54,11 @@ var DoPart = React.createClass({
       /* jshint ignore:start */
       <View style={styles.container}>
         <View style={styles.header}>
-          <PartHeader part={part} partIdx={partIdx} />
+          <PartHeader
+            part={part}
+            partIdx={partIdx}
+            toggleCollapse={this.toggleCollapse}
+            isCollapsed={this.state.isCollapsed} />
         </View>
 
         <View style={styles.body}>
@@ -74,8 +89,10 @@ var styles = StyleSheet.create({
   header: {
     height: 44,
   },
-
   body: {
+    borderTopWidth: .5,
+    borderColor: 'rgba(155,155,155,.7)',
+    paddingTop: 10,
   },
   footer: {
 

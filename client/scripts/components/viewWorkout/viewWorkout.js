@@ -51,7 +51,6 @@ var ViewWorkout = React.createClass({
   },
   render: function(){
     var workout = this.state.workout;
-    console.log('viewWorkout rendering workout', workout);
     //Render workout once it's loaded
     if(workout.parts) {
       var parts = this.state.workout.parts.map((part, index) =>
