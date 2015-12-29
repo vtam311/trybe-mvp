@@ -3,6 +3,7 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 //Load components
 import {TableView} from 'react-native-tableview-simple';
@@ -28,6 +29,7 @@ var ViewWorkout = React.createClass({
   componentDidMount: function(){
     viewWorkoutStore.addChangeListener(this._onChange);
     viewWorkoutActions.getWorkout();
+    editWorkoutActions.getWorkout();
   },
   componentWillUnmount: function(){
     viewWorkoutStore.removeChangeListener(this._onChange);
@@ -38,19 +40,20 @@ var ViewWorkout = React.createClass({
     });
   },
   render: function(){
-    var workout = this.state.workout;
-    var parts = this.state.workout.parts.map((part, index) =>
-      /* jshint ignore:start */
-      <DoPart
-        part={part}
-        partIdx={index}
-        key={index}
-        openExerciseModal={this.props.openExerciseModal} />
-      /* jshint ignore:end */
-    );
-
     //Render workout once it's loaded
+    var workout = this.state.workout;
     if(workout.parts) {
+      console.log('viewWorkout render workout is', workout);
+      var parts = this.state.workout.parts.map((part, index) =>
+        /* jshint ignore:start */
+        <DoPart
+          part={part}
+          partIdx={index}
+          key={index}
+          openExerciseModal={this.props.openExerciseModal} />
+        /* jshint ignore:end */
+      );
+
       return (
         <View style={[styles.container, {height: this.state.visibleHeight}]}>
           <ScrollView

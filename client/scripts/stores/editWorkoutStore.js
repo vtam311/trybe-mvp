@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:31:34
+* @Last Modified time: 2015-12-28 18:50:29
 */
 
 'use strict';
@@ -49,6 +49,16 @@ var _store = {
   workout: WORKOUT_TEMPLATE,
   targetPartIdx: 0, //set to null once setTargetPartIdx is written
   targetExerciseIdx: null,
+};
+
+var setWorkout = function(data){
+  var workout = data.workout;
+  console.log('editWorkoutStore setWorkout to', workout);
+  _store.workout = workout;
+};
+
+var resetWorkout = function(){
+  _store.workout = WORKOUT_TEMPLATE;
 };
 
 var saveDate = function(data){
@@ -170,6 +180,14 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case editWorkoutConstants.SET_WORKOUT:
+      setWorkout(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.RESET_WORKOUT:
+      resetWorkout();
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case editWorkoutConstants.SAVE_DATE:
       saveDate(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);

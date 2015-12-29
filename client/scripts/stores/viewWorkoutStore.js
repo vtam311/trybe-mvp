@@ -10,7 +10,8 @@ var _store = {
   workout: {}
 };
 
-var setWorkout = function(workout) {
+var setWorkout = function(data) {
+  var workout = data.workout;
   _store.workout = workout;
 };
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:29:06
+* @Last Modified time: 2015-12-28 18:51:34
 */
 
 'use strict';
@@ -10,7 +10,31 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var editWorkoutConstants = require('../constants/editWorkoutConstants');
 
+//temp use workout model
+var TEMP_WORKOUT = require('../../../Documentation/workoutModel.js');
+var newObject = require('../common/copyObjectHelper');
+
+
 var editWorkoutActions = {
+  getWorkout: function() {
+    //To do: make get req to server
+    var dummyWorkout = newObject(TEMP_WORKOUT);
+
+    this.setWorkout(dummyWorkout);
+  },
+  setWorkout: function(workout) {
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_WORKOUT,
+      data: {
+        workout: workout
+      }
+    });
+  },
+  resetWorkout: function() {
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.RESET_WORKOUT,
+    });
+  },
   saveDate: function(date) {
     AppDispatcher.handleAction({
       actionType: editWorkoutConstants.SAVE_DATE,
