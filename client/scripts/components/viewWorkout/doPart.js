@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-28 18:27:23
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 19:05:20
 */
 
 'use strict';
@@ -46,21 +46,14 @@ var DoPart = React.createClass({
     var part = this.props.part;
     var partIdx = this.props.partIdx;
 
+    /* jshint ignore:start */
     var expandOrCollapseArrow = this.state.isCollapsed ?
-      /* jshint ignore:start */
-      <Image
-        source={require('image!expandArrow')} /> :
-      <Image
-        source={require('image!collapseArrow')} />;
-      /* jshint ignore:end */
+      <Image source={require('image!expandArrow')} /> :
+      <Image source={require('image!collapseArrow')} />;
 
     var logOrLoggedIcon = this.state.isLogged ?
-      /* jshint ignore:start */
-      <Image
-        source={require('image!loggedIcon')} /> :
-      <Image
-        source={require('image!logIcon')} />;
-      /* jshint ignore:end */
+      <Image source={require('image!loggedIcon')} /> :
+      <Image source={require('image!logIcon')} />;
 
     var exercises = part.exercises.map((exercise, index) =>
       <EditExerciseCell
@@ -69,6 +62,7 @@ var DoPart = React.createClass({
         exIdx={index}
         openExerciseModal={this.props.openExerciseModal} />
     );
+    /* jshint ignore:end */
 
     return (
       /* jshint ignore:start */

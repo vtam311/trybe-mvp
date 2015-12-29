@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-27 18:28:13
+* @Last Modified time: 2015-12-28 19:07:25
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -18,6 +18,24 @@ var EXERCISE_TEMPLATE = {
   src: null
 };
 
+var EXERCISE_TEMPLATE_TWO = {
+  name: 'Push Ups',
+  reps: 10,
+  load: {units: 'lb', val: null},
+  time: null,
+  distance: {units: null, val: null},
+  src: null
+};
+
+var EXERCISE_TEMPLATE_THREE = {
+  name: 'Squats',
+  reps: 15,
+  load: {units: 'lb', val: null},
+  time: null,
+  distance: {units: null, val: null},
+  src: null
+};
+
 var PART_TEMPLATE = {
   name: null,
   instructions: '20min AMRAP Of',
@@ -25,7 +43,11 @@ var PART_TEMPLATE = {
     title: null,
     src: null
   },
-  exercises: [copyObjectHelper(EXERCISE_TEMPLATE)],
+  exercises: [
+    copyObjectHelper(EXERCISE_TEMPLATE),
+    copyObjectHelper(EXERCISE_TEMPLATE_TWO),
+    copyObjectHelper(EXERCISE_TEMPLATE_THREE)
+  ],
   result: {isRecording: false, type: null, val: null},
   notes: null
 };
