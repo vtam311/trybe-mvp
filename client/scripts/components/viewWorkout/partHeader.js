@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
-* @Date:   2015-12-29 14:32:54
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-29 15:21:02
+* @Date:   2015-12-29 15:02:15
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-29 15:04:07
 */
 
 'use strict';
@@ -17,15 +17,25 @@ var {
 } = React;
 
 var ViewInstructions = React.createClass({
+  getInitialState: function() {
+    return {
+      instructions: this.props.instructions,
+    };
+  },
   setInstructions: function(instructions) {
     editWorkoutActions.setInstructions(instructions, this.props.partIdx);
+
+    this.setState({
+      instructions: instructions
+    });
   },
+
 
   render: function(){
     return (
       /* jshint ignore:start */
       <TextInput
-        value={this.props.instructions}
+        value={this.state.instructions}
         onChangeText={(text) => this.setInstructions(text)}
         autoCapitalize='words'
         style={styles.instructionsTextInput} />

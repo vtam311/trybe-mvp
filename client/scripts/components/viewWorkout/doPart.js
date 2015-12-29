@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-29 15:00:54
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-29 15:11:31
 */
 
 'use strict';
@@ -45,6 +45,8 @@ var DoPart = React.createClass({
 
   render: function(){
     var part = this.props.part;
+    console.log('doPart part is', part);
+    console.log('doPart instructions are', part.instructions);
     var partIdx = this.props.partIdx;
 
     /* jshint ignore:start */
@@ -61,7 +63,8 @@ var DoPart = React.createClass({
         exercise={exercise}
         partIdx={partIdx}
         exIdx={index}
-        openExerciseModal={this.props.openExerciseModal} />
+        openExerciseModal={this.props.openExerciseModal}
+        key={index} />
     );
     /* jshint ignore:end */
 

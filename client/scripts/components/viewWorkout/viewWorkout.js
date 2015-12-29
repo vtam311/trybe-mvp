@@ -9,7 +9,6 @@ var editWorkoutStore = require('../../stores/editWorkoutStore');
 //Load components
 import {TableView} from 'react-native-tableview-simple';
 var DoPart = require('./doPart');
-var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 
 var {
   StyleSheet,
@@ -37,7 +36,10 @@ var ViewWorkout = React.createClass({
   },
   componentDidMount: function(){
     editWorkoutStore.addChangeListener(this._onChange);
-    if(this.state.showDefaultOrCustom === 'default') editWorkoutActions.getDailyWorkout();
+    if(this.state.showDefaultOrCustom === 'default'){
+      console.log('viewWorkout getting daily workout');
+      editWorkoutActions.getDailyWorkout();
+    }
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
@@ -49,6 +51,7 @@ var ViewWorkout = React.createClass({
   },
   render: function(){
     var workout = this.state.workout;
+    console.log('viewWorkout rendering workout', workout);
     //Render workout once it's loaded
     if(workout.parts) {
       var parts = this.state.workout.parts.map((part, index) =>
