@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 19:24:51
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-28 23:30:55
 */
 
 'use strict';
@@ -54,7 +54,7 @@ var _store = {
 var setWorkout = function(data){
   var workout = data.workout;
   console.log('editWorkoutStore setWorkout to', workout);
-  _store.workout = workout; //this is the culprit to editWorkout not rendering date.. why?
+  _store.workout = workout;
 };
 
 var resetWorkout = function(){

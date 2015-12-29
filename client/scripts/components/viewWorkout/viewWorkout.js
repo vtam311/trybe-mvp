@@ -4,6 +4,7 @@ var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var editWorkoutStore = require('../../stores/editWorkoutStore');
 
 //Load components
 import {TableView} from 'react-native-tableview-simple';
@@ -20,23 +21,26 @@ var {
 } = React;
 
 var ViewWorkout = React.createClass({
+  //viewWorkout initializes workout from editWorkoutStore.
+  //Any changes are reflected in both views.
+
+  //On going to editWorkout scene, the workout gets reset to empty template
   getInitialState: function(){
     return {
-      workout: viewWorkoutStore.getWorkout(),
+      workout: editWorkoutStore.getWorkout(),
       visibleHeight: Dimensions.get('window').height
     };
   },
   componentDidMount: function(){
-    viewWorkoutStore.addChangeListener(this._onChange);
-    viewWorkoutActions.getWorkout();
-    editWorkoutActions.getWorkout();
+    editWorkoutStore.addChangeListener(this._onChange);
+    editWorkoutActions.getDailyWorkout();
   },
   componentWillUnmount: function(){
-    viewWorkoutStore.removeChangeListener(this._onChange);
+    editWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      workout: viewWorkoutStore.getWorkout()
+      workout: editWorkoutStore.getWorkout()
     });
   },
   render: function(){

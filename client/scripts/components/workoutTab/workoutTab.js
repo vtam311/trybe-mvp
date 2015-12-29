@@ -95,13 +95,16 @@ var NavBarRouteMapper = {
     switch (route.name) {
       //If viewing today's workout, render create workout button
       case 'Today':
+        var handleRightPress = function(){
+          editWorkoutActions.resetWorkout();
+          navigator.push({
+            component: EditWorkout,
+            name: 'New Workout'
+          });
+        };
         return (
           <TouchableOpacity
-            onPress={() =>
-              navigator.push({
-                component: EditWorkout,
-                name: 'New Workout'
-              })}
+            onPress={() => handleRightPress()}
             style={styles.navBarComponentContainer} >
             <Text style={styles.navBarSideText}>+</Text>
           </TouchableOpacity>

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-28 19:26:13
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 23:29:49
 */
 
 'use strict';
@@ -16,7 +16,7 @@ var newObject = require('../common/copyObjectHelper'); //not using, since change
 
 
 var editWorkoutActions = {
-  getWorkout: function() {
+  getDailyWorkout: function() {
     //To do: make get req to server
     var dummyWorkout = TEMP_WORKOUT;
 

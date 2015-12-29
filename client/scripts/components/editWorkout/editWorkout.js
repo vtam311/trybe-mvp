@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 19:26:42
+* @Last Modified time: 2015-12-28 23:29:55
 */
 
 'use strict';
@@ -46,7 +46,7 @@ var EditWorkout = React.createClass({
     //editWorkoutStore is initialized with the trybe's workout by default,
     //so user can edit workout in viewWorkout component.
     //When user edits workout from scratch, we reset the workout.
-    editWorkoutActions.resetWorkout();
+    // editWorkoutActions.resetWorkout();
   },
   componentWillUnmount: function() {
     editWorkoutStore.removeChangeListener(this._onChange);
