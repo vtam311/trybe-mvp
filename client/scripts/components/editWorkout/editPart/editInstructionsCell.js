@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:37:26
+* @Last Modified time: 2015-12-29 14:41:10
 */
 
 'use strict';
@@ -82,7 +82,7 @@ var EditInstructionsCell = React.createClass({
           <View style={styles.cellSeparatorLine}></View>
         </View>
       </View>
-      /* jshint ignore:start */
+      /* jshint ignore:end */
     );
   }
 });

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 19:05:20
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-29 15:00:54
 */
 
 'use strict';
@@ -21,6 +21,7 @@ import {Section, CustomCell} from 'react-native-tableview-simple';
 
 //Load custom components
 var EditExerciseCell = require('../editWorkout/editPart/editExerciseCell');
+var ViewInstructions = require('./viewInstructions');
 
 var DoPart = React.createClass({
   getInitialState: function(){
@@ -78,7 +79,9 @@ var DoPart = React.createClass({
         </View>
 
         <View style={styles.body}>
-          <Text>{part.instructions}</Text>
+          <ViewInstructions
+            instructions={part.instructions}
+            partIdx={partIdx} />
           {exercises}
         </View>
 
