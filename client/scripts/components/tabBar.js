@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-27 15:58:08
+* @Last Modified time: 2015-12-29 00:00:40
 */
 
 'use strict';
@@ -67,7 +67,8 @@ var TabBar = React.createClass({
           icon={ require('image!home') }
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
-          <FeedTab/>
+          <FeedTab
+            onDoWorkout={this.props.onDoWorkout} />
         </TabBarIOS.Item>
 
         <TabBarIOS.Item

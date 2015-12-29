@@ -2,8 +2,6 @@
 
 var React = require('react-native');
 var Subscribable = require('Subscribable'); //used for addListenerOn
-
-var workoutTabActions = require('../../actions/workoutTabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 //Load components

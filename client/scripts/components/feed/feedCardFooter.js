@@ -2,15 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-27 18:19:09
+* @Last Modified time: 2015-12-29 00:04:29
 */
 
 'use strict';
 
 var React = require('react-native');
 var indexActions = require('../../actions/indexActions');
-var workoutTabActions = require('../../actions/workoutTabActions');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 var copyObjectHelper = require('../../common/copyObjectHelper');
 
 var {
@@ -23,10 +22,14 @@ var {
 var FeedCardFooter = React.createClass({
   viewWorkout: function(workout) {
     var separateWorkout = copyObjectHelper(workout);
-    viewWorkoutActions.setWorkout(separateWorkout);
+    //set workout in workout tab
+    editWorkoutActions.setWorkout(separateWorkout);
 
-    //To do: clear workout tab's nav stack
-    workoutTabActions.setView('Today\'s Workout');
+    //update editWorkoutStore's customOrDefault value to custom
+    editWorkoutActions.setDefaultOrCustom('custom');
+
+    //reset workout tab stack to viewWorkout scene
+    this.props.onDoWorkout();
     indexActions.setTab('workout');
   },
 

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-28 23:30:55
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 23:53:24
 */
 
 'use strict';
@@ -46,9 +46,15 @@ var WORKOUT_TEMPLATE = {
 };
 
 var _store = {
+  defaultOrCustom: 'default',
   workout: WORKOUT_TEMPLATE,
   targetPartIdx: 0, //set to null once setTargetPartIdx is written
   targetExerciseIdx: null,
+};
+
+var setDefaultOrCustom = function(data){
+  var val = data.val;
+  _store.defaultOrCustom = val;
 };
 
 var setWorkout = function(data){
@@ -60,7 +66,6 @@ var setWorkout = function(data){
 var resetWorkout = function(){
   console.log('resetWorkout called');
   _store.workout = WORKOUT_TEMPLATE;
-  console.log('workout date is', _store.workout.date);
 };
 
 var saveDate = function(data){
@@ -145,6 +150,9 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
+  getDefaultOrCustom: function(){
+    return _store.defaultOrCustom;
+  },
   getWorkout: function(){
     return _store.workout;
   },
@@ -182,6 +190,10 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case editWorkoutConstants.SET_DEFAULT_OR_CUSTOM:
+      setDefaultOrCustom(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case editWorkoutConstants.SET_WORKOUT:
       setWorkout(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);

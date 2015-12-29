@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-24 11:38:08
+* @Last Modified time: 2015-12-29 00:02:05
 */
 
 'use strict';
@@ -27,7 +27,7 @@ var FeedCardFooter = React.createClass({
     //copies a separate workout object to send to viewWorkout
     var separateWorkout = copyObjectHelper(workout);
     viewWorkoutActions.setSelectedWorkout(separateWorkout);
-    //reset stack in workout tab to viewWorkout page
+    //reset stack in workout tab to viewWorkout scene
     this.props.onDoWorkout();
     //set tab to workout tab
     indexActions.setTab('workout');

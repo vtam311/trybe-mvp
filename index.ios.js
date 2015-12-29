@@ -37,8 +37,8 @@ var Trybe = React.createClass({
     this.rootNavListener = new EventEmitter();
   },
   onDoWorkout: function() {
-    //emits event to notify workout navigator to reset stack
     console.log('index onDoWorkout called');
+    //emits event to notify workout navigator to reset stack
     this.rootNavListener.emit('doWorkout', { someArg: 'argValue' });
   },
   openExerciseModal: function(){

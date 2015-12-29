@@ -27,13 +27,17 @@ var ViewWorkout = React.createClass({
   //On going to editWorkout scene, the workout gets reset to empty template
   getInitialState: function(){
     return {
+      //shows daily workout unless a custom one is selected
+      //if val is default, we load getDailyWorkout()
+      //else we don't load it, and set the workout when it's selected.
+      showDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
       visibleHeight: Dimensions.get('window').height
     };
   },
   componentDidMount: function(){
     editWorkoutStore.addChangeListener(this._onChange);
-    editWorkoutActions.getDailyWorkout();
+    if(this.state.showDefaultOrCustom === 'default') editWorkoutActions.getDailyWorkout();
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
@@ -44,8 +48,8 @@ var ViewWorkout = React.createClass({
     });
   },
   render: function(){
-    //Render workout once it's loaded
     var workout = this.state.workout;
+    //Render workout once it's loaded
     if(workout.parts) {
       console.log('viewWorkout render workout is', workout);
       var parts = this.state.workout.parts.map((part, index) =>

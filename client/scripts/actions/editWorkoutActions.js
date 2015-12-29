@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 23:29:49
+* @Last Modified time: 2015-12-28 23:52:06
 */
 
 'use strict';
@@ -16,6 +16,14 @@ var newObject = require('../common/copyObjectHelper'); //not using, since change
 
 
 var editWorkoutActions = {
+  setDefaultOrCustom: function(val){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_DEFAULT_OR_CUSTOM,
+      data: {
+        val: val
+      }
+    });
+  },
   getDailyWorkout: function() {
     //To do: make get req to server
     var dummyWorkout = TEMP_WORKOUT;
