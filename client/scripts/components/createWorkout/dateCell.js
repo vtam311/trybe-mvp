@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 17:36:23
+* @Last Modified time: 2015-12-28 17:58:02
 */
 
 'use strict';
@@ -53,7 +53,7 @@ var DateCell = React.createClass({
           </View>
         </View>
       </CustomCell>
-      /* jshint ignore:start */
+      /* jshint ignore:end */
     );
   }
 });

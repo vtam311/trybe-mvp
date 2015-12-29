@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 17:37:21
+* @Last Modified time: 2015-12-28 18:04:12
 */
 
 'use strict';
@@ -13,7 +13,8 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image,
 } = React;
 
 import {Section, CustomCell} from 'react-native-tableview-simple';
@@ -23,6 +24,7 @@ var DoPart = React.createClass({
   getInitialState: function(){
     return {
       isCollapsed: true,
+      isLogged: false
     };
   },
 
@@ -32,24 +34,50 @@ var DoPart = React.createClass({
     });
   },
 
+  logPart: function(){
+    this.setState({
+      isLogged: true
+    });
+  },
+
   render: function(){
     var part = this.props.part;
     var partIdx = this.props.partIdx;
 
+    var expandOrCollapseArrow = this.state.isCollapsed ?
+      /* jshint ignore:start */
+      <Image
+        source={require('image!expandArrow')} /> :
+      <Image
+        source={require('image!collapseArrow')} />;
+      /* jshint ignore:end */
+
+    var logOrLoggedIcon = this.state.isLogged ?
+      /* jshint ignore:start */
+      <Image
+        source={require('image!loggedIcon')} /> :
+      <Image
+        source={require('image!logIcon')} />;
+      /* jshint ignore:end */
+
     return (
+      /* jshint ignore:start */
       <View style={styles.container}>
         <View style={styles.header}>
           <Text>{part.name ? part.name : 'Part ' + (partIdx + 1)}</Text>
           <TouchableOpacity onPress={this.toggleCollapse}>
-            {this.state.isCollapsed ? <Text>v</Text> : <Text>^</Text>}
+            {expandOrCollapseArrow}
           </TouchableOpacity>
-          <Text>Log</Text>
+          <TouchableOpacity onPress={this.logPart}>
+            {logOrLoggedIcon}
+          </TouchableOpacity>
         </View>
         <View style={styles.body}>
         </View>
         <View style={styles.footer}>
         </View>
       </View>
+      /* jshint ignore:end */
     );
   }
 });
