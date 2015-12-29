@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-13 16:43:42
+* @Last Modified time: 2015-12-29 00:12:32
 */
 
 'use strict';
@@ -19,6 +19,7 @@ var feedActions = {
       username: 'Ryan Ford',
       trybe: 'APEX Ninja Warriors',
       day: 3,
+      date: new Date(),
       createdAt: '2015-06-28T02:16:44.000Z',
       type: 'Custom',
       parts: [
@@ -75,6 +76,7 @@ var feedActions = {
           id: 24,
           username: 'John_Snow',
           trybe: 'APEX Ninja Warriors',
+          date: new Date(),
           day: 17,
           createdAt: '2015-06-28T02:16:44.000Z',
           type: 'Custom',
@@ -126,6 +128,7 @@ var feedActions = {
           username: 'Arnie247',
           trybe: 'APEX Ninja Warriors',
           day: 17,
+          date: new Date(),
           createdAt: '2015-06-28T02:16:44.000Z',
           type: 'Custom',
           parts: [
@@ -176,6 +179,7 @@ var feedActions = {
           username: 'Greens17',
           trybe: 'APEX Ninja Warriors',
           day: 17,
+          date: new Date(),
           createdAt: '2015-06-28T02:16:44.000Z',
           type: 'Custom',
           parts: [

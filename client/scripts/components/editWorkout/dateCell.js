@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 19:14:29
+* @Last Modified time: 2015-12-29 00:20:22
 */
 
 'use strict';
@@ -19,8 +19,8 @@ var {
 import {CustomCell} from 'react-native-tableview-simple';
 
 var DateCell = React.createClass({
-  showPreview: function(){
-    var dateIsToday = function(date){
+  showPreview: function(date){
+    var dateIsToday = function(){
       var today = new Date();
       if(date.getDate() === today.getDate() &&
         date.getMonth() === today.getMonth() &&
@@ -32,15 +32,19 @@ var DateCell = React.createClass({
     };
 
     //If day is today, return 'Today' as preview
-    if(dateIsToday(this.props.date)) return 'Today';
+    if(dateIsToday(date)) return 'Today';
     else {
       var dateString = this.props.date.toString();
       var datePreview = dateString.slice(0,10);
       return datePreview;
     }
   },
+  ensureIsDateObj: function(date){
+    if(typeof date === 'string') return new Date(date);
+    else return date;
+  },
   render: function(){
-    console.log('dateCell date is', this.props.date);
+    var date = this.ensureIsDateObj(this.props.date);
 
     return (
       /* jshint ignore:start */
@@ -48,7 +52,7 @@ var DateCell = React.createClass({
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text style={styles.cellPrompt}>Date</Text>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.cellStatus}>{this.showPreview()}</Text>
+            <Text style={styles.cellStatus}>{this.showPreview(date)}</Text>
             <Image
               style={{height: 13, width: 8, marginTop: 4, marginLeft: 15}}
               source={require('image!disclosureIndicator')} />
