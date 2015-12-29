@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 13:25:52
+* @Last Modified time: 2015-12-28 18:37:55
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   SegmentedControlIOS,
@@ -20,7 +20,7 @@ var {
 
 var ResultOptions = React.createClass({
   setResultType: function(val){
-    createWorkoutActions.setResultType(val, this.props.partIdx);
+    editWorkoutActions.setResultType(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){
     //Changes segmCtrlIdx based on result type

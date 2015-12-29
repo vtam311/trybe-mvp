@@ -2,14 +2,12 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 15:53:24
+* @Last Modified time: 2015-12-28 18:29:29
 */
 
 'use strict';
 
-'use strict';
-
-var createWorkoutConstants = {
+var editWorkoutConstants = {
   SAVE_DATE: 'SAVE_DATE',
   SET_INSTRUCTIONS: 'SET_INSTRUCTIONS',
   ADD_EXERCISE: 'ADD_EXERCISE',
@@ -24,4 +22,4 @@ var createWorkoutConstants = {
   SET_PART_NAME: 'SET_PART_NAME'
 };
 
-module.exports = createWorkoutConstants;
+module.exports = editWorkoutConstants;

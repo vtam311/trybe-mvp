@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-22 17:15:12
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 18:22:11
 */
 
 'use strict';
@@ -60,7 +60,7 @@ var Part = React.createClass({
             scrollToComponent={this.props.scrollToComponent} />
         </Section>
       </View>
-      /* jshint ignore:start */
+      /* jshint ignore:end */
     );
   }
 });

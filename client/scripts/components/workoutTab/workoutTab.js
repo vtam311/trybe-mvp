@@ -4,11 +4,11 @@ var React = require('react-native');
 var Subscribable = require('Subscribable'); //used for addListenerOn
 
 var workoutTabActions = require('../../actions/workoutTabActions');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
-var CreateWorkout = require('../createWorkout/createWorkout');
+var EditWorkout = require('../editWorkout/editWorkout');
 
 var {
   StyleSheet,
@@ -99,7 +99,7 @@ var NavBarRouteMapper = {
           <TouchableOpacity
             onPress={() =>
               navigator.push({
-                component: CreateWorkout,
+                component: EditWorkout,
                 name: 'New Workout'
               })}
             style={styles.navBarComponentContainer} >
@@ -111,7 +111,7 @@ var NavBarRouteMapper = {
       case 'New Workout':
         return (
           <TouchableOpacity
-            onPress={() => createWorkoutActions.addPart()}
+            onPress={() => editWorkoutActions.addPart()}
             style={styles.navBarComponentContainer} >
             <Text style={styles.navBarSideText}>Add Part</Text>
           </TouchableOpacity>

@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-22 17:41:12
+* @Last Modified time: 2015-12-28 18:37:26
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   StyleSheet,
@@ -28,15 +28,15 @@ var EditInstructionsCell = React.createClass({
     };
   },
   setInstructions: function(instructions) {
-    createWorkoutActions.setInstructions(instructions, this.props.partIdx);
+    editWorkoutActions.setInstructions(instructions, this.props.partIdx);
 
     this.setState({
       instructions: instructions
     });
   },
   handlePartDisclosurePress: function(){
-    //Let createWorkoutStore know which part we are editing
-    createWorkoutActions.setTargetPartIdx(this.props.partIdx);
+    //Let editWorkoutStore know which part we are editing
+    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     this.props.openPartModal();
   },
   renderPartLabel: function(){
@@ -51,7 +51,7 @@ var EditInstructionsCell = React.createClass({
 
 
   render: function(){
-    //Gets the ref of parent component in createWorkout,
+    //Gets the ref of parent component in editWorkout,
     //so onFocus of TextInput can scroll component to view
     var parentRef = 'part' + this.props.partIdx;
 

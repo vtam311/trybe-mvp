@@ -2,14 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-17 17:23:15
+* @Last Modified time: 2015-12-28 18:38:35
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutStore = require('../../../stores/createWorkoutStore');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editWorkoutStore = require('../../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 var editExerciseActions = require('../../../actions/editExerciseActions');
 var editExerciseStore = require('../../../stores/editExerciseStore');
 
@@ -39,19 +39,19 @@ var {
 } = Dimensions.get('window');
 
 //Gist: This modal lets user edit or create a new exercise.
-//If editing an existing exercise, we copy that exercise from createWorkoutStore
+//If editing an existing exercise, we copy that exercise from editWorkoutStore
 //and store a temp exercise obj in editExerciseStore which reflects that copy.
 //All changes from user to the exercise go to the editExerciseStore.
 //When user saves changes, the exercise obj in editExerciseStore overwrites
-//the original targetExercise in createWorkoutStore.
+//the original targetExercise in editWorkoutStore.
 
 var EditExerciseModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
-      partIdx: createWorkoutStore.getTargetPartIdx(),
-      exIdx: createWorkoutStore.getTargetExerciseIdx(),
-      targetExercise: createWorkoutStore.getTargetExercise(),
+      partIdx: editWorkoutStore.getTargetPartIdx(),
+      exIdx: editWorkoutStore.getTargetExerciseIdx(),
+      targetExercise: editWorkoutStore.getTargetExercise(),
       exPickerIdx: 0,
       currentExercise: null,
     };
@@ -92,13 +92,13 @@ var EditExerciseModal = React.createClass({
     });
   },
   saveExercise: function(){
-    //save exercise from editExerciseStore into createWorkoutStore
+    //save exercise from editExerciseStore into editWorkoutStore
     var exercise = this.state.currentExercise;
-    createWorkoutActions.saveExercise(exercise);
+    editWorkoutActions.saveExercise(exercise);
     this.closeModal();
   },
   removeExercise: function(){
-    createWorkoutActions.removeExercise(this.state.partIdx, this.state.exIdx);
+    editWorkoutActions.removeExercise(this.state.partIdx, this.state.exIdx);
     this.closeModal();
   },
   hideKeyboard: function(){

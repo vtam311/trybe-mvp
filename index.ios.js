@@ -7,9 +7,9 @@ var EventEmitter = require('EventEmitter');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
-var EditExerciseModal = require('./client/scripts/components/createWorkout/editExercise/editExerciseModal');
-var EditPartModal = require('./client/scripts/components/createWorkout/editPart/editPartModal');
-var EditDateModal = require('./client/scripts/components/createWorkout/editPart/editDateModal');
+var EditExerciseModal = require('./client/scripts/components/editWorkout/editExercise/editExerciseModal');
+var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
+var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
 
 var {
   AppRegistry,

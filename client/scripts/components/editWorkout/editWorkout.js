@@ -1,15 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 17:08:48
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-28 18:35:08
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
-var createWorkoutStore = require('../../stores/createWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var editWorkoutStore = require('../../stores/editWorkoutStore');
 
 var {
   StyleSheet,
@@ -30,10 +30,10 @@ var DateCell = require('./dateCell');
 var Part = require('./editPart/part');
 
 
-var CreateWorkout = React.createClass({
+var EditWorkout = React.createClass({
   getInitialState: function() {
     return {
-      workout: createWorkoutStore.getWorkout(),
+      workout: editWorkoutStore.getWorkout(),
       visibleHeight: Dimensions.get('window').height
     };
   },
@@ -42,16 +42,16 @@ var CreateWorkout = React.createClass({
     this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
-    createWorkoutStore.addChangeListener(this._onChange);
+    editWorkoutStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
-    createWorkoutStore.removeChangeListener(this._onChange);
+    editWorkoutStore.removeChangeListener(this._onChange);
     this.keyboardWillShowListener.remove();
     this.keyboardWillHideListener.remove();
   },
   _onChange: function(){
     this.setState({
-      workout: createWorkoutStore.getWorkout(),
+      workout: editWorkoutStore.getWorkout(),
     });
   },
   keyboardWillShow: function(e) {
@@ -128,4 +128,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = CreateWorkout;
+module.exports = EditWorkout;

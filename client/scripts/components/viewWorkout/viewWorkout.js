@@ -40,7 +40,13 @@ var ViewWorkout = React.createClass({
   render: function(){
     var workout = this.state.workout;
     var parts = this.state.workout.parts.map((part, index) =>
-      <DoPart part={part} partIdx={index} key={index} />
+      /* jshint ignore:start */
+      <DoPart
+        part={part}
+        partIdx={index}
+        key={index}
+        openExerciseModal={this.props.openExerciseModal} />
+      /* jshint ignore:end */
     );
 
     //Render workout once it's loaded

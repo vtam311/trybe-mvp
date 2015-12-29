@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 13:25:59
+* @Last Modified time: 2015-12-28 18:38:07
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   SwitchIOS,
@@ -28,7 +28,7 @@ var ResultsCell = React.createClass({
     };
   },
   toggleRecording: function(bool){
-    createWorkoutActions.toggleRecording(bool, this.props.partIdx);
+    editWorkoutActions.toggleRecording(bool, this.props.partIdx);
 
     //Manually set state without store, as component is basic
     this.setState({recordingSwitchIsOn: bool});

@@ -2,18 +2,18 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-18 15:53:18
+* @Last Modified time: 2015-12-28 18:29:06
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var createWorkoutConstants = require('../constants/createWorkoutConstants');
+var editWorkoutConstants = require('../constants/editWorkoutConstants');
 
-var createWorkoutActions = {
+var editWorkoutActions = {
   saveDate: function(date) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SAVE_DATE,
+      actionType: editWorkoutConstants.SAVE_DATE,
       data: {
         date: date
       }
@@ -21,7 +21,7 @@ var createWorkoutActions = {
   },
   setInstructions: function(instructions, partIdx) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_INSTRUCTIONS,
+      actionType: editWorkoutConstants.SET_INSTRUCTIONS,
       data: {
         instructions: instructions,
         partIdx: partIdx
@@ -30,7 +30,7 @@ var createWorkoutActions = {
   },
   addExercise: function(partIdx) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.ADD_EXERCISE,
+      actionType: editWorkoutConstants.ADD_EXERCISE,
       data: {
         partIdx: partIdx
       }
@@ -38,7 +38,7 @@ var createWorkoutActions = {
   },
   removeExercise: function(partIdx, exIdx) {
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.REMOVE_EXERCISE,
+      actionType: editWorkoutConstants.REMOVE_EXERCISE,
       data: {
         partIdx: partIdx,
         exIdx: exIdx
@@ -47,7 +47,7 @@ var createWorkoutActions = {
   },
   setTargetExerciseIdx: function(partIdx, exIdx){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_TARGET_EXERCISE_IDX,
+      actionType: editWorkoutConstants.SET_TARGET_EXERCISE_IDX,
       data: {
         partIdx: partIdx,
         exIdx: exIdx
@@ -56,7 +56,7 @@ var createWorkoutActions = {
   },
   saveExercise: function(exercise){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SAVE_EXERCISE,
+      actionType: editWorkoutConstants.SAVE_EXERCISE,
       data: {
         exercise: exercise
       }
@@ -64,7 +64,7 @@ var createWorkoutActions = {
   },
   toggleRecording: function(bool, partIdx){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.TOGGLE_RECORDING,
+      actionType: editWorkoutConstants.TOGGLE_RECORDING,
       data: {
         bool: bool,
         partIdx: partIdx
@@ -73,7 +73,7 @@ var createWorkoutActions = {
   },
   setResultType: function(type, partIdx){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_RESULT_TYPE,
+      actionType: editWorkoutConstants.SET_RESULT_TYPE,
       data: {
         type: type,
         partIdx: partIdx
@@ -82,17 +82,17 @@ var createWorkoutActions = {
   },
   addPart: function(){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.ADD_PART,
+      actionType: editWorkoutConstants.ADD_PART,
     });
   },
   removePart: function(){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.REMOVE_PART,
+      actionType: editWorkoutConstants.REMOVE_PART,
     });
   },
   setTargetPartIdx: function(partIdx){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_TARGET_PART_IDX,
+      actionType: editWorkoutConstants.SET_TARGET_PART_IDX,
       data: {
         partIdx: partIdx
       }
@@ -100,7 +100,7 @@ var createWorkoutActions = {
   },
   setPartName: function(name){
     AppDispatcher.handleAction({
-      actionType: createWorkoutConstants.SET_PART_NAME,
+      actionType: editWorkoutConstants.SET_PART_NAME,
       data: {
         name: name
       }
@@ -108,4 +108,4 @@ var createWorkoutActions = {
   },
 };
 
-module.exports = createWorkoutActions;
+module.exports = editWorkoutActions;

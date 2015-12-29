@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 17:08:02
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 18:34:27
 */
 
 'use strict';
 
 var React = require('react-native');
-var createWorkoutActions = require('../../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 //Load components
 var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
@@ -26,7 +26,7 @@ import {CustomCell} from 'react-native-tableview-simple';
 var EditExerciseCell = React.createClass({
   _handlePress: function(){
     //sets the target exercise for user to edit
-    createWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     this.props.openExerciseModal();
   },
 

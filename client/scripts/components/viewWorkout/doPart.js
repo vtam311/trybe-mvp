@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:04:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-28 18:27:23
 */
 
 'use strict';
@@ -19,6 +19,8 @@ var {
 
 import {Section, CustomCell} from 'react-native-tableview-simple';
 
+//Load custom components
+var EditExerciseCell = require('../editWorkout/editPart/editExerciseCell');
 
 var DoPart = React.createClass({
   getInitialState: function(){
@@ -60,11 +62,19 @@ var DoPart = React.createClass({
         source={require('image!logIcon')} />;
       /* jshint ignore:end */
 
+    var exercises = part.exercises.map((exercise, index) =>
+      <EditExerciseCell
+        exercise={exercise}
+        partIdx={partIdx}
+        exIdx={index}
+        openExerciseModal={this.props.openExerciseModal} />
+    );
+
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text>{part.name ? part.name : 'Part ' + (partIdx + 1)}</Text>
+          <Text style={styles.headerText}>{part.name ? part.name : 'Part ' + (partIdx + 1)}</Text>
           <TouchableOpacity onPress={this.toggleCollapse}>
             {expandOrCollapseArrow}
           </TouchableOpacity>
@@ -72,8 +82,12 @@ var DoPart = React.createClass({
             {logOrLoggedIcon}
           </TouchableOpacity>
         </View>
+
         <View style={styles.body}>
+          <Text>{part.instructions}</Text>
+          {exercises}
         </View>
+
         <View style={styles.footer}>
         </View>
       </View>
@@ -97,6 +111,10 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+  headerText: {
+    fontFamily: 'Avenir Next',
+    color: '#4A4A4A'
   },
   body: {
   },

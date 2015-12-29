@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-27 18:22:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-28 18:31:34
 */
 
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var createWorkoutConstants = require('../constants/createWorkoutConstants');
+var editWorkoutConstants = require('../constants/editWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 var copyObjectHelper = require('../common/copyObjectHelper');
@@ -126,7 +126,7 @@ var setPartName = function(data){
   _store.workout.parts[partIdx].name = name;
 };
 
-var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
+var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
@@ -147,7 +147,7 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   getTargetExercise: function(){
     //Target exercise being modified or created.
-    //Used for reference in createExerciseModal
+    //Used for reference in editExerciseModal
     var partIdx = _store.targetPartIdx;
     var exIdx = _store.targetExerciseIdx;
     var targetExercise = _store.workout.parts[partIdx].exercises[exIdx];
@@ -170,57 +170,57 @@ var createWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case createWorkoutConstants.SAVE_DATE:
+    case editWorkoutConstants.SAVE_DATE:
       saveDate(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_INSTRUCTIONS:
+    case editWorkoutConstants.SET_INSTRUCTIONS:
       setInstructions(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.ADD_EXERCISE:
+    case editWorkoutConstants.ADD_EXERCISE:
       addExercise(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.REMOVE_EXERCISE:
+    case editWorkoutConstants.REMOVE_EXERCISE:
       removeExercise(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_TARGET_EXERCISE_IDX:
+    case editWorkoutConstants.SET_TARGET_EXERCISE_IDX:
       setTargetExerciseIdx(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SAVE_EXERCISE:
+    case editWorkoutConstants.SAVE_EXERCISE:
       saveExercise(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.TOGGLE_RECORDING:
+    case editWorkoutConstants.TOGGLE_RECORDING:
       toggleRecording(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_RESULT_TYPE:
+    case editWorkoutConstants.SET_RESULT_TYPE:
       setResultType(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.ADD_PART:
+    case editWorkoutConstants.ADD_PART:
       addPart();
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.REMOVE_PART:
+    case editWorkoutConstants.REMOVE_PART:
       removePart();
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_TARGET_PART_IDX:
+    case editWorkoutConstants.SET_TARGET_PART_IDX:
       setTargetPartIdx(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case createWorkoutConstants.SET_PART_NAME:
+    case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
-      createWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
       return true;
   }
 });
 
-module.exports = createWorkoutStore;
+module.exports = editWorkoutStore;
