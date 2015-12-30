@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:38:19
+* @Last Modified time: 2015-12-29 16:59:12
 */
 
 'use strict';
@@ -34,9 +34,9 @@ var ViewPartHeader = React.createClass({
     var part = this.props.part;
     var partIdx = this.props.partIdx;
 
-    var expandOrCollapseArrow = this.props.isCollapsed ?
-      <Image source={require('image!expandArrow')} /> :
-      null;
+    var expandOrCollapseArrow = this.props.isExpanded ?
+      null :
+      <Image source={require('image!expandArrow')} />;
 
     var logOrLoggedIcon = this.state.isLogged ?
       <Image source={require('image!loggedIcon')} /> :

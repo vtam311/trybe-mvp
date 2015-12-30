@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-29 16:39:46
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-29 16:58:18
 */
 
 'use strict';
@@ -28,12 +28,12 @@ var EditExerciseCell = require('../editWorkout/editPart/editExerciseCell');
 var DoPart = React.createClass({
   getInitialState: function(){
     return {
-      isCollapsed: true,
+      isExpanded: true,
     };
   },
   toggleCollapse: function(){
     this.setState({
-      isCollapsed: !this.state.isCollapsed
+      isExpanded: !this.state.isExpanded
     });
   },
   render: function(){
@@ -63,21 +63,27 @@ var DoPart = React.createClass({
             part={part}
             partIdx={partIdx}
             toggleCollapse={this.toggleCollapse}
-            isCollapsed={this.state.isCollapsed} />
+            isExpanded={this.state.isExpanded} />
         </View>
 
-        <View style={styles.body}>
-          <ViewInstructions
-            instructions={part.instructions}
-            partIdx={partIdx} />
-          {exercises}
-        </View>
+        {this.state.isExpanded ?
+          <View>
+            <View style={styles.body}>
+              <ViewInstructions
+                instructions={part.instructions}
+                partIdx={partIdx} />
+              {exercises}
+            </View>
 
-        <View style={styles.footer}>
-          <TouchableOpacity onPress={() => this.toggleCollapse()}>
-            <Image source={require('image!collapseArrow')} />
-          </TouchableOpacity>
-        </View>
+            <View style={styles.footer}>
+              <TouchableOpacity onPress={() => this.toggleCollapse()}>
+                <Image source={require('image!collapseArrow')} />
+              </TouchableOpacity>
+            </View>
+          </View>
+          : null
+        }
+
       </View>
       /* jshint ignore:end */
     );
