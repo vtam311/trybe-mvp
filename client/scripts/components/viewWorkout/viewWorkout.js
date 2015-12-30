@@ -55,11 +55,12 @@ var ViewWorkout = React.createClass({
     if(workout.parts) {
       var parts = this.state.workout.parts.map((part, index) =>
         /* jshint ignore:start */
-        <ViewPart
-          part={part}
-          partIdx={index}
-          key={index}
-          openExerciseModal={this.props.openExerciseModal} />
+        <View style={styles.partContainer} key={index}>
+          <ViewPart
+            part={part}
+            partIdx={index}
+            openExerciseModal={this.props.openExerciseModal} />
+        </View>
         /* jshint ignore:end */
       );
 
@@ -67,7 +68,8 @@ var ViewWorkout = React.createClass({
         <View style={[styles.container, {height: this.state.visibleHeight}]}>
           <ScrollView
             contentContainerStyle={styles.contentContainerStyle}
-            automaticallyAdjustContentInsets={false} >
+            automaticallyAdjustContentInsets={false}
+            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
 
             <TableView>
               {parts}
@@ -93,6 +95,9 @@ var styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
+  },
+  partContainer: {
+    marginBottom: 20
   },
 });
 

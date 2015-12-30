@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:41:43
+* @Last Modified time: 2015-12-29 17:17:05
 */
 
 'use strict';
@@ -27,6 +27,7 @@ var ViewInstructions = React.createClass({
       <View style={styles.instructionsContainer}>
         <TextInput
           value={this.props.instructions}
+          placeholder='Instructions'
           onChangeText={(text) => this.setInstructions(text)}
           autoCapitalize='words'
           style={styles.instructionsTextInput} />
