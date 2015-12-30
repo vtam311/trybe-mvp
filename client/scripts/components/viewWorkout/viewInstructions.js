@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:31:59
+* @Last Modified time: 2015-12-29 16:41:43
 */
 
 'use strict';
@@ -41,9 +41,8 @@ var ViewInstructions = React.createClass({
 
 var styles = StyleSheet.create({
   instructionsContainer: {
-    marginLeft: 10,
     marginTop: 10,
-    marginBottom: 10,
+    marginLeft: 10,
   },
   instructionsTextInput: {
     height: 40,
