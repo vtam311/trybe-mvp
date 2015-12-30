@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-29 15:21:02
+* @Last Modified by:   vincetam
+* @Last Modified time: 2015-12-29 15:49:14
 */
 
 'use strict';
@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
-    fontSize: 18
+    fontSize: 16
   },
 });
 

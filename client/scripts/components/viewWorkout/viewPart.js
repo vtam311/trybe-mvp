@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 15:48:03
+* @Last Modified time: 2015-12-29 16:16:17
 */
 
 'use strict';
@@ -30,7 +30,6 @@ var DoPart = React.createClass({
     };
   },
   toggleCollapse: function(){
-    console.log('toggleCollapse called');
     this.setState({
       isCollapsed: !this.state.isCollapsed
     });
@@ -83,11 +82,9 @@ var styles = StyleSheet.create({
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
     borderColor: '#c8c7cc',
-    paddingLeft: 15,
-    paddingRight: 15
   },
   header: {
-    height: 44,
+    padding: 15,
   },
   body: {
     borderTopWidth: .5,
