@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:16:17
+* @Last Modified by:   VINCE
+* @Last Modified time: 2015-12-29 16:39:46
 */
 
 'use strict';
@@ -13,6 +13,8 @@ var {
   StyleSheet,
   Text,
   View,
+  Image,
+  TouchableOpacity
 } = React;
 
 import {Section, CustomCell} from 'react-native-tableview-simple';
@@ -40,12 +42,16 @@ var DoPart = React.createClass({
 
     /* jshint ignore:start */
     var exercises = part.exercises.map((exercise, index) =>
-      <EditExerciseCell
-        exercise={exercise}
-        partIdx={partIdx}
-        exIdx={index}
-        openExerciseModal={this.props.openExerciseModal}
-        key={index} />
+      <View key={index}>
+        <EditExerciseCell
+          exercise={exercise}
+          partIdx={partIdx}
+          exIdx={index}
+          openExerciseModal={this.props.openExerciseModal} />
+        <View style={styles.cellSeparatorBackground}>
+          <View style={styles.cellSeparatorLine}></View>
+        </View>
+      </View>
     );
     /* jshint ignore:end */
 
@@ -68,6 +74,9 @@ var DoPart = React.createClass({
         </View>
 
         <View style={styles.footer}>
+          <TouchableOpacity onPress={() => this.toggleCollapse()}>
+            <Image source={require('image!collapseArrow')} />
+          </TouchableOpacity>
         </View>
       </View>
       /* jshint ignore:end */
@@ -84,15 +93,25 @@ var styles = StyleSheet.create({
     borderColor: '#c8c7cc',
   },
   header: {
-    padding: 15,
+    padding: 10,
   },
   body: {
     borderTopWidth: .5,
     borderColor: 'rgba(155,155,155,.7)',
-    paddingTop: 10,
+    // padding: 10,
   },
   footer: {
-
+    height: 44,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  cellSeparatorBackground: {
+    backgroundColor: '#fff',
+  },
+  cellSeparatorLine: {
+    marginLeft: 15,
+    height: 0.5,
+    backgroundColor: '#c8c7cc',
   }
 });
 

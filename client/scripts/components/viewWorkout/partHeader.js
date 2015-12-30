@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:16:21
+* @Last Modified time: 2015-12-29 16:38:19
 */
 
 'use strict';
@@ -36,7 +36,7 @@ var ViewPartHeader = React.createClass({
 
     var expandOrCollapseArrow = this.props.isCollapsed ?
       <Image source={require('image!expandArrow')} /> :
-      <Image source={require('image!collapseArrow')} />;
+      null;
 
     var logOrLoggedIcon = this.state.isLogged ?
       <Image source={require('image!loggedIcon')} /> :

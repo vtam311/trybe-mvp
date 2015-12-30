@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 15:49:14
+* @Last Modified time: 2015-12-29 16:31:59
 */
 
 'use strict';
@@ -24,22 +24,39 @@ var ViewInstructions = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <TextInput
-        value={this.props.instructions}
-        onChangeText={(text) => this.setInstructions(text)}
-        autoCapitalize='words'
-        style={styles.instructionsTextInput} />
+      <View style={styles.instructionsContainer}>
+        <TextInput
+          value={this.props.instructions}
+          onChangeText={(text) => this.setInstructions(text)}
+          autoCapitalize='words'
+          style={styles.instructionsTextInput} />
+        <View style={styles.cellSeparatorBackground}>
+          <View style={styles.cellSeparatorLine}></View>
+        </View>
+      </View>
       /* jshint ignore:end */
     );
   }
 });
 
 var styles = StyleSheet.create({
+  instructionsContainer: {
+    marginLeft: 10,
+    marginTop: 10,
+    marginBottom: 10,
+  },
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
     fontSize: 16
   },
+  cellSeparatorBackground: {
+    backgroundColor: '#fff',
+  },
+  cellSeparatorLine: {
+    height: 0.5,
+    backgroundColor: '#c8c7cc',
+  }
 });
 
 module.exports = ViewInstructions;
