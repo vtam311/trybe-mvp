@@ -97,7 +97,7 @@ var styles = StyleSheet.create({
     paddingBottom: 20,
   },
   partContainer: {
-    marginBottom: 20
+    marginBottom: 30
   },
 });
 
