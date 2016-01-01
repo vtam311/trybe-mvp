@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-01 13:01:28
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-01 13:26:29
 */
 
 'use strict';
@@ -36,18 +36,22 @@ var ViewPartHeader = React.createClass({
 
     var expandOrCollapseArrow = this.props.isExpanded ?
       null :
-      <Image source={require('image!expandArrow')} />;
+      <Image source={require('image!expandArrow')} />
+    ;
 
     var logOrLoggedIcon = this.state.isLogged ?
       <Image
         source={require('image!loggedIcon')}
-        style={styles.loggedIcon} /> :
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image
-          source={require('image!logIcon')}
-          style={styles.logIcon} />
-        <Text style={styles.logText}>Log</Text>
-      </View>
+        style={styles.loggedIcon} />
+      :
+      <TouchableOpacity onPress={this.logPart}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image
+            source={require('image!logIcon')}
+            style={styles.logIcon} />
+          <Text style={styles.logText}>Log</Text>
+        </View>
+      </TouchableOpacity>
     ;
 
     return (
@@ -62,9 +66,7 @@ var ViewPartHeader = React.createClass({
           </TouchableOpacity>
         </View>
         <View style={styles.rightContainer}>
-          <TouchableOpacity onPress={this.logPart}>
-            {logOrLoggedIcon}
-          </TouchableOpacity>
+          {logOrLoggedIcon}
         </View>
       </View>
       /* jshint ignore:end */
