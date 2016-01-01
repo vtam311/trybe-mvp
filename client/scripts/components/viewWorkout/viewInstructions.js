@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-01 12:08:45
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-01 13:17:22
 */
 
 'use strict';
@@ -30,6 +30,7 @@ var ViewInstructions = React.createClass({
           placeholder='Instructions'
           onChangeText={(text) => this.setInstructions(text)}
           autoCapitalize='words'
+          multiline={true}
           style={styles.instructionsTextInput} />
         <View style={styles.cellSeparatorBackground}>
           <View style={styles.cellSeparatorLine}></View>
