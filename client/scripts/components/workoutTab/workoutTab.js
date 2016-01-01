@@ -104,7 +104,7 @@ var NavBarRouteMapper = {
           <TouchableOpacity
             onPress={() => handleRightPress()}
             style={styles.navBarComponentContainer} >
-            <Text style={styles.navBarSideText}>+</Text>
+            <Image source={require('image!createIcon')} />
           </TouchableOpacity>
         );
         break;
