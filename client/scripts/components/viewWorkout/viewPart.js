@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:58:18
+* @Last Modified time: 2016-01-01 12:05:09
 */
 
 'use strict';
@@ -99,11 +99,12 @@ var styles = StyleSheet.create({
     borderColor: '#c8c7cc',
   },
   header: {
-    padding: 10,
+    padding: 15,
   },
   body: {
     borderTopWidth: .5,
     borderColor: 'rgba(155,155,155,.7)',
+    marginLeft: 5,
     // padding: 10,
   },
   footer: {

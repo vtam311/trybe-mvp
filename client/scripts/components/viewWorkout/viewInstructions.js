@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 17:17:05
+* @Last Modified time: 2016-01-01 12:08:45
 */
 
 'use strict';
@@ -48,6 +48,7 @@ var styles = StyleSheet.create({
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
+    fontStyle: 'italic',
     fontSize: 16
   },
   cellSeparatorBackground: {

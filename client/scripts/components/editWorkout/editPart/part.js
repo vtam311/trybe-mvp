@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:22:11
+* @Last Modified time: 2016-01-01 12:15:26
 */
 
 'use strict';
@@ -22,7 +22,7 @@ var ResultsCell = require('./resultsCell');
 
 var Part = React.createClass({
   render: function(){
-    var partExercises = this.props.part.exercises
+    var exercises = this.props.part.exercises
     .map((exercise, index) =>
       /* jshint ignore:start */
       <View key={index}>
@@ -48,7 +48,7 @@ var Part = React.createClass({
             partName={this.props.part.name}
             openPartModal={this.props.openPartModal}
             scrollToComponent={this.props.scrollToComponent} />
-          {partExercises}
+          {exercises}
           <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
         </Section>
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 15:22:51
+* @Last Modified time: 2016-01-01 11:39:41
 */
 
 'use strict';
@@ -60,7 +60,7 @@ var EditInstructionsCell = React.createClass({
             <View ref='instructionsTextInput' style={styles.instructionsContainer}>
               <TextInput
                 value={this.props.instructions}
-                placeholder='Instructions'
+                placeholder='Instructions, ie. 21-15-9 of'
                 autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
                 multiline={true}
