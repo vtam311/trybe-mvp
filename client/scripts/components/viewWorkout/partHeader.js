@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 16:59:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-01 13:01:28
 */
 
 'use strict';
@@ -39,8 +39,16 @@ var ViewPartHeader = React.createClass({
       <Image source={require('image!expandArrow')} />;
 
     var logOrLoggedIcon = this.state.isLogged ?
-      <Image source={require('image!loggedIcon')} /> :
-      <Image source={require('image!logIcon')} />;
+      <Image
+        source={require('image!loggedIcon')}
+        style={styles.loggedIcon} /> :
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <Image
+          source={require('image!logIcon')}
+          style={styles.logIcon} />
+        <Text style={styles.logText}>Log</Text>
+      </View>
+    ;
 
     return (
       /* jshint ignore:start */
@@ -89,6 +97,20 @@ var styles = StyleSheet.create({
     color: '#4A4A4A',
     fontSize: 16
   },
+  logIcon: {
+    height: 20,
+    width: 20
+  },
+  logText: {
+    fontFamily: 'Avenir Next',
+    color: '#4DBA97',
+    marginTop: 5,
+    marginLeft: 5
+  },
+  loggedIcon: {
+    height: 24,
+    width: 24
+  }
 });
 
 module.exports = ViewPartHeader;
