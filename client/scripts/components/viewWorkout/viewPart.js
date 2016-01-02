@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-01 12:20:52
+* @Last Modified time: 2016-01-02 13:30:58
 */
 
 'use strict';
@@ -76,7 +76,9 @@ var DoPart = React.createClass({
             </View>
 
             <View style={styles.footer}>
-              <TouchableOpacity onPress={() => this.toggleCollapse()}>
+              <TouchableOpacity
+                onPress={() => this.toggleCollapse()}
+                style={{marginBottom: 10}}>
                 <Image source={require('image!collapseArrow')} />
               </TouchableOpacity>
             </View>
@@ -99,7 +101,7 @@ var styles = StyleSheet.create({
     borderColor: '#c8c7cc',
   },
   header: {
-    padding: 15,
+    padding: 10,
   },
   body: {
     borderTopWidth: .5,
@@ -107,8 +109,8 @@ var styles = StyleSheet.create({
     marginLeft: 5,
   },
   footer: {
-    height: 44,
-    justifyContent: 'center',
+    height: 40,
+    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   cellSeparatorBackground: {
