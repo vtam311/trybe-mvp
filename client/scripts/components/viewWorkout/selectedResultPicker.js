@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:46:59
+* @Last Modified time: 2016-01-02 17:02:13
 */
 
 'use strict';
@@ -14,7 +14,7 @@ var {
 } = React;
 
 var LogTimePicker = require('./logPickers/logTimePicker');
-//Rounds
+var LogRoundPicker = require('./logPickers/logRoundPicker');
 // var LoadPicker = require('./pickers/loadPicker');
 //Custom
 
@@ -27,6 +27,10 @@ var SelectedResultPicker = React.createClass({
       case 0:
         picker =
           <LogTimePicker />
+        break;
+      case 1:
+        picker =
+          <LogRoundPicker />
         break;
       default:
         console.log('Selected Segment Unknown');

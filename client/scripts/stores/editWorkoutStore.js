@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:50:14
+* @Last Modified time: 2016-01-02 17:15:46
 */
 
 'use strict';
@@ -150,6 +150,15 @@ var setResultTime = function(data){
   console.log('editWorkoutStore setResultTime to', _store.workout.parts[partIdx].result.val);
 };
 
+var setResultRounds = function(data){
+  var rounds = data.rounds;
+  var partIdx = _store.targetPartIdx;
+  //Ensure if user inputs diff result type, it is reflected
+  _store.workout.parts[partIdx].result.type = 'rounds';
+  _store.workout.parts[partIdx].result.val = rounds;
+  console.log('editWorkoutStore setResultRounds to', _store.workout.parts[partIdx].result.val);
+};
+
 var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -259,6 +268,10 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_RESULT_TIME:
       setResultTime(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_RESULT_ROUNDS:
+      setResultRounds(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:
