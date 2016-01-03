@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:15:46
+* @Last Modified time: 2016-01-02 17:45:53
 */
 
 'use strict';
@@ -141,6 +141,7 @@ var setPartName = function(data){
   _store.workout.parts[partIdx].name = name;
 };
 
+//To Do: Remove these 3 functions and move to logModalStore
 var setResultTime = function(data){
   var time = data.time;
   var partIdx = _store.targetPartIdx;
@@ -156,6 +157,16 @@ var setResultRounds = function(data){
   //Ensure if user inputs diff result type, it is reflected
   _store.workout.parts[partIdx].result.type = 'rounds';
   _store.workout.parts[partIdx].result.val = rounds;
+  console.log('editWorkoutStore setResultRounds to', _store.workout.parts[partIdx].result.val);
+};
+
+var setResultLoad = function(data){
+  var val = data.val;
+  var unit = data.unit;
+  var partIdx = _store.targetPartIdx;
+  //Ensure if user inputs diff result type, it is reflected
+  _store.workout.parts[partIdx].result.type = 'Max Load';
+  _store.workout.parts[partIdx].result.val = {val: val, unit: unit};
   console.log('editWorkoutStore setResultRounds to', _store.workout.parts[partIdx].result.val);
 };
 
@@ -272,6 +283,10 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_RESULT_ROUNDS:
       setResultRounds(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_RESULT_LOAD:
+      setResultLoad(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

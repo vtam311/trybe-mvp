@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:14:09
+* @Last Modified time: 2016-01-02 17:31:47
 */
 
 'use strict';
@@ -25,6 +25,7 @@ var editWorkoutConstants = {
   SET_PART_NAME: 'SET_PART_NAME',
   SET_RESULT_TIME: 'SET_RESULT_TIME',
   SET_RESULT_ROUNDS: 'SET_RESULT_ROUNDS',
+  SET_RESULT_LOAD: 'SET_RESULT_LOAD'
 };
 
 module.exports = editWorkoutConstants;

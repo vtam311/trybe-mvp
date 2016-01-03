@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:13:55
+* @Last Modified time: 2016-01-02 17:34:46
 */
 
 'use strict';
@@ -151,6 +151,15 @@ var editWorkoutActions = {
       actionType: editWorkoutConstants.SET_RESULT_ROUNDS,
       data: {
         rounds: rounds
+      }
+    });
+  },
+  setResultLoad: function(val, unit){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_RESULT_LOAD,
+      data: {
+        val: val,
+        unit: unit
       }
     });
   },

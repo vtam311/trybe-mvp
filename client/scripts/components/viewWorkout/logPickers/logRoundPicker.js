@@ -2,15 +2,13 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:13:27
+* @Last Modified time: 2016-01-02 17:18:47
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
-
-var React = require('react-native');
 
 var {
   PickerIOS

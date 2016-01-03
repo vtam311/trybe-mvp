@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:51:05
+* @Last Modified time: 2016-01-02 17:39:53
 */
 
 'use strict';
@@ -56,7 +56,7 @@ var LogModal = React.createClass({
     var seg;
     if(val === 'Time') seg = 0;
     if(val === 'Rounds') seg = 1;
-    if(val === 'Load') seg = 2;
+    if(val === 'Max Load') seg = 2;
     if(val === 'Custom') seg = 3;
 
     this.setState({
@@ -64,8 +64,9 @@ var LogModal = React.createClass({
     });
   },
   //Change to saveResults
-  savePart: function(){
-    editWorkoutActions.setPartName(this.state.partName);
+  saveResults: function(){
+    //To do: save log results
+    // editWorkoutActions.setPartName(this.state.partName);
     this.closeModal();
   },
   render: function() {
@@ -80,7 +81,7 @@ var LogModal = React.createClass({
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>Log Results</Text>
-              <TouchableOpacity onPress={this.savePart}>
+              <TouchableOpacity onPress={this.saveResults}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
@@ -89,7 +90,7 @@ var LogModal = React.createClass({
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
               <SegmentedControlIOS
-                values={['Time', 'Rounds', 'Load', 'Custom']}
+                values={['Time', 'Rounds', 'Max Load', 'Custom']}
                 selectedIndex={this.state.resultPickerIdx}
                 onValueChange={(val) => this.setResultPicker(val)}
                 tintColor={'#4DBA97'}/>

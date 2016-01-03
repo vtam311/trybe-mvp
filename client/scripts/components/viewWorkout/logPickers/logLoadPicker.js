@@ -1,14 +1,14 @@
 /*
-* @Author: VINCE
-* @Date:   2015-12-04 10:31:30
+* @Author: vincetam
+* @Date:   2016-01-02 17:17:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:20:14
+* @Last Modified time: 2016-01-02 17:31:07
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../../actions/editExerciseActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   PickerIOS,
@@ -21,40 +21,32 @@ var PickerItemIOS = PickerIOS.Item;
 var WEIGHT_CHOICES = ['No Weight',5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195,200,205,210,215,220,225,230,235,240,245,250,255,260,265,270,275,280,285,290,295,300,305,310,315,320,325,330,335,340,345,350,355,360,365,370,375,380,385,390,395,400,405,410,415,420,425,430,435,440,445,450];
 var UNIT_CHOICES = ['lb','kg'];
 
-var LoadPicker = React.createClass({
+var LogLoadPicker = React.createClass({
   getInitialState: function() {
     return {
-      loadVal: this.props.loadVal,
-      units: this.props.units
+      loadVal: null,
+      units: 'lb'
     };
   },
   _setLoadVal: function(choiceObj){
     var load = choiceObj.newValue;
     if(load === 'No Weight') load = null;
 
-    //Set load val in editExerciseStore
-    editExerciseActions.setLoadVal(load);
+    //Should set part's result val to {val: 100, unit: 'lb'}
+    editWorkoutActions.setResultLoad(load, this.state.units);
 
     //Update picker's state
     this.setState({loadVal: load});
 
-    //Ensure a default unit is selected
-    this.checkUnits();
   },
   _setLoadUnits: function(choiceObj){
     var unit = choiceObj.newValue;
 
-    //Set load units in editExerciseStore
-    editExerciseActions.setLoadUnit(unit);
+    //Should set part's result val to {val: 100, unit: 'lb'}
+    editWorkoutActions.setResultLoad(this.state.loadVal, unit);
 
     //Update picker's state
     this.setState({units: unit});
-  },
-  checkUnits: function(){
-    //If no unit has been selected, pre-set to ft
-    if(this.state.units === null) {
-      editExerciseActions.setLoadUnit('lb');
-    }
   },
   showChoiceLabels: function(choice){
     //If user selects number from WEIGHT_CHOICES, stringify
@@ -106,4 +98,4 @@ var LoadPicker = React.createClass({
   }
 });
 
-module.exports = LoadPicker;
+module.exports = LogLoadPicker;
