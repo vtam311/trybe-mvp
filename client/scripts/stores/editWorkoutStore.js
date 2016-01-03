@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 23:53:24
+* @Last Modified time: 2016-01-02 16:50:14
 */
 
 'use strict';
@@ -59,12 +59,10 @@ var setDefaultOrCustom = function(data){
 
 var setWorkout = function(data){
   var workout = data.workout;
-  console.log('editWorkoutStore setWorkout to', workout);
   _store.workout = workout;
 };
 
 var resetWorkout = function(){
-  console.log('resetWorkout called');
   _store.workout = WORKOUT_TEMPLATE;
 };
 
@@ -141,6 +139,15 @@ var setPartName = function(data){
   var name = data.name;
   var partIdx = _store.targetPartIdx;
   _store.workout.parts[partIdx].name = name;
+};
+
+var setResultTime = function(data){
+  var time = data.time;
+  var partIdx = _store.targetPartIdx;
+  //Ensure if user inputs diff result type, it is reflected
+  _store.workout.parts[partIdx].result.type = 'time';
+  _store.workout.parts[partIdx].result.val = time;
+  console.log('editWorkoutStore setResultTime to', _store.workout.parts[partIdx].result.val);
 };
 
 var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -248,6 +255,10 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_RESULT_TIME:
+      setResultTime(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

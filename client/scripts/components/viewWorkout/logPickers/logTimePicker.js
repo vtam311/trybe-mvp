@@ -1,14 +1,14 @@
 /*
 * @Author: vincetam
-* @Date:   2015-12-10 14:52:32
+* @Date:   2016-01-02 16:24:38
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:24:58
+* @Last Modified time: 2016-01-02 16:49:17
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../../actions/editExerciseActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   PickerIOS,
@@ -39,31 +39,13 @@ var SEC_CHOICES = [
   42,43,44,45,46,47,48,49,50,51,52,53,54,
   55,56,57,58,59];
 
-var TimePicker = React.createClass({
+var LogTimePicker = React.createClass({
   getInitialState: function() {
     return {
-      //time is a string in format 00:00:00
-      time: this.props.time,
+      hour: 0,
+      min: 0,
+      sec: 0
     };
-  },
-  componentWillMount: function() {
-    this.initializePickers();
-  },
-  initializePickers: function(){
-    //if time is null, set hour, min, and sec to 0
-    if(this.state.time === null) {
-      this.setState({
-        hour: 0,
-        min: 0,
-        sec: 0
-      });
-    } else {
-      this.setState({
-        hour: Number(this.props.time.slice(0,2)),
-        min: Number(this.props.time.slice(3,5)),
-        sec: Number(this.props.time.slice(6,8)),
-      });
-    }
   },
   setHour: function(choiceObj){
     var newHour = choiceObj.newValue;
@@ -121,7 +103,8 @@ var TimePicker = React.createClass({
     //If user sets all time values back to zero, set to null
     if(newTime === '00:00:00') newTime = null;
 
-    editExerciseActions.setTime(newTime);
+    console.log('logTimePicker setTime called');
+    editWorkoutActions.setResultTime(newTime);
   },
 
   showChoiceLabels: function(choice){
@@ -158,6 +141,10 @@ var TimePicker = React.createClass({
     //user view. But functionality is ready
     return (
       <MultiPickerIOS>
+        <Group selectedIndex={this.state.hour} onChange={this.setHour}>
+          {hourItems}
+        </Group>
+
         <Group selectedIndex={this.state.min} onChange={this.setMin}>
           {minItems}
         </Group>
@@ -170,4 +157,4 @@ var TimePicker = React.createClass({
   }
 });
 
-module.exports = TimePicker;
+module.exports = LogTimePicker;

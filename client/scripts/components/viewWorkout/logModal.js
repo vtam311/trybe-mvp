@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-02 16:15:17
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-02 16:51:05
 */
 
 'use strict';
@@ -23,6 +23,9 @@ var {
   SegmentedControlIOS
 } = React;
 
+//Load components
+var SelectedResultPicker = require('./selectedResultPicker');
+
 //Gets device height for animating app
 var {
   height: deviceHeight
@@ -33,7 +36,7 @@ var LogModal = React.createClass({
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
-      resultPickerIdx: null,
+      resultPickerIdx: 0,
     };
   },
   componentDidMount: function() {
@@ -90,6 +93,9 @@ var LogModal = React.createClass({
                 selectedIndex={this.state.resultPickerIdx}
                 onValueChange={(val) => this.setResultPicker(val)}
                 tintColor={'#4DBA97'}/>
+              <SelectedResultPicker
+                resultPickerIdx={this.state.resultPickerIdx}
+                partIdx={this.state.partIdx} />
             </View>
           </View>
 
@@ -115,7 +121,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 180,
+    height: 300,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 3,

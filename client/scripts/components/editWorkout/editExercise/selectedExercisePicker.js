@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:48:24
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-15 16:06:16
+* @Last Modified time: 2016-01-02 16:23:40
 */
 
 'use strict';
@@ -24,7 +24,6 @@ var SelectedExercisePicker = React.createClass({
   render: function() {
     var picker;
     var currentExercise = this.props.currentExercise;
-    //TO DO: pass specific parts needed to pickers, not entire exercise?
     switch (this.props.exPickerIdx) {
       case 0:
         picker =

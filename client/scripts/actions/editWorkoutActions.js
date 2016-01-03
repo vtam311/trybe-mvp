@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 23:52:06
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-02 16:36:00
 */
 
 'use strict';
@@ -135,6 +135,14 @@ var editWorkoutActions = {
       actionType: editWorkoutConstants.SET_PART_NAME,
       data: {
         name: name
+      }
+    });
+  },
+  setResultTime: function(time){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_RESULT_TIME,
+      data: {
+        time: time
       }
     });
   },
