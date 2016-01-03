@@ -59,7 +59,8 @@ var ViewWorkout = React.createClass({
           <ViewPart
             part={part}
             partIdx={index}
-            openExerciseModal={this.props.openExerciseModal} />
+            openExerciseModal={this.props.openExerciseModal}
+            openLogModal={this.props.openLogModal} />
         </View>
         /* jshint ignore:end */
       );
