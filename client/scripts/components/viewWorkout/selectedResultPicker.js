@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 14:16:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-06 14:49:11
 */
 
 'use strict';
@@ -25,26 +25,27 @@ var SelectedResultPicker = React.createClass({
   render: function() {
     var picker;
     var result = this.props.result;
-    console.log('SelectedResultPicker result is', result);
     var time, rounds, load, loadUnit;
 
     //Feed relevant result vals to pickers based on result types
-    if(result.type === 'rounds'){
-      rounds = result.val;
-      console.log('SelectedResultPicker round is', rounds);
-    }
+    var setPickerVals = function(){
+      switch(result.type) {
+        case 'time':
+          time = result.val;
+          break;
+        case 'rounds':
+          rounds = result.val;
+          break;
+        case 'Max Load':
+          load = result.val.val;
+          loadUnit = result.val.unit;
+          break;
+        default:
+          return;
+      }
+    };
 
-    if(result.type === 'Max Load'){
-      load = result.val.val;
-      loadUnit = result.val.unit;
-      console.log('SelectedResultPicker load is', load);
-      console.log('SelectedResultPicker loadUnit is', loadUnit);
-    }
-
-    if(result.type === 'time'){
-      time = result.val;
-      console.log('SelectedResultPicker time is', time);
-    }
+    setPickerVals();
 
     switch (this.props.resultPickerIdx) {
       case 0:
@@ -60,7 +61,7 @@ var SelectedResultPicker = React.createClass({
           <LogLoadPicker load={load} loadUnit={loadUnit}/>
         break;
       default:
-        console.log('Selected Segment Unknown');
+        picker = null;
     }
 
     return picker;
