@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 13:34:03
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-06 15:33:25
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var editWorkoutConstants = require('../constants/editWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
-var copyObjectHelper = require('../common/copyObjectHelper');
+var newObject = require('../common/copyObjectHelper');
 
 var EXERCISE_TEMPLATE = {
   name: null,
@@ -41,14 +41,14 @@ var WORKOUT_TEMPLATE = {
   day: null,
   date: new Date(),
   //copyObject so parts don't refer to same obj
-  parts: [copyObjectHelper(PART_TEMPLATE)],
+  parts: [newObject(PART_TEMPLATE)],
   origin: null,
 };
 
 var _store = {
   defaultOrCustom: 'default',
-  workout: WORKOUT_TEMPLATE,
-  targetPartIdx: 0, //set to null once setTargetPartIdx is written
+  workout: newObject(WORKOUT_TEMPLATE),
+  targetPartIdx: null,
   targetExerciseIdx: null,
 };
 
@@ -97,6 +97,7 @@ var removeExercise = function(data){
 var setTargetExerciseIdx = function(data){
   var partIdx = data.partIdx;
   var exIdx = data.exIdx;
+  _store.targetPartIdx = partIdx;
   _store.targetExerciseIdx = exIdx;
 };
 
@@ -127,7 +128,7 @@ var setResultType = function(data){
 };
 
 var addPart = function(){
-  var newPart = copyObjectHelper(PART_TEMPLATE);
+  var newPart = newObject(PART_TEMPLATE);
   _store.workout.parts.push(newPart);
 };
 
