@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 00:20:22
+* @Last Modified time: 2016-01-06 15:54:12
 */
 
 'use strict';
@@ -20,7 +20,7 @@ import {CustomCell} from 'react-native-tableview-simple';
 
 var DateCell = React.createClass({
   showPreview: function(date){
-    var dateIsToday = function(){
+    var isDateToday = function(){
       var today = new Date();
       if(date.getDate() === today.getDate() &&
         date.getMonth() === today.getMonth() &&
@@ -32,19 +32,15 @@ var DateCell = React.createClass({
     };
 
     //If day is today, return 'Today' as preview
-    if(dateIsToday(date)) return 'Today';
+    if(isDateToday(date)) return 'Today';
     else {
       var dateString = this.props.date.toString();
       var datePreview = dateString.slice(0,10);
       return datePreview;
     }
   },
-  ensureIsDateObj: function(date){
-    if(typeof date === 'string') return new Date(date);
-    else return date;
-  },
   render: function(){
-    var date = this.ensureIsDateObj(this.props.date);
+    var date = this.props.date;
 
     return (
       /* jshint ignore:start */

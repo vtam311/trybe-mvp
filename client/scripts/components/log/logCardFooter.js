@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 00:24:23
+* @Last Modified time: 2016-01-06 15:50:46
 */
 
 'use strict';
@@ -10,7 +10,7 @@
 var React = require('react-native');
 var indexActions = require('../../actions/indexActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
-var copyObjectHelper = require('../../common/copyObjectHelper');
+var newWorkout = require('../../common/newWorkout');
 
 var {
   StyleSheet,
@@ -25,7 +25,7 @@ var FeedCardFooter = React.createClass({
   },
   doWorkout: function(workout) {
     //copies a separate workout object to send to viewWorkout
-    var separateWorkout = copyObjectHelper(workout);
+    var separateWorkout = newWorkout(workout);
     editWorkoutActions.setWorkout(separateWorkout);
 
     //notify editWorkoutStore to show custom workout

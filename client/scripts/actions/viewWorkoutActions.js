@@ -5,12 +5,12 @@ var viewWorkoutConstants = require('../constants/viewWorkoutConstants');
 
 //temp use workout model
 var TEMP_WORKOUT = require('../../../Documentation/workoutModel.js')
-var newObject = require('../common/copyObjectHelper');
+var newWorkout = require('../common/newWorkout');
 
 var viewWorkoutActions = {
   getWorkout: function() {
     //To do: make get req to server
-    var dummyWorkout = newObject(TEMP_WORKOUT);
+    var dummyWorkout = newWorkout(TEMP_WORKOUT);
 
     this.setWorkout(dummyWorkout);
   },

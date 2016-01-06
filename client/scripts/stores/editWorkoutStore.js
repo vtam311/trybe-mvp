@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:36:09
+* @Last Modified time: 2016-01-06 15:52:02
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var editWorkoutConstants = require('../constants/editWorkoutConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 var newObject = require('../common/copyObjectHelper');
+var newWorkout = require('../common/newWorkout');
 
 var EXERCISE_TEMPLATE = {
   name: null,
@@ -47,7 +48,7 @@ var WORKOUT_TEMPLATE = {
 
 var _store = {
   defaultOrCustom: 'default',
-  workout: newObject(WORKOUT_TEMPLATE),
+  workout: newWorkout(WORKOUT_TEMPLATE),
   targetPartIdx: null,
   targetExerciseIdx: null,
 };
@@ -63,7 +64,7 @@ var setWorkout = function(data){
 };
 
 var resetWorkout = function(){
-  _store.workout = newObject(WORKOUT_TEMPLATE);
+  _store.workout = newWorkout(WORKOUT_TEMPLATE);
 };
 
 var saveDate = function(data){

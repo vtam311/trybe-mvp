@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 14:25:04
+* @Last Modified time: 2016-01-06 15:48:57
 */
 
 'use strict';
@@ -11,13 +11,13 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants');
 
 var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
-var newObject = require('../common/copyObjectHelper');
+var newWorkout = require('../common/newWorkout');
 
 var feedActions = {
   getTrybeWorkout: function(){
     //To do: make a get req to server
     //To do: update workout obj to finalized version in createWorkoutStore
-    this.setTrybeWorkout(newObject(DUMMY_WORKOUT));
+    this.setTrybeWorkout(newWorkout(DUMMY_WORKOUT));
   },
   setTrybeWorkout: function(workout){
     AppDispatcher.handleAction({
@@ -34,7 +34,7 @@ var feedActions = {
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
-        workout: newObject(DUMMY_WORKOUT),
+        workout: newWorkout(DUMMY_WORKOUT),
         origin: null, //to track if workout is inspired by another user
         likes: 17,
         comments: 3
@@ -45,7 +45,7 @@ var feedActions = {
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
-        workout: newObject(DUMMY_WORKOUT),
+        workout: newWorkout(DUMMY_WORKOUT),
         origin: null, //to track if workout is inspired by another user
         likes: 24,
         comments: 6
@@ -56,7 +56,7 @@ var feedActions = {
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
-        workout: newObject(DUMMY_WORKOUT),
+        workout: newWorkout(DUMMY_WORKOUT),
         origin: null, //to track if workout is inspired by another user
         likes: 19,
         comments: 8

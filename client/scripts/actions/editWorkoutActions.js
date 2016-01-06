@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:32:10
+* @Last Modified time: 2016-01-06 15:48:19
 */
 
 'use strict';
@@ -12,7 +12,6 @@ var editWorkoutConstants = require('../constants/editWorkoutConstants');
 
 //temp use workout model
 var TEMP_WORKOUT = require('../../../Documentation/workoutModel.js');
-var newObject = require('../common/copyObjectHelper'); //not using, since changes date object
 
 
 var editWorkoutActions = {
