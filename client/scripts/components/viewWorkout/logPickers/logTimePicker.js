@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:24:38
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:49:17
+* @Last Modified time: 2016-01-06 13:24:00
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var logModalActions = require('../../../actions/logModalActions');
 
 var {
   PickerIOS,
@@ -104,7 +104,7 @@ var LogTimePicker = React.createClass({
     if(newTime === '00:00:00') newTime = null;
 
     console.log('logTimePicker setTime called');
-    editWorkoutActions.setResultTime(newTime);
+    logModalActions.setResultTime(newTime);
   },
 
   showChoiceLabels: function(choice){

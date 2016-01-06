@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:17:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:31:07
+* @Last Modified time: 2016-01-06 13:27:53
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var logModalActions = require('../../../actions/logModalActions');
 
 var {
   PickerIOS,
@@ -33,7 +33,7 @@ var LogLoadPicker = React.createClass({
     if(load === 'No Weight') load = null;
 
     //Should set part's result val to {val: 100, unit: 'lb'}
-    editWorkoutActions.setResultLoad(load, this.state.units);
+    logModalActions.setResultLoad(load, this.state.units);
 
     //Update picker's state
     this.setState({loadVal: load});
@@ -43,7 +43,7 @@ var LogLoadPicker = React.createClass({
     var unit = choiceObj.newValue;
 
     //Should set part's result val to {val: 100, unit: 'lb'}
-    editWorkoutActions.setResultLoad(this.state.loadVal, unit);
+    logModalActions.setResultLoad(this.state.loadVal, unit);
 
     //Update picker's state
     this.setState({units: unit});

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:31:47
+* @Last Modified time: 2016-01-06 13:25:32
 */
 
 'use strict';
@@ -23,9 +23,6 @@ var editWorkoutConstants = {
   REMOVE_PART: 'REMOVE_PART',
   SET_TARGET_PART_IDX: 'SET_TARGET_PART_IDX',
   SET_PART_NAME: 'SET_PART_NAME',
-  SET_RESULT_TIME: 'SET_RESULT_TIME',
-  SET_RESULT_ROUNDS: 'SET_RESULT_ROUNDS',
-  SET_RESULT_LOAD: 'SET_RESULT_LOAD'
 };
 
 module.exports = editWorkoutConstants;

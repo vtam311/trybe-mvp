@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:18:47
+* @Last Modified time: 2016-01-06 13:27:40
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var logModalActions = require('../../../actions/logModalActions');
 
 var {
   PickerIOS
@@ -45,7 +45,7 @@ var LogRoundPicker = React.createClass({
   },
   _setRounds: function(val){
     if(val === 'No Rounds') val = null;
-    editWorkoutActions.setResultRounds(val);
+    logModalActions.setResultRounds(val);
     this.setState({rounds: val});
   },
   render: function() {

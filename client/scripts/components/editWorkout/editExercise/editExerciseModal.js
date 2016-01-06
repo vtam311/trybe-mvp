@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:38:35
+* @Last Modified time: 2016-01-06 13:08:53
 */
 
 'use strict';
@@ -51,6 +51,8 @@ var EditExerciseModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
       exIdx: editWorkoutStore.getTargetExerciseIdx(),
+      //init targetExercise with exercise from editWorkoutStore
+      //so component can render
       targetExercise: editWorkoutStore.getTargetExercise(),
       exPickerIdx: 0,
       currentExercise: null,

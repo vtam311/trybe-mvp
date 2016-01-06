@@ -2,14 +2,15 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:39:53
+* @Last Modified time: 2016-01-06 13:21:44
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
-var editWorkoutActions = require('../../actions/editWorkoutActions');
+var logModalStore = require('../../stores/logModalStore');
+var logModalActions = require('../../actions/logModalActions');
 
 var {
   StyleSheet,
@@ -36,14 +37,25 @@ var LogModal = React.createClass({
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
+      //init targetResult with result from editWorkoutStore
+      //so component can render
+      targetResult: editWorkoutStore.getTargetResult(),
       resultPickerIdx: 0,
     };
+  },
+  componentWillMount: function() {
+    logModalStore.addChangeListener(this._onChange);
+    //initialize result with the targetResult user is editting
+    logModalActions.initializeResult(this.state.targetResult);
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
     }).start();
+  },
+  _onChange: function(){
+    this.setState({targetResult: logModalStore.getResult()});
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -55,15 +67,14 @@ var LogModal = React.createClass({
     //Depending on the selected val, the picker should change
     var seg;
     if(val === 'Time') seg = 0;
-    if(val === 'Rounds') seg = 1;
-    if(val === 'Max Load') seg = 2;
-    if(val === 'Custom') seg = 3;
+    else if(val === 'Rounds') seg = 1;
+    else if(val === 'Max Load') seg = 2;
+    else if(val === 'Custom') seg = 3;
 
     this.setState({
       resultPickerIdx: seg
     });
   },
-  //Change to saveResults
   saveResults: function(){
     //To do: save log results
     // editWorkoutActions.setPartName(this.state.partName);
