@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:33:25
+* @Last Modified time: 2016-01-06 15:36:09
 */
 
 'use strict';
@@ -63,7 +63,7 @@ var setWorkout = function(data){
 };
 
 var resetWorkout = function(){
-  _store.workout = WORKOUT_TEMPLATE;
+  _store.workout = newObject(WORKOUT_TEMPLATE);
 };
 
 var saveDate = function(data){
