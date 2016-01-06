@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 13:37:11
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-06 13:57:29
 */
 
 'use strict';
@@ -85,7 +85,6 @@ var LogModal = React.createClass({
     this.closeModal();
   },
   render: function() {
-    console.log('logModal rendering');
     return (
       <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
         <View style={styles.container}>
@@ -110,6 +109,7 @@ var LogModal = React.createClass({
                 onValueChange={(val) => this.setResultPicker(val)}
                 tintColor={'#4DBA97'}/>
               <SelectedResultPicker
+                result={this.state.targetResult}
                 resultPickerIdx={this.state.resultPickerIdx}
                 partIdx={this.state.partIdx} />
             </View>

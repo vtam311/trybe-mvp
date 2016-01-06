@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:27:40
+* @Last Modified time: 2016-01-06 14:01:55
 */
 
 'use strict';
@@ -31,7 +31,7 @@ var ROUND_CHOICES = [
 var LogRoundPicker = React.createClass({
   getInitialState: function() {
     return {
-      rounds: null
+      rounds: this.props.rounds
     };
   },
   showChoiceLabels: function(choice){
