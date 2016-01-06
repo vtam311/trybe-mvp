@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:24:38
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:24:00
+* @Last Modified time: 2016-01-06 14:17:16
 */
 
 'use strict';
@@ -42,10 +42,27 @@ var SEC_CHOICES = [
 var LogTimePicker = React.createClass({
   getInitialState: function() {
     return {
-      hour: 0,
-      min: 0,
-      sec: 0
+      time: this.props.time,
     };
+  },
+  componentWillMount: function() {
+    this.initializePickers();
+  },
+  initializePickers: function(){
+    //if time is null, set hour, min, and sec to 0
+    if(!this.state.time) {
+      this.setState({
+        hour: 0,
+        min: 0,
+        sec: 0
+      });
+    } else {
+      this.setState({
+        hour: Number(this.props.time.slice(0,2)),
+        min: Number(this.props.time.slice(3,5)),
+        sec: Number(this.props.time.slice(6,8)),
+      });
+    }
   },
   setHour: function(choiceObj){
     var newHour = choiceObj.newValue;

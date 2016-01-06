@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 14:12:20
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-06 14:16:38
 */
 
 'use strict';
@@ -41,10 +41,15 @@ var SelectedResultPicker = React.createClass({
       console.log('SelectedResultPicker loadUnit is', loadUnit);
     }
 
+    if(result.type === 'time'){
+      time = result.val;
+      console.log('SelectedResultPicker time is', time);
+    }
+
     switch (this.props.resultPickerIdx) {
       case 0:
         picker =
-          <LogTimePicker />
+          <LogTimePicker time={time} />
         break;
       case 1:
         picker =

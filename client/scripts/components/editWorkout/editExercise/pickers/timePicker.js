@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-10 14:52:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:24:58
+* @Last Modified time: 2016-01-06 14:17:55
 */
 
 'use strict';
@@ -51,7 +51,7 @@ var TimePicker = React.createClass({
   },
   initializePickers: function(){
     //if time is null, set hour, min, and sec to 0
-    if(this.state.time === null) {
+    if(!this.state.time) {
       this.setState({
         hour: 0,
         min: 0,
