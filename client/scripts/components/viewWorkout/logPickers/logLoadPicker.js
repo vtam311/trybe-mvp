@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:17:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:27:53
+* @Last Modified time: 2016-01-06 14:10:53
 */
 
 'use strict';
@@ -24,9 +24,17 @@ var UNIT_CHOICES = ['lb','kg'];
 var LogLoadPicker = React.createClass({
   getInitialState: function() {
     return {
-      loadVal: null,
-      units: 'lb'
+      loadVal: this.props.load,
+      units: this.props.loadUnit,
     };
+  },
+  componentWillUpdate: function(){
+    //initialize units if not pre-set
+    if(!this.state.units) {
+      this.setState({
+        units: 'lb'
+      });
+    }
   },
   _setLoadVal: function(choiceObj){
     var load = choiceObj.newValue;

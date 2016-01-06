@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 14:01:52
+* @Last Modified time: 2016-01-06 14:12:20
 */
 
 'use strict';
@@ -26,11 +26,20 @@ var SelectedResultPicker = React.createClass({
     var picker;
     var result = this.props.result;
     console.log('SelectedResultPicker result is', result);
-    var time, rounds, maxLoad;
+    var time, rounds, load, loadUnit;
 
     //Feed relevant result vals to pickers based on result types
-    if(result.type === 'rounds') rounds = result.val;
-    console.log('SelectedResultPicker round is', rounds);
+    if(result.type === 'rounds'){
+      rounds = result.val;
+      console.log('SelectedResultPicker round is', rounds);
+    }
+
+    if(result.type === 'Max Load'){
+      load = result.val.val;
+      loadUnit = result.val.unit;
+      console.log('SelectedResultPicker load is', load);
+      console.log('SelectedResultPicker loadUnit is', loadUnit);
+    }
 
     switch (this.props.resultPickerIdx) {
       case 0:
@@ -43,7 +52,7 @@ var SelectedResultPicker = React.createClass({
         break;
       case 2:
         picker =
-          <LogLoadPicker />
+          <LogLoadPicker load={load} loadUnit={loadUnit}/>
         break;
       default:
         console.log('Selected Segment Unknown');
