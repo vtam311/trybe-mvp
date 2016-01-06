@@ -1,14 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:21:44
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-06 13:37:11
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 var logModalStore = require('../../stores/logModalStore');
 var logModalActions = require('../../actions/logModalActions');
 
@@ -32,6 +33,10 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
+//Gist: This component gets the target part's result from editWorkoutStore,
+//and copies and initializes that result into logModalStore.
+//Any edits are updated into logModalStore, and on press of 'Done',
+//the updated copy overwrites the target result in editWorkoutStore
 var LogModal = React.createClass({
   getInitialState: function() {
     return {
@@ -76,8 +81,7 @@ var LogModal = React.createClass({
     });
   },
   saveResults: function(){
-    //To do: save log results
-    // editWorkoutActions.setPartName(this.state.partName);
+    editWorkoutActions.savePartResult(this.state.targetResult);
     this.closeModal();
   },
   render: function() {
