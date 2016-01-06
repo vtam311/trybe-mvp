@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:57:29
+* @Last Modified time: 2016-01-06 15:04:12
 */
 
 'use strict';
@@ -52,6 +52,9 @@ var LogModal = React.createClass({
     logModalStore.addChangeListener(this._onChange);
     //initialize result with the targetResult user is editting
     logModalActions.initializeResult(this.state.targetResult);
+    //set default resultPickerIdx based on val of targetResult.type
+    this.setDefaultSegmCtrlIdx();
+    console.log('logModal this.state.targetResult', this.state.targetResult);
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -67,6 +70,25 @@ var LogModal = React.createClass({
       duration: 100,
       toValue: deviceHeight
     }).start(this.props.closeModal);
+  },
+  setDefaultSegmCtrlIdx: function(){
+    var resultPickerIdx;
+    switch(this.state.targetResult.type) {
+      case 'Time':
+        resultPickerIdx = 0;
+        break;
+      case 'Rounds':
+        resultPickerIdx = 1;
+        break;
+      case 'Max Load':
+        resultPickerIdx = 2;
+        break;
+      default:
+        resultPickerIdx = null;
+    }
+    this.setState({
+      resultPickerIdx: resultPickerIdx
+    });
   },
   setResultPicker: function(val){
     //Depending on the selected val, the picker should change

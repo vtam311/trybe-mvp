@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:37:55
+* @Last Modified time: 2016-01-06 15:10:54
 */
 
 'use strict';
@@ -58,7 +58,7 @@ var ResultOptions = React.createClass({
         return (
           <View style={styles.cellRow}>
             <TextInput
-              value={showCustomTextInputVal.bind(this)}
+              value={showCustomTextInputVal()}
               style={{height: 40}}
               placeholder="Distance, Reps, Etc."
               autoCapitalize='words'

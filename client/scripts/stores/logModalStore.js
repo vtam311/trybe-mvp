@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:29:05
+* @Last Modified time: 2016-01-06 15:07:36
 */
 
 'use strict';
@@ -33,7 +33,7 @@ var setResultTime = function(data){
   var time = data.time;
   var partIdx = _store.targetPartIdx;
   //Ensure if user inputs diff result type, it is reflected
-  _store.result.type = 'time';
+  _store.result.type = 'Time';
   _store.result.val = time;
   console.log('logModalStore setResultTime to', _store.result.val);
 };
@@ -42,7 +42,7 @@ var setResultRounds = function(data){
   var rounds = data.rounds;
   var partIdx = _store.targetPartIdx;
   //Ensure if user inputs diff result type, it is reflected
-  _store.result.type = 'rounds';
+  _store.result.type = 'Rounds';
   _store.result.val = rounds;
   console.log('logModalStore setResultRounds to', _store.result.val);
 };

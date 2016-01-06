@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 14:49:11
+* @Last Modified time: 2016-01-06 15:05:55
 */
 
 'use strict';
@@ -27,25 +27,30 @@ var SelectedResultPicker = React.createClass({
     var result = this.props.result;
     var time, rounds, load, loadUnit;
 
+    console.log('SelectedResultPicker result', result);
+
     //Feed relevant result vals to pickers based on result types
-    var setPickerVals = function(){
+    var setPickerProps = function(){
       switch(result.type) {
-        case 'time':
+        case 'Time':
           time = result.val;
           break;
-        case 'rounds':
+        case 'Rounds':
           rounds = result.val;
           break;
         case 'Max Load':
-          load = result.val.val;
-          loadUnit = result.val.unit;
+          //If the value has already been set, pre-set load vals
+          if(result.val) {
+            load = result.val.val;
+            loadUnit = result.val.unit;
+          }
           break;
         default:
           return;
       }
     };
 
-    setPickerVals();
+    setPickerProps();
 
     switch (this.props.resultPickerIdx) {
       case 0:
