@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:47:36
+* @Last Modified time: 2016-01-06 15:14:50
 */
 
 'use strict';
@@ -26,9 +26,13 @@ var ViewPartHeader = React.createClass({
     };
   },
   logPart: function(){
-    console.log('partHeader logPart called');
+    //set targetPartIdx to notify editWorkoutStore which part
+    //is being modified
+    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
+
     this.props.openLogModal();
 
+    //TO DO: update state once 'Done' is clicked
     this.setState({
       isLogged: true
     });
