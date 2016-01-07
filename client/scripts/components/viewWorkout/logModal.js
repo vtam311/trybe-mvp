@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:40:00
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 10:46:37
 */
 
 'use strict';
@@ -167,7 +167,7 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    marginBottom: 50,
+    paddingBottom: 145,
     backgroundColor: 'rgba(155, 155, 155, 0.4)',
   },
   flexCenter: {
