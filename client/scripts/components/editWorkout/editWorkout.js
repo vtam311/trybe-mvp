@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 17:19:04
+* @Last Modified time: 2016-01-06 19:41:38
 */
 
 'use strict';
@@ -62,6 +62,7 @@ var EditWorkout = React.createClass({
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollToComponent: function(refName, child) {
+    console.log('editWorkout scrollToComponent called');
     var offset;
     if(child === 'instrTextInput') offset = -90;
     else if(child === 'customTextInput') offset = 0;
@@ -79,14 +80,15 @@ var EditWorkout = React.createClass({
   render: function(){
     var parts = this.state.workout.parts.map((part, index) =>
       /* jshint ignore:start */
-      <Part
-        ref={'part' + index}
-        part={part}
-        partIdx={index}
-        openExerciseModal={this.props.openExerciseModal}
-        openPartModal={this.props.openPartModal}
-        scrollToComponent={this.scrollToComponent}
-        key={index} />
+      <View style={{marginBottom: 20}} key={index} >
+        <Part
+          ref={'part' + index}
+          part={part}
+          partIdx={index}
+          openExerciseModal={this.props.openExerciseModal}
+          openPartModal={this.props.openPartModal}
+          scrollToComponent={this.scrollToComponent} />
+      </View>
       /* jshint ignore:end */
     );
 
