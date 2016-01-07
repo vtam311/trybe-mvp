@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:07:36
+* @Last Modified time: 2016-01-06 19:32:52
 */
 
 'use strict';
@@ -26,35 +26,47 @@ var initializeResult = function(data) {
   //same place in memory
   var result = copyObjHelper(data.result);
   _store.result = result;
-  console.log('logModalStore initializeResult to ', _store.result);
 };
 
 var setResultTime = function(data){
   var time = data.time;
-  var partIdx = _store.targetPartIdx;
   //Ensure if user inputs diff result type, it is reflected
   _store.result.type = 'Time';
   _store.result.val = time;
-  console.log('logModalStore setResultTime to', _store.result.val);
 };
 
 var setResultRounds = function(data){
   var rounds = data.rounds;
-  var partIdx = _store.targetPartIdx;
   //Ensure if user inputs diff result type, it is reflected
   _store.result.type = 'Rounds';
   _store.result.val = rounds;
-  console.log('logModalStore setResultRounds to', _store.result.val);
 };
 
 var setResultLoad = function(data){
   var val = data.val;
   var unit = data.unit;
-  var partIdx = _store.targetPartIdx;
   //Ensure if user inputs diff result type, it is reflected
   _store.result.type = 'Max Load';
   _store.result.val = {val: val, unit: unit};
-  console.log('logModalStore setResultLoad to', _store.result.val);
+};
+
+var setResultCustom = function(data){
+  var val = data.val;
+  //Ensure if user inputs diff result type than default, it is reflected
+  setCustomResultType();
+  _store.result.val = val;
+};
+
+var setCustomResultType = function(){
+  //if result type is specific custom metric, leave as is
+  if(_store.result.type &&
+    _store.result.type !== 'Time' &&
+    _store.result.type !== 'Rounds' &&
+    _store.result.type !== 'Max Load'){
+  } else {
+    //else change to 'Custom'
+    _store.result.type = 'Custom';
+  }
 };
 
 
@@ -89,6 +101,10 @@ AppDispatcher.register(function(payload){
       break;
     case logModalConstants.SET_RESULT_LOAD:
       setResultLoad(action.data);
+      logModalStore.emit(CHANGE_EVENT);
+      break;
+    case logModalConstants.SET_RESULT_CUSTOM:
+      setResultCustom(action.data);
       logModalStore.emit(CHANGE_EVENT);
       break;
     default:

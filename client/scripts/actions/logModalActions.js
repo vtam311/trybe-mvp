@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-06 13:16:41
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 13:28:16
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-06 19:21:04
 */
 
 'use strict';
@@ -41,6 +41,14 @@ var logModalActions = {
       data: {
         val: val,
         unit: unit
+      }
+    });
+  },
+  setResultCustom: function(val){
+    AppDispatcher.handleAction({
+      actionType: logModalConstants.SET_RESULT_CUSTOM,
+      data: {
+        val: val
       }
     });
   },

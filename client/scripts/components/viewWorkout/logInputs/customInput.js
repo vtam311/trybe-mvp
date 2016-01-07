@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 16:09:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 16:58:00
+* @Last Modified time: 2016-01-06 19:23:20
 */
 
 'use strict';
@@ -25,7 +25,7 @@ var CustomInput = React.createClass({
     };
   },
   _setCustomResult: function(val){
-    // logModalActions.setResultRounds(val);
+    logModalActions.setResultCustom(val);
     this.setState({customVal: val});
   },
   _getPlaceHolderText: function(){
