@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:32:52
+* @Last Modified time: 2016-01-06 19:59:34
 */
 
 'use strict';
@@ -15,17 +15,23 @@ var CHANGE_EVENT = 'change';
 var copyObjHelper = require('../common/copyObjectHelper');
 
 var _store = {
-  result: null
+  result: null,
+  notes: null
 };
 
+//Initializes result with part user selected
+//Retrieved from editWorkoutStore's targetResult
+//Using copyObjHelper to prevent changes in this store to auto
+//change in editWorkoutStore, as assignment would reference
+//same place in memory
 var initializeResult = function(data) {
-  //Initializes result with part user selected
-  //Retrieved from editWorkoutStore's targetResult
-  //Using copyObjHelper to prevent changes in this store to auto
-  //change in editWorkoutStore, as assignment would reference
-  //same place in memory
   var result = copyObjHelper(data.result);
   _store.result = result;
+};
+
+var initializeNotes = function(data) {
+  var notes = data.notes;
+  _store.notes = notes;
 };
 
 var setResultTime = function(data){
@@ -81,6 +87,9 @@ var logModalStore = Object.assign({}, EventEmitter.prototype, {
     //Result being modified or created.
     //Used in logModal
     return _store.result;
+  },
+  getNotes: function(){
+    return _store.notes;
   }
 });
 
@@ -89,6 +98,10 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case logModalConstants.INITIALIZE_RESULT:
       initializeResult(action.data);
+      logModalStore.emit(CHANGE_EVENT);
+      break;
+    case logModalConstants.INITIALIZE_NOTES:
+      initializeNotes(action.data);
       logModalStore.emit(CHANGE_EVENT);
       break;
     case logModalConstants.SET_RESULT_TIME:

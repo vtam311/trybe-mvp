@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 16:41:16
+* @Last Modified time: 2016-01-06 19:51:16
 */
 
 'use strict';
@@ -192,10 +192,14 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     var partIdx = _store.targetPartIdx;
     return _store.workout.parts[partIdx].name;
   },
-  getTargetResult: function(){
+  getTargetPartResult: function(){
     //Target result being modified by logModal
     var partIdx = _store.targetPartIdx;
     return _store.workout.parts[partIdx].result;
+  },
+  getTargetPartNotes: function(){
+    var partIdx = _store.targetPartIdx;
+    return _store.workout.parts[partIdx].notes;
   }
 });
 

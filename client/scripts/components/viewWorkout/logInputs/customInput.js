@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-06 16:09:06
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:23:20
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 10:42:59
 */
 
 'use strict';
@@ -20,22 +20,38 @@ var {
 var CustomInput = React.createClass({
   getInitialState: function() {
     return {
-      customMetric: this.props.customMetric,
+      metric: this.props.metric,
       customVal: this.props.customVal,
+      isCustomMetric: false,
     };
+  },
+  componentWillMount: function(){
+    this.checkIsCustomMetric();
+  },
+  checkIsCustomMetric: function(){
+    //TO DO: Use helper function to replace all checks of
+    //isCustomMetric logic
+    if(this.state.metric &&
+      this.state.metric !== 'Time' &&
+      this.state.metric !== 'Rounds' &&
+      this.state.metric !== 'Max Load'){
+      this.setState({isCustomMetric: true});
+    }
   },
   _setCustomResult: function(val){
     logModalActions.setResultCustom(val);
     this.setState({customVal: val});
   },
-  _getPlaceHolderText: function(){
+  _getPlaceholderText: function(){
     var placeholder;
-    var customMetric = this.state.customMetric;
+    var metric = this.state.metric;
 
-    if(!customMetric){
-      placeholder = 'Custom';
+    //If a custom metric is provided, show 'Result',
+    //otherwise show 'Custom'
+    if(!metric){
+      placeholder = 'Custom Results';
     } else {
-      placeholder = customMetric;
+      placeholder = 'Result';
     }
 
     return placeholder;
@@ -43,13 +59,18 @@ var CustomInput = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
+        {this.state.isCustomMetric ?
+          <Text style={styles.customInputPrompt}>{this.state.metric}</Text>
+          :
+          null
+        }
         <TextInput
           value={this.state.customVal}
-          placeholder={this._getPlaceHolderText()}
+          placeholder={this._getPlaceholderText()}
           autoCapitalize='words'
           onChangeText={(text) => this._setCustomResult(text)}
           multiline={true}
-          style={styles.instructionsTextInput} />
+          style={styles.customResultTextInput} />
       </View>
     );
   }
@@ -59,10 +80,18 @@ var styles = StyleSheet.create({
   container: {
     marginTop: 10
   },
-  instructionsTextInput: {
-    height: 40,
+  customInputPrompt: {
+    fontSize: 14,
+    color: '#929292',
     fontFamily: 'Avenir Next',
-    fontSize: 18
+    marginTop: 10,
+  },
+  customResultTextInput: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: 30,
+    fontFamily: 'Avenir Next',
+    fontSize: 16
   },
 });
 

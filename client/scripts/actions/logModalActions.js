@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 13:16:41
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:21:04
+* @Last Modified time: 2016-01-06 19:57:34
 */
 
 'use strict';
@@ -16,6 +16,14 @@ var logModalActions = {
       actionType: logModalConstants.INITIALIZE_RESULT,
       data: {
         result: result
+      }
+    });
+  },
+  initializeNotes: function(notes){
+    AppDispatcher.handleAction({
+      actionType: logModalConstants.INITIALIZE_NOTES,
+      data: {
+        notes: notes
       }
     });
   },

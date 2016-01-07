@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 16:28:19
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 10:30:37
 */
 
 'use strict';
@@ -25,7 +25,7 @@ var SelectedResultInput = React.createClass({
   render: function() {
     var input;
     var result = this.props.result;
-    var time, rounds, load, loadUnit, customMetric, customVal;
+    var time, rounds, load, loadUnit, metric, customVal;
     console.log('selectedResultInput result', result);
     console.log('selectedResultInput segmCtrlIdx', this.props.segmCtrlIdx);
 
@@ -47,7 +47,7 @@ var SelectedResultInput = React.createClass({
           }
           break;
         default:
-          customMetric = result.type;
+          metric = result.type;
           customVal = result.val;
       }
     };
@@ -68,7 +68,7 @@ var SelectedResultInput = React.createClass({
           <LogLoadPicker load={load} loadUnit={loadUnit}/>
         break;
       case 3:
-        input = <CustomInput customMetric={customMetric} customVal={customVal}/>
+        input = <CustomInput metric={metric} customVal={customVal}/>
         break;
       default:
         input = null;

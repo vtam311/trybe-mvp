@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 16:31:21
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 10:40:00
 */
 
 'use strict';
@@ -27,6 +27,7 @@ var {
 
 //Load components
 var SelectedResultInput = require('./selectedResultInput');
+var NotesInput = require('./logInputs/notesInput');
 
 //Gets device height for animating app
 var {
@@ -42,19 +43,21 @@ var LogModal = React.createClass({
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
-      //init targetResult with result from editWorkoutStore
+      //init result with result from editWorkoutStore
       //so component can render
-      targetResult: editWorkoutStore.getTargetResult(),
+      result: editWorkoutStore.getTargetPartResult(),
+      notes: editWorkoutStore.getTargetPartNotes(),
       segmCtrlIdx: 0,
     };
   },
   componentWillMount: function() {
     logModalStore.addChangeListener(this._onChange);
 
-    //initialize result with the targetResult user is editting
-    logModalActions.initializeResult(this.state.targetResult);
+    //initialize logModalStore with the result and notes
+    logModalActions.initializeResult(this.state.result);
+    logModalActions.initializeNotes(this.state.notes);
 
-    //set default segmCtrlIdx based on val of targetResult.type
+    //set default segmCtrlIdx based on val of result.type
     this.setDefaultSegmCtrlIdx();
   },
   componentDidMount: function() {
@@ -67,7 +70,10 @@ var LogModal = React.createClass({
     logModalStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    this.setState({targetResult: logModalStore.getResult()});
+    this.setState({
+      result: logModalStore.getResult(),
+      notes: logModalStore.getNotes()
+    });
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -79,7 +85,7 @@ var LogModal = React.createClass({
     var segmCtrlIdx;
     //If no result type is provided, set to null.
     //If not time, rounds, or max load, default to custom
-    switch(this.state.targetResult.type) {
+    switch(this.state.result.type) {
       case null:
         segmCtrlIdx = null;
         break;
@@ -111,8 +117,8 @@ var LogModal = React.createClass({
       segmCtrlIdx: seg
     });
   },
-  saveResults: function(){
-    editWorkoutActions.savePartResult(this.state.targetResult);
+  saveChanges: function(){
+    editWorkoutActions.savePartResult(this.state.result);
     this.closeModal();
   },
   render: function() {
@@ -126,7 +132,7 @@ var LogModal = React.createClass({
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>Log Results</Text>
-              <TouchableOpacity onPress={this.saveResults}>
+              <TouchableOpacity onPress={this.saveChanges}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
@@ -140,9 +146,11 @@ var LogModal = React.createClass({
                 onValueChange={(val) => this.setResultPicker(val)}
                 tintColor={'#4DBA97'}/>
               <SelectedResultInput
-                result={this.state.targetResult}
+                result={this.state.result}
                 segmCtrlIdx={this.state.segmCtrlIdx}
                 partIdx={this.state.partIdx} />
+              <NotesInput
+                notes={this.state.notes} />
             </View>
           </View>
 
@@ -168,7 +176,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 300,
+    height: 400,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 3,
