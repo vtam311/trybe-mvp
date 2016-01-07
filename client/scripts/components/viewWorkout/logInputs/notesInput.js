@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 19:43:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:56:32
+* @Last Modified time: 2016-01-07 11:09:59
 */
 
 'use strict';
@@ -45,7 +45,6 @@ var styles = StyleSheet.create({
     fontSize: 18,
     fontStyle: 'italic',
     color: '#929292',
-    marginTop: 10,
   },
 });
 
