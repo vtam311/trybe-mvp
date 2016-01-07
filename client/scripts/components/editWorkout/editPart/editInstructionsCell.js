@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-01 11:39:41
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-06 16:43:20
 */
 
 'use strict';
@@ -83,7 +83,6 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     marginTop: 10,
-    // backgroundColor: 'grey'
   },
   cellRow: {
     flexDirection: 'row',
@@ -96,7 +95,6 @@ var styles = StyleSheet.create({
   },
   instructionsContainer: {
     marginTop: 10,
-    // backgroundColor: 'black'
   },
   instructionsTextInput: {
     height: 40,

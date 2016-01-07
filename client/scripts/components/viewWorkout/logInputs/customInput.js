@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 16:09:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 16:28:36
+* @Last Modified time: 2016-01-06 16:58:00
 */
 
 'use strict';
@@ -28,14 +28,24 @@ var CustomInput = React.createClass({
     // logModalActions.setResultRounds(val);
     this.setState({customVal: val});
   },
+  _getPlaceHolderText: function(){
+    var placeholder;
+    var customMetric = this.state.customMetric;
+
+    if(!customMetric){
+      placeholder = 'Custom';
+    } else {
+      placeholder = customMetric;
+    }
+
+    return placeholder;
+  },
   render: function() {
-    console.log('customInput rendering');
     return (
-      <View>
-        {this.state.customMetric ? <Text>{this.state.customMetric}</Text> : null}
+      <View style={styles.container}>
         <TextInput
           value={this.state.customVal}
-          placeholder='Result'
+          placeholder={this._getPlaceHolderText()}
           autoCapitalize='words'
           onChangeText={(text) => this._setCustomResult(text)}
           multiline={true}
@@ -46,6 +56,9 @@ var CustomInput = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  container: {
+    marginTop: 10
+  },
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
