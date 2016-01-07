@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:52:02
+* @Last Modified time: 2016-01-06 16:35:57
 */
 
 'use strict';
@@ -126,6 +126,7 @@ var setResultType = function(data){
   var type = data.type;
   var partIdx = data.partIdx;
   _store.workout.parts[partIdx].result.type = type;
+  console.log('editWorkoutStore setResultType to', _store.workout.parts[partIdx].result.type);
 };
 
 var addPart = function(){

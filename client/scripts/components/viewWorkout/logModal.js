@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 15:21:51
+* @Last Modified time: 2016-01-06 16:31:21
 */
 
 'use strict';
@@ -26,7 +26,7 @@ var {
 } = React;
 
 //Load components
-var SelectedResultPicker = require('./selectedResultPicker');
+var SelectedResultInput = require('./selectedResultInput');
 
 //Gets device height for animating app
 var {
@@ -45,7 +45,7 @@ var LogModal = React.createClass({
       //init targetResult with result from editWorkoutStore
       //so component can render
       targetResult: editWorkoutStore.getTargetResult(),
-      resultPickerIdx: 0,
+      segmCtrlIdx: 0,
     };
   },
   componentWillMount: function() {
@@ -54,7 +54,7 @@ var LogModal = React.createClass({
     //initialize result with the targetResult user is editting
     logModalActions.initializeResult(this.state.targetResult);
 
-    //set default resultPickerIdx based on val of targetResult.type
+    //set default segmCtrlIdx based on val of targetResult.type
     this.setDefaultSegmCtrlIdx();
   },
   componentDidMount: function() {
@@ -76,22 +76,27 @@ var LogModal = React.createClass({
     }).start(this.props.closeModal);
   },
   setDefaultSegmCtrlIdx: function(){
-    var resultPickerIdx;
+    var segmCtrlIdx;
+    //If no result type is provided, set to null.
+    //If not time, rounds, or max load, default to custom
     switch(this.state.targetResult.type) {
+      case null:
+        segmCtrlIdx = null;
+        break;
       case 'Time':
-        resultPickerIdx = 0;
+        segmCtrlIdx = 0;
         break;
       case 'Rounds':
-        resultPickerIdx = 1;
+        segmCtrlIdx = 1;
         break;
       case 'Max Load':
-        resultPickerIdx = 2;
+        segmCtrlIdx = 2;
         break;
       default:
-        resultPickerIdx = null;
+        segmCtrlIdx = 3;
     }
     this.setState({
-      resultPickerIdx: resultPickerIdx
+      segmCtrlIdx: segmCtrlIdx
     });
   },
   setResultPicker: function(val){
@@ -103,7 +108,7 @@ var LogModal = React.createClass({
     else if(val === 'Custom') seg = 3;
 
     this.setState({
-      resultPickerIdx: seg
+      segmCtrlIdx: seg
     });
   },
   saveResults: function(){
@@ -131,12 +136,12 @@ var LogModal = React.createClass({
             <View style={styles.bodyContainer}>
               <SegmentedControlIOS
                 values={['Time', 'Rounds', 'Max Load', 'Custom']}
-                selectedIndex={this.state.resultPickerIdx}
+                selectedIndex={this.state.segmCtrlIdx}
                 onValueChange={(val) => this.setResultPicker(val)}
                 tintColor={'#4DBA97'}/>
-              <SelectedResultPicker
+              <SelectedResultInput
                 result={this.state.targetResult}
-                resultPickerIdx={this.state.resultPickerIdx}
+                segmCtrlIdx={this.state.segmCtrlIdx}
                 partIdx={this.state.partIdx} />
             </View>
           </View>

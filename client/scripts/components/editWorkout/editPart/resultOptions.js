@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:10:54
+* @Last Modified time: 2016-01-06 16:39:52
 */
 
 'use strict';
@@ -20,6 +20,7 @@ var {
 
 var ResultOptions = React.createClass({
   setResultType: function(val){
+    console.log('ResultOptions setResultType called');
     editWorkoutActions.setResultType(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){
@@ -44,7 +45,7 @@ var ResultOptions = React.createClass({
   render: function(){
     //Must declare props to pass to showOrHideCustomInput
     var resultType = this.props.resultType;
-    var setResultType = this.setResultType;
+    var setResultType = this.setResultType.bind(this);
     var showCustomTextInputVal = this.showCustomTextInputVal;
     var scrollToComponent = this.props.scrollToComponent; //bind here, in onFocus, or both?
     var parentRef = 'part' + this.props.partIdx;
@@ -62,7 +63,7 @@ var ResultOptions = React.createClass({
               style={{height: 40}}
               placeholder="Distance, Reps, Etc."
               autoCapitalize='words'
-              onChangeText={(text) => setResultType.bind(this, text)}
+              onChangeText={(text) => setResultType(text)}
               onFocus={scrollToComponent.bind(this, parentRef, 'customTextInput')} />
           </View>
         );
