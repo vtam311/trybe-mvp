@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:53:35
+* @Last Modified time: 2016-01-07 11:20:54
 */
 
 'use strict';
@@ -26,9 +26,6 @@ var SelectedResultInput = React.createClass({
     var input;
     var result = this.props.result;
     var time, rounds, load, loadUnit, metric, customVal;
-    console.log('selectedResultInput result', result);
-    console.log('selectedResultInput segmCtrlIdx', this.props.segmCtrlIdx);
-
 
     //Only feed relevant result vals to inputs based on result types.
     var setInputProps = function(){

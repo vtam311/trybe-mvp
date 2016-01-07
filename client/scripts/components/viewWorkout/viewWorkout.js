@@ -23,12 +23,14 @@ var ViewWorkout = React.createClass({
   //viewWorkout initializes workout from editWorkoutStore.
   //Any changes are reflected in both views.
 
-  //On going to editWorkout scene, the workout gets reset to empty template
+  //On going to editWorkout scene, the workout gets
+  //reset to an empty workout template
   getInitialState: function(){
     return {
       //shows daily workout unless a custom one is selected
-      //if val is default, we load getDailyWorkout()
-      //else we don't load it, and set the workout when it's selected.
+      //if val is default, we load getDailyWorkout
+      //else we don't load it, and set the workout when user selects it
+      //from elsewhere.
       showDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
       visibleHeight: Dimensions.get('window').height
@@ -36,8 +38,8 @@ var ViewWorkout = React.createClass({
   },
   componentDidMount: function(){
     editWorkoutStore.addChangeListener(this._onChange);
+
     if(this.state.showDefaultOrCustom === 'default'){
-      console.log('viewWorkout getting daily workout');
       editWorkoutActions.getDailyWorkout();
     }
   },
@@ -60,7 +62,8 @@ var ViewWorkout = React.createClass({
             part={part}
             partIdx={index}
             openExerciseModal={this.props.openExerciseModal}
-            openLogModal={this.props.openLogModal} />
+            openLogModal={this.props.openLogModal}
+            events={this.props.events} />
         </View>
         /* jshint ignore:end */
       );

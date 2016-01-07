@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 16:09:45
+* @Last Modified time: 2016-01-07 11:39:51
 */
 
 'use strict';
@@ -82,6 +82,7 @@ var TabBar = React.createClass({
             openPartModal={this.props.openPartModal}
             openDateModal={this.props.openDateModal}
             openLogModal={this.props.openLogModal}
+            onSetNewWorkout={this.props.onSetNewWorkout}
             events={this.props.events} />
         </TabBarIOS.Item>
       </TabBarIOS>
