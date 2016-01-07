@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 19:43:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:41:22
+* @Last Modified time: 2016-01-07 10:56:32
 */
 
 'use strict';
@@ -19,7 +19,7 @@ var {
 
 var NotesInput = React.createClass({
   _setNotes: function(text){
-    // logModalActions.setResultCustom(val);
+    logModalActions.setNotes(text);
   },
   render: function() {
     return (

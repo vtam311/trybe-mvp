@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:30:37
+* @Last Modified time: 2016-01-07 10:53:35
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var SelectedResultInput = React.createClass({
     console.log('selectedResultInput segmCtrlIdx', this.props.segmCtrlIdx);
 
 
-    //Feed relevant result vals to inputs based on result types
+    //Only feed relevant result vals to inputs based on result types.
     var setInputProps = function(){
       switch(result.type) {
         case 'Time':

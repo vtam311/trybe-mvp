@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 13:16:41
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:57:34
+* @Last Modified time: 2016-01-07 10:59:44
 */
 
 'use strict';
@@ -22,6 +22,14 @@ var logModalActions = {
   initializeNotes: function(notes){
     AppDispatcher.handleAction({
       actionType: logModalConstants.INITIALIZE_NOTES,
+      data: {
+        notes: notes
+      }
+    });
+  },
+  setNotes: function(notes){
+    AppDispatcher.handleAction({
+      actionType: logModalConstants.SET_NOTES,
       data: {
         notes: notes
       }

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:51:16
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 11:03:59
 */
 
 'use strict';
@@ -113,7 +113,12 @@ var savePartResult = function(data){
   var partIdx = _store.targetPartIdx;
   var result = data.result;
   _store.workout.parts[partIdx].result = result;
-  console.log('editWorkoutStore savePartResults to', _store.workout.parts[partIdx].result);
+};
+
+var savePartNotes = function(data){
+  var partIdx = _store.targetPartIdx;
+  var notes = data.notes;
+  _store.workout.parts[partIdx].notes = notes;
 };
 
 var toggleRecording = function(data){
@@ -244,6 +249,10 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SAVE_PART_RESULT:
       savePartResult(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SAVE_PART_NOTES:
+      savePartNotes(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.TOGGLE_RECORDING:

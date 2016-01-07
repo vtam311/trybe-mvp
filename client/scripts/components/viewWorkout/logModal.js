@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 10:46:37
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 11:01:46
 */
 
 'use strict';
@@ -119,6 +119,7 @@ var LogModal = React.createClass({
   },
   saveChanges: function(){
     editWorkoutActions.savePartResult(this.state.result);
+    editWorkoutActions.savePartNotes(this.state.notes);
     this.closeModal();
   },
   render: function() {

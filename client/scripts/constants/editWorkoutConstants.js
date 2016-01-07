@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:32:26
+* @Last Modified time: 2016-01-07 11:02:14
 */
 
 'use strict';
@@ -18,6 +18,7 @@ var editWorkoutConstants = {
   SET_TARGET_EXERCISE_INDEX: 'SET_TARGET_EXERCISE_INDEX',
   SAVE_EXERCISE: 'SAVE_EXERCISE',
   SAVE_PART_RESULT: 'SAVE_PART_RESULT',
+  SAVE_PART_NOTES: 'SAVE_PART_NOTES',
   TOGGLE_RECORDING: 'TOGGLE_RECORDING',
   SET_RESULT_TYPE: 'SET_RESULT_TYPE',
   ADD_PART: 'ADD_PART',

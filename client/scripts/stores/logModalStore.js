@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:59:34
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 10:59:25
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var initializeResult = function(data) {
   _store.result = result;
 };
 
-var initializeNotes = function(data) {
+var setNotes = function(data) {
   var notes = data.notes;
   _store.notes = notes;
 };
@@ -101,7 +101,11 @@ AppDispatcher.register(function(payload){
       logModalStore.emit(CHANGE_EVENT);
       break;
     case logModalConstants.INITIALIZE_NOTES:
-      initializeNotes(action.data);
+      setNotes(action.data);
+      logModalStore.emit(CHANGE_EVENT);
+      break;
+    case logModalConstants.SET_NOTES:
+      setNotes(action.data);
       logModalStore.emit(CHANGE_EVENT);
       break;
     case logModalConstants.SET_RESULT_TIME:
