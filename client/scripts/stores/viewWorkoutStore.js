@@ -20,13 +20,17 @@ var initPartsAreLogged = function(data){
 
   //get numParts from editWorkoutStore
   var numParts = editWorkoutStore.getNumParts();
-  console.log('viewWorkoutStore got numParts from editWorkoutStore of', numParts);
 
-  // var numParts = data.numParts;
   for(let i = 0; i < numParts; i++){
     _store.partsAreLogged.push(false);
   }
   console.log('viewWorkoutStore initPartsAreLogged set partsAreLogged to', _store.partsAreLogged);
+};
+
+var setPartIsLoggedTrue = function(data){
+  var partIdx = data.partIdx;
+  _store.partsAreLogged[partIdx] = true;
+  console.log('viewWorkoutStore setPartIsLogged update to', _store.partsAreLogged);
 };
 
 var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -36,8 +40,8 @@ var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getWorkout: function(){
-    return _store.workout;
+  getPartsAreLogged: function(){
+    return _store.partsAreLogged;
   },
 });
 
@@ -46,6 +50,10 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case viewWorkoutConstants.INIT_PARTS_ARE_LOGGED:
       initPartsAreLogged(action.data);
+      viewWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case viewWorkoutConstants.SET_PART_IS_LOGGED_TRUE:
+      setPartIsLoggedTrue(action.data);
       viewWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

@@ -12,6 +12,14 @@ var viewWorkoutActions = {
       }
     });
   },
+  setPartIsLoggedTrue: function(partIdx) {
+    AppDispatcher.handleAction({
+      actionType: viewWorkoutConstants.SET_PART_IS_LOGGED_TRUE,
+      data: {
+        partIdx: partIdx
+      }
+    });
+  },
 };
 
 module.exports = viewWorkoutActions;

@@ -30,7 +30,7 @@ var ViewWorkout = React.createClass({
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       //initially get workout template so component can load
       workout: editWorkoutStore.getWorkout(),
-      partsAreLogged: null, //will load once workout is retrieved
+      partsAreLogged: [], //will load once workout is retrieved
       visibleHeight: Dimensions.get('window').height
     };
   },
@@ -54,11 +54,9 @@ var ViewWorkout = React.createClass({
     editWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    //update start's numParts
-    //use numParts to set length of partsAreLogged
     this.setState({
       workout: editWorkoutStore.getWorkout(),
-      // partsAreLogged: viewWorkoutStore.getPartsAreLogged()
+      partsAreLogged: viewWorkoutStore.getPartsAreLogged()
     });
   },
   initPartsAreLogged: function(){
@@ -78,7 +76,8 @@ var ViewWorkout = React.createClass({
             part={part}
             partIdx={index}
             openExerciseModal={this.props.openExerciseModal}
-            openLogModal={this.props.openLogModal} />
+            openLogModal={this.props.openLogModal}
+            partIsLogged={this.state.partsAreLogged[index]} />
         </View>
         /* jshint ignore:end */
       );

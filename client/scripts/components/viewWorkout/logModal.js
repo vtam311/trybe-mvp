@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 11:07:29
+* @Last Modified time: 2016-01-07 21:05:13
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var logModalStore = require('../../stores/logModalStore');
 var logModalActions = require('../../actions/logModalActions');
 
@@ -120,6 +121,7 @@ var LogModal = React.createClass({
   saveChanges: function(){
     editWorkoutActions.savePartResult(this.state.result);
     editWorkoutActions.savePartNotes(this.state.notes);
+    viewWorkoutActions.setPartIsLoggedTrue(this.state.partIdx);
     this.closeModal();
   },
   render: function() {

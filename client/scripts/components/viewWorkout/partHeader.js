@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 20:00:14
+* @Last Modified time: 2016-01-07 21:16:35
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 var {
   StyleSheet,
@@ -20,23 +21,11 @@ var {
 } = React;
 
 var ViewPartHeader = React.createClass({
-  getInitialState: function(){
-    return {
-      isLogged: false
-    };
-  },
   logPart: function(){
     //set targetPartIdx to notify editWorkoutStore which part
     //is being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
-    this.setIsLoggedTrue();
     this.props.openLogModal();
-  },
-  setIsLoggedFalse: function(){
-    this.setState({ isLogged: false });
-  },
-  setIsLoggedTrue: function(){
-    this.setState({ isLogged: true });
   },
   render: function(){
     var part = this.props.part;
@@ -47,7 +36,7 @@ var ViewPartHeader = React.createClass({
       <Image source={require('image!expandArrow')} />
     ;
 
-    var logOrLoggedIcon = this.state.isLogged ?
+    var logOrLoggedIcon = this.props.partIsLogged ?
       <TouchableOpacity onPress={this.logPart}>
         <Image
           source={require('image!loggedIcon')}
