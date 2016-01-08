@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 20:08:09
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 21:28:25
 */
 
 'use strict';
@@ -43,9 +43,6 @@ var EditWorkout = React.createClass({
   },
   componentDidMount: function() {
     editWorkoutStore.addChangeListener(this._onChange);
-    //resets viewWorkout's isLogged states to false, since user is
-    //creating new workout
-    this.props.onSetNewWorkout();
   },
   componentWillUnmount: function() {
     editWorkoutStore.removeChangeListener(this._onChange);

@@ -42,10 +42,6 @@ var Trybe = React.createClass({
     //emits event to notify workout navigator to reset stack
     this.rootNavListener.emit('doWorkout');
   },
-  onSetNewWorkout: function() {
-    //emits event to notify viewWorkout to reset isLogged states to false
-    this.rootNavListener.emit('setNewWorkout');
-  },
   openExerciseModal: function(){
     this.setState({exerciseModalVisible: true});
   },
@@ -81,7 +77,6 @@ var Trybe = React.createClass({
         openDateModal={this.openDateModal}
         openLogModal={this.openLogModal}
         onDoWorkout={this.onDoWorkout}
-        onSetNewWorkout={this.onSetNewWorkout}
         events={this.rootNavListener} />
     );
   },
