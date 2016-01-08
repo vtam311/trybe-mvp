@@ -47,7 +47,6 @@ var Trybe = React.createClass({
   onSetNewWorkout: function() {
     //emits event to notify viewWorkout to reset isLogged states to false
     this.rootNavListener.emit('setNewWorkout');
-    console.log('rootNav onSetNewWorkout called');
   },
   openExerciseModal: function(){
     this.setState({exerciseModalVisible: true});

@@ -1,14 +1,13 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 11:38:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 20:00:14
 */
 
 'use strict';
 
 var React = require('react-native');
-var Subscribable = require('Subscribable'); //used for addListenerOn
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
@@ -21,15 +20,10 @@ var {
 } = React;
 
 var ViewPartHeader = React.createClass({
-  mixins: [Subscribable.Mixin],
-
   getInitialState: function(){
     return {
       isLogged: false
     };
-  },
-  componentDidMount: function(){
-    this.addListenerOn(this.props.events, 'setNewWorkout', this.setIsLoggedFalse);
   },
   logPart: function(){
     //set targetPartIdx to notify editWorkoutStore which part

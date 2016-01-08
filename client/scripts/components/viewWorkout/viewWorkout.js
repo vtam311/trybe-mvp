@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var Subscribable = require('Subscribable'); //used for addListenerOn
+
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
@@ -20,36 +22,50 @@ var {
 } = React;
 
 var ViewWorkout = React.createClass({
-  //viewWorkout initializes workout from editWorkoutStore.
-  //Any changes are reflected in both views.
+  mixins: [Subscribable.Mixin],
 
-  //On going to editWorkout scene, the workout gets
-  //reset to an empty workout template
   getInitialState: function(){
     return {
-      //shows daily workout unless a custom one is selected
-      //if val is default, we load getDailyWorkout
-      //else we don't load it, and set the workout when user selects it
-      //from elsewhere.
-      showDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
+      //shows default daily workout unless a custom one is selected
+      isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
+      //initially get workout template so component can load
       workout: editWorkoutStore.getWorkout(),
+      partsAreLogged: null, //will load once workout is retrieved
       visibleHeight: Dimensions.get('window').height
     };
   },
-  componentDidMount: function(){
+  componentWillMount: function(){
     editWorkoutStore.addChangeListener(this._onChange);
+    viewWorkoutStore.addChangeListener(this._onChange);
 
-    if(this.state.showDefaultOrCustom === 'default'){
+    //Get daily workout, if user did not manually select one
+    //viewWorkout gets workout from editWorkoutStore.
+    //Any changes are reflected in both views.
+    if(this.state.isDefaultOrCustom === 'default'){
       editWorkoutActions.getDailyWorkout();
     }
+  },
+  componentDidMount: function(){
+    this.addListenerOn(this.props.events, 'setNewWorkout', this.initPartsAreLogged);
+    console.log('componentDidMount calling initPartsAreLogged');
+    this.initPartsAreLogged();
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
+    //update start's numParts
+    //use numParts to set length of partsAreLogged
     this.setState({
-      workout: editWorkoutStore.getWorkout()
+      workout: editWorkoutStore.getWorkout(),
+      // partsAreLogged: viewWorkoutStore.getPartsAreLogged()
     });
+  },
+  initPartsAreLogged: function(){
+    //Init partsAreLogged to false, to show that no parts
+    //of workout have been logged yet. Called when new workout loads
+    viewWorkoutActions.initPartsAreLogged();
+    console.log('initPartsAreLogged called');
   },
   render: function(){
     var workout = this.state.workout;
@@ -62,8 +78,7 @@ var ViewWorkout = React.createClass({
             part={part}
             partIdx={index}
             openExerciseModal={this.props.openExerciseModal}
-            openLogModal={this.props.openLogModal}
-            events={this.props.events} />
+            openLogModal={this.props.openLogModal} />
         </View>
         /* jshint ignore:end */
       );

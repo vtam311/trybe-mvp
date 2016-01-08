@@ -1,7 +1,7 @@
 'use strict';
 
 var viewWorkoutConstants = {
-  SET_WORKOUT: 'SET_WORKOUT',
+  INIT_PARTS_ARE_LOGGED: 'INIT_PARTS_ARE_LOGGED'
 };
 
 module.exports = viewWorkoutConstants;

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 11:03:59
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 20:47:09
 */
 
 'use strict';
@@ -192,6 +192,9 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     } else {
       return EXERCISE_TEMPLATE;
     }
+  },
+  getNumParts: function(){
+    return _store.workout.parts.length;
   },
   getPartName: function(){
     var partIdx = _store.targetPartIdx;

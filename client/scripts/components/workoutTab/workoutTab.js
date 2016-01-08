@@ -3,6 +3,7 @@
 var React = require('react-native');
 var Subscribable = require('Subscribable'); //used for addListenerOn
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
@@ -74,25 +75,51 @@ var WorkoutTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity
-        style={styles.navBarComponentContainer}
-        onPress={ () => {
+    //Show left button based on user's view
+    switch (route.name) {
+      //If viewing today's workout, render create workout button
+      case 'New Workout':
+        var handleLeftPress = function(){
+          viewWorkoutActions.initPartsAreLogged();
           if(index > 0) {
             navigator.pop();
           }
-        }}>
-        { index > 0 ?
-          <Image
-            style={{height: 22, width: 12}}
-            source={ require('image!backArrow') } /> : null }
-      </TouchableOpacity>
-      /* jshint ignore:end */
-    );
+        };
+        return (
+          /* jshint ignore:start */
+          <TouchableOpacity
+            style={styles.navBarComponentContainer}
+            onPress={ () => handleLeftPress()}>
+            { index > 0 ?
+              <Image
+                style={{height: 22, width: 12}}
+                source={ require('image!backArrow') } /> : null }
+          </TouchableOpacity>
+          /* jshint ignore:end */
+        );
+        break;
+      default:
+        return (
+          /* jshint ignore:start */
+          <TouchableOpacity
+            style={styles.navBarComponentContainer}
+            onPress={ () => {
+              if(index > 0) {
+                navigator.pop();
+              }
+            }}>
+            { index > 0 ?
+              <Image
+                style={{height: 22, width: 12}}
+                source={ require('image!backArrow') } /> : null }
+          </TouchableOpacity>
+          /* jshint ignore:end */
+        );
+    }
   },
 
   RightButton: function(route, navigator, index, navState) {
+    //Show right button based on user's view
     switch (route.name) {
       //If viewing today's workout, render create workout button
       case 'Today':
@@ -122,9 +149,8 @@ var NavBarRouteMapper = {
         );
         break;
       default:
-        return true;
+        return null;
     }
-    return null;
   },
 
   Title: function(route, navigator, index, navState) {
@@ -136,10 +162,6 @@ var NavBarRouteMapper = {
       /* jshint ignore:end */
     );
   },
-
-  onAddPartPress: function(){
-
-  }
 };
 
 var styles = StyleSheet.create({
