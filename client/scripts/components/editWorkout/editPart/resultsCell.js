@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:38:07
+* @Last Modified time: 2016-01-07 21:49:12
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var isCustomMetric = require('../../../common/isCustomMetric');
 
 var {
   SwitchIOS,
@@ -39,14 +40,9 @@ var ResultsCell = React.createClass({
     if(this.state.recordingSwitchIsOn){
       //If recording custom result, show
       //both SegmCtrl and text input from ResultOptions
-      if(this.props.resultType &&
-        this.props.resultType !== 'Time' &&
-        this.props.resultType !== 'Rounds' &&
-        this.props.resultType !==  'Max Load'){
+      if(isCustomMetric(this.props.resultType)){
         return 144;
       } else {
-        //If recording Time, Rounds, or Max Load,
-        //adjust to fit SegmCtrl in ResultOptions
         return 100;
       }
     } else {

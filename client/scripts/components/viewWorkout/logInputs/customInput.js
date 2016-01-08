@@ -1,14 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-06 16:09:06
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 10:42:59
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 21:44:18
 */
 
 'use strict';
 
 var React = require('react-native');
 var logModalActions = require('../../../actions/logModalActions');
+var isCustomMetric = require('../../../common/isCustomMetric');
 
 var {
   View,
@@ -29,12 +30,7 @@ var CustomInput = React.createClass({
     this.checkIsCustomMetric();
   },
   checkIsCustomMetric: function(){
-    //TO DO: Use helper function to replace all checks of
-    //isCustomMetric logic
-    if(this.state.metric &&
-      this.state.metric !== 'Time' &&
-      this.state.metric !== 'Rounds' &&
-      this.state.metric !== 'Max Load'){
+    if(isCustomMetric(this.state.metric)){
       this.setState({isCustomMetric: true});
     }
   },

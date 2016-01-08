@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 10:59:25
+* @Last Modified time: 2016-01-07 21:45:26
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var logModalConstants = require('../constants/logModalConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 var copyObjHelper = require('../common/copyObjectHelper');
+var isCustomMetric = require('../common/isCustomMetric');
 
 var _store = {
   result: null,
@@ -64,13 +65,8 @@ var setResultCustom = function(data){
 };
 
 var setCustomResultType = function(){
-  //if result type is specific custom metric, leave as is
-  if(_store.result.type &&
-    _store.result.type !== 'Time' &&
-    _store.result.type !== 'Rounds' &&
-    _store.result.type !== 'Max Load'){
-  } else {
-    //else change to 'Custom'
+  //if result type is not custom metric, set to Custom
+  if(!isCustomMetric(_store.result.type)){
     _store.result.type = 'Custom';
   }
 };

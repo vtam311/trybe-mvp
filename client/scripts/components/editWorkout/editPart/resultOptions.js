@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 19:38:20
+* @Last Modified time: 2016-01-07 21:47:28
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var isCustomMetric = require('../../../common/isCustomMetric');
 
 var {
   SegmentedControlIOS,
@@ -52,10 +53,7 @@ var ResultOptions = React.createClass({
 
     var showOrHideCustomInput = function(){
       //If resultType is a custom one, show TextInput
-      if(resultType &&
-        resultType !== 'Time' &&
-        resultType !== 'Rounds' &&
-        resultType !==  'Max Load') {
+      if(isCustomMetric(resultType)){
         return (
           <View style={styles.cellRow}>
             <TextInput
