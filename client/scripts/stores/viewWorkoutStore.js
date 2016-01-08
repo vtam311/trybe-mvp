@@ -24,13 +24,11 @@ var initPartsAreLogged = function(data){
   for(let i = 0; i < numParts; i++){
     _store.partsAreLogged.push(false);
   }
-  console.log('viewWorkoutStore initPartsAreLogged set partsAreLogged to', _store.partsAreLogged);
 };
 
 var setPartIsLoggedTrue = function(data){
   var partIdx = data.partIdx;
   _store.partsAreLogged[partIdx] = true;
-  console.log('viewWorkoutStore setPartIsLogged update to', _store.partsAreLogged);
 };
 
 var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:50:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 21:23:59
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var indexActions = require('../../actions/indexActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var newWorkout = require('../../common/newWorkout');
 
 var {
@@ -27,6 +28,10 @@ var FeedCardFooter = React.createClass({
 
     //update editWorkoutStore's customOrDefault value to custom
     editWorkoutActions.setDefaultOrCustom('custom');
+
+    //ensure all parts of workout in viewWorkout
+    //are initialized to false for isLogged, as is new workout
+    viewWorkoutActions.initPartsAreLogged();
 
     //reset workout tab stack to viewWorkout scene
     this.props.onDoWorkout();

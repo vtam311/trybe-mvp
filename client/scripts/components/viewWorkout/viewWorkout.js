@@ -1,12 +1,11 @@
 'use strict';
 
 var React = require('react-native');
-var Subscribable = require('Subscribable'); //used for addListenerOn
 
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-var editWorkoutActions = require('../../actions/editWorkoutActions');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 //Load components
 import {TableView} from 'react-native-tableview-simple';
@@ -22,8 +21,6 @@ var {
 } = React;
 
 var ViewWorkout = React.createClass({
-  mixins: [Subscribable.Mixin],
-
   getInitialState: function(){
     return {
       //shows default daily workout unless a custom one is selected
@@ -46,9 +43,7 @@ var ViewWorkout = React.createClass({
     }
   },
   componentDidMount: function(){
-    this.addListenerOn(this.props.events, 'setNewWorkout', this.initPartsAreLogged);
-    console.log('componentDidMount calling initPartsAreLogged');
-    this.initPartsAreLogged();
+    viewWorkoutActions.initPartsAreLogged();
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
@@ -58,12 +53,6 @@ var ViewWorkout = React.createClass({
       workout: editWorkoutStore.getWorkout(),
       partsAreLogged: viewWorkoutStore.getPartsAreLogged()
     });
-  },
-  initPartsAreLogged: function(){
-    //Init partsAreLogged to false, to show that no parts
-    //of workout have been logged yet. Called when new workout loads
-    viewWorkoutActions.initPartsAreLogged();
-    console.log('initPartsAreLogged called');
   },
   render: function(){
     var workout = this.state.workout;
