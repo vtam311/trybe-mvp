@@ -1,4 +1,4 @@
-//Deprecatd as of 12/27/15
+//Deprecated as of 12/28/15
 
 // 'use strict';
 

@@ -46,7 +46,7 @@ var Feed = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={ styles.feedCard }>
-        <FeedCard card={card}/>
+        <FeedCard card={card} onDoWorkout={this.props.onDoWorkout}/>
       </View>
       /* jshint ignore:end */
     );

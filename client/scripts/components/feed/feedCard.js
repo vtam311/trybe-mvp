@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-06 16:37:35
+* @Last Modified time: 2015-12-29 14:23:02
 */
 
 'use strict';
@@ -39,8 +39,6 @@ var FeedCard = React.createClass({
               workout={ card.workout }/>
           </View>
           <View style={styles.body}>
-            <ViewResults
-              workout={ card.workout }/>
           </View>
         </View>
         /* jshint ignore:end */
@@ -73,7 +71,8 @@ var FeedCard = React.createClass({
           <FeedCardFooter
             workout={ card.workout }
             likes={ card.likes }
-            comments={ card.comments }/>
+            comments={ card.comments }
+            onDoWorkout={this.props.onDoWorkout} />
         </View>
       </View>
       /* jshint ignore:end */

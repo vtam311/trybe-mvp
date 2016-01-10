@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-27 15:58:08
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-07 21:27:41
 */
 
 'use strict';
@@ -67,7 +67,8 @@ var TabBar = React.createClass({
           icon={ require('image!home') }
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
-          <FeedTab/>
+          <FeedTab
+            onDoWorkout={this.props.onDoWorkout} />
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
@@ -80,6 +81,7 @@ var TabBar = React.createClass({
             openExerciseModal={this.props.openExerciseModal}
             openPartModal={this.props.openPartModal}
             openDateModal={this.props.openDateModal}
+            openLogModal={this.props.openLogModal}
             events={this.props.events} />
         </TabBarIOS.Item>
       </TabBarIOS>
