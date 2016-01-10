@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 15:02:32
+* @Last Modified time: 2016-01-10 14:55:55
 */
 
 'use strict';
@@ -10,68 +10,38 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var logConstants = require('../constants/logConstants');
 
+var newWorkout = require('../common/newWorkout');
+var newObject = require('../common/copyObjectHelper');
+
+var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
+var DUMMY_WORKOUT_2 = newWorkout(DUMMY_WORKOUT);
+DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+
 var logActions = {
-  getCards: function() {
+  getWorkouts: function() {
     //To do: make get req to server
-    var dummyCards = [
-      {
-        workout: {
-          id: 24,
-          username: 'Joe Leopard',
-          trybe: 'King Kong with Tempest Freerunning',
-          day: 14,
-          createdAt: 'Yesterday',
-          type: 'Custom',
-          parts: [
-            {
-              instructions:'Flying Kong Drills. Do 5 rounds each of the following exercises, resting 3-5 min between each round.',
-              media: {
-                title: 'Height with Hips',
-                url: 'www.youtube.com'
-              },
-              exercises: [
-                {
-                  name: 'Vertical Jumps',
-                  reps: 7,
-                  load: {units: 'lb', val: null},
-                  time: null,
-                  distance: {units: null, val: null},
-                  url: null
-                },
-                {
-                  name: 'Sprawls',
-                  reps: 15,
-                  load: {units: 'lb', val: null},
-                  time: null,
-                  distance: null,
-                  url: null
-                },
-              ],
-              notes:
-                'Vertical Jumps felt fantastic. Sprawls need more explosiveness.',
-            }
-          ],
-          origin: 23,
-          finalResult: {type: null, value: null}
-        },
-        likes: 12,
-        comments: 3
-      }
+    var DUMMY_WORKOUTS = [
+      newWorkout(DUMMY_WORKOUT),
+      newWorkout(DUMMY_WORKOUT_2)
     ];
 
-    this.setCards(dummyCards);
+    this.setWorkouts(DUMMY_WORKOUTS);
   },
-  setCards: function(cards) {
+  setWorkouts: function(workouts) {
     AppDispatcher.handleAction({
-      actionType: logConstants.SET_LOG_CARDS,
-      data: cards
+      actionType: logConstants.SET_LOG_WORKOUTS,
+      data: {
+        workouts: workouts
+      }
     });
   },
-  //once cards are added to db, should no longer need this
-  tempAddCard: function(card){
+  //once workouts are added to db, should no longer need this
+  tempAddCard: function(workout){
     AppDispatcher.handleAction({
-      actionType: logConstants.ADD_LOG_CARD,
-      data: card
+      actionType: logConstants.ADD_LOG_WORKOUT,
+      data: {
+        workout: workout
+      }
     });
   }
 };

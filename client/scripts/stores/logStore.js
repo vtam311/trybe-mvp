@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:59:38
+* @Last Modified time: 2016-01-10 15:03:37
 */
 
 'use strict';
@@ -13,15 +13,17 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  cards: []
+  workouts: []
 };
 
-var setCards = function(cards){
-  cards.forEach( (i) => _store.cards.push(i) );
+var setWorkouts = function(data){
+  var workouts = data.workouts;
+  workouts.forEach( (workout) => _store.workouts.push(workout) );
 };
 
-var addCard = function(card){
-  _store.cards.push(card);
+var addWorkout = function(data){
+  var workout = data.workout;
+  _store.workouts.push(workout);
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {
@@ -31,20 +33,20 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getCards: function(){
-    return _store.cards;
+  getWorkouts: function(){
+    return _store.workouts;
   },
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case logConstants.SET_LOG_CARDS:
-      setCards(action.data);
+    case logConstants.SET_LOG_WORKOUTS:
+      setWorkouts(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
-    case logConstants.ADD_LOG_CARD:
-      addCard(action.data);
+    case logConstants.ADD_LOG_WORKOUT:
+      addWorkout(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
     default:
