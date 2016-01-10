@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-24 11:36:00
+* @Last Modified time: 2016-01-09 17:01:48
 */
 
 'use strict';
@@ -68,7 +68,7 @@ var Log = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#EFEFF4',
   }
 });
 
