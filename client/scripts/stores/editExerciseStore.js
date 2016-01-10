@@ -2,10 +2,8 @@
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-10 17:39:05
+* @Last Modified time: 2016-01-02 17:44:20
 */
-
-'use strict';
 
 'use strict';
 
@@ -22,9 +20,9 @@ var _store = {
 
 var initializeExercise = function(data) {
   //Initializes exercise with exercise user selected
-  //Retrieved from createWorkoutStore's targetExercise
+  //Retrieved from editWorkoutStore's targetExercise
   //Using copyObjHelper to prevent changes in this store to auto
-  //change in createWorkoutStore, as assignment would reference
+  //change in editWorkoutStore, as assignment would reference
   //same place in memory
   var ex = copyObjHelper(data.exercise);
   _store.exercise = ex;

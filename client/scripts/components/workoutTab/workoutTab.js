@@ -2,12 +2,12 @@
 
 var React = require('react-native');
 var Subscribable = require('Subscribable'); //used for addListenerOn
-
-var workoutTabActions = require('../../actions/workoutTabActions');
-var createWorkoutActions = require('../../actions/createWorkoutActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
+var EditWorkout = require('../editWorkout/editWorkout');
 
 var {
   StyleSheet,
@@ -39,7 +39,6 @@ var WorkoutTab = React.createClass({
     });
   },
   resetRoute: function(route){
-    console.log('workoutTab resetRoute called');
     this.refs.workoutNav.popToTop();
   },
   renderScene: function(route, navigator){
@@ -50,7 +49,9 @@ var WorkoutTab = React.createClass({
         goToScene={this.goToScene}
         openExerciseModal={this.props.openExerciseModal}
         openPartModal={this.props.openPartModal}
-        openDateModal={this.props.openDateModal} />
+        openDateModal={this.props.openDateModal}
+        openLogModal={this.props.openLogModal}
+        events={this.props.events} />
     );
   },
   render: function() {
@@ -73,38 +74,82 @@ var WorkoutTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity
-        style={styles.navBarComponentContainer}
-        onPress={ () => {
+    //Show left button based on user's view
+    switch (route.name) {
+      //If viewing today's workout, render create workout button
+      case 'New Workout':
+        var handleLeftPress = function(){
+          viewWorkoutActions.initPartsAreLogged();
           if(index > 0) {
             navigator.pop();
           }
-        }}>
-        { index > 0 ?
-          <Image
-            style={{height: 22, width: 12}}
-            source={ require('image!backArrow') } />
-          : null }
-      </TouchableOpacity>
-      /* jshint ignore:end */
-    );
+        };
+        return (
+          /* jshint ignore:start */
+          <TouchableOpacity
+            style={styles.navBarComponentContainer}
+            onPress={ () => handleLeftPress()}>
+            { index > 0 ?
+              <Image
+                style={{height: 22, width: 12}}
+                source={ require('image!backArrow') } /> : null }
+          </TouchableOpacity>
+          /* jshint ignore:end */
+        );
+        break;
+      default:
+        return (
+          /* jshint ignore:start */
+          <TouchableOpacity
+            style={styles.navBarComponentContainer}
+            onPress={ () => {
+              if(index > 0) {
+                navigator.pop();
+              }
+            }}>
+            { index > 0 ?
+              <Image
+                style={{height: 22, width: 12}}
+                source={ require('image!backArrow') } /> : null }
+          </TouchableOpacity>
+          /* jshint ignore:end */
+        );
+    }
   },
 
   RightButton: function(route, navigator, index, navState) {
-    console.log('navState is', navState);
-    //If in New Workout scene, render 'Add Part' button
-    if(route.name === 'New Workout'){
-      return (
-        <TouchableOpacity
-          onPress={() => createWorkoutActions.addPart()}
-          style={styles.navBarComponentContainer} >
-          <Text style={styles.navBarSideText}>Add Part</Text>
-        </TouchableOpacity>
-      );
+    //Show right button based on user's view
+    switch (route.name) {
+      //If viewing today's workout, render create workout button
+      case 'Today':
+        var handleRightPress = function(){
+          editWorkoutActions.resetWorkout();
+          navigator.push({
+            component: EditWorkout,
+            name: 'New Workout'
+          });
+        };
+        return (
+          <TouchableOpacity
+            onPress={() => handleRightPress()}
+            style={styles.navBarComponentContainer} >
+            <Image source={require('image!createIcon')} />
+          </TouchableOpacity>
+        );
+        break;
+      //If in New Workout scene, render 'Add Part' button
+      case 'New Workout':
+        return (
+          <TouchableOpacity
+            onPress={() => editWorkoutActions.addPart()}
+            style={styles.navBarComponentContainer} >
+            <Text style={styles.navBarSideText}>Add Part</Text>
+          </TouchableOpacity>
+        );
+        break;
+      default:
+        return null;
     }
-    return null;
   },
 
   Title: function(route, navigator, index, navState) {
@@ -116,10 +161,6 @@ var NavBarRouteMapper = {
       /* jshint ignore:end */
     );
   },
-
-  onAddPartPress: function(){
-
-  }
 };
 
 var styles = StyleSheet.create({

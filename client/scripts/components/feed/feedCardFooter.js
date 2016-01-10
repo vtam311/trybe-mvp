@@ -1,17 +1,17 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-01 11:03:23
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-07 21:23:59
 */
 
 'use strict';
 
 var React = require('react-native');
 var indexActions = require('../../actions/indexActions');
-var workoutTabActions = require('../../actions/workoutTabActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
-var copyObjectHelper = require('../../common/copyObjectHelper');
+var newWorkout = require('../../common/newWorkout');
 
 var {
   StyleSheet,
@@ -22,11 +22,19 @@ var {
 
 var FeedCardFooter = React.createClass({
   viewWorkout: function(workout) {
-    var separateWorkout = copyObjectHelper(workout);
-    viewWorkoutActions.setSelectedWorkout(separateWorkout);
+    var separateWorkout = newWorkout(workout);
+    //set workout in workout tab
+    editWorkoutActions.setWorkout(separateWorkout);
 
-    //To do: clear workout tab's nav stack
-    workoutTabActions.setView('Today\'s Workout');
+    //update editWorkoutStore's customOrDefault value to custom
+    editWorkoutActions.setDefaultOrCustom('custom');
+
+    //ensure all parts of workout in viewWorkout
+    //are initialized to false for isLogged, as is new workout
+    viewWorkoutActions.initPartsAreLogged();
+
+    //reset workout tab stack to viewWorkout scene
+    this.props.onDoWorkout();
     indexActions.setTab('workout');
   },
 

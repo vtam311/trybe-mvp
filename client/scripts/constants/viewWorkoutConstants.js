@@ -1,8 +1,8 @@
 'use strict';
 
 var viewWorkoutConstants = {
-  SET_DEFAULT_WORKOUT: 'SET_DEFAULT_WORKOUT',
-  SET_SELECTED_WORKOUT: 'SET_SELECTED_WORKOUT'
+  INIT_PARTS_ARE_LOGGED: 'INIT_PARTS_ARE_LOGGED',
+  SET_PART_IS_LOGGED_TRUE: 'SET_PART_IS_LOGGED_TRUE'
 };
 
 module.exports = viewWorkoutConstants;
