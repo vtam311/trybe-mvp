@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 15:09:26
+* @Last Modified time: 2016-01-10 16:23:04
 */
 
 'use strict';
@@ -22,11 +22,24 @@ var LogCardHeader = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
-        <Text>{dateDescr}</Text>
+      <View style={styles.header}>
+        <Text style={styles.dateText}>{dateDescr}</Text>
       </View>
       /* jshint ignore:end */
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  header: {
+    paddingBottom: 20,
+    // flexDirection: 'row',
+    // justifyContent: 'center'
+  },
+  dateText: {
+    fontFamily: 'Avenir Next',
+    // fontStyle: 'italic',
+    fontSize: 16,
   }
 });
 

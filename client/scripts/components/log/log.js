@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 15:00:03
+* @Last Modified time: 2016-01-10 15:46:59
 */
 
 'use strict';
@@ -46,7 +46,7 @@ var Log = React.createClass({
   renderRow: function(workout){
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.logCardContainer}>
         <LogCard
           workout={workout}
           onDoWorkout={this.props.onDoWorkout} />
@@ -69,6 +69,9 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EFEFF4',
+  },
+  logCardContainer: {
+    marginBottom: 15
   }
 });
 

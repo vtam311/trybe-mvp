@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-29 14:23:45
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 16:14:54
 */
 
 //Still useful, but currently not in use
@@ -17,14 +17,9 @@ var {
   View,
 } = React;
 
-var viewExercise = React.createClass({
-  createResultText: function(){
-    var result;
-
-    return result;
-  },
+var ViewResults = React.createClass({
   render: function(){
-    var workout = this.props.workout;
+    var part = this.props.part;
 
     var renderResultsTime = function(time) {
       var result;
@@ -60,8 +55,8 @@ var viewExercise = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={styles.workoutResult}>
-        <Text style={styles.resultText}>{renderResultsTime(workout.finalResult.value)}</Text>
+      <View style={styles.partResult}>
+        <Text style={styles.resultText}>{renderResultsTime(part.result.val)}</Text>
       </View>
       /* jshint ignore:end */
     );
@@ -69,16 +64,19 @@ var viewExercise = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  workoutResult: {
-    marginTop: 20,
-    marginBottom: 10
+  partResult: {
+    marginTop: 10,
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
   },
   resultText: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'Avenir Next',
+    fontStyle: 'italic',
     color: 'grey',
-    fontSize: 14,
-    fontWeight: '600'
+    fontSize: 15,
+    fontWeight: '500'
   }
 });
 
-module.exports = viewExercise;
+module.exports = ViewResults;

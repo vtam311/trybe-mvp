@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 16:23:39
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-10 16:11:00
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var React = require('react-native');
 
 //Load components
 var ViewExercise = require('./viewExercise');
+var ViewResults = require('./viewResults');
 
 var {
   StyleSheet,
@@ -22,15 +23,14 @@ var ViewWorkoutBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    //workouts are made of parts. partsView is an array of partViews,
-    //which renders a part's instructions and exercises
+    //workouts are made of parts. partsView will be an array of
+    //partViews, which renders a part's instructions, exercises, and results
     var partsView = [];
 
     //Traverse parts
-    for(var i = 0; i < workout.parts.length; i++){
+    workout.parts.forEach( (part, i) => {
       var partView = partsView[i] = [];
-      var currPart = workout.parts[i];
-      var instructions = currPart.instructions;
+      var instructions = part.instructions;
 
       //Add instructions to partView
       partView.push(
@@ -42,17 +42,25 @@ var ViewWorkoutBody = React.createClass({
       );
 
       //Add exercises to partView
-      for(var n = 0; n < currPart.exercises.length; n++){
-        var currExercise = currPart.exercises[n];
+      part.exercises.forEach( (exercise, n) => {
         partView.push(
           /* jshint ignore:start */
           <View style={styles.exercises}>
-            <ViewExercise exercise={currExercise}/>
+            <ViewExercise exercise={exercise}/>
           </View>
           /* jshint ignore:end */
         );
-      }
-    }
+      });
+
+    //Add results to partView
+      partView.push(
+        /* jshint ignore:start */
+        <View style={styles.exercises}>
+          <ViewResults part={part}/>
+        </View>
+        /* jshint ignore:end */
+      );
+    });
 
     return (
       /* jshint ignore:start */
@@ -67,8 +75,9 @@ var ViewWorkoutBody = React.createClass({
 var styles = StyleSheet.create({
   instructionText: {
     marginBottom: 10,
-    fontFamily: 'Helvetica',
-    color: '#434343'
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    color: '#000000'
   }
 });
 

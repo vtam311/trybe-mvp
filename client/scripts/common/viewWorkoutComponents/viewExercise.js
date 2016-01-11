@@ -104,7 +104,7 @@ var styles = StyleSheet.create({
   exerciseText: {
     marginRight: 4,
     fontFamily: 'Avenir Next',
-    fontSize: 16,
+    fontSize: 15,
     color: '#000000'
   }
 });

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-12-28 19:13:10
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-10 16:25:19
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -38,7 +38,7 @@ var EXERCISE_TEMPLATE_THREE = {
 
 var PART_TEMPLATE = {
   name: null,
-  instructions: '20min AMRAP Of',
+  instructions: '20min AMRAP of',
   media: {
     title: null,
     src: null
@@ -48,7 +48,7 @@ var PART_TEMPLATE = {
     copyObjectHelper(EXERCISE_TEMPLATE_TWO),
     copyObjectHelper(EXERCISE_TEMPLATE_THREE)
   ],
-  result: {isRecording: false, type: null, val: null},
+  result: {isRecording: true, type: 'Time', val: '00:17:59'},
   notes: null
 };
 
