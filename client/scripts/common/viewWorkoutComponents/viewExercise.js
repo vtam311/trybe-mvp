@@ -15,12 +15,12 @@ var {
 //such as reps, time, distance, and load
 var viewExercise = React.createClass({
   render: function(){
-    var customFontSize = this.props.customFontSize;
+    var customFontFamily = this.props.customFontFamily;
 
     //Enable custom font size when using this component
     var exStyleText;
-    if(customFontSize){
-      exStyleText = [...{}, styles.exerciseText, {fontSize: customFontSize}];
+    if(customFontFamily){
+      exStyleText = [...{}, styles.exerciseText, {fontFamily: customFontFamily}];
     } else {
       exStyleText = [...{}, styles.exerciseText];
     }

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:34:27
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 14:18:12
 */
 
 'use strict';
@@ -36,7 +36,7 @@ var EditExerciseCell = React.createClass({
       <CustomCell onPress={this._handlePress}>
         <View style={styles.cellContainer}>
           <View style={styles.exercisePreview}>
-            <ViewExercise exercise={this.props.exercise} />
+            <ViewExercise exercise={this.props.exercise} customFontFamily='Avenir Next' />
           </View>
           <Image
             style={{height: 13, width: 8}}
