@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:09:52
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 14:21:06
 */
 
 'use strict';
@@ -48,6 +48,7 @@ var styles = StyleSheet.create({
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
+    color: '#2D2D2D',
     fontStyle: 'italic',
     fontSize: 16
   },
