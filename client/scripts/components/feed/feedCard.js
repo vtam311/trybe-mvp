@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 14:34:14
+* @Last Modified time: 2016-01-11 14:40:25
 */
 
 'use strict';
@@ -36,8 +36,7 @@ var FeedCard = React.createClass({
         <View>
           <View style={styles.cardWorkout}>
             <ViewWorkoutBody
-              workout={ card.workout }
-              showNotes={false} />
+              workout={ card.workout } />
           </View>
           <View style={styles.body}>
           </View>
