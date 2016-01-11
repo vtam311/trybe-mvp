@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 16:25:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 17:07:32
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -37,7 +37,7 @@ var EXERCISE_TEMPLATE_THREE = {
 };
 
 var PART_TEMPLATE = {
-  name: null,
+  name: 'Metcon',
   instructions: '20min AMRAP of',
   media: {
     title: null,

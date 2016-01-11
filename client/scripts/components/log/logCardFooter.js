@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 16:39:40
+* @Last Modified time: 2016-01-10 17:13:56
 */
 
 'use strict';
@@ -48,12 +48,8 @@ var LogCardFooter = React.createClass({
       /* jshint ignore:start */
       <View style={styles.feedCardFooter}>
         <TouchableHighlight
-          onPress={ () => this.editWorkout(workout) }>
-          <Text>Edit</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
           onPress={ () => this.doWorkout(workout) }>
-          <Text>Do Again</Text>
+          <Text>Redo</Text>
         </TouchableHighlight>
       </View>
       /* jshint ignore:end */
@@ -65,7 +61,7 @@ var styles = StyleSheet.create({
   feedCardFooter: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     // borderTopWidth: .5,
     borderColor: '#c8c7cc',
     paddingTop: 10

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 16:44:06
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 17:13:08
 */
 
 'use strict';
@@ -27,17 +27,25 @@ var ViewWorkoutBody = React.createClass({
     //partViews, which renders a part's instructions, exercises, and results
     var partsView = [];
 
-    //Traverse parts
+    //Traverse parts to add part name, instructions, exercises, results
+    //to partView
     workout.parts.forEach( (part, i) => {
       var partView = partsView[i] = [];
       var instructions = part.instructions;
 
+      //Add part name
+      partView.push(
+       /* jshint ignore:start */
+        <View style={styles.partName}>
+          <Text style={styles.partNameText}>{part.name}</Text>
+        </View>
+        /* jshint ignore:end */
+      );
+
       //Add instructions to partView
       partView.push(
         /* jshint ignore:start */
-        <View style={styles.instructions}>
           <Text style={styles.instructionText}>{instructions}</Text>
-        </View>
         /* jshint ignore:end */
       );
 
@@ -73,8 +81,14 @@ var ViewWorkoutBody = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  instructions: {
+  partName: {
     paddingTop: 10,
+    paddingBottom: 10
+  },
+  partNameText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    color: '#929292',
   },
   instructionText: {
     marginBottom: 10,
