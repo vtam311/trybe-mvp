@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 17:02:37
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-10 21:33:36
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var LogCardHeader = require('./logCardHeader'); //depr 1/10/15
+var LogCardHeader = require('./logCardHeader');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var LogCardFooter = require('./logCardFooter');
 

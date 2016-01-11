@@ -2,10 +2,8 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 16:14:54
+* @Last Modified time: 2016-01-10 21:19:17
 */
-
-//Still useful, but currently not in use
 
 'use strict';
 

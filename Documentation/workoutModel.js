@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 17:07:32
+* @Last Modified time: 2016-01-10 21:05:24
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -55,7 +55,7 @@ var PART_TEMPLATE = {
 var WORKOUT_TEMPLATE = {
   id: 1,
   username: 'vtam',
-  trybe: 'ICON Athletes',
+  trybe: 'ICON Athlete',
   day: null,
   date: new Date(),
   parts: [copyObjectHelper(PART_TEMPLATE)],
