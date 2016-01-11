@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 22:41:13
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 14:01:51
 */
 
 'use strict';
@@ -34,7 +34,7 @@ var Part = React.createClass({
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <ViewResults part={part}/>
-        <Text style={styles.notesText}>Notes Test</Text>
+        <Text style={styles.notesText}>Happy with my performance this time around. Improved by 2 minutes from last time, which was about 2 months ago. Keep it up!</Text>
       </View>
       /* jshint ignore:end */
     );
@@ -43,20 +43,24 @@ var Part = React.createClass({
 
 var styles = StyleSheet.create({
   partContainer: {
-    marginTop: 5,
+    marginTop: 0,
   },
   partNameText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    fontStyle: 'italic',
+    // fontStyle: 'italic',
     color: '#4A4A4A',
     marginBottom: 8,
   },
   instructionText: {
-    fontFamily: 'Avenir Next',
+    fontFamily: 'Helvetica',
     fontSize: 15,
-    marginBottom: 15,
-    color: '#000000'
+    marginBottom: 10,
+    color: '#2D2D2D'
+  },
+  notesText: {
+    fontSize: 14,
+    fontStyle: 'italic'
   },
 });
 

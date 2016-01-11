@@ -115,9 +115,9 @@ var styles = StyleSheet.create({
   },
   exerciseText: {
     marginRight: 4,
-    fontFamily: 'Avenir Next',
+    fontFamily: 'Helvetica',
     fontSize: 15,
-    color: '#000000'
+    color: '#2D2D2D'
   }
 });
 

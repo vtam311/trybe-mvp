@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 21:37:14
+* @Last Modified time: 2016-01-11 14:11:37
 */
 
 'use strict';
@@ -22,10 +22,19 @@ var ViewWorkoutBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    //workouts are made of parts. partsView will be an array of
-    //partViews, which renders a part's instructions, exercises, and results
+    //workouts are made of parts. parts include instructions,
+    //exercises, results, and optionally notes
+    //If there is another part to render, add a separator line
     var parts = workout.parts.map((part, index) =>
-      <Part part={part} key={index} />
+      /* jshint ignore:start */
+      <View key={index}>
+        <Part part={part} />
+        { workout.parts[index + 1] ?
+          <View style={styles.separatorLine}></View> :
+          null
+        }
+      </View>
+      /* jshint ignore:end */
     );
 
     return (
@@ -41,7 +50,13 @@ var ViewWorkoutBody = React.createClass({
 var styles = StyleSheet.create({
   results: {
     borderBottomWidth: .5,
-    borderColor: '#c8c7cc',
+    borderColor: '#9B9B9B',
+  },
+  separatorLine: {
+    height: 0.5,
+    backgroundColor: '#9B9B9B',
+    marginTop: 10,
+    marginBottom: 10,
   }
 });
 
