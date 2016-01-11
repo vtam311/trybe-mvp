@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:14:37
+* @Last Modified time: 2016-01-11 14:23:21
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var Part = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.partContainer}>
-        <Text style={styles.partNameText}>{part.name.toUpperCase()}</Text>
+        <Text style={styles.partNameText}>{part.name}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <ViewResults part={part}/>
@@ -48,7 +48,7 @@ var styles = StyleSheet.create({
   partNameText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    // fontStyle: 'italic',
+    fontStyle: 'italic',
     color: '#4A4A4A',
     marginBottom: 8,
   },
@@ -61,7 +61,7 @@ var styles = StyleSheet.create({
   notesText: {
     fontSize: 14,
     fontStyle: 'italic',
-    marginBottom: 5
+    marginBottom: 10
   },
 });
 
