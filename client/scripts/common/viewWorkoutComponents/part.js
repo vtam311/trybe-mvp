@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 21:59:04
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 22:41:13
 */
 
 'use strict';
@@ -24,17 +24,17 @@ var Part = React.createClass({
 
     var exercises = part.exercises.map( (exercise) =>
       <ViewExercise
-        exercise={exercise}
-        customFontSize={14} />
+        exercise={exercise} />
     );
 
     return (
       /* jshint ignore:start */
       <View style={styles.partContainer}>
-        <Text style={styles.partNameText}>{part.name}</Text>
+        <Text style={styles.partNameText}>{part.name.toUpperCase()}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <ViewResults part={part}/>
+        <Text style={styles.notesText}>Notes Test</Text>
       </View>
       /* jshint ignore:end */
     );
@@ -43,17 +43,19 @@ var Part = React.createClass({
 
 var styles = StyleSheet.create({
   partContainer: {
-
+    marginTop: 5,
   },
   partNameText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#929292',
+    fontStyle: 'italic',
+    color: '#4A4A4A',
+    marginBottom: 8,
   },
   instructionText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    marginBottom: 10,
+    marginBottom: 15,
     color: '#000000'
   },
 });

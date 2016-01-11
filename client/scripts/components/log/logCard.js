@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 21:33:36
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 22:31:48
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var LogCardHeader = require('./logCardHeader');
+// var LogCardHeader = require('./logCardHeader');
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var LogCardFooter = require('./logCardFooter');
 
@@ -32,8 +32,6 @@ var LogCard = React.createClass({
       <View>
         <Text style={styles.dateText}>{dateDescr}</Text>
         <View style={styles.cardContainer}>
-          <LogCardHeader
-            trybe={workout.trybe} />
           <ViewWorkoutBody
             workout={workout}/>
           <LogCardFooter
@@ -57,9 +55,9 @@ var styles = StyleSheet.create({
   },
   dateText: { //
     fontFamily: 'Helvetica',
-    fontSize: 14,
-    color: '#929292',
-    textAlign: 'center',
+    fontSize: 15,
+    color: '#4A4A4A',
+    marginLeft: 10,
     marginBottom: 5,
   }
 });
