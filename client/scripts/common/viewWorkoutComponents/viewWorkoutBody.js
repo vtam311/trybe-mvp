@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 16:11:00
+* @Last Modified time: 2016-01-10 16:44:06
 */
 
 'use strict';
@@ -55,7 +55,7 @@ var ViewWorkoutBody = React.createClass({
     //Add results to partView
       partView.push(
         /* jshint ignore:start */
-        <View style={styles.exercises}>
+        <View style={styles.results}>
           <ViewResults part={part}/>
         </View>
         /* jshint ignore:end */
@@ -73,11 +73,18 @@ var ViewWorkoutBody = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  instructions: {
+    paddingTop: 10,
+  },
   instructionText: {
     marginBottom: 10,
     fontFamily: 'Avenir Next',
     fontSize: 15,
     color: '#000000'
+  },
+  results: {
+    borderBottomWidth: .5,
+    borderColor: '#c8c7cc',
   }
 });
 

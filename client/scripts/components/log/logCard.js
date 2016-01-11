@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 15:59:23
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-10 16:45:41
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var LogCardHeader = require('./logCardHeader');
+// var LogCardHeader = require('./logCardHeader'); //depr 1/10/15
 var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
 var LogCardFooter = require('./logCardFooter');
 
@@ -25,17 +25,19 @@ var LogCard = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
+    var dateDescr = Date(workout.date).slice(0,10);
 
     return (
       /* jshint ignore:start */
-      <View style={styles.cardContainer}>
-        <LogCardHeader
-          date={workout.date}/>
-        <ViewWorkoutBody
-          workout={workout}/>
-        <LogCardFooter
-          workout={workout}
-          onDoWorkout={this.props.onDoWorkout} />
+      <View>
+        <Text style={styles.dateText}>{dateDescr}</Text>
+        <View style={styles.cardContainer}>
+          <ViewWorkoutBody
+            workout={workout}/>
+          <LogCardFooter
+            workout={workout}
+            onDoWorkout={this.props.onDoWorkout} />
+        </View>
       </View>
       /* jshint ignore:end */
     );
@@ -50,6 +52,13 @@ var styles = StyleSheet.create({
     borderBottomWidth: .5,
     borderColor: '#d9d9d9',
     padding: 10
+  },
+  dateText: { //
+    fontFamily: 'Helvetica',
+    fontSize: 14,
+    color: '#929292',
+    textAlign: 'center',
+    marginBottom: 5,
   }
 });
 

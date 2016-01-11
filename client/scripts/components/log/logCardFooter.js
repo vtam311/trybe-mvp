@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 16:18:48
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-10 16:39:40
 */
 
 'use strict';
@@ -66,7 +66,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderTopWidth: .5,
+    // borderTopWidth: .5,
     borderColor: '#c8c7cc',
     paddingTop: 10
   }
