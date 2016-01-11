@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:01:51
+* @Last Modified time: 2016-01-11 14:14:37
 */
 
 'use strict';
@@ -60,7 +60,8 @@ var styles = StyleSheet.create({
   },
   notesText: {
     fontSize: 14,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    marginBottom: 5
   },
 });
 
