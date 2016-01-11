@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 21:37:06
+* @Last Modified time: 2016-01-10 21:59:04
 */
 
 'use strict';
@@ -23,7 +23,9 @@ var Part = React.createClass({
     var part = this.props.part;
 
     var exercises = part.exercises.map( (exercise) =>
-      <ViewExercise exercise={exercise}/>
+      <ViewExercise
+        exercise={exercise}
+        customFontSize={14} />
     );
 
     return (
@@ -49,9 +51,9 @@ var styles = StyleSheet.create({
     color: '#929292',
   },
   instructionText: {
-    marginBottom: 10,
     fontFamily: 'Avenir Next',
     fontSize: 15,
+    marginBottom: 10,
     color: '#000000'
   },
 });
