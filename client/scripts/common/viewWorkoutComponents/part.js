@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:23:21
+* @Last Modified time: 2016-01-11 14:33:29
 */
 
 'use strict';
@@ -34,7 +34,10 @@ var Part = React.createClass({
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <ViewResults part={part}/>
-        <Text style={styles.notesText}>Happy with my performance this time around. Improved by 2 minutes from last time, which was about 2 months ago. Keep it up!</Text>
+        {this.props.showNotes ?
+          <Text style={styles.notesText}>Happy with my performance this time around. Improved by 2 minutes from last time, which was about 2 months ago. Keep it up!</Text> :
+          null
+        }
       </View>
       /* jshint ignore:end */
     );

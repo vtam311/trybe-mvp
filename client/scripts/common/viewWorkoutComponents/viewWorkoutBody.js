@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:11:37
+* @Last Modified time: 2016-01-11 14:36:19
 */
 
 'use strict';
@@ -28,7 +28,7 @@ var ViewWorkoutBody = React.createClass({
     var parts = workout.parts.map((part, index) =>
       /* jshint ignore:start */
       <View key={index}>
-        <Part part={part} />
+        <Part part={part} showNotes={this.props.showNotes}/>
         { workout.parts[index + 1] ?
           <View style={styles.separatorLine}></View> :
           null
@@ -54,7 +54,7 @@ var styles = StyleSheet.create({
   },
   separatorLine: {
     height: 0.5,
-    backgroundColor: '#9B9B9B',
+    backgroundColor: '#c8c7cc',
     marginTop: 10,
     marginBottom: 10,
   }
