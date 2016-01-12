@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 19:19:29
+* @Last Modified time: 2016-01-11 19:52:44
 */
 
 'use strict';
@@ -19,28 +19,38 @@ var {
 
 var ViewResults = React.createClass({
   render: function(){
-    var result;
-    console.log('ViewResults result is', this.props.result);
-    switch (this.props.result.type) {
+    var resultView;
+    var result = this.props.result;
+    console.log('ViewResults result is', result);
+    switch (result.type) {
       case 'Time':
-        result = renderResultsTime(this.props.result.val);
+        var time = renderResultsTime(result.val)
+        resultView = <Text style={styles.resultText}>{time}</Text>;
         break;
       case 'Rounds':
-        result = this.props.result.val.toString() + ' Rounds';
+        var rounds = result.val.toString() + ' Rounds'
+        resultView = <Text style={styles.resultText}>{rounds}</Text>;
         break;
       case 'Max Load':
-        result =
-          this.props.result.val.val.toString() + ' ' +
-          this.props.result.val.units;
+        var maxLoad = result.val.val.toString() + ' ' + result.val.units;
+        resultView = <Text style={styles.resultText}>{maxLoad}</Text>;
         break;
+      case 'Custom':
+        resultView = <Text style={styles.resultText}>{result.val}</Text>;
+        break;
+      //If none of above, is specified custom type
       default:
-        null;
+        resultView =
+          <View>
+            <Text style={styles.resultText}>{result.type}</Text>
+            <Text style={styles.resultText}>{result.val}</Text>
+          </View>
     }
 
     return (
       /* jshint ignore:start */
       <View style={styles.partResult}>
-        <Text style={styles.resultText}>{result}</Text>
+        {resultView}
       </View>
       /* jshint ignore:end */
     );
@@ -51,15 +61,17 @@ var styles = StyleSheet.create({
   partResult: {
     marginTop: 10,
     marginBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
+    // flexDirection: 'row',
+    // justifyContent: 'flex-end'
   },
   resultText: {
+    textAlign: 'right',
     fontFamily: 'Avenir Next',
     fontStyle: 'italic',
     color: 'grey',
     fontSize: 15,
-    fontWeight: '500'
+    fontWeight: '500',
+    marginBottom: 5,
   }
 });
 
