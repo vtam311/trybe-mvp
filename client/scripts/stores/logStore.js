@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 14:59:38
+* @Last Modified time: 2016-01-11 18:53:34
 */
 
 'use strict';
@@ -12,16 +12,75 @@ var logConstants = require('../constants/logConstants');
 var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
+var separateWorkout = require('../common/newWorkout');
+var newObject = require('../common/copyObjectHelper');
+
 var _store = {
-  cards: []
+  workouts: []
 };
 
-var setCards = function(cards){
-  cards.forEach( (i) => _store.cards.push(i) );
+var setWorkouts = function(data){
+  var workouts = data.workouts;
+  workouts.forEach( (workout) => _store.workouts.push(workout) );
 };
 
-var addCard = function(card){
-  _store.cards.push(card);
+var existingWorkoutIdx = function(workout){
+  var targetId = workout.id;
+  var result = null;
+  _store.workouts.forEach( (workout, idx) => {
+    if(targetId === workout.id) result = idx;
+  });
+  return result;
+};
+
+var addWorkout = function(workout){
+  _store.workouts.push(workout);
+};
+
+var addNewWorkoutAndCompletedPart = function(workout, partIdx){
+  //add the workout to logStore, with only the completed part
+  var sepWorkout = separateWorkout(workout); //break reference to orig workout
+  var completedPart = sepWorkout.parts[partIdx];
+  var workoutWithOnlyCompletedPart = sepWorkout.parts = [];
+  workoutWithOnlyCompletedPart[partIdx] = completedPart;
+  sepWorkout.parts = workoutWithOnlyCompletedPart;
+
+  _store.workouts.push(sepWorkout);
+};
+
+var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
+  //copy existing workout as sepWorkout
+  var sepWorkout = separateWorkout(_store.workouts[workoutIdx]);
+  //add currPart to existing workout at correct index
+  var currPart = workout.parts[partIdx];
+  sepWorkout.parts[partIdx] = currPart;
+  //replace separateWorkout with existing workout
+  _store.workouts[workoutIdx] = sepWorkout;
+  updateForListView(workoutIdx);
+};
+
+var addWorkoutPart = function(data){
+  var sepWorkout = separateWorkout(data.workout); //break reference to orig workout
+  var partIdx = data.partIdx;
+  var workoutIdx = existingWorkoutIdx(sepWorkout);
+  //if workout does not exist in logStore, add workout's completed part to logStore
+  if(workoutIdx === null) {
+    addNewWorkoutAndCompletedPart(sepWorkout, partIdx);
+  } else {
+    //else add part completed to existing workout
+    addPartToExistingWorkout(sepWorkout, workoutIdx, partIdx);
+  }
+};
+
+var updateForListView = function(indexToUpdate){
+  //ListView does not re-render a row when the properties
+  //of an object are changd. So must create new objs instead of
+  //updating properties of existing ones
+  let newWorkouts = _store.workouts.slice();
+  newWorkouts[indexToUpdate] = {
+    ..._store.workouts[indexToUpdate],
+  };
+  _store.workouts = newWorkouts;
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {
@@ -31,20 +90,20 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getCards: function(){
-    return _store.cards;
+  getWorkouts: function(){
+    return _store.workouts;
   },
 });
 
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case logConstants.SET_LOG_CARDS:
-      setCards(action.data);
+    case logConstants.SET_LOG_WORKOUTS:
+      setWorkouts(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
-    case logConstants.ADD_LOG_CARD:
-      addCard(action.data);
+    case logConstants.ADD_WORKOUT_PART:
+      addWorkoutPart(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
     default:

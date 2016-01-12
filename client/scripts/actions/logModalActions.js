@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 13:16:41
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:59:44
+* @Last Modified time: 2016-01-11 19:18:48
 */
 
 'use strict';
@@ -51,12 +51,12 @@ var logModalActions = {
       }
     });
   },
-  setResultLoad: function(val, unit){
+  setResultLoad: function(val, units){
     AppDispatcher.handleAction({
       actionType: logModalConstants.SET_RESULT_LOAD,
       data: {
         val: val,
-        unit: unit
+        units: units
       }
     });
   },

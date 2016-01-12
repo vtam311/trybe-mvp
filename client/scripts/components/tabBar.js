@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:27:41
+* @Last Modified time: 2016-01-09 17:12:19
 */
 
 'use strict';
@@ -14,7 +14,7 @@ var indexActions = require('../actions/indexActions');
 //Load components
 var FeedTab = require('../components/feed/feed');
 var WorkoutTab = require('../components/workoutTab/workoutTab');
-var LogTab = require('../components/log/log');
+var LogTab = require('../components/log/logTab');
 
 var {
   AppRegistry,

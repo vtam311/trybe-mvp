@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-06 16:43:20
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 14:19:54
 */
 
 'use strict';
@@ -61,7 +61,6 @@ var EditInstructionsCell = React.createClass({
               <TextInput
                 value={this.props.instructions}
                 placeholder='Instructions, ie. 21-15-9 of'
-                autoCapitalize='words'
                 onChangeText={(text) => this.setInstructions(text)}
                 multiline={true}
                 style={styles.instructionsTextInput}
@@ -99,6 +98,7 @@ var styles = StyleSheet.create({
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
+    color: '#2D2D2D',
     fontSize: 18
   },
   cellSeparatorBackground: {

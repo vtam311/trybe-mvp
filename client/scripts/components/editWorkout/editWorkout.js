@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 21:28:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 16:02:03
 */
 
 'use strict';

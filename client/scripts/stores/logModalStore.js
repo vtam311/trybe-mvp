@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 17:41:54
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 21:45:26
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 19:19:13
 */
 
 'use strict';
@@ -51,10 +51,11 @@ var setResultRounds = function(data){
 
 var setResultLoad = function(data){
   var val = data.val;
-  var unit = data.unit;
+  var units = data.units;
   //Ensure if user inputs diff result type, it is reflected
   _store.result.type = 'Max Load';
-  _store.result.val = {val: val, unit: unit};
+  _store.result.val = {val: val, units: units};
+  console.log('logModalStore setResultLoad to', _store.result.val);
 };
 
 var setResultCustom = function(data){

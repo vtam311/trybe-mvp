@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:47:28
+* @Last Modified time: 2016-01-11 19:38:44
 */
 
 'use strict';
@@ -21,7 +21,6 @@ var {
 
 var ResultOptions = React.createClass({
   setResultType: function(val){
-    console.log('ResultOptions setResultType called');
     editWorkoutActions.setResultType(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){

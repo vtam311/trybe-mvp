@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:25:14
+* @Last Modified time: 2016-01-11 20:06:03
 */
 
 'use strict';
@@ -20,7 +20,7 @@ var {
   TouchableHighlight
 } = React;
 
-var FeedCardFooter = React.createClass({
+var LogCardFooter = React.createClass({
   editWorkout: function(workout) {
     //change viewWorkoutBody to editWorkout in logCard?
   },
@@ -43,19 +43,13 @@ var FeedCardFooter = React.createClass({
   },
   render: function(){
     var workout = this.props.workout;
-    var likes = this.props.likes;
-    var comments = this.props.comments;
 
     return (
       /* jshint ignore:start */
-      <View>
-        <TouchableHighlight
-          onPress={ () => this.editWorkout(workout) }>
-          <Text>Edit</Text>
-        </TouchableHighlight>
+      <View style={styles.feedCardFooter}>
         <TouchableHighlight
           onPress={ () => this.doWorkout(workout) }>
-          <Text>Do Again</Text>
+          <Text>Redo</Text>
         </TouchableHighlight>
       </View>
       /* jshint ignore:end */
@@ -63,4 +57,15 @@ var FeedCardFooter = React.createClass({
   }
 });
 
-module.exports = FeedCardFooter;
+var styles = StyleSheet.create({
+  feedCardFooter: {
+    // flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    borderTopWidth: .5,
+    borderColor: '#c8c7cc',
+    paddingTop: 10,
+  }
+});
+
+module.exports = LogCardFooter;

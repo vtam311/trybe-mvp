@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-24 11:36:00
+* @Last Modified time: 2016-01-11 20:04:37
 */
 
 'use strict';
@@ -25,30 +25,31 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
+        rowHasChanged: (r1, r2) => r1 !== r2,
       }),
     };
   },
   componentDidMount: function(){
     logStore.addChangeListener(this._onChange);
-    logActions.getCards();
+    logActions.getWorkouts();
   },
   componentWillUnmount: function(){
     logStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    var cards = logStore.getCards();
+    var workouts = logStore.getWorkouts();
+
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(cards)
+      dataSource: this.state.dataSource.cloneWithRows(workouts)
     });
   },
 
-  renderRow: function(card){
+  renderRow: function(workout){
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.logCardContainer}>
         <LogCard
-          card={card}
+          workout={workout}
           onDoWorkout={this.props.onDoWorkout} />
       </View>
       /* jshint ignore:end */
@@ -68,7 +69,10 @@ var Log = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#EFEFF4',
+  },
+  logCardContainer: {
+    marginBottom: 10
   }
 });
 

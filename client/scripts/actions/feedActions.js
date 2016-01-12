@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 20:28:05
+* @Last Modified time: 2016-01-11 18:51:27
 */
 
 'use strict';
@@ -10,11 +10,18 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants');
 
-var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
 var newWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
+
+//Create dummy workouts
+var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
+DUMMY_WORKOUT.id = 10;
 var DUMMY_WORKOUT_2 = newWorkout(DUMMY_WORKOUT);
+DUMMY_WORKOUT_2.id = 11;
 DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+var DUMMY_WORKOUT_3 = newWorkout(DUMMY_WORKOUT);
+DUMMY_WORKOUT_3.id = 12;
+DUMMY_WORKOUT_3.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
 
 var feedActions = {
   getTrybeWorkout: function(){
@@ -59,7 +66,7 @@ var feedActions = {
         createdAt: '3hr',
         trybe: 'APEX Ninja Warriors',
         day: 17, //for day number in training program
-        workout: newWorkout(DUMMY_WORKOUT),
+        workout: newWorkout(DUMMY_WORKOUT_3),
         origin: null, //to track if workout is inspired by another user
         likes: 19,
         comments: 8

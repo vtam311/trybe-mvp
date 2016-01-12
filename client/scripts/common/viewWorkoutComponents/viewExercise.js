@@ -10,9 +10,21 @@ var {
   View,
 } = React;
 
+//This outputs a string description of an exercise
+//and changes based on what parameters the exercise has,
+//such as reps, time, distance, and load
 var viewExercise = React.createClass({
-
   render: function(){
+    var customFontFamily = this.props.customFontFamily;
+
+    //Enable custom font size when using this component
+    var exStyleText;
+    if(customFontFamily){
+      exStyleText = [...{}, styles.exerciseText, {fontFamily: customFontFamily}];
+    } else {
+      exStyleText = [...{}, styles.exerciseText];
+    }
+
     var exercise = this.props.exercise;
     var rep, amount, load, exerciseName;
 
@@ -21,10 +33,10 @@ var viewExercise = React.createClass({
       //If there are both reps and a distance or time,
       //add 'x' to reps - ie. 5x 50m Sprints.
       if(exercise.reps && (exercise.time || exercise.distance && exercise.distance.val)) {
-        rep = <Text style={styles.exerciseText}>{exercise.reps}x</Text>;
+        rep = <Text style={exStyleText}>{exercise.reps}x</Text>;
       } else if (exercise.reps) {
       //Otherwise just show reps
-        rep = <Text style={styles.exerciseText}>{exercise.reps}</Text>;
+        rep = <Text style={exStyleText}>{exercise.reps}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -35,16 +47,16 @@ var viewExercise = React.createClass({
         if(exercise.distance && exercise.distance.val) {
           //If both time and dist, show like: 60 Sec 400m Sprint
           amount =
-            <Text style={styles.exerciseText}>
+            <Text style={exStyleText}>
               {renderExerciseTime(exercise.time)} {exercise.distance.val}{exercise.distance.units}
             </Text>;
         } else {
           //If only time, show like: 60 Sec Sprint
-          amount = <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>;
+          amount = <Text style={exStyleText}>{renderExerciseTime(exercise.time)}</Text>;
         }
       } else if (exercise.distance && exercise.distance.val) {
         //If only dist, show like: 400m Sprint
-        amount = <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>;
+        amount = <Text style={exStyleText}>{exercise.distance.val}{exercise.distance.units}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -52,7 +64,7 @@ var viewExercise = React.createClass({
     var renderLoad = function() {
       /* jshint ignore:start*/
       if(exercise.load.val) {
-        load = <Text style={styles.exerciseText}>at {exercise.load.val}{exercise.load.units}</Text>;
+        load = <Text style={exStyleText}>at {exercise.load.val}{exercise.load.units}</Text>;
       }
       /* jshint ignore:end*/
     };
@@ -64,9 +76,9 @@ var viewExercise = React.createClass({
         //If last letter of exercise name is a space, ignore it
         if(exercise.name.charAt(lastCharAt) === ' '){
           var exName = exercise.name.slice(0, lastCharAt);
-          exerciseName = <Text style={styles.exerciseText}>{exName}</Text>;
+          exerciseName = <Text style={exStyleText}>{exName}</Text>;
         } else {
-          exerciseName = <Text style={styles.exerciseText}>{exercise.name}</Text>;
+          exerciseName = <Text style={exStyleText}>{exercise.name}</Text>;
         }
       } else return null;
       /* jshint ignore:end*/
@@ -103,9 +115,9 @@ var styles = StyleSheet.create({
   },
   exerciseText: {
     marginRight: 4,
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    color: '#000000'
+    fontFamily: 'Helvetica',
+    fontSize: 15,
+    color: '#2D2D2D'
   }
 });
 

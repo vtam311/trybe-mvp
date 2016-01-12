@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-06 16:15:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-06 16:21:10
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-09 16:55:14
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var ChatBar = React.createClass({
         <TextInput
           style={styles.chatBar}
           value={this.state.chatMessage}
-          placeholder={'How can we help?'}
+          placeholder={'Send message'}
           onChangeText={(text) => this.setState({chatMessage: text})}
           onSubmitEditing={() => this.sendMessage(this.state.chatMessage)}/>
       </View>

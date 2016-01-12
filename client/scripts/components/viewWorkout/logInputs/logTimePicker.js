@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:24:38
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 14:17:16
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 16:01:42
 */
 
 'use strict';
@@ -120,7 +120,6 @@ var LogTimePicker = React.createClass({
     //If user sets all time values back to zero, set to null
     if(newTime === '00:00:00') newTime = null;
 
-    console.log('logTimePicker setTime called');
     logModalActions.setResultTime(newTime);
   },
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 14:32:54
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-01 13:17:22
+* @Last Modified time: 2016-01-11 14:21:06
 */
 
 'use strict';
@@ -29,7 +29,6 @@ var ViewInstructions = React.createClass({
           value={this.props.instructions}
           placeholder='Instructions'
           onChangeText={(text) => this.setInstructions(text)}
-          autoCapitalize='words'
           multiline={true}
           style={styles.instructionsTextInput} />
         <View style={styles.cellSeparatorBackground}>
@@ -49,6 +48,7 @@ var styles = StyleSheet.create({
   instructionsTextInput: {
     height: 40,
     fontFamily: 'Avenir Next',
+    color: '#2D2D2D',
     fontStyle: 'italic',
     fontSize: 16
   },

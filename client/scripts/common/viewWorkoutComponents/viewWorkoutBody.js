@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
-* @Date:   2015-07-30 13:09:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-29 16:23:39
+* @Date:   2016-01-10 21:20:46
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 20:01:12
 */
 
 'use strict';
@@ -10,7 +10,7 @@
 var React = require('react-native');
 
 //Load components
-var ViewExercise = require('./viewExercise');
+var Part = require('./part');
 
 var {
   StyleSheet,
@@ -22,42 +22,25 @@ var ViewWorkoutBody = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    //workouts are made of parts. partsView is an array of partViews,
-    //which renders a part's instructions and exercises
-    var partsView = [];
-
-    //Traverse parts
-    for(var i = 0; i < workout.parts.length; i++){
-      var partView = partsView[i] = [];
-      var currPart = workout.parts[i];
-      var instructions = currPart.instructions;
-
-      //Add instructions to partView
-      partView.push(
-        /* jshint ignore:start */
-        <View style={styles.instructions}>
-          <Text style={styles.instructionText}>{instructions}</Text>
-        </View>
-        /* jshint ignore:end */
-      );
-
-      //Add exercises to partView
-      for(var n = 0; n < currPart.exercises.length; n++){
-        var currExercise = currPart.exercises[n];
-        partView.push(
-          /* jshint ignore:start */
-          <View style={styles.exercises}>
-            <ViewExercise exercise={currExercise}/>
-          </View>
-          /* jshint ignore:end */
-        );
-      }
-    }
+    //workouts are made of parts. parts include instructions,
+    //exercises, results, and optionally notes
+    //If there is another part to render, add a separator line
+    var parts = workout.parts.map((part, index) =>
+      /* jshint ignore:start */
+      <View key={index}>
+        <Part part={part} showNotes={this.props.showNotes}/>
+        { workout.parts[index + 1] ?
+          <View style={styles.separatorLine}></View> :
+          null
+        }
+      </View>
+      /* jshint ignore:end */
+    );
 
     return (
       /* jshint ignore:start */
-      <View style={styles.workoutContainer}>
-        { partsView }
+      <View>
+        { parts }
       </View>
       /* jshint ignore:end */
     );
@@ -65,10 +48,15 @@ var ViewWorkoutBody = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  instructionText: {
+  results: {
+    borderBottomWidth: .5,
+    borderColor: '#9B9B9B',
+  },
+  separatorLine: {
+    height: 0.5,
+    backgroundColor: '#c8c7cc',
+    marginTop: 10,
     marginBottom: 10,
-    fontFamily: 'Helvetica',
-    color: '#434343'
   }
 });
 
