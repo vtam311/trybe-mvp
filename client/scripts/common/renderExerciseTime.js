@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-10 17:45:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-27 17:59:22
+* @Last Modified time: 2016-01-11 19:00:21
 */
 
 'use strict';
@@ -15,7 +15,7 @@
   //00:00 --> none
   //00:01 --> 1 sec
   //01:00 --> 1 min
-  //01:01 --> 1:01 sec
+  //01:01 --> 1:01s
 var renderExerciseTime = function(time) {
   var result;
 
