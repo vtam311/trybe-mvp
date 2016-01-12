@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 19:04:33
+* @Last Modified time: 2016-01-11 20:07:03
 */
 
 'use strict';
@@ -34,8 +34,8 @@ var Part = React.createClass({
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <ViewResults result={part.result} />
-        {this.props.showNotes === true ?
-          <Text style={styles.notesText}>Happy with my performance this time around. Improved by 2 minutes from last time, which was about 2 months ago. Keep it up!</Text> :
+        {this.props.showNotes === true && part.notes ?
+          <Text style={styles.notesText}>{part.notes}</Text> :
           null
         }
       </View>

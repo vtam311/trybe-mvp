@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:40:41
+* @Last Modified time: 2016-01-11 20:01:12
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var ViewWorkoutBody = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={styles.workoutContainer}>
+      <View>
         { parts }
       </View>
       /* jshint ignore:end */

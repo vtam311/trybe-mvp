@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:15:34
+* @Last Modified time: 2016-01-11 20:06:03
 */
 
 'use strict';
@@ -59,12 +59,12 @@ var LogCardFooter = React.createClass({
 
 var styles = StyleSheet.create({
   feedCardFooter: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     borderTopWidth: .5,
     borderColor: '#c8c7cc',
-    paddingTop: 10
+    paddingTop: 10,
   }
 });
 

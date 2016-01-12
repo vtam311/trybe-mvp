@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 19:52:44
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 20:00:24
 */
 
 'use strict';
@@ -21,7 +21,6 @@ var ViewResults = React.createClass({
   render: function(){
     var resultView;
     var result = this.props.result;
-    console.log('ViewResults result is', result);
     switch (result.type) {
       case 'Time':
         var time = renderResultsTime(result.val)
@@ -61,8 +60,6 @@ var styles = StyleSheet.create({
   partResult: {
     marginTop: 10,
     marginBottom: 10,
-    // flexDirection: 'row',
-    // justifyContent: 'flex-end'
   },
   resultText: {
     textAlign: 'right',
@@ -71,7 +68,7 @@ var styles = StyleSheet.create({
     color: 'grey',
     fontSize: 15,
     fontWeight: '500',
-    marginBottom: 5,
+    // marginBottom: 5,
   }
 });
 
