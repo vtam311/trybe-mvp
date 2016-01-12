@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:05:13
+* @Last Modified time: 2016-01-11 16:54:06
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var logModalStore = require('../../stores/logModalStore');
 var logModalActions = require('../../actions/logModalActions');
+var logActions = require('../../actions/logActions');
 
 var {
   StyleSheet,
@@ -44,6 +45,7 @@ var LogModal = React.createClass({
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
+      workout: editWorkoutStore.getWorkout(),
       //init result with result from editWorkoutStore
       //so component can render
       result: editWorkoutStore.getTargetPartResult(),
@@ -72,6 +74,7 @@ var LogModal = React.createClass({
   },
   _onChange: function(){
     this.setState({
+      workout: editWorkoutStore.getWorkout(),
       result: logModalStore.getResult(),
       notes: logModalStore.getNotes()
     });
@@ -122,6 +125,7 @@ var LogModal = React.createClass({
     editWorkoutActions.savePartResult(this.state.result);
     editWorkoutActions.savePartNotes(this.state.notes);
     viewWorkoutActions.setPartIsLoggedTrue(this.state.partIdx);
+    logActions.addWorkoutPart(this.state.workout, this.state.partIdx);
     this.closeModal();
   },
   render: function() {

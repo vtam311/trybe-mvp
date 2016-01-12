@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 19:41:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 14:55:32
 */
 
 'use strict';
@@ -11,7 +11,9 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var editWorkoutConstants = require('../constants/editWorkoutConstants');
 
 //temp use workout model
-var TEMP_WORKOUT = require('../../../Documentation/workoutModel.js');
+var newWorkout = require('../common/newWorkout');
+var newObject = require('../common/copyObjectHelper');
+var DUMMY_WORKOUT = require('../../../Documentation/workoutModel.js');
 
 
 var editWorkoutActions = {
@@ -25,7 +27,9 @@ var editWorkoutActions = {
   },
   getDailyWorkout: function() {
     //To do: make get req to server
-    var dummyWorkout = TEMP_WORKOUT;
+    //temp use DUMMY_WORKOUT and make its id unique
+    var dummyWorkout = newWorkout(DUMMY_WORKOUT);
+    dummyWorkout.id = 4;
 
     this.setWorkout(dummyWorkout);
   },

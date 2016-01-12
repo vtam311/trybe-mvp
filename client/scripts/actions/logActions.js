@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-10 14:55:55
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-11 14:59:09
 */
 
 'use strict';
@@ -14,7 +14,9 @@ var newWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
 
 var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
+DUMMY_WORKOUT.id = 2;
 var DUMMY_WORKOUT_2 = newWorkout(DUMMY_WORKOUT);
+DUMMY_WORKOUT.id = 3;
 DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
 
 var logActions = {
@@ -35,12 +37,14 @@ var logActions = {
       }
     });
   },
-  //once workouts are added to db, should no longer need this
-  tempAddCard: function(workout){
+  //manually save a workout part's results to log
+  //for immediate rendering
+  addWorkoutPart: function(workout, partIdx){
     AppDispatcher.handleAction({
-      actionType: logConstants.ADD_LOG_WORKOUT,
+      actionType: logConstants.ADD_WORKOUT_PART,
       data: {
-        workout: workout
+        workout: workout,
+        partIdx: partIdx
       }
     });
   }
