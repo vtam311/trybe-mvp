@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 18:35:03
+* @Last Modified time: 2016-01-11 18:40:45
 */
 
 'use strict';
@@ -24,11 +24,11 @@ var setWorkouts = function(data){
   workouts.forEach( (workout) => _store.workouts.push(workout) );
 };
 
-var isExistingWorkout = function(workout){
-  var currId = workout.id;
-  var result = false;
+var existingWorkoutIdx = function(workout){
+  var targetId = workout.id;
+  var result = null;
   _store.workouts.forEach( (workout, idx) => {
-    if(currId === workout.id) result = idx;
+    if(targetId === workout.id) result = idx;
   });
   return result;
 };
@@ -60,15 +60,15 @@ var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
 };
 
 var addWorkoutPart = function(data){
-  var workout = separateWorkout(data.workout); //break reference to orig workout
+  var sepWorkout = separateWorkout(data.workout); //break reference to orig workout
   var partIdx = data.partIdx;
-  var existingWorkoutIdx = isExistingWorkout(workout);
+  var workoutIdx = existingWorkoutIdx(sepWorkout);
   //if workout does not exist in logStore, add workout's completed part to logStore
-  if(existingWorkoutIdx === false) {
-    addNewWorkoutAndCompletedPart(workout, partIdx);
+  if(workoutIdx === null) {
+    addNewWorkoutAndCompletedPart(sepWorkout, partIdx);
   } else {
     //else add part completed to existing workout
-    addPartToExistingWorkout(workout, existingWorkoutIdx, partIdx);
+    addPartToExistingWorkout(sepWorkout, existingWorkoutIdx, partIdx);
   }
 };
 
