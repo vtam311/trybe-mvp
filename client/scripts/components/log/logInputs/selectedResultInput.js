@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 19:28:37
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-12 11:34:56
 */
 
 'use strict';
@@ -13,10 +13,10 @@ var {
   View,
 } = React;
 
-var LogTimePicker = require('./logInputs/logTimePicker');
-var LogRoundPicker = require('./logInputs/logRoundPicker');
-var LogLoadPicker = require('./logInputs/logLoadPicker');
-var CustomInput = require('./logInputs/customInput');
+var LogTimePicker = require('./logTimePicker');
+var LogRoundPicker = require('./logRoundPicker');
+var LogLoadPicker = require('./logLoadPicker');
+var CustomInput = require('./customInput');
 
 //Gist: shows a PickerIOS or other input component to edit
 //time, rounds, load, etc. from user selection of SegmentedControlIOS

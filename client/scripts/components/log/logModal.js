@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 16:54:06
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 11:35:02
 */
 
 'use strict';
@@ -28,7 +28,7 @@ var {
 } = React;
 
 //Load components
-var SelectedResultInput = require('./selectedResultInput');
+var SelectedResultInput = require('./logInputs/selectedResultInput');
 var NotesInput = require('./logInputs/notesInput');
 
 //Gets device height for animating app
