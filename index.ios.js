@@ -50,17 +50,12 @@ var Trybe = React.createClass({
       exerciseModalVisible: modalStore.getExerciseModalVisible(),
       partModalVisible: modalStore.getPartModalVisible(),
       dateModalVisible: modalStore.getDateModalVisible(),
+      logModalVisible: modalStore.getLogModalVisible(),
     });
   },
   onDoWorkout: function() {
     //emits event to notify workout navigator to reset stack
     this.rootNavListener.emit('doWorkout');
-  },
-  openLogModal: function(){
-    this.setState({logModalVisible: true});
-  },
-  closeLogModal: function(){
-    this.setState({logModalVisible: false});
   },
   renderScene: function(route, navigator){
     var Component = route.component;
@@ -68,8 +63,6 @@ var Trybe = React.createClass({
     return (
       <Component
         rootNav={this.refs.rootNav}
-        openWorkoutModal={this.openWorkoutModal}
-        openLogModal={this.openLogModal}
         onDoWorkout={this.onDoWorkout}
         events={this.rootNavListener} />
     );
@@ -87,7 +80,7 @@ var Trybe = React.createClass({
         {this.state.exerciseModalVisible ? <EditExerciseModal /> : null }
         {this.state.partModalVisible ? <EditPartModal /> : null }
         {this.state.dateModalVisible ? <EditDateModal /> : null }
-        {this.state.logModalVisible ? <LogModal closeModal={this.closeLogModal}/> : null }
+        {this.state.logModalVisible ? <LogModal /> : null }
       </View>
       /* jshint ignore:end */
     );

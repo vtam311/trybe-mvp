@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 11:35:02
+* @Last Modified time: 2016-01-12 13:16:39
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var logModalStore = require('../../stores/logModalStore');
 var logModalActions = require('../../actions/logModalActions');
 var logActions = require('../../actions/logActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -83,7 +84,7 @@ var LogModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(this.props.closeModal);
+    }).start(modalActions.closeLogModal);
   },
   setDefaultSegmCtrlIdx: function(){
     var segmCtrlIdx;

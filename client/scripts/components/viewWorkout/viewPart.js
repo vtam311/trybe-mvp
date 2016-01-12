@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 12:53:17
+* @Last Modified time: 2016-01-12 13:15:31
 */
 
 'use strict';
@@ -63,7 +63,6 @@ var DoPart = React.createClass({
             partIdx={partIdx}
             toggleCollapse={this.toggleCollapse}
             isExpanded={this.state.isExpanded}
-            openLogModal={this.props.openLogModal}
             partIsLogged={this.props.partIsLogged} />
         </View>
 

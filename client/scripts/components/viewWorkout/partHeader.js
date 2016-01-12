@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-29 15:02:15
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 21:16:35
+* @Last Modified time: 2016-01-12 13:15:09
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -25,7 +26,7 @@ var ViewPartHeader = React.createClass({
     //set targetPartIdx to notify editWorkoutStore which part
     //is being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
-    this.props.openLogModal();
+    modalActions.openLogModal();
   },
   render: function(){
     var part = this.props.part;

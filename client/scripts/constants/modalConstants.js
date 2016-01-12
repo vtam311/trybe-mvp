@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:36
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:00:21
+* @Last Modified time: 2016-01-12 13:13:09
 */
 
 'use strict';
@@ -16,6 +16,8 @@ var modalConstants = {
   CLOSE_PART_MODAL: 'CLOSE_PART_MODAL',
   OPEN_DATE_MODAL: 'OPEN_DATE_MODAL',
   CLOSE_DATE_MODAL: 'CLOSE_DATE_MODAL',
+  OPEN_LOG_MODAL: 'OPEN_LOG_MODAL',
+  CLOSE_LOG_MODAL: 'CLOSE_LOG_MODAL',
 };
 
 module.exports = modalConstants;

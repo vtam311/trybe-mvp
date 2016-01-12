@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:22
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:00:04
+* @Last Modified time: 2016-01-12 13:12:57
 */
 
 'use strict';
@@ -49,6 +49,16 @@ var modalActions = {
   closeDateModal: function() {
     AppDispatcher.handleAction({
       actionType: modalConstants.CLOSE_DATE_MODAL
+    });
+  },
+  openLogModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.OPEN_LOG_MODAL
+    });
+  },
+  closeLogModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.CLOSE_LOG_MODAL
     });
   },
 };

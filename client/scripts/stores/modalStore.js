@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:01:07
+* @Last Modified time: 2016-01-12 13:14:01
 */
 
 'use strict';
@@ -53,6 +53,14 @@ var closeDateModal = function() {
   _store.dateModalVisible = false;
 };
 
+var openLogModal = function() {
+  _store.logModalVisible = true;
+};
+
+var closeLogModal = function() {
+  _store.logModalVisible = false;
+};
+
 var modalStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -71,6 +79,9 @@ var modalStore = Object.assign({}, EventEmitter.prototype, {
   },
   getDateModalVisible: function(){
     return _store.dateModalVisible;
+  },
+  getLogModalVisible: function(){
+    return _store.logModalVisible;
   },
 });
 
@@ -107,6 +118,14 @@ AppDispatcher.register(function(payload){
       break;
     case modalConstants.CLOSE_DATE_MODAL:
       closeDateModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.OPEN_LOG_MODAL:
+      openLogModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.CLOSE_LOG_MODAL:
+      closeLogModal();
       modalStore.emit(CHANGE_EVENT);
       break;
     default:
