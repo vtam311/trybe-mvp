@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 17:17:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 14:10:53
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 19:32:37
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var LogLoadPicker = React.createClass({
     };
   },
   componentWillUpdate: function(){
-    //initialize units if not pre-set
+    //if units are undefined, set to lbs
     if(!this.state.units) {
       this.setState({
         units: 'lb'
@@ -38,10 +38,16 @@ var LogLoadPicker = React.createClass({
   },
   _setLoadVal: function(choiceObj){
     var load = choiceObj.newValue;
+    var units;
     if(load === 'No Weight') load = null;
 
+    //state's units property may not yet be updated,
+    //so manually set
+    if(this.state.units) units = this.state.units;
+    else units = 'lbs';
+
     //Should set part's result val to {val: 100, unit: 'lb'}
-    logModalActions.setResultLoad(load, this.state.units);
+    logModalActions.setResultLoad(load, units);
 
     //Update picker's state
     this.setState({loadVal: load});

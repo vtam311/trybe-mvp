@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 11:20:54
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 19:28:37
 */
 
 'use strict';
@@ -40,7 +40,7 @@ var SelectedResultInput = React.createClass({
           //If the value has already been set, pre-set load vals
           if(result.val) {
             load = result.val.val;
-            loadUnit = result.val.unit;
+            loadUnit = result.val.units;
           }
           break;
         default:
