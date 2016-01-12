@@ -1,11 +1,9 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:13:52
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 20:15:58
 */
-
-//test
 
 'use strict';
 
