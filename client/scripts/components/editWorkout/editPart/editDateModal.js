@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-18 15:03:10
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:49:15
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 13:08:59
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var modalActions = require('../../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -44,7 +45,7 @@ var EditDateModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(this.props.closeModal);
+    }).start(modalActions.closeDateModal);
   },
   onDateChange: function(date){
     this.setState({date: date});

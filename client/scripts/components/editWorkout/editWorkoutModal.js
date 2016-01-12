@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-12 11:32:08
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 12:35:08
 */
 
 'use strict';
@@ -33,19 +33,36 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-var EditPartModal = React.createClass({
+var EditWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
-      partIdx: editWorkoutStore.getTargetPartIdx(),
-      partName: editWorkoutStore.getPartName()
+      visibleHeight: Dimensions.get('window').height,
+      visibleWidth: Dimensions.get('window').width,
+      workout: editWorkoutStore.getWorkout(),
     };
+  },
+  componentWillMount: function() {
+    this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
     }).start();
+
+    editWorkoutStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    editWorkoutStore.removeChangeListener(this._onChange);
+    this.keyboardWillShowListener.remove();
+    this.keyboardWillHideListener.remove();
+  },
+  _onChange: function(){
+    this.setState({
+      workout: editWorkoutStore.getWorkout(),
+    });
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -53,62 +70,115 @@ var EditPartModal = React.createClass({
       toValue: deviceHeight
     }).start(this.props.closeModal);
   },
-  renderPartName: function(text){
-    this.setState({partName: text});
+  keyboardWillShow: function(e) {
+    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    this.setState({visibleHeight: newSize});
   },
-  savePart: function(){
-    editWorkoutActions.setPartName(this.state.partName);
-    this.closeModal();
+  keyboardWillHide: function(e) {
+    this.setState({visibleHeight: Dimensions.get('window').height});
   },
-  removePart: function(){
-    editWorkoutActions.removePart();
-    this.closeModal();
+  scrollToComponent: function(refName, child) {
+    console.log('editWorkout scrollToComponent called');
+    var offset;
+    if(child === 'instrTextInput') offset = -90;
+    else if(child === 'customTextInput') offset = 0;
+
+    setTimeout( () => {
+      let scrollResponder = this.refs.scrollView.getScrollResponder();
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
+        React.findNodeHandle(this.refs[refName]),
+        offset, //more offset
+        true
+      );
+    }, 50);
   },
   render: function() {
+    var parts = this.state.workout.parts.map((part, index) =>
+      /* jshint ignore:start */
+      <View style={{marginBottom: 20}} key={index} >
+        <Part
+          ref={'part' + index}
+          part={part}
+          partIdx={index}
+          openExerciseModal={this.props.openExerciseModal}
+          openPartModal={this.props.openPartModal}
+          scrollToComponent={this.scrollToComponent} />
+      </View>
+      /* jshint ignore:end */
+    );
 
+    //Bottom content inset of ScrollView offsets
+    //tab bar from covering scene
     return (
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={styles.container}>
+      /* jshint ignore:start */
+      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}, styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+        <View>
           <View style={styles.header}>
             <View style={styles.headerContainer}>
               <TouchableOpacity onPress={this.closeModal}>
-                <Text style={styles.headerButtonText}>Cancel</Text>
+                <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>Edit Part</Text>
+              <Text style={styles.headerTitleText}>Add Part</Text>
               <TouchableOpacity onPress={this.savePart}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <View style={styles.body}>
-            <View style={styles.bodyContainer}>
-              <Text style={styles.partNamePrompt}>Purpose</Text>
-              <TextInput
-                value={this.state.partName}
-                placeholder={'Warmup, Strength, Etc.'}
-                autoCapitalize='words'
-                onChangeText={(text) => this.renderPartName(text)}
-                style={{height: 40}}/>
-            </View>
-          </View>
+          <ScrollView
+            ref='scrollView'
+            keyboardDismissMode='on-drag'
+            contentContainerStyle={styles.contentContainerStyle}
+            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
+            <TableView>
 
-          <View style={styles.footer}>
-            <TouchableOpacity onPress={this.removePart}>
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                <Image
-                  style={{height: 18, width: 18}}
-                  source={require('image!deleteButton')} />
-                <Text style={styles.deleteText}>Delete</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+              <Section>
+                <DateCell
+                  date={this.state.workout.date}
+                  openDateModal={this.props.openDateModal} />
+              </Section>
 
+              {parts}
+
+            </TableView>
+          </ScrollView>
         </View>
       </Animated.View>
-    )
+      /* jshint ignore:end */
+    );
+
   }
 });
+    // return (
+    //   <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
+    //     <View style={styles.container}>
+    //       <View style={styles.header}>
+    //         <View style={styles.headerContainer}>
+    //           <TouchableOpacity onPress={this.closeModal}>
+    //             <Text style={styles.headerButtonText}>Cancel</Text>
+    //           </TouchableOpacity>
+    //           <Text style={styles.headerTitleText}>Edit Part</Text>
+    //           <TouchableOpacity onPress={this.savePart}>
+    //             <Text style={styles.headerButtonText}>Done</Text>
+    //           </TouchableOpacity>
+    //         </View>
+    //       </View>
+
+    //       <View style={styles.body}>
+    //         <View style={styles.bodyContainer}>
+    //           <Text style={styles.partNamePrompt}>Purpose</Text>
+    //           <TextInput
+    //             value={this.state.partName}
+    //             placeholder={'Warmup, Strength, Etc.'}
+    //             autoCapitalize='words'
+    //             onChangeText={(text) => this.renderPartName(text)}
+    //             style={{height: 40}}/>
+    //         </View>
+    //       </View>
+
+    //     </View>
+    //   </Animated.View>
+    // )
 
 var styles = StyleSheet.create({
   modal: {
@@ -128,7 +198,8 @@ var styles = StyleSheet.create({
   container: {
     height: 180,
     width: 340,
-    backgroundColor: 'rgba(255, 255, 255, 1)',
+    // backgroundColor: 'rgba(255, 255, 255, 1)',
+    backgroundColor: '#EFEFF4',
     borderRadius: 3,
     shadowColor: '#9B9B9B',
     shadowOpacity: 8,
@@ -160,6 +231,10 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     color: '#4DBA97',
   },
+  contentContainerStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
   body: {
     height: 100,
     justifyContent: 'center',
@@ -189,12 +264,6 @@ var styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10
   },
-  deleteText: {
-    marginLeft: 5,
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    color: '#FA6F80'
-  }
 });
 
-module.exports = EditPartModal;
+module.exports = EditWorkoutModal;

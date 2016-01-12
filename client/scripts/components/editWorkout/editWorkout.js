@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 11:31:37
+* @Last Modified time: 2016-01-12 13:10:41
 */
 
 'use strict';
@@ -84,8 +84,6 @@ var EditWorkout = React.createClass({
           ref={'part' + index}
           part={part}
           partIdx={index}
-          openExerciseModal={this.props.openExerciseModal}
-          openPartModal={this.props.openPartModal}
           scrollToComponent={this.scrollToComponent} />
       </View>
       /* jshint ignore:end */
@@ -105,8 +103,7 @@ var EditWorkout = React.createClass({
 
             <Section>
               <DateCell
-                date={this.state.workout.date}
-                openDateModal={this.props.openDateModal} />
+                date={this.state.workout.date} />
             </Section>
 
             {parts}

@@ -1,0 +1,21 @@
+/*
+* @Author: vincetam
+* @Date:   2016-01-12 12:10:36
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 13:00:21
+*/
+
+'use strict';
+
+var modalConstants = {
+  OPEN_WORKOUT_MODAL: 'OPEN_WORKOUT_MODAL',
+  CLOSE_WORKOUT_MODAL: 'CLOSE_WORKOUT_MODAL',
+  OPEN_EXERCISE_MODAL: 'OPEN_EXERCISE_MODAL',
+  CLOSE_EXERCISE_MODAL: 'CLOSE_EXERCISE_MODAL',
+  OPEN_PART_MODAL: 'OPEN_PART_MODAL',
+  CLOSE_PART_MODAL: 'CLOSE_PART_MODAL',
+  OPEN_DATE_MODAL: 'OPEN_DATE_MODAL',
+  CLOSE_DATE_MODAL: 'CLOSE_DATE_MODAL',
+};
+
+module.exports = modalConstants;

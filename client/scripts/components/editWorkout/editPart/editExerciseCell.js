@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 14:18:12
+* @Last Modified time: 2016-01-12 12:39:56
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var modalActions = require('../../../actions/modalActions');
 
 //Load components
 var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
@@ -27,7 +28,7 @@ var EditExerciseCell = React.createClass({
   _handlePress: function(){
     //sets the target exercise for user to edit
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
-    this.props.openExerciseModal();
+    modalActions.openExerciseModal();
   },
 
   render: function(){

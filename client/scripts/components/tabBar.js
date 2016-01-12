@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-09 17:12:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 12:47:56
 */
 
 'use strict';
@@ -78,10 +78,6 @@ var TabBar = React.createClass({
           selected={ this.state.selectedTab === 'workout' }>
           <WorkoutTab
             style={styles.tabContent}
-            openExerciseModal={this.props.openExerciseModal}
-            openPartModal={this.props.openPartModal}
-            openDateModal={this.props.openDateModal}
-            openLogModal={this.props.openLogModal}
             events={this.props.events} />
         </TabBarIOS.Item>
       </TabBarIOS>

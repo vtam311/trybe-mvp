@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-13 16:46:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-01 12:15:26
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 12:56:29
 */
 
 'use strict';
@@ -29,8 +29,7 @@ var Part = React.createClass({
         <EditExerciseCell
           exercise={exercise}
           partIdx={this.props.partIdx}
-          exIdx={index}
-          openExerciseModal={this.props.openExerciseModal} />
+          exIdx={index} />
         <View style={styles.cellSeparatorBackground}>
           <View style={styles.cellSeparatorLine}></View>
         </View>
@@ -46,10 +45,9 @@ var Part = React.createClass({
             instructions={this.props.part.instructions}
             partIdx={this.props.partIdx}
             partName={this.props.part.name}
-            openPartModal={this.props.openPartModal}
             scrollToComponent={this.props.scrollToComponent} />
           {exercises}
-          <AddExerciseCell partIdx={this.props.partIdx} openExerciseModal={this.props.openExerciseModal} />
+          <AddExerciseCell partIdx={this.props.partIdx} />
         </Section>
 
         <Section hideSeparator={true}>

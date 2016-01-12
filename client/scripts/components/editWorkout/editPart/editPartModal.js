@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 10:48:25
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 13:09:58
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var modalActions = require('../../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -45,7 +46,7 @@ var EditPartModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(this.props.closeModal);
+    }).start(modalActions.closePartModal);
   },
   renderPartName: function(text){
     this.setState({partName: text});

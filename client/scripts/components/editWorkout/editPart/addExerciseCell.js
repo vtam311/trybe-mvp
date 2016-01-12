@@ -1,14 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   vincetam
-* @Last Modified time: 2015-12-28 18:36:43
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 12:56:03
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var modalActions = require('../../../actions/modalActions');
 
 var {
   Text,
@@ -22,7 +23,7 @@ var AddExerciseCell = React.createClass({
     //Sets up editExerciseModal to point to the correct
     //exercise in workout
     editWorkoutActions.addExercise(this.props.partIdx);
-    this.props.openExerciseModal();
+    modalActions.openExerciseModal();
   },
 
   render: function(){

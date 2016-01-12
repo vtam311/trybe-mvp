@@ -1,14 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:45:13
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:19:54
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 12:55:13
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var modalActions = require('../../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -28,7 +29,7 @@ var EditInstructionsCell = React.createClass({
   handlePartDisclosurePress: function(){
     //Let editWorkoutStore know which part we are editing
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
-    this.props.openPartModal();
+    modalActions.openPartModal();
   },
   renderPartLabel: function(){
     //If a name is provided for part, render it
