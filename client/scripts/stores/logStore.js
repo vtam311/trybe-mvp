@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 18:40:45
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 18:53:34
 */
 
 'use strict';
@@ -68,7 +68,7 @@ var addWorkoutPart = function(data){
     addNewWorkoutAndCompletedPart(sepWorkout, partIdx);
   } else {
     //else add part completed to existing workout
-    addPartToExistingWorkout(sepWorkout, existingWorkoutIdx, partIdx);
+    addPartToExistingWorkout(sepWorkout, workoutIdx, partIdx);
   }
 };
 

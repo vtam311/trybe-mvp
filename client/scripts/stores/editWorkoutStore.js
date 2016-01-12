@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 16:12:23
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-11 18:42:36
 */
 
 'use strict';
@@ -36,7 +36,7 @@ var PART_TEMPLATE = {
 };
 
 var WORKOUT_TEMPLATE = {
-  id: 5, //temporarily setting id to test saving workout to log
+  id: null,
   username: null,
   trybe: null,
   day: null,
