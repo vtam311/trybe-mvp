@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 17:14:21
+* @Last Modified time: 2016-01-11 18:35:03
 */
 
 'use strict';
@@ -49,10 +49,14 @@ var addNewWorkoutAndCompletedPart = function(workout, partIdx){
 };
 
 var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
+  //copy existing workout as sepWorkout
+  var sepWorkout = separateWorkout(_store.workouts[workoutIdx]);
+  //add currPart to existing workout at correct index
   var currPart = workout.parts[partIdx];
-  _store.workouts[workoutIdx].parts[partIdx] = currPart;
-  // console.log('addPartToExistingWorkout targetPart is', targetPart);
-  console.log('addPartToExistingWorkout currPart is', currPart);
+  sepWorkout.parts[partIdx] = currPart;
+  //replace separateWorkout with existing workout
+  _store.workouts[workoutIdx] = sepWorkout;
+  updateForListView(workoutIdx);
 };
 
 var addWorkoutPart = function(data){
@@ -61,14 +65,22 @@ var addWorkoutPart = function(data){
   var existingWorkoutIdx = isExistingWorkout(workout);
   //if workout does not exist in logStore, add workout's completed part to logStore
   if(existingWorkoutIdx === false) {
-    console.log('new workout found');
     addNewWorkoutAndCompletedPart(workout, partIdx);
   } else {
     //else add part completed to existing workout
-    console.log('existing workout found');
     addPartToExistingWorkout(workout, existingWorkoutIdx, partIdx);
   }
-  console.log('logStore after addWorkoutPart, workouts are', _store.workouts);
+};
+
+var updateForListView = function(indexToUpdate){
+  //ListView does not re-render a row when the properties
+  //of an object are changd. So must create new objs instead of
+  //updating properties of existing ones
+  let newWorkouts = _store.workouts.slice();
+  newWorkouts[indexToUpdate] = {
+    ..._store.workouts[indexToUpdate],
+  };
+  _store.workouts = newWorkouts;
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {

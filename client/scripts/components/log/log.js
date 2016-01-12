@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-10 16:38:50
+* @Last Modified time: 2016-01-11 18:28:21
 */
 
 'use strict';
@@ -25,7 +25,7 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
+        rowHasChanged: (r1, r2) => r1 !== r2,
       }),
     };
   },
@@ -38,12 +38,14 @@ var Log = React.createClass({
   },
   _onChange: function(){
     var workouts = logStore.getWorkouts();
+
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(workouts)
     });
   },
 
   renderRow: function(workout){
+    console.log('renderRow workout is', workout);
     return (
       /* jshint ignore:start */
       <View style={styles.logCardContainer}>
@@ -55,6 +57,7 @@ var Log = React.createClass({
     );
   },
   render: function(){
+    console.log('render this.state.dataSource', this.state.dataSource);
     /* jshint ignore:start */
     return (
       <View style={styles.container}>
