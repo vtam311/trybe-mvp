@@ -4,6 +4,7 @@ var React = require('react-native');
 var Subscribable = require('Subscribable'); //used for addListenerOn
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 //Load components
 var ViewWorkout = require('../viewWorkout/viewWorkout');
@@ -120,10 +121,11 @@ var NavBarRouteMapper = {
       case 'Today':
         var handleRightPress = function(){
           editWorkoutActions.resetWorkout();
-          navigator.push({
-            component: EditWorkout,
-            name: 'New Workout'
-          });
+          // navigator.push({
+          //   component: EditWorkout,
+          //   name: 'New Workout'
+          // });
+          modalActions.openWorkoutModal();
         };
         return (
           <TouchableOpacity

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:14:01
+* @Last Modified time: 2016-01-12 17:33:41
 */
 
 'use strict';
@@ -23,6 +23,7 @@ var _store = {
 
 var openWorkoutModal = function() {
   _store.workoutModalVisible = true;
+  console.log('modalStore openWorkoutModal called');
 };
 
 var closeWorkoutModal = function() {

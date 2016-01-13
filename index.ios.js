@@ -9,7 +9,7 @@ var modalStore = require('./client/scripts/stores/modalStore');
 
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
-// var EditWorkouteModal = require('./client/scripts/components/editWorkout/editWorkoutModal');
+var EditWorkoutModal = require('./client/scripts/components/editWorkout/editWorkoutModal');
 var EditExerciseModal = require('./client/scripts/components/editWorkout/editExercise/editExerciseModal');
 var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
@@ -47,6 +47,7 @@ var Trybe = React.createClass({
   },
   _onChange: function(){
     this.setState({
+      workoutModalVisible: modalStore.getWorkoutModalVisible(),
       exerciseModalVisible: modalStore.getExerciseModalVisible(),
       partModalVisible: modalStore.getPartModalVisible(),
       dateModalVisible: modalStore.getDateModalVisible(),
@@ -68,7 +69,6 @@ var Trybe = React.createClass({
     );
   },
 
-        // {this.state.wrkoutModalVisible ? <EditWorkoutModal closeModal={this.closeWorkoutModal}/> : null }
   render: function() {
     return (
       /* jshint ignore:start */
@@ -77,6 +77,7 @@ var Trybe = React.createClass({
           ref="rootNav"
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
+        {this.state.workoutModalVisible ? <EditWorkoutModal /> : null }
         {this.state.exerciseModalVisible ? <EditExerciseModal /> : null }
         {this.state.partModalVisible ? <EditPartModal /> : null }
         {this.state.dateModalVisible ? <EditDateModal /> : null }

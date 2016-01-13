@@ -2,24 +2,26 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:42:05
+* @Last Modified time: 2016-01-12 17:36:59
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutStore = require('../../../stores/editWorkoutStore');
-var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var editWorkoutStore = require('../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
-  ScrollView,
   Text,
   View,
-  Image,
-  TouchableHighlight,
+  TouchableOpacity,
+  Animated,
   Dimensions,
-  DeviceEventEmitter,
+  TextInput,
+  Image,
+  DeviceEventEmitter
 } = React;
 
 //Load components
@@ -68,7 +70,7 @@ var EditWorkoutModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(this.props.closeModal);
+    }).start(modalActions.closeWorkoutModal);
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
@@ -109,36 +111,43 @@ var EditWorkoutModal = React.createClass({
     //tab bar from covering scene
     return (
       /* jshint ignore:start */
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}, styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-        <View>
+      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
+        <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.headerContainer}>
               <TouchableOpacity onPress={this.closeModal}>
-                <Text style={styles.headerButtonText}>Done</Text>
+                <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>Add Part</Text>
+              <Text style={styles.headerTitleText}>Edit Part</Text>
               <TouchableOpacity onPress={this.savePart}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <ScrollView
-            ref='scrollView'
-            keyboardDismissMode='on-drag'
-            contentContainerStyle={styles.contentContainerStyle}
-            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
-            <TableView>
+          <View style={styles.body}>
+            <View style={styles.bodyContainer}>
+              <Text style={styles.partNamePrompt}>Purpose</Text>
+              <TextInput
+                value={this.state.partName}
+                placeholder={'Warmup, Strength, Etc.'}
+                autoCapitalize='words'
+                onChangeText={(text) => this.renderPartName(text)}
+                style={{height: 40}}/>
+            </View>
+          </View>
 
-              <Section>
-                <DateCell
-                  date={this.state.workout.date} />
-              </Section>
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={this.removePart}>
+              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                  style={{height: 18, width: 18}}
+                  source={require('image!deleteButton')} />
+                <Text style={styles.deleteText}>Delete</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
 
-              {parts}
-
-            </TableView>
-          </ScrollView>
         </View>
       </Animated.View>
       /* jshint ignore:end */
@@ -146,36 +155,6 @@ var EditWorkoutModal = React.createClass({
 
   }
 });
-    // return (
-    //   <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-    //     <View style={styles.container}>
-    //       <View style={styles.header}>
-    //         <View style={styles.headerContainer}>
-    //           <TouchableOpacity onPress={this.closeModal}>
-    //             <Text style={styles.headerButtonText}>Cancel</Text>
-    //           </TouchableOpacity>
-    //           <Text style={styles.headerTitleText}>Edit Part</Text>
-    //           <TouchableOpacity onPress={this.savePart}>
-    //             <Text style={styles.headerButtonText}>Done</Text>
-    //           </TouchableOpacity>
-    //         </View>
-    //       </View>
-
-    //       <View style={styles.body}>
-    //         <View style={styles.bodyContainer}>
-    //           <Text style={styles.partNamePrompt}>Purpose</Text>
-    //           <TextInput
-    //             value={this.state.partName}
-    //             placeholder={'Warmup, Strength, Etc.'}
-    //             autoCapitalize='words'
-    //             onChangeText={(text) => this.renderPartName(text)}
-    //             style={{height: 40}}/>
-    //         </View>
-    //       </View>
-
-    //     </View>
-    //   </Animated.View>
-    // )
 
 var styles = StyleSheet.create({
   modal: {
