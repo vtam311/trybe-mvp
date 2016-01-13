@@ -7,7 +7,7 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 //Load components
-var ViewWorkout = require('../viewWorkout/viewWorkout');
+var ViewWorkout = require('./viewWorkout');
 var EditWorkout = require('../editWorkout/editWorkout');
 
 var {
@@ -121,10 +121,6 @@ var NavBarRouteMapper = {
       case 'Today':
         var handleRightPress = function(){
           editWorkoutActions.resetWorkout();
-          // navigator.push({
-          //   component: EditWorkout,
-          //   name: 'New Workout'
-          // });
           modalActions.openWorkoutModal();
         };
         return (

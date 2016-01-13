@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 12:47:56
+* @Last Modified time: 2016-01-12 18:18:09
 */
 
 'use strict';
@@ -13,7 +13,7 @@ var indexActions = require('../actions/indexActions');
 
 //Load components
 var FeedTab = require('../components/feed/feed');
-var WorkoutTab = require('../components/workoutTab/workoutTab');
+var WorkoutTab = require('../components/viewWorkout/workoutTab');
 var LogTab = require('../components/log/logTab');
 
 var {

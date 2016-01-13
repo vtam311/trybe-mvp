@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:13:44
+* @Last Modified time: 2016-01-12 18:15:20
 */
 
 'use strict';
@@ -198,22 +198,7 @@ var styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
-  },
-  body: {
-    flex: .9,
-    justifyContent: 'center',
-  },
-  bodyContainer: {
-    flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 15,
-  },
-  partNamePrompt: {
-    fontSize: 14,
-    color: 'black',
-    fontFamily: 'Avenir Next'
-  },
+  }
 });
 
 module.exports = EditWorkoutModal;
