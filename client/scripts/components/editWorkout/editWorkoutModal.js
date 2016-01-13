@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:15:20
+* @Last Modified time: 2016-01-12 18:28:22
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var tabStore = require('../../stores/tabStore');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -44,6 +45,7 @@ var EditWorkoutModal = React.createClass({
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
       workout: editWorkoutStore.getWorkout(),
+      createOrLog: tabStore.getTab(),
     };
   },
   componentWillMount: function() {
@@ -96,6 +98,12 @@ var EditWorkoutModal = React.createClass({
       );
     }, 50);
   },
+  getTitle: function(){
+    //renders
+    if(this.state.createOrLog === 'profile') return 'Log Workout';
+    else if(this.state.createOrLog === 'workout') return 'New Workout';
+    else return 'Edit Workout';
+  },
   render: function() {
     var parts = this.state.workout.parts.map((part, index) =>
       /* jshint ignore:start */
@@ -121,7 +129,7 @@ var EditWorkoutModal = React.createClass({
               <TouchableOpacity onPress={editWorkoutActions.addPart}>
                 <Text style={styles.headerButtonText}>Add Part</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>New Workout</Text>
+              <Text style={styles.headerTitleText}>{this.getTitle()}</Text>
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>

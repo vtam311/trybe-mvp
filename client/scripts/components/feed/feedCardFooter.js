@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-07 21:23:59
+* @Last Modified time: 2016-01-12 18:24:33
 */
 
 'use strict';
 
 var React = require('react-native');
-var indexActions = require('../../actions/indexActions');
+var tabActions = require('../../actions/tabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var newWorkout = require('../../common/newWorkout');
@@ -35,7 +35,7 @@ var FeedCardFooter = React.createClass({
 
     //reset workout tab stack to viewWorkout scene
     this.props.onDoWorkout();
-    indexActions.setTab('workout');
+    tabActions.setTab('workout');
   },
 
   render: function(){

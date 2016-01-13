@@ -1,14 +1,14 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:06:03
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 18:24:43
 */
 
 'use strict';
 
 var React = require('react-native');
-var indexActions = require('../../actions/indexActions');
+var tabActions = require('../../actions/tabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var newWorkout = require('../../common/newWorkout');
@@ -39,7 +39,7 @@ var LogCardFooter = React.createClass({
     //reset stack in workout tab to viewWorkout scene
     this.props.onDoWorkout();
     //set tab to workout tab
-    indexActions.setTab('workout');
+    tabActions.setTab('workout');
   },
   render: function(){
     var workout = this.props.workout;

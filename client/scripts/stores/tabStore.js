@@ -1,7 +1,7 @@
 'use strict';
 
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-var indexConstants = require('../constants/indexConstants');
+var tabConstants = require('../constants/tabConstants');
 var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = 'change';
@@ -14,7 +14,7 @@ var setTab = function(tab){
   _store.selectedTab = tab;
 };
 
-var indexStore = Object.assign({}, EventEmitter.prototype, {
+var tabStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
@@ -30,13 +30,13 @@ AppDispatcher.register(function(payload){
   var action = payload.action;
 
   switch (action.actionType) {
-    case indexConstants.SET_TAB:
+    case tabConstants.SET_TAB:
       setTab(action.data);
-      indexStore.emit(CHANGE_EVENT);
+      tabStore.emit(CHANGE_EVENT);
       break;
     default:
       return true;
   }
 });
 
-module.exports = indexStore;
+module.exports = tabStore;

@@ -2,14 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:18:09
+* @Last Modified time: 2016-01-12 18:23:51
 */
 
 'use strict';
 
 var React = require('react-native');
-var indexStore = require('../stores/indexStore');
-var indexActions = require('../actions/indexActions');
+var tabStore = require('../stores/tabStore');
+var tabActions = require('../actions/tabActions');
 
 //Load components
 var FeedTab = require('../components/feed/feed');
@@ -29,23 +29,23 @@ var {
 var TabBar = React.createClass({
   getInitialState: function(){
     return {
-      selectedTab: indexStore.getTab()
+      selectedTab: tabStore.getTab()
     };
   },
   componentDidMount: function(){
-    indexStore.addChangeListener(this._onChange);
+    tabStore.addChangeListener(this._onChange);
     StatusBarIOS.setStyle(1);
   },
   componentWillUnmount: function(){
-    indexStore.removeChangeListener(this._onChange);
+    tabStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      selectedTab: indexStore.getTab()
+      selectedTab: tabStore.getTab()
     });
   },
   changeTab: function(tabName) {
-    indexActions.setTab(tabName);
+    tabActions.setTab(tabName);
   },
 
   render: function() {
