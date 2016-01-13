@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:05:29
+* @Last Modified time: 2016-01-12 18:08:11
 */
 
 'use strict';
@@ -118,27 +118,32 @@ var EditWorkoutModal = React.createClass({
 
           <View style={styles.header}>
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.closeModal}>
-                <Text style={styles.headerButtonText}>Cancel</Text>
+              <TouchableOpacity onPress={editWorkoutActions.addPart}>
+                <Text style={styles.headerButtonText}>Add Part</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Workout</Text>
-              <TouchableOpacity onPress={this.savePart}>
+              <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
           </View>
 
-          <View style={styles.body}>
-            <View style={styles.bodyContainer}>
-              <Text style={styles.partNamePrompt}>Purpose</Text>
-              <TextInput
-                value={this.state.partName}
-                placeholder={'Warmup, Strength, Etc.'}
-                autoCapitalize='words'
-                onChangeText={(text) => this.renderPartName(text)}
-                style={{height: 40}}/>
-            </View>
-          </View>
+          <ScrollView
+            ref='scrollView'
+            keyboardDismissMode='on-drag'
+            contentContainerStyle={styles.contentContainerStyle}
+            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
+            <TableView>
+
+              <Section>
+                <DateCell
+                  date={this.state.workout.date} />
+              </Section>
+
+              {parts}
+
+            </TableView>
+          </ScrollView>
 
         </View>
       </Animated.View>
