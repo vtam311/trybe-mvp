@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:08:11
+* @Last Modified time: 2016-01-12 18:13:44
 */
 
 'use strict';
@@ -84,8 +84,8 @@ var EditWorkoutModal = React.createClass({
   scrollToComponent: function(refName, child) {
     console.log('editWorkout scrollToComponent called');
     var offset;
-    if(child === 'instrTextInput') offset = -90;
-    else if(child === 'customTextInput') offset = 0;
+    if(child === 'instrTextInput') offset = -70;
+    else if(child === 'customTextInput') offset = 50;
 
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
@@ -200,7 +200,6 @@ var styles = StyleSheet.create({
     paddingBottom: 20,
   },
   body: {
-    // height: 100,
     flex: .9,
     justifyContent: 'center',
   },
