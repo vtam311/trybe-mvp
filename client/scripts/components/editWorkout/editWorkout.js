@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 15:04:43
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:10:41
+* @Last Modified time: 2016-01-12 17:40:00
 */
 
 'use strict';
@@ -17,7 +17,6 @@ var {
   Text,
   View,
   Image,
-  TouchableHighlight,
   Dimensions,
   DeviceEventEmitter,
 } = React;

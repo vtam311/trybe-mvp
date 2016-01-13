@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 17:36:59
+* @Last Modified time: 2016-01-12 18:05:29
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
+  ScrollView,
   Text,
   View,
   TouchableOpacity,
@@ -21,7 +22,8 @@ var {
   Dimensions,
   TextInput,
   Image,
-  DeviceEventEmitter
+  DeviceEventEmitter,
+  StatusBarIOS
 } = React;
 
 //Load components
@@ -111,14 +113,15 @@ var EditWorkoutModal = React.createClass({
     //tab bar from covering scene
     return (
       /* jshint ignore:start */
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={styles.container}>
+      <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
+        <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+
           <View style={styles.header}>
             <View style={styles.headerContainer}>
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>Edit Part</Text>
+              <Text style={styles.headerTitleText}>New Workout</Text>
               <TouchableOpacity onPress={this.savePart}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
@@ -137,17 +140,6 @@ var EditWorkoutModal = React.createClass({
             </View>
           </View>
 
-          <View style={styles.footer}>
-            <TouchableOpacity onPress={this.removePart}>
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                <Image
-                  style={{height: 18, width: 18}}
-                  source={require('image!deleteButton')} />
-                <Text style={styles.deleteText}>Delete</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
         </View>
       </Animated.View>
       /* jshint ignore:end */
@@ -163,56 +155,48 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    paddingBottom: 50,
-    backgroundColor: 'rgba(155, 155, 155, 0.4)',
-  },
-  flexCenter: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   container: {
-    height: 180,
-    width: 340,
-    // backgroundColor: 'rgba(255, 255, 255, 1)',
+    flex: 1,
     backgroundColor: '#EFEFF4',
     borderRadius: 3,
     shadowColor: '#9B9B9B',
     shadowOpacity: 8,
   },
   header: {
-    height: 40,
+    flex: .1,
     borderBottomWidth: .5,
     borderBottomColor: 'rgba(155, 155, 155, 0.7)',
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
+    backgroundColor: '#4DBA97',
   },
   headerContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
+    marginTop: 30,
   },
   headerTitleText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#4A4A4A'
+    fontFamily: 'Avenir',
+    fontSize: 18,
+    color: 'white'
   },
   headerButtonText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
     fontWeight: '500',
-    color: '#4DBA97',
+    color: 'white',
   },
   contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
   },
   body: {
-    height: 100,
+    // height: 100,
+    flex: .9,
     justifyContent: 'center',
   },
   bodyContainer: {
@@ -225,20 +209,6 @@ var styles = StyleSheet.create({
     fontSize: 14,
     color: 'black',
     fontFamily: 'Avenir Next'
-  },
-  footer: {
-    flex: 1,
-    height: 40,
-    borderTopColor: '#9B9B9B',
-    borderTopWidth: .5,
-    borderTopColor: 'rgba(155, 155, 155, 0.7)',
-    borderBottomLeftRadius: 3,
-    borderBottomRightRadius: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
   },
 });
 
