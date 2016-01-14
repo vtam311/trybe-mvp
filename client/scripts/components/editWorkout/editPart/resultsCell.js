@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:49:12
+* @Last Modified time: 2016-01-14 13:55:03
 */
 
 'use strict';
@@ -52,24 +52,6 @@ var ResultsCell = React.createClass({
   },
 
   render: function(){
-    //Must declare here, as props aren't accessible to showOrHideResultOptions
-    var recordingSwitchIsOn = this.state.recordingSwitchIsOn;
-    var resultType = this.props.resultType;
-    var partIdx = this.props.partIdx;
-    var scrollToComponent = this.props.scrollToComponent;
-
-    var showOrHideResultOptions = function(){
-      if(recordingSwitchIsOn) {
-        return (
-          <ResultOptions
-            resultType={resultType}
-            partIdx={partIdx}
-            scrollToComponent={scrollToComponent} />
-        );
-      } else {
-        return null;
-      }
-    };
 
     return (
       /* jshint ignore:start */
@@ -82,12 +64,19 @@ var ResultsCell = React.createClass({
               onValueChange={(bool) => this.toggleRecording(bool)}
               value={this.props.isRecording} />
           </View>
-          {showOrHideResultOptions()}
+          {this.state.recordingSwitchIsOn ?
+            <ResultOptions
+              resultType={this.props.resultType}
+              partIdx={this.props.partIdx}
+              scrollToComponent={this.props.scrollToComponent} />
+            : null
+          }
         </View>
       </CustomCell>
       /* jshint ignore:end */
     );
   },
+          // {showOrHideResultOptions()}
 
 });
 

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:28:22
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-14 13:56:12
 */
 
 'use strict';
@@ -45,7 +45,6 @@ var EditWorkoutModal = React.createClass({
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
       workout: editWorkoutStore.getWorkout(),
-      createOrLog: tabStore.getTab(),
     };
   },
   componentWillMount: function() {
@@ -98,12 +97,6 @@ var EditWorkoutModal = React.createClass({
       );
     }, 50);
   },
-  getTitle: function(){
-    //renders
-    if(this.state.createOrLog === 'profile') return 'Log Workout';
-    else if(this.state.createOrLog === 'workout') return 'New Workout';
-    else return 'Edit Workout';
-  },
   render: function() {
     var parts = this.state.workout.parts.map((part, index) =>
       /* jshint ignore:start */
@@ -129,7 +122,7 @@ var EditWorkoutModal = React.createClass({
               <TouchableOpacity onPress={editWorkoutActions.addPart}>
                 <Text style={styles.headerButtonText}>Add Part</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>{this.getTitle()}</Text>
+              <Text style={styles.headerTitleText}>New Workout</Text>
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
@@ -194,14 +187,13 @@ var styles = StyleSheet.create({
   },
   headerTitleText: {
     fontFamily: 'Avenir',
-    fontSize: 18,
+    fontSize: 20,
     color: 'white'
   },
   headerButtonText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 15,
-    fontWeight: '500',
-    color: 'white',
+    fontFamily: 'Helvetica Neue',
+    fontSize: 17,
+    color: 'white'
   },
   contentContainerStyle: {
     paddingTop: 20,
