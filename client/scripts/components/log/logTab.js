@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:31:11
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-14 14:06:14
 */
 
 'use strict';
@@ -87,16 +87,8 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
-    var handleRightPress = function(){
-      editWorkoutActions.resetWorkout();
-      modalActions.openWorkoutModal();
-    };
     return (
-      <TouchableOpacity
-        onPress={() => handleRightPress()}
-        style={styles.navBarComponentContainer} >
-        <Image source={require('image!createIcon')} />
-      </TouchableOpacity>
+      null
     );
   },
 

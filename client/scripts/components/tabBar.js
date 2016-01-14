@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:23:51
+* @Last Modified time: 2016-01-14 14:16:18
 */
 
 'use strict';
@@ -54,8 +54,8 @@ var TabBar = React.createClass({
       <TabBarIOS
         tintColor='#4DBA97' >
         <TabBarIOS.Item
-          title='Profile'
-          icon={ require('image!profile') }
+          title='Log'
+          icon={ require('image!log') }
           onPress={ () => this.changeTab('profile') }
           selected={ this.state.selectedTab === 'profile'} >
           <LogTab
@@ -64,7 +64,7 @@ var TabBar = React.createClass({
 
         <TabBarIOS.Item
           title='Home'
-          icon={ require('image!home') }
+          icon={ require('image!feed') }
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
           <FeedTab
