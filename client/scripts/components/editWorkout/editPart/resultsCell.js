@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 13:55:03
+* @Last Modified time: 2016-01-14 23:31:51
 */
 
 'use strict';
@@ -23,26 +23,20 @@ import {CustomCell} from 'react-native-tableview-simple';
 var ResultOptions = require('./resultOptions');
 
 var ResultsCell = React.createClass({
-  getInitialState: function(){
-    return {
-      recordingSwitchIsOn: this.props.isRecording,
-    };
-  },
   toggleRecording: function(bool){
     editWorkoutActions.toggleRecording(bool, this.props.partIdx);
-
-    //Manually set state without store, as component is basic
-    this.setState({recordingSwitchIsOn: bool});
   },
 
   //Adjust height to show components in ResultsCell
   adjustHeight: function() {
-    if(this.state.recordingSwitchIsOn){
+    if(this.props.isRecording){
       //If recording custom result, show
       //both SegmCtrl and text input from ResultOptions
       if(isCustomMetric(this.props.resultType)){
         return 144;
       } else {
+        //If is recording but not a custom metric, allow
+        //space for just ResultOption's SegmCtrl
         return 100;
       }
     } else {
@@ -64,7 +58,7 @@ var ResultsCell = React.createClass({
               onValueChange={(bool) => this.toggleRecording(bool)}
               value={this.props.isRecording} />
           </View>
-          {this.state.recordingSwitchIsOn ?
+          {this.props.isRecording ?
             <ResultOptions
               resultType={this.props.resultType}
               partIdx={this.props.partIdx}

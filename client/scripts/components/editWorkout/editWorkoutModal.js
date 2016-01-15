@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 23:21:30
+* @Last Modified time: 2016-01-14 23:25:36
 */
 
 'use strict';
@@ -53,9 +53,6 @@ var EditWorkoutModal = React.createClass({
 
     //back up original workout, to revert back if user cancels changes
     editWorkoutActions.saveBackupWorkout();
-
-    //reset workout to empty template, so user can start from scratch
-    editWorkoutActions.resetWorkout();
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -64,6 +61,9 @@ var EditWorkoutModal = React.createClass({
     }).start();
 
     editWorkoutStore.addChangeListener(this._onChange);
+
+    //reset workout to empty template, so user can start from scratch
+    editWorkoutActions.resetWorkout();
   },
   componentWillUnmount: function() {
     editWorkoutStore.removeChangeListener(this._onChange);
