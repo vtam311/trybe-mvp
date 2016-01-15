@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:04:37
+* @Last Modified time: 2016-01-14 14:54:51
 */
 
 'use strict';
@@ -12,13 +12,15 @@ var logStore = require('../../stores/logStore');
 var logActions = require('../../actions/logActions');
 
 //Load components
+var ProfileCard = require('./profileCard');
 var LogCard = require('./logCard');
 
 var {
   StyleSheet,
   Text,
   View,
-  ListView
+  ListView,
+  Image
 } = React;
 
 var Log = React.createClass({
@@ -44,6 +46,12 @@ var Log = React.createClass({
     });
   },
 
+  renderHeader: function(){
+    return (
+      <ProfileCard />
+    );
+  },
+
   renderRow: function(workout){
     return (
       /* jshint ignore:start */
@@ -59,7 +67,10 @@ var Log = React.createClass({
     /* jshint ignore:start */
     return (
       <View style={styles.container}>
-        <ListView dataSource={this.state.dataSource} renderRow={this.renderRow} />
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}
+          renderHeader={this.renderHeader} />
       </View>
       );
     /* jshint ignore:end */

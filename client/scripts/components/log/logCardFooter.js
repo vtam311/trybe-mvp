@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:24:43
+* @Last Modified time: 2016-01-14 17:13:28
 */
 
 'use strict';
@@ -17,7 +17,8 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableOpacity,
+  Image
 } = React;
 
 var LogCardFooter = React.createClass({
@@ -47,10 +48,15 @@ var LogCardFooter = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.feedCardFooter}>
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={ () => this.doWorkout(workout) }>
-          <Text>Redo</Text>
-        </TouchableHighlight>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{color: '#4DBA97', marginRight: 6}}>Retry</Text>
+            <Image
+              source={require('image!tryIcon')}
+              style={styles.tryIcon} />
+          </View>
+        </TouchableOpacity>
       </View>
       /* jshint ignore:end */
     );
@@ -59,12 +65,15 @@ var LogCardFooter = React.createClass({
 
 var styles = StyleSheet.create({
   feedCardFooter: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     borderTopWidth: .5,
     borderColor: '#c8c7cc',
     paddingTop: 10,
+  },
+  tryIcon: {
+    // height: 14,
+    // width: 12
   }
 });
 
