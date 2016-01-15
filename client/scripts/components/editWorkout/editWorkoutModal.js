@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 13:56:12
+* @Last Modified time: 2016-01-14 23:21:30
 */
 
 'use strict';
@@ -50,6 +50,12 @@ var EditWorkoutModal = React.createClass({
   componentWillMount: function() {
     this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
+
+    //back up original workout, to revert back if user cancels changes
+    editWorkoutActions.saveBackupWorkout();
+
+    //reset workout to empty template, so user can start from scratch
+    editWorkoutActions.resetWorkout();
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -68,6 +74,10 @@ var EditWorkoutModal = React.createClass({
     this.setState({
       workout: editWorkoutStore.getWorkout(),
     });
+  },
+  handleCancel: function(){
+    editWorkoutActions.cancelChanges();
+    this.closeModal();
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
@@ -119,8 +129,8 @@ var EditWorkoutModal = React.createClass({
 
           <View style={styles.header}>
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={editWorkoutActions.addPart}>
-                <Text style={styles.headerButtonText}>Add Part</Text>
+              <TouchableOpacity onPress={this.handleCancel}>
+                <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Workout</Text>
               <TouchableOpacity onPress={this.closeModal}>

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 14:55:32
+* @Last Modified time: 2016-01-14 23:15:21
 */
 
 'use strict';
@@ -155,6 +155,16 @@ var editWorkoutActions = {
       data: {
         name: name
       }
+    });
+  },
+  saveBackupWorkout: function(){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SAVE_BACKUP_WORKOUT
+    });
+  },
+  cancelChanges: function(){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.CANCEL_CHANGES
     });
   },
 };

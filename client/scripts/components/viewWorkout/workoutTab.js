@@ -120,7 +120,6 @@ var NavBarRouteMapper = {
       //If viewing today's workout, render create workout button
       case 'Today':
         var handleRightPress = function(){
-          editWorkoutActions.resetWorkout();
           modalActions.openWorkoutModal();
         };
         return (

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:34:07
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 11:02:14
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-14 23:15:36
 */
 
 'use strict';
@@ -25,6 +25,8 @@ var editWorkoutConstants = {
   REMOVE_PART: 'REMOVE_PART',
   SET_TARGET_PART_IDX: 'SET_TARGET_PART_IDX',
   SET_PART_NAME: 'SET_PART_NAME',
+  SAVE_BACKUP_WORKOUT: 'SAVE_BACKUP_WORKOUT',
+  CANCEL_CHANGES: 'CANCEL_CHANGES'
 };
 
 module.exports = editWorkoutConstants;
