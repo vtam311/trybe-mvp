@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-15 21:53:24
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-15 22:01:26
 */
 
 'use strict';
@@ -90,7 +90,6 @@ var styles = StyleSheet.create({
     overflow: 'hidden',
     width: 80,
     height: 80,
-    borderRadius: 40,
     marginLeft: 5,
     marginTop: 5
   },
@@ -108,7 +107,7 @@ var styles = StyleSheet.create({
   },
   trybesText: {
     fontFamily: 'Avenir Next',
-    fontSize: 16,
+    fontSize: 18,
     color: '#58504D',
     textAlign: 'right',
   },
