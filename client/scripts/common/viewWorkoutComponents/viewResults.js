@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 09:25:26
+* @Last Modified time: 2016-01-16 10:31:52
 */
 
 'use strict';
@@ -25,17 +25,17 @@ var ViewResults = React.createClass({
 
     switch (result.type) {
       case 'Time':
-        icon = <Image style={styles.metricIcon} source={require('image!timeIcon')}/> ;
+        icon = <Image style={[styles.metricIcon, {marginTop: 2}]} source={require('image!timeIcon')}/> ;
         var time = renderResultsTime(result.val)
         resultView = <Text style={styles.resultText}>{time}</Text>;
         break;
       case 'Rounds':
-        icon = <Image style={styles.metricIcon} source={require('image!rounds')}/> ;
+        icon = <Image style={[styles.metricIcon, {marginTop: 2}]} source={require('image!rounds')}/> ;
         var rounds = result.val.toString() + ' Rounds'
         resultView = <Text style={styles.resultText}>{rounds}</Text>;
         break;
       case 'Max Load':
-        icon = <Image style={[styles.metricIcon, {marginBottom: 10}]} source={require('image!weightIcon')}/> ;
+        icon = <Image style={[styles.metricIcon, {marginBottom: 8}]} source={require('image!weightIcon')}/> ;
         var maxLoad = result.val.val.toString() + ' ' + result.val.units;
         resultView = <Text style={styles.resultText}>{maxLoad}</Text>;
         break;
@@ -65,12 +65,12 @@ var ViewResults = React.createClass({
 var styles = StyleSheet.create({
   resultContainer: {
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 10,
   },
   metricIcon: {
-    height: 20,
-    width: 20,
+    height: 18,
+    width: 18,
     marginRight: 5,
   },
   resultText: {
@@ -78,7 +78,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontStyle: 'italic',
     color: 'grey',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '500',
   }
 });

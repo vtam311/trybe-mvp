@@ -144,6 +144,7 @@ var styles = StyleSheet.create({
   },
   exerciseText: {
     fontFamily: 'Avenir Next',
+    fontWeight: '500',
     fontSize: 15,
     color: '#8D867E'
   }
