@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-15 22:01:26
+* @Last Modified time: 2016-01-15 22:15:14
 */
 
 'use strict';
@@ -73,12 +73,16 @@ var styles = StyleSheet.create({
     height: 200,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'rgba(255, 255, 255, .75)',
+    backgroundColor: 'rgba(255, 255, 255, .85)',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#d9d9d9',
+    borderColor: '#979797',
+    shadowColor: '#979797',
+    shadowOffset: {height: 1, width: 0},
+    shadowOpacity: .5,
+    marginTop: -20,
+    marginBottom: 10,
     padding: 10,
-    marginBottom: 20,
   },
   topContainer: {
     flexDirection: 'row',
