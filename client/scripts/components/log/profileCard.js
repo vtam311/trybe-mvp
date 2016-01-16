@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-15 19:32:21
+* @Last Modified time: 2016-01-15 21:38:51
 */
 
 'use strict';
@@ -11,54 +11,58 @@ var React = require('react-native');
 
 var {
   Image,
-  Dimensions,
   StyleSheet,
   Text,
   View,
 } = React;
 
 var ProfileCard = React.createClass({
-  getInitialState: function(){
-    return {
-      visibleWidth: Dimensions.get('window').width,
-    };
-  },
   render: function(){
     /* jshint ignore:start */
     return (
-      <View style={[styles.container, {width: this.state.visibleWidth}]}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View style={{flexDirection: 'row'}}>
-            <View style={[styles.imageCropper]}>
+      <View style={[styles.container]}>
+        <Image
+          source={require('image!logoBackdrop')}
+          style={{flex: 1, height: null, width: null}}
+          resizeMode='contain'>
+
+        <View style={styles.content}>
+          <View style={styles.topContainer}>
+            <View style={{flexDirection: 'row'}}>
+              <View style={[styles.imageCropper]}>
+                <Image
+                  style={styles.profilePic}
+                  source={{uri: 'https://i.imgur.com/YcbwSpY.jpg'}} />
+              </View>
+              <View style={{marginLeft: 20}}>
+                <Text style={styles.nameText}>Vincent Tam</Text>
+                <Text style={styles.trybesText}>ICON Athletes</Text>
+              </View>
+            </View>
+
+            <View>
               <Image
-                style={styles.profilePic}
-                source={{uri: 'https://i.imgur.com/YcbwSpY.jpg'}} />
+                style={styles.settingsIcon}
+                source={require('image!settings')} />
             </View>
-            <View style={{marginLeft: 20}}>
-              <Text style={styles.nameText}>Vincent Tam</Text>
-              <Text style={styles.trybesText}>ICON Athletes</Text>
-            </View>
+
           </View>
 
-          <View>
-            <Image
-              style={styles.settingsIcon}
-              source={require('image!settings')} />
+          <View style={styles.bottomContainer}>
+            <View style={styles.metrics}>
+              <Text style={{fontFamily: 'Avenir Next', fontSize: 18, fontWeight: '500'}}>5 workouts</Text>
+              <Text style={{color: '#4A4A4A'}}>7-day activity</Text>
+            </View>
+            <View style={styles.verticalLine}></View>
+            <View style={styles.metrics}>
+              <Text style={{fontFamily: 'Avenir Next', fontSize: 18, fontWeight: '500'}}>114</Text>
+              <Text style={{color: '#4A4A4A'}}>completed</Text>
+            </View>
           </View>
-
         </View>
 
-        <View style={styles.bottomContainer}>
-          <View style={styles.metrics}>
-            <Text style={{fontFamily: 'Avenir Next', fontSize: 18, fontWeight: '500'}}>5 workouts</Text>
-            <Text style={{color: '#4A4A4A'}}>7-day activity</Text>
-          </View>
-          <View style={styles.verticalLine}></View>
-          <View style={styles.metrics}>
-            <Text style={{fontFamily: 'Avenir Next', fontSize: 18, fontWeight: '500'}}>114</Text>
-            <Text style={{color: '#4A4A4A'}}>completed</Text>
-          </View>
-        </View>
+        </Image>
+
       </View>
       );
     /* jshint ignore:end */
@@ -77,12 +81,19 @@ var styles = StyleSheet.create({
     padding: 10,
     marginBottom: 20,
   },
+  topContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 5,
+  },
   imageCropper: {
     position: 'relative',
     overflow: 'hidden',
     width: 80,
     height: 80,
     borderRadius: 40,
+    marginLeft: 5,
+    marginTop: 5
   },
   profilePic: {
     height: 80,
@@ -92,6 +103,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontSize: 24,
     color: '#4A4A4A',
+    marginTop: 3,
     marginBottom: 5,
     textAlign: 'right'
   },
@@ -100,6 +112,9 @@ var styles = StyleSheet.create({
     fontSize: 16,
     color: '#4A4A4A',
     textAlign: 'right',
+  },
+  settingsIcon: {
+    marginTop: 10,
   },
   bottomContainer: {
     flexDirection: 'row',
