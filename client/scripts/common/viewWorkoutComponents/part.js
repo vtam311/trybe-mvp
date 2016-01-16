@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-15 22:25:19
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-15 23:52:18
 */
 
 'use strict';
@@ -22,9 +22,9 @@ var Part = React.createClass({
   render: function(){
     var part = this.props.part;
 
-    var exercises = part.exercises.map( (exercise) =>
-      <ViewExercise
-        exercise={exercise} />
+    var exercises = part.exercises.map((exercise) =>
+        <ViewExercise
+          exercise={exercise} />
     );
 
     return (

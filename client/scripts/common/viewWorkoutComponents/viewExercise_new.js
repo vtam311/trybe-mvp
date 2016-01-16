@@ -42,6 +42,7 @@ var viewExercise = React.createClass({
           exParams += exercise.reps + ' reps';
         }
       }
+      // console.log('renderReps exParams now', exParams);
     };
 
     var renderLoad = function() {
@@ -55,10 +56,11 @@ var viewExercise = React.createClass({
           exParams += exercise.load.val + exercise.load.units;
         }
       }
+      // console.log('renderLoad exParams now', exParams);
     };
 
     var renderDistance = function() {
-      if(exercise.distance){
+      if(exercise.distance.val){
         if(lastExParam === 'time'){
           //if there is another exercise param to render,
           //add a comma and space
@@ -67,12 +69,14 @@ var viewExercise = React.createClass({
           exParams += exercise.distance.val + exercise.distance.units;
         }
       }
+      // console.log('renderDistance exParams now', exParams);
     };
 
     var renderTime = function(){
       if(exercise.time){
         exParams += renderExerciseTime(exercise.time);
       }
+      // console.log('renderTime exParams now', exParams);
     };
 
     var renderExerciseName = function() {
@@ -98,7 +102,7 @@ var viewExercise = React.createClass({
       //reps, load, distance, time. Once set,
       //renderExercise functions refer to the last param
       if(exercise.time) lastExParam = 'time';
-      else if(exercise.distance) lastExParam = 'distance';
+      else if(exercise.distance.val) lastExParam = 'distance';
       else if(exercise.load.val) lastExParam = 'load';
       else if(exercise.reps) lastExParam = 'reps';
     };
@@ -135,8 +139,13 @@ var viewExercise = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
+    width: 300,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderBottomWidth: .5,
+    borderColor: 'rgba(88, 80, 77, .5)',
+    paddingTop: 7,
+    paddingBottom: 7
   },
   exerciseText: {
     marginRight: 4,
