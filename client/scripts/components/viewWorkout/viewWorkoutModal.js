@@ -1,62 +1,40 @@
 /*
 * @Author: vincetam
-* @Date:   2016-01-12 11:30:40
+* @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 13:02:39
+* @Last Modified time: 2016-01-16 12:58:12
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutStore = require('../../stores/editWorkoutStore');
-var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutStore = require('../../stores/viewWorkoutStore');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
-  StyleSheet,
   ScrollView,
-  Text,
-  View,
   TouchableOpacity,
   Animated,
   Dimensions,
-  TextInput,
-  Image,
-  DeviceEventEmitter,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Dimensions,
 } = React;
 
 //Load components
-var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
-import {TableView, Section} from 'react-native-tableview-simple';
-var DateCell = require('./dateCell');
-var Part = require('./editPart/part');
+import {TableView} from 'react-native-tableview-simple';
+var ViewPart = require('./viewPart');
 
-//Gets device height for animating app
-var {
-  height: deviceHeight
-} = Dimensions.get('window');
-
-var EditWorkoutModal = React.createClass({
+var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
-      //workout will be loaded from componentWillMount's
-      //editWorkoutActions.resetWorkout call
-      workout: null
     };
-  },
-  componentWillMount: function() {
-    this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
-
-    //back up original workout, to revert back if user cancels changes
-    editWorkoutActions.saveBackupWorkout();
-    editWorkoutStore.addChangeListener(this._onChange);
-
-    //reset workout to empty template, so user can start from scratch
-    editWorkoutActions.resetWorkout();
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -64,25 +42,11 @@ var EditWorkoutModal = React.createClass({
       toValue: 0
     }).start();
   },
-  componentWillUnmount: function() {
-    editWorkoutStore.removeChangeListener(this._onChange);
-    this.keyboardWillShowListener.remove();
-    this.keyboardWillHideListener.remove();
-  },
-  _onChange: function(){
-    this.setState({
-      workout: editWorkoutStore.getWorkout(),
-    });
-  },
-  handleCancel: function(){
-    editWorkoutActions.cancelChanges();
-    this.closeModal();
-  },
   closeModal: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(modalActions.closeEditWorkoutModal);
+    }).start(modalActions.closeWorkoutModal);
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
@@ -210,4 +174,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = EditWorkoutModal;
+module.exports = ViewWorkoutModal;

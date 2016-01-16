@@ -16,7 +16,6 @@ var {
   Text,
   View,
   ScrollView,
-  TouchableHighlight,
   Dimensions,
 } = React;
 

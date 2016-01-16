@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:22
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:12:57
+* @Last Modified time: 2016-01-16 12:59:51
 */
 
 'use strict';
@@ -11,14 +11,14 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var modalConstants = require('../constants/modalConstants');
 
 var modalActions = {
-  openWorkoutModal: function() {
+  openEditWorkoutModal: function() {
     AppDispatcher.handleAction({
-      actionType: modalConstants.OPEN_WORKOUT_MODAL
+      actionType: modalConstants.OPEN_EDIT_WORKOUT_MODAL
     });
   },
-  closeWorkoutModal: function() {
+  closeEditWorkoutModal: function() {
     AppDispatcher.handleAction({
-      actionType: modalConstants.CLOSE_WORKOUT_MODAL
+      actionType: modalConstants.CLOSE_EDIT_WORKOUT_MODAL
     });
   },
   openExerciseModal: function() {

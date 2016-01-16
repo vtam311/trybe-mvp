@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 17:33:41
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 13:02:07
 */
 
 'use strict';
@@ -14,20 +14,20 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  workoutModalVisible: false,
+  editWorkoutModalVisible: false,
   exerciseModalVisible: false,
   partModalVisible: false,
   dateModalVisible: false,
   logModalVisible: false,
 };
 
-var openWorkoutModal = function() {
-  _store.workoutModalVisible = true;
-  console.log('modalStore openWorkoutModal called');
+var openEditWorkoutModal = function() {
+  _store.editWorkoutModalVisible = true;
+  console.log('modalStore openEditWorkoutModal called');
 };
 
-var closeWorkoutModal = function() {
-  _store.workoutModalVisible = false;
+var closeEditWorkoutModal = function() {
+  _store.editWorkoutModalVisible = false;
 };
 
 var openExerciseModal = function() {
@@ -69,8 +69,8 @@ var modalStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
-  getWorkoutModalVisible: function(){
-    return _store.workoutModalVisible;
+  getEditWorkoutModalVisible: function(){
+    return _store.editWorkoutModalVisible;
   },
   getExerciseModalVisible: function(){
     return _store.exerciseModalVisible;
@@ -89,12 +89,12 @@ var modalStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
-    case modalConstants.OPEN_WORKOUT_MODAL:
-      openWorkoutModal();
+    case modalConstants.OPEN_EDIT_WORKOUT_MODAL:
+      openEditWorkoutModal();
       modalStore.emit(CHANGE_EVENT);
       break;
-    case modalConstants.CLOSE_WORKOUT_MODAL:
-      closeWorkoutModal();
+    case modalConstants.CLOSE_EDIT_WORKOUT_MODAL:
+      closeEditWorkoutModal();
       modalStore.emit(CHANGE_EVENT);
       break;
     case modalConstants.OPEN_EXERCISE_MODAL:
