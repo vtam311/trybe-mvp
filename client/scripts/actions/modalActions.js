@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:22
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 12:59:51
+* @Last Modified time: 2016-01-16 13:05:41
 */
 
 'use strict';
@@ -19,6 +19,16 @@ var modalActions = {
   closeEditWorkoutModal: function() {
     AppDispatcher.handleAction({
       actionType: modalConstants.CLOSE_EDIT_WORKOUT_MODAL
+    });
+  },
+  openViewWorkoutModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.OPEN_VIEW_WORKOUT_MODAL
+    });
+  },
+  closeViewWorkoutModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.CLOSE_VIEW_WORKOUT_MODAL
     });
   },
   openExerciseModal: function() {
