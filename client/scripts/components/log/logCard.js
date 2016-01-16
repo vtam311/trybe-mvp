@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:03:04
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-16 10:13:36
 */
 
 'use strict';
@@ -51,7 +51,10 @@ var styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#d9d9d9',
+    borderColor: '#979797',
+    shadowColor: '#979797',
+    shadowOffset: {height: 1, width: 0},
+    shadowOpacity: .5,
     padding: 10,
   },
   dateText: { //
