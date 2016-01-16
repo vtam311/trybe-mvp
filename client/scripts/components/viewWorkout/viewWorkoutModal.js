@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 13:30:05
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 14:45:53
 */
 
 'use strict';
@@ -26,8 +26,10 @@ var {
 } = React;
 
 //Load components
+var Swiper = require('react-native-swiper');
 import {TableView} from 'react-native-tableview-simple';
 var ViewPart = require('./viewPart');
+var PartSwiperPage = require('./_partSwiperPage');
 
 //Gets device height for animating app
 var {
@@ -53,33 +55,26 @@ var ViewWorkoutModal = React.createClass({
       duration: 100,
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
+    console.log('closeModal')
   },
   render: function() {
 
-    //Bottom content inset of ScrollView offsets
-    //tab bar from covering scene
     return (
       /* jshint ignore:start */
       <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
         <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-
           <View style={styles.header}>
-            <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.closeModal}>
-                <Image
-                  style={{width: 12, height: 21}}
-                  source={require('image!backArrow')} />
-              </TouchableOpacity>
-              <Text style={styles.headerTitleText}>New Workout</Text>
-            </View>
+            <TouchableOpacity onPress={this.closeModal}>
+              <Image
+                style={{width: 12, height: 21, marginTop: 30, marginLeft: 10}}
+                source={require('image!backArrow')} />
+            </TouchableOpacity>
           </View>
 
-          <ScrollView
-            contentContainerStyle={styles.contentContainerStyle} >
-            <View style={{height: 300}}>
-              <Text>Test</Text>
-            </View>
-          </ScrollView>
+          <Swiper style={styles.wrapper}>
+            <PartSwiperPage />
+            <PartSwiperPage />
+          </Swiper>
 
         </View>
       </Animated.View>
@@ -105,29 +100,17 @@ var styles = StyleSheet.create({
     shadowOpacity: 8,
   },
   header: {
-    height: 130,
+    height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
   },
-  headerContainer: {
-    flexDirection: 'column',
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 30,
-  },
-  headerTitleText: {
-    fontFamily: 'Avenir',
-    fontSize: 20,
-    color: 'white'
-  },
+
   headerButtonText: {
     fontFamily: 'Helvetica Neue',
     fontSize: 17,
     color: 'white'
   },
-  contentContainerStyle: {
-    // paddingTop: 20,
-    // paddingBottom: 20,
-  }
+  wrapper: {
+  },
 });
 
 module.exports = ViewWorkoutModal;
