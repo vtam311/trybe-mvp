@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:01:12
+* @Last Modified time: 2016-01-16 10:15:24
 */
 
 'use strict';
@@ -54,7 +54,8 @@ var styles = StyleSheet.create({
   },
   separatorLine: {
     height: 0.5,
-    backgroundColor: '#c8c7cc',
+    // backgroundColor: '#c8c7cc',
+    backgroundColor: '#9B9B9B',
     marginTop: 10,
     marginBottom: 10,
   }
