@@ -139,16 +139,10 @@ var viewExercise = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    width: 300,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: .5,
-    borderColor: 'rgba(88, 80, 77, .5)',
-    paddingTop: 7,
-    paddingBottom: 7
   },
   exerciseText: {
-    marginRight: 4,
     fontFamily: 'Avenir Next',
     fontSize: 15,
     color: '#8D867E'

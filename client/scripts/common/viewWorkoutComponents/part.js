@@ -2,14 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-15 23:52:18
+* @Last Modified time: 2016-01-16 09:06:19
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var ViewExercise = require('./viewExercise_new');
+var ExNameAndParams = require('./exNameAndParams');
 var ViewResults = require('./viewResults');
 
 var {
@@ -23,8 +23,12 @@ var Part = React.createClass({
     var part = this.props.part;
 
     var exercises = part.exercises.map((exercise) =>
-        <ViewExercise
+      /* jshint ignore:start */
+       <View style={styles.exerciseContainer}>
+        <ExNameAndParams
           exercise={exercise} />
+       </View>
+      /* jshint ignore:end */
     );
 
     return (
@@ -33,7 +37,9 @@ var Part = React.createClass({
         <Text style={styles.partNameText}>{part.name}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
-        <ViewResults result={part.result} />
+        <View style={styles.resultsContainer}>
+          <ViewResults result={part.result} />
+        </View>
         {this.props.showNotes === true && part.notes ?
           <Text style={styles.notesText}>{part.notes}</Text> :
           null
@@ -61,6 +67,20 @@ var styles = StyleSheet.create({
     fontSize: 15,
     color: '#8D867E',
     marginBottom: 8,
+  },
+  exerciseContainer: {
+    width: 315,
+    borderBottomWidth: .5,
+    borderColor: 'rgba(88, 80, 77, .5)',
+    paddingTop: 7,
+    paddingBottom: 7
+  },
+  resultsContainer: {
+    width: 315,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: 7,
+    paddingBottom: 7
   },
   notesText: {
     fontFamily: 'Avenir Next',
