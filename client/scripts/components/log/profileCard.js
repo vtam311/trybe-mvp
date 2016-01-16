@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 10:41:13
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-16 12:50:07
 */
 
 'use strict';
@@ -41,7 +41,7 @@ var ProfileCard = React.createClass({
               </View>
             </View>
 
-            <TouchableOpacity onPress={console.log('settings icon pressed')}>
+            <TouchableOpacity onPress={() => console.log('settings icon pressed')}>
               <Image
                 style={styles.settingsIcon}
                 source={require('image!settings')} />
