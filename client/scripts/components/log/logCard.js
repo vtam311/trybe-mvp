@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 10:13:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 10:34:53
 */
 
 'use strict';
@@ -58,9 +58,10 @@ var styles = StyleSheet.create({
     padding: 10,
   },
   dateText: { //
-    fontFamily: 'Helvetica',
-    fontSize: 15,
-    color: '#4A4A4A',
+    fontFamily: 'Avenir Next',
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#8D867E',
     marginLeft: 10,
     marginBottom: 5,
   }
