@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 16:58:52
+* @Last Modified time: 2016-01-15 19:32:21
 */
 
 'use strict';
@@ -27,17 +27,25 @@ var ProfileCard = React.createClass({
     /* jshint ignore:start */
     return (
       <View style={[styles.container, {width: this.state.visibleWidth}]}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-          <View style={[styles.imageCropper]}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{flexDirection: 'row'}}>
+            <View style={[styles.imageCropper]}>
+              <Image
+                style={styles.profilePic}
+                source={{uri: 'https://i.imgur.com/YcbwSpY.jpg'}} />
+            </View>
+            <View style={{marginLeft: 20}}>
+              <Text style={styles.nameText}>Vincent Tam</Text>
+              <Text style={styles.trybesText}>ICON Athletes</Text>
+            </View>
+          </View>
+
+          <View>
             <Image
-              style={styles.profilePic}
-              source={{uri: 'https://i.imgur.com/YcbwSpY.jpg'}} />
+              style={styles.settingsIcon}
+              source={require('image!settings')} />
           </View>
-          <View style={{alignItems: 'flex-end'}}>
-            <Text style={styles.nameText}>Vincent Tam</Text>
-            <Text style={styles.activeTrybesText}>Active trybes</Text>
-            <Text style={styles.trybesText}>ICON Athletes</Text>
-          </View>
+
         </View>
 
         <View style={styles.bottomContainer}>
@@ -62,7 +70,7 @@ var styles = StyleSheet.create({
     height: 230,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, .75)',
     borderTopWidth: .5,
     borderBottomWidth: .5,
     borderColor: '#d9d9d9',
@@ -72,29 +80,20 @@ var styles = StyleSheet.create({
   imageCropper: {
     position: 'relative',
     overflow: 'hidden',
-    width: 120,
-    height: 120,
-    borderRadius: 60,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   profilePic: {
-    height: 120,
-    width: 120
+    height: 80,
+    width: 80
   },
   nameText: {
     fontFamily: 'Avenir Next',
     fontSize: 24,
     color: '#4A4A4A',
-    marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 5,
     textAlign: 'right'
-  },
-  activeTrybesText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    color: '#4A4A4A',
-    textAlign: 'right',
-    textDecorationLine: 'underline',
-    marginBottom: 3
   },
   trybesText: {
     fontFamily: 'Avenir Next',

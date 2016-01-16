@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 23:25:36
+* @Last Modified time: 2016-01-14 23:40:46
 */
 
 'use strict';
@@ -44,7 +44,9 @@ var EditWorkoutModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
-      workout: editWorkoutStore.getWorkout(),
+      //workout will be loaded from componentWillMount's
+      //editWorkoutActions.resetWorkout call
+      workout: null
     };
   },
   componentWillMount: function() {
@@ -53,17 +55,16 @@ var EditWorkoutModal = React.createClass({
 
     //back up original workout, to revert back if user cancels changes
     editWorkoutActions.saveBackupWorkout();
+    editWorkoutStore.addChangeListener(this._onChange);
+
+    //reset workout to empty template, so user can start from scratch
+    editWorkoutActions.resetWorkout();
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
     }).start();
-
-    editWorkoutStore.addChangeListener(this._onChange);
-
-    //reset workout to empty template, so user can start from scratch
-    editWorkoutActions.resetWorkout();
   },
   componentWillUnmount: function() {
     editWorkoutStore.removeChangeListener(this._onChange);

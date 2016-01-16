@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 14:54:51
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-15 19:28:39
 */
 
 'use strict';
@@ -80,7 +80,7 @@ var Log = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFEFF4',
+    backgroundColor: 'rgba(141, 134, 126, .2)',
   },
   logCardContainer: {
     marginBottom: 10
