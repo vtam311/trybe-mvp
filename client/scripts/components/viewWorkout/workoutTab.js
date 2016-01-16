@@ -120,7 +120,7 @@ var NavBarRouteMapper = {
       //If viewing today's workout, render create workout button
       case 'Today':
         var handleRightPress = function(){
-          modalActions.openEditWorkoutModal();
+          modalActions.openViewWorkoutModal(); //temp change to viewWorkoutModal to test
         };
         return (
           <TouchableOpacity

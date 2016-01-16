@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 12:58:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-16 13:30:05
 */
 
 'use strict';
@@ -17,6 +17,7 @@ var {
   TouchableOpacity,
   Animated,
   Dimensions,
+  Image,
   StyleSheet,
   Text,
   View,
@@ -27,6 +28,11 @@ var {
 //Load components
 import {TableView} from 'react-native-tableview-simple';
 var ViewPart = require('./viewPart');
+
+//Gets device height for animating app
+var {
+  height: deviceHeight
+} = Dimensions.get('window');
 
 var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
@@ -46,42 +52,9 @@ var ViewWorkoutModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(modalActions.closeWorkoutModal);
-  },
-  keyboardWillShow: function(e) {
-    var newSize = Dimensions.get('window').height - e.endCoordinates.height;
-    this.setState({visibleHeight: newSize});
-  },
-  keyboardWillHide: function(e) {
-    this.setState({visibleHeight: Dimensions.get('window').height});
-  },
-  scrollToComponent: function(refName, child) {
-    console.log('editWorkout scrollToComponent called');
-    var offset;
-    if(child === 'instrTextInput') offset = -70;
-    else if(child === 'customTextInput') offset = 50;
-
-    setTimeout( () => {
-      let scrollResponder = this.refs.scrollView.getScrollResponder();
-      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
-        React.findNodeHandle(this.refs[refName]),
-        offset, //more offset
-        true
-      );
-    }, 50);
+    }).start(modalActions.closeViewWorkoutModal);
   },
   render: function() {
-    var parts = this.state.workout.parts.map((part, index) =>
-      /* jshint ignore:start */
-      <View style={{marginBottom: 20}} key={index} >
-        <Part
-          ref={'part' + index}
-          part={part}
-          partIdx={index}
-          scrollToComponent={this.scrollToComponent} />
-      </View>
-      /* jshint ignore:end */
-    );
 
     //Bottom content inset of ScrollView offsets
     //tab bar from covering scene
@@ -92,31 +65,20 @@ var ViewWorkoutModal = React.createClass({
 
           <View style={styles.header}>
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.handleCancel}>
-                <Text style={styles.headerButtonText}>Cancel</Text>
+              <TouchableOpacity onPress={this.closeModal}>
+                <Image
+                  style={{width: 12, height: 21}}
+                  source={require('image!backArrow')} />
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Workout</Text>
-              <TouchableOpacity onPress={this.closeModal}>
-                <Text style={styles.headerButtonText}>Done</Text>
-              </TouchableOpacity>
             </View>
           </View>
 
           <ScrollView
-            ref='scrollView'
-            keyboardDismissMode='on-drag'
-            contentContainerStyle={styles.contentContainerStyle}
-            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
-            <TableView>
-
-              <Section>
-                <DateCell
-                  date={this.state.workout.date} />
-              </Section>
-
-              {parts}
-
-            </TableView>
+            contentContainerStyle={styles.contentContainerStyle} >
+            <View style={{height: 300}}>
+              <Text>Test</Text>
+            </View>
           </ScrollView>
 
         </View>
@@ -137,23 +99,17 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#EFEFF4',
+    backgroundColor: 'rgba(73,162,160,.5)',
     borderRadius: 3,
     shadowColor: '#9B9B9B',
     shadowOpacity: 8,
   },
   header: {
-    flex: .1,
-    borderBottomWidth: .5,
-    borderBottomColor: 'rgba(155, 155, 155, 0.7)',
-    borderTopLeftRadius: 3,
-    borderTopRightRadius: 3,
-    backgroundColor: '#4DBA97',
+    height: 130,
+    backgroundColor: 'rgba(77,186,151,.6)',
   },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column',
     marginLeft: 10,
     marginRight: 10,
     marginTop: 30,
@@ -169,8 +125,8 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   contentContainerStyle: {
-    paddingTop: 20,
-    paddingBottom: 20,
+    // paddingTop: 20,
+    // paddingBottom: 20,
   }
 });
 
