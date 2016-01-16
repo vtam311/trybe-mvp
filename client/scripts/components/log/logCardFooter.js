@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-14 17:13:28
+* @Last Modified time: 2016-01-16 10:11:02
 */
 
 'use strict';
@@ -51,7 +51,7 @@ var LogCardFooter = React.createClass({
         <TouchableOpacity
           onPress={ () => this.doWorkout(workout) }>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: '#4DBA97', marginRight: 6}}>Retry</Text>
+            <Text style={styles.buttonText}>Retry</Text>
             <Image
               source={require('image!tryIcon')}
               style={styles.tryIcon} />
@@ -68,12 +68,20 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     borderTopWidth: .5,
-    borderColor: '#c8c7cc',
+    borderColor: 'rgba(155,155,155,.7)',
     paddingTop: 10,
   },
   tryIcon: {
-    // height: 14,
-    // width: 12
+    height: 14,
+    width: 12,
+    marginLeft: 6,
+    marginTop: 2,
+    marginRight: 3
+  },
+  buttonText: {
+    color: '#8D867E',
+    fontSize: 15,
+    fontWeight: '600'
   }
 });
 
