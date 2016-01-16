@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 14:45:53
+* @Last Modified time: 2016-01-16 14:47:17
 */
 
 'use strict';
@@ -99,17 +99,11 @@ var styles = StyleSheet.create({
     shadowColor: '#9B9B9B',
     shadowOpacity: 8,
   },
+  wrapper: {
+  },
   header: {
     height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
-  },
-
-  headerButtonText: {
-    fontFamily: 'Helvetica Neue',
-    fontSize: 17,
-    color: 'white'
-  },
-  wrapper: {
   },
 });
 

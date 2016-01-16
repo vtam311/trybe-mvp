@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 14:44:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-16 14:49:07
 */
 
 'use strict';
@@ -14,7 +14,6 @@ var {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image
 } = React;
 
@@ -23,18 +22,11 @@ var PartSwiperPage = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        <View style={styles.header}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity onPress={() => console.log('back button pressed')}>
-              <Image
-                style={{width: 12, height: 21}}
-                source={require('image!backArrow')} />
-            </TouchableOpacity>
-            <View style={styles.partWheel}>
-              <Text style={styles.partName}>WARM UP</Text>
-            </View>
-          </View>
+
+        <View style={styles.partWheel}>
+          <Text style={styles.partName}>WARM UP</Text>
         </View>
+
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
@@ -49,18 +41,11 @@ var PartSwiperPage = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'column',
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 30,
-  },
   partWheel: {
-    height: 130,
+    height: 70,
     backgroundColor: 'rgba(77,186,151,.6)',
-    marginTop: 20,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   partName: {
     fontFamily: 'Avenir Next',
