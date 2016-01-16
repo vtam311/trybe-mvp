@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 18:42:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-14 23:22:47
 */
 
 'use strict';
@@ -41,16 +41,17 @@ var WORKOUT_TEMPLATE = {
   trybe: null,
   day: null,
   date: new Date(),
-  //copyObject so parts don't refer to same obj
-  parts: [newObject(PART_TEMPLATE)],
+  parts: [newObject(PART_TEMPLATE)], //copyObject so parts don't refer to same obj
   origin: null,
 };
 
 var _store = {
-  defaultOrCustom: 'default',
   workout: newWorkout(WORKOUT_TEMPLATE),
+  defaultOrCustom: 'default',
   targetPartIdx: null,
   targetExerciseIdx: null,
+  //for storing a backup workout, so user can cancel changes
+  backupWorkout: null,
 };
 
 var setDefaultOrCustom = function(data){
@@ -65,6 +66,7 @@ var setWorkout = function(data){
 
 var resetWorkout = function(){
   _store.workout = newWorkout(WORKOUT_TEMPLATE);
+  console.log('resetWorkout reset _store.workout to', _store.workout);
 };
 
 var saveDate = function(data){
@@ -153,6 +155,15 @@ var setPartName = function(data){
   var name = data.name;
   var partIdx = _store.targetPartIdx;
   _store.workout.parts[partIdx].name = name;
+};
+
+var saveBackupWorkout = function(){
+  _store.backupWorkout = newWorkout(_store.workout);
+  console.log('backup workout saved as', _store.backupWorkout);
+};
+
+var cancelChanges = function(){
+  _store.workout = _store.backupWorkout;
 };
 
 var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -280,6 +291,14 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SAVE_BACKUP_WORKOUT:
+      saveBackupWorkout();
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.CANCEL_CHANGES:
+      cancelChanges();
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

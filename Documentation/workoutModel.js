@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 14:52:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 09:53:19
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -52,7 +52,7 @@ var PART_TEMPLATE = {
     copyObjectHelper(EXERCISE_TEMPLATE_TWO),
     copyObjectHelper(EXERCISE_TEMPLATE_THREE)
   ],
-  result: {isRecording: true, type: 'Time', val: '00:17:59'},
+  result: {isRecording: true, type: 'Rounds', val: 17},
   notes: null
 };
 

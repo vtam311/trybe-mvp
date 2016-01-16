@@ -2,14 +2,14 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:10:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2015-09-25 15:05:21
+* @Last Modified time: 2016-01-12 18:24:21
 */
 
 'use strict';
 
 var React = require('react-native');
 var doWorkoutActions = require('../../actions/doWorkoutActions');
-var indexActions = require('../../actions/indexActions');
+var tabActions = require('../../actions/tabActions');
 var logActions = require('../../actions/logActions');
 
 
@@ -31,7 +31,7 @@ var CompleteWorkoutButton = React.createClass({
     //TO DO: send workout to trybe feed
   },
   sendUserToLog: function(){
-    indexActions.setTab('profile');
+    tabActions.setTab('profile');
   },
   _handleCompleteButtonPress: function(workout){
     this.sendWorkoutToLog(workout);

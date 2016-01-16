@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 18:43:15
+* @Last Modified time: 2016-01-16 09:53:06
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var newObject = require('../common/copyObjectHelper');
 
 var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
 DUMMY_WORKOUT.id = 2;
+DUMMY_WORKOUT.parts[0].notes = 'Feeling an improvement from last time I did this, about two months ago';
 var DUMMY_WORKOUT_2 = newWorkout(DUMMY_WORKOUT);
 DUMMY_WORKOUT.id = 3;
 DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));

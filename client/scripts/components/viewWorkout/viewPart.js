@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 14:09:41
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 13:15:31
 */
 
 'use strict';
@@ -46,8 +46,7 @@ var DoPart = React.createClass({
         <EditExerciseCell
           exercise={exercise}
           partIdx={partIdx}
-          exIdx={index}
-          openExerciseModal={this.props.openExerciseModal} />
+          exIdx={index} />
         <View style={styles.cellSeparatorBackground}>
           <View style={styles.cellSeparatorLine}></View>
         </View>
@@ -64,7 +63,6 @@ var DoPart = React.createClass({
             partIdx={partIdx}
             toggleCollapse={this.toggleCollapse}
             isExpanded={this.state.isExpanded}
-            openLogModal={this.props.openLogModal}
             partIsLogged={this.props.partIsLogged} />
         </View>
 

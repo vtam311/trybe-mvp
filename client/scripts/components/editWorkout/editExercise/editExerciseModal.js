@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 13:08:53
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-15 22:38:12
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var editWorkoutStore = require('../../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
 var editExerciseActions = require('../../../actions/editExerciseActions');
 var editExerciseStore = require('../../../stores/editExerciseStore');
+var modalActions = require('../../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -31,7 +32,7 @@ var dismissKeyboard = require('dismissKeyboard');
 //Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
-var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
+var ExerciseDescriptionText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
 
 //Gets device height for animating app
 var {
@@ -79,7 +80,7 @@ var EditExerciseModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(this.props.closeModal);
+    }).start(modalActions.closeExerciseModal());
   },
   setExercisePicker: function(val){
     //Depending on the selected val, the picker should change
@@ -118,7 +119,7 @@ var EditExerciseModal = React.createClass({
     var showExercisePreviewIfFilled = function(){
       if(currentExercise.name){
         //If the user provides an exercise name, show preview
-        return <ViewExercise exercise={currentExercise} />;
+        return <ExerciseDescriptionText exercise={currentExercise} />;
       }else{
         //Otherwise render the delete text next to the delete icon
         return (
@@ -138,7 +139,7 @@ var EditExerciseModal = React.createClass({
                 <TouchableOpacity onPress={this.closeModal}>
                   <Text style={styles.headerButtonText}>Cancel</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitleText}>New Exercise</Text>
+                <Text style={styles.headerTitleText}>Edit Exercise</Text>
                 <TouchableOpacity onPress={this.saveExercise}>
                   <Text style={styles.headerButtonText}>Done</Text>
                 </TouchableOpacity>

@@ -21,6 +21,7 @@ var initPartsAreLogged = function(data){
   //get numParts from editWorkoutStore
   var numParts = editWorkoutStore.getNumParts();
 
+  //set partsAreLogged values to false
   for(let i = 0; i < numParts; i++){
     _store.partsAreLogged.push(false);
   }

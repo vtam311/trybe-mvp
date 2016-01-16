@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 20:00:24
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 10:31:52
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var React = require('react-native');
 var renderResultsTime = require('./renderResultsTime');
 
 var {
+  Image,
   StyleSheet,
   Text,
   View,
@@ -19,18 +20,22 @@ var {
 
 var ViewResults = React.createClass({
   render: function(){
-    var resultView;
     var result = this.props.result;
+    var resultView, icon;
+
     switch (result.type) {
       case 'Time':
+        icon = <Image style={[styles.metricIcon, {marginTop: 2}]} source={require('image!timeIcon')}/> ;
         var time = renderResultsTime(result.val)
         resultView = <Text style={styles.resultText}>{time}</Text>;
         break;
       case 'Rounds':
+        icon = <Image style={[styles.metricIcon, {marginTop: 2}]} source={require('image!rounds')}/> ;
         var rounds = result.val.toString() + ' Rounds'
         resultView = <Text style={styles.resultText}>{rounds}</Text>;
         break;
       case 'Max Load':
+        icon = <Image style={[styles.metricIcon, {marginBottom: 8}]} source={require('image!weightIcon')}/> ;
         var maxLoad = result.val.val.toString() + ' ' + result.val.units;
         resultView = <Text style={styles.resultText}>{maxLoad}</Text>;
         break;
@@ -48,7 +53,8 @@ var ViewResults = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={styles.partResult}>
+      <View style={styles.resultContainer}>
+        {icon}
         {resultView}
       </View>
       /* jshint ignore:end */
@@ -57,18 +63,23 @@ var ViewResults = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  partResult: {
-    marginTop: 10,
+  resultContainer: {
+    flexDirection: 'row',
+    marginTop: 15,
     marginBottom: 10,
+  },
+  metricIcon: {
+    height: 18,
+    width: 18,
+    marginRight: 5,
   },
   resultText: {
     textAlign: 'right',
     fontFamily: 'Avenir Next',
     fontStyle: 'italic',
     color: 'grey',
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '500',
-    // marginBottom: 5,
   }
 });
 

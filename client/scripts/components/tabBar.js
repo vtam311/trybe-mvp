@@ -1,19 +1,19 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:05:47
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-09 17:12:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-14 14:16:18
 */
 
 'use strict';
 
 var React = require('react-native');
-var indexStore = require('../stores/indexStore');
-var indexActions = require('../actions/indexActions');
+var tabStore = require('../stores/tabStore');
+var tabActions = require('../actions/tabActions');
 
 //Load components
 var FeedTab = require('../components/feed/feed');
-var WorkoutTab = require('../components/workoutTab/workoutTab');
+var WorkoutTab = require('../components/viewWorkout/workoutTab');
 var LogTab = require('../components/log/logTab');
 
 var {
@@ -29,23 +29,23 @@ var {
 var TabBar = React.createClass({
   getInitialState: function(){
     return {
-      selectedTab: indexStore.getTab()
+      selectedTab: tabStore.getTab()
     };
   },
   componentDidMount: function(){
-    indexStore.addChangeListener(this._onChange);
+    tabStore.addChangeListener(this._onChange);
     StatusBarIOS.setStyle(1);
   },
   componentWillUnmount: function(){
-    indexStore.removeChangeListener(this._onChange);
+    tabStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
-      selectedTab: indexStore.getTab()
+      selectedTab: tabStore.getTab()
     });
   },
   changeTab: function(tabName) {
-    indexActions.setTab(tabName);
+    tabActions.setTab(tabName);
   },
 
   render: function() {
@@ -54,8 +54,8 @@ var TabBar = React.createClass({
       <TabBarIOS
         tintColor='#4DBA97' >
         <TabBarIOS.Item
-          title='Profile'
-          icon={ require('image!profile') }
+          title='Log'
+          icon={ require('image!log') }
           onPress={ () => this.changeTab('profile') }
           selected={ this.state.selectedTab === 'profile'} >
           <LogTab
@@ -64,7 +64,7 @@ var TabBar = React.createClass({
 
         <TabBarIOS.Item
           title='Home'
-          icon={ require('image!home') }
+          icon={ require('image!feed') }
           onPress={ () => this.changeTab('feed') }
           selected={ this.state.selectedTab === 'feed' }>
           <FeedTab
@@ -78,10 +78,6 @@ var TabBar = React.createClass({
           selected={ this.state.selectedTab === 'workout' }>
           <WorkoutTab
             style={styles.tabContent}
-            openExerciseModal={this.props.openExerciseModal}
-            openPartModal={this.props.openPartModal}
-            openDateModal={this.props.openDateModal}
-            openLogModal={this.props.openLogModal}
             events={this.props.events} />
         </TabBarIOS.Item>
       </TabBarIOS>

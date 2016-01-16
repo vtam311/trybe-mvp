@@ -1,13 +1,14 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 15:00:08
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-06 15:54:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-12 13:07:56
 */
 
 'use strict';
 
 var React = require('react-native');
+var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -44,7 +45,7 @@ var DateCell = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <CustomCell onPress={this.props.openDateModal}>
+      <CustomCell onPress={modalActions.openDateModal}>
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text style={styles.cellPrompt}>Date</Text>
           <View style={{flexDirection: 'row'}}>

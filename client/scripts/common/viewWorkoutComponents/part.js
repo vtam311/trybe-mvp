@@ -1,15 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 20:07:03
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-16 10:25:49
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var ViewExercise = require('./viewExercise');
+var ExNameAndParams = require('./exNameAndParams');
 var ViewResults = require('./viewResults');
 
 var {
@@ -22,9 +22,13 @@ var Part = React.createClass({
   render: function(){
     var part = this.props.part;
 
-    var exercises = part.exercises.map( (exercise) =>
-      <ViewExercise
-        exercise={exercise} />
+    var exercises = part.exercises.map((exercise) =>
+      /* jshint ignore:start */
+       <View style={styles.exerciseContainer}>
+        <ExNameAndParams
+          exercise={exercise} />
+       </View>
+      /* jshint ignore:end */
     );
 
     return (
@@ -33,9 +37,13 @@ var Part = React.createClass({
         <Text style={styles.partNameText}>{part.name}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
-        <ViewResults result={part.result} />
+        <View style={styles.resultsContainer}>
+          <ViewResults result={part.result} />
+        </View>
         {this.props.showNotes === true && part.notes ?
-          <Text style={styles.notesText}>{part.notes}</Text> :
+          <View style={styles.notesContainer}>
+            <Text numberOfLines={3} style={styles.notesText}>{part.notes}</Text>
+          </View> :
           null
         }
       </View>
@@ -46,24 +54,49 @@ var Part = React.createClass({
 
 var styles = StyleSheet.create({
   partContainer: {
-    marginTop: 0,
+    flexDirection: 'column',
+    alignItems: 'center',
+
   },
   partNameText: {
     fontFamily: 'Avenir Next',
-    fontSize: 15,
+    fontSize: 16,
+    fontWeight: '500',
     fontStyle: 'italic',
-    color: '#4A4A4A',
+    color: '#8D867E',
     marginBottom: 8,
   },
   instructionText: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'Avenir Next',
     fontSize: 15,
-    marginBottom: 10,
-    color: '#2D2D2D'
+    fontWeight: '500',
+    color: '#8D867E',
+    marginBottom: 8,
+  },
+  exerciseContainer: {
+    width: 315,
+    borderBottomWidth: .5,
+    borderColor: 'rgba(88, 80, 77, .5)',
+    paddingTop: 7,
+    paddingBottom: 7
+  },
+  resultsContainer: {
+    width: 315,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingTop: 7,
+    paddingBottom: 7
+  },
+  notesContainer: {
+    width: 315,
+    flex: 1,
   },
   notesText: {
-    fontSize: 14,
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    fontWeight: '500',
     fontStyle: 'italic',
+    color: '#8D867E',
     marginBottom: 10
   },
 });

@@ -1,14 +1,14 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-11 20:06:03
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-16 10:11:02
 */
 
 'use strict';
 
 var React = require('react-native');
-var indexActions = require('../../actions/indexActions');
+var tabActions = require('../../actions/tabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var newWorkout = require('../../common/newWorkout');
@@ -17,7 +17,8 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableOpacity,
+  Image
 } = React;
 
 var LogCardFooter = React.createClass({
@@ -39,7 +40,7 @@ var LogCardFooter = React.createClass({
     //reset stack in workout tab to viewWorkout scene
     this.props.onDoWorkout();
     //set tab to workout tab
-    indexActions.setTab('workout');
+    tabActions.setTab('workout');
   },
   render: function(){
     var workout = this.props.workout;
@@ -47,10 +48,15 @@ var LogCardFooter = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.feedCardFooter}>
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={ () => this.doWorkout(workout) }>
-          <Text>Redo</Text>
-        </TouchableHighlight>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.buttonText}>Retry</Text>
+            <Image
+              source={require('image!tryIcon')}
+              style={styles.tryIcon} />
+          </View>
+        </TouchableOpacity>
       </View>
       /* jshint ignore:end */
     );
@@ -59,12 +65,23 @@ var LogCardFooter = React.createClass({
 
 var styles = StyleSheet.create({
   feedCardFooter: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     borderTopWidth: .5,
-    borderColor: '#c8c7cc',
+    borderColor: 'rgba(155,155,155,.7)',
     paddingTop: 10,
+  },
+  tryIcon: {
+    height: 14,
+    width: 12,
+    marginLeft: 6,
+    marginTop: 2,
+    marginRight: 3
+  },
+  buttonText: {
+    color: '#8D867E',
+    fontSize: 15,
+    fontWeight: '600'
   }
 });
 
