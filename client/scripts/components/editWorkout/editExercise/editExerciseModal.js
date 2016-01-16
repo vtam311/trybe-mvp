@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 12:58:16
+* @Last Modified time: 2016-01-15 22:38:12
 */
 
 'use strict';
@@ -32,7 +32,7 @@ var dismissKeyboard = require('dismissKeyboard');
 //Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
-var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
+var ExerciseDescriptionText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
 
 //Gets device height for animating app
 var {
@@ -119,7 +119,7 @@ var EditExerciseModal = React.createClass({
     var showExercisePreviewIfFilled = function(){
       if(currentExercise.name){
         //If the user provides an exercise name, show preview
-        return <ViewExercise exercise={currentExercise} />;
+        return <ExerciseDescriptionText exercise={currentExercise} />;
       }else{
         //Otherwise render the delete text next to the delete icon
         return (

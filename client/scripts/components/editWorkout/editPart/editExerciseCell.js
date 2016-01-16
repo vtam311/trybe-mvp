@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 12:39:56
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-15 22:38:40
 */
 
 'use strict';
@@ -12,7 +12,7 @@ var editWorkoutActions = require('../../../actions/editWorkoutActions');
 var modalActions = require('../../../actions/modalActions');
 
 //Load components
-var ViewExercise = require('../../../common/viewWorkoutComponents/viewExercise');
+var ExerciseDescrText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
 
 var {
   StyleSheet,
@@ -37,7 +37,7 @@ var EditExerciseCell = React.createClass({
       <CustomCell onPress={this._handlePress}>
         <View style={styles.cellContainer}>
           <View style={styles.exercisePreview}>
-            <ViewExercise exercise={this.props.exercise} customFontFamily='Avenir Next' />
+            <ExerciseDescrText exercise={this.props.exercise} customFontFamily='Avenir Next' />
           </View>
           <Image
             style={{height: 13, width: 8}}

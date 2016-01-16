@@ -2,14 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 20:15:58
+* @Last Modified time: 2016-01-15 22:25:19
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var ViewExercise = require('./viewExercise');
+var ViewExercise = require('./viewExercise_new');
 var ViewResults = require('./viewResults');
 
 var {
@@ -46,24 +46,27 @@ var Part = React.createClass({
 
 var styles = StyleSheet.create({
   partContainer: {
-    marginTop: 0,
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   partNameText: {
     fontFamily: 'Avenir Next',
-    fontSize: 15,
+    fontSize: 16,
     fontStyle: 'italic',
-    color: '#4A4A4A',
+    color: '#8D867E',
     marginBottom: 8,
   },
   instructionText: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'Avenir Next',
     fontSize: 15,
-    marginBottom: 10,
-    color: '#2D2D2D'
+    color: '#8D867E',
+    marginBottom: 8,
   },
   notesText: {
-    fontSize: 14,
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
     fontStyle: 'italic',
+    color: '#8D867E',
     marginBottom: 10
   },
 });

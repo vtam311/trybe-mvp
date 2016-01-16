@@ -13,7 +13,7 @@ var {
 //This outputs a string description of an exercise
 //and changes based on what parameters the exercise has,
 //such as reps, time, distance, and load
-var viewExercise = React.createClass({
+var ExerciseDescriptionText = React.createClass({
   render: function(){
     var customFontFamily = this.props.customFontFamily;
 
@@ -121,4 +121,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = viewExercise;
+module.exports = ExerciseDescriptionText;
