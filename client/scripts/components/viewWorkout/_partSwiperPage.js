@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 14:49:07
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 09:59:56
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var PartSwiperPage = React.createClass({
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
-          <View style={{height: 300}}>
+          <View>
             <Text>Test</Text>
           </View>
         </ScrollView>
@@ -42,7 +42,7 @@ var PartSwiperPage = React.createClass({
 
 var styles = StyleSheet.create({
   partWheel: {
-    height: 70,
+    height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -51,7 +51,8 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontSize: 24,
     fontWeight: '600',
-    color: 'white'
+    color: 'white',
+    marginTop: 10,
   },
 });
 

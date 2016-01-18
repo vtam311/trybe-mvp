@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 14:47:17
+* @Last Modified time: 2016-01-18 09:56:28
 */
 
 'use strict';
@@ -66,7 +66,7 @@ var ViewWorkoutModal = React.createClass({
           <View style={styles.header}>
             <TouchableOpacity onPress={this.closeModal}>
               <Image
-                style={{width: 12, height: 21, marginTop: 30, marginLeft: 10}}
+                style={styles.backArrow}
                 source={require('image!backArrow')} />
             </TouchableOpacity>
           </View>
@@ -105,6 +105,12 @@ var styles = StyleSheet.create({
     height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
   },
+  backArrow: {
+    width: 12,
+    height: 21,
+    marginTop: 30,
+    marginLeft: 10
+  }
 });
 
 module.exports = ViewWorkoutModal;
