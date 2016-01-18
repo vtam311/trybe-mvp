@@ -1,13 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 10:56:21
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 11:31:06
 */
 
 'use strict';
 
 var React = require('react-native');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
@@ -17,10 +19,15 @@ var {
 } = React;
 
 var InstructionsView = React.createClass({
+  handlePress: function(){
+    //notify editWorkoutStore which instructions are being modified
+    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
+    modalActions.openInstructionsModal();
+  },
   render: function(){
     return (
       /* jshint ignore:start */
-      <TouchableOpacity onPress={() => console.log('instructions clicked')}>
+      <TouchableOpacity onPress={this.handlePress}>
         <View style={styles.instructionsContainer}>
           <Text style={styles.instructionsText}>{this.props.instructions}</Text>
         </View>

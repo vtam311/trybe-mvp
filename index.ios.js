@@ -11,6 +11,7 @@ var modalStore = require('./client/scripts/stores/modalStore');
 var TabBar = require('./client/scripts/components/tabBar');
 var EditWorkoutModal = require('./client/scripts/components/editWorkout/editWorkoutModal');
 var ViewWorkoutModal = require('./client/scripts/components/viewWorkout/viewWorkoutModal');
+var EditInstructionsModal = require('./client/scripts/components/viewWorkout/editInstructionsModal');
 var EditExerciseModal = require('./client/scripts/components/editWorkout/editExercise/editExerciseModal');
 var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
@@ -35,6 +36,7 @@ var Trybe = React.createClass({
     return {
       editWorkoutModalVisible: false,
       viewWorkoutModalVisible: false,
+      instructionsModalVisible: false,
       exerciseModalVisible: false,
       partModalVisible: false,
       dateModalVisible: false,
@@ -51,6 +53,7 @@ var Trybe = React.createClass({
     this.setState({
       editWorkoutModalVisible: modalStore.getEditWorkoutModalVisible(),
       viewWorkoutModalVisible: modalStore.getViewWorkoutModalVisible(),
+      instructionsModalVisible: modalStore.getInstructionsModalVisible(),
       exerciseModalVisible: modalStore.getExerciseModalVisible(),
       partModalVisible: modalStore.getPartModalVisible(),
       dateModalVisible: modalStore.getDateModalVisible(),
@@ -82,6 +85,7 @@ var Trybe = React.createClass({
           renderScene={this.renderScene} />
         {this.state.editWorkoutModalVisible ? <EditWorkoutModal /> : null }
         {this.state.viewWorkoutModalVisible ? <ViewWorkoutModal /> : null }
+        {this.state.instructionsModalVisible ? <EditInstructionsModal /> : null }
         {this.state.exerciseModalVisible ? <EditExerciseModal /> : null }
         {this.state.partModalVisible ? <EditPartModal /> : null }
         {this.state.dateModalVisible ? <EditDateModal /> : null }

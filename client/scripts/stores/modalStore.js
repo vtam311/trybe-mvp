@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:43
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 13:07:34
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 11:19:19
 */
 
 'use strict';
@@ -16,6 +16,7 @@ var CHANGE_EVENT = 'change';
 var _store = {
   editWorkoutModalVisible: false,
   viewWorkoutModalVisible: false,
+  instructionsModalVisible: false,
   exerciseModalVisible: false,
   partModalVisible: false,
   dateModalVisible: false,
@@ -37,6 +38,14 @@ var openViewWorkoutModal = function() {
 
 var closeViewWorkoutModal = function() {
   _store.viewWorkoutModalVisible = false;
+};
+
+var openInstructionsModal = function() {
+  _store.instructionsModalVisible = true;
+};
+
+var closeInstructionsModal = function() {
+  _store.instructionsModalVisible = false;
 };
 
 var openExerciseModal = function() {
@@ -84,6 +93,9 @@ var modalStore = Object.assign({}, EventEmitter.prototype, {
   getViewWorkoutModalVisible: function(){
     return _store.viewWorkoutModalVisible;
   },
+  getInstructionsModalVisible: function(){
+    return _store.instructionsModalVisible;
+  },
   getExerciseModalVisible: function(){
     return _store.exerciseModalVisible;
   },
@@ -123,6 +135,14 @@ AppDispatcher.register(function(payload){
       break;
     case modalConstants.CLOSE_EXERCISE_MODAL:
       closeExerciseModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.OPEN_INSTRUCTIONS_MODAL:
+      openInstructionsModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.CLOSE_INSTRUCTIONS_MODAL:
+      closeInstructionsModal();
       modalStore.emit(CHANGE_EVENT);
       break;
     case modalConstants.OPEN_PART_MODAL:

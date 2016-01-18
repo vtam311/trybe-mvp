@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 10:57:04
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 11:40:02
 */
 
 'use strict';
@@ -29,15 +29,13 @@ var PartSwiperPage = React.createClass({
           <Text style={styles.partName}>{this.props.part.name.toUpperCase()}</Text>
         </View>
 
-
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
-          <View>
-            <InstructionsView
-              instructions={this.props.part.instructions}
-              partIdx={this.props.partIdx} />
-          </View>
+          <InstructionsView
+            instructions={this.props.part.instructions}
+            partIdx={this.props.partIdx} />
         </ScrollView>
+
       </View>
       /* jshint ignore:start */
     );
