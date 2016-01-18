@@ -16,6 +16,7 @@ var viewExercise = React.createClass({
   render: function(){
     var exercise = this.props.exercise;
     var customFontSize = this.props.customFontSize;
+    var customFontColor = this.props.customFontColor;
 
     var exerciseName, reps, load, distance, time;
     var exParams = '';
@@ -28,6 +29,11 @@ var viewExercise = React.createClass({
       exStyleText = [...{}, styles.exerciseText, {fontSize: customFontSize}];
     } else {
       exStyleText = [...{}, styles.exerciseText];
+    }
+
+    //active custom font color if prop is specified
+    if(customFontSize){
+      exStyleText = [...{}, exStyleText, {color: customFontColor}];
     }
 
     var renderReps = function() {
