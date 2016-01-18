@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 10:44:09
+* @Last Modified time: 2016-01-18 10:57:04
 */
 
 'use strict';
@@ -18,6 +18,8 @@ var {
   Image
 } = React;
 
+var InstructionsView = require('./_instructionsView');
+
 var PartSwiperPage = React.createClass({
   render: function(){
     return (
@@ -31,11 +33,9 @@ var PartSwiperPage = React.createClass({
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
           <View>
-            <TouchableOpacity onPress={() => console.log('instructions clicked')}>
-              <View style={styles.instructionsContainer}>
-                <Text style={styles.instructionsText}>{this.props.part.instructions}</Text>
-              </View>
-            </TouchableOpacity>
+            <InstructionsView
+              instructions={this.props.part.instructions}
+              partIdx={this.props.partIdx} />
           </View>
         </ScrollView>
       </View>
@@ -63,18 +63,6 @@ var styles = StyleSheet.create({
     paddingBottom: 20,
     flexDirection: 'column',
     alignItems: 'center'
-  },
-  instructionsContainer: {
-    width: 300,
-    marginTop: 30,
-    marginBottom: 30,
-  },
-  instructionsText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 25,
-    fontWeight: '500',
-    color: '#fff',
-    textAlign: 'center',
   },
 });
 
