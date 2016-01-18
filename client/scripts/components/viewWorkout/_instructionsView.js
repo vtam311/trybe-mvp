@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 11:31:06
+* @Last Modified time: 2016-01-18 13:43:25
 */
 
 'use strict';
@@ -20,6 +20,7 @@ var {
 
 var InstructionsView = React.createClass({
   handlePress: function(){
+    this.props.changeToPage(this.props.partIdx);
     //notify editWorkoutStore which instructions are being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openInstructionsModal();

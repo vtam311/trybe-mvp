@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 13:04:02
+* @Last Modified time: 2016-01-18 13:44:04
 */
 
 'use strict';
@@ -36,6 +36,7 @@ var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
       workout: null, //will be populated by getDailyWorkout
+      swiperIndex: 0,
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
@@ -66,10 +67,16 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
+  changeToPage: function(index){
+    this.setState({swiperIndex: index});
+    console.log('changeToPage setting this.state.swiperIndex to', index);
+  },
   render: function() {
+    console.log('viewWorkoutModal render');
+    console.log('viewWorkoutModal rendering with this.state.swiperIndex of', this.state.swiperIndex);
     var partSwiperPages = this.state.workout.parts.map( (part, index) =>
       /* jshint ignore:start */
-      <PartSwiperPage part={part} partIdx={index} key={index} />
+      <PartSwiperPage part={part} partIdx={index} key={index} changeToPage={this.changeToPage} />
       /* jshint ignore:end */
     );
 
@@ -90,7 +97,7 @@ var ViewWorkoutModal = React.createClass({
               </TouchableOpacity>
             </View>
 
-            <Swiper style={styles.wrapper}>
+            <Swiper style={styles.wrapper} index={this.state.swiperIndex}>
               {partSwiperPages}
             </Swiper>
 

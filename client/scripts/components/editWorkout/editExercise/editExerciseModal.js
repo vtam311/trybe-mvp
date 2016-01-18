@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-15 22:38:12
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 13:28:36
 */
 
 'use strict';
@@ -139,7 +139,7 @@ var EditExerciseModal = React.createClass({
                 <TouchableOpacity onPress={this.closeModal}>
                   <Text style={styles.headerButtonText}>Cancel</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitleText}>Edit Exercise</Text>
+                <Text style={styles.headerTitleText}>Modify Exercise</Text>
                 <TouchableOpacity onPress={this.saveExercise}>
                   <Text style={styles.headerButtonText}>Done</Text>
                 </TouchableOpacity>
