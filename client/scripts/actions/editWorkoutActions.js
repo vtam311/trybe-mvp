@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 10:10:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 10:15:43
 */
 
 'use strict';
@@ -32,7 +32,9 @@ var editWorkoutActions = {
     dummyWorkout.id = 4;
     var newPart = newObject(dummyWorkout.parts[0]);
     dummyWorkout.parts.push(newPart);
+    dummyWorkout.parts[0].name = 'Warm Up';
     dummyWorkout.parts[1].instructions = '1 mile runs sandwiching 20 rounds of';
+    dummyWorkout.parts[1].name = 'Murph';
 
     this.setWorkout(dummyWorkout);
   },

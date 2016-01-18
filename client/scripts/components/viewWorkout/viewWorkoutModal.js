@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 10:12:17
+* @Last Modified time: 2016-01-18 10:51:15
 */
 
 'use strict';
@@ -83,18 +83,26 @@ var ViewWorkoutModal = React.createClass({
       /* jshint ignore:start */
       <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
         <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={this.closeModal}>
-              <Image
-                style={styles.backArrow}
-                source={require('image!backArrow')} />
-            </TouchableOpacity>
-          </View>
+          <Image
+            source={require('image!iconAthletesBackground')}
+            style={{flex: 1, height: null, width: null}}
+            resizeMode='contain' >
 
-          <Swiper style={styles.wrapper}>
-            {partSwiperPages}
-          </Swiper>
 
+            <View style={styles.header}>
+              <TouchableOpacity onPress={this.closeModal}>
+                <Image
+                  style={styles.backArrow}
+                  source={require('image!backArrow')} />
+              </TouchableOpacity>
+            </View>
+
+            <Swiper style={styles.wrapper}>
+              {partSwiperPages}
+            </Swiper>
+
+
+          </Image>
         </View>
       </Animated.View>
       /* jshint ignore:end */
@@ -114,9 +122,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(73,162,160,.5)',
-    borderRadius: 3,
-    shadowColor: '#9B9B9B',
-    shadowOpacity: 8,
   },
   wrapper: {
   },

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 10:11:58
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 10:44:09
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var React = require('react-native');
 
 var {
   ScrollView,
+  TouchableOpacity,
   View,
   Text,
   StyleSheet,
@@ -22,16 +23,19 @@ var PartSwiperPage = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-
         <View style={styles.partWheel}>
-          <Text style={styles.partName}>WARM UP</Text>
+          <Text style={styles.partName}>{this.props.part.name.toUpperCase()}</Text>
         </View>
 
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
           <View>
-            <Text>{this.props.part.instructions}</Text>
+            <TouchableOpacity onPress={() => console.log('instructions clicked')}>
+              <View style={styles.instructionsContainer}>
+                <Text style={styles.instructionsText}>{this.props.part.instructions}</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -53,6 +57,24 @@ var styles = StyleSheet.create({
     fontWeight: '600',
     color: 'white',
     marginTop: 10,
+  },
+  contentContainerStyle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  instructionsContainer: {
+    width: 300,
+    marginTop: 30,
+    marginBottom: 30,
+  },
+  instructionsText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 25,
+    fontWeight: '500',
+    color: '#fff',
+    textAlign: 'center',
   },
 });
 
