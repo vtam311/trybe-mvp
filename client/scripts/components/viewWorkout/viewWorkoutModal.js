@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 15:17:37
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 15:40:03
 */
 
 'use strict';
@@ -25,7 +25,6 @@ var {
 } = React;
 
 //Load components
-var Swiper = require('react-native-swiper');
 var PartSwiperPage = require('./_partSwiperPage');
 
 //Gets device height for animating app
@@ -57,9 +56,6 @@ var ViewWorkoutModal = React.createClass({
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
   },
-  // componentWillUpdate: function(){
-  //   this.scrollToSwiperIdx();
-  // },
   _onChange: function(){
     this.setState({
       workout: editWorkoutStore.getWorkout(),
@@ -71,20 +67,10 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
-  // setSwiperIdx: function(index){
-  //   this.setState({swiperIndex: index});
-  //   console.log('setSwiperIdx setting this.state.swiperIndex to', index);
-  // },
-  // scrollToSwiperIdx: function(){
-  //   this.refs.swiper.scrollTo(this.state.swiperIndex);
-  // },
   render: function() {
-    console.log('viewWorkoutModal render');
-    console.log('viewWorkoutModal rendering with this.state.swiperIndex of', this.state.swiperIndex);
-
     var partSwiperPages = this.state.workout.parts.map( (part, index) =>
       /* jshint ignore:start */
-      <PartSwiperPage part={part} partIdx={index} key={index} setSwiperIdx={this.setSwiperIdx} />
+      <PartSwiperPage part={part} partIdx={index} key={index} />
       /* jshint ignore:end */
     );
 
@@ -116,9 +102,6 @@ var ViewWorkoutModal = React.createClass({
       </Animated.View>
       /* jshint ignore:end */
     );
-              // snapToInterval={this.state.visibleWidth}
-              // snapToAlignment='start'
-
   }
 });
 
@@ -133,8 +116,6 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(73,162,160,.5)',
-  },
-  wrapper: {
   },
   header: {
     height: 60,

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 13:37:37
+* @Last Modified time: 2016-01-18 15:23:20
 */
 
 'use strict';
@@ -261,7 +261,7 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_TARGET_EXERCISE_IDX:
       setTargetExerciseIdx(action.data);
-      // editWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.SAVE_EXERCISE:
       saveExercise(action.data);
@@ -293,7 +293,7 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_TARGET_PART_IDX:
       setTargetPartIdx(action.data);
-      // editWorkoutStore.emit(CHANGE_EVENT);
+      editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
