@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 14:20:28
+* @Last Modified time: 2016-01-18 15:13:54
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var React = require('react-native');
 
 var {
   ScrollView,
+  Dimensions,
   View,
   Text,
   StyleSheet,
@@ -20,6 +21,11 @@ var InstructionsView = require('./_instructionsView');
 var ExerciseView = require('./_exerciseView');
 
 var PartSwiperPage = React.createClass({
+  getInitialState: function(){
+    return {
+      visibleWidth: Dimensions.get('window').width,
+    };
+  },
   render: function(){
     var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
       /* jshint ignore:start */
@@ -29,7 +35,7 @@ var PartSwiperPage = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={{width: this.state.visibleWidth}}>
         <View style={styles.partWheel}>
           <Text style={styles.partName}>{this.props.part.name.toUpperCase()}</Text>
         </View>
@@ -38,8 +44,7 @@ var PartSwiperPage = React.createClass({
           contentContainerStyle={styles.contentContainerStyle} >
           <InstructionsView
             instructions={this.props.part.instructions}
-            partIdx={this.props.partIdx}
-            setSwiperIdx={this.props.setSwiperIdx} />
+            partIdx={this.props.partIdx} />
           {exerciseViews}
         </ScrollView>
 

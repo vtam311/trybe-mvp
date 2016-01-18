@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 14:27:51
+* @Last Modified time: 2016-01-18 15:17:37
 */
 
 'use strict';
@@ -16,6 +16,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  ScrollView,
   Animated,
   Dimensions,
   Image,
@@ -48,7 +49,6 @@ var ViewWorkoutModal = React.createClass({
     editWorkoutActions.getDailyWorkout();
   },
   componentDidMount: function() {
-    this.scrollToSwiperIdx();
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -57,6 +57,9 @@ var ViewWorkoutModal = React.createClass({
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
   },
+  // componentWillUpdate: function(){
+  //   this.scrollToSwiperIdx();
+  // },
   _onChange: function(){
     this.setState({
       workout: editWorkoutStore.getWorkout(),
@@ -68,13 +71,13 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
-  setSwiperIdx: function(index){
-    this.setState({swiperIndex: index});
-    console.log('setSwiperIdx setting this.state.swiperIndex to', index);
-  },
-  scrollToSwiperIdx: function(){
-    this.refs.swiper.scrollTo(this.state.swiperIndex);
-  },
+  // setSwiperIdx: function(index){
+  //   this.setState({swiperIndex: index});
+  //   console.log('setSwiperIdx setting this.state.swiperIndex to', index);
+  // },
+  // scrollToSwiperIdx: function(){
+  //   this.refs.swiper.scrollTo(this.state.swiperIndex);
+  // },
   render: function() {
     console.log('viewWorkoutModal render');
     console.log('viewWorkoutModal rendering with this.state.swiperIndex of', this.state.swiperIndex);
@@ -102,15 +105,19 @@ var ViewWorkoutModal = React.createClass({
               </TouchableOpacity>
             </View>
 
-            <Swiper style={styles.wrapper} ref='swiper'>
+            <ScrollView
+              horizontal={true}
+              pagingEnabled={true} >
               {partSwiperPages}
-            </Swiper>
+            </ScrollView>
 
           </Image>
         </View>
       </Animated.View>
       /* jshint ignore:end */
     );
+              // snapToInterval={this.state.visibleWidth}
+              // snapToAlignment='start'
 
   }
 });
