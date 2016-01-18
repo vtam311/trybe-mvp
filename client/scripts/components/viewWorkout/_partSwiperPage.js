@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 13:42:55
+* @Last Modified time: 2016-01-18 14:20:28
 */
 
 'use strict';
@@ -39,7 +39,7 @@ var PartSwiperPage = React.createClass({
           <InstructionsView
             instructions={this.props.part.instructions}
             partIdx={this.props.partIdx}
-            changeToPage={this.props.changeToPage} />
+            setSwiperIdx={this.props.setSwiperIdx} />
           {exerciseViews}
         </ScrollView>
 

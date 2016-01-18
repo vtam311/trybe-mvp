@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 13:44:04
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 14:27:51
 */
 
 'use strict';
@@ -36,7 +36,7 @@ var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
       workout: null, //will be populated by getDailyWorkout
-      swiperIndex: 0,
+      swiperIndex: 1,
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
@@ -48,6 +48,7 @@ var ViewWorkoutModal = React.createClass({
     editWorkoutActions.getDailyWorkout();
   },
   componentDidMount: function() {
+    this.scrollToSwiperIdx();
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -67,16 +68,20 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
-  changeToPage: function(index){
+  setSwiperIdx: function(index){
     this.setState({swiperIndex: index});
-    console.log('changeToPage setting this.state.swiperIndex to', index);
+    console.log('setSwiperIdx setting this.state.swiperIndex to', index);
+  },
+  scrollToSwiperIdx: function(){
+    this.refs.swiper.scrollTo(this.state.swiperIndex);
   },
   render: function() {
     console.log('viewWorkoutModal render');
     console.log('viewWorkoutModal rendering with this.state.swiperIndex of', this.state.swiperIndex);
+
     var partSwiperPages = this.state.workout.parts.map( (part, index) =>
       /* jshint ignore:start */
-      <PartSwiperPage part={part} partIdx={index} key={index} changeToPage={this.changeToPage} />
+      <PartSwiperPage part={part} partIdx={index} key={index} setSwiperIdx={this.setSwiperIdx} />
       /* jshint ignore:end */
     );
 
@@ -97,7 +102,7 @@ var ViewWorkoutModal = React.createClass({
               </TouchableOpacity>
             </View>
 
-            <Swiper style={styles.wrapper} index={this.state.swiperIndex}>
+            <Swiper style={styles.wrapper} ref='swiper'>
               {partSwiperPages}
             </Swiper>
 
