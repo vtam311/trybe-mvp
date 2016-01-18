@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-14 23:15:21
+* @Last Modified time: 2016-01-18 10:10:36
 */
 
 'use strict';
@@ -30,6 +30,9 @@ var editWorkoutActions = {
     //temp use DUMMY_WORKOUT and make its id unique
     var dummyWorkout = newWorkout(DUMMY_WORKOUT);
     dummyWorkout.id = 4;
+    var newPart = newObject(dummyWorkout.parts[0]);
+    dummyWorkout.parts.push(newPart);
+    dummyWorkout.parts[1].instructions = '1 mile runs sandwiching 20 rounds of';
 
     this.setWorkout(dummyWorkout);
   },

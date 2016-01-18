@@ -46,6 +46,7 @@ var ViewWorkout = React.createClass({
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
+    viewWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({

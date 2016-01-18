@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 09:59:56
+* @Last Modified time: 2016-01-18 10:11:58
 */
 
 'use strict';
@@ -31,7 +31,7 @@ var PartSwiperPage = React.createClass({
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
           <View>
-            <Text>Test</Text>
+            <Text>{this.props.part.instructions}</Text>
           </View>
         </ScrollView>
       </View>

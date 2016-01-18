@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 09:56:28
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 10:12:17
 */
 
 'use strict';
@@ -10,6 +10,8 @@
 var React = require('react-native');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var editWorkoutStore = require('../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -39,10 +41,16 @@ var {
 var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
+      workout: null, //will be populated by getDailyWorkout
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
     };
+  },
+  componentWillMount: function(){
+    editWorkoutStore.addChangeListener(this._onChange);
+
+    editWorkoutActions.getDailyWorkout();
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {
@@ -50,14 +58,26 @@ var ViewWorkoutModal = React.createClass({
       toValue: 0
     }).start();
   },
+  componentWillUnmount: function(){
+    editWorkoutStore.removeChangeListener(this._onChange);
+  },
+  _onChange: function(){
+    this.setState({
+      workout: editWorkoutStore.getWorkout(),
+    });
+  },
   closeModal: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
-    console.log('closeModal')
   },
   render: function() {
+    var partSwiperPages = this.state.workout.parts.map( (part, index) =>
+      /* jshint ignore:start */
+      <PartSwiperPage part={part} partIdx={index} key={index} />
+      /* jshint ignore:end */
+    );
 
     return (
       /* jshint ignore:start */
@@ -72,8 +92,7 @@ var ViewWorkoutModal = React.createClass({
           </View>
 
           <Swiper style={styles.wrapper}>
-            <PartSwiperPage />
-            <PartSwiperPage />
+            {partSwiperPages}
           </Swiper>
 
         </View>
