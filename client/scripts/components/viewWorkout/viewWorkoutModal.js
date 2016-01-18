@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 10:51:15
+* @Last Modified time: 2016-01-18 13:04:02
 */
 
 'use strict';
@@ -15,22 +15,16 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
-  ScrollView,
   TouchableOpacity,
   Animated,
   Dimensions,
   Image,
   StyleSheet,
-  Text,
   View,
-  TouchableHighlight,
-  Dimensions,
 } = React;
 
 //Load components
 var Swiper = require('react-native-swiper');
-import {TableView} from 'react-native-tableview-simple';
-var ViewPart = require('./viewPart');
 var PartSwiperPage = require('./_partSwiperPage');
 
 //Gets device height for animating app
@@ -88,7 +82,6 @@ var ViewWorkoutModal = React.createClass({
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
 
-
             <View style={styles.header}>
               <TouchableOpacity onPress={this.closeModal}>
                 <Image
@@ -100,7 +93,6 @@ var ViewWorkoutModal = React.createClass({
             <Swiper style={styles.wrapper}>
               {partSwiperPages}
             </Swiper>
-
 
           </Image>
         </View>

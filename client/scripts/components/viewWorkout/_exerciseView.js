@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 12:57:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 13:01:52
 */
 
 'use strict';
@@ -14,7 +14,6 @@ var modalActions = require('../../actions/modalActions');
 var {
   TouchableOpacity,
   View,
-  Text,
   StyleSheet,
 } = React;
 
@@ -22,7 +21,7 @@ var ExNameAndParams = require('../../common/viewWorkoutComponents/exNameAndParam
 
 var InstructionsView = React.createClass({
   handlePress: function(){
-    //notify editWorkoutStore which instructions are being modified
+    //notify editWorkoutStore which exercise is being modified
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
   },

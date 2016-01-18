@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 12:59:29
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 13:01:27
 */
 
 'use strict';
@@ -11,11 +11,9 @@ var React = require('react-native');
 
 var {
   ScrollView,
-  TouchableOpacity,
   View,
   Text,
   StyleSheet,
-  Image
 } = React;
 
 var InstructionsView = require('./_instructionsView');
