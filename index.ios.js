@@ -60,17 +60,12 @@ var Trybe = React.createClass({
       logModalVisible: modalStore.getLogModalVisible(),
     });
   },
-  onDoWorkout: function() {
-    //emits event to notify workout navigator to reset stack
-    this.rootNavListener.emit('doWorkout');
-  },
   renderScene: function(route, navigator){
     var Component = route.component;
 
     return (
       <Component
         rootNav={this.refs.rootNav}
-        onDoWorkout={this.onDoWorkout}
         events={this.rootNavListener} />
     );
   },

@@ -2,15 +2,15 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 18:24:33
+* @Last Modified time: 2016-01-19 10:24:12
 */
 
 'use strict';
 
 var React = require('react-native');
-var tabActions = require('../../actions/tabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 var newWorkout = require('../../common/newWorkout');
 
 var {
@@ -21,7 +21,7 @@ var {
 } = React;
 
 var FeedCardFooter = React.createClass({
-  viewWorkout: function(workout) {
+  doWorkout: function(workout) {
     var separateWorkout = newWorkout(workout);
     //set workout in workout tab
     editWorkoutActions.setWorkout(separateWorkout);
@@ -30,12 +30,10 @@ var FeedCardFooter = React.createClass({
     editWorkoutActions.setDefaultOrCustom('custom');
 
     //ensure all parts of workout in viewWorkout
-    //are initialized to false for isLogged, as is new workout
+    //are initialized to false for isLogged, since is new workout
     viewWorkoutActions.initPartsAreLogged();
 
-    //reset workout tab stack to viewWorkout scene
-    this.props.onDoWorkout();
-    tabActions.setTab('workout');
+    modalActions.openViewWorkoutModal();
   },
 
   render: function(){
@@ -49,7 +47,7 @@ var FeedCardFooter = React.createClass({
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>{ likes } Likes</Text>
         <TouchableHighlight
-          onPress={ () => this.viewWorkout(workout) }>
+          onPress={ () => this.doWorkout(workout) }>
           <Text style={styles.footerText}>Do Now</Text>
         </TouchableHighlight>
       </View>

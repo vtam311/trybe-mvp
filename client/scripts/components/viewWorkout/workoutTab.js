@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var Subscribable = require('Subscribable'); //used for addListenerOn
 var modalActions = require('../../actions/modalActions');
 
 //Load components
@@ -25,11 +24,6 @@ var RouteStack = {
 
 
 var WorkoutTab = React.createClass({
-  mixins: [Subscribable.Mixin],
-
-  componentDidMount: function(){
-    this.addListenerOn(this.props.events, 'doWorkout', this.resetRoute);
-  },
   goToScene: function(component, name){
     this.refs.workoutNav.push({
       component: component,
@@ -44,8 +38,7 @@ var WorkoutTab = React.createClass({
 
     return (
       <Component
-        goToScene={this.goToScene}
-        events={this.props.events} />
+        goToScene={this.goToScene} />
     );
   },
   render: function() {
