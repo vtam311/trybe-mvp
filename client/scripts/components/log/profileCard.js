@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-14 14:20:42
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 12:50:07
+* @Last Modified time: 2016-01-19 13:17:11
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var ProfileCard = React.createClass({
         <View style={styles.content}>
           <View style={styles.topContainer}>
             <View style={{flexDirection: 'row'}}>
-              <View style={[styles.imageCropper]}>
+              <View style={[styles.profilePicContainer]}>
                 <Image
                   style={styles.profilePic}
                   source={{uri: 'https://i.imgur.com/YcbwSpY.jpg'}} />
@@ -90,13 +90,11 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between',
     margin: 5,
   },
-  imageCropper: {
-    position: 'relative',
-    overflow: 'hidden',
-    width: 80,
-    height: 80,
-    marginLeft: 5,
-    marginTop: 5
+  profilePicContainer: {
+    padding: 3,
+    borderColor: '#8D867E',
+    borderWidth: .5,
+    borderRadius: 2,
   },
   profilePic: {
     height: 80,
