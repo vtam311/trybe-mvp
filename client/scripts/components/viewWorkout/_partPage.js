@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 17:24:40
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 17:45:36
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var React = require('react-native');
 var {
   ScrollView,
   Dimensions,
+  TouchableHighlight,
   View,
   Text,
   StyleSheet,
@@ -23,6 +24,7 @@ var ExerciseView = require('./_exerciseView');
 var PartPage = React.createClass({
   getInitialState: function(){
     return {
+      visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
     };
   },
@@ -35,7 +37,7 @@ var PartPage = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={{width: this.state.visibleWidth}}>
+      <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
         <View style={styles.partWheel}>
           <View style={styles.partNameContainer}>
             <Text style={styles.partNameText}>{this.props.part.name.toUpperCase()}</Text>
@@ -50,6 +52,12 @@ var PartPage = React.createClass({
           {exerciseViews}
         </ScrollView>
 
+        <TouchableHighlight >
+          <View style={[styles.logButton, {width: this.state.visibleWidth}]}>
+            <Text style={styles.logButtonText}>Log Results</Text>
+          </View>
+        </TouchableHighlight>
+
       </View>
       /* jshint ignore:end */
     );
@@ -57,8 +65,11 @@ var PartPage = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   partWheel: {
-    height: 110,
+    flex: .2,
     backgroundColor: 'rgba(77,186,151,.6)',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -77,12 +88,28 @@ var styles = StyleSheet.create({
     marginTop: 10,
   },
   contentContainerStyle: {
+    flex: .8,
     paddingTop: 20,
-    paddingBottom: 20,
+    paddingBottom: 60,
     flexDirection: 'column',
+    alignItems: 'center',
+  },
+  logButton: {
+    position: 'absolute',
+    bottom: 0,
+
+    height: 60,
+    backgroundColor: 'rgba(77,186,151,.6)',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-
+  logButtonText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 24,
+    fontWeight: '500',
+    color: '#fff'
+  }
 });
 
 module.exports = PartPage;
