@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 15:40:03
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 17:19:53
 */
 
 'use strict';
@@ -25,7 +25,7 @@ var {
 } = React;
 
 //Load components
-var PartSwiperPage = require('./_partSwiperPage');
+var PartPage = require('./_partPage');
 
 //Gets device height for animating app
 var {
@@ -68,9 +68,9 @@ var ViewWorkoutModal = React.createClass({
     }).start(modalActions.closeViewWorkoutModal);
   },
   render: function() {
-    var partSwiperPages = this.state.workout.parts.map( (part, index) =>
+    var partPages = this.state.workout.parts.map( (part, index) =>
       /* jshint ignore:start */
-      <PartSwiperPage part={part} partIdx={index} key={index} />
+      <PartPage part={part} partIdx={index} key={index} />
       /* jshint ignore:end */
     );
 
@@ -83,21 +83,23 @@ var ViewWorkoutModal = React.createClass({
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
 
-            <View style={styles.header}>
-              <TouchableOpacity onPress={this.closeModal}>
-                <Image
-                  style={styles.backArrow}
-                  source={require('image!backArrow')} />
-              </TouchableOpacity>
-            </View>
-
             <ScrollView
               horizontal={true}
               pagingEnabled={true} >
-              {partSwiperPages}
+
+              {partPages}
+
             </ScrollView>
 
           </Image>
+
+          <View style={styles.backButtonContainer}>
+            <TouchableOpacity onPress={this.closeModal}>
+             <Image
+                style={styles.backArrow}
+                source={require('image!backArrow')} />
+            </TouchableOpacity>
+          </View>
         </View>
       </Animated.View>
       /* jshint ignore:end */
@@ -117,15 +119,17 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(73,162,160,.5)',
   },
-  header: {
+  backButtonContainer: {
     height: 60,
-    backgroundColor: 'rgba(77,186,151,.6)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
   backArrow: {
     width: 12,
     height: 21,
     marginTop: 30,
-    marginLeft: 10
+    marginLeft: 10,
   }
 });
 

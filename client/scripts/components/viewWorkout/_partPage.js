@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 15:38:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 17:24:40
 */
 
 'use strict';
@@ -20,7 +20,7 @@ var {
 var InstructionsView = require('./_instructionsView');
 var ExerciseView = require('./_exerciseView');
 
-var PartSwiperPage = React.createClass({
+var PartPage = React.createClass({
   getInitialState: function(){
     return {
       visibleWidth: Dimensions.get('window').width,
@@ -37,7 +37,9 @@ var PartSwiperPage = React.createClass({
       /* jshint ignore:start */
       <View style={{width: this.state.visibleWidth}}>
         <View style={styles.partWheel}>
-          <Text style={styles.partName}>{this.props.part.name.toUpperCase()}</Text>
+          <View style={styles.partNameContainer}>
+            <Text style={styles.partNameText}>{this.props.part.name.toUpperCase()}</Text>
+          </View>
         </View>
 
         <ScrollView
@@ -56,12 +58,18 @@ var PartSwiperPage = React.createClass({
 
 var styles = StyleSheet.create({
   partWheel: {
-    height: 60,
+    height: 110,
     backgroundColor: 'rgba(77,186,151,.6)',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  partNameContainer: {
+    marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  partName: {
+  partNameText: {
     fontFamily: 'Avenir Next',
     fontSize: 24,
     fontWeight: '600',
@@ -77,4 +85,4 @@ var styles = StyleSheet.create({
 
 });
 
-module.exports = PartSwiperPage;
+module.exports = PartPage;
