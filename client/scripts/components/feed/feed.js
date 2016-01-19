@@ -6,7 +6,7 @@ var feedActions = require('../../actions/feedActions');
 
 //Load components
 var FeedCard = require('./feedCard');
-var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
+var ViewWorkoutBody = require('../../common/workoutViews/viewWorkoutBody');
 var ChatBar = require('./chatBar');
 
 var {
@@ -46,7 +46,7 @@ var Feed = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={ styles.feedCard }>
-        <FeedCard card={card} onDoWorkout={this.props.onDoWorkout}/>
+        <FeedCard card={card} />
       </View>
       /* jshint ignore:end */
     );

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 23:22:47
+* @Last Modified time: 2016-01-18 15:23:20
 */
 
 'use strict';
@@ -203,6 +203,12 @@ var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
     } else {
       return EXERCISE_TEMPLATE;
     }
+  },
+  getTargetInstructions: function(){
+    //Target instructions being modified by editInstructionsModal
+    var partIdx = _store.targetPartIdx;
+    var targetInstructions = _store.workout.parts[partIdx].instructions;
+    return targetInstructions;
   },
   getNumParts: function(){
     return _store.workout.parts.length;

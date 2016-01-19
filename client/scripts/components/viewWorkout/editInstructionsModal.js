@@ -1,16 +1,16 @@
 /*
-* @Author: VINCE
-* @Date:   2015-12-15 15:19:09
+* @Author: vincetam
+* @Date:   2016-01-18 11:00:44
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 21:19:19
+* @Last Modified time: 2016-01-18 11:37:39
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutStore = require('../../../stores/editWorkoutStore');
-var editWorkoutActions = require('../../../actions/editWorkoutActions');
-var modalActions = require('../../../actions/modalActions');
+var editWorkoutStore = require('../../stores/editWorkoutStore');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   StyleSheet,
@@ -28,12 +28,12 @@ var {
   height: deviceHeight
 } = Dimensions.get('window');
 
-var EditPartModal = React.createClass({
+var EditInstructionsModal = React.createClass({
   getInitialState: function() {
     return {
       offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
-      partName: editWorkoutStore.getPartName()
+      instructions: editWorkoutStore.getTargetInstructions(),
     };
   },
   componentDidMount: function() {
@@ -46,17 +46,13 @@ var EditPartModal = React.createClass({
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(modalActions.closePartModal);
+    }).start(modalActions.closeInstructionsModal);
   },
-  renderPartName: function(text){
-    this.setState({partName: text});
+  renderInstructions: function(text){
+    this.setState({instructions: text});
   },
-  savePart: function(){
-    editWorkoutActions.setPartName(this.state.partName);
-    this.closeModal();
-  },
-  removePart: function(){
-    editWorkoutActions.removePart();
+  saveInstructions: function(){
+    editWorkoutActions.setInstructions(this.state.instructions, this.state.partIdx);
     this.closeModal();
   },
   render: function() {
@@ -69,8 +65,8 @@ var EditPartModal = React.createClass({
               <TouchableOpacity onPress={this.closeModal}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
-              <Text style={styles.headerTitleText}>Edit Part</Text>
-              <TouchableOpacity onPress={this.savePart}>
+              <Text style={styles.headerTitleText}>Modify Instructions</Text>
+              <TouchableOpacity onPress={this.saveInstructions}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
@@ -78,25 +74,13 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text style={styles.partNamePrompt}>Name / Purpose</Text>
               <TextInput
-                value={this.state.partName}
-                placeholder={'Warmup, Strength, Etc.'}
-                autoCapitalize='words'
-                onChangeText={(text) => this.renderPartName(text)}
-                style={{height: 40}}/>
+                value={this.state.instructions}
+                placeholder='Instructions'
+                onChangeText={(text) => this.renderInstructions(text)}
+                multiline={true}
+                style={styles.instructionsTextInput} />
             </View>
-          </View>
-
-          <View style={styles.footer}>
-            <TouchableOpacity onPress={this.removePart}>
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                <Image
-                  style={{height: 18, width: 18}}
-                  source={require('image!deleteButton')} />
-                <Text style={styles.deleteText}>Delete</Text>
-              </View>
-            </TouchableOpacity>
           </View>
 
         </View>
@@ -165,31 +149,12 @@ var styles = StyleSheet.create({
     marginRight: 15,
     marginTop: 15,
   },
-  partNamePrompt: {
-    fontSize: 14,
-    color: 'black',
-    fontFamily: 'Avenir Next'
+  instructionsTextInput: {
+    height: 80,
+    fontFamily: 'Helvetica',
+    color: '#2D2D2D',
+    fontSize: 16
   },
-  footer: {
-    flex: 1,
-    height: 40,
-    borderTopColor: '#9B9B9B',
-    borderTopWidth: .5,
-    borderTopColor: 'rgba(155, 155, 155, 0.7)',
-    borderBottomLeftRadius: 3,
-    borderBottomRightRadius: 3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
-  },
-  deleteText: {
-    marginLeft: 5,
-    fontFamily: 'Avenir Next',
-    fontSize: 16,
-    color: '#FA6F80'
-  }
 });
 
-module.exports = EditPartModal;
+module.exports = EditInstructionsModal;

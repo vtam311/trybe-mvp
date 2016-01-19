@@ -10,6 +10,8 @@ var modalStore = require('./client/scripts/stores/modalStore');
 //Load components
 var TabBar = require('./client/scripts/components/tabBar');
 var EditWorkoutModal = require('./client/scripts/components/editWorkout/editWorkoutModal');
+var ViewWorkoutModal = require('./client/scripts/components/viewWorkout/viewWorkoutModal');
+var EditInstructionsModal = require('./client/scripts/components/viewWorkout/editInstructionsModal');
 var EditExerciseModal = require('./client/scripts/components/editWorkout/editExercise/editExerciseModal');
 var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
@@ -32,7 +34,9 @@ var RouteStack = {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      workoutModalVisible: false,
+      viewWorkoutModalVisible: false,
+      editWorkoutModalVisible: false,
+      instructionsModalVisible: false,
       exerciseModalVisible: false,
       partModalVisible: false,
       dateModalVisible: false,
@@ -47,16 +51,14 @@ var Trybe = React.createClass({
   },
   _onChange: function(){
     this.setState({
-      workoutModalVisible: modalStore.getWorkoutModalVisible(),
+      viewWorkoutModalVisible: modalStore.getViewWorkoutModalVisible(),
+      editWorkoutModalVisible: modalStore.getEditWorkoutModalVisible(),
+      instructionsModalVisible: modalStore.getInstructionsModalVisible(),
       exerciseModalVisible: modalStore.getExerciseModalVisible(),
       partModalVisible: modalStore.getPartModalVisible(),
       dateModalVisible: modalStore.getDateModalVisible(),
       logModalVisible: modalStore.getLogModalVisible(),
     });
-  },
-  onDoWorkout: function() {
-    //emits event to notify workout navigator to reset stack
-    this.rootNavListener.emit('doWorkout');
   },
   renderScene: function(route, navigator){
     var Component = route.component;
@@ -64,7 +66,6 @@ var Trybe = React.createClass({
     return (
       <Component
         rootNav={this.refs.rootNav}
-        onDoWorkout={this.onDoWorkout}
         events={this.rootNavListener} />
     );
   },
@@ -77,7 +78,9 @@ var Trybe = React.createClass({
           ref="rootNav"
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
-        {this.state.workoutModalVisible ? <EditWorkoutModal /> : null }
+        {this.state.viewWorkoutModalVisible ? <ViewWorkoutModal /> : null }
+        {this.state.editWorkoutModalVisible ? <EditWorkoutModal /> : null }
+        {this.state.instructionsModalVisible ? <EditInstructionsModal /> : null }
         {this.state.exerciseModalVisible ? <EditExerciseModal /> : null }
         {this.state.partModalVisible ? <EditPartModal /> : null }
         {this.state.dateModalVisible ? <EditDateModal /> : null }

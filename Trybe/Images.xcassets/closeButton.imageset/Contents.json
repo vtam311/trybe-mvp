@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "addButton.png",
+      "filename" : "closeButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "addButton-2.png",
+      "filename" : "closeButton-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "addButton-3.png",
+      "filename" : "closeButton-3.png",
       "scale" : "3x"
     }
   ],

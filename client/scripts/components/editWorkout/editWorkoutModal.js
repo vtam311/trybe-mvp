@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 23:40:46
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 21:23:42
 */
 
 'use strict';
@@ -10,7 +10,6 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
-var tabStore = require('../../stores/tabStore');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -21,15 +20,12 @@ var {
   TouchableOpacity,
   Animated,
   Dimensions,
-  TextInput,
   Image,
   DeviceEventEmitter,
-  StatusBarIOS
 } = React;
 
 //Load components
-var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
-import {TableView, Section} from 'react-native-tableview-simple';
+import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
 var Part = require('./editPart/part');
 
@@ -76,15 +72,20 @@ var EditWorkoutModal = React.createClass({
       workout: editWorkoutStore.getWorkout(),
     });
   },
-  handleCancel: function(){
+  handleCancelPress: function(){
     editWorkoutActions.cancelChanges();
+    this.closeModal();
+  },
+  handleDonePress: function(){
+    editWorkoutActions.setDefaultOrCustom('custom');
+    modalActions.openViewWorkoutModal();
     this.closeModal();
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
-    }).start(modalActions.closeWorkoutModal);
+    }).start(modalActions.closeEditWorkoutModal);
   },
   keyboardWillShow: function(e) {
     var newSize = Dimensions.get('window').height - e.endCoordinates.height;
@@ -94,9 +95,8 @@ var EditWorkoutModal = React.createClass({
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollToComponent: function(refName, child) {
-    console.log('editWorkout scrollToComponent called');
     var offset;
-    if(child === 'instrTextInput') offset = -70;
+    if(child === 'instrTextInput') offset = -80;
     else if(child === 'customTextInput') offset = 50;
 
     setTimeout( () => {
@@ -130,11 +130,11 @@ var EditWorkoutModal = React.createClass({
 
           <View style={styles.header}>
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.handleCancel}>
+              <TouchableOpacity onPress={this.handleCancelPress}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Workout</Text>
-              <TouchableOpacity onPress={this.closeModal}>
+              <TouchableOpacity onPress={this.handleDonePress}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
@@ -143,8 +143,7 @@ var EditWorkoutModal = React.createClass({
           <ScrollView
             ref='scrollView'
             keyboardDismissMode='on-drag'
-            contentContainerStyle={styles.contentContainerStyle}
-            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
+            contentContainerStyle={styles.contentContainerStyle} >
             <TableView>
 
               <Section>
@@ -153,6 +152,17 @@ var EditWorkoutModal = React.createClass({
               </Section>
 
               {parts}
+
+              <Section>
+                <CustomCell onPress={editWorkoutActions.addPart}>
+                  <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                    <Image
+                      style={{height: 18, width: 18, marginRight: 5}}
+                      source={require('image!addButton')} />
+                    <Text style={styles.addPartText}>Add Part</Text>
+                  </View>
+                </CustomCell>
+              </Section>
 
             </TableView>
           </ScrollView>
@@ -209,7 +219,12 @@ var styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
-  }
+  },
+  addPartText: {
+    fontFamily: 'Avenir Next',
+    color: 'rgba(0,173,148,.7)',
+    fontSize: 15,
+  },
 });
 
 module.exports = EditWorkoutModal;

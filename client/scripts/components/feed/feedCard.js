@@ -1,8 +1,9 @@
+
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 14:40:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 10:19:10
 */
 
 'use strict';
@@ -12,8 +13,8 @@ var feedActions = require('../../actions/feedActions');
 
 //Load components
 var FeedCardHeader = require('./feedCardHeader');
-var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
-var ViewResults = require('../../common/viewWorkoutComponents/viewResults');
+var ViewWorkoutBody = require('../../common/workoutViews/viewWorkoutBody');
+var ViewResults = require('../../common/workoutViews/viewResults');
 var FeedCardFooter = require('./feedCardFooter');
 
 var {
@@ -71,8 +72,7 @@ var FeedCard = React.createClass({
           <FeedCardFooter
             workout={ card.workout }
             likes={ card.likes }
-            comments={ card.comments }
-            onDoWorkout={this.props.onDoWorkout} />
+            comments={ card.comments } />
         </View>
       </View>
       /* jshint ignore:end */

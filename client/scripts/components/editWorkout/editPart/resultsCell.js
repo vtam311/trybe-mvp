@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 17:20:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 23:31:51
+* @Last Modified time: 2016-01-18 18:40:31
 */
 
 'use strict';
@@ -52,7 +52,7 @@ var ResultsCell = React.createClass({
       <CustomCell customHeight={this.adjustHeight()}>
         <View style={[styles.cellContainer, {height: this.adjustHeight()}]}>
           <View style={styles.cellRow}>
-            <Text style={styles.cellPrompt}>Record Results</Text>
+            <Text style={styles.cellPrompt}>Set Metric</Text>
             <SwitchIOS
               onTintColor="#4dba97"
               onValueChange={(bool) => this.toggleRecording(bool)}

@@ -2,15 +2,15 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:53:20
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 10:11:02
+* @Last Modified time: 2016-01-19 10:23:31
 */
 
 'use strict';
 
 var React = require('react-native');
-var tabActions = require('../../actions/tabActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 var newWorkout = require('../../common/newWorkout');
 
 var {
@@ -30,17 +30,15 @@ var LogCardFooter = React.createClass({
     var separateWorkout = newWorkout(workout);
     editWorkoutActions.setWorkout(separateWorkout);
 
-    //notify editWorkoutStore to show custom workout
+    //notify editWorkoutStore to show custom workout rather than
+    //default workout
     editWorkoutActions.setDefaultOrCustom('custom');
 
     //ensure all parts of workout in viewWorkout
-    //are initialized to false for isLogged, as is new workout
+    //are initialized to false for isLogged, since is new workout
     viewWorkoutActions.initPartsAreLogged();
 
-    //reset stack in workout tab to viewWorkout scene
-    this.props.onDoWorkout();
-    //set tab to workout tab
-    tabActions.setTab('workout');
+    modalActions.openViewWorkoutModal();
   },
   render: function(){
     var workout = this.props.workout;

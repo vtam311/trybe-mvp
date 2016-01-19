@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-15 22:38:40
+* @Last Modified time: 2016-01-19 09:48:53
 */
 
 'use strict';
@@ -12,7 +12,7 @@ var editWorkoutActions = require('../../../actions/editWorkoutActions');
 var modalActions = require('../../../actions/modalActions');
 
 //Load components
-var ExerciseDescrText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
+var ExerciseDescrText = require('../../../common/workoutViews/exerciseDescrText');
 
 var {
   StyleSheet,

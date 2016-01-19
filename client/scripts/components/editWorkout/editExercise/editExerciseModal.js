@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-15 22:38:12
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 09:48:45
 */
 
 'use strict';
@@ -32,7 +32,7 @@ var dismissKeyboard = require('dismissKeyboard');
 //Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
-var ExerciseDescriptionText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
+var ExerciseDescriptionText = require('../../../common/workoutViews/exerciseDescrText');
 
 //Gets device height for animating app
 var {
@@ -139,7 +139,7 @@ var EditExerciseModal = React.createClass({
                 <TouchableOpacity onPress={this.closeModal}>
                   <Text style={styles.headerButtonText}>Cancel</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitleText}>Edit Exercise</Text>
+                <Text style={styles.headerTitleText}>Modify Exercise</Text>
                 <TouchableOpacity onPress={this.saveExercise}>
                   <Text style={styles.headerButtonText}>Done</Text>
                 </TouchableOpacity>
