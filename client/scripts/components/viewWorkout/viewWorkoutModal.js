@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 17:48:49
+* @Last Modified time: 2016-01-18 18:02:43
 */
 
 'use strict';
@@ -94,8 +94,8 @@ var ViewWorkoutModal = React.createClass({
           <View style={styles.backButtonContainer}>
             <TouchableOpacity onPress={this.closeModal}>
              <Image
-                style={styles.backArrow}
-                source={require('image!backArrow')} />
+                style={styles.closeButton}
+                source={require('image!closeButton')} />
             </TouchableOpacity>
           </View>
         </View>
@@ -123,9 +123,9 @@ var styles = StyleSheet.create({
     top: 0,
     left: 0,
   },
-  backArrow: {
-    width: 12,
-    height: 21,
+  closeButton: {
+    width: 18,
+    height: 18,
     marginTop: 30,
     marginLeft: 10,
   }

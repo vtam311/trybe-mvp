@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-28 16:01:39
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:15:31
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-18 17:55:47
 */
 
 'use strict';
@@ -39,20 +39,25 @@ var DoPart = React.createClass({
   render: function(){
     var part = this.props.part;
     var partIdx = this.props.partIdx;
+    var exercises;
 
-    /* jshint ignore:start */
-    var exercises = part.exercises.map((exercise, index) =>
-      <View key={index}>
-        <EditExerciseCell
-          exercise={exercise}
-          partIdx={partIdx}
-          exIdx={index} />
-        <View style={styles.cellSeparatorBackground}>
-          <View style={styles.cellSeparatorLine}></View>
+    //Render exercises, if part has any
+    if(part.exercises) {
+      exercises = part.exercises.map((exercise, index) =>
+        /* jshint ignore:start */
+        <View key={index}>
+          <EditExerciseCell
+            exercise={exercise}
+            partIdx={partIdx}
+            exIdx={index} />
+          <View style={styles.cellSeparatorBackground}>
+            <View style={styles.cellSeparatorLine}></View>
+          </View>
         </View>
-      </View>
-    );
-    /* jshint ignore:end */
+        /* jshint ignore:end */
+      );
+
+    }
 
     return (
       /* jshint ignore:start */
