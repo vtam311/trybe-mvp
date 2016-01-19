@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 13:30:40
+* @Last Modified time: 2016-01-19 13:53:27
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var logConstants = require('../constants/logConstants');
 
 var newWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
+var sortByDate = require('../common/sortByDate');
 
 var WORKOUT_MODEL = require('../../../Documentation/workoutModel');
 
@@ -28,10 +29,18 @@ var logActions = {
     DUMMY_WORKOUT_2.id = 3;
     DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
 
+    var DUMMY_WORKOUT_3 = newWorkout(WORKOUT_MODEL);
+    DUMMY_WORKOUT_3.date = new Date('December 11, 2015 03:24:00');
+    DUMMY_WORKOUT_3.id = 3;
+    DUMMY_WORKOUT_3.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+
     var DUMMY_WORKOUTS = [
       DUMMY_WORKOUT,
-      DUMMY_WORKOUT_2
+      DUMMY_WORKOUT_2,
+      DUMMY_WORKOUT_3
     ];
+
+    sortByDate.mergeSort(DUMMY_WORKOUTS, 0, DUMMY_WORKOUTS.length);
 
     this.setWorkouts(DUMMY_WORKOUTS);
   },
