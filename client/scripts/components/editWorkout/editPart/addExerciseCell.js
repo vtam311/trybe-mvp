@@ -1,14 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 21:14:35
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 10:42:38
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
 var modalActions = require('../../../actions/modalActions');
 
 var {
@@ -21,8 +22,11 @@ import {CustomCell} from 'react-native-tableview-simple';
 
 var AddExerciseCell = React.createClass({
   _handleAddExercisePress: function(){
-    //Sets up editExerciseModal to point to the correct
-    //exercise in workout
+    //Notify editExerciseModal that user is creating new exercise
+    //rather than modifying one
+    editExerciseActions.setModifyOrCreate('create');
+
+    //Set up editExerciseModal to point to correct exercise
     editWorkoutActions.addExercise(this.props.partIdx);
     modalActions.openExerciseModal();
   },

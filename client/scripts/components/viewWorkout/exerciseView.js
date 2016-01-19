@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 09:49:26
+* @Last Modified time: 2016-01-19 10:44:35
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var editExerciseActions = require('../../actions/editExerciseActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -19,8 +20,12 @@ var {
 
 var ExNameAndParams = require('../../common/workoutViews/exNameAndParams');
 
-var InstructionsView = React.createClass({
+var ExerciseView = React.createClass({
   handlePress: function(){
+    //Notify editExerciseModal that user is modifying exercise
+    //rather than creating one
+    editExerciseActions.setModifyOrCreate('modify');
+
     //notify editWorkoutStore which exercise is being modified
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
@@ -52,4 +57,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = InstructionsView;
+module.exports = ExerciseView;

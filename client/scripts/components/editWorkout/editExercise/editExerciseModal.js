@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:48:45
+* @Last Modified time: 2016-01-19 10:40:18
 */
 
 'use strict';
@@ -49,14 +49,14 @@ var {
 var EditExerciseModal = React.createClass({
   getInitialState: function() {
     return {
-      offset: new Animated.Value(deviceHeight),
       partIdx: editWorkoutStore.getTargetPartIdx(),
       exIdx: editWorkoutStore.getTargetExerciseIdx(),
-      //init targetExercise with exercise from editWorkoutStore
-      //so component can render
+      //init targetExercise from editWorkoutStore to render
       targetExercise: editWorkoutStore.getTargetExercise(),
+      isModifyOrCreate: editExerciseStore.getIsModifyOrCreate(),
       exPickerIdx: 0,
       currentExercise: null,
+      offset: new Animated.Value(deviceHeight),
     };
   },
   componentWillMount: function() {
@@ -74,13 +74,22 @@ var EditExerciseModal = React.createClass({
     editExerciseStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    this.setState({currentExercise: editExerciseStore.getExercise()});
+    this.setState({
+      currentExercise: editExerciseStore.getExercise(),
+    });
   },
   closeModal: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
     }).start(modalActions.closeExerciseModal());
+  },
+  getHeaderTitle: function(){
+    if(this.state.isModifyOrCreate === 'create'){
+      return 'New Exercise';
+    } else {
+      return 'Modify Exercise';
+    }
   },
   setExercisePicker: function(val){
     //Depending on the selected val, the picker should change
@@ -96,8 +105,7 @@ var EditExerciseModal = React.createClass({
   },
   saveExercise: function(){
     //save exercise from editExerciseStore into editWorkoutStore
-    var exercise = this.state.currentExercise;
-    editWorkoutActions.saveExercise(exercise);
+    editWorkoutActions.saveExercise(this.state.currentExercise);
     this.closeModal();
   },
   removeExercise: function(){
@@ -139,7 +147,7 @@ var EditExerciseModal = React.createClass({
                 <TouchableOpacity onPress={this.closeModal}>
                   <Text style={styles.headerButtonText}>Cancel</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTitleText}>Modify Exercise</Text>
+                <Text style={styles.headerTitleText}>{this.getHeaderTitle()}</Text>
                 <TouchableOpacity onPress={this.saveExercise}>
                   <Text style={styles.headerButtonText}>Done</Text>
                 </TouchableOpacity>

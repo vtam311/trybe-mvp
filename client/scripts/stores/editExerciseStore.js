@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:44:20
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-19 10:36:36
 */
 
 'use strict';
@@ -15,7 +15,8 @@ var CHANGE_EVENT = 'change';
 var copyObjHelper = require('../common/copyObjectHelper');
 
 var _store = {
-  exercise: null
+  exercise: null,
+  isModifyOrCreate: null,
 };
 
 var initializeExercise = function(data) {
@@ -26,6 +27,11 @@ var initializeExercise = function(data) {
   //same place in memory
   var ex = copyObjHelper(data.exercise);
   _store.exercise = ex;
+};
+
+var setModifyOrCreate = function(data) {
+  var type = data.type;
+  _store.isModifyOrCreate = type;
 };
 
 var setExerciseName = function(data) {
@@ -74,7 +80,10 @@ var editExerciseStore = Object.assign({}, EventEmitter.prototype, {
     //Exercise being modified or created.
     //Used in createExerciseModal
     return _store.exercise;
-  }
+  },
+  getIsModifyOrCreate: function(){
+    return _store.isModifyOrCreate;
+  },
 });
 
 AppDispatcher.register(function(payload){
@@ -82,6 +91,10 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case editExerciseConstants.INITIALIZE_EXERCISE:
       initializeExercise(action.data);
+      editExerciseStore.emit(CHANGE_EVENT);
+      break;
+    case editExerciseConstants.SET_MODIFY_OR_CREATE:
+      setModifyOrCreate(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
     case editExerciseConstants.SET_EXERCISE_NAME:
