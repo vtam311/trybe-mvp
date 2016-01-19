@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 18:37:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 09:30:41
 */
 
 'use strict';
@@ -20,8 +20,8 @@ var {
   StyleSheet,
 } = React;
 
-var InstructionsView = require('./_instructionsView');
-var ExerciseView = require('./_exerciseView');
+var InstructionsView = require('./instructionsView');
+var ExerciseView = require('./exerciseView');
 
 var PartPage = React.createClass({
   getInitialState: function(){

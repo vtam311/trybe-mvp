@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 18:32:32
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 09:30:26
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var {
 } = React;
 
 //Load components
-var PartPage = require('./_partPage');
+var PartPage = require('./partPage');
 
 //Gets device height for animating app
 var {
