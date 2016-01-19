@@ -1,15 +1,13 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 17:19:53
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 17:48:49
 */
 
 'use strict';
 
 var React = require('react-native');
-var viewWorkoutStore = require('../../stores/viewWorkoutStore');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 var modalActions = require('../../actions/modalActions');

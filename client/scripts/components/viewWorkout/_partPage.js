@@ -1,13 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 17:45:36
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 17:48:22
 */
 
 'use strict';
 
 var React = require('react-native');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
+var modalActions = require('../../actions/modalActions');
 
 var {
   ScrollView,
@@ -27,6 +29,12 @@ var PartPage = React.createClass({
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
     };
+  },
+  handleLogButtonPress: function(){
+    //set targetPartIdx to notify editWorkoutStore which part
+    //is being modified
+    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
+    modalActions.openLogModal();
   },
   render: function(){
     var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
@@ -52,7 +60,7 @@ var PartPage = React.createClass({
           {exerciseViews}
         </ScrollView>
 
-        <TouchableHighlight >
+        <TouchableHighlight onPress={this.handleLogButtonPress}>
           <View style={[styles.logButton, {width: this.state.visibleWidth}]}>
             <Text style={styles.logButtonText}>Log Results</Text>
           </View>
