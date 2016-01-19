@@ -34,8 +34,8 @@ var RouteStack = {
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
-      editWorkoutModalVisible: false,
       viewWorkoutModalVisible: false,
+      editWorkoutModalVisible: false,
       instructionsModalVisible: false,
       exerciseModalVisible: false,
       partModalVisible: false,
@@ -51,8 +51,8 @@ var Trybe = React.createClass({
   },
   _onChange: function(){
     this.setState({
-      editWorkoutModalVisible: modalStore.getEditWorkoutModalVisible(),
       viewWorkoutModalVisible: modalStore.getViewWorkoutModalVisible(),
+      editWorkoutModalVisible: modalStore.getEditWorkoutModalVisible(),
       instructionsModalVisible: modalStore.getInstructionsModalVisible(),
       exerciseModalVisible: modalStore.getExerciseModalVisible(),
       partModalVisible: modalStore.getPartModalVisible(),
@@ -83,8 +83,8 @@ var Trybe = React.createClass({
           ref="rootNav"
           initialRoute={RouteStack.app}
           renderScene={this.renderScene} />
-        {this.state.editWorkoutModalVisible ? <EditWorkoutModal /> : null }
         {this.state.viewWorkoutModalVisible ? <ViewWorkoutModal /> : null }
+        {this.state.editWorkoutModalVisible ? <EditWorkoutModal /> : null }
         {this.state.instructionsModalVisible ? <EditInstructionsModal /> : null }
         {this.state.exerciseModalVisible ? <EditExerciseModal /> : null }
         {this.state.partModalVisible ? <EditPartModal /> : null }

@@ -22,7 +22,7 @@ var {
 var ViewWorkout = React.createClass({
   getInitialState: function(){
     return {
-      //shows default daily workout unless a custom one is selected
+      //shows default daily workout unless a custom one is selected/created
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       //initially get workout template so component can load
       workout: editWorkoutStore.getWorkout(),

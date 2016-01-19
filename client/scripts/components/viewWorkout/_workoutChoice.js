@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 18:20:59
+* @Last Modified time: 2016-01-18 18:25:25
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var modalActions = require('../../actions/modalActions');
 
 var {
-  TouchableHighlight,
+  TouchableOpacity,
   View,
   Text,
   StyleSheet,
@@ -26,11 +26,11 @@ var WorkoutChoice = React.createClass({
       /* jshint ignore:start */
       <View style={styles.container}>
         <Text style={styles.trybeNameText}>ICON ATHLETES</Text>
-        <TouchableHighlight onPress={this.handleStartPress}>
+        <TouchableOpacity onPress={this.handleStartPress}>
           <View style={styles.startButton}>
             <Text style={styles.startButtonText}>START WORKOUT</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       /* jshint ignore:start */
     );
@@ -57,7 +57,8 @@ var styles = StyleSheet.create({
   startButton: {
     height: 50,
     width: 250,
-    backgroundColor: '#58504D',
+    borderColor: '#fff',
+    borderWidth: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

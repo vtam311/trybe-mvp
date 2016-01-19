@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 17:48:22
+* @Last Modified time: 2016-01-18 18:37:36
 */
 
 'use strict';
@@ -36,6 +36,16 @@ var PartPage = React.createClass({
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openLogModal();
   },
+  renderPartName: function(){
+    var name;
+    if(this.props.part.name) name = this.props.part.name.toUpperCase();
+    else {
+      var partNum = this.props.partIdx + 1;
+      name = ('Part ' + partNum).toUpperCase();
+    }
+
+    return name;
+  },
   render: function(){
     var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
       /* jshint ignore:start */
@@ -48,7 +58,7 @@ var PartPage = React.createClass({
       <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
         <View style={styles.partWheel}>
           <View style={styles.partNameContainer}>
-            <Text style={styles.partNameText}>{this.props.part.name.toUpperCase()}</Text>
+            <Text style={styles.partNameText}>{this.renderPartName()}</Text>
           </View>
         </View>
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 18:02:43
+* @Last Modified time: 2016-01-18 18:32:32
 */
 
 'use strict';
@@ -33,7 +33,9 @@ var {
 var ViewWorkoutModal = React.createClass({
   getInitialState: function() {
     return {
-      workout: null, //will be populated by getDailyWorkout
+      //shows default daily workout unless a custom one is selected/created
+      isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
+      workout: editWorkoutStore.getWorkout(),
       swiperIndex: 1,
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
@@ -43,7 +45,9 @@ var ViewWorkoutModal = React.createClass({
   componentWillMount: function(){
     editWorkoutStore.addChangeListener(this._onChange);
 
-    editWorkoutActions.getDailyWorkout();
+    if(this.state.isDefaultOrCustom === 'default'){
+      editWorkoutActions.getDailyWorkout();
+    }
   },
   componentDidMount: function() {
     Animated.timing(this.state.offset, {

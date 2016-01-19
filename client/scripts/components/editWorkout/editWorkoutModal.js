@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 13:32:26
+* @Last Modified time: 2016-01-18 18:33:31
 */
 
 'use strict';
@@ -74,8 +74,13 @@ var EditWorkoutModal = React.createClass({
       workout: editWorkoutStore.getWorkout(),
     });
   },
-  handleCancel: function(){
+  handleCancelPress: function(){
     editWorkoutActions.cancelChanges();
+    this.closeModal();
+  },
+  handleDonePress: function(){
+    editWorkoutActions.setDefaultOrCustom('custom');
+    modalActions.openViewWorkoutModal();
     this.closeModal();
   },
   closeModal: function() {
@@ -128,11 +133,11 @@ var EditWorkoutModal = React.createClass({
 
           <View style={styles.header}>
             <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.handleCancel}>
+              <TouchableOpacity onPress={this.handleCancelPress}>
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>New Workout</Text>
-              <TouchableOpacity onPress={this.closeModal}>
+              <TouchableOpacity onPress={this.handleDonePress}>
                 <Text style={styles.headerButtonText}>Done</Text>
               </TouchableOpacity>
             </View>
