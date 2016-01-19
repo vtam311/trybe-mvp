@@ -7,6 +7,7 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 //Load components
+var WorkoutChoice = require('./_workoutChoice');
 var ViewWorkout = require('./viewWorkout');
 var EditWorkout = require('../editWorkout/editWorkout');
 
@@ -21,8 +22,8 @@ var {
 
 var RouteStack = {
   app: {
-    name: 'Today',
-    component: ViewWorkout,
+    name: 'Today\'s Workout',
+    component: WorkoutChoice,
   }
 };
 
@@ -118,9 +119,9 @@ var NavBarRouteMapper = {
     //Show right button based on user's view
     switch (route.name) {
       //If viewing today's workout, render create workout button
-      case 'Today':
+      case 'Today\'s Workout':
         var handleRightPress = function(){
-          modalActions.openViewWorkoutModal(); //temp change to viewWorkoutModal to test
+          modalActions.openEditWorkoutModal();
         };
         return (
           <TouchableOpacity
