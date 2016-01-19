@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:09:58
+* @Last Modified time: 2016-01-18 21:19:19
 */
 
 'use strict';
@@ -78,7 +78,7 @@ var EditPartModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <Text style={styles.partNamePrompt}>Purpose</Text>
+              <Text style={styles.partNamePrompt}>Name / Purpose</Text>
               <TextInput
                 value={this.state.partName}
                 placeholder={'Warmup, Strength, Etc.'}

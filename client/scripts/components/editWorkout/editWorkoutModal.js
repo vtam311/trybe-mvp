@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 21:14:05
+* @Last Modified time: 2016-01-18 21:23:42
 */
 
 'use strict';
@@ -95,9 +95,8 @@ var EditWorkoutModal = React.createClass({
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
   scrollToComponent: function(refName, child) {
-    console.log('editWorkout scrollToComponent called');
     var offset;
-    if(child === 'instrTextInput') offset = -70;
+    if(child === 'instrTextInput') offset = -80;
     else if(child === 'customTextInput') offset = 50;
 
     setTimeout( () => {
