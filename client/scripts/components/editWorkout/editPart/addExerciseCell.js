@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 20:04:58
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 12:56:03
+* @Last Modified time: 2016-01-18 21:14:35
 */
 
 'use strict';
@@ -13,7 +13,8 @@ var modalActions = require('../../../actions/modalActions');
 
 var {
   Text,
-  Image
+  Image,
+  StyleSheet
 } = React;
 
 import {CustomCell} from 'react-native-tableview-simple';
@@ -31,13 +32,21 @@ var AddExerciseCell = React.createClass({
       /* jshint ignore:start */
       <CustomCell onPress={this._handleAddExercisePress}>
         <Image
-          style={{height: 14, width: 14, marginTop: 0, marginRight: 8}}
+          style={{height: 18, width: 18, marginRight: 5}}
           source={require('image!addButton')} />
-        <Text style={{flex: 1, fontFamily: 'Avenir Next', fontSize: 16, color: '#9B9B9B'}}>Add Exercise</Text>
+        <Text style={styles.addExerciseText}>Add Exercise</Text>
       </CustomCell>
       /* jshint ignore:start */
     );
   }
+});
+
+var styles = StyleSheet.create({
+  addExerciseText: {
+    color: 'rgba(0,173,148,.7)',
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+  },
 });
 
 module.exports = AddExerciseCell;

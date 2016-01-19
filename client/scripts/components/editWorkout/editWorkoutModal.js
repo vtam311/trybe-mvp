@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 18:33:31
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-18 21:14:05
 */
 
 'use strict';
@@ -20,14 +20,12 @@ var {
   TouchableOpacity,
   Animated,
   Dimensions,
-  TextInput,
   Image,
   DeviceEventEmitter,
 } = React;
 
 //Load components
-var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
-import {TableView, Section} from 'react-native-tableview-simple';
+import {TableView, Section, CustomCell} from 'react-native-tableview-simple';
 var DateCell = require('./dateCell');
 var Part = require('./editPart/part');
 
@@ -146,8 +144,7 @@ var EditWorkoutModal = React.createClass({
           <ScrollView
             ref='scrollView'
             keyboardDismissMode='on-drag'
-            contentContainerStyle={styles.contentContainerStyle}
-            contentInset={{top: 0, left: 0, bottom: 75, right: 0}} >
+            contentContainerStyle={styles.contentContainerStyle} >
             <TableView>
 
               <Section>
@@ -156,6 +153,17 @@ var EditWorkoutModal = React.createClass({
               </Section>
 
               {parts}
+
+              <Section>
+                <CustomCell onPress={editWorkoutActions.addPart}>
+                  <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                    <Image
+                      style={{height: 18, width: 18, marginRight: 5}}
+                      source={require('image!addButton')} />
+                    <Text style={styles.addPartText}>Add Part</Text>
+                  </View>
+                </CustomCell>
+              </Section>
 
             </TableView>
           </ScrollView>
@@ -212,7 +220,12 @@ var styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: 20,
     paddingBottom: 20,
-  }
+  },
+  addPartText: {
+    fontFamily: 'Avenir Next',
+    color: 'rgba(0,173,148,.7)',
+    fontSize: 15,
+  },
 });
 
 module.exports = EditWorkoutModal;
