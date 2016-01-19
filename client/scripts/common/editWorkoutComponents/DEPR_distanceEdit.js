@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-09-23 15:41:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-08 19:30:09
+* @Last Modified time: 2016-01-19 09:43:12
 */
 
 'use strict';
@@ -45,8 +45,6 @@ var DistEdit = React.createClass({
   render: function() {
     //Load props
     var exercise = this.props.exercise;
-    // var partIdx = this.props.partIdx;
-    // var exIdx = this.props.exIdx;
 
     var distEdit;
 

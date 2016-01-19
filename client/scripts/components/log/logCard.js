@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 10:34:53
+* @Last Modified time: 2016-01-19 09:49:18
 */
 
 'use strict';
@@ -12,7 +12,7 @@ var logActions = require('../../actions/logActions');
 
 //Load components
 // var LogCardHeader = require('./logCardHeader');
-var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
+var ViewWorkoutBody = require('../../common/workoutViews/viewWorkoutBody');
 var LogCardFooter = require('./logCardFooter');
 
 var {

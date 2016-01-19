@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-29 17:28:28
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 13:28:36
+* @Last Modified time: 2016-01-19 09:48:45
 */
 
 'use strict';
@@ -32,7 +32,7 @@ var dismissKeyboard = require('dismissKeyboard');
 //Load components
 var EditExerciseName = require('./editExerciseName');
 var SelectedExercisePicker = require('./selectedExercisePicker');
-var ExerciseDescriptionText = require('../../../common/viewWorkoutComponents/exerciseDescrText');
+var ExerciseDescriptionText = require('../../../common/workoutViews/exerciseDescrText');
 
 //Gets device height for animating app
 var {

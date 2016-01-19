@@ -6,7 +6,7 @@ var feedActions = require('../../actions/feedActions');
 
 //Load components
 var FeedCard = require('./feedCard');
-var ViewWorkoutBody = require('../../common/viewWorkoutComponents/viewWorkoutBody');
+var ViewWorkoutBody = require('../../common/workoutViews/viewWorkoutBody');
 var ChatBar = require('./chatBar');
 
 var {

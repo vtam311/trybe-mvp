@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 13:01:52
+* @Last Modified time: 2016-01-19 09:49:26
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var {
   StyleSheet,
 } = React;
 
-var ExNameAndParams = require('../../common/viewWorkoutComponents/exNameAndParams');
+var ExNameAndParams = require('../../common/workoutViews/exNameAndParams');
 
 var InstructionsView = React.createClass({
   handlePress: function(){
