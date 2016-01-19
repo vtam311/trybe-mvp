@@ -164,7 +164,7 @@ var styles = StyleSheet.create({
   },
   navBar: {
     flexDirection: 'row',
-    backgroundColor: '#4DBA97',
+    backgroundColor: 'rgba(77,186,151,.8)',
     alignItems: 'center',
   },
   navBarComponentContainer: {

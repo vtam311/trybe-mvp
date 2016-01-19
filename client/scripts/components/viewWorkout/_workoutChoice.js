@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 18:25:25
+* @Last Modified time: 2016-01-18 18:44:00
 */
 
 'use strict';
@@ -67,6 +67,7 @@ var styles = StyleSheet.create({
   startButtonText: {
     fontFamily: 'Avenir',
     fontSize: 20,
+    fontWeight: '500',
     color: '#fff'
   }
 });
