@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:52:11
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:48:53
+* @Last Modified time: 2016-01-19 10:43:46
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
 var modalActions = require('../../../actions/modalActions');
 
 //Load components
@@ -26,6 +27,10 @@ import {CustomCell} from 'react-native-tableview-simple';
 
 var EditExerciseCell = React.createClass({
   _handlePress: function(){
+    //Notify editExerciseModal that user is modifying exercise
+    //rather than creating one
+    editExerciseActions.setModifyOrCreate('modify');
+
     //sets the target exercise for user to edit
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
