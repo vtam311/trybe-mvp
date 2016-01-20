@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 17:58:23
+* @Last Modified time: 2016-01-20 12:12:03
 */
 
 'use strict';
@@ -50,7 +50,13 @@ var PartPage = React.createClass({
   render: function(){
     var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
       /* jshint ignore:start */
-      <ExerciseView exercise={exercise} partIdx={this.props.partIdx} exIdx={index} />
+      <View style={{width: 330}}>
+        <ExerciseView
+          exercise={exercise}
+          partIdx={this.props.partIdx}
+          exIdx={index}
+          isModifying={this.props.isModifying} />
+      </View>
       /* jshint ignore:end */
     );
 

@@ -145,6 +145,7 @@ var viewExercise = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
@@ -158,12 +159,9 @@ var styles = StyleSheet.create({
   leftHalf: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // justifyContent: 'flex-start',
   },
   rightHalf: {
     flexDirection: 'row',
-    // alignSelf: 'flex-end',
-    // justifyContent: 'flex-end',
     flexWrap: 'wrap',
   }
 });

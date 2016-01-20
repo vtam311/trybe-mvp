@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 10:19:46
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 12:03:13
 */
 
 'use strict';
@@ -34,10 +34,10 @@ var AddExerciseView = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row'}}>
+        <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row', justifyContent: 'center'}}>
           <Image
-            style={{height: 18, width: 18, marginRight: 5}}
-            source={require('image!addButton')} />
+            style={{height: 25, width: 25, marginTop: 3, marginRight: 10}}
+            source={require('image!addButtonWhite')} />
           <Text style={styles.addExerciseText}>Add Exercise</Text>
         </TouchableOpacity>
       </View>
@@ -49,9 +49,7 @@ var AddExerciseView = React.createClass({
 var styles = StyleSheet.create({
   exerciseContainer: {
     width: 330,
-    borderBottomWidth: .5,
-    borderColor: '#fff',
-    paddingTop: 15,
+    paddingTop: 25,
     paddingBottom: 15,
   },
   addExerciseText:{

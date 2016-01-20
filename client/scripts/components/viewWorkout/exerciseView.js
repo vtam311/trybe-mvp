@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 10:44:35
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 12:21:05
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  Image,
   View,
   StyleSheet,
 } = React;
@@ -33,15 +34,21 @@ var ExerciseView = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={styles.exerciseContainer}>
         <TouchableOpacity onPress={this.handlePress}>
+      <View style={styles.exerciseContainer}>
           <ExNameAndParams
             exercise={this.props.exercise}
             exIdx={this.props.exIdx}
             customFontSize={25}
             customFontColor='#fff' />
-        </TouchableOpacity>
+          {this.props.isModifying ?
+            <View style={{flex: .05}}>
+              <Image style={{marginTop: 10, marginLeft: 7}} source={require('image!disclosureIndicatorWhite')}/>
+            </View>
+            : null
+          }
       </View>
+        </TouchableOpacity>
       /* jshint ignore:start */
     );
   }
@@ -49,7 +56,8 @@ var ExerciseView = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    width: 330,
+    flex: 1,
+    flexDirection: 'row',
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,
