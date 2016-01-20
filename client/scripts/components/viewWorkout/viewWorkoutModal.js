@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 10:21:02
+* @Last Modified time: 2016-01-20 12:21:51
 */
 
 'use strict';
@@ -99,7 +99,7 @@ var ViewWorkoutModal = React.createClass({
                     style={styles.closeButton}
                     source={require('image!closeButton')} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.setState({isModifying: true})}>
+                <TouchableOpacity onPress={() => this.setState({isModifying: !this.state.isModifying})}>
                  <Text style={{marginTop: 30, marginRight: 10, color: '#fff', fontFamily: 'Avenir Next', fontSize: 18}}>Modify</Text>
                 </TouchableOpacity>
               </View>
