@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 16:07:47
+* @Last Modified time: 2016-01-20 10:13:50
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
   TouchableOpacity,
+  Image,
   View,
   Text,
   StyleSheet,
@@ -31,23 +32,28 @@ var WorkoutChoice = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
-        <Text style={styles.trybeNameText}>ICON ATHLETES</Text>
-        <TouchableOpacity onPress={this.handleStartPress}>
-          <View style={styles.startButton}>
-            <Text style={styles.startButtonText}>START WORKOUT</Text>
+        <Image
+          source={require('image!iconAthletesBackground')}
+          style={{flex: 1, height: null, width: null, }}
+          resizeMode='contain' >
+          <View style={styles.contentContainer}>
+            <Text style={styles.trybeNameText}>ICON ATHLETES</Text>
+            <TouchableOpacity onPress={this.handleStartPress}>
+              <View style={styles.startButton}>
+                <Text style={styles.startButtonText}>START WORKOUT</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-      </View>
+        </Image>
       /* jshint ignore:start */
     );
   }
 });
 
 var styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     flex: 1,
-    backgroundColor: 'rgba(73,162,160,.5)',
+    backgroundColor: 'rgba(23,115,140,.5)',
     flexDirection: 'column',
     alignItems: 'center',
   },

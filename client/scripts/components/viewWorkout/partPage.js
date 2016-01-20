@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 17:56:36
+* @Last Modified time: 2016-01-19 17:58:23
 */
 
 'use strict';
@@ -70,7 +70,7 @@ var PartPage = React.createClass({
             partIdx={this.props.partIdx} />
 
           {exerciseViews}
-          {this.props.isEditing ?
+          {this.props.isModifying ?
             <AddExerciseView partIdx={this.props.partIdx}/> :
             null
           }

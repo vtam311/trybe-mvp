@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 17:50:52
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 10:15:09
 */
 
 'use strict';
@@ -37,7 +37,7 @@ var ViewWorkoutModal = React.createClass({
       //shows default daily workout unless a custom one is selected/created
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
-      isEditing: false,
+      isModifying: false,
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
@@ -72,18 +72,18 @@ var ViewWorkoutModal = React.createClass({
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
-        <PartPage part={part} partIdx={index} key={index} isEditing={this.state.isEditing}/>
+        <PartPage part={part} partIdx={index} key={index} isModifying={this.state.isModifying}/>
         /* jshint ignore:end */
       );
 
       return (
         /* jshint ignore:start */
         <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
-          <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-            <Image
-              source={require('image!iconAthletesBackground')}
-              style={{flex: 1, height: null, width: null}}
-              resizeMode='contain' >
+          <Image
+            source={require('image!iconAthletesBackground')}
+            style={{flex: 1, height: null, width: null}}
+            resizeMode='contain' >
+            <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
 
               <ScrollView
                 horizontal={true}
@@ -93,19 +93,18 @@ var ViewWorkoutModal = React.createClass({
 
               </ScrollView>
 
-            </Image>
-
-            <View style={[styles.backButtonContainer, {width: this.state.visibleWidth}]}>
-              <TouchableOpacity onPress={this.closeModal}>
-               <Image
-                  style={styles.closeButton}
-                  source={require('image!closeButton')} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.setState({isEditing: true})}>
-               <Text style={{marginTop: 30, marginRight: 10, color: '#fff', fontFamily: 'Avenir Next', fontSize: 18}}>Edit</Text>
-              </TouchableOpacity>
+              <View style={[styles.backButtonContainer, {width: this.state.visibleWidth}]}>
+                <TouchableOpacity onPress={this.closeModal}>
+                 <Image
+                    style={styles.closeButton}
+                    source={require('image!closeButton')} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.setState({isModifying: true})}>
+                 <Text style={{marginTop: 30, marginRight: 10, color: '#fff', fontFamily: 'Avenir Next', fontSize: 18}}>Modify</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+          </Image>
         </Animated.View>
         /* jshint ignore:end */
       );
@@ -125,7 +124,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(73,162,160,.5)',
+    backgroundColor: 'rgba(23,115,140,.5)',
   },
   backButtonContainer: {
     height: 60,
@@ -136,8 +135,8 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   closeButton: {
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
     marginTop: 30,
     marginLeft: 10,
   }
