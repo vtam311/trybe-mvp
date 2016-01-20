@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 21:23:42
+* @Last Modified time: 2016-01-19 16:11:59
 */
 
 'use strict';
@@ -42,21 +42,18 @@ var EditWorkoutModal = React.createClass({
       visibleWidth: Dimensions.get('window').width,
       //workout will be loaded from componentWillMount's
       //editWorkoutActions.resetWorkout call
-      workout: null
+      workout: editWorkoutStore.getWorkout()
     };
   },
-  componentWillMount: function() {
+  componentDidMount: function() {
     this.keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide);
 
-    //back up original workout, to revert back if user cancels changes
-    editWorkoutActions.saveBackupWorkout();
     editWorkoutStore.addChangeListener(this._onChange);
 
     //reset workout to empty template, so user can start from scratch
     editWorkoutActions.resetWorkout();
-  },
-  componentDidMount: function() {
+
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -73,7 +70,6 @@ var EditWorkoutModal = React.createClass({
     });
   },
   handleCancelPress: function(){
-    editWorkoutActions.cancelChanges();
     this.closeModal();
   },
   handleDonePress: function(){
@@ -109,68 +105,72 @@ var EditWorkoutModal = React.createClass({
     }, 50);
   },
   render: function() {
-    var parts = this.state.workout.parts.map((part, index) =>
-      /* jshint ignore:start */
-      <View style={{marginBottom: 20}} key={index} >
-        <Part
-          ref={'part' + index}
-          part={part}
-          partIdx={index}
-          scrollToComponent={this.scrollToComponent} />
-      </View>
-      /* jshint ignore:end */
-    );
-
-    //Bottom content inset of ScrollView offsets
-    //tab bar from covering scene
-    return (
-      /* jshint ignore:start */
-      <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-
-          <View style={styles.header}>
-            <View style={styles.headerContainer}>
-              <TouchableOpacity onPress={this.handleCancelPress}>
-                <Text style={styles.headerButtonText}>Cancel</Text>
-              </TouchableOpacity>
-              <Text style={styles.headerTitleText}>New Workout</Text>
-              <TouchableOpacity onPress={this.handleDonePress}>
-                <Text style={styles.headerButtonText}>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <ScrollView
-            ref='scrollView'
-            keyboardDismissMode='on-drag'
-            contentContainerStyle={styles.contentContainerStyle} >
-            <TableView>
-
-              <Section>
-                <DateCell
-                  date={this.state.workout.date} />
-              </Section>
-
-              {parts}
-
-              <Section>
-                <CustomCell onPress={editWorkoutActions.addPart}>
-                  <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                    <Image
-                      style={{height: 18, width: 18, marginRight: 5}}
-                      source={require('image!addButton')} />
-                    <Text style={styles.addPartText}>Add Part</Text>
-                  </View>
-                </CustomCell>
-              </Section>
-
-            </TableView>
-          </ScrollView>
-
+    if(this.state.workout){
+      var parts = this.state.workout.parts.map((part, index) =>
+        /* jshint ignore:start */
+        <View style={{marginBottom: 20}} key={index} >
+          <Part
+            ref={'part' + index}
+            part={part}
+            partIdx={index}
+            scrollToComponent={this.scrollToComponent} />
         </View>
-      </Animated.View>
-      /* jshint ignore:end */
-    );
+        /* jshint ignore:end */
+      );
+
+      //Bottom content inset of ScrollView offsets
+      //tab bar from covering scene
+      return (
+        /* jshint ignore:start */
+        <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
+          <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+
+            <View style={styles.header}>
+              <View style={styles.headerContainer}>
+                <TouchableOpacity onPress={this.handleCancelPress}>
+                  <Text style={styles.headerButtonText}>Cancel</Text>
+                </TouchableOpacity>
+                <Text style={styles.headerTitleText}>New Workout</Text>
+                <TouchableOpacity onPress={this.handleDonePress}>
+                  <Text style={styles.headerButtonText}>Done</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            <ScrollView
+              ref='scrollView'
+              keyboardDismissMode='on-drag'
+              contentContainerStyle={styles.contentContainerStyle} >
+              <TableView>
+
+                <Section>
+                  <DateCell
+                    date={this.state.workout.date} />
+                </Section>
+
+                {parts}
+
+                <Section>
+                  <CustomCell onPress={editWorkoutActions.addPart}>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                      <Image
+                        style={{height: 18, width: 18, marginRight: 5}}
+                        source={require('image!addButton')} />
+                      <Text style={styles.addPartText}>Add Part</Text>
+                    </View>
+                  </CustomCell>
+                </Section>
+
+              </TableView>
+            </ScrollView>
+
+          </View>
+        </Animated.View>
+        /* jshint ignore:end */
+      );
+    } else {
+      return null;
+    }
 
   }
 });

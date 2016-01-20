@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 18:44:00
+* @Last Modified time: 2016-01-19 16:07:47
 */
 
 'use strict';
 
 var React = require('react-native');
 var modalActions = require('../../actions/modalActions');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
   TouchableOpacity,
@@ -18,7 +19,13 @@ var {
 } = React;
 
 var WorkoutChoice = React.createClass({
+  componentDidMount: function(){
+    //load trybe's daily workout
+    editWorkoutActions.getDailyWorkout();
+  },
   handleStartPress: function(){
+    //notify viewWorkoutModal to load trybe's default workout
+    editWorkoutActions.setDefaultOrCustom('default');
     modalActions.openViewWorkoutModal();
   },
   render: function(){

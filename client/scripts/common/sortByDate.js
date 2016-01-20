@@ -2,12 +2,15 @@
 * @Author: vincetam
 * @Date:   2016-01-19 13:41:59
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 13:53:40
+* @Last Modified time: 2016-01-19 14:28:39
 */
 
 'use strict';
 
 var sortByDate = {
+
+
+  //for mergeSort
   insert: function (array, begin, end, v) {
     while(begin + 1 < end && array[begin+1] < v) {
       array.swap(begin, begin+1);
@@ -15,6 +18,7 @@ var sortByDate = {
     }
     array[begin] = v;
   },
+  //for mergeSort
   merge: function(array, begin, begin_right, end){
     for(; begin < begin_right; ++begin) {
       if(array[begin].date < array[begin_right].date) {

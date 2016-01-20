@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:30:26
+* @Last Modified time: 2016-01-19 16:09:01
 */
 
 'use strict';
@@ -20,6 +20,7 @@ var {
   Image,
   StyleSheet,
   View,
+  Text
 } = React;
 
 //Load components
@@ -42,14 +43,12 @@ var ViewWorkoutModal = React.createClass({
       visibleWidth: Dimensions.get('window').width,
     };
   },
-  componentWillMount: function(){
+  componentDidMount: function() {
     editWorkoutStore.addChangeListener(this._onChange);
 
     if(this.state.isDefaultOrCustom === 'default'){
-      editWorkoutActions.getDailyWorkout();
+      editWorkoutActions.setToDefaultWorkout();
     }
-  },
-  componentDidMount: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -70,42 +69,46 @@ var ViewWorkoutModal = React.createClass({
     }).start(modalActions.closeViewWorkoutModal);
   },
   render: function() {
-    var partPages = this.state.workout.parts.map( (part, index) =>
-      /* jshint ignore:start */
-      <PartPage part={part} partIdx={index} key={index} />
-      /* jshint ignore:end */
-    );
+    if(this.state.workout){
+      var partPages = this.state.workout.parts.map( (part, index) =>
+        /* jshint ignore:start */
+        <PartPage part={part} partIdx={index} key={index} />
+        /* jshint ignore:end */
+      );
 
-    return (
-      /* jshint ignore:start */
-      <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-          <Image
-            source={require('image!iconAthletesBackground')}
-            style={{flex: 1, height: null, width: null}}
-            resizeMode='contain' >
+      return (
+        /* jshint ignore:start */
+        <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
+          <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+            <Image
+              source={require('image!iconAthletesBackground')}
+              style={{flex: 1, height: null, width: null}}
+              resizeMode='contain' >
 
-            <ScrollView
-              horizontal={true}
-              pagingEnabled={true} >
+              <ScrollView
+                horizontal={true}
+                pagingEnabled={true} >
 
-              {partPages}
+                {partPages}
 
-            </ScrollView>
+              </ScrollView>
 
-          </Image>
+            </Image>
 
-          <View style={styles.backButtonContainer}>
-            <TouchableOpacity onPress={this.closeModal}>
-             <Image
-                style={styles.closeButton}
-                source={require('image!closeButton')} />
-            </TouchableOpacity>
+            <View style={styles.backButtonContainer}>
+              <TouchableOpacity onPress={this.closeModal}>
+               <Image
+                  style={styles.closeButton}
+                  source={require('image!closeButton')} />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </Animated.View>
-      /* jshint ignore:end */
-    );
+        </Animated.View>
+        /* jshint ignore:end */
+      );
+    } else {
+      return <Text>Loading</Text>;
+    }
   }
 });
 
