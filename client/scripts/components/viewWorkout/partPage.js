@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:30:41
+* @Last Modified time: 2016-01-19 17:56:36
 */
 
 'use strict';
@@ -22,6 +22,7 @@ var {
 
 var InstructionsView = require('./instructionsView');
 var ExerciseView = require('./exerciseView');
+var AddExerciseView = require('./addExerciseView');
 
 var PartPage = React.createClass({
   getInitialState: function(){
@@ -67,7 +68,13 @@ var PartPage = React.createClass({
           <InstructionsView
             instructions={this.props.part.instructions}
             partIdx={this.props.partIdx} />
+
           {exerciseViews}
+          {this.props.isEditing ?
+            <AddExerciseView partIdx={this.props.partIdx}/> :
+            null
+          }
+
         </ScrollView>
 
         <TouchableHighlight onPress={this.handleLogButtonPress}>

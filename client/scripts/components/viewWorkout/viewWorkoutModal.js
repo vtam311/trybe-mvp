@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 16:09:01
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-19 17:50:52
 */
 
 'use strict';
@@ -37,7 +37,7 @@ var ViewWorkoutModal = React.createClass({
       //shows default daily workout unless a custom one is selected/created
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
-      swiperIndex: 1,
+      isEditing: false,
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
@@ -72,7 +72,7 @@ var ViewWorkoutModal = React.createClass({
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
-        <PartPage part={part} partIdx={index} key={index} />
+        <PartPage part={part} partIdx={index} key={index} isEditing={this.state.isEditing}/>
         /* jshint ignore:end */
       );
 
@@ -95,11 +95,14 @@ var ViewWorkoutModal = React.createClass({
 
             </Image>
 
-            <View style={styles.backButtonContainer}>
+            <View style={[styles.backButtonContainer, {width: this.state.visibleWidth}]}>
               <TouchableOpacity onPress={this.closeModal}>
                <Image
                   style={styles.closeButton}
                   source={require('image!closeButton')} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.setState({isEditing: true})}>
+               <Text style={{marginTop: 30, marginRight: 10, color: '#fff', fontFamily: 'Avenir Next', fontSize: 18}}>Edit</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -129,10 +132,12 @@ var styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   closeButton: {
-    width: 18,
-    height: 18,
+    width: 16,
+    height: 16,
     marginTop: 30,
     marginLeft: 10,
   }
