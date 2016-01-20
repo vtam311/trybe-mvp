@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 13:07:55
+* @Last Modified time: 2016-01-20 13:09:27
 */
 
 'use strict';
@@ -26,20 +26,30 @@ var InstructionsView = React.createClass({
     modalActions.openInstructionsModal();
   },
   render: function(){
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity onPress={this.handlePress}>
+    if(this.props.isModifying){
+      return (
+        /* jshint ignore:start */
+        <TouchableOpacity onPress={this.handlePress}>
+          <View style={styles.instructionsContainer}>
+            <View style={{flex: .95}}>
+              <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+            </View>
+            <View style={{flex: .05, marginLeft: 10}}>
+              <Image source={require('image!disclosureIndicatorWhite')} />
+            </View>
+          </View>
+        </TouchableOpacity>
+        /* jshint ignore:start */
+      );
+    } else {
+      return (
         <View style={styles.instructionsContainer}>
-          <View style={{flex: .95}}>
+          <View>
             <Text style={styles.instructionsText}>{this.props.instructions}</Text>
           </View>
-          <View style={{flex: .05, marginLeft: 10}}>
-            <Image source={require('image!disclosureIndicatorWhite')} />
-          </View>
         </View>
-      </TouchableOpacity>
-      /* jshint ignore:start */
-    );
+      );
+    }
   }
 });
 

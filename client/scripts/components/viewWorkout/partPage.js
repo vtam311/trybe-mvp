@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 13:01:25
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 13:09:53
 */
 
 'use strict';
@@ -74,7 +74,8 @@ var PartPage = React.createClass({
           <View style={{width: 300}}>
             <InstructionsView
               instructions={this.props.part.instructions}
-              partIdx={this.props.partIdx} />
+              partIdx={this.props.partIdx}
+              isModifying={this.props.isModifying} />
           </View>
 
           {exerciseViews}
