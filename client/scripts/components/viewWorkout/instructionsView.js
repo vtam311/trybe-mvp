@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 15:13:58
+* @Last Modified time: 2016-01-20 13:07:55
 */
 
 'use strict';
@@ -13,6 +13,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  Image,
   View,
   Text,
   StyleSheet,
@@ -29,7 +30,12 @@ var InstructionsView = React.createClass({
       /* jshint ignore:start */
       <TouchableOpacity onPress={this.handlePress}>
         <View style={styles.instructionsContainer}>
-          <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+          <View style={{flex: .95}}>
+            <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+          </View>
+          <View style={{flex: .05, marginLeft: 10}}>
+            <Image source={require('image!disclosureIndicatorWhite')} />
+          </View>
         </View>
       </TouchableOpacity>
       /* jshint ignore:start */
@@ -42,6 +48,10 @@ var styles = StyleSheet.create({
     width: 300,
     marginTop: 30,
     marginBottom: 30,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   instructionsText: {
     fontFamily: 'Avenir Next',
