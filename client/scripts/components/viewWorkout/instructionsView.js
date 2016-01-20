@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 13:09:27
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 15:39:04
 */
 
 'use strict';
@@ -31,10 +31,10 @@ var InstructionsView = React.createClass({
         /* jshint ignore:start */
         <TouchableOpacity onPress={this.handlePress}>
           <View style={styles.instructionsContainer}>
-            <View style={{flex: .95}}>
+            <View style={{flex: .9}}>
               <Text style={styles.instructionsText}>{this.props.instructions}</Text>
             </View>
-            <View style={{flex: .05, marginLeft: 10}}>
+            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
               <Image source={require('image!disclosureIndicatorWhite')} />
             </View>
           </View>
@@ -44,7 +44,7 @@ var InstructionsView = React.createClass({
     } else {
       return (
         <View style={styles.instructionsContainer}>
-          <View>
+          <View style={{flex: 1}}>
             <Text style={styles.instructionsText}>{this.props.instructions}</Text>
           </View>
         </View>
@@ -55,7 +55,6 @@ var InstructionsView = React.createClass({
 
 var styles = StyleSheet.create({
   instructionsContainer: {
-    width: 300,
     marginTop: 30,
     marginBottom: 30,
     flex: 1,

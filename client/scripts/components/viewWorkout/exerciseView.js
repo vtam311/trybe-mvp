@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 13:07:35
+* @Last Modified time: 2016-01-20 15:37:24
 */
 
 'use strict';
@@ -42,10 +42,10 @@ var ExerciseView = React.createClass({
               exIdx={this.props.exIdx}
               customFontSize={25}
               customFontColor='#fff' />
-            <View style={{flex: .05}}>
+            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
               <Image
                 source={require('image!disclosureIndicatorWhite')}
-                style={{marginTop: 10, marginLeft: 10}} />
+                style={{marginTop: 9}} />
             </View>
           </View>
         </TouchableOpacity>

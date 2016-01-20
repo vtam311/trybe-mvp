@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 13:09:53
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 15:35:07
 */
 
 'use strict';
@@ -71,7 +71,7 @@ var PartPage = React.createClass({
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
-          <View style={{width: 300}}>
+          <View style={{width: 330}}>
             <InstructionsView
               instructions={this.props.part.instructions}
               partIdx={this.props.partIdx}
