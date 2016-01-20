@@ -130,12 +130,12 @@ var viewExercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <View>
+        <View style={styles.leftHalf}>
           {exerciseName}
         </View>
 
-        <View>
-          <Text style={exStyleText}>{exParams}</Text>
+        <View style={styles.rightHalf}>
+          <Text style={[exStyleText, {textAlign: 'right'}]}>{exParams}</Text>
         </View>
       </View>
       /* jshint ignore:end */
@@ -147,12 +147,24 @@ var styles = StyleSheet.create({
   exerciseContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   exerciseText: {
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     fontSize: 15,
     color: '#8D867E'
+  },
+  leftHalf: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // justifyContent: 'flex-start',
+  },
+  rightHalf: {
+    flexDirection: 'row',
+    // alignSelf: 'flex-end',
+    // justifyContent: 'flex-end',
+    flexWrap: 'wrap',
   }
 });
 

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 10:13:50
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 10:21:13
 */
 
 'use strict';
@@ -53,7 +53,7 @@ var WorkoutChoice = React.createClass({
 var styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
-    backgroundColor: 'rgba(23,115,140,.5)',
+    backgroundColor: 'rgba(23,115,140,.55)',
     flexDirection: 'column',
     alignItems: 'center',
   },

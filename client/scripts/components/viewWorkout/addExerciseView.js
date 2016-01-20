@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 17:55:22
+* @Last Modified time: 2016-01-20 10:19:46
 */
 
 'use strict';
@@ -34,7 +34,7 @@ var AddExerciseView = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <TouchableOpacity onPress={this.handlePress}>
+        <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row'}}>
           <Image
             style={{height: 18, width: 18, marginRight: 5}}
             source={require('image!addButton')} />
@@ -52,7 +52,13 @@ var styles = StyleSheet.create({
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,
-    paddingBottom: 15
+    paddingBottom: 15,
+  },
+  addExerciseText:{
+    fontFamily: 'Avenir Next',
+    fontWeight: '500',
+    fontSize: 25,
+    color: '#fff'
   }
 });
 

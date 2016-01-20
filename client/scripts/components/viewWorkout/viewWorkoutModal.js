@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 10:15:09
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 10:21:02
 */
 
 'use strict';
@@ -124,7 +124,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(23,115,140,.5)',
+    backgroundColor: 'rgba(23,115,140,.55)',
   },
   backButtonContainer: {
     height: 60,
