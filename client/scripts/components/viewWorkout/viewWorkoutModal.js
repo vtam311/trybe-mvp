@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 15:43:11
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 17:03:25
 */
 
 'use strict';
@@ -25,6 +25,7 @@ var {
 
 //Load components
 var PartPage = require('./partPage');
+var AddPartPage = require('./addPartPage');
 
 //Gets device height for animating app
 var {
@@ -72,7 +73,13 @@ var ViewWorkoutModal = React.createClass({
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
-        <PartPage part={part} partIdx={index} key={index} isModifying={this.state.isModifying}/>
+        <PartPage
+          part={part}
+          partIdx={index}
+          key={index}
+          isModifying={this.state.isModifying}
+          visibleHeight={this.state.visibleHeight}
+          visibleWidth={this.state.visibleWidth} />
         /* jshint ignore:end */
       );
 
@@ -91,6 +98,13 @@ var ViewWorkoutModal = React.createClass({
 
                 {partPages}
 
+                {this.state.isModifying ?
+                  <AddPartPage
+                    isModifying={this.state.isModifying}
+                    visibleHeight={this.state.visibleHeight}
+                    visibleWidth={this.state.visibleWidth} />
+                  : null
+                }
               </ScrollView>
 
               <View style={[styles.backButtonContainer, {width: this.state.visibleWidth}]}>

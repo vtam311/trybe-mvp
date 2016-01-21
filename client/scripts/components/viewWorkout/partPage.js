@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 16:39:04
+* @Last Modified time: 2016-01-20 17:05:42
 */
 
 'use strict';
@@ -13,9 +13,6 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  Image,
   TouchableHighlight,
   View,
   Text,
@@ -28,12 +25,6 @@ var ExerciseView = require('./exerciseView');
 var AddExerciseView = require('./addExerciseView');
 
 var PartPage = React.createClass({
-  getInitialState: function(){
-    return {
-      visibleHeight: Dimensions.get('window').height,
-      visibleWidth: Dimensions.get('window').width,
-    };
-  },
   handleLogButtonPress: function(){
     //set targetPartIdx to notify editWorkoutStore which part
     //is being modified
@@ -56,7 +47,7 @@ var PartPage = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
+      <View style={[styles.container, {width: this.props.visibleWidth, height: this.props.visibleHeight}]}>
         <View style={styles.partWheel}>
           <PartNameView
             partName={this.props.part.name}
@@ -74,19 +65,17 @@ var PartPage = React.createClass({
           </View>
 
           {exerciseViews}
-          {this.props.isModifying ?
-            <AddExerciseView partIdx={this.props.partIdx}/> :
-            null
-          }
 
+          {this.props.isModifying ?
+            <AddExerciseView partIdx={this.props.partIdx}/>
+            : null
+          }
         </ScrollView>
 
-        <TouchableHighlight onPress={this.handleLogButtonPress}>
-          <View style={[styles.logButton, {width: this.state.visibleWidth}]}>
-            <Text style={styles.logButtonText}>Log Results</Text>
-          </View>
+        <TouchableHighlight onPress={this.handleLogButtonPress}
+          style={[styles.logButton, {width: this.props.visibleWidth}]}>
+          <Text style={styles.logButtonText}>Log Results</Text>
         </TouchableHighlight>
-
       </View>
       /* jshint ignore:end */
     );
@@ -101,7 +90,6 @@ var styles = StyleSheet.create({
     flex: .2,
     backgroundColor: 'rgba(77,186,151,.6)',
   },
-
   contentContainerStyle: {
     flex: .8,
     paddingTop: 20,
