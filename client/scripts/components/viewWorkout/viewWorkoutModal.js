@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 12:21:51
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 15:43:11
 */
 
 'use strict';
@@ -100,7 +100,9 @@ var ViewWorkoutModal = React.createClass({
                     source={require('image!closeButton')} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.setState({isModifying: !this.state.isModifying})}>
-                 <Text style={{marginTop: 30, marginRight: 10, color: '#fff', fontFamily: 'Avenir Next', fontSize: 18}}>Modify</Text>
+                   <Text style={styles.modifyButtonText}>
+                    {this.state.isModifying ? 'Done' : 'Modify'}
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -139,6 +141,14 @@ var styles = StyleSheet.create({
     height: 18,
     marginTop: 30,
     marginLeft: 10,
+  },
+  modifyButtonText: {
+    marginTop: 30,
+    marginRight: 10,
+    color: '#fff',
+    fontFamily: 'Avenir Next',
+    fontWeight: '500',
+    fontSize: 20
   }
 });
 

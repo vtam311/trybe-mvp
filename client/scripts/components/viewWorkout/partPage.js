@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 15:35:07
+* @Last Modified time: 2016-01-20 16:01:43
 */
 
 'use strict';
@@ -14,6 +14,8 @@ var modalActions = require('../../actions/modalActions');
 var {
   ScrollView,
   Dimensions,
+  TouchableOpacity,
+  Image,
   TouchableHighlight,
   View,
   Text,
@@ -37,10 +39,16 @@ var PartPage = React.createClass({
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openLogModal();
   },
+  handlePartPress: function(){
+    //Let editWorkoutStore know which part we are editing
+    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
+    modalActions.openPartModal();
+  },
   renderPartName: function(){
     var name;
-    if(this.props.part.name) name = this.props.part.name.toUpperCase();
-    else {
+    if(this.props.part.name){
+      name = this.props.part.name.toUpperCase();
+    } else {
       var partNum = this.props.partIdx + 1;
       name = ('Part ' + partNum).toUpperCase();
     }
@@ -65,7 +73,18 @@ var PartPage = React.createClass({
       <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
         <View style={styles.partWheel}>
           <View style={styles.partNameContainer}>
-            <Text style={styles.partNameText}>{this.renderPartName()}</Text>
+            { this.props.isModifying ?
+              <TouchableOpacity onPress={this.handlePartPress}
+                style={{flex: 1, flexDirection: 'row', backgroundColor: 'green'}}>
+                <Text style={styles.partNameText}>{this.renderPartName()}</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+                  <Image
+                    source={require('image!disclosureIndicatorWhite')}
+                    style={{marginTop: 9}} />
+                </View>
+              </TouchableOpacity>
+              : <Text style={styles.partNameText}>{this.renderPartName()}</Text>
+            }
           </View>
         </View>
 
@@ -106,13 +125,17 @@ var styles = StyleSheet.create({
     flex: .2,
     backgroundColor: 'rgba(77,186,151,.6)',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: 'black'
   },
   partNameContainer: {
+    flex: 1,
     marginTop: 40,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'blue'
   },
   partNameText: {
     fontFamily: 'Avenir Next',
@@ -131,7 +154,6 @@ var styles = StyleSheet.create({
   logButton: {
     position: 'absolute',
     bottom: 0,
-
     height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
     flexDirection: 'column',

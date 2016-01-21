@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 15:39:04
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 16:24:49
 */
 
 'use strict';
@@ -31,10 +31,10 @@ var InstructionsView = React.createClass({
         /* jshint ignore:start */
         <TouchableOpacity onPress={this.handlePress}>
           <View style={styles.instructionsContainer}>
-            <View style={{flex: .9}}>
+            <View style={{alignSelf: 'center'}}>
               <Text style={styles.instructionsText}>{this.props.instructions}</Text>
             </View>
-            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+            <View style={{position: 'absolute', right: 0, top: 0, marginTop: 10}}>
               <Image source={require('image!disclosureIndicatorWhite')} />
             </View>
           </View>
@@ -58,9 +58,6 @@ var styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   instructionsText: {
     fontFamily: 'Avenir Next',
@@ -68,6 +65,8 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     color: '#fff',
     textAlign: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
 
