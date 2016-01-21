@@ -59,18 +59,7 @@ var Feed = React.createClass({
       return (
         /* jshint ignore:start */
         <View style={ styles.container }>
-          <View style={ styles.header }>
-            <Text style={ styles.headerText }>trybe</Text>
-          </View>
-
-          <View style={ styles.content }>
-            <View style={styles.contentContainer}>
-              <View style={ styles.cards }>
-                <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
-              </View>
-            </View>
-          </View>
-
+          <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
         </View>
         /* jshint ignore:end */
       );
@@ -91,44 +80,9 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#f3f3f3',
   },
-  header: {
-    flex: .1,
-    backgroundColor: '#4dba97',
-    justifyContent: 'center'
-  },
-  headerText: {
-    marginTop: 5,
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 28,
-    fontFamily: 'Avenir Next'
-  },
-  content: {
-    flex: .9,
-  },
-  contentContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around' //doesn't do as expected
-  },
-  trybeName: {
-    marginTop: 5
-  },
-  chat: {
-    flex: .1,
-    alignItems: 'center',
-    backgroundColor: '#fff'
-  },
-  cards: {
-    flex: .8,
-    marginTop: -35,
-  },
   feedCard: {
     backgroundColor: '#fff',
     marginBottom: 10,
-    //removes gray space between header and content,
-    //but it makes cards collide.
-    // marginTop: -20
   },
 });
 
