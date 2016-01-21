@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:30:26
+* @Last Modified time: 2016-01-20 21:44:01
 */
 
 'use strict';
@@ -10,6 +10,8 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutStore = require('../../stores/viewWorkoutStore');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -20,10 +22,12 @@ var {
   Image,
   StyleSheet,
   View,
+  Text
 } = React;
 
 //Load components
 var PartPage = require('./partPage');
+var AddPartPage = require('./addPartPage');
 
 //Gets device height for animating app
 var {
@@ -36,20 +40,19 @@ var ViewWorkoutModal = React.createClass({
       //shows default daily workout unless a custom one is selected/created
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
-      swiperIndex: 1,
+      isModifying: viewWorkoutStore.getIsModifying(),
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
     };
   },
-  componentWillMount: function(){
+  componentDidMount: function() {
     editWorkoutStore.addChangeListener(this._onChange);
+    viewWorkoutStore.addChangeListener(this._onChange);
 
     if(this.state.isDefaultOrCustom === 'default'){
-      editWorkoutActions.getDailyWorkout();
+      editWorkoutActions.setToDefaultWorkout();
     }
-  },
-  componentDidMount: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -57,10 +60,12 @@ var ViewWorkoutModal = React.createClass({
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
+    viewWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
       workout: editWorkoutStore.getWorkout(),
+      isModifying: viewWorkoutStore.getIsModifying()
     });
   },
   closeModal: function() {
@@ -70,42 +75,67 @@ var ViewWorkoutModal = React.createClass({
     }).start(modalActions.closeViewWorkoutModal);
   },
   render: function() {
-    var partPages = this.state.workout.parts.map( (part, index) =>
-      /* jshint ignore:start */
-      <PartPage part={part} partIdx={index} key={index} />
-      /* jshint ignore:end */
-    );
+    if(this.state.workout){
+      var partPages = this.state.workout.parts.map( (part, index) =>
+        /* jshint ignore:start */
+        <PartPage
+          part={part}
+          partIdx={index}
+          key={index}
+          isModifying={this.state.isModifying}
+          visibleHeight={this.state.visibleHeight}
+          visibleWidth={this.state.visibleWidth} />
+        /* jshint ignore:end */
+      );
 
-    return (
-      /* jshint ignore:start */
-      <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+      return (
+        /* jshint ignore:start */
+        <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
           <Image
             source={require('image!iconAthletesBackground')}
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
+            <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
 
-            <ScrollView
-              horizontal={true}
-              pagingEnabled={true} >
+              <ScrollView
+                horizontal={true}
+                pagingEnabled={true} >
 
-              {partPages}
+                {partPages}
 
-            </ScrollView>
+                {this.state.isModifying ?
+                  <AddPartPage
+                    isModifying={this.state.isModifying}
+                    visibleHeight={this.state.visibleHeight}
+                    visibleWidth={this.state.visibleWidth} />
+                  : null
+                }
+              </ScrollView>
 
+              <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
+                {this.state.isModifying ?
+                  null :
+                  <TouchableOpacity onPress={this.closeModal}>
+                   <Image
+                      style={styles.closeButton}
+                      source={require('image!closeButton')} />
+                  </TouchableOpacity>
+                }
+                <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
+                    {this.state.isModifying ?
+                     <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
+                      : <Text style={styles.modifyButtonText}>Modify</Text>
+                    }
+                </TouchableOpacity>
+              </View>
+            </View>
           </Image>
-
-          <View style={styles.backButtonContainer}>
-            <TouchableOpacity onPress={this.closeModal}>
-             <Image
-                style={styles.closeButton}
-                source={require('image!closeButton')} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Animated.View>
-      /* jshint ignore:end */
-    );
+        </Animated.View>
+        /* jshint ignore:end */
+      );
+    } else {
+      return <Text>Loading</Text>;
+    }
   }
 });
 
@@ -119,19 +149,29 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(73,162,160,.5)',
+    backgroundColor: 'rgba(23,115,140,.55)',
   },
-  backButtonContainer: {
+  closeButtonContainer: {
     height: 60,
     position: 'absolute',
     top: 0,
     left: 0,
   },
   closeButton: {
+    position: 'absolute',
+    top: 40,
+    left: 10,
     width: 18,
     height: 18,
-    marginTop: 30,
-    marginLeft: 10,
+  },
+  modifyButtonText: {
+    position: 'absolute',
+    top: 40,
+    right: 10,
+    color: '#fff',
+    fontFamily: 'Avenir Next',
+    fontWeight: '500',
+    fontSize: 18
   }
 });
 

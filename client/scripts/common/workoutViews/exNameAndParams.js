@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var renderExerciseTime = require('../renderExerciseTime');
 
 var {
@@ -130,12 +129,12 @@ var viewExercise = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <View>
+        <View style={styles.leftHalf}>
           {exerciseName}
         </View>
 
-        <View>
-          <Text style={exStyleText}>{exParams}</Text>
+        <View style={styles.rightHalf}>
+          <Text style={[exStyleText, {textAlign: 'right'}]}>{exParams}</Text>
         </View>
       </View>
       /* jshint ignore:end */
@@ -145,14 +144,24 @@ var viewExercise = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   exerciseText: {
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     fontSize: 15,
     color: '#8D867E'
+  },
+  leftHalf: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  rightHalf: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   }
 });
 

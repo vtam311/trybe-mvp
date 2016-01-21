@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 17:31:36
+* @Last Modified time: 2016-01-19 16:11:50
 */
 
 'use strict';
@@ -42,7 +42,15 @@ var editWorkoutActions = {
     dummyWorkout.parts.push(newPart);
     dummyWorkout.parts.push(newPart2);
 
-    this.setWorkout(dummyWorkout);
+    this.setDailyWorkout(dummyWorkout);
+  },
+  setDailyWorkout: function(workout) {
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_DAILY_WORKOUT,
+      data: {
+        workout: workout
+      }
+    });
   },
   setWorkout: function(workout) {
     AppDispatcher.handleAction({
@@ -50,6 +58,11 @@ var editWorkoutActions = {
       data: {
         workout: workout
       }
+    });
+  },
+  setToDefaultWorkout: function(){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SET_TO_DEFAULT_WORKOUT,
     });
   },
   resetWorkout: function() {
@@ -166,16 +179,6 @@ var editWorkoutActions = {
       data: {
         name: name
       }
-    });
-  },
-  saveBackupWorkout: function(){
-    AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SAVE_BACKUP_WORKOUT
-    });
-  },
-  cancelChanges: function(){
-    AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.CANCEL_CHANGES
     });
   },
 };

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 10:44:35
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 15:37:24
 */
 
 'use strict';
@@ -14,6 +14,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  Image,
   View,
   StyleSheet,
 } = React;
@@ -31,25 +32,43 @@ var ExerciseView = React.createClass({
     modalActions.openExerciseModal();
   },
   render: function(){
-    return (
-      /* jshint ignore:start */
-      <View style={styles.exerciseContainer}>
+    if(this.props.isModifying) {
+      return (
+        /* jshint ignore:start */
         <TouchableOpacity onPress={this.handlePress}>
+          <View style={styles.exerciseContainer}>
+            <ExNameAndParams
+              exercise={this.props.exercise}
+              exIdx={this.props.exIdx}
+              customFontSize={25}
+              customFontColor='#fff' />
+            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+              <Image
+                source={require('image!disclosureIndicatorWhite')}
+                style={{marginTop: 9}} />
+            </View>
+          </View>
+        </TouchableOpacity>
+        /* jshint ignore:end */
+      );
+    } else {
+      return (
+        <View style={styles.exerciseContainer}>
           <ExNameAndParams
             exercise={this.props.exercise}
             exIdx={this.props.exIdx}
             customFontSize={25}
             customFontColor='#fff' />
-        </TouchableOpacity>
-      </View>
-      /* jshint ignore:start */
-    );
+        </View>
+      );
+    }
   }
 });
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    width: 330,
+    flex: 1,
+    flexDirection: 'row',
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,

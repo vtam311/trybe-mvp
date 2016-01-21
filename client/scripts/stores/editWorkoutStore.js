@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 15:23:20
+* @Last Modified time: 2016-01-19 16:12:38
 */
 
 'use strict';
@@ -48,10 +48,9 @@ var WORKOUT_TEMPLATE = {
 var _store = {
   workout: newWorkout(WORKOUT_TEMPLATE),
   defaultOrCustom: 'default',
+  defaultWorkout: null, //will be set by editWorkoutActions.getDailyWorkout
   targetPartIdx: null,
   targetExerciseIdx: null,
-  //for storing a backup workout, so user can cancel changes
-  backupWorkout: null,
 };
 
 var setDefaultOrCustom = function(data){
@@ -59,9 +58,19 @@ var setDefaultOrCustom = function(data){
   _store.defaultOrCustom = val;
 };
 
+var setDailyWorkout = function(data){
+  var workout = data.workout;
+  _store.defaultWorkout = workout;
+  console.log('editWorkoutStore defaultWorkout is', _store.defaultWorkout);
+};
+
 var setWorkout = function(data){
   var workout = data.workout;
   _store.workout = workout;
+};
+
+var setToDefaultWorkout = function(){
+  _store.workout = _store.defaultWorkout;
 };
 
 var resetWorkout = function(){
@@ -157,15 +166,6 @@ var setPartName = function(data){
   _store.workout.parts[partIdx].name = name;
 };
 
-var saveBackupWorkout = function(){
-  _store.backupWorkout = newWorkout(_store.workout);
-  console.log('backup workout saved as', _store.backupWorkout);
-};
-
-var cancelChanges = function(){
-  _store.workout = _store.backupWorkout;
-};
-
 var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -235,8 +235,16 @@ AppDispatcher.register(function(payload){
       setDefaultOrCustom(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
+    case editWorkoutConstants.SET_DAILY_WORKOUT:
+      setDailyWorkout(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case editWorkoutConstants.SET_WORKOUT:
       setWorkout(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_TO_DEFAULT_WORKOUT:
+      setToDefaultWorkout();
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.RESET_WORKOUT:
@@ -297,14 +305,6 @@ AppDispatcher.register(function(payload){
       break;
     case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
-      editWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case editWorkoutConstants.SAVE_BACKUP_WORKOUT:
-      saveBackupWorkout();
-      editWorkoutStore.emit(CHANGE_EVENT);
-      break;
-    case editWorkoutConstants.CANCEL_CHANGES:
-      cancelChanges();
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

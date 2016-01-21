@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-16 10:37:41
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 12:53:51
 */
 
 'use strict';
@@ -94,8 +94,7 @@ var NavBarRouteMapper = {
         onPress={ () => {
           console.log('search button pressed')
         }}>
-        <Image
-          source={ require('image!search') } />
+        <Image source={require('image!search')} style={styles.searchIcon}/>
       </TouchableOpacity>
       /* jshint ignore:end */
     );
@@ -136,6 +135,11 @@ var styles = StyleSheet.create({
     fontFamily: 'Helvetica Neue',
     fontSize: 17,
     color: 'white'
+  },
+  searchIcon:{
+    height: 22,
+    width: 22,
+    marginBottom: 4,
   }
 });
 

@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 10:17:56
+* @Last Modified time: 2016-01-20 17:55:54
 */
 
 'use strict';
@@ -25,7 +25,8 @@ var LogCard = React.createClass({
 
   render: function(){
     var workout = this.props.workout;
-    var dateDescr = Date(workout.date).slice(0,10);
+    var dateString = workout.date.toString();
+    var dateDescr = dateString.slice(0,10);
 
     return (
       /* jshint ignore:start */

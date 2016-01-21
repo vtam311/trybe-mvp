@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 18:53:34
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 15:06:56
 */
 
 'use strict';
@@ -45,17 +45,17 @@ var addNewWorkoutAndCompletedPart = function(workout, partIdx){
   workoutWithOnlyCompletedPart[partIdx] = completedPart;
   sepWorkout.parts = workoutWithOnlyCompletedPart;
 
-  _store.workouts.push(sepWorkout);
+  addWorkout(sepWorkout);
 };
 
 var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
-  //copy existing workout as sepWorkout
-  var sepWorkout = separateWorkout(_store.workouts[workoutIdx]);
+  //copy existing workout
+  var currWorkout = separateWorkout(_store.workouts[workoutIdx]);
   //add currPart to existing workout at correct index
   var currPart = workout.parts[partIdx];
-  sepWorkout.parts[partIdx] = currPart;
+  currWorkout.parts[partIdx] = currPart;
   //replace separateWorkout with existing workout
-  _store.workouts[workoutIdx] = sepWorkout;
+  _store.workouts[workoutIdx] = currWorkout;
   updateForListView(workoutIdx);
 };
 

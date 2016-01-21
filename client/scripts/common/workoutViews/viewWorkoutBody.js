@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 10:16:30
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 21:19:46
 */
 
 'use strict';
@@ -21,26 +21,32 @@ var {
 var ViewWorkoutBody = React.createClass({
 
   render: function(){
-    var workout = this.props.workout;
     //workouts are made of parts. parts include instructions,
     //exercises, results, and optionally notes
-    //If there is another part to render, add a separator line
-    var parts = workout.parts.map((part, index) =>
-      /* jshint ignore:start */
-      <View key={index}>
-        <Part part={part} showNotes={this.props.showNotes}/>
-        { workout.parts[index + 1] ?
-          <View style={styles.separatorLine}></View> :
-          null
-        }
-      </View>
-      /* jshint ignore:end */
+    var workout = this.props.workout;
+
+    //Filter for parts that exist. ie. Part at index 0 may not be present,
+    //while part at index 1 does, if user logged second part before the first.
+    var partExists = function(part){
+      if(part) return true;
+    };
+    var existingParts = workout.parts.filter(partExists);
+    var partViews = existingParts.map((part, index) =>
+        /* jshint ignore:start */
+        <View key={index}>
+          <Part part={part} showNotes={this.props.showNotes}/>
+          { existingParts[index + 1] ?
+            <View style={styles.separatorLine}></View> :
+            null
+          }
+        </View>
+        /* jshint ignore:end */
     );
 
     return (
       /* jshint ignore:start */
       <View>
-        { parts }
+        { partViews }
       </View>
       /* jshint ignore:end */
     );

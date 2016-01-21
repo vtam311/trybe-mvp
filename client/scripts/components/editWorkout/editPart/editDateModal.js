@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-18 15:03:10
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:08:59
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-19 14:37:23
 */
 
 'use strict';
@@ -52,6 +52,7 @@ var EditDateModal = React.createClass({
   },
   saveDate: function(){
     editWorkoutActions.saveDate(this.state.date);
+    console.log('editDateModal saveDate with date', this.state.date);
     this.closeModal();
   },
   render: function() {

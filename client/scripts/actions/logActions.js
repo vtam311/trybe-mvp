@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 09:53:06
+* @Last Modified time: 2016-01-19 13:53:27
 */
 
 'use strict';
@@ -12,21 +12,35 @@ var logConstants = require('../constants/logConstants');
 
 var newWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
+var sortByDate = require('../common/sortByDate');
 
-var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
-DUMMY_WORKOUT.id = 2;
-DUMMY_WORKOUT.parts[0].notes = 'Feeling an improvement from last time I did this, about two months ago';
-var DUMMY_WORKOUT_2 = newWorkout(DUMMY_WORKOUT);
-DUMMY_WORKOUT.id = 3;
-DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+var WORKOUT_MODEL = require('../../../Documentation/workoutModel');
 
 var logActions = {
   getWorkouts: function() {
     //To do: make get req to server
+    var DUMMY_WORKOUT = newWorkout(WORKOUT_MODEL);
+    DUMMY_WORKOUT.id = 2;
+    DUMMY_WORKOUT.date = new Date('December 17, 2015 03:24:00');
+    DUMMY_WORKOUT.parts[0].notes = 'Feeling an improvement from last time I did this, about two months ago';
+
+    var DUMMY_WORKOUT_2 = newWorkout(WORKOUT_MODEL);
+    DUMMY_WORKOUT_2.date = new Date('December 21, 2015 03:24:00');
+    DUMMY_WORKOUT_2.id = 3;
+    DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+
+    var DUMMY_WORKOUT_3 = newWorkout(WORKOUT_MODEL);
+    DUMMY_WORKOUT_3.date = new Date('December 11, 2015 03:24:00');
+    DUMMY_WORKOUT_3.id = 3;
+    DUMMY_WORKOUT_3.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
+
     var DUMMY_WORKOUTS = [
-      newWorkout(DUMMY_WORKOUT),
-      newWorkout(DUMMY_WORKOUT_2)
+      DUMMY_WORKOUT,
+      DUMMY_WORKOUT_2,
+      DUMMY_WORKOUT_3
     ];
+
+    sortByDate.mergeSort(DUMMY_WORKOUTS, 0, DUMMY_WORKOUTS.length);
 
     this.setWorkouts(DUMMY_WORKOUTS);
   },

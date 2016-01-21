@@ -91,7 +91,7 @@ var NavBarRouteMapper = {
           <TouchableOpacity
             onPress={() => handleRightPress()}
             style={styles.navBarComponentContainer} >
-            <Image source={require('image!createIcon')} />
+            <Image style={styles.createIcon} source={require('image!createIcon')} />
           </TouchableOpacity>
         );
         break;
@@ -135,6 +135,11 @@ var styles = StyleSheet.create({
     fontFamily: 'Helvetica Neue',
     fontSize: 17,
     color: 'white'
+  },
+  createIcon: {
+    height: 22,
+    width: 22,
+    marginBottom: 4,
   }
 });
 

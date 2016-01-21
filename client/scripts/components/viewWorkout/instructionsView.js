@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-18 15:13:58
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 17:41:34
 */
 
 'use strict';
@@ -13,35 +13,59 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  Image,
   View,
   Text,
   StyleSheet,
 } = React;
 
 var InstructionsView = React.createClass({
+  renderInstructions: function(){
+    //if workout does not have instructions, show placeholder text
+    if(!this.props.instructions || this.props.instructions === ''){
+      return 'Workout Instructions';
+    } else {
+      return this.props.instructions;
+    }
+  },
   handlePress: function(){
     //notify editWorkoutStore which instructions are being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openInstructionsModal();
   },
   render: function(){
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity onPress={this.handlePress}>
+    if(this.props.isModifying){
+      return (
+        /* jshint ignore:start */
+        <TouchableOpacity onPress={this.handlePress}>
+          <View style={styles.instructionsContainer}>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={styles.instructionsText}>{this.renderInstructions()}</Text>
+            </View>
+            <View style={{position: 'absolute', right: 0, top: 0, marginTop: 10}}>
+              <Image source={require('image!disclosureIndicatorWhite')} />
+            </View>
+          </View>
+        </TouchableOpacity>
+        /* jshint ignore:start */
+      );
+    } else {
+      return (
         <View style={styles.instructionsContainer}>
-          <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+          <View style={{flex: 1}}>
+            <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+          </View>
         </View>
-      </TouchableOpacity>
-      /* jshint ignore:start */
-    );
+      );
+    }
   }
 });
 
 var styles = StyleSheet.create({
   instructionsContainer: {
-    width: 300,
     marginTop: 30,
     marginBottom: 30,
+    flex: 1,
   },
   instructionsText: {
     fontFamily: 'Avenir Next',
@@ -49,6 +73,8 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     color: '#fff',
     textAlign: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
 

@@ -8,11 +8,16 @@ var EventEmitter = require('events').EventEmitter;
 var CHANGE_EVENT = 'change';
 
 var _store = {
+  isModifying: false,
   //reflects which parts in viewWorkout have been logged
   //is an array of bools
   partsAreLogged: []
 };
 
+var setIsModifying = function(data){
+  var bool = data.bool;
+  _store.isModifying = bool;
+};
 
 var initPartsAreLogged = function(data){
   //reset store's partsAreLogged to empty array
@@ -39,6 +44,9 @@ var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   removeChangeListener: function(cb){
     this.removeListener(CHANGE_EVENT, cb);
   },
+  getIsModifying: function(){
+    return _store.isModifying;
+  },
   getPartsAreLogged: function(){
     return _store.partsAreLogged;
   },
@@ -47,6 +55,10 @@ var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch (action.actionType) {
+    case viewWorkoutConstants.SET_IS_MODIFYING:
+      setIsModifying(action.data);
+      viewWorkoutStore.emit(CHANGE_EVENT);
+      break;
     case viewWorkoutConstants.INIT_PARTS_ARE_LOGGED:
       initPartsAreLogged(action.data);
       viewWorkoutStore.emit(CHANGE_EVENT);

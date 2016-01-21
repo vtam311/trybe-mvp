@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 09:30:41
+* @Last Modified time: 2016-01-20 22:00:06
 */
 
 'use strict';
@@ -13,69 +13,74 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   ScrollView,
-  Dimensions,
   TouchableHighlight,
   View,
   Text,
   StyleSheet,
 } = React;
 
+var PartNameView = require('./partNameView');
 var InstructionsView = require('./instructionsView');
 var ExerciseView = require('./exerciseView');
+var AddExerciseView = require('./addExerciseView');
 
 var PartPage = React.createClass({
-  getInitialState: function(){
-    return {
-      visibleHeight: Dimensions.get('window').height,
-      visibleWidth: Dimensions.get('window').width,
-    };
-  },
   handleLogButtonPress: function(){
     //set targetPartIdx to notify editWorkoutStore which part
     //is being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openLogModal();
   },
-  renderPartName: function(){
-    var name;
-    if(this.props.part.name) name = this.props.part.name.toUpperCase();
-    else {
-      var partNum = this.props.partIdx + 1;
-      name = ('Part ' + partNum).toUpperCase();
-    }
 
-    return name;
-  },
   render: function(){
-    var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
+    var exerciseViews = this.props.part.exercises.map((exercise, index) =>
       /* jshint ignore:start */
-      <ExerciseView exercise={exercise} partIdx={this.props.partIdx} exIdx={index} />
+      <View style={{width: 330}}>
+        <ExerciseView
+          exercise={exercise}
+          partIdx={this.props.partIdx}
+          exIdx={index}
+          isModifying={this.props.isModifying} />
+      </View>
       /* jshint ignore:end */
     );
 
     return (
       /* jshint ignore:start */
-      <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
+      <View style={[styles.container, {width: this.props.visibleWidth, height: this.props.visibleHeight}]}>
         <View style={styles.partWheel}>
-          <View style={styles.partNameContainer}>
-            <Text style={styles.partNameText}>{this.renderPartName()}</Text>
-          </View>
+          <PartNameView
+            partName={this.props.part.name}
+            partIdx={this.props.partIdx}
+            isModifying={this.props.isModifying} />
         </View>
 
         <ScrollView
           contentContainerStyle={styles.contentContainerStyle} >
-          <InstructionsView
-            instructions={this.props.part.instructions}
-            partIdx={this.props.partIdx} />
+          <View style={{width: 330}}>
+            <InstructionsView
+              instructions={this.props.part.instructions}
+              partIdx={this.props.partIdx}
+              isModifying={this.props.isModifying} />
+          </View>
+
           {exerciseViews}
+
+          {this.props.isModifying ?
+            <View style={styles.addExerciseView}>
+              <AddExerciseView partIdx={this.props.partIdx}/>
+            </View>
+            : null
+          }
         </ScrollView>
 
-        <TouchableHighlight onPress={this.handleLogButtonPress}>
-          <View style={[styles.logButton, {width: this.state.visibleWidth}]}>
+        {this.props.isModifying ?
+          null :
+          <TouchableHighlight onPress={this.handleLogButtonPress}
+            style={[styles.logButton, {width: this.props.visibleWidth}]}>
             <Text style={styles.logButtonText}>Log Results</Text>
-          </View>
-        </TouchableHighlight>
-
+          </TouchableHighlight>
+        }
       </View>
       /* jshint ignore:end */
     );
@@ -89,21 +94,6 @@ var styles = StyleSheet.create({
   partWheel: {
     flex: .2,
     backgroundColor: 'rgba(77,186,151,.6)',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  partNameContainer: {
-    marginTop: 40,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  partNameText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'white',
-    marginTop: 10,
   },
   contentContainerStyle: {
     flex: .8,
@@ -112,10 +102,15 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  addExerciseView: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
   logButton: {
     position: 'absolute',
     bottom: 0,
-
     height: 60,
     backgroundColor: 'rgba(77,186,151,.6)',
     flexDirection: 'column',
