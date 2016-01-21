@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:03:25
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 18:08:57
 */
 
 'use strict';
@@ -162,7 +162,7 @@ var styles = StyleSheet.create({
     color: '#fff',
     fontFamily: 'Avenir Next',
     fontWeight: '500',
-    fontSize: 20
+    fontSize: 18
   }
 });
 

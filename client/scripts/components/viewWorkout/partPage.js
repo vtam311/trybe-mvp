@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 17:05:42
+* @Last Modified time: 2016-01-20 17:55:40
 */
 
 'use strict';
@@ -33,7 +33,7 @@ var PartPage = React.createClass({
   },
 
   render: function(){
-    var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
+    var exerciseViews = this.props.part.exercises.map((exercise, index) =>
       /* jshint ignore:start */
       <View style={{width: 330}}>
         <ExerciseView
