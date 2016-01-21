@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 16:01:43
+* @Last Modified time: 2016-01-20 16:39:04
 */
 
 'use strict';
@@ -22,6 +22,7 @@ var {
   StyleSheet,
 } = React;
 
+var PartNameView = require('./partNameView');
 var InstructionsView = require('./instructionsView');
 var ExerciseView = require('./exerciseView');
 var AddExerciseView = require('./addExerciseView');
@@ -39,22 +40,7 @@ var PartPage = React.createClass({
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openLogModal();
   },
-  handlePartPress: function(){
-    //Let editWorkoutStore know which part we are editing
-    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
-    modalActions.openPartModal();
-  },
-  renderPartName: function(){
-    var name;
-    if(this.props.part.name){
-      name = this.props.part.name.toUpperCase();
-    } else {
-      var partNum = this.props.partIdx + 1;
-      name = ('Part ' + partNum).toUpperCase();
-    }
 
-    return name;
-  },
   render: function(){
     var exerciseViews = this.props.part.exercises.map( (exercise, index) =>
       /* jshint ignore:start */
@@ -72,20 +58,10 @@ var PartPage = React.createClass({
       /* jshint ignore:start */
       <View style={[styles.container, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}>
         <View style={styles.partWheel}>
-          <View style={styles.partNameContainer}>
-            { this.props.isModifying ?
-              <TouchableOpacity onPress={this.handlePartPress}
-                style={{flex: 1, flexDirection: 'row', backgroundColor: 'green'}}>
-                <Text style={styles.partNameText}>{this.renderPartName()}</Text>
-                <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-                  <Image
-                    source={require('image!disclosureIndicatorWhite')}
-                    style={{marginTop: 9}} />
-                </View>
-              </TouchableOpacity>
-              : <Text style={styles.partNameText}>{this.renderPartName()}</Text>
-            }
-          </View>
+          <PartNameView
+            partName={this.props.part.name}
+            partIdx={this.props.partIdx}
+            isModifying={this.props.isModifying} />
         </View>
 
         <ScrollView
@@ -124,26 +100,8 @@ var styles = StyleSheet.create({
   partWheel: {
     flex: .2,
     backgroundColor: 'rgba(77,186,151,.6)',
-    flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: 'black'
   },
-  partNameContainer: {
-    flex: 1,
-    marginTop: 40,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue'
-  },
-  partNameText: {
-    fontFamily: 'Avenir Next',
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'white',
-    marginTop: 10,
-  },
+
   contentContainerStyle: {
     flex: .8,
     paddingTop: 20,
