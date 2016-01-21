@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 21:31:30
+* @Last Modified time: 2016-01-20 21:56:29
 */
 
 'use strict';
@@ -105,6 +105,8 @@ var styles = StyleSheet.create({
   addExerciseView: {
     position: 'absolute',
     bottom: 0,
+    left: 0,
+    right: 0,
   },
   logButton: {
     position: 'absolute',

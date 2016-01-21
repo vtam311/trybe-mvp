@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 12:03:13
+* @Last Modified time: 2016-01-20 21:56:06
 */
 
 'use strict';
@@ -33,12 +33,14 @@ var AddExerciseView = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={styles.exerciseContainer}>
-        <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <Image
-            style={{height: 25, width: 25, marginTop: 3, marginRight: 10}}
-            source={require('image!addButtonWhite')} />
-          <Text style={styles.addExerciseText}>Add Exercise</Text>
+      <View style={styles.addExerciseContainer}>
+        <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              style={{height: 25, width: 25, marginBottom: 2, marginRight: 10}}
+              source={require('image!addButtonWhite')} />
+            <Text style={styles.addExerciseText}>Add Exercise</Text>
+          </View>
         </TouchableOpacity>
       </View>
       /* jshint ignore:start */
@@ -47,8 +49,7 @@ var AddExerciseView = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  exerciseContainer: {
-    width: 330,
+  addExerciseContainer: {
     paddingTop: 25,
     paddingBottom: 15,
   },
