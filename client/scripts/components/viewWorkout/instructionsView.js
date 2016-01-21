@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:20:58
+* @Last Modified time: 2016-01-20 17:41:34
 */
 
 'use strict';
@@ -34,7 +34,6 @@ var InstructionsView = React.createClass({
     modalActions.openInstructionsModal();
   },
   render: function(){
-    console.log('instructionsView instructions are', this.props.instructions);
     if(this.props.isModifying){
       return (
         /* jshint ignore:start */
