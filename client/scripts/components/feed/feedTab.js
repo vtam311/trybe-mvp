@@ -1,16 +1,14 @@
 /*
 * @Author: vincetam
-* @Date:   2016-01-09 17:03:49
+* @Date:   2016-01-21 09:22:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 09:25:24
+* @Last Modified time: 2016-01-21 09:27:07
 */
 
 'use strict';
 
 var React = require('react-native');
-var Log = require('./log');
-var modalActions = require('../../actions/modalActions');
-var editWorkoutActions = require('../../actions/editWorkoutActions');
+var Feed = require('./feed');
 
 var {
   StyleSheet,
@@ -23,13 +21,13 @@ var {
 
 var RouteStack = {
   app: {
-    name: 'Log',
-    component: Log,
+    name: 'Feed',
+    component: Feed,
   }
 };
 
 
-var LogTab = React.createClass({
+var FeedTab = React.createClass({
   goToScene: function(component, name){
     this.refs.logNav.push({
       component: component,
@@ -51,7 +49,7 @@ var LogTab = React.createClass({
     return (
       /* jshint ignore:start */
       <Navigator
-        ref="logNav"
+        ref="feedNav"
         initialRoute={RouteStack.app}
         renderScene={this.renderScene}
         sceneStyle={styles.scene}
@@ -91,9 +89,9 @@ var NavBarRouteMapper = {
       <TouchableOpacity
         style={styles.navBarComponentContainer}
         onPress={ () => {
-          console.log('search button pressed')
+          console.log('send button pressed')
         }}>
-        <Image source={require('image!search')} style={styles.searchIcon}/>
+        <Image source={require('image!newPost')} style={styles.newPostIcon}/>
       </TouchableOpacity>
       /* jshint ignore:end */
     );
@@ -135,11 +133,11 @@ var styles = StyleSheet.create({
     fontSize: 17,
     color: 'white'
   },
-  searchIcon:{
-    height: 22,
-    width: 22,
+  newPostIcon:{
+    // height: 22,
+    // width: 22,
     marginBottom: 4,
   }
 });
 
-module.exports = LogTab;
+module.exports = FeedTab;

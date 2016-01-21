@@ -65,11 +65,6 @@ var Feed = React.createClass({
 
           <View style={ styles.content }>
             <View style={styles.contentContainer}>
-
-              <View style={ styles.chat }>
-                <ChatBar />
-              </View>
-
               <View style={ styles.cards }>
                 <ListView dataSource={ this.state.dataSource } renderRow={ this.renderRow }/>
               </View>
