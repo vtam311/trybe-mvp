@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 10:05:57
+* @Last Modified time: 2016-01-21 10:21:49
 */
 
 'use strict';
@@ -52,7 +52,7 @@ var feedActions = {
       },
       {
         username: 'Zishan Lokhandwala',
-        userPicLink: 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xtf1/v/t1.0-9/10933735_10205846390468619_8705802328646007094_n.jpg?oh=1a6bf7d6e56185ab48170a291598deef&oe=56FEC93C',
+        userPicLink: 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xpt1/t31.0-8/11336892_10206935908345885_6178650775541606682_o.jpg',
         activity: 'completed',
         createdAt: '3hr',
         trybe: 'ICON Athlete',
