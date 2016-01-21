@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 17:55:40
+* @Last Modified time: 2016-01-20 21:31:30
 */
 
 'use strict';
@@ -67,15 +67,20 @@ var PartPage = React.createClass({
           {exerciseViews}
 
           {this.props.isModifying ?
-            <AddExerciseView partIdx={this.props.partIdx}/>
+            <View style={styles.addExerciseView}>
+              <AddExerciseView partIdx={this.props.partIdx}/>
+            </View>
             : null
           }
         </ScrollView>
 
-        <TouchableHighlight onPress={this.handleLogButtonPress}
-          style={[styles.logButton, {width: this.props.visibleWidth}]}>
-          <Text style={styles.logButtonText}>Log Results</Text>
-        </TouchableHighlight>
+        {this.props.isModifying ?
+          null :
+          <TouchableHighlight onPress={this.handleLogButtonPress}
+            style={[styles.logButton, {width: this.props.visibleWidth}]}>
+            <Text style={styles.logButtonText}>Log Results</Text>
+          </TouchableHighlight>
+        }
       </View>
       /* jshint ignore:end */
     );
@@ -96,6 +101,10 @@ var styles = StyleSheet.create({
     paddingBottom: 60,
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  addExerciseView: {
+    position: 'absolute',
+    bottom: 0,
   },
   logButton: {
     position: 'absolute',

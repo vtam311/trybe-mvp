@@ -1375,7 +1375,7 @@ throw new TypeError(
 
 var index=findIndex.call(this,predicate,context);
 return index === -1?undefined:this[index];}});}})();
-__d('trybe/index.ios.js',["babel/register.js","react-native/Libraries/react-native/react-native.js","EventEmitter","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/stores/modalStore.js","trybe/client/scripts/components/tabBar.js","trybe/client/scripts/components/viewWorkout/editInstructionsModal.js","trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js","trybe/client/scripts/components/editWorkout/editPart/editPartModal.js","trybe/client/scripts/components/log/logModal.js","trybe/client/scripts/components/editWorkout/editWorkoutModal.js","trybe/client/scripts/components/viewWorkout/viewWorkoutModal.js","trybe/client/scripts/components/editWorkout/editPart/editDateModal.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/index.ios.js',["babel/register.js","react-native/Libraries/react-native/react-native.js","EventEmitter","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/stores/modalStore.js","trybe/client/scripts/components/tabBar.js","trybe/client/scripts/components/editWorkout/editWorkoutModal.js","trybe/client/scripts/components/viewWorkout/editInstructionsModal.js","trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js","trybe/client/scripts/components/editWorkout/editPart/editPartModal.js","trybe/client/scripts/components/editWorkout/editPart/editDateModal.js","trybe/client/scripts/components/log/logModal.js","trybe/client/scripts/components/viewWorkout/viewWorkoutModal.js"],function(global, require, module, exports) {  'use strict';
 
 require("babel/register.js");
 
@@ -59165,7 +59165,7 @@ data:tab});}};
 
 module.exports = tabActions;
 });
-__d('trybe/client/scripts/components/feed/feed.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/feedStore.js","trybe/client/scripts/actions/feedActions.js","trybe/client/scripts/components/feed/feedCard.js","trybe/client/scripts/common/workoutViews/viewWorkoutBody.js","trybe/client/scripts/components/feed/chatBar.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/feed/feed.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/feedStore.js","trybe/client/scripts/actions/feedActions.js","trybe/client/scripts/components/feed/feedCard.js","trybe/client/scripts/components/feed/chatBar.js","trybe/client/scripts/common/workoutViews/viewWorkoutBody.js"],function(global, require, module, exports) {  'use strict';
 
 var React=require('react-native/Libraries/react-native/react-native.js');
 var feedStore=require('trybe/client/scripts/stores/feedStore.js');
@@ -59596,7 +59596,7 @@ origin:null};
 
 module.exports = WORKOUT_TEMPLATE;
 });
-__d('trybe/client/scripts/components/feed/feedCard.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/feedActions.js","trybe/client/scripts/components/feed/feedCardHeader.js","trybe/client/scripts/common/workoutViews/viewWorkoutBody.js","trybe/client/scripts/common/workoutViews/viewResults.js","trybe/client/scripts/components/feed/feedCardFooter.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/feed/feedCard.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/feedActions.js","trybe/client/scripts/components/feed/feedCardHeader.js","trybe/client/scripts/common/workoutViews/viewResults.js","trybe/client/scripts/components/feed/feedCardFooter.js","trybe/client/scripts/common/workoutViews/viewWorkoutBody.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -59823,15 +59823,21 @@ React.StyleSheet;var Text=React.Text;var View=React.View;
 var ViewWorkoutBody=React.createClass({displayName:'ViewWorkoutBody',
 
 render:function(){var _this=this;
+
+
 var workout=this.props.workout;
 
 
 
-var parts=workout.parts.map(function(part,index){return (
+var partExists=function(part){
+if(part)return true;};
+
+var existingParts=workout.parts.filter(partExists);
+var partViews=existingParts.map(function(part,index){return (
 
 React.createElement(View,{key:index},
 React.createElement(Part,{part:part,showNotes:_this.props.showNotes}),
-workout.parts[index + 1]?
+existingParts[index + 1]?
 React.createElement(View,{style:styles.separatorLine}):
 null));});
 
@@ -59842,7 +59848,7 @@ null));});
 return (
 
 React.createElement(View,null,
-parts));}});
+partViews));}});
 
 
 
@@ -59864,7 +59870,7 @@ marginBottom:10}});
 
 module.exports = ViewWorkoutBody;
 });
-__d('trybe/client/scripts/common/workoutViews/part.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/workoutViews/viewResults.js","trybe/client/scripts/common/workoutViews/exNameAndParams.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/common/workoutViews/part.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/workoutViews/exNameAndParams.js","trybe/client/scripts/common/workoutViews/viewResults.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -59887,6 +59893,7 @@ React.StyleSheet;var Text=React.Text;var View=React.View;
 var Part=React.createClass({displayName:'Part',
 render:function(){
 var part=this.props.part;
+console.log('workoutView part part.exercises',part.exercises);
 
 var exercises=part.exercises.map(function(exercise){return (
 
@@ -60371,7 +60378,7 @@ __d('image!rounds',[],function(global, require, module, exports) {  module.expor
 });
 __d('image!weightIcon',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/weightIcon.imageset/weightIcon.png","uri":"weightIcon","width":20,"height":20,"deprecated":true};
 });
-__d('trybe/client/scripts/components/feed/feedCardFooter.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/feed/feedCardFooter.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -61337,7 +61344,7 @@ ADD_WORKOUT_PART:'ADD_WORKOUT_PART'};
 
 module.exports = logConstants;
 });
-__d('trybe/client/scripts/actions/logActions.js',["trybe/client/scripts/dispatchers/AppDispatcher.js","trybe/client/scripts/constants/logConstants.js","trybe/client/scripts/common/newWorkout.js","trybe/client/scripts/common/copyObjectHelper.js","trybe/Documentation/workoutModel.js","trybe/client/scripts/common/sortByDate.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/actions/logActions.js',["trybe/client/scripts/dispatchers/AppDispatcher.js","trybe/client/scripts/constants/logConstants.js","trybe/client/scripts/common/newWorkout.js","trybe/client/scripts/common/copyObjectHelper.js","trybe/client/scripts/common/sortByDate.js","trybe/Documentation/workoutModel.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -61625,7 +61632,6 @@ var LogCard=React.createClass({displayName:'LogCard',
 
 render:function(){
 var workout=this.props.workout;
-console.log('logCard workout.date',workout.date);
 var dateString=workout.date.toString();
 var dateDescr=dateString.slice(0,10);
 
@@ -61670,7 +61676,7 @@ marginBottom:5}});
 
 module.exports = LogCard;
 });
-__d('trybe/client/scripts/components/log/logCardFooter.js',["image!tryIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/log/logCardFooter.js',["image!tryIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -62975,7 +62981,7 @@ backgroundColor:'#c8c7cc'}});
 
 module.exports = Part;
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/editInstructionsCell.js',["image!disclosureIndicator","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
+__d('trybe/client/scripts/components/editWorkout/editPart/editInstructionsCell.js',["image!disclosureIndicator","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/modalActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
 
 
 
@@ -63091,7 +63097,7 @@ backgroundColor:'#c8c7cc'}});
 
 module.exports = EditInstructionsCell;
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/editExerciseCell.js',["image!disclosureIndicator","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/workoutViews/exerciseDescrText.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
+__d('trybe/client/scripts/components/editWorkout/editPart/editExerciseCell.js',["image!disclosureIndicator","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/workoutViews/exerciseDescrText.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
 
 
 
@@ -63399,7 +63405,7 @@ color:'#2D2D2D'}});
 
 module.exports = ExerciseDescriptionText;
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/addExerciseCell.js',["image!addButton","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
+__d('trybe/client/scripts/components/editWorkout/editPart/addExerciseCell.js',["image!addButton","react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/actions/modalActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
 
 
 
@@ -63458,7 +63464,7 @@ module.exports = AddExerciseCell;
 });
 __d('image!addButton',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/addButton.imageset/addButton.png","uri":"addButton","width":19,"height":18,"deprecated":true};
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/resultsCell.js',["react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/isCustomMetric.js","trybe/client/scripts/components/editWorkout/editPart/resultOptions.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
+__d('trybe/client/scripts/components/editWorkout/editPart/resultsCell.js',["react-native-tableview-simple/index.js","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/common/isCustomMetric.js","trybe/client/scripts/components/editWorkout/editPart/resultOptions.js"],function(global, require, module, exports) {  var _reactNativeTableviewSimple=require(
 
 
 
@@ -63578,7 +63584,7 @@ return false;}};
 
 module.exports = isCustomMetric;
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/resultOptions.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/isCustomMetric.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/editWorkout/editPart/resultOptions.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/common/isCustomMetric.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -63843,7 +63849,7 @@ marginRight:10,
 color:'#fff',
 fontFamily:'Avenir Next',
 fontWeight:'500',
-fontSize:20}});
+fontSize:18}});
 
 
 
@@ -64346,7 +64352,7 @@ module.exports = AddPartPage;
 });
 __d('image!closeButton',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/closeButton.imageset/closeButton.png","uri":"closeButton","width":19,"height":19,"deprecated":true};
 });
-__d('trybe/client/scripts/components/viewWorkout/editInstructionsModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/stores/editWorkoutStore.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/viewWorkout/editInstructionsModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/modalActions.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -64507,7 +64513,7 @@ fontSize:16}});
 
 module.exports = EditInstructionsModal;
 });
-__d('trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js',["image!deleteButton","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/stores/editExerciseStore.js","trybe/client/scripts/actions/modalActions.js","TouchableWithoutFeedback","dismissKeyboard","trybe/client/scripts/components/editWorkout/editExercise/editExerciseName.js","trybe/client/scripts/components/editWorkout/editExercise/selectedExercisePicker.js","trybe/client/scripts/common/workoutViews/exerciseDescrText.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/stores/editWorkoutStore.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js',["image!deleteButton","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/editExerciseActions.js","trybe/client/scripts/stores/editExerciseStore.js","trybe/client/scripts/actions/modalActions.js","TouchableWithoutFeedback","dismissKeyboard","trybe/client/scripts/components/editWorkout/editExercise/editExerciseName.js","trybe/client/scripts/components/editWorkout/editExercise/selectedExercisePicker.js","trybe/client/scripts/common/workoutViews/exerciseDescrText.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -65650,7 +65656,7 @@ module.exports = TimePicker;
 });
 __d('image!deleteButton',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/deleteButton.imageset/deleteButton.png","uri":"deleteButton","width":100,"height":100,"deprecated":true};
 });
-__d('trybe/client/scripts/components/editWorkout/editPart/editPartModal.js',["image!deleteButton","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/stores/editWorkoutStore.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/editWorkout/editPart/editPartModal.js',["image!deleteButton","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/modalActions.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -66002,7 +66008,7 @@ marginTop:15}});
 
 module.exports = EditDateModal;
 });
-__d('trybe/client/scripts/components/log/logModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/stores/logModalStore.js","trybe/client/scripts/actions/logModalActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/components/log/logInputs/selectedResultInput.js","trybe/client/scripts/components/log/logInputs/notesInput.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/logActions.js","trybe/client/scripts/stores/editWorkoutStore.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/log/logModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/stores/logModalStore.js","trybe/client/scripts/actions/logModalActions.js","trybe/client/scripts/actions/logActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/components/log/logInputs/selectedResultInput.js","trybe/client/scripts/components/log/logInputs/notesInput.js"],function(global, require, module, exports) {  'use strict';
 
 
 

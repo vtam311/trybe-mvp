@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 18:08:57
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 21:28:27
 */
 
 'use strict';
@@ -107,12 +107,15 @@ var ViewWorkoutModal = React.createClass({
                 }
               </ScrollView>
 
-              <View style={[styles.backButtonContainer, {width: this.state.visibleWidth}]}>
-                <TouchableOpacity onPress={this.closeModal}>
-                 <Image
-                    style={styles.closeButton}
-                    source={require('image!closeButton')} />
-                </TouchableOpacity>
+              <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
+                {this.state.isModifying ?
+                  null :
+                  <TouchableOpacity onPress={this.closeModal}>
+                   <Image
+                      style={styles.closeButton}
+                      source={require('image!closeButton')} />
+                  </TouchableOpacity>
+                }
                 <TouchableOpacity onPress={() => this.setState({isModifying: !this.state.isModifying})}>
                    <Text style={styles.modifyButtonText}>
                     {this.state.isModifying ? 'Done' : 'Modify'}
@@ -142,23 +145,23 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(23,115,140,.55)',
   },
-  backButtonContainer: {
+  closeButtonContainer: {
     height: 60,
     position: 'absolute',
     top: 0,
     left: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   closeButton: {
+    position: 'absolute',
+    top: 40,
+    left: 10,
     width: 18,
     height: 18,
-    marginTop: 30,
-    marginLeft: 10,
   },
   modifyButtonText: {
-    marginTop: 30,
-    marginRight: 10,
+    position: 'absolute',
+    top: 40,
+    right: 10,
     color: '#fff',
     fontFamily: 'Avenir Next',
     fontWeight: '500',
