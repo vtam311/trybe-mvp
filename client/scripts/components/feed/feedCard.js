@@ -2,8 +2,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 10:19:10
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-21 09:38:38
 */
 
 'use strict';
@@ -60,6 +60,7 @@ var FeedCard = React.createClass({
         <View style={styles.cardHeader}>
           <FeedCardHeader
             username={ card.username }
+            userPicLink={ card.userPicLink }
             activity={ card.activity }
             when={ card.createdAt }/>
         </View>

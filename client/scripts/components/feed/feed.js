@@ -42,6 +42,7 @@ var Feed = React.createClass({
       dataSource: this.state.dataSource.cloneWithRows(cards)
     });
   },
+
   renderRow: function(card){
     return (
       /* jshint ignore:start */
@@ -52,9 +53,8 @@ var Feed = React.createClass({
     );
   },
   render: function(){
-    var trybeWorkout = this.state.trybeWorkout;
-
     //Load page once the trybeWorkout is loaded
+    var trybeWorkout = this.state.trybeWorkout;
     if(trybeWorkout.trybe) {
       return (
         /* jshint ignore:start */

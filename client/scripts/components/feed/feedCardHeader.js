@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
 * @Last Modified by:   vincetam
-* @Last Modified time: 2015-10-02 12:24:54
+* @Last Modified time: 2016-01-21 10:02:37
 */
 
 'use strict';
@@ -11,30 +11,36 @@ var React = require('react-native');
 var feedActions = require('../../actions/feedActions');
 
 var {
+  Image,
   StyleSheet,
   Text,
   View,
 } = React;
 
 var FeedCardHeader = React.createClass({
-
   render: function(){
     var username = this.props.username;
     var activity = this.props.activity;
     var when = this.props.when; //must convert createdAt to 'x hours ago'
 
+    console.log('feedCardHeader userPicLink', this.props.userPicLink);
+
     return (
       /* jshint ignore:start */
       <View style={styles.headerContainer}>
-        <View style={styles.usernameActivity}>
-          <View style={styles.username}>
-            <Text style={styles.userText}>{username}</Text>
+        <View style={styles.leftSide}>
+          <View style={styles.userPicContainer}>
+            <Image
+              style={styles.userPic}
+              source={{uri: this.props.userPicLink}} />
           </View>
-          <View>
+          <View style={styles.usernameActivity}>
+            <Text style={styles.userText}>{username}</Text>
             <Text style={styles.activityText}>{activity}</Text>
           </View>
         </View>
-        <View>
+
+        <View style={styles.rightSide}>
           <Text style={styles.timeText}>{when}</Text>
         </View>
       </View>
@@ -48,29 +54,41 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 10,
-    marginTop: 10,
-    marginRight: 10,
-    marginBottom: 10
+    margin: 10,
+    paddingBottom: 10,
+    borderBottomWidth: .5,
+    borderColor: 'rgba(155,155,155,.7)'
   },
-  usernameActivity: {
+  leftSide: {
     flexDirection: 'row',
   },
-  username: {
-    marginRight: 4
+  userPic: {
+    height: 40,
+    width: 40,
+    marginRight: 10,
+  },
+  usernameActivity: {
+    marginRight: 4,
+    flexDirection: 'column',
   },
   userText: {
-    fontFamily: 'Helvetica',
-    color: '#434343',
-    fontWeight: 'bold'
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    color: '#8D867E',
+    fontWeight: '600',
+    marginTop: 1,
+    marginBottom: 2,
   },
   activityText: {
-    fontFamily: 'Helvetica',
-    color: 'grey',
-    // fontWeight: 'bold'
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    color: '#8D867E',
+    fontWeight: '500',
   },
   timeText: {
-    color: 'grey'
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    color: '#8D867E',
   }
 });
 
