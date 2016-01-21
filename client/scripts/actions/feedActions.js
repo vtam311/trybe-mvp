@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 09:45:18
+* @Last Modified time: 2016-01-21 10:05:57
 */
 
 'use strict';
@@ -47,11 +47,11 @@ var feedActions = {
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT),
         origin: null, //to track if workout is inspired by another user
-        likes: 17,
+        likes: 7,
         comments: 3
       },
       {
-        username: 'Zishan Lok',
+        username: 'Zishan Lokhandwala',
         userPicLink: 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xtf1/v/t1.0-9/10933735_10205846390468619_8705802328646007094_n.jpg?oh=1a6bf7d6e56185ab48170a291598deef&oe=56FEC93C',
         activity: 'completed',
         createdAt: '3hr',
@@ -59,7 +59,7 @@ var feedActions = {
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT_2),
         origin: null, //to track if workout is inspired by another user
-        likes: 24,
+        likes: 8,
         comments: 6
       },
       {
@@ -71,7 +71,7 @@ var feedActions = {
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT_3),
         origin: null, //to track if workout is inspired by another user
-        likes: 19,
+        likes: 14,
         comments: 8
       }
     ];
