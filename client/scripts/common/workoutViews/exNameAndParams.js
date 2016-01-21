@@ -1,7 +1,6 @@
 'use strict';
 
 var React = require('react-native');
-var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var renderExerciseTime = require('../renderExerciseTime');
 
 var {

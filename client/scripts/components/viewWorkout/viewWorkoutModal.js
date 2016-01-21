@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 21:28:27
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-20 21:44:01
 */
 
 'use strict';
@@ -10,6 +10,8 @@
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
+var viewWorkoutStore = require('../../stores/viewWorkoutStore');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 
 var {
@@ -38,7 +40,7 @@ var ViewWorkoutModal = React.createClass({
       //shows default daily workout unless a custom one is selected/created
       isDefaultOrCustom: editWorkoutStore.getDefaultOrCustom(),
       workout: editWorkoutStore.getWorkout(),
-      isModifying: false,
+      isModifying: viewWorkoutStore.getIsModifying(),
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
@@ -46,6 +48,7 @@ var ViewWorkoutModal = React.createClass({
   },
   componentDidMount: function() {
     editWorkoutStore.addChangeListener(this._onChange);
+    viewWorkoutStore.addChangeListener(this._onChange);
 
     if(this.state.isDefaultOrCustom === 'default'){
       editWorkoutActions.setToDefaultWorkout();
@@ -57,10 +60,12 @@ var ViewWorkoutModal = React.createClass({
   },
   componentWillUnmount: function(){
     editWorkoutStore.removeChangeListener(this._onChange);
+    viewWorkoutStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
     this.setState({
       workout: editWorkoutStore.getWorkout(),
+      isModifying: viewWorkoutStore.getIsModifying()
     });
   },
   closeModal: function() {
@@ -116,10 +121,11 @@ var ViewWorkoutModal = React.createClass({
                       source={require('image!closeButton')} />
                   </TouchableOpacity>
                 }
-                <TouchableOpacity onPress={() => this.setState({isModifying: !this.state.isModifying})}>
-                   <Text style={styles.modifyButtonText}>
-                    {this.state.isModifying ? 'Done' : 'Modify'}
-                  </Text>
+                <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
+                    {this.state.isModifying ?
+                     <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
+                      : <Text style={styles.modifyButtonText}>Modify</Text>
+                    }
                 </TouchableOpacity>
               </View>
             </View>
