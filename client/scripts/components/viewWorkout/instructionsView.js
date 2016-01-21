@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 16:24:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-20 17:20:58
 */
 
 'use strict';
@@ -20,19 +20,28 @@ var {
 } = React;
 
 var InstructionsView = React.createClass({
+  renderInstructions: function(){
+    //if workout does not have instructions, show placeholder text
+    if(!this.props.instructions || this.props.instructions === ''){
+      return 'Workout Instructions';
+    } else {
+      return this.props.instructions;
+    }
+  },
   handlePress: function(){
     //notify editWorkoutStore which instructions are being modified
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
     modalActions.openInstructionsModal();
   },
   render: function(){
+    console.log('instructionsView instructions are', this.props.instructions);
     if(this.props.isModifying){
       return (
         /* jshint ignore:start */
         <TouchableOpacity onPress={this.handlePress}>
           <View style={styles.instructionsContainer}>
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.instructionsText}>{this.props.instructions}</Text>
+              <Text style={styles.instructionsText}>{this.renderInstructions()}</Text>
             </View>
             <View style={{position: 'absolute', right: 0, top: 0, marginTop: 10}}>
               <Image source={require('image!disclosureIndicatorWhite')} />
