@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:57:42
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-26 13:58:38
 */
 
 'use strict';
@@ -23,9 +23,9 @@ var Part = React.createClass({
     var part = this.props.part;
     console.log('workoutView part part.exercises', part.exercises);
 
-    var exercises = part.exercises.map((exercise) =>
+    var exercises = part.exercises.map((exercise, index) =>
       /* jshint ignore:start */
-       <View style={styles.exerciseContainer}>
+       <View style={styles.exerciseContainer} key={index}>
         <ExNameAndParams
           exercise={exercise} />
        </View>

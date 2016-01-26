@@ -1375,7 +1375,7 @@ throw new TypeError(
 
 var index=findIndex.call(this,predicate,context);
 return index === -1?undefined:this[index];}});}})();
-__d('trybe/index.ios.js',["babel/register.js","react-native/Libraries/react-native/react-native.js","EventEmitter","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/stores/modalStore.js","trybe/client/scripts/components/tabBar.js","trybe/client/scripts/components/editWorkout/editWorkoutModal.js","trybe/client/scripts/components/viewWorkout/editInstructionsModal.js","trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js","trybe/client/scripts/components/editWorkout/editPart/editPartModal.js","trybe/client/scripts/components/editWorkout/editPart/editDateModal.js","trybe/client/scripts/components/log/logModal.js","trybe/client/scripts/components/viewWorkout/viewWorkoutModal.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/index.ios.js',["babel/register.js","react-native/Libraries/react-native/react-native.js","EventEmitter","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/stores/modalStore.js","trybe/client/scripts/components/tabBar.js","trybe/client/scripts/components/editWorkout/editWorkoutModal.js","trybe/client/scripts/components/viewWorkout/viewWorkoutModal.js","trybe/client/scripts/components/viewWorkout/editInstructionsModal.js","trybe/client/scripts/components/editWorkout/editExercise/editExerciseModal.js","trybe/client/scripts/components/editWorkout/editPart/editPartModal.js","trybe/client/scripts/components/editWorkout/editPart/editDateModal.js","trybe/client/scripts/components/log/logModal.js"],function(global, require, module, exports) {  'use strict';
 
 require("babel/register.js");
 
@@ -58990,7 +58990,7 @@ return typeof arg === 'object' && arg !== null;}
 function isUndefined(arg){
 return arg === void 0;}
 });
-__d('trybe/client/scripts/components/tabBar.js',["image!log","image!feed","image!workout","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/tabStore.js","trybe/client/scripts/actions/tabActions.js","trybe/client/scripts/components/feed/feed.js","trybe/client/scripts/components/viewWorkout/workoutTab.js","trybe/client/scripts/components/log/logTab.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/tabBar.js',["image!log","image!feed","image!workout","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/tabStore.js","trybe/client/scripts/actions/tabActions.js","trybe/client/scripts/components/viewWorkout/workoutTab.js","trybe/client/scripts/components/log/logTab.js","trybe/client/scripts/components/feed/feedTab.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -59004,7 +59004,7 @@ var tabStore=require('trybe/client/scripts/stores/tabStore.js');
 var tabActions=require('trybe/client/scripts/actions/tabActions.js');
 
 
-var FeedTab=require('trybe/client/scripts/components/feed/feed.js');
+var FeedTab=require('trybe/client/scripts/components/feed/feedTab.js');
 var WorkoutTab=require('trybe/client/scripts/components/viewWorkout/workoutTab.js');
 var LogTab=require('trybe/client/scripts/components/log/logTab.js');var 
 
@@ -59165,6 +59165,148 @@ data:tab});}};
 
 module.exports = tabActions;
 });
+__d('trybe/client/scripts/components/feed/feedTab.js',["image!backArrow","image!newPost","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/components/feed/feed.js"],function(global, require, module, exports) {  'use strict';
+
+
+
+
+
+
+
+
+var React=require('react-native/Libraries/react-native/react-native.js');
+var Feed=require('trybe/client/scripts/components/feed/feed.js');var 
+
+
+StyleSheet=
+
+
+
+
+
+React.StyleSheet;var Text=React.Text;var View=React.View;var Navigator=React.Navigator;var TouchableOpacity=React.TouchableOpacity;var Image=React.Image;
+
+var RouteStack={
+app:{
+name:'Feed',
+component:Feed}};
+
+
+
+
+var FeedTab=React.createClass({displayName:'FeedTab',
+goToScene:function(component,name){
+this.refs.logNav.push({
+component:component,
+name:name});},
+
+
+resetRoute:function(route){
+this.refs.logNav.popToTop();},
+
+renderScene:function(route,navigator){
+var Component=route.component;
+
+return (
+React.createElement(Component,{
+goToScene:this.goToScene}));},
+
+
+render:function(){
+return (
+
+React.createElement(Navigator,{
+ref:'feedNav',
+initialRoute:RouteStack.app,
+renderScene:this.renderScene,
+sceneStyle:styles.scene,
+navigationBar:
+React.createElement(Navigator.NavigationBar,{
+style:styles.navBar,
+routeMapper:NavBarRouteMapper})}));}});
+
+
+
+
+
+
+var NavBarRouteMapper={
+LeftButton:function(route,navigator,index,navState){
+return (
+
+React.createElement(TouchableOpacity,{
+style:styles.navBarComponentContainer,
+onPress:function(){
+if(index > 0){
+navigator.pop();}}},
+
+
+index > 0?
+React.createElement(Image,{
+style:{height:22,width:12},
+source:require('image!backArrow')}):null));},
+
+
+
+
+
+RightButton:function(route,navigator,index,navState){
+return (
+
+React.createElement(TouchableOpacity,{
+style:styles.navBarComponentContainer,
+onPress:function(){
+console.log('send button pressed');}},
+
+React.createElement(Image,{source:require('image!newPost'),style:styles.newPostIcon})));},
+
+
+
+
+
+Title:function(route,navigator,index,navState){
+return (
+
+React.createElement(View,{style:styles.navBarComponentContainer},
+React.createElement(Text,{style:styles.navBarTitleText},'ICON Athletes')));}};
+
+
+
+
+
+
+var styles=StyleSheet.create({
+scene:{
+flex:1,
+paddingTop:64},
+
+navBar:{
+flexDirection:'row',
+backgroundColor:'#4DBA97',
+alignItems:'center'},
+
+navBarComponentContainer:{
+flex:1,
+justifyContent:'center',
+margin:10},
+
+navBarTitleText:{
+fontFamily:'Avenir',
+fontSize:20,
+color:'white'},
+
+navBarSideText:{
+fontFamily:'Helvetica Neue',
+fontSize:17,
+color:'white'},
+
+newPostIcon:{
+marginBottom:4}});
+
+
+
+module.exports = FeedTab;
+});
 __d('trybe/client/scripts/components/feed/feed.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/feedStore.js","trybe/client/scripts/actions/feedActions.js","trybe/client/scripts/components/feed/feedCard.js","trybe/client/scripts/common/workoutViews/viewWorkoutBody.js","trybe/client/scripts/components/feed/chatBar.js"],function(global, require, module, exports) {  'use strict';
 
 var React=require('react-native/Libraries/react-native/react-native.js');
@@ -59209,6 +59351,7 @@ trybeWorkout:feedStore.getTrybeWorkout(),
 dataSource:this.state.dataSource.cloneWithRows(cards)});},
 
 
+
 renderRow:function(card){
 return (
 
@@ -59219,30 +59362,13 @@ React.createElement(FeedCard,{card:card})));},
 
 
 render:function(){
+
 var trybeWorkout=this.state.trybeWorkout;
-
-
 if(trybeWorkout.trybe){
 return (
 
 React.createElement(View,{style:styles.container},
-React.createElement(View,{style:styles.header},
-React.createElement(Text,{style:styles.headerText},'trybe')),
-
-
-React.createElement(View,{style:styles.content},
-React.createElement(View,{style:styles.contentContainer},
-
-React.createElement(View,{style:styles.chat},
-React.createElement(ChatBar,null)),
-
-
-React.createElement(View,{style:styles.cards},
-React.createElement(ListView,{dataSource:this.state.dataSource,renderRow:this.renderRow}))))));}else 
-
-
-
-
+React.createElement(ListView,{dataSource:this.state.dataSource,renderRow:this.renderRow})));}else 
 
 
 
@@ -59263,44 +59389,9 @@ flex:1,
 flexDirection:'column',
 backgroundColor:'#f3f3f3'},
 
-header:{
-flex:.1,
-backgroundColor:'#4dba97',
-justifyContent:'center'},
-
-headerText:{
-marginTop:5,
-textAlign:'center',
-color:'white',
-fontSize:28,
-fontFamily:'Avenir Next'},
-
-content:{
-flex:.9},
-
-contentContainer:{
-flex:1,
-flexDirection:'column',
-justifyContent:'space-around'},
-
-trybeName:{
-marginTop:5},
-
-chat:{
-flex:.1,
-alignItems:'center',
-backgroundColor:'#fff'},
-
-cards:{
-flex:.8,
-marginTop:-35},
-
 feedCard:{
 backgroundColor:'#fff',
 marginBottom:10}});
-
-
-
 
 
 
@@ -59433,36 +59524,39 @@ getCards:function(feedView){
 
 var dummyCards=[
 {
-username:'John Snow',
+username:'Wilbert Tirta',
+userPicLink:'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xap1/v/t1.0-9/1511172_10205199882816928_383161673633565774_n.jpg?oh=770155973b450ffd6a1f159f70ca4edf&oe=57430096',
 activity:'completed',
 createdAt:'3hr',
-trybe:'APEX Ninja Warriors',
+trybe:'ICON Athlete',
 day:17,
 workout:newWorkout(DUMMY_WORKOUT),
 origin:null,
-likes:17,
+likes:7,
 comments:3},
 
 {
-username:'Arnold Stan',
-activity:'modified',
+username:'Zishan Lokhandwala',
+userPicLink:'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xpt1/t31.0-8/11336892_10206935908345885_6178650775541606682_o.jpg',
+activity:'completed',
 createdAt:'3hr',
-trybe:'APEX Ninja Warriors',
+trybe:'ICON Athlete',
 day:17,
 workout:newWorkout(DUMMY_WORKOUT_2),
 origin:null,
-likes:24,
+likes:8,
 comments:6},
 
 {
-username:'Jacob Greensbury',
-activity:'modified',
+username:'Carolyn Liu',
+userPicLink:'http://i.imgur.com/SaTRIXe.png',
+activity:'completed',
 createdAt:'3hr',
-trybe:'APEX Ninja Warriors',
+trybe:'ICON Athlete',
 day:17,
 workout:newWorkout(DUMMY_WORKOUT_3),
 origin:null,
-likes:19,
+likes:14,
 comments:8}];
 
 
@@ -59484,7 +59578,7 @@ var DUMMY_COMMENT_CARD={
 username:'Jacob Greensbury',
 activity:'comment',
 createdAt:'3hr',
-trybe:'APEX Ninja Warriors',
+trybe:'ICON Athlete',
 day:17,
 comment:text,
 likes:3,
@@ -59658,13 +59752,12 @@ React.createElement(View,{style:styles.cardContainer},
 React.createElement(View,{style:styles.cardHeader},
 React.createElement(FeedCardHeader,{
 username:card.username,
+userPicLink:card.userPicLink,
 activity:card.activity,
 when:card.createdAt})),
 
 
 body,
-
-React.createElement(View,{style:styles.separatorLine}),
 
 React.createElement(View,{style:styles.cardFooter},
 React.createElement(FeedCardFooter,{
@@ -59735,30 +59828,36 @@ var React=require('react-native/Libraries/react-native/react-native.js');
 var feedActions=require('trybe/client/scripts/actions/feedActions.js');var 
 
 
-StyleSheet=
+Image=
 
 
-React.StyleSheet;var Text=React.Text;var View=React.View;
+
+React.Image;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;
 
 var FeedCardHeader=React.createClass({displayName:'FeedCardHeader',
-
 render:function(){
 var username=this.props.username;
 var activity=this.props.activity;
 var when=this.props.when;
 
+console.log('feedCardHeader userPicLink',this.props.userPicLink);
+
 return (
 
 React.createElement(View,{style:styles.headerContainer},
-React.createElement(View,{style:styles.usernameActivity},
-React.createElement(View,{style:styles.username},
-React.createElement(Text,{style:styles.userText},username)),
+React.createElement(View,{style:styles.leftSide},
+React.createElement(View,{style:styles.userPicContainer},
+React.createElement(Image,{
+style:styles.userPic,
+source:{uri:this.props.userPicLink}})),
 
-React.createElement(View,null,
+React.createElement(View,{style:styles.usernameActivity},
+React.createElement(Text,{style:styles.userText},username),
 React.createElement(Text,{style:styles.activityText},activity))),
 
 
-React.createElement(View,null,
+
+React.createElement(View,{style:styles.rightSide},
 React.createElement(Text,{style:styles.timeText},when))));}});
 
 
@@ -59772,29 +59871,42 @@ headerContainer:{
 flex:1,
 flexDirection:'row',
 justifyContent:'space-between',
-marginLeft:10,
-marginTop:10,
-marginRight:10,
-marginBottom:10},
+margin:10,
+paddingBottom:10,
+borderBottomWidth:.5,
+borderColor:'rgba(155,155,155,.7)'},
 
-usernameActivity:{
+leftSide:{
 flexDirection:'row'},
 
-username:{
-marginRight:4},
+userPic:{
+height:40,
+width:40,
+marginRight:10},
+
+usernameActivity:{
+marginRight:4,
+flexDirection:'column'},
 
 userText:{
-fontFamily:'Helvetica',
-color:'#434343',
-fontWeight:'bold'},
+fontFamily:'Avenir Next',
+fontSize:15,
+color:'#8D867E',
+fontWeight:'600',
+marginTop:1,
+marginBottom:2},
 
 activityText:{
-fontFamily:'Helvetica',
-color:'grey'},
-
+fontFamily:'Avenir Next',
+fontSize:15,
+color:'#8D867E',
+fontWeight:'500'},
 
 timeText:{
-color:'grey'}});
+fontFamily:'Avenir Next',
+fontSize:15,
+color:'#8D867E',
+fontWeight:'500'}});
 
 
 
@@ -59870,7 +59982,7 @@ marginBottom:10}});
 
 module.exports = ViewWorkoutBody;
 });
-__d('trybe/client/scripts/common/workoutViews/part.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/workoutViews/viewResults.js","trybe/client/scripts/common/workoutViews/exNameAndParams.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/common/workoutViews/part.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/common/workoutViews/exNameAndParams.js","trybe/client/scripts/common/workoutViews/viewResults.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -60342,7 +60454,7 @@ __d('image!rounds',[],function(global, require, module, exports) {  module.expor
 });
 __d('image!weightIcon',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/weightIcon.imageset/weightIcon.png","uri":"weightIcon","width":20,"height":20,"deprecated":true};
 });
-__d('trybe/client/scripts/components/feed/feedCardFooter.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/feed/feedCardFooter.js',["image!fistBump","image!tryIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -60358,11 +60470,12 @@ var modalActions=require('trybe/client/scripts/actions/modalActions.js');
 var newWorkout=require('trybe/client/scripts/common/newWorkout.js');var 
 
 
-StyleSheet=
+TouchableOpacity=
 
 
 
-React.StyleSheet;var Text=React.Text;var View=React.View;var TouchableHighlight=React.TouchableHighlight;
+
+React.TouchableOpacity;var Image=React.Image;var StyleSheet=React.StyleSheet;var Text=React.Text;var View=React.View;
 
 var FeedCardFooter=React.createClass({displayName:'FeedCardFooter',
 doWorkout:function(workout){
@@ -60389,10 +60502,23 @@ var likes=this.props.likes;
 return (
 
 React.createElement(View,{style:styles.footerContainer},
-React.createElement(Text,{style:styles.footerText},likes,' Likes'),
-React.createElement(TouchableHighlight,{
-onPress:function(){return _this.doWorkout(workout);}},
-React.createElement(Text,{style:styles.footerText},'Do Now'))));}});
+React.createElement(View,{style:styles.leftSide},
+React.createElement(TouchableOpacity,null,
+React.createElement(Image,{
+source:require('image!fistBump'),
+style:styles.footerIcon})),
+
+React.createElement(Text,{style:styles.footerText},likes,' Props')),
+
+React.createElement(View,{style:styles.rightSide},
+React.createElement(TouchableOpacity,{
+onPress:function(){return _this.doWorkout(workout);},
+style:{flexDirection:'row',alignItems:'center'}},
+React.createElement(Text,{style:styles.footerText},'Try'),
+React.createElement(Image,{
+source:require('image!tryIcon'),
+style:styles.footerIcon})))));}});
+
 
 
 
@@ -60406,13 +60532,32 @@ flex:1,
 flexDirection:'row',
 justifyContent:'space-between',
 paddingBottom:10,
+paddingTop:10,
 marginLeft:10,
 marginTop:10,
+marginRight:10,
+borderTopWidth:.5,
+borderColor:'rgba(155,155,155,.7)'},
+
+leftSide:{
+flexDirection:'row',
+alignItems:'center',
+marginLeft:10},
+
+rightSide:{
+flexDirection:'row',
+alignItems:'center',
 marginRight:10},
 
+footerIcon:{
+marginLeft:5,
+marginRight:5},
+
 footerText:{
-fontFamily:'Helvetica',
-color:'#434343'}});
+fontFamily:'Avenir Next',
+fontSize:16,
+fontWeight:'600',
+color:'#8D867E'}});
 
 
 
@@ -60682,6 +60827,10 @@ SET_PART_IS_LOGGED_TRUE:'SET_PART_IS_LOGGED_TRUE'};
 
 module.exports = viewWorkoutConstants;
 });
+__d('image!fistBump',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/fistBump.imageset/fistBump.png","uri":"fistBump","width":22,"height":18,"deprecated":true};
+});
+__d('image!tryIcon',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/tryIcon.imageset/tryIcon.png","uri":"tryIcon","width":15,"height":18,"deprecated":true};
+});
 __d('trybe/client/scripts/components/feed/chatBar.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/feedActions.js"],function(global, require, module, exports) {  'use strict';
 
 
@@ -60741,6 +60890,10 @@ textAlign:'center'}});
 
 
 module.exports = ChatBar;
+});
+__d('image!backArrow',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/backArrow.imageset/backArrow.png","uri":"backArrow","width":39,"height":66,"deprecated":true};
+});
+__d('image!newPost',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/newPost.imageset/newPost.png","uri":"newPost","width":22,"height":16,"deprecated":true};
 });
 __d('trybe/client/scripts/components/viewWorkout/workoutTab.js',["image!backArrow","image!createIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/components/viewWorkout/workoutChoice.js"],function(global, require, module, exports) {  'use strict';
 
@@ -60980,8 +61133,6 @@ module.exports = WorkoutChoice;
 });
 __d('image!iconAthletesBackground',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/iconAthletesBackground.imageset/iconAthletesBackground.png","uri":"iconAthletesBackground","width":359,"height":359,"deprecated":true};
 });
-__d('image!backArrow',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/backArrow.imageset/backArrow.png","uri":"backArrow","width":39,"height":66,"deprecated":true};
-});
 __d('image!createIcon',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/createIcon.imageset/createIcon.png","uri":"createIcon","width":20,"height":21,"deprecated":true};
 });
 __d('trybe/client/scripts/components/log/logTab.js',["image!backArrow","image!search","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/components/log/log.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/actions/editWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
@@ -61030,8 +61181,7 @@ var Component=route.component;
 
 return (
 React.createElement(Component,{
-goToScene:this.goToScene,
-onDoWorkout:this.props.onDoWorkout}));},
+goToScene:this.goToScene}));},
 
 
 render:function(){
@@ -61684,7 +61834,7 @@ marginBottom:5}});
 
 module.exports = LogCard;
 });
-__d('trybe/client/scripts/components/log/logCardFooter.js',["image!tryIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js","trybe/client/scripts/actions/viewWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/log/logCardFooter.js',["image!tryIcon","react-native/Libraries/react-native/react-native.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/common/newWorkout.js"],function(global, require, module, exports) {  'use strict';
 
 
 
@@ -61770,8 +61920,6 @@ fontWeight:'600'}});
 
 
 module.exports = LogCardFooter;
-});
-__d('image!tryIcon',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/tryIcon.imageset/tryIcon.png","uri":"tryIcon","width":15,"height":18,"deprecated":true};
 });
 __d('image!search',[],function(global, require, module, exports) {  module.exports = {"__packager_asset":true,"isStatic":true,"path":"/Users/vincetam/Desktop/Code/trybe-mvp/Trybe/Images.xcassets/search.imageset/search.png","uri":"search","width":20,"height":20,"deprecated":true};
 });
@@ -66112,7 +66260,7 @@ marginTop:15}});
 
 module.exports = EditDateModal;
 });
-__d('trybe/client/scripts/components/log/logModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/stores/logModalStore.js","trybe/client/scripts/actions/logModalActions.js","trybe/client/scripts/actions/logActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/components/log/logInputs/selectedResultInput.js","trybe/client/scripts/components/log/logInputs/notesInput.js","trybe/client/scripts/actions/viewWorkoutActions.js"],function(global, require, module, exports) {  'use strict';
+__d('trybe/client/scripts/components/log/logModal.js',["react-native/Libraries/react-native/react-native.js","trybe/client/scripts/stores/editWorkoutStore.js","trybe/client/scripts/actions/editWorkoutActions.js","trybe/client/scripts/actions/viewWorkoutActions.js","trybe/client/scripts/stores/logModalStore.js","trybe/client/scripts/actions/logModalActions.js","trybe/client/scripts/actions/logActions.js","trybe/client/scripts/actions/modalActions.js","trybe/client/scripts/components/log/logInputs/selectedResultInput.js","trybe/client/scripts/components/log/logInputs/notesInput.js"],function(global, require, module, exports) {  'use strict';
 
 
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-21 09:22:35
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 09:27:07
+* @Last Modified time: 2016-01-21 10:27:21
 */
 
 'use strict';
@@ -101,7 +101,7 @@ var NavBarRouteMapper = {
     return (
       /* jshint ignore:start */
       <View style={styles.navBarComponentContainer}>
-        <Text style={styles.navBarTitleText}>{route.name}</Text>
+        <Text style={styles.navBarTitleText}>ICON Athletes</Text>
       </View>
       /* jshint ignore:end */
     );
@@ -134,8 +134,6 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   newPostIcon:{
-    // height: 22,
-    // width: 22,
     marginBottom: 4,
   }
 });

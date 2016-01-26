@@ -8,14 +8,9 @@
   },
   "dependencies": {
     "events": "^1.0.2",
-    "flux": "^2.0.3",
-    "passport-instagram": "^0.1.2",
-    "react-native": "~0.13.0",
+    "flux": "^2.1.1",
+    "react-native": "^0.18.1",
     "react-native-multipicker": "^0.1.1",
     "react-native-tableview-simple": "^0.3.2"
-  },
-  "devDependencies": {
-    "babel-core": "5.8.29",
-    "babel": "5.8.29"
   }
 }
