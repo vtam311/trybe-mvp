@@ -3,7 +3,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 12:52:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 10:04:43
+* @Last Modified time: 2016-02-01 09:49:24
 */
 
 'use strict';
@@ -54,6 +54,7 @@ var FeedCard = React.createClass({
         /* jshint ignore:end */
       );
     }
+
     return (
       /* jshint ignore:start */
       <View style={styles.cardContainer}>

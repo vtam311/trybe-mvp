@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "events": "^1.0.2",
-    "flux": "^2.1.1",
+    "flux": "^2.0.3",
     "react-native": "^0.18.1",
     "react-native-multipicker": "^0.1.1",
     "react-native-tableview-simple": "^0.3.2"

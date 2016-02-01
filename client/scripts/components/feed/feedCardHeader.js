@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-21 10:19:07
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-29 16:38:43
 */
 
 'use strict';
@@ -22,8 +22,6 @@ var FeedCardHeader = React.createClass({
     var username = this.props.username;
     var activity = this.props.activity;
     var when = this.props.when; //must convert createdAt to 'x hours ago'
-
-    console.log('feedCardHeader userPicLink', this.props.userPicLink);
 
     return (
       /* jshint ignore:start */

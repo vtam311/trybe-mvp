@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:20:46
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 21:19:46
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-01 09:50:48
 */
 
 'use strict';
@@ -32,15 +32,15 @@ var ViewWorkoutBody = React.createClass({
     };
     var existingParts = workout.parts.filter(partExists);
     var partViews = existingParts.map((part, index) =>
-        /* jshint ignore:start */
-        <View key={index}>
-          <Part part={part} showNotes={this.props.showNotes}/>
-          { existingParts[index + 1] ?
-            <View style={styles.separatorLine}></View> :
-            null
-          }
-        </View>
-        /* jshint ignore:end */
+      /* jshint ignore:start */
+      <View key={index}>
+        <Part part={part} showNotes={this.props.showNotes}/>
+        { existingParts[index + 1] ?
+          <View style={styles.separatorLine}></View> :
+          null
+        }
+      </View>
+      /* jshint ignore:end */
     );
 
     return (
