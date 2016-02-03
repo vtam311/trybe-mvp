@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 12:53:51
+* @Last Modified time: 2016-01-21 09:25:24
 */
 
 'use strict';
@@ -44,8 +44,7 @@ var LogTab = React.createClass({
 
     return (
       <Component
-        goToScene={this.goToScene}
-        onDoWorkout={this.props.onDoWorkout} />
+        goToScene={this.goToScene} />
     );
   },
   render: function() {

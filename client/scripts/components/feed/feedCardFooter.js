@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 21:36:33
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-01-21 10:16:45
 */
 
 'use strict';
@@ -14,10 +14,11 @@ var modalActions = require('../../actions/modalActions');
 var newWorkout = require('../../common/newWorkout');
 
 var {
+  TouchableOpacity,
+  Image,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
 } = React;
 
 var FeedCardFooter = React.createClass({
@@ -45,11 +46,24 @@ var FeedCardFooter = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>{ likes } Likes</Text>
-        <TouchableHighlight
-          onPress={ () => this.doWorkout(workout) }>
-          <Text style={styles.footerText}>Do Now</Text>
-        </TouchableHighlight>
+        <View style={styles.leftSide}>
+          <TouchableOpacity>
+            <Image
+              source={require('image!fistBump')}
+              style={styles.footerIcon} />
+          </TouchableOpacity>
+          <Text style={styles.footerText}>{ likes } Props</Text>
+        </View>
+        <View style={styles.rightSide}>
+          <TouchableOpacity
+            onPress={ () => this.doWorkout(workout) }
+            style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.footerText}>Try</Text>
+            <Image
+              source={require('image!tryIcon')}
+              style={styles.footerIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
       /* jshint ignore:end */
     );
@@ -62,14 +76,33 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 10,
+    paddingTop: 10,
     marginLeft: 10,
     marginTop: 10,
-    marginRight: 10
+    marginRight: 10,
+    borderTopWidth: .5,
+    borderColor: 'rgba(155,155,155,.7)'
+  },
+  leftSide: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  rightSide: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  footerIcon: {
+    marginLeft: 5,
+    marginRight: 5,
   },
   footerText: {
-    fontFamily: 'Helvetica',
-    color: '#434343'
-  }
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#8D867E'
+  },
 });
 
 module.exports = FeedCardFooter;

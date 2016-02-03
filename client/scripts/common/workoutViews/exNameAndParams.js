@@ -30,8 +30,8 @@ var viewExercise = React.createClass({
       exStyleText = [...{}, styles.exerciseText];
     }
 
-    //active custom font color if prop is specified
-    if(customFontSize){
+    //activate custom font color if prop is specified
+    if(customFontColor){
       exStyleText = [...{}, exStyleText, {color: customFontColor}];
     }
 

@@ -1,15 +1,15 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:57:42
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-01 09:58:20
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var ExNameAndParams = require('./exNameAndParams');
+var ExerciseDescription = require('./exerciseDescrText');
 var ViewResults = require('./viewResults');
 
 var {
@@ -21,12 +21,10 @@ var {
 var Part = React.createClass({
   render: function(){
     var part = this.props.part;
-    console.log('workoutView part part.exercises', part.exercises);
-
-    var exercises = part.exercises.map((exercise) =>
+    var exercises = part.exercises.map((exercise, index) =>
       /* jshint ignore:start */
-       <View style={styles.exerciseContainer}>
-        <ExNameAndParams
+       <View style={styles.exerciseContainer} key={index}>
+        <ExerciseDescription
           exercise={exercise} />
        </View>
       /* jshint ignore:end */
@@ -37,6 +35,7 @@ var Part = React.createClass({
       <View style={styles.partContainer}>
         <Text style={styles.partNameText}>{part.name}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
+        <View style={styles.instructionsBottomBorder}></View>
         {exercises}
         <View style={styles.resultsContainer}>
           <ViewResults result={part.result} />
@@ -74,15 +73,19 @@ var styles = StyleSheet.create({
     color: '#8D867E',
     marginBottom: 8,
   },
+  instructionsBottomBorder: {
+    height: .5,
+    width: 280,
+    backgroundColor: 'rgba(88, 80, 77, .5)',
+    marginBottom: 3,
+  },
   exerciseContainer: {
-    width: 315,
-    borderBottomWidth: .5,
-    borderColor: 'rgba(88, 80, 77, .5)',
+    width: 280,
     paddingTop: 7,
     paddingBottom: 7
   },
   resultsContainer: {
-    width: 315,
+    width: 280,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingTop: 7,

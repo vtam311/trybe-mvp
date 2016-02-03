@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-11 18:51:27
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-01-21 10:21:49
 */
 
 'use strict';
@@ -39,36 +39,39 @@ var feedActions = {
     //To do: make get req to server
     var dummyCards = [
       {
-        username: 'John Snow',
+        username: 'Wilbert Tirta',
+        userPicLink: 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xap1/v/t1.0-9/1511172_10205199882816928_383161673633565774_n.jpg?oh=770155973b450ffd6a1f159f70ca4edf&oe=57430096',
         activity: 'completed',
         createdAt: '3hr',
-        trybe: 'APEX Ninja Warriors',
+        trybe: 'ICON Athlete',
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT),
         origin: null, //to track if workout is inspired by another user
-        likes: 17,
+        likes: 7,
         comments: 3
       },
       {
-        username: 'Arnold Stan',
-        activity: 'modified',
+        username: 'Zishan Lokhandwala',
+        userPicLink: 'https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xpt1/t31.0-8/11336892_10206935908345885_6178650775541606682_o.jpg',
+        activity: 'completed',
         createdAt: '3hr',
-        trybe: 'APEX Ninja Warriors',
+        trybe: 'ICON Athlete',
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT_2),
         origin: null, //to track if workout is inspired by another user
-        likes: 24,
+        likes: 8,
         comments: 6
       },
       {
-        username: 'Jacob Greensbury',
-        activity: 'modified',
+        username: 'Carolyn Liu',
+        userPicLink: 'http://i.imgur.com/SaTRIXe.png',
+        activity: 'completed',
         createdAt: '3hr',
-        trybe: 'APEX Ninja Warriors',
+        trybe: 'ICON Athlete',
         day: 17, //for day number in training program
         workout: newWorkout(DUMMY_WORKOUT_3),
         origin: null, //to track if workout is inspired by another user
-        likes: 19,
+        likes: 14,
         comments: 8
       }
     ];
@@ -90,7 +93,7 @@ var feedActions = {
       username: 'Jacob Greensbury',
       activity: 'comment',
       createdAt: '3hr',
-      trybe: 'APEX Ninja Warriors',
+      trybe: 'ICON Athlete',
       day: 17, //for day number in training program
       comment: text,
       likes: 3,
