@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:53:41
+* @Last Modified time: 2016-02-04 13:05:12
 */
 
 'use strict';
@@ -29,21 +29,21 @@ var TimePicker = require('./exerciseParameterPickers/timePicker');
 var ExerciseView = React.createClass({
   getInitialState: function(){
     return {
-      showPicker: false,
+      isShowingPicker: false,
       selectedPicker: null,
       selectedPickerParam: null,
     };
   },
-  setShowPicker: function(bool){
-    this.setState({showPicker: bool});
+  setIsShowingPicker: function(bool){
+    this.setState({isShowingPicker: bool});
   },
   handleRepPress: function(){
     //If current picker is already showing, toggle off on press
     if(this.state.selectedPickerParam === 'reps'){
-      this.setState({showPicker: !this.state.showPicker});
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
     } else {
     //Otherwise show on press
-      this.setState({showPicker: true});
+      this.setState({isShowingPicker: true});
     }
     var picker =
       <RepPicker
@@ -58,10 +58,10 @@ var ExerciseView = React.createClass({
   handleLoadPress: function(){
     //If current picker is already showing, toggle off on press
     if(this.state.selectedPickerParam === 'load'){
-      this.setState({showPicker: !this.state.showPicker});
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
     } else {
     //Otherwise show on press
-      this.setState({showPicker: true});
+      this.setState({isShowingPicker: true});
     }
 
     var picker =
@@ -79,10 +79,10 @@ var ExerciseView = React.createClass({
   handleDistancePress: function(){
     //If current picker is already showing, toggle off on press
     if(this.state.selectedPickerParam === 'distance'){
-      this.setState({showPicker: !this.state.showPicker});
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
     } else {
     //Otherwise show on press
-      this.setState({showPicker: true});
+      this.setState({isShowingPicker: true});
     }
 
     var picker =
@@ -100,10 +100,10 @@ var ExerciseView = React.createClass({
   handleTimePress: function(){
     //If current picker is already showing, toggle off on press
     if(this.state.selectedPickerParam === 'time'){
-      this.setState({showPicker: !this.state.showPicker});
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
     } else {
     //Otherwise show on press
-      this.setState({showPicker: true});
+      this.setState({isShowingPicker: true});
     }
 
     var picker =
@@ -139,14 +139,16 @@ var ExerciseView = React.createClass({
                   exercise={this.props.exercise}
                   partIdx={this.props.partIdx}
                   exIdx={this.props.exIdx}
-                  setShowPicker={this.setShowPicker}
+                  isShowingPicker={this.state.isShowingPicker}
+                  selectedPickerParam={this.state.selectedPickerParam}
+                  setIsShowingPicker={this.setIsShowingPicker}
                   handleRepPress={this.handleRepPress}
                   handleLoadPress={this.handleLoadPress}
                   handleDistancePress={this.handleDistancePress}
                   handleTimePress={this.handleTimePress} />
               </View>
             </View>
-            {this.state.showPicker ?
+            {this.state.isShowingPicker ?
               <View style={styles.pickerContainer}>
                 {this.state.selectedPicker}
               </View>
@@ -163,7 +165,9 @@ var ExerciseView = React.createClass({
             <ExerciseParams
               exercise={this.props.exercise}
               exIdx={this.props.exIdx}
-              setShowPicker={this.setShowPicker}
+              isShowingPicker={this.state.isShowingPicker}
+              selectedPickerParam={this.state.selectedPickerParam}
+              setIsShowingPicker={this.setIsShowingPicker}
               handleRepPress={this.handleRepPress}
               handleLoadPress={this.handleLoadPress}
               handleDistancePress={this.handleDistancePress}
