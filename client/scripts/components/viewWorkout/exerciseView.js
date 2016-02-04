@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 15:37:24
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-03 20:33:40
 */
 
 'use strict';
@@ -19,12 +19,12 @@ var {
   StyleSheet,
 } = React;
 
-var ExNameAndParams = require('../../common/workoutViews/exNameAndParams');
+var ExNameAndParams = require('./new_ExNameAndParams');
 
 var ExerciseView = React.createClass({
   handlePress: function(){
-    //Notify editExerciseModal that user is modifying exercise
-    //rather than creating one
+    //Notify editExerciseModal that user is modifying existing
+    //exercise rather than creating a new one
     editExerciseActions.setModifyOrCreate('modify');
 
     //notify editWorkoutStore which exercise is being modified

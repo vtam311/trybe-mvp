@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var renderExerciseTime = require('../renderExerciseTime');
+var renderExerciseTime = require('../../common/renderExerciseTime');
 
 var {
   StyleSheet,
