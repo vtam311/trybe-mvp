@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-03 20:33:40
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-03 22:12:47
 */
 
 'use strict';
@@ -39,6 +39,7 @@ var ExerciseView = React.createClass({
           <View style={styles.exerciseContainer}>
             <ExNameAndParams
               exercise={this.props.exercise}
+              partIdx={this.props.partIdx}
               exIdx={this.props.exIdx}
               customFontSize={25}
               customFontColor='#fff' />

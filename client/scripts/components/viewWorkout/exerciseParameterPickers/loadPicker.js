@@ -1,14 +1,14 @@
 /*
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:59:30
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-03 22:13:12
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../../actions/editExerciseActions');
+var editExerciseActions = require('../../../actions/editExerciseActions');
 
 var {
   PickerIOS,

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:45:50
+* @Last Modified time: 2016-02-03 21:56:21
 */
 
 'use strict';
@@ -11,7 +11,8 @@ var React = require('react-native');
 var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
-  PickerIOS
+  PickerIOS,
+  StyleSheet
 } = React;
 
 var PickerItemIOS = PickerIOS.Item;
@@ -45,16 +46,24 @@ var RepPicker = React.createClass({
   render: function() {
     return (
       <PickerIOS
+        itemStyle={{fontSize: 25, color: 'red', textAlign: 'left', fontWeight: 'bold'}}
         selectedValue={this.state.reps}
-        onValueChange={(val) => this._setReps(val)}>
+        onValueChange={(val) => this._setReps(val)} >
         {REP_CHOICES.map((choice) =>
           <PickerItemIOS
             key={choice}
             value={choice}
-            label={this.showChoiceLabels(choice)}/>
+            label={this.showChoiceLabels(choice)} />
         )}
       </PickerIOS>
     );
+  }
+});
+
+var styles = StyleSheet.create({
+  itemStyle: {
+    color: '#fff',
+    fontSize: 30,
   }
 });
 

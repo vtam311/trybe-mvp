@@ -2,12 +2,13 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:46:53
+* @Last Modified time: 2016-02-03 22:15:51
 */
 
 'use strict';
 
 var React = require('react-native');
+var editWorkoutActions = require('../../actions/editWorkoutActions');
 var renderExerciseTime = require('../../common/renderExerciseTime');
 
 var {
@@ -18,8 +19,10 @@ var {
   View,
 } = React;
 
-var DistancePicker = require('./exerciseParameterPickers/distancePicker');
 var RepPicker = require('./exerciseParameterPickers/repPicker');
+var LoadPicker = require('./exerciseParameterPickers/loadPicker');
+var DistancePicker = require('./exerciseParameterPickers/distancePicker');
+var TimePicker = require('./exerciseParameterPickers/timePicker');
 
 //This outputs a line giving the exercise description
 //on the left, and its parameters on the right
@@ -34,11 +37,35 @@ var ExNameAndParams = React.createClass({
   setShowPicker: function(bool){
     this.setState({showPicker: bool});
   },
+  setTargetExerciseIdx: function(partIdx, exIdx){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+  },
   handleRepPress: function(){
-    console.log('handleRepPress');
     var picker = <RepPicker reps={this.props.exercise.reps} />;
-    this.setShowPicker(true);
     this.setState({selectedPicker: picker});
+    this.setShowPicker(true);
+  },
+  handleLoadPress: function(){
+    var picker =
+      <LoadPicker
+        loadVal={this.props.exercise.load.val}
+        units={this.props.exercise.load.units} />;
+    this.setState({selectedPicker: picker});
+    this.setShowPicker(true);
+  },
+  handleDistancePress: function(){
+    var picker =
+      <DistancePicker
+        distVal={this.props.exercise.distance.val}
+        units={this.props.exercise.distance.units} />;
+    this.setState({selectedPicker: picker});
+    this.setShowPicker(true);
+  },
+  handleTimePress: function(){
+    var picker =
+      <TimePicker time={this.props.exercise.time} />;
+    this.setState({selectedPicker: picker});
+    this.setShowPicker(true);
   },
   render: function(){
     var exercise = this.props.exercise;
@@ -46,6 +73,12 @@ var ExNameAndParams = React.createClass({
 
     //Load component functions for use in renderExercise functions
     var handleRepPress = this.handleRepPress.bind(this);
+    var handleLoadPress = this.handleLoadPress.bind(this);
+    var handleDistancePress = this.handleDistancePress.bind(this);
+    var handleTimePress = this.handleTimePress.bind(this);
+
+    //Used to determine when to render commas, if there are >1
+    //exercise parameters
     var lastExParam;
 
     var renderExerciseName = function() {
@@ -90,12 +123,12 @@ var ExNameAndParams = React.createClass({
           //if there is another exercise param to render,
           //add a comma and space
           loadPress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleLoadPress()}>
               <Text style={styles.exerciseText}>{exercise.load.val}{exercise.load.units}, </Text>
             </TouchableOpacity> ;
         } else {
           loadPress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleLoadPress()}>
               <Text style={styles.exerciseText}>{exercise.load.val}{exercise.load.units}</Text>
             </TouchableOpacity> ;
         }
@@ -108,12 +141,12 @@ var ExNameAndParams = React.createClass({
           //if there is another exercise param to render,
           //add a comma and space
           distancePress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDistancePress()}>
               <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}, </Text>
             </TouchableOpacity> ;
         } else {
           distancePress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDistancePress()}>
               <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text>
             </TouchableOpacity> ;
         }
@@ -123,7 +156,7 @@ var ExNameAndParams = React.createClass({
     var renderTime = function(){
       if(exercise.time){
         timePress =
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTimePress()}>
             <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text>
           </TouchableOpacity> ;
       }
