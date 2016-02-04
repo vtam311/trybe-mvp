@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:09:21
+* @Last Modified time: 2016-02-04 12:13:59
 */
 
 'use strict';
@@ -138,6 +138,7 @@ var ExerciseView = React.createClass({
                 exercise={this.props.exercise}
                 partIdx={this.props.partIdx}
                 exIdx={this.props.exIdx}
+                setShowPicker={this.setShowPicker}
                 handleRepPress={this.handleRepPress}
                 handleLoadPress={this.handleLoadPress}
                 handleDistancePress={this.handleDistancePress}
@@ -168,6 +169,7 @@ var ExerciseView = React.createClass({
             <ExerciseParams
               exercise={this.props.exercise}
               exIdx={this.props.exIdx}
+              setShowPicker={this.setShowPicker}
               handleRepPress={this.handleRepPress}
               handleLoadPress={this.handleLoadPress}
               handleDistancePress={this.handleDistancePress}
@@ -178,20 +180,16 @@ var ExerciseView = React.createClass({
     }
   }
 });
-    //More icon
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    // flex: 1,
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,
     paddingBottom: 15,
-    // backgroundColor: 'green',
   },
   rowContainer: {
     flexDirection: 'row',
-    // backgroundColor: 'red'
   },
   exerciseText:{
     fontFamily: 'Avenir Next',

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:04:34
+* @Last Modified time: 2016-02-04 12:13:13
 */
 
 'use strict';
@@ -18,103 +18,9 @@ var {
   View,
 } = React;
 
-// var RepPicker = require('./exerciseParameterPickers/repPicker');
-// var LoadPicker = require('./exerciseParameterPickers/loadPicker');
-// var DistancePicker = require('./exerciseParameterPickers/distancePicker');
-// var TimePicker = require('./exerciseParameterPickers/timePicker');
-
 //This outputs a line giving the exercise parameters
 //When one is licked, show pickers in parent to allow user to edit them
 var ExerciseParameters = React.createClass({
-  // getInitialState: function(){
-  //   return {
-  //     showPicker: false,
-  //     selectedPicker: null,
-  //     selectedPickerParam: null,
-  //   };
-  // },
-  // setShowPicker: function(bool){
-  //   this.setState({showPicker: bool});
-  // },
-  // handleRepPress: function(){
-  //   //If current picker is already showing, toggle off on press
-  //   if(this.state.selectedPickerParam === 'reps'){
-  //     this.setState({showPicker: !this.state.showPicker});
-  //   } else {
-  //   //Otherwise show on press
-  //     this.setState({showPicker: true});
-  //   }
-  //   var picker =
-  //     <RepPicker
-  //       reps={this.props.exercise.reps}
-  //       partIdx={this.props.partIdx}
-  //       exIdx={this.props.exIdx} />;
-  //   this.setState({
-  //     selectedPicker: picker,
-  //     selectedPickerParam: 'reps'
-  //   });
-  // },
-  // handleLoadPress: function(){
-  //   //If current picker is already showing, toggle off on press
-  //   if(this.state.selectedPickerParam === 'load'){
-  //     this.setState({showPicker: !this.state.showPicker});
-  //   } else {
-  //   //Otherwise show on press
-  //     this.setState({showPicker: true});
-  //   }
-
-  //   var picker =
-  //     <LoadPicker
-  //       loadVal={this.props.exercise.load.val}
-  //       units={this.props.exercise.load.units}
-  //       partIdx={this.props.partIdx}
-  //       exIdx={this.props.exIdx} />;
-
-  //   this.setState({
-  //     selectedPicker: picker,
-  //     selectedPickerParam: 'load'
-  //   });
-  // },
-  // handleDistancePress: function(){
-  //   //If current picker is already showing, toggle off on press
-  //   if(this.state.selectedPickerParam === 'distance'){
-  //     this.setState({showPicker: !this.state.showPicker});
-  //   } else {
-  //   //Otherwise show on press
-  //     this.setState({showPicker: true});
-  //   }
-
-  //   var picker =
-  //     <DistancePicker
-  //       distVal={this.props.exercise.distance.val}
-  //       units={this.props.exercise.distance.units}
-  //       partIdx={this.props.partIdx}
-  //       exIdx={this.props.exIdx} />;
-
-  //   this.setState({
-  //     selectedPicker: picker,
-  //     selectedPickerParam: 'distance'
-  //   });
-  // },
-  // handleTimePress: function(){
-  //   //If current picker is already showing, toggle off on press
-  //   if(this.state.selectedPickerParam === 'time'){
-  //     this.setState({showPicker: !this.state.showPicker});
-  //   } else {
-  //   //Otherwise show on press
-  //     this.setState({showPicker: true});
-  //   }
-
-  //   var picker =
-  //     <TimePicker time={this.props.exercise.time}
-  //       partIdx={this.props.partIdx}
-  //       exIdx={this.props.exIdx} />;
-
-  //   this.setState({
-  //     selectedPicker: picker,
-  //     selectedPickerParam: 'time'
-  //   });
-  // },
   render: function(){
     var exercise = this.props.exercise;
     var repsPress, loadPress, distancePress, timePress;
@@ -125,8 +31,7 @@ var ExerciseParameters = React.createClass({
     var handleDistancePress = this.props.handleDistancePress;
     var handleTimePress = this.props.handleTimePress;
 
-    //Used to determine when to render commas, if there are >1
-    //exercise parameters
+    //Determines when to render commas, if has >1 parameters
     var lastExParam;
 
     var renderReps = function() {
@@ -223,16 +128,14 @@ var ExerciseParameters = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-
-        <TouchableWithoutFeedback onPress={() => this.setState({showPicker: false})}>
-          <View style={styles.topRow}>
+        <TouchableWithoutFeedback onPress={() => this.props.setShowPicker(false)}>
+          <View style={styles.row}>
             {repsPress}
             {loadPress}
             {distancePress}
             {timePress}
           </View>
         </TouchableWithoutFeedback>
-
       </View>
       /* jshint ignore:end */
     );
@@ -244,7 +147,7 @@ var styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: 'green'
   },
-  topRow: {
+  row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
