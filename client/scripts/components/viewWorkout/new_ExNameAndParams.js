@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:03:05
+* @Last Modified time: 2016-02-03 21:20:05
 */
 
 'use strict';
@@ -26,14 +26,12 @@ var ExNameAndParams = React.createClass({
   getInitialState: function(){
     return {
       showPicker: true,
-      selectedPicker: DistancePicker,
+      selectedPicker: null,
     };
   },
   render: function(){
     var exercise = this.props.exercise;
-
     var exerciseName, repsPress, loadPress, distancePress, timePress;
-    var exParams = '';
     var lastExParam;
 
     var renderExerciseName = function() {
