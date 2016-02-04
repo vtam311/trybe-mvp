@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-12-10 14:52:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 22:13:20
+* @Last Modified time: 2016-02-04 09:47:26
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../actions/editExerciseActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   PickerIOS,
@@ -121,7 +121,7 @@ var TimePicker = React.createClass({
     //If user sets all time values back to zero, set to null
     if(newTime === '00:00:00') newTime = null;
 
-    editExerciseActions.setTime(newTime);
+    editWorkoutActions.setTime(newTime);
   },
 
   showChoiceLabels: function(choice){
