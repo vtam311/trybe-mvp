@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:13:59
+* @Last Modified time: 2016-02-04 12:47:44
 */
 
 'use strict';
@@ -131,18 +131,20 @@ var ExerciseView = React.createClass({
         /* jshint ignore:start */
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity style={{flex: .5}}>
                 <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
               </TouchableOpacity>
-              <ExerciseParams
-                exercise={this.props.exercise}
-                partIdx={this.props.partIdx}
-                exIdx={this.props.exIdx}
-                setShowPicker={this.setShowPicker}
-                handleRepPress={this.handleRepPress}
-                handleLoadPress={this.handleLoadPress}
-                handleDistancePress={this.handleDistancePress}
-                handleTimePress={this.handleTimePress} />
+              <View style={{flex: .5}}>
+                <ExerciseParams
+                  exercise={this.props.exercise}
+                  partIdx={this.props.partIdx}
+                  exIdx={this.props.exIdx}
+                  setShowPicker={this.setShowPicker}
+                  handleRepPress={this.handleRepPress}
+                  handleLoadPress={this.handleLoadPress}
+                  handleDistancePress={this.handleDistancePress}
+                  handleTimePress={this.handleTimePress} />
+              </View>
               <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 15}}>
                <TouchableOpacity
                 onPress={this.handleInfoPress}
@@ -190,6 +192,8 @@ var styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    // backgroundColor: 'blue'
   },
   exerciseText:{
     fontFamily: 'Avenir Next',

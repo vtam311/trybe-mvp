@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:13:13
+* @Last Modified time: 2016-02-04 12:47:18
 */
 
 'use strict';
@@ -145,11 +145,12 @@ var ExerciseParameters = React.createClass({
 var styles = StyleSheet.create({
   exerciseContainer: {
     flex: 1,
-    // backgroundColor: 'green'
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    // flexWrap: 'wrap',
+    // backgroundColor: 'grey'
   },
   exerciseText: {
     fontFamily: 'Avenir Next',
