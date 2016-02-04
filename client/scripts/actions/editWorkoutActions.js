@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:30:14
+* @Last Modified time: 2016-02-03 19:32:35
 */
 
 'use strict';
@@ -138,9 +138,9 @@ var editWorkoutActions = {
       }
     });
   },
-  setResultType: function(type, partIdx){
+  setMetric: function(type, partIdx){
     AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SET_RESULT_TYPE,
+      actionType: editWorkoutConstants.SET_METRIC,
       data: {
         type: type,
         partIdx: partIdx

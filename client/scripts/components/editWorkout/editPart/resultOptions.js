@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-13 19:01:55
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 13:54:36
+* @Last Modified time: 2016-02-03 19:32:16
 */
 
 'use strict';
@@ -20,8 +20,8 @@ var {
 
 
 var ResultOptions = React.createClass({
-  setResultType: function(val){
-    editWorkoutActions.setResultType(val, this.props.partIdx);
+  setMetric: function(val){
+    editWorkoutActions.setMetric(val, this.props.partIdx);
   },
   getResultTypeIdx: function(){
     //Changes segmCtrlIdx based on result type
@@ -45,7 +45,7 @@ var ResultOptions = React.createClass({
   render: function(){
     //Must declare props to pass to showOrHideCustomInput
     var resultType = this.props.resultType;
-    var setResultType = this.setResultType.bind(this);
+    var setMetric = this.setMetric.bind(this);
     var showCustomTextInputVal = this.showCustomTextInputVal;
     var scrollToComponent = this.props.scrollToComponent;
     var parentRef = 'part' + this.props.partIdx;
@@ -60,7 +60,7 @@ var ResultOptions = React.createClass({
               style={{height: 40}}
               placeholder="Distance, Reps, Etc."
               autoCapitalize='words'
-              onChangeText={(text) => setResultType(text)}
+              onChangeText={(text) => setMetric(text)}
               onFocus={scrollToComponent.bind(this, parentRef, 'customTextInput')} />
           </View>
         );
@@ -76,7 +76,7 @@ var ResultOptions = React.createClass({
           <SegmentedControlIOS
             values={['Time', 'Rounds', 'Max Load', 'Custom']}
             selectedIndex={this.getResultTypeIdx()}
-            onValueChange={(val) => setResultType(val)}
+            onValueChange={(val) => setMetric(val)}
             tintColor={'#4DBA97'}/>
         </View>
         {showOrHideCustomInput()}

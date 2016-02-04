@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:30:49
+* @Last Modified time: 2016-02-03 19:33:16
 */
 
 'use strict';
@@ -132,7 +132,7 @@ var toggleRecording = function(data){
   _store.workout.parts[partIdx].result.isRecording = bool;
 };
 
-var setResultType = function(data){
+var setMetric = function(data){
   var type = data.type;
   var partIdx = data.partIdx;
   _store.workout.parts[partIdx].result.type = type;
@@ -283,8 +283,8 @@ AppDispatcher.register(function(payload){
       toggleRecording(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case editWorkoutConstants.SET_RESULT_TYPE:
-      setResultType(action.data);
+    case editWorkoutConstants.SET_METRIC:
+      setMetric(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.ADD_PART:
