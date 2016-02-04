@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:33:16
+* @Last Modified time: 2016-02-03 20:01:36
 */
 
 'use strict';
@@ -61,7 +61,6 @@ var setDefaultOrCustom = function(data){
 var setDailyWorkout = function(data){
   var workout = data.workout;
   _store.defaultWorkout = workout;
-  console.log('editWorkoutStore defaultWorkout is', _store.defaultWorkout);
 };
 
 var setWorkout = function(data){
@@ -75,7 +74,6 @@ var setToDefaultWorkout = function(){
 
 var resetWorkout = function(){
   _store.workout = newWorkout(WORKOUT_TEMPLATE);
-  console.log('resetWorkout reset _store.workout to', _store.workout);
 };
 
 var saveDate = function(data){
@@ -110,6 +108,55 @@ var saveExercise = function(data){
   var exIdx = _store.targetExerciseIdx;
   var exercise = data.exercise;
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
+};
+
+var setExerciseName = function(data) {
+  var exName = data.exName;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].name = exName;
+};
+
+var setReps = function(data) {
+  var reps = data.reps;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].reps = reps;
+};
+
+var setLoadVal = function(data) {
+  var load = data.load;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].load.val = load;
+};
+
+var setLoadUnit = function(data) {
+  var units = data.units;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].load.units = units;
+};
+
+var setDistVal = function(data) {
+  var dist = data.dist;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].distance.val = dist;
+};
+
+var setDistUnit = function(data) {
+  var unit = data.unit;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].distance.units = unit;
+};
+
+var setTime = function(data) {
+  var time = data.time;
+  var partIdx = _store.targetPartIdx;
+  var exIdx = _store.targetExerciseIdx;
+  _store.workout.parts[partIdx].exercises[exIdx].time = time;
 };
 
 //Specifies which part of workout to edit
@@ -271,6 +318,35 @@ AppDispatcher.register(function(payload){
       saveExercise(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
+    case editWorkoutConstants.SET_EXERCISE_NAME:
+      setExerciseName(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_REPS:
+      setReps(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_LOAD_VAL:
+      setLoadVal(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_LOAD_UNIT:
+      setLoadUnit(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_DIST_VAL:
+      setDistVal(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_DIST_UNIT:
+      setDistUnit(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SET_EXERCISE_TIME:
+      setTime(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+
     case editWorkoutConstants.SET_TARGET_PART_IDX:
       setTargetPartIdx(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);

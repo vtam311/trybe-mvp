@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:48:45
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 10:34:47
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-03 19:41:00
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var editExerciseActions = {
   },
   setExerciseName: function(exName){
     AppDispatcher.handleAction({
-      actionType: editExerciseConstants.SET_EXERCISE_NAME,
+      actionType: editExerciseConstants.SET_NAME,
       data: {
         exName: exName
       }
