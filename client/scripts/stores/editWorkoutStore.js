@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 16:12:38
+* @Last Modified time: 2016-02-03 19:30:49
 */
 
 'use strict';
@@ -105,14 +105,6 @@ var removeExercise = function(data){
   _store.workout.parts[partIdx].exercises.splice(exIdx, 1);
 };
 
-//Specifies which exercise of workout to edit
-var setTargetExerciseIdx = function(data){
-  var partIdx = data.partIdx;
-  var exIdx = data.exIdx;
-  _store.targetPartIdx = partIdx;
-  _store.targetExerciseIdx = exIdx;
-};
-
 var saveExercise = function(data){
   var partIdx = _store.targetPartIdx;
   var exIdx = _store.targetExerciseIdx;
@@ -120,16 +112,18 @@ var saveExercise = function(data){
   _store.workout.parts[partIdx].exercises[exIdx] = exercise;
 };
 
-var savePartResult = function(data){
-  var partIdx = _store.targetPartIdx;
-  var result = data.result;
-  _store.workout.parts[partIdx].result = result;
+//Specifies which part of workout to edit
+var setTargetPartIdx = function(data){
+  var partIdx = data.partIdx;
+  _store.targetPartIdx = partIdx;
 };
 
-var savePartNotes = function(data){
-  var partIdx = _store.targetPartIdx;
-  var notes = data.notes;
-  _store.workout.parts[partIdx].notes = notes;
+//Specifies which exercise of workout to edit
+var setTargetExerciseIdx = function(data){
+  var partIdx = data.partIdx;
+  var exIdx = data.exIdx;
+  _store.targetPartIdx = partIdx;
+  _store.targetExerciseIdx = exIdx;
 };
 
 var toggleRecording = function(data){
@@ -154,16 +148,22 @@ var removePart = function(){
   _store.workout.parts.splice(partIdx, 1);
 };
 
-//Specifies which part of workout to edit
-var setTargetPartIdx = function(data){
-  var partIdx = data.partIdx;
-  _store.targetPartIdx = partIdx;
-};
-
 var setPartName = function(data){
   var name = data.name;
   var partIdx = _store.targetPartIdx;
   _store.workout.parts[partIdx].name = name;
+};
+
+var savePartResult = function(data){
+  var partIdx = _store.targetPartIdx;
+  var result = data.result;
+  _store.workout.parts[partIdx].result = result;
+};
+
+var savePartNotes = function(data){
+  var partIdx = _store.targetPartIdx;
+  var notes = data.notes;
+  _store.workout.parts[partIdx].notes = notes;
 };
 
 var editWorkoutStore = Object.assign({}, EventEmitter.prototype, {
@@ -267,20 +267,16 @@ AppDispatcher.register(function(payload){
       removeExercise(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case editWorkoutConstants.SET_TARGET_EXERCISE_IDX:
-      setTargetExerciseIdx(action.data);
-      editWorkoutStore.emit(CHANGE_EVENT);
-      break;
     case editWorkoutConstants.SAVE_EXERCISE:
       saveExercise(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case editWorkoutConstants.SAVE_PART_RESULT:
-      savePartResult(action.data);
+    case editWorkoutConstants.SET_TARGET_PART_IDX:
+      setTargetPartIdx(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case editWorkoutConstants.SAVE_PART_NOTES:
-      savePartNotes(action.data);
+    case editWorkoutConstants.SET_TARGET_EXERCISE_IDX:
+      setTargetExerciseIdx(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     case editWorkoutConstants.TOGGLE_RECORDING:
@@ -299,12 +295,16 @@ AppDispatcher.register(function(payload){
       removePart();
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
-    case editWorkoutConstants.SET_TARGET_PART_IDX:
-      setTargetPartIdx(action.data);
-      editWorkoutStore.emit(CHANGE_EVENT);
-      break;
     case editWorkoutConstants.SET_PART_NAME:
       setPartName(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SAVE_PART_RESULT:
+      savePartResult(action.data);
+      editWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case editWorkoutConstants.SAVE_PART_NOTES:
+      savePartNotes(action.data);
       editWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

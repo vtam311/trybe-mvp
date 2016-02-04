@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-19 16:11:50
+* @Last Modified time: 2016-02-03 19:30:14
 */
 
 'use strict';
@@ -104,15 +104,6 @@ var editWorkoutActions = {
       }
     });
   },
-  setTargetExerciseIdx: function(partIdx, exIdx){
-    AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SET_TARGET_EXERCISE_IDX,
-      data: {
-        partIdx: partIdx,
-        exIdx: exIdx
-      }
-    });
-  },
   saveExercise: function(exercise){
     AppDispatcher.handleAction({
       actionType: editWorkoutConstants.SAVE_EXERCISE,
@@ -121,19 +112,20 @@ var editWorkoutActions = {
       }
     });
   },
-  savePartResult: function(result){
+  setTargetPartIdx: function(partIdx){
     AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SAVE_PART_RESULT,
+      actionType: editWorkoutConstants.SET_TARGET_PART_IDX,
       data: {
-        result: result
+        partIdx: partIdx
       }
     });
   },
-  savePartNotes: function(notes){
+  setTargetExerciseIdx: function(partIdx, exIdx){
     AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SAVE_PART_NOTES,
+      actionType: editWorkoutConstants.SET_TARGET_EXERCISE_IDX,
       data: {
-        notes: notes
+        partIdx: partIdx,
+        exIdx: exIdx
       }
     });
   },
@@ -165,19 +157,27 @@ var editWorkoutActions = {
       actionType: editWorkoutConstants.REMOVE_PART,
     });
   },
-  setTargetPartIdx: function(partIdx){
-    AppDispatcher.handleAction({
-      actionType: editWorkoutConstants.SET_TARGET_PART_IDX,
-      data: {
-        partIdx: partIdx
-      }
-    });
-  },
   setPartName: function(name){
     AppDispatcher.handleAction({
       actionType: editWorkoutConstants.SET_PART_NAME,
       data: {
         name: name
+      }
+    });
+  },
+  savePartResult: function(result){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SAVE_PART_RESULT,
+      data: {
+        result: result
+      }
+    });
+  },
+  savePartNotes: function(notes){
+    AppDispatcher.handleAction({
+      actionType: editWorkoutConstants.SAVE_PART_NOTES,
+      data: {
+        notes: notes
       }
     });
   },
