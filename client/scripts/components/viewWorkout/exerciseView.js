@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 12:47:44
+* @Last Modified time: 2016-02-04 12:53:41
 */
 
 'use strict';
@@ -144,14 +144,6 @@ var ExerciseView = React.createClass({
                   handleLoadPress={this.handleLoadPress}
                   handleDistancePress={this.handleDistancePress}
                   handleTimePress={this.handleTimePress} />
-              </View>
-              <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 15}}>
-               <TouchableOpacity
-                onPress={this.handleInfoPress}
-                style={{padding: 8, position: 'relative'}}>
-                  <Image
-                    source={require('image!infoIcon')} />
-                </TouchableOpacity>
               </View>
             </View>
             {this.state.showPicker ?
