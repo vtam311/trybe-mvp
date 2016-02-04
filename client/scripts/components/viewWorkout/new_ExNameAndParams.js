@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 20:48:25
+* @Last Modified time: 2016-02-03 21:03:05
 */
 
 'use strict';
@@ -17,10 +17,18 @@ var {
   View,
 } = React;
 
+var DistancePicker = require('./exerciseParameterPickers/distancePicker');
+
 //This outputs a line giving the exercise description
 //on the left, and its parameters on the right
 //Parameters, when clicked, show pickers to allow user to edit them
 var ExNameAndParams = React.createClass({
+  getInitialState: function(){
+    return {
+      showPicker: true,
+      selectedPicker: DistancePicker,
+    };
+  },
   render: function(){
     var exercise = this.props.exercise;
 
@@ -150,6 +158,15 @@ var ExNameAndParams = React.createClass({
             {timePress}
           </View>
         </View>
+
+        {this.state.showPicker ?
+          <View style={styles.bottomRow}>
+            <DistancePicker
+              distVal={this.props.exercise.distance.val}
+              units={this.props.exercise.distance.units} />
+          </View>
+          : null
+        }
       </View>
       /* jshint ignore:end */
     );
@@ -178,6 +195,8 @@ var styles = StyleSheet.create({
   rightHalf: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  bottomRow: {
   }
 });
 
