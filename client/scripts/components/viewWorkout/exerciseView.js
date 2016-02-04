@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 22:12:47
+* @Last Modified time: 2016-02-03 22:44:34
 */
 
 'use strict';
@@ -35,7 +35,6 @@ var ExerciseView = React.createClass({
     if(this.props.isModifying) {
       return (
         /* jshint ignore:start */
-        <TouchableOpacity onPress={this.handlePress}>
           <View style={styles.exerciseContainer}>
             <ExNameAndParams
               exercise={this.props.exercise}
@@ -43,13 +42,15 @@ var ExerciseView = React.createClass({
               exIdx={this.props.exIdx}
               customFontSize={25}
               customFontColor='#fff' />
-            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-              <Image
-                source={require('image!disclosureIndicatorWhite')}
-                style={{marginTop: 9}} />
+            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end', marginLeft: 15}}>
+             <TouchableOpacity
+              onPress={this.handlePress}
+              style={{padding: 8, position: 'relative'}}>
+                <Image
+                  source={require('image!infoIcon')} />
+              </TouchableOpacity>
             </View>
           </View>
-        </TouchableOpacity>
         /* jshint ignore:end */
       );
     } else {
@@ -70,6 +71,7 @@ var styles = StyleSheet.create({
   exerciseContainer: {
     flex: 1,
     flexDirection: 'row',
+    // alignItems: 'center',
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,
