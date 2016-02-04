@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 09:48:22
+* @Last Modified time: 2016-02-04 10:01:22
 */
 
 'use strict';
@@ -33,6 +33,7 @@ var LoadPicker = React.createClass({
     if(load === 'No Weight') load = null;
 
     //Set load val in editWorkoutStore
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     editWorkoutActions.setLoadVal(load);
 
     //Update picker's state
@@ -45,6 +46,7 @@ var LoadPicker = React.createClass({
     var unit = choiceObj.newValue;
 
     //Set load units in editWorkoutStore
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     editWorkoutActions.setLoadUnit(unit);
 
     //Update picker's state

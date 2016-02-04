@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-03 22:51:49
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-04 10:09:32
 */
 
 'use strict';
@@ -32,41 +32,90 @@ var ExNameAndParams = React.createClass({
     return {
       showPicker: false,
       selectedPicker: null,
+      selectedPickerParam: null,
     };
   },
   setShowPicker: function(bool){
     this.setState({showPicker: bool});
   },
   handleRepPress: function(){
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
-    var picker = <RepPicker reps={this.props.exercise.reps} />;
-    this.setState({selectedPicker: picker});
-    this.setShowPicker(true);
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'reps'){
+      this.setState({showPicker: !this.state.showPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({showPicker: true});
+    }
+    var picker =
+      <RepPicker
+        reps={this.props.exercise.reps}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx} />;
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'reps'
+    });
   },
   handleLoadPress: function(){
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'load'){
+      this.setState({showPicker: !this.state.showPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({showPicker: true});
+    }
+
     var picker =
       <LoadPicker
         loadVal={this.props.exercise.load.val}
-        units={this.props.exercise.load.units} />;
-    this.setState({selectedPicker: picker});
-    this.setShowPicker(true);
+        units={this.props.exercise.load.units}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'load'
+    });
   },
   handleDistancePress: function(){
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'distance'){
+      this.setState({showPicker: !this.state.showPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({showPicker: true});
+    }
+
     var picker =
       <DistancePicker
         distVal={this.props.exercise.distance.val}
-        units={this.props.exercise.distance.units} />;
-    this.setState({selectedPicker: picker});
-    this.setShowPicker(true);
+        units={this.props.exercise.distance.units}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'distance'
+    });
   },
   handleTimePress: function(){
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'time'){
+      this.setState({showPicker: !this.state.showPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({showPicker: true});
+    }
+
     var picker =
-      <TimePicker time={this.props.exercise.time} />;
-    this.setState({selectedPicker: picker});
-    this.setShowPicker(true);
+      <TimePicker time={this.props.exercise.time}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'time'
+    });
   },
   render: function(){
     var exercise = this.props.exercise;
@@ -245,6 +294,8 @@ var styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   bottomRow: {
+    marginTop: 15,
+    marginBottom: 15,
     marginLeft: 10,
   }
 });

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:56:21
+* @Last Modified time: 2016-02-04 09:59:40
 */
 
 'use strict';
@@ -39,6 +39,8 @@ var RepPicker = React.createClass({
     }
   },
   _setReps: function(reps){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+
     if(reps === 'No Reps') reps = null;
     editWorkoutActions.setReps(reps);
     this.setState({reps: reps});
