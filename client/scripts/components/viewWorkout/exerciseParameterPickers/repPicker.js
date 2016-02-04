@@ -2,13 +2,13 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:59:43
+* @Last Modified time: 2016-02-03 21:45:50
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../../actions/editExerciseActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   PickerIOS
@@ -32,14 +32,14 @@ var RepPicker = React.createClass({
     //If the user selected a number from REP_CHOICES, stringify
     //for display
     if(typeof choice === 'number') {
-      return choice.toString();
+      return choice.toString() + ' reps';
     } else {
       return choice;
     }
   },
   _setReps: function(reps){
     if(reps === 'No Reps') reps = null;
-    editExerciseActions.setReps(reps);
+    editWorkoutActions.setReps(reps);
     this.setState({reps: reps});
   },
   render: function() {

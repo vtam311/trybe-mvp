@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:20:05
+* @Last Modified time: 2016-02-03 21:46:53
 */
 
 'use strict';
@@ -12,12 +12,14 @@ var renderExerciseTime = require('../../common/renderExerciseTime');
 
 var {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   StyleSheet,
   Text,
   View,
 } = React;
 
 var DistancePicker = require('./exerciseParameterPickers/distancePicker');
+var RepPicker = require('./exerciseParameterPickers/repPicker');
 
 //This outputs a line giving the exercise description
 //on the left, and its parameters on the right
@@ -25,13 +27,25 @@ var DistancePicker = require('./exerciseParameterPickers/distancePicker');
 var ExNameAndParams = React.createClass({
   getInitialState: function(){
     return {
-      showPicker: true,
+      showPicker: false,
       selectedPicker: null,
     };
+  },
+  setShowPicker: function(bool){
+    this.setState({showPicker: bool});
+  },
+  handleRepPress: function(){
+    console.log('handleRepPress');
+    var picker = <RepPicker reps={this.props.exercise.reps} />;
+    this.setShowPicker(true);
+    this.setState({selectedPicker: picker});
   },
   render: function(){
     var exercise = this.props.exercise;
     var exerciseName, repsPress, loadPress, distancePress, timePress;
+
+    //Load component functions for use in renderExercise functions
+    var handleRepPress = this.handleRepPress.bind(this);
     var lastExParam;
 
     var renderExerciseName = function() {
@@ -57,12 +71,12 @@ var ExNameAndParams = React.createClass({
           //if there is another exercise param to render,
           //add a comma and space
           repsPress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleRepPress()}>
               <Text style={styles.exerciseText}>{exercise.reps} reps, </Text>
             </TouchableOpacity> ;
         } else {
           repsPress =
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleRepPress()}>
               <Text style={styles.exerciseText}>{exercise.reps} reps</Text>
             </TouchableOpacity> ;
         }
@@ -144,27 +158,29 @@ var ExNameAndParams = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <View style={styles.topRow}>
-          <View style={styles.leftHalf}>
-            {exerciseName}
-          </View>
 
-          <View style={styles.rightHalf}>
-            {repsPress}
-            {loadPress}
-            {distancePress}
-            {timePress}
+        <TouchableWithoutFeedback onPress={() => this.setState({showPicker: false})}>
+          <View style={styles.topRow}>
+            <View style={styles.leftHalf}>
+              {exerciseName}
+            </View>
+
+            <View style={styles.rightHalf}>
+              {repsPress}
+              {loadPress}
+              {distancePress}
+              {timePress}
+            </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
 
         {this.state.showPicker ?
           <View style={styles.bottomRow}>
-            <DistancePicker
-              distVal={this.props.exercise.distance.val}
-              units={this.props.exercise.distance.units} />
+            {this.state.selectedPicker}
           </View>
           : null
         }
+
       </View>
       /* jshint ignore:end */
     );
@@ -195,6 +211,7 @@ var styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   bottomRow: {
+    marginLeft: 10,
   }
 });
 
