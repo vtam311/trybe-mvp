@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 20:58:40
+* @Last Modified time: 2016-02-03 23:17:47
 */
 
 'use strict';
@@ -40,7 +40,7 @@ var DistancePicker = React.createClass({
     var dist = choiceObj.newValue;
     if(dist === 'No Distance') dist = null;
 
-    //Set dist val in editExerciseStore
+    //Set dist val in editWorkoutStore
     editWorkoutActions.setDistVal(dist);
 
     //Update picker's state
@@ -52,7 +52,7 @@ var DistancePicker = React.createClass({
   _setDistUnits: function(choiceObj){
     var unit = choiceObj.newValue;
 
-    //Set dist units in editExerciseStore
+    //Set dist units in editWorkoutStore
     editWorkoutActions.setDistUnit(unit);
 
     //Update picker's state

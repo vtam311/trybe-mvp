@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 22:45:30
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-03 22:51:49
 */
 
 'use strict';
@@ -37,15 +37,14 @@ var ExNameAndParams = React.createClass({
   setShowPicker: function(bool){
     this.setState({showPicker: bool});
   },
-  setTargetExerciseIdx: function(partIdx, exIdx){
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
-  },
   handleRepPress: function(){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     var picker = <RepPicker reps={this.props.exercise.reps} />;
     this.setState({selectedPicker: picker});
     this.setShowPicker(true);
   },
   handleLoadPress: function(){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     var picker =
       <LoadPicker
         loadVal={this.props.exercise.load.val}
@@ -54,6 +53,7 @@ var ExNameAndParams = React.createClass({
     this.setShowPicker(true);
   },
   handleDistancePress: function(){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     var picker =
       <DistancePicker
         distVal={this.props.exercise.distance.val}
@@ -62,6 +62,7 @@ var ExNameAndParams = React.createClass({
     this.setShowPicker(true);
   },
   handleTimePress: function(){
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     var picker =
       <TimePicker time={this.props.exercise.time} />;
     this.setState({selectedPicker: picker});
