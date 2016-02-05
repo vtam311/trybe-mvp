@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 12:57:43
+* @Last Modified time: 2016-02-05 13:11:15
 */
 
 'use strict';
@@ -13,7 +13,7 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
-var dismissKeyboard = require('dismissKeyboard');
+// var dismissKeyboard = require('dismissKeyboard');
 
 var {
   TouchableOpacity,
@@ -76,9 +76,9 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
-  hideKeyboard: function(){
-    dismissKeyboard();
-  },
+  // hideKeyboard: function(){
+  //   dismissKeyboard();
+  // },
   render: function() {
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
@@ -100,7 +100,6 @@ var ViewWorkoutModal = React.createClass({
             source={require('image!iconAthletesBackground')}
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
-            <TouchableWithoutFeedback onPress={this.hideKeyboard}>
               <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
 
                 <ScrollView
@@ -135,7 +134,6 @@ var ViewWorkoutModal = React.createClass({
                   </TouchableOpacity>
                 </View>
               </View>
-            </TouchableWithoutFeedback>
           </Image>
         </Animated.View>
         /* jshint ignore:end */
