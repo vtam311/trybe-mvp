@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 13:11:15
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 14:11:51
 */
 
 'use strict';
@@ -117,7 +117,7 @@ var ViewWorkoutModal = React.createClass({
                   }
                 </ScrollView>
 
-                <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
+                <View style={[styles.topContentContainer, {width: this.state.visibleWidth}]}>
                   {this.state.isModifying ?
                     null :
                     <TouchableOpacity onPress={this.closeModal}>
@@ -132,6 +132,12 @@ var ViewWorkoutModal = React.createClass({
                         : <Text style={styles.modifyButtonText}>Modify</Text>
                       }
                   </TouchableOpacity>
+                  <View style={{flexDirection: 'row'}}>
+                    {this.state.workout.parts.map(() => {
+                      <View style={{position: 'absolute', top: 50, height: 10, width: 10, borderRadius: 5, backgroundColor: 'grey'}}></View>
+                    })
+                    }
+                  </View>
                 </View>
               </View>
           </Image>
@@ -156,7 +162,7 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(23,115,140,.55)',
   },
-  closeButtonContainer: {
+  topContentContainer: {
     height: 60,
     position: 'absolute',
     top: 0,

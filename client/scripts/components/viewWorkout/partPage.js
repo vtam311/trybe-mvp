@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 12:54:19
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 14:13:53
 */
 
 'use strict';
@@ -93,7 +93,7 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   partWheel: {
-    flex: .2,
+    flex: .25,
     backgroundColor: 'rgba(77,186,151,.6)',
   },
   contentContainerStyle: {

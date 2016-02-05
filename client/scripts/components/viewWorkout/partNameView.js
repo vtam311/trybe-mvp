@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-20 16:25:50
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 12:27:44
+* @Last Modified time: 2016-02-05 14:15:47
 */
 
 'use strict';
@@ -47,7 +47,7 @@ var PartNameView = React.createClass({
             <View style={{alignSelf: 'center'}}>
               <Text style={[styles.partNameText, styles.editableText]}>{this.renderPartName()}</Text>
             </View>
-            <View style={{position: 'absolute', marginLeft: 10, marginTop: 22}}>
+            <View style={{position: 'absolute', marginLeft: 10, marginTop: 33}}>
               <Image
                 source={require('image!disclosureIndicatorWhite')}
                 style={{marginTop: 9}} />
