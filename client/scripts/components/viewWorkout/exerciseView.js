@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 09:43:48
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 09:53:06
 */
 
 'use strict';
@@ -20,6 +20,7 @@ var {
   StyleSheet,
 } = React;
 
+var PressableExerciseParams = require('./pressableExerciseParams');
 var ExerciseParams = require('./exerciseParams');
 var RepPicker = require('./exerciseParameterPickers/repPicker');
 var LoadPicker = require('./exerciseParameterPickers/loadPicker');
@@ -135,7 +136,7 @@ var ExerciseView = React.createClass({
                 <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
               </TouchableOpacity>
               <View style={{flex: .33}}>
-                <ExerciseParams
+                <PressableExerciseParams
                   exercise={this.props.exercise}
                   partIdx={this.props.partIdx}
                   exIdx={this.props.exIdx}
@@ -167,14 +168,7 @@ var ExerciseView = React.createClass({
             <View style={{flex: .33}}>
               <ExerciseParams
                 exercise={this.props.exercise}
-                exIdx={this.props.exIdx}
-                isShowingPicker={this.state.isShowingPicker}
-                selectedPickerParam={this.state.selectedPickerParam}
-                setIsShowingPicker={this.setIsShowingPicker}
-                handleRepPress={this.handleRepPress}
-                handleLoadPress={this.handleLoadPress}
-                handleDistancePress={this.handleDistancePress}
-                handleTimePress={this.handleTimePress} />
+                exIdx={this.props.exIdx} />
             </View>
           </View>
         </View>

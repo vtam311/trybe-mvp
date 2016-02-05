@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
-* @Date:   2016-02-03 20:25:12
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-04 13:09:55
+* @Date:   2016-02-05 09:48:17
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 09:52:24
 */
 
 'use strict';
@@ -11,85 +11,42 @@ var React = require('react-native');
 var renderExerciseTime = require('../../common/renderExerciseTime');
 
 var {
-  TouchableOpacity,
-  TouchableWithoutFeedback,
   StyleSheet,
   Text,
   View,
 } = React;
 
 //This outputs a line giving the exercise parameters
-//When one is licked, show pickers in parent to allow user to edit them
 var ExerciseParameters = React.createClass({
   render: function(){
     var exercise = this.props.exercise;
-    var repsPress, loadPress, distancePress, timePress;
-
-    //Load props for use in renderExercise functions
-    var isShowingPicker = this.props.isShowingPicker;
-    var selectedPickerParam = this.props.selectedPickerParam;
-    var handleRepPress = this.props.handleRepPress;
-    var handleLoadPress = this.props.handleLoadPress;
-    var handleDistancePress = this.props.handleDistancePress;
-    var handleTimePress = this.props.handleTimePress;
+    var reps, load, distance, time;
 
     var renderReps = function() {
       if(exercise.reps){
-        //if user is currently editing this param, change text color to black
-        var textStyle = styles.exerciseText;
-        if(isShowingPicker && selectedPickerParam === 'reps'){
-          textStyle = [styles.exerciseText, {color: 'black'}];
-        }
-
-        repsPress =
-          <TouchableOpacity onPress={() => handleRepPress()}>
-            <Text style={textStyle}>{exercise.reps} reps</Text>
-          </TouchableOpacity> ;
+        reps =
+          <Text style={styles.exerciseText}>{exercise.reps} reps</Text> ;
       }
     };
 
     var renderLoad = function() {
-      //if user is currently editing this param, change text color to black
-      var textStyle = styles.exerciseText;
-      if(isShowingPicker && selectedPickerParam === 'load'){
-        textStyle = [styles.exerciseText, {color: 'black'}];
-      }
-
       if(exercise.load.val){
-        loadPress =
-          <TouchableOpacity onPress={() => handleLoadPress()}>
-            <Text style={textStyle}>{exercise.load.val}{exercise.load.units}</Text>
-          </TouchableOpacity> ;
+        load =
+          <Text style={styles.exerciseText}>{exercise.load.val}{exercise.load.units}</Text> ;
       }
     };
 
     var renderDistance = function() {
-      //if user is currently editing this param, change text color to black
-      var textStyle = styles.exerciseText;
-      if(isShowingPicker && selectedPickerParam === 'distance'){
-        textStyle = [styles.exerciseText, {color: 'black'}];
-      }
-
       if(exercise.distance.val){
-        distancePress =
-          <TouchableOpacity onPress={() => handleDistancePress()}>
-            <Text style={textStyle}>{exercise.distance.val}{exercise.distance.units}</Text>
-          </TouchableOpacity> ;
+        distance =
+          <Text style={styles.exerciseText}>{exercise.distance.val}{exercise.distance.units}</Text> ;
       }
     };
 
     var renderTime = function(){
-      //if user is currently editing this param, change text color to black
-      var textStyle = styles.exerciseText;
-      if(isShowingPicker && selectedPickerParam === 'time'){
-        textStyle = [styles.exerciseText, {color: 'black'}];
-      }
-
       if(exercise.time){
-        timePress =
-          <TouchableOpacity onPress={() => handleTimePress()}>
-            <Text style={textStyle}>{renderExerciseTime(exercise.time)}</Text>
-          </TouchableOpacity> ;
+        time =
+          <Text style={styles.exerciseText}>{renderExerciseTime(exercise.time)}</Text> ;
       }
     };
 
@@ -105,14 +62,12 @@ var ExerciseParameters = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.exerciseContainer}>
-        <TouchableWithoutFeedback onPress={() => this.props.setIsShowingPicker(false)}>
-          <View style={styles.row}>
-            {repsPress}
-            {loadPress}
-            {distancePress}
-            {timePress}
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.row}>
+          {reps}
+          {load}
+          {distance}
+          {time}
+        </View>
       </View>
       /* jshint ignore:end */
     );
