@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 10:21:41
+* @Last Modified time: 2016-02-05 10:30:41
 */
 
 'use strict';
@@ -50,9 +50,8 @@ var AddExerciseView = React.createClass({
 
 var styles = StyleSheet.create({
   addExerciseContainer: {
-    paddingTop: 15,
+    paddingTop: 35,
     paddingBottom: 15,
-    backgroundColor: 'rgba(23,115,140,.75)',
   },
   addExerciseText:{
     fontFamily: 'Avenir Next',
