@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 21:44:01
+* @Last Modified time: 2016-02-05 12:57:43
 */
 
 'use strict';
@@ -13,9 +13,11 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
+var dismissKeyboard = require('dismissKeyboard');
 
 var {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   ScrollView,
   Animated,
   Dimensions,
@@ -74,6 +76,9 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
+  hideKeyboard: function(){
+    dismissKeyboard();
+  },
   render: function() {
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
@@ -95,40 +100,42 @@ var ViewWorkoutModal = React.createClass({
             source={require('image!iconAthletesBackground')}
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
-            <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+            <TouchableWithoutFeedback onPress={this.hideKeyboard}>
+              <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
 
-              <ScrollView
-                horizontal={true}
-                pagingEnabled={true} >
+                <ScrollView
+                  horizontal={true}
+                  pagingEnabled={true} >
 
-                {partPages}
+                  {partPages}
 
-                {this.state.isModifying ?
-                  <AddPartPage
-                    isModifying={this.state.isModifying}
-                    visibleHeight={this.state.visibleHeight}
-                    visibleWidth={this.state.visibleWidth} />
-                  : null
-                }
-              </ScrollView>
+                  {this.state.isModifying ?
+                    <AddPartPage
+                      isModifying={this.state.isModifying}
+                      visibleHeight={this.state.visibleHeight}
+                      visibleWidth={this.state.visibleWidth} />
+                    : null
+                  }
+                </ScrollView>
 
-              <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
-                {this.state.isModifying ?
-                  null :
-                  <TouchableOpacity onPress={this.closeModal}>
-                   <Image
-                      style={styles.closeButton}
-                      source={require('image!closeButton')} />
+                <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
+                  {this.state.isModifying ?
+                    null :
+                    <TouchableOpacity onPress={this.closeModal}>
+                     <Image
+                        style={styles.closeButton}
+                        source={require('image!closeButton')} />
+                    </TouchableOpacity>
+                  }
+                  <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
+                      {this.state.isModifying ?
+                       <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
+                        : <Text style={styles.modifyButtonText}>Modify</Text>
+                      }
                   </TouchableOpacity>
-                }
-                <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
-                    {this.state.isModifying ?
-                     <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
-                      : <Text style={styles.modifyButtonText}>Modify</Text>
-                    }
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableWithoutFeedback>
           </Image>
         </Animated.View>
         /* jshint ignore:end */

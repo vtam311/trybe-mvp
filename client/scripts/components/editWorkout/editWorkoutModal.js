@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 11:30:40
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 16:11:59
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 12:49:09
 */
 
 'use strict';
@@ -90,16 +90,16 @@ var EditWorkoutModal = React.createClass({
   keyboardWillHide: function(e) {
     this.setState({visibleHeight: Dimensions.get('window').height});
   },
-  scrollToComponent: function(refName, child) {
+  scrollToComponent: function(refName, component) {
     var offset;
-    if(child === 'instrTextInput') offset = -80;
-    else if(child === 'customTextInput') offset = 50;
+    if(component === 'instrTextInput') offset = -80;
+    else if(component === 'customTextInput') offset = 50;
 
     setTimeout( () => {
       let scrollResponder = this.refs.scrollView.getScrollResponder();
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(
         React.findNodeHandle(this.refs[refName]),
-        offset, //more offset
+        offset,
         true
       );
     }, 50);
