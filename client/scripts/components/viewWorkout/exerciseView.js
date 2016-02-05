@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 13:05:12
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 09:43:48
 */
 
 'use strict';
@@ -131,10 +131,10 @@ var ExerciseView = React.createClass({
         /* jshint ignore:start */
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
-              <TouchableOpacity style={{flex: .5}}>
+              <TouchableOpacity style={{flex: .66}}>
                 <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
               </TouchableOpacity>
-              <View style={{flex: .5}}>
+              <View style={{flex: .33}}>
                 <ExerciseParams
                   exercise={this.props.exercise}
                   partIdx={this.props.partIdx}
@@ -161,17 +161,21 @@ var ExerciseView = React.createClass({
       return (
         <View style={styles.exerciseContainer}>
           <View style={styles.rowContainer}>
-            <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
-            <ExerciseParams
-              exercise={this.props.exercise}
-              exIdx={this.props.exIdx}
-              isShowingPicker={this.state.isShowingPicker}
-              selectedPickerParam={this.state.selectedPickerParam}
-              setIsShowingPicker={this.setIsShowingPicker}
-              handleRepPress={this.handleRepPress}
-              handleLoadPress={this.handleLoadPress}
-              handleDistancePress={this.handleDistancePress}
-              handleTimePress={this.handleTimePress} />
+            <View style={{flex: .66}}>
+              <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
+            </View>
+            <View style={{flex: .33}}>
+              <ExerciseParams
+                exercise={this.props.exercise}
+                exIdx={this.props.exIdx}
+                isShowingPicker={this.state.isShowingPicker}
+                selectedPickerParam={this.state.selectedPickerParam}
+                setIsShowingPicker={this.setIsShowingPicker}
+                handleRepPress={this.handleRepPress}
+                handleLoadPress={this.handleLoadPress}
+                handleDistancePress={this.handleDistancePress}
+                handleTimePress={this.handleTimePress} />
+            </View>
           </View>
         </View>
       );
@@ -188,14 +192,13 @@ var styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    // backgroundColor: 'blue'
   },
   exerciseText:{
     fontFamily: 'Avenir Next',
     fontSize: 25,
     color: '#fff',
     fontWeight: '500',
+    flexWrap: 'wrap',
   },
   pickerContainer: {
     marginTop: 15,
