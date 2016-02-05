@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:41:34
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 12:05:11
 */
 
 'use strict';
@@ -47,7 +47,7 @@ var InstructionsView = React.createClass({
             </View>
           </View>
         </TouchableOpacity>
-        /* jshint ignore:start */
+        /* jshint ignore:end */
       );
     } else {
       return (

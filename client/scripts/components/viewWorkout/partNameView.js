@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-20 16:25:50
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 16:48:25
+* @Last Modified time: 2016-02-05 12:05:37
 */
 
 'use strict';
@@ -27,9 +27,11 @@ var PartNameView = React.createClass({
   },
   renderPartName: function(){
     var name;
+    //If part name is specified, show it
     if(this.props.partName){
       name = this.props.partName.toUpperCase();
     } else {
+      //otherwise show 'PART #'
       var partNum = this.props.partIdx + 1;
       name = ('Part ' + partNum).toUpperCase();
     }
@@ -46,7 +48,7 @@ var PartNameView = React.createClass({
             <View style={{alignSelf: 'center'}}>
               <Text style={styles.partNameText}>{this.renderPartName()}</Text>
             </View>
-            <View style={{position: 'relative', marginLeft: 10, marginTop: 22}}>
+            <View style={{position: 'absolute', marginLeft: 10, marginTop: 22}}>
               <Image
                 source={require('image!disclosureIndicatorWhite')}
                 style={{marginTop: 9}} />

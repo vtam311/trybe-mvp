@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 10:30:52
+* @Last Modified time: 2016-02-05 12:08:09
 */
 
 'use strict';
@@ -98,6 +98,7 @@ var styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingTop: 20,
+    paddingBottom: 60,
     flexDirection: 'column',
     alignItems: 'center',
   },
