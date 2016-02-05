@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 14:31:41
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 15:42:38
 */
 
 'use strict';
@@ -77,12 +77,11 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
-  onScroll: function(){
-    console.log('onScroll called');
+  handleScroll: function(event: Object) {
+    console.log('handleScroll');
+    console.log(event.nativeEvent.contentOffset.x);
   },
-  // hideKeyboard: function(){
-  //   dismissKeyboard();
-  // },
+
   render: function() {
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
@@ -113,7 +112,7 @@ var ViewWorkoutModal = React.createClass({
                 <ScrollView
                   horizontal={true}
                   pagingEnabled={true}
-                  onScroll={this.onScroll} >
+                  onScroll={this.handleScroll} >
 
                   {partPages}
 
