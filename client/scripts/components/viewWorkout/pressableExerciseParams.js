@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-03 20:25:12
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 09:48:57
+* @Last Modified time: 2016-02-05 12:26:28
 */
 
 'use strict';
@@ -129,7 +129,6 @@ var styles = StyleSheet.create({
   },
   exerciseText: {
     fontFamily: 'Avenir Next',
-    fontWeight: '500',
     fontSize: 25,
     color: '#fff'
   },

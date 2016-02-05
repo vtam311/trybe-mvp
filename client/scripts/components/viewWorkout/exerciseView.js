@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 09:55:44
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 12:25:00
 */
 
 'use strict';
@@ -15,6 +15,7 @@ var modalActions = require('../../actions/modalActions');
 var {
   TouchableOpacity,
   Text,
+  TextInput,
   Image,
   View,
   StyleSheet,
@@ -37,6 +38,11 @@ var ExerciseView = React.createClass({
   },
   setIsShowingPicker: function(bool){
     this.setState({isShowingPicker: bool});
+  },
+  setExerciseName: function(text){
+    //notify editWorkoutStore which exercise is being modified
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    editWorkoutActions.setExerciseName(text);
   },
   handleRepPress: function(){
     //If current picker is already showing, toggle off on press
@@ -128,15 +134,21 @@ var ExerciseView = React.createClass({
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
   },
+                // <TextInput style={styles.exerciseText}>{this.props.exercise.name}</Text>
   render: function(){
     if(this.props.isModifying) {
       return (
         /* jshint ignore:start */
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
-              <TouchableOpacity style={{flex: .66}}>
-                <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
-              </TouchableOpacity>
+              <View style={{flex: .66}}>
+                <TextInput
+                  value={this.props.exercise.name}
+                  placeholder='Exercise Name'
+                  onChangeText={(text) => this.setExerciseName(text)}
+                  autoCapitalize='words'
+                  style={[styles.exerciseText, {height: 35, fontWeight: '400'}]} />
+              </View>
               <View style={{flex: .33}}>
                 <PressableExerciseParams
                   exercise={this.props.exercise}

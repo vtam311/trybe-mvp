@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-20 16:25:50
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 12:05:37
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 12:27:44
 */
 
 'use strict';
@@ -44,9 +44,8 @@ var PartNameView = React.createClass({
         { this.props.isModifying ?
           <TouchableOpacity onPress={this.handlePress}
             style={{flex: 1, flexDirection: 'row'}}>
-
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.partNameText}>{this.renderPartName()}</Text>
+              <Text style={[styles.partNameText, styles.editableText]}>{this.renderPartName()}</Text>
             </View>
             <View style={{position: 'absolute', marginLeft: 10, marginTop: 22}}>
               <Image
@@ -78,6 +77,9 @@ var styles = StyleSheet.create({
     color: 'white',
     marginTop: 10,
   },
+  editableText: {
+    fontWeight: '400'
+  }
 });
 
 module.exports = PartNameView;
