@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 14:11:51
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 14:31:41
 */
 
 'use strict';
@@ -30,6 +30,7 @@ var {
 //Load components
 var PartPage = require('./partPage');
 var AddPartPage = require('./addPartPage');
+var LocationDot = require('./locationDot');
 
 //Gets device height for animating app
 var {
@@ -76,6 +77,9 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
+  onScroll: function(){
+    console.log('onScroll called');
+  },
   // hideKeyboard: function(){
   //   dismissKeyboard();
   // },
@@ -93,6 +97,10 @@ var ViewWorkoutModal = React.createClass({
         /* jshint ignore:end */
       );
 
+      var locationDots = this.state.workout.parts.map( () =>
+        <LocationDot />
+      );
+
       return (
         /* jshint ignore:start */
         <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
@@ -104,7 +112,8 @@ var ViewWorkoutModal = React.createClass({
 
                 <ScrollView
                   horizontal={true}
-                  pagingEnabled={true} >
+                  pagingEnabled={true}
+                  onScroll={this.onScroll} >
 
                   {partPages}
 
@@ -132,11 +141,8 @@ var ViewWorkoutModal = React.createClass({
                         : <Text style={styles.modifyButtonText}>Modify</Text>
                       }
                   </TouchableOpacity>
-                  <View style={{flexDirection: 'row'}}>
-                    {this.state.workout.parts.map(() => {
-                      <View style={{position: 'absolute', top: 50, height: 10, width: 10, borderRadius: 5, backgroundColor: 'grey'}}></View>
-                    })
-                    }
+                  <View style={styles.locationDotsContainer}>
+                    {locationDots}
                   </View>
                 </View>
               </View>
@@ -183,6 +189,14 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     fontSize: 18
+  },
+  locationDotsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 115,
+    left: 0,
+    right: 0
   }
 });
 
