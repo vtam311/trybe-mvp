@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 09:53:06
+* @Last Modified time: 2016-02-05 09:55:44
 */
 
 'use strict';
@@ -46,11 +46,13 @@ var ExerciseView = React.createClass({
     //Otherwise show on press
       this.setState({isShowingPicker: true});
     }
+
     var picker =
       <RepPicker
         reps={this.props.exercise.reps}
         partIdx={this.props.partIdx}
         exIdx={this.props.exIdx} />;
+
     this.setState({
       selectedPicker: picker,
       selectedPickerParam: 'reps'

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 21:29:02
+* @Last Modified time: 2016-02-05 10:20:15
 */
 
 'use strict';
@@ -74,7 +74,7 @@ var PartPage = React.createClass({
           </View>
           :
           <TouchableHighlight onPress={this.handleLogButtonPress}
-            style={[styles.logButton, {width: this.props.visibleWidth}]}>
+            style={[styles.logButton]}>
             <Text style={styles.logButtonText}>Log Results</Text>
           </TouchableHighlight>
         }
@@ -94,7 +94,6 @@ var styles = StyleSheet.create({
   },
   contentContainerStyle: {
     paddingTop: 20,
-    paddingBottom: 60,
     flexDirection: 'column',
     alignItems: 'center',
   },
@@ -103,12 +102,15 @@ var styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    height: 60,
   },
   logButton: {
     position: 'absolute',
     bottom: 0,
+    left: 0,
+    right: 0,
     height: 60,
-    backgroundColor: 'rgba(77,186,151,.6)',
+    backgroundColor: 'rgba(23,115,140,.75)',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
