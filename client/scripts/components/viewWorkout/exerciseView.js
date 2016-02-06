@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 21:39:41
+* @Last Modified time: 2016-02-06 10:14:23
 */
 
 'use strict';
@@ -149,7 +149,7 @@ var ExerciseView = React.createClass({
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
               <View style={{flex: .66}}>
-                <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
+                <Text style={[styles.exerciseText, styles.modifyingText]}>{this.props.exercise.name}</Text>
               </View>
               <View style={{flex: .33}}>
                 <PressableExerciseParams
@@ -210,6 +210,9 @@ var styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '500',
     flexWrap: 'wrap',
+  },
+  modifyingText:{
+    fontWeight: '400'
   },
   pickerContainer: {
     marginTop: 15,
