@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 16:33:35
+* @Last Modified time: 2016-02-05 17:26:22
 */
 
 'use strict';
@@ -17,6 +17,7 @@ var modalActions = require('../../actions/modalActions');
 var {
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableHighlight,
   ScrollView,
   Animated,
   Dimensions,
@@ -30,6 +31,10 @@ var {
 var PageControl = require('react-native-page-control'); //
 var PartPage = require('./partPage');
 var AddPartPage = require('./addPartPage');
+var Swipeout = require('react-native-swipeout');
+var InstructionsView = require('./instructionsView');
+var ExerciseView = require('./exerciseView');
+var AddExerciseView = require('./addExerciseView');
 
 //Gets device height for animating app
 var {
@@ -97,6 +102,29 @@ var ViewWorkoutModal = React.createClass({
         /* jshint ignore:end */
       );
 
+      var currPart = this.state.workout.parts[this.state.currPage];
+
+      var swipeoutBtns = [
+        {
+          text: 'Button',
+          onPress: this.handleSwipeoutButtonPress
+        }
+      ];
+
+      var exerciseViews = currPart.exercises.map((exercise, index) =>
+        /* jshint ignore:start */
+        <Swipeout right={swipeoutBtns}>
+          <View style={{width: 330}} key={index}>
+            <ExerciseView
+              exercise={exercise}
+              partIdx={this.props.partIdx}
+              exIdx={index}
+              isModifying={this.props.isModifying} />
+          </View>
+        </Swipeout>
+        /* jshint ignore:end */
+      );
+
       return (
         /* jshint ignore:start */
         <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
@@ -105,23 +133,54 @@ var ViewWorkoutModal = React.createClass({
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
               <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+                <View style={{flex: .25}}>
+                  <ScrollView
+                    horizontal={true}
+                    pagingEnabled={true}
+                    onScroll={this.handleScroll}
+                    scrollEventThrottle={256}
+                    showsHorizontalScrollIndicator={false} >
 
-                <ScrollView
-                  horizontal={true}
-                  pagingEnabled={true}
-                  onScroll={this.handleScroll}
-                  scrollEventThrottle={256} >
+                    {partPages}
 
-                  {partPages}
+                    {this.state.isModifying ?
+                      <AddPartPage
+                        isModifying={this.state.isModifying}
+                        visibleHeight={this.state.visibleHeight}
+                        visibleWidth={this.state.visibleWidth} />
+                      : null
+                    }
+                  </ScrollView>
+                </View>
 
-                  {this.state.isModifying ?
-                    <AddPartPage
-                      isModifying={this.state.isModifying}
-                      visibleHeight={this.state.visibleHeight}
-                      visibleWidth={this.state.visibleWidth} />
-                    : null
+                <View style={{flex: .75}}>
+                  <ScrollView
+                    contentContainerStyle={styles.partContentContainer} >
+                    <View style={{width: 330}}>
+                      <InstructionsView
+                        instructions={currPart.instructions}
+                        partIdx={this.props.partIdx}
+                        isModifying={this.props.isModifying} />
+                    </View>
+
+                    {exerciseViews}
+
+                    {this.props.isModifying ?
+                      <View style={styles.addExerciseView}>
+                        <AddExerciseView partIdx={this.props.partIdx}/>
+                      </View>
+                      : null
+                    }
+                  </ScrollView>
+
+                  {this.props.isModifying ?
+                    null :
+                    <TouchableHighlight onPress={this.handleLogButtonPress}
+                      style={[styles.logButton]}>
+                      <Text style={styles.logButtonText}>Log Results</Text>
+                    </TouchableHighlight>
                   }
-                </ScrollView>
+                </View>
 
                 <View style={[styles.topContentContainer, {width: this.state.visibleWidth}]}>
                   {this.state.isModifying ?
@@ -172,6 +231,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: 'rgba(23,115,140,.55)',
   },
   topContentContainer: {
@@ -203,6 +263,29 @@ var styles = StyleSheet.create({
     top: 115,
     left: 0,
     right: 0
+  },
+  partContentContainer: {
+    paddingTop: 20,
+    paddingBottom: 60,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  logButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: 'rgba(23,115,140,.75)',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  logButtonText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 24,
+    fontWeight: '500',
+    color: '#fff'
   }
 });
 

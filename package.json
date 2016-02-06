@@ -12,6 +12,7 @@
     "react-native": "^0.18.1",
     "react-native-multipicker": "^0.1.1",
     "react-native-page-control": "^1.0.5",
+    "react-native-swipeout": "^2.0.12",
     "react-native-tableview-simple": "^0.3.2"
   }
 }
