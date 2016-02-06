@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 17:26:22
+* @Last Modified time: 2016-02-05 17:37:21
 */
 
 'use strict';
@@ -28,8 +28,8 @@ var {
 } = React;
 
 //Load components
-var PageControl = require('react-native-page-control'); //
-var PartPage = require('./partPage');
+var PageControl = require('react-native-page-control');
+var PartHeader = require('./partHeader');
 var AddPartPage = require('./addPartPage');
 var Swipeout = require('react-native-swipeout');
 var InstructionsView = require('./instructionsView');
@@ -87,12 +87,17 @@ var ViewWorkoutModal = React.createClass({
     var currPage = Math.round(horizontalOffset/this.state.visibleWidth);
     this.setState({currPage: currPage});
   },
+  handleLogButtonPress: function(){
+    //notifies editWorkoutStore which part to modify
+    editWorkoutActions.setTargetPartIdx(this.state.currPage);
+    modalActions.openLogModal();
+  },
 
   render: function() {
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
-        <PartPage
+        <PartHeader
           part={part}
           partIdx={index}
           key={index}
@@ -117,9 +122,9 @@ var ViewWorkoutModal = React.createClass({
           <View style={{width: 330}} key={index}>
             <ExerciseView
               exercise={exercise}
-              partIdx={this.props.partIdx}
+              partIdx={this.state.currPage}
               exIdx={index}
-              isModifying={this.props.isModifying} />
+              isModifying={this.state.isModifying} />
           </View>
         </Swipeout>
         /* jshint ignore:end */
@@ -159,7 +164,7 @@ var ViewWorkoutModal = React.createClass({
                     <View style={{width: 330}}>
                       <InstructionsView
                         instructions={currPart.instructions}
-                        partIdx={this.props.partIdx}
+                        partIdx={this.state.currPage}
                         isModifying={this.props.isModifying} />
                     </View>
 
@@ -167,7 +172,7 @@ var ViewWorkoutModal = React.createClass({
 
                     {this.props.isModifying ?
                       <View style={styles.addExerciseView}>
-                        <AddExerciseView partIdx={this.props.partIdx}/>
+                        <AddExerciseView partIdx={this.state.currPage}/>
                       </View>
                       : null
                     }
@@ -265,7 +270,6 @@ var styles = StyleSheet.create({
     right: 0
   },
   partContentContainer: {
-    paddingTop: 20,
     paddingBottom: 60,
     flexDirection: 'column',
     alignItems: 'center',

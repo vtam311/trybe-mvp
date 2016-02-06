@@ -1,15 +1,13 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 17:15:09
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 17:34:35
 */
 
 'use strict';
 
 var React = require('react-native');
-var editWorkoutActions = require('../../actions/editWorkoutActions');
-var modalActions = require('../../actions/modalActions');
 
 var {
   ScrollView,
@@ -21,18 +19,7 @@ var {
 
 var PartNameView = require('./partNameView');
 
-
-var PartPage = React.createClass({
-  handleLogButtonPress: function(){
-    //set targetPartIdx to notify editWorkoutStore which part
-    //is being modified
-    editWorkoutActions.setTargetPartIdx(this.props.partIdx);
-    modalActions.openLogModal();
-  },
-  handleSwipeoutButtonPress: function(){
-    console.log('swipeoutButton pressed');
-  },
-
+var PartHeader = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
@@ -59,8 +46,6 @@ var styles = StyleSheet.create({
     flex: .25,
     backgroundColor: 'rgba(77,186,151,.6)',
   },
-  addExerciseView: {
-  },
 });
 
-module.exports = PartPage;
+module.exports = PartHeader;
