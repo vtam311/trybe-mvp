@@ -15,7 +15,7 @@ var EditInstructionsModal = require('./client/scripts/components/viewWorkout/edi
 var EditExerciseModal = require('./client/scripts/components/editWorkout/editExerciseModal/editExerciseModal');
 var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
-var LogModal = require('./client/scripts/components/log/logModal');
+var LogModal = require('./client/scripts/components/logModal/logModalNav');
 
 var {
   AppRegistry,
