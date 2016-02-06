@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 21:18:31
+* @Last Modified time: 2016-02-06 10:09:44
 */
 
 'use strict';
@@ -16,7 +16,6 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
-  TouchableWithoutFeedback,
   TouchableHighlight,
   ScrollView,
   Animated,
@@ -30,8 +29,8 @@ var {
 //Load components
 var PageControl = require('react-native-page-control');
 var PartHeader = require('./partHeader');
+var AddPartHeader = require('./addPartHeader');
 var AddPartPage = require('./addPartPage');
-// var Swipeout = require('react-native-swipeout');
 var InstructionsView = require('./instructionsView');
 var ExerciseView = require('./exerciseView');
 var AddExerciseView = require('./addExerciseView');
@@ -107,18 +106,6 @@ var ViewWorkoutModal = React.createClass({
 
       var currPart = this.state.workout.parts[this.state.currPartIdx];
 
-      var exerciseViews = currPart.exercises.map((exercise, index) =>
-        /* jshint ignore:start */
-          <View style={{width: 330}} key={index}>
-            <ExerciseView
-              exercise={exercise}
-              partIdx={this.state.currPartIdx}
-              exIdx={index}
-              isModifying={this.state.isModifying} />
-          </View>
-        /* jshint ignore:end */
-      );
-
       return (
         /* jshint ignore:start */
         <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
@@ -138,10 +125,7 @@ var ViewWorkoutModal = React.createClass({
                     {partHeaders}
 
                     {this.state.isModifying ?
-                      <AddPartPage
-                        isModifying={this.state.isModifying}
-                        visibleHeight={this.state.visibleHeight}
-                        visibleWidth={this.state.visibleWidth} />
+                      <AddPartHeader visibleWidth={this.state.visibleWidth}/>
                       : null
                     }
                   </ScrollView>
@@ -150,21 +134,40 @@ var ViewWorkoutModal = React.createClass({
                 <View style={{flex: .75}}>
                   <ScrollView
                     contentContainerStyle={styles.partContentContainer} >
-                    <View style={{width: 330}}>
-                      <InstructionsView
-                        instructions={currPart.instructions}
-                        partIdx={this.state.currPartIdx}
-                        isModifying={this.state.isModifying} />
-                    </View>
 
-                    {exerciseViews}
+                    {currPart ?
+                      <View>
+                        <View style={{width: 330}}>
+                          <InstructionsView
+                            instructions={currPart.instructions}
+                            partIdx={this.state.currPartIdx}
+                            isModifying={this.state.isModifying} />
+                        </View>
 
-                    {this.state.isModifying ?
-                      <View style={styles.addExerciseView}>
-                        <AddExerciseView partIdx={this.state.currPartIdx}/>
+                        {currPart.exercises.map((exercise, index) =>
+                          <View style={{width: 330}} key={index}>
+                            <ExerciseView
+                              exercise={exercise}
+                              partIdx={this.state.currPartIdx}
+                              exIdx={index}
+                              key={index}
+                              isModifying={this.state.isModifying} />
+                          </View>
+                        )}
+
+                        {this.state.isModifying ?
+                          <View style={styles.addExerciseContainer}>
+                            <AddExerciseView partIdx={this.state.currPartIdx}/>
+                          </View>
+                          : null
+                        }
                       </View>
-                      : null
+                      : <AddPartPage
+                          isModifying={this.state.isModifying}
+                          visibleHeight={this.state.visibleHeight}
+                          visibleWidth={this.state.visibleWidth} />
                     }
+
                   </ScrollView>
 
                   {this.state.isModifying ?
@@ -262,6 +265,9 @@ var styles = StyleSheet.create({
     paddingBottom: 60,
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  addExerciseContainer: {
+    alignSelf: 'center'
   },
   logButton: {
     position: 'absolute',

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 10:30:41
+* @Last Modified time: 2016-02-06 10:01:44
 */
 
 'use strict';
@@ -33,7 +33,7 @@ var AddExerciseView = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={styles.addExerciseContainer}>
+      <View style={styles.container}>
         <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
             <Image
@@ -49,7 +49,7 @@ var AddExerciseView = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  addExerciseContainer: {
+  container: {
     paddingTop: 35,
     paddingBottom: 15,
   },

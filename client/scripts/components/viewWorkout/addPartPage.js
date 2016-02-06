@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-20 16:51:54
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 17:14:27
+* @Last Modified time: 2016-02-06 10:09:11
 */
 
 'use strict';
@@ -25,7 +25,7 @@ var AddPartPage = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={[styles.container, {width: this.props.visibleWidth, height: this.props.visibleHeight}]}>
+      <View style={[styles.partNameContainer, {width: this.props.visibleWidth}]}>
         <TouchableOpacity
           onPress={this.handlePress}
           style={styles.buttonContainer}>
@@ -40,9 +40,9 @@ var AddPartPage = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  container: {
+  partNameContainer: {
     flex: 1,
-    flexDirection: 'column',
+    marginTop: 80,
     justifyContent: 'center',
     alignItems: 'center',
   },
