@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 16:16:29
+* @Last Modified time: 2016-02-05 16:31:13
 */
 
 'use strict';
@@ -141,7 +141,8 @@ var ViewWorkoutModal = React.createClass({
                   </TouchableOpacity>
                   <View style={styles.pageControlContainer}>
                     <PageControl style={{position:'absolute', top: 5, left: 0, right: 0}}
-                      numberOfPages={this.state.workout.parts.length}
+                      numberOfPages={this.state.isModifying ?
+                        this.state.workout.parts.length + 1 : this.state.workout.parts.length}
                       currentPage={this.state.currPage}
                       hidesForSinglePage={true}
                       pageIndicatorTintColor='gray'
