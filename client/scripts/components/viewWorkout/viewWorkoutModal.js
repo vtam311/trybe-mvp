@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 17:37:21
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 17:43:07
 */
 
 'use strict';
@@ -110,15 +110,13 @@ var ViewWorkoutModal = React.createClass({
       var currPart = this.state.workout.parts[this.state.currPage];
 
       var swipeoutBtns = [
-        {
-          text: 'Button',
-          onPress: this.handleSwipeoutButtonPress
-        }
+        { text: 'Delete', onPress: this.handleSwipeoutButtonPress },
+        { text: 'More', onPress: this.handleSwipeoutButtonPress },
       ];
 
       var exerciseViews = currPart.exercises.map((exercise, index) =>
         /* jshint ignore:start */
-        <Swipeout right={swipeoutBtns}>
+        <Swipeout right={swipeoutBtns} backgroundColor='rgba(155,155,155,0)'>
           <View style={{width: 330}} key={index}>
             <ExerciseView
               exercise={exercise}
@@ -138,7 +136,7 @@ var ViewWorkoutModal = React.createClass({
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
               <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-                <View style={{flex: .25}}>
+                <View style={{flex: .3}}>
                   <ScrollView
                     horizontal={true}
                     pagingEnabled={true}
@@ -158,7 +156,7 @@ var ViewWorkoutModal = React.createClass({
                   </ScrollView>
                 </View>
 
-                <View style={{flex: .75}}>
+                <View style={{flex: .7}}>
                   <ScrollView
                     contentContainerStyle={styles.partContentContainer} >
                     <View style={{width: 330}}>
@@ -203,7 +201,7 @@ var ViewWorkoutModal = React.createClass({
                       }
                   </TouchableOpacity>
                   <View style={styles.pageControlContainer}>
-                    <PageControl style={{position:'absolute', top: 5, left: 0, right: 0}}
+                    <PageControl style={{position:'absolute', top: 0, left: 0, right: 0}}
                       numberOfPages={this.state.isModifying ?
                         this.state.workout.parts.length + 1 : this.state.workout.parts.length}
                       currentPage={this.state.currPage}
@@ -265,7 +263,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'absolute',
-    top: 115,
+    top: 125,
     left: 0,
     right: 0
   },
