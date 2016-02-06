@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 15:42:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 16:16:29
 */
 
 'use strict';
@@ -13,7 +13,6 @@ var editWorkoutActions = require('../../actions/editWorkoutActions');
 var viewWorkoutStore = require('../../stores/viewWorkoutStore');
 var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
-// var dismissKeyboard = require('dismissKeyboard');
 
 var {
   TouchableOpacity,
@@ -28,9 +27,9 @@ var {
 } = React;
 
 //Load components
+var PageControl = require('react-native-page-control'); //
 var PartPage = require('./partPage');
 var AddPartPage = require('./addPartPage');
-var LocationDot = require('./locationDot');
 
 //Gets device height for animating app
 var {
@@ -47,6 +46,7 @@ var ViewWorkoutModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
+      currPage: 0,
     };
   },
   componentDidMount: function() {
@@ -78,11 +78,13 @@ var ViewWorkoutModal = React.createClass({
     }).start(modalActions.closeViewWorkoutModal);
   },
   handleScroll: function(event: Object) {
-    console.log('handleScroll');
-    console.log(event.nativeEvent.contentOffset.x);
+    var horizontalOffset = event.nativeEvent.contentOffset.x;
+    var currPage = Math.round(horizontalOffset/this.state.visibleWidth);
+    this.setState({currPage: currPage});
   },
 
   render: function() {
+    console.log('screen width', this.state.visibleWidth);
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
@@ -94,10 +96,6 @@ var ViewWorkoutModal = React.createClass({
           visibleHeight={this.state.visibleHeight}
           visibleWidth={this.state.visibleWidth} />
         /* jshint ignore:end */
-      );
-
-      var locationDots = this.state.workout.parts.map( () =>
-        <LocationDot />
       );
 
       return (
@@ -112,7 +110,8 @@ var ViewWorkoutModal = React.createClass({
                 <ScrollView
                   horizontal={true}
                   pagingEnabled={true}
-                  onScroll={this.handleScroll} >
+                  onScroll={this.handleScroll}
+                  scrollEventThrottle={256} >
 
                   {partPages}
 
@@ -140,8 +139,16 @@ var ViewWorkoutModal = React.createClass({
                         : <Text style={styles.modifyButtonText}>Modify</Text>
                       }
                   </TouchableOpacity>
-                  <View style={styles.locationDotsContainer}>
-                    {locationDots}
+                  <View style={styles.pageControlContainer}>
+                    <PageControl style={{position:'absolute', top: 5, left: 0, right: 0}}
+                      numberOfPages={this.state.workout.parts.length}
+                      currentPage={this.state.currPage}
+                      hidesForSinglePage={true}
+                      pageIndicatorTintColor='gray'
+                      currentPageIndicatorTintColor='white'
+                      indicatorStyle={{borderRadius: 4}}
+                      currentIndicatorStyle={{borderRadius: 4}}
+                      indicatorSize={{width:8, height:8}} />
                   </View>
                 </View>
               </View>
@@ -189,7 +196,7 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 18
   },
-  locationDotsContainer: {
+  pageControlContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'absolute',
