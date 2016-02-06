@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 20:56:49
+* @Last Modified time: 2016-02-05 21:18:31
 */
 
 'use strict';
@@ -51,7 +51,7 @@ var ViewWorkoutModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
-      currPart: 0,
+      currPartIdx: 0,
     };
   },
   componentDidMount: function() {
@@ -84,12 +84,12 @@ var ViewWorkoutModal = React.createClass({
   },
   handleScroll: function(event: Object) {
     var horizontalOffset = event.nativeEvent.contentOffset.x;
-    var currPart = Math.round(horizontalOffset/this.state.visibleWidth);
-    this.setState({currPart: currPart});
+    var currPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    this.setState({currPartIdx: currPartIdx});
   },
   handleLogButtonPress: function(){
     //notifies editWorkoutStore which part to modify
-    editWorkoutActions.setTargetPartIdx(this.state.currPart);
+    editWorkoutActions.setTargetPartIdx(this.state.currPartIdx);
     modalActions.openLogModal();
   },
 
@@ -105,19 +105,14 @@ var ViewWorkoutModal = React.createClass({
         /* jshint ignore:end */
       );
 
-      var currPart = this.state.workout.parts[this.state.currPart];
-
-      // var swipeoutBtns = [
-      //   { text: 'Delete', onPress: this.handleSwipeoutButtonPress },
-      //   { text: 'More', onPress: this.handleSwipeoutButtonPress },
-      // ];
+      var currPart = this.state.workout.parts[this.state.currPartIdx];
 
       var exerciseViews = currPart.exercises.map((exercise, index) =>
         /* jshint ignore:start */
           <View style={{width: 330}} key={index}>
             <ExerciseView
               exercise={exercise}
-              partIdx={this.state.currPart}
+              partIdx={this.state.currPartIdx}
               exIdx={index}
               isModifying={this.state.isModifying} />
           </View>
@@ -158,7 +153,7 @@ var ViewWorkoutModal = React.createClass({
                     <View style={{width: 330}}>
                       <InstructionsView
                         instructions={currPart.instructions}
-                        partIdx={this.state.currPart}
+                        partIdx={this.state.currPartIdx}
                         isModifying={this.state.isModifying} />
                     </View>
 
@@ -166,7 +161,7 @@ var ViewWorkoutModal = React.createClass({
 
                     {this.state.isModifying ?
                       <View style={styles.addExerciseView}>
-                        <AddExerciseView partIdx={this.state.currPart}/>
+                        <AddExerciseView partIdx={this.state.currPartIdx}/>
                       </View>
                       : null
                     }
@@ -200,7 +195,7 @@ var ViewWorkoutModal = React.createClass({
                     <PageControl style={{position:'absolute', top: 0, left: 0, right: 0}}
                       numberOfPages={this.state.isModifying ?
                         this.state.workout.parts.length + 1 : this.state.workout.parts.length}
-                      currentPage={this.state.currPart}
+                      currentPage={this.state.currPartIdx}
                       hidesForSinglePage={true}
                       pageIndicatorTintColor='gray'
                       currentPageIndicatorTintColor='white'

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 21:16:44
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-05 21:23:45
 */
 
 'use strict';
@@ -129,10 +129,13 @@ var ExerciseView = React.createClass({
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
   },
+  handleDeletePress: function(){
+    editWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
+  },
 
   render: function(){
     var swipeoutBtns = [
-      { text: 'Delete', onPress: this.handleSwipeoutButtonPress, backgroundColor: '#FA6F80' },
+      { text: 'Delete', onPress: this.handleDeletePress, backgroundColor: '#FA6F80' },
       { text: 'More', onPress: this.handleMorePress, backgroundColor: '#8D867E' },
     ];
 
