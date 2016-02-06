@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-12 13:16:39
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-06 11:22:36
 */
 
 'use strict';
@@ -21,6 +21,8 @@ var {
   Text,
   View,
   TouchableOpacity,
+  TouchableHighlight,
+  Image,
   Animated,
   Dimensions,
   TextInput,
@@ -51,6 +53,7 @@ var LogModal = React.createClass({
       //so component can render
       result: editWorkoutStore.getTargetPartResult(),
       notes: editWorkoutStore.getTargetPartNotes(),
+      isShowingPicker: false,
       segmCtrlIdx: 0,
     };
   },
@@ -110,7 +113,7 @@ var LogModal = React.createClass({
       segmCtrlIdx: segmCtrlIdx
     });
   },
-  setResultPicker: function(val){
+  setMetric: function(val){
     //Depending on the selected val, the picker should change
     var seg;
     if(val === 'Time') seg = 0;
@@ -121,6 +124,26 @@ var LogModal = React.createClass({
     this.setState({
       segmCtrlIdx: seg
     });
+  },
+  getCurrMetricText: function(){
+    var result;
+    switch(this.state.segmCtrlIdx) {
+      case null:
+        result = null;
+        break;
+      case 0:
+        result = 'Time';
+        break;
+      case 1:
+        result = 'Rounds';
+        break;
+      case 2:
+        result = 'Max Load';
+        break;
+      default:
+        result = 'Custom';
+    }
+    return result;
   },
   saveChanges: function(){
     editWorkoutActions.savePartResult(this.state.result);
@@ -148,11 +171,28 @@ var LogModal = React.createClass({
 
           <View style={styles.body}>
             <View style={styles.bodyContainer}>
-              <SegmentedControlIOS
-                values={['Time', 'Rounds', 'Max Load', 'Custom']}
-                selectedIndex={this.state.segmCtrlIdx}
-                onValueChange={(val) => this.setResultPicker(val)}
-                tintColor={'#4DBA97'}/>
+              <View style={styles.metricControlContainer}>
+                <TouchableOpacity onPress={() => this.setState({isShowingPicker: !this.state.isShowingPicker})}>
+                  <View style={styles.metricControlRow}>
+                    <Text style={styles.text}>Metric</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Text style={[styles.text, {color: '#A79D93'}]}>{this.getCurrMetricText()}</Text>
+                      <Image
+                        source={require('image!disclosureIndicator')}
+                        style={{width: 8, height: 13, marginLeft: 7, marginBottom: 1}} />
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              {this.state.isShowingPicker ?
+                <SegmentedControlIOS
+                  values={['Time', 'Rounds', 'Max Load', 'Custom']}
+                  selectedIndex={this.state.segmCtrlIdx}
+                  onValueChange={(val) => this.setMetric(val)}
+                  tintColor={'#4DBA97'}/>
+                : null}
+
               <SelectedResultInput
                 result={this.state.result}
                 segmCtrlIdx={this.state.segmCtrlIdx}
@@ -175,7 +215,7 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    paddingBottom: 190,
+    paddingBottom: 100,
     backgroundColor: 'rgba(155, 155, 155, 0.4)',
   },
   flexCenter: {
@@ -184,7 +224,7 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 400,
+    height: 450,
     width: 340,
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 3,
@@ -208,13 +248,13 @@ var styles = StyleSheet.create({
   },
   headerTitleText: {
     fontFamily: 'Avenir Next',
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '500',
     color: '#4A4A4A'
   },
   headerButtonText: {
     fontFamily: 'Avenir Next',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '500',
     color: '#4DBA97',
   },
@@ -226,7 +266,21 @@ var styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
     marginRight: 15,
+  },
+  metricControlContainer:{
     marginTop: 15,
+    marginBottom: 15
+  },
+  metricControlRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  text:{
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    fontWeight: '500',
+    color: 'black'
   }
 });
 
