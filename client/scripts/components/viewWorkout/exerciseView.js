@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 21:23:45
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 21:39:41
 */
 
 'use strict';
@@ -14,7 +14,6 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
-  TouchableWithoutFeedback,
   Text,
   View,
   StyleSheet,
@@ -52,7 +51,8 @@ var ExerciseView = React.createClass({
       <RepPicker
         reps={this.props.exercise.reps}
         partIdx={this.props.partIdx}
-        exIdx={this.props.exIdx} />;
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
 
     this.setState({
       selectedPicker: picker,
@@ -73,7 +73,8 @@ var ExerciseView = React.createClass({
         loadVal={this.props.exercise.load.val}
         units={this.props.exercise.load.units}
         partIdx={this.props.partIdx}
-        exIdx={this.props.exIdx} />;
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
 
     this.setState({
       selectedPicker: picker,
@@ -94,7 +95,8 @@ var ExerciseView = React.createClass({
         distVal={this.props.exercise.distance.val}
         units={this.props.exercise.distance.units}
         partIdx={this.props.partIdx}
-        exIdx={this.props.exIdx} />;
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
 
     this.setState({
       selectedPicker: picker,
@@ -113,7 +115,8 @@ var ExerciseView = React.createClass({
     var picker =
       <TimePicker time={this.props.exercise.time}
         partIdx={this.props.partIdx}
-        exIdx={this.props.exIdx} />;
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
 
     this.setState({
       selectedPicker: picker,
@@ -143,7 +146,6 @@ var ExerciseView = React.createClass({
       return (
         /* jshint ignore:start */
         <Swipeout right={swipeoutBtns} backgroundColor='rgba(0,0,0,0)'>
-         <TouchableWithoutFeedback onPress={() => this.setIsShowingPicker(false)}>
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
               <View style={{flex: .66}}>
@@ -170,7 +172,6 @@ var ExerciseView = React.createClass({
               : null
             }
           </View>
-        </TouchableWithoutFeedback>
         </Swipeout>
         /* jshint ignore:end */
       );

@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 10:01:22
+* @Last Modified time: 2016-02-05 21:38:40
 */
 
 'use strict';
@@ -30,7 +30,10 @@ var LoadPicker = React.createClass({
   },
   _setLoadVal: function(choiceObj){
     var load = choiceObj.newValue;
-    if(load === 'No Weight') load = null;
+    if(load === 'No Weight'){
+      load = null;
+      this.props.setIsShowingPicker(false);
+    }
 
     //Set load val in editWorkoutStore
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);

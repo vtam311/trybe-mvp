@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-08 08:37:20
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 10:02:18
+* @Last Modified time: 2016-02-05 21:39:03
 */
 
 'use strict';
@@ -38,7 +38,10 @@ var DistancePicker = React.createClass({
   },
   _setDistVal: function(choiceObj){
     var dist = choiceObj.newValue;
-    if(dist === 'No Distance') dist = null;
+    if(dist === 'No Distance'){
+      dist = null;
+      this.props.setIsShowingPicker(false);
+    }
 
     //Set dist val in editWorkoutStore
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);

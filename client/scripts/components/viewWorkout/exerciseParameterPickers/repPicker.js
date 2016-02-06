@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-11-18 17:19:52
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 09:59:40
+* @Last Modified time: 2016-02-05 21:36:44
 */
 
 'use strict';
@@ -41,7 +41,12 @@ var RepPicker = React.createClass({
   _setReps: function(reps){
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
 
-    if(reps === 'No Reps') reps = null;
+    //If user selects no reps, set to null and close picker
+    if(reps === 'No Reps'){
+      reps = null;
+      this.props.setIsShowingPicker(false);
+    }
+
     editWorkoutActions.setReps(reps);
     this.setState({reps: reps});
   },

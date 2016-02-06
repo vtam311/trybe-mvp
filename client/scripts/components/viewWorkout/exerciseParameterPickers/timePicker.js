@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-10 14:52:32
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-04 10:02:43
+* @Last Modified time: 2016-02-05 21:39:30
 */
 
 'use strict';
@@ -119,7 +119,10 @@ var TimePicker = React.createClass({
 
     var newTime = hour + ':' + min + ':' + sec;
     //If user sets all time values back to zero, set to null
-    if(newTime === '00:00:00') newTime = null;
+    if(newTime === '00:00:00'){
+      newTime = null;
+      this.props.setIsShowingPicker(false);
+    }
 
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     editWorkoutActions.setTime(newTime);
