@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 14:31:53
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 17:34:35
+* @Last Modified time: 2016-02-05 17:46:13
 */
 
 'use strict';
@@ -24,13 +24,10 @@ var PartHeader = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={[styles.container, {width: this.props.visibleWidth, height: 150}]}>
-        <View style={styles.partWheel}>
-          <PartNameView
-            partName={this.props.part.name}
-            partIdx={this.props.partIdx}
-            isModifying={this.props.isModifying} />
-        </View>
-
+        <PartNameView
+          partName={this.props.part.name}
+          partIdx={this.props.partIdx}
+          isModifying={this.props.isModifying} />
       </View>
       /* jshint ignore:end */
     );
@@ -41,10 +38,6 @@ var PartHeader = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  partWheel: {
-    flex: .25,
-    backgroundColor: 'rgba(77,186,151,.6)',
   },
 });
 

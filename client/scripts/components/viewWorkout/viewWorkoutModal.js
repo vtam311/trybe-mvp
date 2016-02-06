@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 17:43:07
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 17:49:43
 */
 
 'use strict';
@@ -136,7 +136,7 @@ var ViewWorkoutModal = React.createClass({
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
               <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
-                <View style={{flex: .3}}>
+                <View style={{flex: .25, backgroundColor: 'rgba(77,186,151,.6)'}}>
                   <ScrollView
                     horizontal={true}
                     pagingEnabled={true}
@@ -156,19 +156,19 @@ var ViewWorkoutModal = React.createClass({
                   </ScrollView>
                 </View>
 
-                <View style={{flex: .7}}>
+                <View style={{flex: .75}}>
                   <ScrollView
                     contentContainerStyle={styles.partContentContainer} >
                     <View style={{width: 330}}>
                       <InstructionsView
                         instructions={currPart.instructions}
                         partIdx={this.state.currPage}
-                        isModifying={this.props.isModifying} />
+                        isModifying={this.state.isModifying} />
                     </View>
 
                     {exerciseViews}
 
-                    {this.props.isModifying ?
+                    {this.state.isModifying ?
                       <View style={styles.addExerciseView}>
                         <AddExerciseView partIdx={this.state.currPage}/>
                       </View>
@@ -176,7 +176,7 @@ var ViewWorkoutModal = React.createClass({
                     }
                   </ScrollView>
 
-                  {this.props.isModifying ?
+                  {this.state.isModifying ?
                     null :
                     <TouchableHighlight onPress={this.handleLogButtonPress}
                       style={[styles.logButton]}>
@@ -263,7 +263,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'absolute',
-    top: 125,
+    top: 135,
     left: 0,
     right: 0
   },
