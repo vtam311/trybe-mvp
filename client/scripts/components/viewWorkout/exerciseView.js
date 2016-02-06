@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-05 12:25:00
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 21:16:44
 */
 
 'use strict';
@@ -14,13 +14,13 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Text,
-  TextInput,
-  Image,
   View,
   StyleSheet,
 } = React;
 
+var Swipeout = require('react-native-swipeout');
 var PressableExerciseParams = require('./pressableExerciseParams');
 var ExerciseParams = require('./exerciseParams');
 var RepPicker = require('./exerciseParameterPickers/repPicker');
@@ -38,11 +38,6 @@ var ExerciseView = React.createClass({
   },
   setIsShowingPicker: function(bool){
     this.setState({isShowingPicker: bool});
-  },
-  setExerciseName: function(text){
-    //notify editWorkoutStore which exercise is being modified
-    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
-    editWorkoutActions.setExerciseName(text);
   },
   handleRepPress: function(){
     //If current picker is already showing, toggle off on press
@@ -90,7 +85,7 @@ var ExerciseView = React.createClass({
     if(this.state.selectedPickerParam === 'distance'){
       this.setState({isShowingPicker: !this.state.isShowingPicker});
     } else {
-    //Otherwise show on press
+      //Otherwise show on press
       this.setState({isShowingPicker: true});
     }
 
@@ -125,7 +120,7 @@ var ExerciseView = React.createClass({
       selectedPickerParam: 'time'
     });
   },
-  handleInfoPress: function(){
+  handleMorePress: function(){
     //Notify editExerciseModal that user is modifying existing
     //exercise rather than creating a new one
     editExerciseActions.setModifyOrCreate('modify');
@@ -134,20 +129,22 @@ var ExerciseView = React.createClass({
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
   },
-                // <TextInput style={styles.exerciseText}>{this.props.exercise.name}</Text>
+
   render: function(){
+    var swipeoutBtns = [
+      { text: 'Delete', onPress: this.handleSwipeoutButtonPress, backgroundColor: '#FA6F80' },
+      { text: 'More', onPress: this.handleMorePress, backgroundColor: '#8D867E' },
+    ];
+
     if(this.props.isModifying) {
       return (
         /* jshint ignore:start */
+        <Swipeout right={swipeoutBtns} backgroundColor='rgba(0,0,0,0)'>
+         <TouchableWithoutFeedback onPress={() => this.setIsShowingPicker(false)}>
           <View style={styles.exerciseContainer}>
             <View style={styles.rowContainer}>
               <View style={{flex: .66}}>
-                <TextInput
-                  value={this.props.exercise.name}
-                  placeholder='Exercise Name'
-                  onChangeText={(text) => this.setExerciseName(text)}
-                  autoCapitalize='words'
-                  style={[styles.exerciseText, {height: 35, fontWeight: '400'}]} />
+                <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
               </View>
               <View style={{flex: .33}}>
                 <PressableExerciseParams
@@ -170,6 +167,8 @@ var ExerciseView = React.createClass({
               : null
             }
           </View>
+        </TouchableWithoutFeedback>
+        </Swipeout>
         /* jshint ignore:end */
       );
     } else {
