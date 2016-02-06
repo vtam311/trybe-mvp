@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-05 16:31:13
+* @Last Modified time: 2016-02-05 16:33:35
 */
 
 'use strict';
@@ -84,7 +84,6 @@ var ViewWorkoutModal = React.createClass({
   },
 
   render: function() {
-    console.log('screen width', this.state.visibleWidth);
     if(this.state.workout){
       var partPages = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
