@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 19:43:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 11:09:59
+* @Last Modified time: 2016-02-06 20:59:38
 */
 
 'use strict';
@@ -37,12 +37,12 @@ var NotesInput = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 10
+    margin: 15
   },
   instructionsTextInput: {
-    height: 60,
+    height: 100,
     fontFamily: 'Avenir Next',
-    fontSize: 18,
+    fontSize: 16,
     fontStyle: 'italic',
     color: '#929292',
   },

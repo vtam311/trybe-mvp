@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-06 16:09:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-07 21:44:18
+* @Last Modified time: 2016-02-06 21:13:29
 */
 
 'use strict';
@@ -56,7 +56,7 @@ var CustomInput = React.createClass({
     return (
       <View style={styles.container}>
         {this.state.isCustomMetric ?
-          <Text style={styles.customInputPrompt}>{this.state.metric}</Text>
+          <Text style={styles.customInputPromptText}>{this.state.metric}</Text>
           :
           null
         }
@@ -74,13 +74,13 @@ var CustomInput = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 10
-  },
-  customInputPrompt: {
-    fontSize: 14,
-    color: '#929292',
-    fontFamily: 'Avenir Next',
     marginTop: 10,
+  },
+  customInputPromptText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#A79D93',
   },
   customResultTextInput: {
     marginTop: 10,

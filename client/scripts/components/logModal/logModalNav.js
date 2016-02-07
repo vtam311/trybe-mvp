@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-06 11:35:45
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-06 13:03:25
+* @Last Modified time: 2016-02-06 21:14:27
 */
 
 'use strict';
@@ -17,8 +17,7 @@ var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var LogResults = require('./logModal');
-//notes page
+var LogResults = require('./logResults');
 
 var {
   Navigator,
@@ -134,10 +133,13 @@ var NavBarRouteMapper = {
     if(route.name === 'Workout Notes'){
       return (
         <View style={styles.navBarComponentContainer}>
-          <Image
-            style={{height: 18, width: 10}}
-            source={ require('image!backArrowGreen') } />
-          <Text style={styles.navBarSideText}>Results</Text>
+          <TouchableOpacity onPress={() => navigator.pop()}
+            style={{flexDirection: 'row'}}>
+            <Image
+              style={{height: 18, width: 10, marginTop: 2, marginRight: 4}}
+              source={ require('image!backArrowGreen') } />
+            <Text style={styles.navBarSideText}>Results</Text>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -145,11 +147,15 @@ var NavBarRouteMapper = {
 
   RightButton: function(route, navigator, index, navState) {
       var handleDonePress = function(){
-        //TO DO: use data from logModalStore
-        // editWorkoutActions.savePartResult(this.state.result);
-        // editWorkoutActions.savePartNotes(this.state.notes);
-        // viewWorkoutActions.setPartIsLoggedTrue(this.state.partIdx);
-        // logActions.addWorkoutPart(this.state.workout, this.state.partIdx);
+        var result = logModalStore.getResult();
+        var notes = logModalStore.getNotes();
+        var currPartIdx = editWorkoutStore.getTargetPartIdx();
+        var workout = editWorkoutStore.getWorkout();
+
+        editWorkoutActions.savePartResult(result);
+        editWorkoutActions.savePartNotes(notes);
+        viewWorkoutActions.setPartIsLoggedTrue(currPartIdx);
+        logActions.addWorkoutPart(workout, currPartIdx);
         modalActions.closeLogModal();
       };
       return (
@@ -179,7 +185,6 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    paddingBottom: 100,
     backgroundColor: 'rgba(155, 155, 155, 0.4)',
   },
   flexCenter: {
@@ -188,20 +193,20 @@ var styles = StyleSheet.create({
     alignItems: 'center'
   },
   container: {
-    height: 450,
-    width: 340,
+    height: 400,
+    width: 330,
     backgroundColor: 'rgba(255, 255, 255, 1)',
-    borderRadius: 3,
-    shadowColor: '#9B9B9B',
-    shadowOpacity: 8,
+    borderRadius: 3, //not working
+    shadowColor: '#9B9B9B', //not working
+    shadowOpacity: 8, //not working
   },
   scene: {
     flex: 1,
-    paddingTop: 64, //offset navbar from covering scene
+    paddingTop: 55, //offset navbar from covering scene
   },
   navBar: {
     flexDirection: 'row',
-    height: 50,
+    height: 55,
     alignItems: 'center',
     borderBottomWidth: .5,
     borderBottomColor: 'rgba(155, 155, 155, 0.7)',
@@ -209,20 +214,19 @@ var styles = StyleSheet.create({
   navBarComponentContainer: {
     flex: 1,
     justifyContent: 'center',
-    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
-    marginBottom: 30
+    marginBottom: 10
   },
   navBarTitleText: {
     fontFamily: 'Avenir Next',
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: '500',
     color: '#4A4A4A'
   },
   navBarSideText: {
     fontFamily: 'Avenir Next',
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '500',
     color: '#4DBA97',
   },

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-06 13:02:54
+* @Last Modified time: 2016-02-06 21:06:48
 */
 
 'use strict';
@@ -16,15 +16,14 @@ var {
   TouchableOpacity,
   Image,
   SegmentedControlIOS,
-  TextInput, //take out later
+  Image,
 } = React;
 
 //Load components
 var SelectedResultInput = require('./logInputs/selectedResultInput');
 var NotesInput = require('./logInputs/notesInput');
 
-
-var LogModal = React.createClass({
+var LogResults = React.createClass({
   getInitialState: function() {
     return {
       isShowingPicker: false,
@@ -112,19 +111,29 @@ var LogModal = React.createClass({
             </View>
 
             {this.state.isShowingPicker ?
-              <SegmentedControlIOS
-                values={['Time', 'Rounds', 'Max Load', 'Custom']}
-                selectedIndex={this.state.segmCtrlIdx}
-                onValueChange={(val) => this.setMetric(val)}
-                tintColor={'#4DBA97'}/>
+              <View style={{marginRight: 15, marginLeft: 15}}>
+                <SegmentedControlIOS
+                  values={['Time', 'Rounds', 'Max Load', 'Custom']}
+                  selectedIndex={this.state.segmCtrlIdx}
+                  onValueChange={(val) => this.setMetric(val)}
+                  tintColor={'#4DBA97'}/>
+              </View>
               : null}
 
             <SelectedResultInput
               result={this.props.result}
               segmCtrlIdx={this.state.segmCtrlIdx}
               partIdx={this.props.partIdx} />
-            <NotesInput
-              notes={this.props.notes} />
+
+            <View style={styles.addNotesContainer}>
+              <TouchableOpacity
+                onPress={() => this.props.goToScene(NotesInput, 'Workout Notes')}
+                style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image source={require('image!addButtonTeal')}
+                  style={{height: 18, width: 18, marginRight: 10}}/>
+                <Text style={[styles.text, {color: '#17738C'}]}>Add Notes</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -142,12 +151,14 @@ var styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    marginLeft: 15,
-    marginRight: 15,
+    // marginLeft: 15,
+    // marginRight: 15,
   },
   metricControlContainer:{
     marginTop: 15,
-    marginBottom: 15
+    marginBottom: 15,
+    marginLeft: 20,
+    marginRight: 20,
   },
   metricControlRow: {
     flexDirection: 'row',
@@ -159,7 +170,11 @@ var styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     color: 'black'
+  },
+  addNotesContainer:{
+    alignSelf: 'center',
+    marginTop: 10,
   }
 });
 
-module.exports = LogModal;
+module.exports = LogResults;
