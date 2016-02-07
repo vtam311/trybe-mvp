@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 10:54:00
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 17:41:34
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-05 17:51:25
 */
 
 'use strict';
@@ -37,17 +37,17 @@ var InstructionsView = React.createClass({
     if(this.props.isModifying){
       return (
         /* jshint ignore:start */
-        <TouchableOpacity onPress={this.handlePress}>
-          <View style={styles.instructionsContainer}>
+        <TouchableOpacity onPress={this.handlePress} style={styles.instructionsContainer}>
+          <View style={{flex: 1}}>
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.instructionsText}>{this.renderInstructions()}</Text>
+              <Text style={[styles.instructionsText, styles.editableText]}>{this.renderInstructions()}</Text>
             </View>
             <View style={{position: 'absolute', right: 0, top: 0, marginTop: 10}}>
               <Image source={require('image!disclosureIndicatorWhite')} />
             </View>
           </View>
         </TouchableOpacity>
-        /* jshint ignore:start */
+        /* jshint ignore:end */
       );
     } else {
       return (
@@ -76,6 +76,9 @@ var styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  editableText: {
+    fontWeight: '400'
+  }
 });
 
 module.exports = InstructionsView;

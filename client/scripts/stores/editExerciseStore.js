@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-12-03 15:29:02
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-19 10:36:36
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-03 19:41:12
 */
 
 'use strict';
@@ -97,7 +97,7 @@ AppDispatcher.register(function(payload){
       setModifyOrCreate(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;
-    case editExerciseConstants.SET_EXERCISE_NAME:
+    case editExerciseConstants.SET_NAME:
       setExerciseName(action.data);
       editExerciseStore.emit(CHANGE_EVENT);
       break;

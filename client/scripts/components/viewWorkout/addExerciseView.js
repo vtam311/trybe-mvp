@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-19 17:52:37
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 21:56:06
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-06 10:01:44
 */
 
 'use strict';
@@ -33,7 +33,7 @@ var AddExerciseView = React.createClass({
   render: function(){
     return (
       /* jshint ignore:start */
-      <View style={styles.addExerciseContainer}>
+      <View style={styles.container}>
         <TouchableOpacity onPress={this.handlePress} style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
             <Image
@@ -49,14 +49,14 @@ var AddExerciseView = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  addExerciseContainer: {
-    paddingTop: 25,
+  container: {
+    paddingTop: 35,
     paddingBottom: 15,
   },
   addExerciseText:{
     fontFamily: 'Avenir Next',
     fontWeight: '500',
-    fontSize: 25,
+    fontSize: 24,
     color: '#fff'
   }
 });

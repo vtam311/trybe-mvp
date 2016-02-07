@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-20 16:25:50
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 16:48:25
+* @Last Modified time: 2016-02-05 20:51:56
 */
 
 'use strict';
@@ -19,7 +19,7 @@ var {
   StyleSheet,
 } = React;
 
-var PartNameView = React.createClass({
+var PartHeader = React.createClass({
   handlePress: function(){
     //Let editWorkoutStore know which part we are editing
     editWorkoutActions.setTargetPartIdx(this.props.partIdx);
@@ -27,9 +27,11 @@ var PartNameView = React.createClass({
   },
   renderPartName: function(){
     var name;
+    //If part name is specified, show it
     if(this.props.partName){
       name = this.props.partName.toUpperCase();
     } else {
+      //otherwise show 'PART #'
       var partNum = this.props.partIdx + 1;
       name = ('Part ' + partNum).toUpperCase();
     }
@@ -38,15 +40,14 @@ var PartNameView = React.createClass({
   },
   render: function(){
     return (
-      <View style={styles.partNameContainer}>
+      <View style={[styles.partNameContainer, {width: this.props.width}]}>
         { this.props.isModifying ?
           <TouchableOpacity onPress={this.handlePress}
             style={{flex: 1, flexDirection: 'row'}}>
-
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.partNameText}>{this.renderPartName()}</Text>
+              <Text style={[styles.partNameText, styles.editableText]}>{this.renderPartName()}</Text>
             </View>
-            <View style={{position: 'relative', marginLeft: 10, marginTop: 22}}>
+            <View style={{position: 'absolute', marginLeft: 10, marginTop: 8}}>
               <Image
                 source={require('image!disclosureIndicatorWhite')}
                 style={{marginTop: 9}} />
@@ -65,7 +66,7 @@ var PartNameView = React.createClass({
 var styles = StyleSheet.create({
   partNameContainer: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 80,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -76,6 +77,9 @@ var styles = StyleSheet.create({
     color: 'white',
     marginTop: 10,
   },
+  editableText: {
+    fontWeight: '400'
+  }
 });
 
-module.exports = PartNameView;
+module.exports = PartHeader;

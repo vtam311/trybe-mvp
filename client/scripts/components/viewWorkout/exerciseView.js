@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-18 12:52:44
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 15:37:24
+* @Last Modified time: 2016-02-06 10:14:23
 */
 
 'use strict';
@@ -14,51 +14,180 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
-  Image,
+  Text,
   View,
   StyleSheet,
 } = React;
 
-var ExNameAndParams = require('../../common/workoutViews/exNameAndParams');
+var Swipeout = require('react-native-swipeout');
+var PressableExerciseParams = require('./pressableExerciseParams');
+var ExerciseParams = require('./exerciseParams');
+var RepPicker = require('./exerciseParameterPickers/repPicker');
+var LoadPicker = require('./exerciseParameterPickers/loadPicker');
+var DistancePicker = require('./exerciseParameterPickers/distancePicker');
+var TimePicker = require('./exerciseParameterPickers/timePicker');
 
 var ExerciseView = React.createClass({
-  handlePress: function(){
-    //Notify editExerciseModal that user is modifying exercise
-    //rather than creating one
+  getInitialState: function(){
+    return {
+      isShowingPicker: false,
+      selectedPicker: null,
+      selectedPickerParam: null,
+    };
+  },
+  setIsShowingPicker: function(bool){
+    this.setState({isShowingPicker: bool});
+  },
+  handleRepPress: function(){
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'reps'){
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({isShowingPicker: true});
+    }
+
+    var picker =
+      <RepPicker
+        reps={this.props.exercise.reps}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'reps'
+    });
+  },
+  handleLoadPress: function(){
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'load'){
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({isShowingPicker: true});
+    }
+
+    var picker =
+      <LoadPicker
+        loadVal={this.props.exercise.load.val}
+        units={this.props.exercise.load.units}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'load'
+    });
+  },
+  handleDistancePress: function(){
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'distance'){
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
+    } else {
+      //Otherwise show on press
+      this.setState({isShowingPicker: true});
+    }
+
+    var picker =
+      <DistancePicker
+        distVal={this.props.exercise.distance.val}
+        units={this.props.exercise.distance.units}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'distance'
+    });
+  },
+  handleTimePress: function(){
+    //If current picker is already showing, toggle off on press
+    if(this.state.selectedPickerParam === 'time'){
+      this.setState({isShowingPicker: !this.state.isShowingPicker});
+    } else {
+    //Otherwise show on press
+      this.setState({isShowingPicker: true});
+    }
+
+    var picker =
+      <TimePicker time={this.props.exercise.time}
+        partIdx={this.props.partIdx}
+        exIdx={this.props.exIdx}
+        setIsShowingPicker={this.setIsShowingPicker} />;
+
+    this.setState({
+      selectedPicker: picker,
+      selectedPickerParam: 'time'
+    });
+  },
+  handleMorePress: function(){
+    //Notify editExerciseModal that user is modifying existing
+    //exercise rather than creating a new one
     editExerciseActions.setModifyOrCreate('modify');
 
     //notify editWorkoutStore which exercise is being modified
     editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
     modalActions.openExerciseModal();
   },
+  handleDeletePress: function(){
+    editWorkoutActions.removeExercise(this.props.partIdx, this.props.exIdx);
+  },
+
   render: function(){
+    var swipeoutBtns = [
+      { text: 'Delete', onPress: this.handleDeletePress, backgroundColor: '#FA6F80' },
+      { text: 'More', onPress: this.handleMorePress, backgroundColor: '#8D867E' },
+    ];
+
     if(this.props.isModifying) {
       return (
         /* jshint ignore:start */
-        <TouchableOpacity onPress={this.handlePress}>
+        <Swipeout right={swipeoutBtns} backgroundColor='rgba(0,0,0,0)'>
           <View style={styles.exerciseContainer}>
-            <ExNameAndParams
-              exercise={this.props.exercise}
-              exIdx={this.props.exIdx}
-              customFontSize={25}
-              customFontColor='#fff' />
-            <View style={{flex: .1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-              <Image
-                source={require('image!disclosureIndicatorWhite')}
-                style={{marginTop: 9}} />
+            <View style={styles.rowContainer}>
+              <View style={{flex: .66}}>
+                <Text style={[styles.exerciseText, styles.modifyingText]}>{this.props.exercise.name}</Text>
+              </View>
+              <View style={{flex: .33}}>
+                <PressableExerciseParams
+                  exercise={this.props.exercise}
+                  partIdx={this.props.partIdx}
+                  exIdx={this.props.exIdx}
+                  isShowingPicker={this.state.isShowingPicker}
+                  selectedPickerParam={this.state.selectedPickerParam}
+                  setIsShowingPicker={this.setIsShowingPicker}
+                  handleRepPress={this.handleRepPress}
+                  handleLoadPress={this.handleLoadPress}
+                  handleDistancePress={this.handleDistancePress}
+                  handleTimePress={this.handleTimePress} />
+              </View>
             </View>
+            {this.state.isShowingPicker ?
+              <View style={styles.pickerContainer}>
+                {this.state.selectedPicker}
+              </View>
+              : null
+            }
           </View>
-        </TouchableOpacity>
+        </Swipeout>
         /* jshint ignore:end */
       );
     } else {
       return (
         <View style={styles.exerciseContainer}>
-          <ExNameAndParams
-            exercise={this.props.exercise}
-            exIdx={this.props.exIdx}
-            customFontSize={25}
-            customFontColor='#fff' />
+          <View style={styles.rowContainer}>
+            <View style={{flex: .66}}>
+              <Text style={styles.exerciseText}>{this.props.exercise.name}</Text>
+            </View>
+            <View style={{flex: .33}}>
+              <ExerciseParams
+                exercise={this.props.exercise}
+                exIdx={this.props.exIdx} />
+            </View>
+          </View>
         </View>
       );
     }
@@ -67,12 +196,28 @@ var ExerciseView = React.createClass({
 
 var styles = StyleSheet.create({
   exerciseContainer: {
-    flex: 1,
-    flexDirection: 'row',
     borderBottomWidth: .5,
     borderColor: '#fff',
     paddingTop: 15,
-    paddingBottom: 15
+    paddingBottom: 15,
+  },
+  rowContainer: {
+    flexDirection: 'row',
+  },
+  exerciseText:{
+    fontFamily: 'Avenir Next',
+    fontSize: 25,
+    color: '#fff',
+    fontWeight: '500',
+    flexWrap: 'wrap',
+  },
+  modifyingText:{
+    fontWeight: '400'
+  },
+  pickerContainer: {
+    marginTop: 15,
+    marginBottom: 15,
+    marginLeft: 10,
   }
 });
 

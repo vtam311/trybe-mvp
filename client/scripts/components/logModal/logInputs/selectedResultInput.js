@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 16:17:42
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-14 13:56:43
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-06 21:08:11
 */
 
 'use strict';
@@ -65,7 +65,10 @@ var SelectedResultInput = React.createClass({
           <LogLoadPicker load={load} loadUnit={loadUnit}/>
         break;
       case 3:
-        input = <CustomInput metric={metric} customVal={customVal}/>
+        input =
+          <View style={{marginRight: 15, marginLeft: 15}}>
+            <CustomInput metric={metric} customVal={customVal}/>
+          </View>
         break;
       default:
         input = null;

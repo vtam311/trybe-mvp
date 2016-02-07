@@ -2,13 +2,13 @@
 * @Author: VINCE
 * @Date:   2015-12-04 10:31:30
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-02 17:20:14
+* @Last Modified time: 2016-02-05 21:38:40
 */
 
 'use strict';
 
 var React = require('react-native');
-var editExerciseActions = require('../../../../actions/editExerciseActions');
+var editWorkoutActions = require('../../../actions/editWorkoutActions');
 
 var {
   PickerIOS,
@@ -30,10 +30,14 @@ var LoadPicker = React.createClass({
   },
   _setLoadVal: function(choiceObj){
     var load = choiceObj.newValue;
-    if(load === 'No Weight') load = null;
+    if(load === 'No Weight'){
+      load = null;
+      this.props.setIsShowingPicker(false);
+    }
 
-    //Set load val in editExerciseStore
-    editExerciseActions.setLoadVal(load);
+    //Set load val in editWorkoutStore
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    editWorkoutActions.setLoadVal(load);
 
     //Update picker's state
     this.setState({loadVal: load});
@@ -44,8 +48,9 @@ var LoadPicker = React.createClass({
   _setLoadUnits: function(choiceObj){
     var unit = choiceObj.newValue;
 
-    //Set load units in editExerciseStore
-    editExerciseActions.setLoadUnit(unit);
+    //Set load units in editWorkoutStore
+    editWorkoutActions.setTargetExerciseIdx(this.props.partIdx, this.props.exIdx);
+    editWorkoutActions.setLoadUnit(unit);
 
     //Update picker's state
     this.setState({units: unit});
@@ -53,7 +58,7 @@ var LoadPicker = React.createClass({
   checkUnits: function(){
     //If no unit has been selected, pre-set to ft
     if(this.state.units === null) {
-      editExerciseActions.setLoadUnit('lb');
+      editWorkoutActions.setLoadUnit('lb');
     }
   },
   showChoiceLabels: function(choice){

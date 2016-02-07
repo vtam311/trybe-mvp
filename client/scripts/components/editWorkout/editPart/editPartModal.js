@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-12-15 15:19:09
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 21:19:19
+* @Last Modified time: 2016-02-05 12:30:23
 */
 
 'use strict';
@@ -94,7 +94,7 @@ var EditPartModal = React.createClass({
                 <Image
                   style={{height: 18, width: 18}}
                   source={require('image!deleteButton')} />
-                <Text style={styles.deleteText}>Delete</Text>
+                <Text style={styles.deleteText}>Delete Part</Text>
               </View>
             </TouchableOpacity>
           </View>

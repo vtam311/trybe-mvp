@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 21:44:01
+* @Last Modified time: 2016-02-06 10:09:44
 */
 
 'use strict';
@@ -16,6 +16,7 @@ var modalActions = require('../../actions/modalActions');
 
 var {
   TouchableOpacity,
+  TouchableHighlight,
   ScrollView,
   Animated,
   Dimensions,
@@ -26,8 +27,13 @@ var {
 } = React;
 
 //Load components
-var PartPage = require('./partPage');
+var PageControl = require('react-native-page-control');
+var PartHeader = require('./partHeader');
+var AddPartHeader = require('./addPartHeader');
 var AddPartPage = require('./addPartPage');
+var InstructionsView = require('./instructionsView');
+var ExerciseView = require('./exerciseView');
+var AddExerciseView = require('./addExerciseView');
 
 //Gets device height for animating app
 var {
@@ -44,6 +50,7 @@ var ViewWorkoutModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
+      currPartIdx: 0,
     };
   },
   componentDidMount: function() {
@@ -74,19 +81,30 @@ var ViewWorkoutModal = React.createClass({
       toValue: deviceHeight
     }).start(modalActions.closeViewWorkoutModal);
   },
+  handleScroll: function(event: Object) {
+    var horizontalOffset = event.nativeEvent.contentOffset.x;
+    var currPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    this.setState({currPartIdx: currPartIdx});
+  },
+  handleLogButtonPress: function(){
+    //notifies editWorkoutStore which part to modify
+    editWorkoutActions.setTargetPartIdx(this.state.currPartIdx);
+    modalActions.openLogModal();
+  },
+
   render: function() {
     if(this.state.workout){
-      var partPages = this.state.workout.parts.map( (part, index) =>
+      var partHeaders = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
-        <PartPage
-          part={part}
+        <PartHeader
+          partName={part.name}
           partIdx={index}
-          key={index}
           isModifying={this.state.isModifying}
-          visibleHeight={this.state.visibleHeight}
-          visibleWidth={this.state.visibleWidth} />
+          width={this.state.visibleWidth} />
         /* jshint ignore:end */
       );
+
+      var currPart = this.state.workout.parts[this.state.currPartIdx];
 
       return (
         /* jshint ignore:start */
@@ -95,40 +113,101 @@ var ViewWorkoutModal = React.createClass({
             source={require('image!iconAthletesBackground')}
             style={{flex: 1, height: null, width: null}}
             resizeMode='contain' >
-            <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+              <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+                <View style={{flex: .25, backgroundColor: 'rgba(77,186,151,.6)'}}>
+                  <ScrollView
+                    horizontal={true}
+                    pagingEnabled={true}
+                    onScroll={this.handleScroll}
+                    scrollEventThrottle={256}
+                    showsHorizontalScrollIndicator={false} >
 
-              <ScrollView
-                horizontal={true}
-                pagingEnabled={true} >
+                    {partHeaders}
 
-                {partPages}
-
-                {this.state.isModifying ?
-                  <AddPartPage
-                    isModifying={this.state.isModifying}
-                    visibleHeight={this.state.visibleHeight}
-                    visibleWidth={this.state.visibleWidth} />
-                  : null
-                }
-              </ScrollView>
-
-              <View style={[styles.closeButtonContainer, {width: this.state.visibleWidth}]}>
-                {this.state.isModifying ?
-                  null :
-                  <TouchableOpacity onPress={this.closeModal}>
-                   <Image
-                      style={styles.closeButton}
-                      source={require('image!closeButton')} />
-                  </TouchableOpacity>
-                }
-                <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
                     {this.state.isModifying ?
-                     <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
-                      : <Text style={styles.modifyButtonText}>Modify</Text>
+                      <AddPartHeader visibleWidth={this.state.visibleWidth}/>
+                      : null
                     }
-                </TouchableOpacity>
+                  </ScrollView>
+                </View>
+
+                <View style={{flex: .75}}>
+                  <ScrollView
+                    contentContainerStyle={styles.partContentContainer} >
+
+                    {currPart ?
+                      <View>
+                        <View style={{width: 330}}>
+                          <InstructionsView
+                            instructions={currPart.instructions}
+                            partIdx={this.state.currPartIdx}
+                            isModifying={this.state.isModifying} />
+                        </View>
+
+                        {currPart.exercises.map((exercise, index) =>
+                          <View style={{width: 330}} key={index}>
+                            <ExerciseView
+                              exercise={exercise}
+                              partIdx={this.state.currPartIdx}
+                              exIdx={index}
+                              key={index}
+                              isModifying={this.state.isModifying} />
+                          </View>
+                        )}
+
+                        {this.state.isModifying ?
+                          <View style={styles.addExerciseContainer}>
+                            <AddExerciseView partIdx={this.state.currPartIdx}/>
+                          </View>
+                          : null
+                        }
+                      </View>
+                      : <AddPartPage
+                          isModifying={this.state.isModifying}
+                          visibleHeight={this.state.visibleHeight}
+                          visibleWidth={this.state.visibleWidth} />
+                    }
+
+                  </ScrollView>
+
+                  {this.state.isModifying ?
+                    null :
+                    <TouchableHighlight onPress={this.handleLogButtonPress}
+                      style={[styles.logButton]}>
+                      <Text style={styles.logButtonText}>Log Results</Text>
+                    </TouchableHighlight>
+                  }
+                </View>
+
+                <View style={[styles.topContentContainer, {width: this.state.visibleWidth}]}>
+                  {this.state.isModifying ?
+                    null :
+                    <TouchableOpacity onPress={this.closeModal}>
+                     <Image
+                        style={styles.closeButton}
+                        source={require('image!closeButton')} />
+                    </TouchableOpacity>
+                  }
+                  <TouchableOpacity onPress={() => viewWorkoutActions.setIsModifying(!this.state.isModifying)}>
+                      {this.state.isModifying ?
+                       <Text style={[styles.modifyButtonText, {fontWeight: '600'}]}>Done</Text>
+                        : <Text style={styles.modifyButtonText}>Modify</Text>
+                      }
+                  </TouchableOpacity>
+                  <View style={styles.pageControlContainer}>
+                    <PageControl style={{position:'absolute', top: 0, left: 0, right: 0}}
+                      numberOfPages={this.state.isModifying ?
+                        this.state.workout.parts.length + 1 : this.state.workout.parts.length}
+                      currentPage={this.state.currPartIdx}
+                      hidesForSinglePage={true}
+                      pageIndicatorTintColor='gray'
+                      currentPageIndicatorTintColor='white'
+                      indicatorStyle={{borderRadius: 4}}
+                      currentIndicatorStyle={{borderRadius: 4}}
+                      indicatorSize={{width:8, height:8}} />
+                  </View>
+                </View>
               </View>
-            </View>
           </Image>
         </Animated.View>
         /* jshint ignore:end */
@@ -149,9 +228,10 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: 'rgba(23,115,140,.55)',
   },
-  closeButtonContainer: {
+  topContentContainer: {
     height: 60,
     position: 'absolute',
     top: 0,
@@ -172,6 +252,39 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontWeight: '500',
     fontSize: 18
+  },
+  pageControlContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 135,
+    left: 0,
+    right: 0
+  },
+  partContentContainer: {
+    paddingBottom: 60,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  addExerciseContainer: {
+    alignSelf: 'center'
+  },
+  logButton: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    backgroundColor: 'rgba(23,115,140,.75)',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  logButtonText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 24,
+    fontWeight: '500',
+    color: '#fff'
   }
 });
 
