@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 17:55:54
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-09 15:52:50
 */
 
 'use strict';
@@ -30,9 +30,9 @@ var LogCard = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View>
+      <View style={styles.container}>
         <Text style={styles.dateText}>{dateDescr}</Text>
-        <View style={styles.cardContainer}>
+        <View style={styles.cardContent}>
           <ViewWorkoutBody
             workout={workout}
             showNotes={true} />
@@ -46,7 +46,10 @@ var LogCard = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  cardContainer: {
+  container: {
+    marginBottom: 10,
+  },
+  cardContent: {
     flex: 1,
     backgroundColor: '#fff',
     borderTopWidth: .5,

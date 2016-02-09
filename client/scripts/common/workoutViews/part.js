@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-01 09:58:20
+* @Last Modified time: 2016-02-09 15:55:45
 */
 
 'use strict';
@@ -35,7 +35,6 @@ var Part = React.createClass({
       <View style={styles.partContainer}>
         <Text style={styles.partNameText}>{part.name}</Text>
         <Text style={styles.instructionText}>{part.instructions}</Text>
-        <View style={styles.instructionsBottomBorder}></View>
         {exercises}
         <View style={styles.resultsContainer}>
           <ViewResults result={part.result} />
@@ -62,7 +61,6 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontSize: 16,
     fontWeight: '500',
-    fontStyle: 'italic',
     color: '#8D867E',
     marginBottom: 8,
   },
@@ -70,14 +68,9 @@ var styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontSize: 15,
     fontWeight: '500',
+    fontStyle: 'italic',
     color: '#8D867E',
     marginBottom: 8,
-  },
-  instructionsBottomBorder: {
-    height: .5,
-    width: 280,
-    backgroundColor: 'rgba(88, 80, 77, .5)',
-    marginBottom: 3,
   },
   exerciseContainer: {
     width: 280,
