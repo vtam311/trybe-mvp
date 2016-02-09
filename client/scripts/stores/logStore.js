@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-01 09:47:02
+* @Last Modified time: 2016-02-08 20:54:24
 */
 
 'use strict';
@@ -14,14 +14,27 @@ var CHANGE_EVENT = 'change';
 
 var separateWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
+var sortByDate = require('../common/sortByDate');
 
 var _store = {
   workouts: []
 };
 
 var setWorkouts = function(data){
-  var workouts = data.workouts;
-  workouts.forEach( (workout) => _store.workouts.push(workout) );
+  //If workouts already exist in store,
+  //ensure new array of workouts are sorted properly.
+  if(_store.workouts[0]){
+    data.workouts.forEach((workout) =>
+      _store.workouts.push(workout)
+    );
+
+    sortByDate.mergeSort(_store.workouts, 0, _store.workouts.length);
+  } else {
+  //Otherwise simply assign workouts
+  _store.workouts = data.workouts;
+  }
+
+
 };
 
 var existingWorkoutIdx = function(workout){
@@ -35,9 +48,17 @@ var existingWorkoutIdx = function(workout){
 
 var addWorkout = function(workout){
   _store.workouts.push(workout);
+
+  //ensure workouts are sorted properly
+  //refactor to simply insert in correct spot?
+  sortByDate.mergeSort(_store.workouts, 0, _store.workouts.length);
+  var workoutIdx = existingWorkoutIdx(workout);
+  updateForListView(workoutIdx);
 };
 
-var addNewWorkoutAndCompletedPart = function(workout, partIdx){
+var addNewWorkoutWithCompletedPart = function(workout, partIdx){
+  console.log('addNewWorkoutWithCompletedPart called');
+  console.log('workouts before addNewWorkoutWithCompletedPart', _store.workouts);
   //add the workout to logStore, with only the completed part
   var sepWorkout = separateWorkout(workout); //break reference to orig workout
   var completedPart = sepWorkout.parts[partIdx];
@@ -46,9 +67,13 @@ var addNewWorkoutAndCompletedPart = function(workout, partIdx){
   sepWorkout.parts = workoutWithOnlyCompletedPart;
 
   addWorkout(sepWorkout);
+  console.log('workouts after addNewWorkoutWithCompletedPart', _store.workouts);
 };
 
 var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
+  console.log('addPartToExistingWorkout called');
+  console.log('workouts before addPartToExistingWorkout', _store.workouts);
+
   //copy existing workout
   var currWorkout = separateWorkout(_store.workouts[workoutIdx]);
   //add currPart to existing workout at correct index
@@ -57,15 +82,24 @@ var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
   //replace separateWorkout with existing workout
   _store.workouts[workoutIdx] = currWorkout;
   updateForListView(workoutIdx);
+  console.log('workouts after addPartToExistingWorkout', _store.workouts);
+
 };
 
 var addWorkoutPart = function(data){
   var sepWorkout = separateWorkout(data.workout); //break reference to orig workout
   var partIdx = data.partIdx;
   var workoutIdx = existingWorkoutIdx(sepWorkout);
+
+  if(workoutIdx === null) {
+    console.log('addWorkoutPart found workout did not exist');
+  } else {
+    console.log('addWorkoutPart found workout did exist');
+  }
+
   //if workout does not exist in logStore, add workout's completed part to logStore
   if(workoutIdx === null) {
-    addNewWorkoutAndCompletedPart(sepWorkout, partIdx);
+    addNewWorkoutWithCompletedPart(sepWorkout, partIdx);
   } else {
     //else add part completed to existing workout
     addPartToExistingWorkout(sepWorkout, workoutIdx, partIdx);
@@ -74,13 +108,14 @@ var addWorkoutPart = function(data){
 
 var updateForListView = function(indexToUpdate){
   //ListView does not re-render a row when the properties
-  //of an object are changd. So must create new objs instead of
-  //updating properties of existing ones
-  let newWorkouts = _store.workouts.slice();
-  newWorkouts[indexToUpdate] = {
-    ..._store.workouts[indexToUpdate],
-  };
-  _store.workouts = newWorkouts;
+  //of an object are changd. So must create a new obj instead of
+  //updating properties of an existing one
+  // let newWorkouts = _store.workouts.slice();
+  // newWorkouts[indexToUpdate] = {
+  //   ..._store.workouts[indexToUpdate]
+  // };
+  // _store.workouts = newWorkouts;
+  // console.log('updateForListView workouts after', _store.workouts);
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {
