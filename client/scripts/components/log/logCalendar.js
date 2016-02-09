@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-08 16:18:46
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 18:44:50
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-08 19:04:08
 */
 
 'use strict';
@@ -16,6 +16,7 @@ var {
   StyleSheet,
   Text,
   View,
+  Image,
 } = React;
 
 var LogCalendar = React.createClass({
@@ -35,6 +36,11 @@ var LogCalendar = React.createClass({
     console.log('hi');
   },
   render: function(){
+    var backArrow = <Image
+      source={require('image!backArrowGrey')}
+      style={{height: 5, width: 5}} />;
+    var forwardArrow = <Image source={require('image!forwardArrowGrey')} style={styles.arrow} />;
+
     return (
       /* jshint ignore:start */
       <View>
@@ -43,8 +49,8 @@ var LogCalendar = React.createClass({
           showControls={true}
           titleFormat={'MMMM YYYY'}
           dayHeadings={['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}
-          prevButtonText={'Prev'}
-          nextButtonText={'Next'}
+          prevButtonText={backArrow}
+          nextButtonText={forwardArrow}
           onDateSelect={(date) => this.onDateSelect(date)}
           onTouchPrev={this.onTouchPrev}
           onTouchNext={this.onTouchNext}
@@ -60,8 +66,8 @@ var LogCalendar = React.createClass({
             currentDayCircle: {backgroundColor: '#E9DB72'},
             calendarHeading: {borderColor: 'rgba(0,0,0,0)'},
             weekendDayText: {color: 'black'},
-            dayHeading: {fontSize: 10, color: '#A79D93'},
-            weekendHeading: {fontSize: 10, color: '#A79D93'}
+            dayHeading: {fontSize: 11, color: '#A79D93'},
+            weekendHeading: {fontSize: 11, color: '#A79D93'}
           }} />
       </View>
       /* jshint ignore:end */
@@ -70,7 +76,9 @@ var LogCalendar = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  cardContainer: {
+  arrow: {
+    height: 6,
+    width: 3
   }
 });
 
