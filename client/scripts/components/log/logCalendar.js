@@ -1,8 +1,10 @@
+//Depr as of 2/8/16
+
 /*
 * @Author: vincetam
 * @Date:   2016-02-08 16:18:46
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-08 19:04:08
+* @Last Modified time: 2016-02-08 19:22:43
 */
 
 'use strict';
@@ -36,10 +38,8 @@ var LogCalendar = React.createClass({
     console.log('hi');
   },
   render: function(){
-    var backArrow = <Image
-      source={require('image!backArrowGrey')}
-      style={{height: 5, width: 5}} />;
-    var forwardArrow = <Image source={require('image!forwardArrowGrey')} style={styles.arrow} />;
+    var backArrow = <Image source={require('image!backArrowGrey')} />;
+    var forwardArrow = <Image source={require('image!forwardArrowGrey')} />;
 
     return (
       /* jshint ignore:start */
@@ -76,10 +76,6 @@ var LogCalendar = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  arrow: {
-    height: 6,
-    width: 3
-  }
 });
 
 module.exports = LogCalendar;

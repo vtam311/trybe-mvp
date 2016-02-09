@@ -1,8 +1,10 @@
+//DEPR as of 2/8/16
+
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 17:57:32
+* @Last Modified time: 2016-02-08 19:23:29
 */
 
 'use strict';
@@ -12,8 +14,9 @@ var logStore = require('../../stores/logStore');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var LogCalendar = require('./logCalendar');
-var ProfileCard = require('./profileCard');
+var Calendar = require('react-native-calendar');
+// var LogCalendar = require('./logCalendar');
+// var ProfileCard = require('./profileCard');
 var LogCard = require('./logCard');
 
 var {
@@ -41,15 +44,30 @@ var Log = React.createClass({
   },
   _onChange: function(){
     var workouts = logStore.getWorkouts();
-
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(workouts)
     });
   },
 
+  onDateSelect: function(){
+    console.log('hi');
+  },
+  onTouchPrev: function(){
+    console.log('hi');
+  },
+  onTouchNext: function(){
+    console.log('hi');
+  },
+  onSwipePrev: function(){
+    console.log('hi');
+  },
+  onSwipeNext: function(){
+    console.log('hi');
+  },
+
   // renderHeader: function(){
   //   return (
-  //     <LogCalendar />
+  //     <ProfileCard />
   //   );
   // },
 
@@ -64,17 +82,43 @@ var Log = React.createClass({
     );
   },
   render: function(){
-    /* jshint ignore:start */
+    var backArrow = <Image source={require('image!backArrowGrey')} />;
+    var forwardArrow = <Image source={require('image!forwardArrowGrey')} />;
     return (
+      /* jshint ignore:start */
       <View style={styles.container}>
-        <LogCalendar />
+        <Calendar
+          scrollEnabled={false}
+          showControls={true}
+          titleFormat={'MMMM YYYY'}
+          dayHeadings={['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}
+          prevButtonText={backArrow}
+          nextButtonText={forwardArrow}
+          onDateSelect={(date) => this.onDateSelect(date)}
+          onTouchPrev={this.onTouchPrev}
+          onTouchNext={this.onTouchNext}
+          onSwipePrev={this.onSwipePrev}
+          onSwipeNext={this.onSwipeNext}
+          eventDates={['2016-02-01']}
+          startDate={'2016-02-01'}
+          selectedDate={'2016-02-15'}
+          customStyle={{
+            day: {fontSize: 14, textAlign: 'center'},
+            currentDayText: {color: '#4DBA97'},
+            selectedDayCircle: {backgroundColor: '#4DBA97'},
+            currentDayCircle: {backgroundColor: '#E9DB72'},
+            calendarHeading: {borderColor: 'rgba(0,0,0,0)'},
+            weekendDayText: {color: 'black'},
+            dayHeading: {fontSize: 11, color: '#A79D93'},
+            weekendHeading: {fontSize: 11, color: '#A79D93'}
+          }} />
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
           renderHeader={this.renderHeader} />
       </View>
+      /* jshint ignore:end */
       );
-    /* jshint ignore:end */
   }
 });
 
