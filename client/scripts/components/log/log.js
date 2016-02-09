@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 19:57:28
+* @Last Modified time: 2016-02-08 21:11:00
 */
 
 'use strict';
@@ -21,15 +21,13 @@ var {
   StyleSheet,
   Text,
   View,
-  ListView,
+  ScrollView,
 } = React;
 
 var Log = React.createClass({
   getInitialState: function(){
     return {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2,
-      }),
+      workouts: logStore.getWorkouts(),
       showCalendar: true,
       selectedDate: null,
     };
@@ -42,9 +40,8 @@ var Log = React.createClass({
     logStore.removeChangeListener(this._onChange);
   },
   _onChange: function(){
-    var workouts = logStore.getWorkouts();
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(workouts)
+      workouts: logStore.getWorkouts()
     });
   },
 
@@ -64,17 +61,21 @@ var Log = React.createClass({
     console.log('hi');
   },
 
-  renderRow: function(workout){
-    return (
-      /* jshint ignore:start */
-      <View style={styles.logCardContainer}>
-        <LogCard
-          workout={workout} />
-      </View>
-      /* jshint ignore:end */
-    );
-  },
+  // renderRow: function(workout){
+  //   return (
+  //     /* jshint ignore:start */
+  //     <View style={styles.logCardContainer}>
+  //       <LogCard
+  //         workout={workout} />
+  //     </View>
+  //     /* jshint ignore:end */
+  //   );
+  // },
   render: function(){
+    var cards = this.state.workouts.map((workout, index) =>
+      <LogCard workout={workout} />
+    );
+
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
@@ -107,10 +108,9 @@ var Log = React.createClass({
             }} />
         </View>
 
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-          renderHeader={this.renderHeader} />
+        <ScrollView>
+          {cards}
+        </ScrollView>
       </View>
       /* jshint ignore:end */
       );
