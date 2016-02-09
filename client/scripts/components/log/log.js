@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-29 18:05:49
+* @Last Modified time: 2016-02-08 17:57:32
 */
 
 'use strict';
@@ -12,6 +12,7 @@ var logStore = require('../../stores/logStore');
 var logActions = require('../../actions/logActions');
 
 //Load components
+var LogCalendar = require('./logCalendar');
 var ProfileCard = require('./profileCard');
 var LogCard = require('./logCard');
 
@@ -46,11 +47,11 @@ var Log = React.createClass({
     });
   },
 
-  renderHeader: function(){
-    return (
-      <ProfileCard />
-    );
-  },
+  // renderHeader: function(){
+  //   return (
+  //     <LogCalendar />
+  //   );
+  // },
 
   renderRow: function(workout){
     return (
@@ -66,6 +67,7 @@ var Log = React.createClass({
     /* jshint ignore:start */
     return (
       <View style={styles.container}>
+        <LogCalendar />
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
