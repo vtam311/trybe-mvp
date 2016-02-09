@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 20:54:24
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-08 21:15:01
 */
 
 'use strict';
@@ -52,13 +52,9 @@ var addWorkout = function(workout){
   //ensure workouts are sorted properly
   //refactor to simply insert in correct spot?
   sortByDate.mergeSort(_store.workouts, 0, _store.workouts.length);
-  var workoutIdx = existingWorkoutIdx(workout);
-  updateForListView(workoutIdx);
 };
 
 var addNewWorkoutWithCompletedPart = function(workout, partIdx){
-  console.log('addNewWorkoutWithCompletedPart called');
-  console.log('workouts before addNewWorkoutWithCompletedPart', _store.workouts);
   //add the workout to logStore, with only the completed part
   var sepWorkout = separateWorkout(workout); //break reference to orig workout
   var completedPart = sepWorkout.parts[partIdx];
@@ -67,13 +63,9 @@ var addNewWorkoutWithCompletedPart = function(workout, partIdx){
   sepWorkout.parts = workoutWithOnlyCompletedPart;
 
   addWorkout(sepWorkout);
-  console.log('workouts after addNewWorkoutWithCompletedPart', _store.workouts);
 };
 
 var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
-  console.log('addPartToExistingWorkout called');
-  console.log('workouts before addPartToExistingWorkout', _store.workouts);
-
   //copy existing workout
   var currWorkout = separateWorkout(_store.workouts[workoutIdx]);
   //add currPart to existing workout at correct index
@@ -81,21 +73,12 @@ var addPartToExistingWorkout = function(workout, workoutIdx, partIdx){
   currWorkout.parts[partIdx] = currPart;
   //replace separateWorkout with existing workout
   _store.workouts[workoutIdx] = currWorkout;
-  updateForListView(workoutIdx);
-  console.log('workouts after addPartToExistingWorkout', _store.workouts);
-
 };
 
 var addWorkoutPart = function(data){
   var sepWorkout = separateWorkout(data.workout); //break reference to orig workout
   var partIdx = data.partIdx;
   var workoutIdx = existingWorkoutIdx(sepWorkout);
-
-  if(workoutIdx === null) {
-    console.log('addWorkoutPart found workout did not exist');
-  } else {
-    console.log('addWorkoutPart found workout did exist');
-  }
 
   //if workout does not exist in logStore, add workout's completed part to logStore
   if(workoutIdx === null) {
@@ -104,18 +87,6 @@ var addWorkoutPart = function(data){
     //else add part completed to existing workout
     addPartToExistingWorkout(sepWorkout, workoutIdx, partIdx);
   }
-};
-
-var updateForListView = function(indexToUpdate){
-  //ListView does not re-render a row when the properties
-  //of an object are changd. So must create a new obj instead of
-  //updating properties of an existing one
-  // let newWorkouts = _store.workouts.slice();
-  // newWorkouts[indexToUpdate] = {
-  //   ..._store.workouts[indexToUpdate]
-  // };
-  // _store.workouts = newWorkouts;
-  // console.log('updateForListView workouts after', _store.workouts);
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {

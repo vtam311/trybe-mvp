@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 21:11:00
+* @Last Modified time: 2016-02-08 21:13:37
 */
 
 'use strict';
@@ -61,16 +61,6 @@ var Log = React.createClass({
     console.log('hi');
   },
 
-  // renderRow: function(workout){
-  //   return (
-  //     /* jshint ignore:start */
-  //     <View style={styles.logCardContainer}>
-  //       <LogCard
-  //         workout={workout} />
-  //     </View>
-  //     /* jshint ignore:end */
-  //   );
-  // },
   render: function(){
     var cards = this.state.workouts.map((workout, index) =>
       <LogCard workout={workout} />
