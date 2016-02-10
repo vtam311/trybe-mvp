@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-08 21:15:01
+* @Last Modified time: 2016-02-09 18:11:40
 */
 
 'use strict';
@@ -17,7 +17,12 @@ var newObject = require('../common/copyObjectHelper');
 var sortByDate = require('../common/sortByDate');
 
 var _store = {
-  workouts: []
+  workouts: [],
+  filteredWorkouts: [],
+  calendarDate: {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear()
+  }
 };
 
 var setWorkouts = function(data){
@@ -28,13 +33,15 @@ var setWorkouts = function(data){
       _store.workouts.push(workout)
     );
 
-    sortByDate.mergeSort(_store.workouts, 0, _store.workouts.length);
+    sortWorkouts(_store.workouts);
   } else {
   //Otherwise simply assign workouts
   _store.workouts = data.workouts;
   }
+};
 
-
+var sortWorkouts = function(workouts){
+  sortByDate.mergeSort(workouts, 0, workouts.length);
 };
 
 var existingWorkoutIdx = function(workout){
@@ -51,7 +58,9 @@ var addWorkout = function(workout){
 
   //ensure workouts are sorted properly
   //refactor to simply insert in correct spot?
-  sortByDate.mergeSort(_store.workouts, 0, _store.workouts.length);
+  sortWorkouts(_store.workouts);
+  //ensure new workout can enter filtered workouts if month matches
+  filterWorkouts();
 };
 
 var addNewWorkoutWithCompletedPart = function(workout, partIdx){
@@ -89,6 +98,25 @@ var addWorkoutPart = function(data){
   }
 };
 
+var setCalendarMonthAndYear = function(data){
+  var month = data.month;
+  var year = data.year;
+  _store.calendarDate.month = month;
+  _store.calendarDate.year = year;
+};
+
+var filterWorkouts = function(){
+  var isSameMonth = function(workout){
+    var workoutMonth = workout.date.getMonth();
+    if(workoutMonth === _store.calendarDate.month){
+      return true;
+    } else return false;
+  };
+
+  _store.filteredWorkouts = _store.workouts.filter(isSameMonth);
+  sortWorkouts(_store.filteredWorkouts);
+};
+
 var logStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -99,6 +127,12 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   getWorkouts: function(){
     return _store.workouts;
   },
+  getFilteredWorkouts: function(){
+    return _store.filteredWorkouts;
+  },
+  getMonthAndYear: function(){
+    return _store.calendarDate;
+  }
 });
 
 AppDispatcher.register(function(payload){
@@ -106,10 +140,17 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case logConstants.SET_LOG_WORKOUTS:
       setWorkouts(action.data);
+      //once workouts are retrieved, build store's filteredWorkouts
+      filterWorkouts();
       logStore.emit(CHANGE_EVENT);
       break;
     case logConstants.ADD_WORKOUT_PART:
       addWorkoutPart(action.data);
+      logStore.emit(CHANGE_EVENT);
+      break;
+    case logConstants.SET_CALENDAR_MONTH_AND_YEAR:
+      setCalendarMonthAndYear(action.data);
+      filterWorkouts();
       logStore.emit(CHANGE_EVENT);
       break;
     default:

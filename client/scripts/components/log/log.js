@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-08 21:13:37
+* @Last Modified time: 2016-02-09 18:11:27
 */
 
 'use strict';
@@ -28,8 +28,9 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       workouts: logStore.getWorkouts(),
+      filteredWorkouts: logStore.getFilteredWorkouts(),
       showCalendar: true,
-      selectedDate: null,
+      calendarMonthAndYear: logStore.getMonthAndYear()
     };
   },
   componentDidMount: function(){
@@ -41,30 +42,49 @@ var Log = React.createClass({
   },
   _onChange: function(){
     this.setState({
-      workouts: logStore.getWorkouts()
+      workouts: logStore.getWorkouts(),
+      filteredWorkouts: logStore.getFilteredWorkouts(),
+      calendarMonthAndYear: logStore.getMonthAndYear()
     });
   },
 
   onDateSelect: function(){
-    console.log('hi');
   },
   onTouchPrev: function(){
-    console.log('hi');
+    var newMonth, newYear;
+    if(this.state.calendarMonthAndYear.month === 0){
+      newMonth = 11;
+      newYear = this.state.calendarMonthAndYear.year - 1;
+    } else {
+      newMonth = this.state.calendarMonthAndYear.month - 1;
+      newYear = this.state.calendarMonthAndYear.year;
+    }
+
+    logActions.setCalendarMonthAndYear(newMonth, newYear);
   },
   onTouchNext: function(){
-    console.log('hi');
-  },
-  onSwipePrev: function(){
-    console.log('hi');
-  },
-  onSwipeNext: function(){
-    console.log('hi');
+    var newMonth, newYear;
+    if(this.state.calendarMonthAndYear.month === 11){
+      newMonth = 0;
+      newYear = this.state.calendarMonthAndYear.year + 1;
+    } else {
+      newMonth = this.state.calendarMonthAndYear.month + 1;
+      newYear = this.state.calendarMonthAndYear.year;
+    }
+
+    logActions.setCalendarMonthAndYear(newMonth, newYear);
   },
 
   render: function(){
-    var cards = this.state.workouts.map((workout, index) =>
-      <LogCard workout={workout} />
-    );
+    var workouts;
+    //If there are workouts in the current month, show
+    if(this.state.filteredWorkouts[0]){
+      workouts = this.state.filteredWorkouts.map((workout, index) =>
+        <LogCard workout={workout} key={index} />
+      );
+    } else {
+      workouts = <Text>No Workouts Logged This Month</Text>
+    }
 
     return (
       /* jshint ignore:start */
@@ -80,11 +100,6 @@ var Log = React.createClass({
             onDateSelect={(date) => this.onDateSelect(date)}
             onTouchPrev={this.onTouchPrev}
             onTouchNext={this.onTouchNext}
-            onSwipePrev={this.onSwipePrev}
-            onSwipeNext={this.onSwipeNext}
-            eventDates={['2016-02-01']}
-            startDate={'2016-02-01'}
-            selectedDate={'2016-02-15'}
             customStyle={{
               day: {fontSize: 14, textAlign: 'center'},
               currentDayText: {color: '#4DBA97'},
@@ -97,9 +112,8 @@ var Log = React.createClass({
               controlButtonText: {fontSize: 13, color: '#A79D93'}
             }} />
         </View>
-
         <ScrollView>
-          {cards}
+          {workouts}
         </ScrollView>
       </View>
       /* jshint ignore:end */
