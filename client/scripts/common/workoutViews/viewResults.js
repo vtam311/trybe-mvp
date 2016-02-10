@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 15:56:38
+* @Last Modified time: 2016-02-10 12:10:32
 */
 
 'use strict';
@@ -78,7 +78,6 @@ var styles = StyleSheet.create({
   },
   resultText: {
     textAlign: 'right',
-    fontFamily: 'Avenir Next',
     color: 'grey',
     fontSize: 16,
     fontWeight: '500',
