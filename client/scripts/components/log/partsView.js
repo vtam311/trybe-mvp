@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:54:49
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 14:04:38
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 14:11:06
 */
 
 'use strict';
@@ -68,7 +68,6 @@ var styles = StyleSheet.create({
   partViewContainer: {
     flex: .9,
     paddingTop: 10,
-    paddingBottom: 10,
   },
   disclosureIndicatorContainer: {
     flex: .1,
@@ -80,8 +79,6 @@ var styles = StyleSheet.create({
   separatorLine: {
     height: 0.5,
     backgroundColor: '#9B9B9B',
-    marginTop: 10,
-    marginBottom: 10,
   }
 });
 

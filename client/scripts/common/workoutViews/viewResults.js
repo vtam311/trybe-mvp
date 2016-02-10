@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 14:07:39
+* @Last Modified time: 2016-02-10 14:56:27
 */
 
 'use strict';
@@ -68,7 +68,6 @@ var ViewResults = React.createClass({
 var styles = StyleSheet.create({
   resultContainer: {
     flexDirection: 'row',
-    marginTop: 15,
     marginBottom: 10,
   },
   metricIcon: {
@@ -80,7 +79,7 @@ var styles = StyleSheet.create({
     textAlign: 'right',
     color: '#58504D',
     fontSize: 15,
-    fontWeight: '500',
+    // fontWeight: '500',
   }
 });
 

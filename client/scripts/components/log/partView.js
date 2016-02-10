@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:58:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:51:29
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 14:55:31
 */
 
 'use strict';
@@ -81,7 +81,7 @@ var styles = StyleSheet.create({
   notesText: {
     fontSize: 15,
     fontStyle: 'italic',
-    color: '#58504D',
+    color: '#8D867E',
     marginBottom: 10
   },
 });
