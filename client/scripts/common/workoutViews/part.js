@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 16:03:47
+* @Last Modified time: 2016-02-09 16:05:35
 */
 
 'use strict';
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     color: '#8D867E',
     marginBottom: 6,
-    marginTop: -5,
+    marginTop: 0,
   },
   instructionText: {
     fontFamily: 'Avenir Next',
@@ -81,11 +81,9 @@ var styles = StyleSheet.create({
     width: 280,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    // paddingTop: 5,
-    // paddingBottom: 2
   },
   notesContainer: {
-    width: 315,
+    width: 280,
     flex: 1,
   },
   notesText: {
