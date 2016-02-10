@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:43:48
+* @Last Modified time: 2016-02-10 12:57:53
 */
 
 'use strict';
@@ -24,7 +24,7 @@ var LogCard = React.createClass({
   render: function(){
     var workout = this.props.workout;
     var dateString = workout.date.toString();
-    var day = dateString.slice(0,3);
+    var day = dateString.slice(0,3).toUpperCase();
     var month = dateString.slice(4,7);
     var dateNum = dateString.slice(8,10);
 
@@ -32,7 +32,7 @@ var LogCard = React.createClass({
       /* jshint ignore:start */
       <View style={styles.container}>
         <View style={styles.dateContainer}>
-          <Text style={[styles.dateText, {fontSize: 14, marginBottom: 6}]}>{day}</Text>
+          <Text style={[styles.dateText, {fontSize: 11, marginBottom: 6, color: '#A79D93'}]}>{day}</Text>
           <Text style={[styles.dateText, {fontSize: 12}]}>{month}</Text>
           <Text style={[styles.dateText, {fontSize: 15}]}>{dateNum}</Text>
         </View>
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center', //not working, RN bug
     alignItems: 'center',
-    marginTop: 20 //until justifyContent works, use this
+    marginTop: 25 //until justifyContent works, use this
   },
   dateText: {
     fontFamily: 'Avenir Next',

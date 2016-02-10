@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:58:27
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 12:24:44
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 12:51:29
 */
 
 'use strict';
@@ -41,7 +41,7 @@ var Part = React.createClass({
         </View>
         {this.props.showNotes === true && part.notes ?
           <View style={styles.notesContainer}>
-            <Text numberOfLines={3} style={styles.notesText}>{part.notes}</Text>
+            <Text numberOfLines={1} style={styles.notesText}>{part.notes}</Text>
           </View> :
           null
         }
@@ -54,11 +54,11 @@ var Part = React.createClass({
 var styles = StyleSheet.create({
   partContainer: {
     flexDirection: 'column',
+    paddingRight: 20
   },
   partNameText: {
     fontSize: 15,
-    fontWeight: '500',
-    color: '#8D867E',
+    color: '#58504D',
     marginBottom: 8,
   },
   instructionText: {
@@ -80,9 +80,8 @@ var styles = StyleSheet.create({
   },
   notesText: {
     fontSize: 15,
-    fontWeight: '500',
     fontStyle: 'italic',
-    color: '#8D867E',
+    color: '#58504D',
     marginBottom: 10
   },
 });

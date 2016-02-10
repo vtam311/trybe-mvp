@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:10:32
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 12:56:12
 */
 
 'use strict';
@@ -72,14 +72,14 @@ var styles = StyleSheet.create({
     marginBottom: 10,
   },
   metricIcon: {
-    height: 18,
-    width: 18,
+    height: 16,
+    width: 16,
     marginRight: 5,
   },
   resultText: {
     textAlign: 'right',
     color: 'grey',
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '500',
   }
 });
