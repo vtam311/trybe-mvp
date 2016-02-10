@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 09:25:24
+* @Last Modified time: 2016-02-10 15:42:19
 */
 
 'use strict';
@@ -30,10 +30,11 @@ var RouteStack = {
 
 
 var LogTab = React.createClass({
-  goToScene: function(component, name){
+  goToScene: function(component, name, part){
     this.refs.logNav.push({
       component: component,
-      name: name
+      name: name,
+      part: part
     });
   },
   resetRoute: function(route){
@@ -44,7 +45,8 @@ var LogTab = React.createClass({
 
     return (
       <Component
-        goToScene={this.goToScene} />
+        goToScene={this.goToScene}
+        route={route} />
     );
   },
   render: function() {

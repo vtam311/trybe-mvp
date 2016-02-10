@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
-* @Date:   2016-02-10 11:58:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 15:36:47
+* @Date:   2016-02-10 14:58:52
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 15:43:35
 */
 
 'use strict';
@@ -18,9 +18,16 @@ var {
   View,
 } = React;
 
-var Part = React.createClass({
+//Scene for showing a full workout's part, along with ability to retry
+var PartScene = React.createClass({
+  getInitialState: function(){
+    return {
+      part: this.props.route.part
+    }
+  },
   render: function(){
-    var part = this.props.part;
+    console.log('this.props.route.name', this.props.route.name);
+    var part = this.state.part;
     var exercises = part.exercises.map((exercise, index) =>
       /* jshint ignore:start */
        <View style={styles.exerciseContainer} key={index}>
@@ -32,19 +39,24 @@ var Part = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={styles.partContainer}>
-        <Text style={styles.partNameText}>{part.name}</Text>
-        <Text style={styles.instructionText}>{part.instructions}</Text>
-        {exercises}
-        <View style={styles.resultsContainer}>
-          <ViewResults result={part.result} />
+      <View style={styles.container}>
+        <View style={styles.partContent}>
+          <Text style={styles.partNameText}>{part.name}</Text>
+          <Text style={styles.instructionText}>{part.instructions}</Text>
+          {exercises}
+          <View style={styles.resultsContainer}>
+            <ViewResults result={part.result} />
+          </View>
+          {part.notes ?
+            <View style={styles.notesContainer}>
+              <Text style={styles.notesText}>{part.notes}</Text>
+            </View> :
+            null
+          }
         </View>
-        {this.props.showNotes === true && part.notes ?
-          <View style={styles.notesContainer}>
-            <Text numberOfLines={1} style={styles.notesText}>{part.notes}</Text>
-          </View> :
-          null
-        }
+        <View style={styles.controlsContent}>
+          <Text>Redo</Text>
+        </View>
       </View>
       /* jshint ignore:end */
     );
@@ -52,8 +64,14 @@ var Part = React.createClass({
 });
 
 var styles = StyleSheet.create({
-  partContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(141, 134, 126, .2)',
     flexDirection: 'column',
+  },
+  partContent: {
+    backgroundColor: '#fff',
+    padding: 10
   },
   partNameText: {
     fontSize: 15,
@@ -83,6 +101,9 @@ var styles = StyleSheet.create({
     color: '#8D867E',
     marginBottom: 10
   },
+  controlsContent: {
+    backgroundColor: '#fff'
+  }
 });
 
-module.exports = Part;
+module.exports = PartScene;

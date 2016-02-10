@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 18:16:02
+* @Last Modified time: 2016-02-10 15:43:01
 */
 
 'use strict';
@@ -80,7 +80,10 @@ var Log = React.createClass({
     //If there are workouts in the current month, show
     if(this.state.filteredWorkouts[0]){
       workouts = this.state.filteredWorkouts.map((workout, index) =>
-        <LogCard workout={workout} key={index} />
+        <LogCard
+          workout={workout}
+          key={index}
+          goToScene={this.props.goToScene} />
       );
     } else {
       workouts =

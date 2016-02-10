@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-10 11:54:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 14:11:06
+* @Last Modified time: 2016-02-10 15:41:23
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var React = require('react-native');
 
 //Load components
 var PartView = require('./partView');
+var PartScene = require('./partScene');
 
 var {
   TouchableHighlight,
@@ -21,6 +22,12 @@ var {
 } = React;
 
 var PartsView = React.createClass({
+  passPartToScene: function(part){
+    return part;
+  },
+  handlePress: function(part){
+    this.props.goToScene(PartScene, part.name, part);
+  },
   render: function(){
     var workout = this.props.workout;
 
@@ -30,9 +37,10 @@ var PartsView = React.createClass({
       if(part) return true;
     };
     var existingParts = workout.parts.filter(partExists);
-    var partViews = existingParts.map((part, index) =>
+    var touchablePartViews = existingParts.map((part, index) =>
       /* jshint ignore:start */
       <TouchableHighlight
+        onPress={() => this.handlePress(part)}
         underlayColor='rgba(155,155,155,.4)'
         key={index}>
         <View style={styles.touchableHighlightContainer}>
@@ -54,7 +62,7 @@ var PartsView = React.createClass({
     return (
       /* jshint ignore:start */
       <View>
-        { partViews }
+        { touchablePartViews }
       </View>
       /* jshint ignore:end */
     );

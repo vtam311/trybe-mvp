@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 14:04:23
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 15:43:06
 */
 
 'use strict';
@@ -39,7 +39,8 @@ var LogCard = React.createClass({
         <View style={styles.workoutContent}>
           <PartsView
             workout={workout}
-            showNotes={true} />
+            showNotes={true}
+            goToScene={this.props.goToScene} />
         </View>
       </View>
       /* jshint ignore:end */
