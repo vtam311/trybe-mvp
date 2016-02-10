@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "deleteButton-1.png",
+      "filename" : "deleteButton.png",
       "scale" : "1x"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "deleteButton.png",
+      "filename" : "deleteButton-3.png",
       "scale" : "3x"
     }
   ],

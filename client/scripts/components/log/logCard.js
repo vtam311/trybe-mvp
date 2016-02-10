@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:57:53
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 14:04:23
 */
 
 'use strict';
@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center', //not working, RN bug
     alignItems: 'center',
-    marginTop: 25 //until justifyContent works, use this
+    marginTop: 12 //until justifyContent works, use this
   },
   dateText: {
     fontFamily: 'Avenir Next',

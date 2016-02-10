@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:54:49
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:06:45
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 14:04:38
 */
 
 'use strict';
@@ -13,6 +13,8 @@ var React = require('react-native');
 var PartView = require('./partView');
 
 var {
+  TouchableHighlight,
+  Image,
   StyleSheet,
   Text,
   View,
@@ -30,13 +32,22 @@ var PartsView = React.createClass({
     var existingParts = workout.parts.filter(partExists);
     var partViews = existingParts.map((part, index) =>
       /* jshint ignore:start */
-      <View key={index} style={styles.partViewContainer}>
-        <PartView part={part} showNotes={this.props.showNotes}/>
-        { existingParts[index + 1] ?
-          <View style={styles.separatorLine}></View> :
-          null
-        }
-      </View>
+      <TouchableHighlight
+        underlayColor='rgba(155,155,155,.4)'
+        key={index}>
+        <View style={styles.touchableHighlightContainer}>
+          <View style={styles.partViewContainer}>
+            <PartView part={part} showNotes={this.props.showNotes}/>
+            { existingParts[index + 1] ?
+              <View style={styles.separatorLine}></View> :
+              null
+            }
+          </View>
+         <View style={styles.disclosureIndicatorContainer}>
+          <Image source={require('image!disclosureIndicator')} />
+         </View>
+        </View>
+      </TouchableHighlight>
       /* jshint ignore:end */
     );
 
@@ -51,13 +62,20 @@ var PartsView = React.createClass({
 });
 
 var styles = StyleSheet.create({
+  touchableHighlightContainer: {
+    flexDirection: 'row',
+  },
   partViewContainer: {
+    flex: .9,
     paddingTop: 10,
     paddingBottom: 10,
   },
-  results: {
-    borderBottomWidth: .5,
-    borderColor: '#9B9B9B',
+  disclosureIndicatorContainer: {
+    flex: .1,
+    flexDirection: 'column',
+    justifyContent: 'center', //not working, RN bug
+    alignItems: 'center',
+    marginTop: 12 //until justifyContent works, use this
   },
   separatorLine: {
     height: 0.5,

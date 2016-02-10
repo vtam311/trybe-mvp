@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-26 12:46:46
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 12:56:12
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 14:07:39
 */
 
 'use strict';
@@ -33,7 +33,7 @@ var ViewResults = React.createClass({
           break;
         case 'Rounds':
           icon = <Image style={[styles.metricIcon, {marginTop: 2}]} source={require('image!rounds')}/> ;
-          var rounds = result.val.toString() + ' Rounds'
+          var rounds = result.val.toString() + ' Rds'
           resultView = <Text style={styles.resultText}>{rounds}</Text>;
           break;
         case 'Max Load':
@@ -78,7 +78,7 @@ var styles = StyleSheet.create({
   },
   resultText: {
     textAlign: 'right',
-    color: 'grey',
+    color: '#58504D',
     fontSize: 15,
     fontWeight: '500',
   }

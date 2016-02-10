@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "disclosureIndicator-1.png",
+      "filename" : "disclosureIndicator.png",
       "scale" : "1x"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "disclosureIndicator.png",
+      "filename" : "disclosureIndicator-3.png",
       "scale" : "3x"
     }
   ],
