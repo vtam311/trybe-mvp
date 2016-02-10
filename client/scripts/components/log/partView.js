@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:58:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 12:09:43
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 12:24:44
 */
 
 'use strict';
@@ -56,10 +56,10 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
   },
   partNameText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '500',
     color: '#8D867E',
-    marginBottom: 6,
+    marginBottom: 8,
   },
   instructionText: {
     fontSize: 15,
