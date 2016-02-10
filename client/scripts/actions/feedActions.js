@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-29 17:19:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 10:21:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-09 18:22:14
 */
 
 'use strict';
@@ -21,7 +21,6 @@ DUMMY_WORKOUT_2.id = 11;
 DUMMY_WORKOUT_2.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
 var DUMMY_WORKOUT_3 = newWorkout(DUMMY_WORKOUT);
 DUMMY_WORKOUT_3.id = 12;
-DUMMY_WORKOUT_3.parts.push(newObject(DUMMY_WORKOUT.parts[0]));
 
 var feedActions = {
   getTrybeWorkout: function(){

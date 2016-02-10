@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 18:11:27
+* @Last Modified time: 2016-02-09 18:16:02
 */
 
 'use strict';
@@ -83,7 +83,10 @@ var Log = React.createClass({
         <LogCard workout={workout} key={index} />
       );
     } else {
-      workouts = <Text>No Workouts Logged This Month</Text>
+      workouts =
+      <View style={styles.noWorkoutsContainer}>
+        <Text>No Workouts this Month</Text>
+      </View>
     }
 
     return (
@@ -132,6 +135,14 @@ var styles = StyleSheet.create({
   },
   logCardContainer: {
     marginBottom: 10
+  },
+  noWorkoutsContainer: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  noWorkoutsText: {
+
   }
 });
 
