@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-09 18:11:40
+* @Last Modified time: 2016-02-11 09:04:49
 */
 
 'use strict';
@@ -18,7 +18,7 @@ var sortByDate = require('../common/sortByDate');
 
 var _store = {
   workouts: [],
-  filteredWorkouts: [],
+  currMonthWorkouts: [],
   calendarDate: {
     month: new Date().getMonth(),
     year: new Date().getFullYear()
@@ -59,8 +59,8 @@ var addWorkout = function(workout){
   //ensure workouts are sorted properly
   //refactor to simply insert in correct spot?
   sortWorkouts(_store.workouts);
-  //ensure new workout can enter filtered workouts if month matches
-  filterWorkouts();
+  //ensure new workout can enter curr month workouts if month matches
+  setCurrMonthWorkouts();
 };
 
 var addNewWorkoutWithCompletedPart = function(workout, partIdx){
@@ -105,7 +105,7 @@ var setCalendarMonthAndYear = function(data){
   _store.calendarDate.year = year;
 };
 
-var filterWorkouts = function(){
+var setCurrMonthWorkouts = function(){
   var isSameMonth = function(workout){
     var workoutMonth = workout.date.getMonth();
     if(workoutMonth === _store.calendarDate.month){
@@ -113,8 +113,8 @@ var filterWorkouts = function(){
     } else return false;
   };
 
-  _store.filteredWorkouts = _store.workouts.filter(isSameMonth);
-  sortWorkouts(_store.filteredWorkouts);
+  _store.currMonthWorkouts = _store.workouts.filter(isSameMonth);
+  sortWorkouts(_store.currMonthWorkouts);
 };
 
 var logStore = Object.assign({}, EventEmitter.prototype, {
@@ -127,8 +127,8 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   getWorkouts: function(){
     return _store.workouts;
   },
-  getFilteredWorkouts: function(){
-    return _store.filteredWorkouts;
+  getCurrMonthWorkouts: function(){
+    return _store.currMonthWorkouts;
   },
   getMonthAndYear: function(){
     return _store.calendarDate;
@@ -140,8 +140,8 @@ AppDispatcher.register(function(payload){
   switch (action.actionType) {
     case logConstants.SET_LOG_WORKOUTS:
       setWorkouts(action.data);
-      //once workouts are retrieved, build store's filteredWorkouts
-      filterWorkouts();
+      //once workouts are retrieved, build store's currMonthWorkouts
+      setCurrMonthWorkouts();
       logStore.emit(CHANGE_EVENT);
       break;
     case logConstants.ADD_WORKOUT_PART:
@@ -150,7 +150,7 @@ AppDispatcher.register(function(payload){
       break;
     case logConstants.SET_CALENDAR_MONTH_AND_YEAR:
       setCalendarMonthAndYear(action.data);
-      filterWorkouts();
+      setCurrMonthWorkouts();
       logStore.emit(CHANGE_EVENT);
       break;
     default:

@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 15:43:01
+* @Last Modified time: 2016-02-11 09:03:00
 */
 
 'use strict';
@@ -28,7 +28,7 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       workouts: logStore.getWorkouts(),
-      filteredWorkouts: logStore.getFilteredWorkouts(),
+      currMonthWorkouts: logStore.getCurrMonthWorkouts(),
       showCalendar: true,
       calendarMonthAndYear: logStore.getMonthAndYear()
     };
@@ -43,7 +43,7 @@ var Log = React.createClass({
   _onChange: function(){
     this.setState({
       workouts: logStore.getWorkouts(),
-      filteredWorkouts: logStore.getFilteredWorkouts(),
+      currMonthWorkouts: logStore.getCurrMonthWorkouts(),
       calendarMonthAndYear: logStore.getMonthAndYear()
     });
   },
@@ -78,8 +78,8 @@ var Log = React.createClass({
   render: function(){
     var workouts;
     //If there are workouts in the current month, show
-    if(this.state.filteredWorkouts[0]){
-      workouts = this.state.filteredWorkouts.map((workout, index) =>
+    if(this.state.currMonthWorkouts[0]){
+      workouts = this.state.currMonthWorkouts.map((workout, index) =>
         <LogCard
           workout={workout}
           key={index}
@@ -88,7 +88,7 @@ var Log = React.createClass({
     } else {
       workouts =
       <View style={styles.noWorkoutsContainer}>
-        <Text>No Workouts this Month</Text>
+        <Text>No Workouts This Month</Text>
       </View>
     }
 
