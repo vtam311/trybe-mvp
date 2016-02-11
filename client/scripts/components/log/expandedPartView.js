@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-10 16:21:33
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 16:49:12
+* @Last Modified time: 2016-02-10 17:11:38
 */
 
 'use strict';
@@ -22,7 +22,8 @@ var {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } = React;
 
 var Part = React.createClass({
@@ -32,6 +33,7 @@ var Part = React.createClass({
     separateWorkout.id = Math.random() * 9999;
     separateWorkout.date = new Date();
     var separatePart = newObject(this.props.part);
+    separatePart.notes = '';
 
     //ensure workout only has the relevant part user selected
     separateWorkout.parts = [];
@@ -77,8 +79,11 @@ var Part = React.createClass({
           null
         }
         <View style={styles.footer}>
-          <TouchableOpacity onPress={ () => this.handleTryAgainPress() } >
-            <Text>Try Again</Text>
+          <TouchableOpacity style={styles.iconContainer} onPress={ () => this.handleTryAgainPress() } >
+            <Text style={styles.footerText}>Try Again</Text>
+            <Image
+              source={require('image!tryIcon')}
+              style={[styles.footerIcon]} />
           </TouchableOpacity>
         </View>
       </View>
@@ -131,7 +136,21 @@ var styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     justifyContent: 'flex-end'
-  }
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  footerText:{
+    fontFamily: 'Avenir Next',
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#8D867E'
+  },
+  footerIcon: {
+    marginLeft: 5,
+    marginRight: 5,
+  },
 });
 
 module.exports = Part;

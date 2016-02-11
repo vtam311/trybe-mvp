@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 14:58:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 16:46:34
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 17:11:43
 */
 
 'use strict';
@@ -67,6 +67,9 @@ var styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 10,
     marginBottom: 10,
+    borderTopWidth: .5,
+    borderBottomWidth: .5,
+    borderColor: '#d9d9d9'
   },
   controlsContent: {
     backgroundColor: '#fff'
