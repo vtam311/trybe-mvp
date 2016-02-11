@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 14:58:52
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 16:12:16
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-10 16:15:59
 */
 
 'use strict';
@@ -23,7 +23,7 @@ var DayScene = React.createClass({
   getInitialState: function(){
     return {
       workout: this.props.route.workout
-    }
+    };
   },
   render: function(){
     var workout = this.state.workout;
@@ -36,7 +36,7 @@ var DayScene = React.createClass({
     var partViews = existingParts.map((part, index) =>
       /* jshint ignore:start */
       <View style={styles.partViewContainer} key={index}>
-        <PartView part={part} showNotes={this.props.showNotes}/>
+        <PartView part={part} showNotes={true} notesNumLines={null}/>
       </View>
       /* jshint ignore:end */
     );

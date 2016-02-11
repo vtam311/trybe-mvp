@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-10 11:58:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 15:36:47
+* @Last Modified time: 2016-02-10 16:16:29
 */
 
 'use strict';
@@ -41,7 +41,7 @@ var Part = React.createClass({
         </View>
         {this.props.showNotes === true && part.notes ?
           <View style={styles.notesContainer}>
-            <Text numberOfLines={1} style={styles.notesText}>{part.notes}</Text>
+            <Text numberOfLines={this.props.notesNumLines} style={styles.notesText}>{part.notes}</Text>
           </View> :
           null
         }

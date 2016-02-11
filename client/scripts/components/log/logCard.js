@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 16:05:55
+* @Last Modified time: 2016-02-10 16:18:12
 */
 
 'use strict';
@@ -68,7 +68,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#979797',
+    borderColor: '#d9d9d9',
     marginBottom: 10,
   },
   dateContainer: {
