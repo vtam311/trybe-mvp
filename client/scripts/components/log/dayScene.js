@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 14:58:52
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 15:43:35
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 15:51:33
 */
 
 'use strict';
@@ -19,7 +19,7 @@ var {
 } = React;
 
 //Scene for showing a full workout's part, along with ability to retry
-var PartScene = React.createClass({
+var DayScene = React.createClass({
   getInitialState: function(){
     return {
       part: this.props.route.part
@@ -106,4 +106,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = PartScene;
+module.exports = DayScene;

@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 15:43:06
+* @Last Modified time: 2016-02-10 16:02:21
 */
 
 'use strict';
@@ -17,10 +17,15 @@ var {
   StyleSheet,
   Text,
   View,
+  Image,
+  TouchableHighlight
 } = React;
 
 var LogCard = React.createClass({
-
+  handlePress: function(){
+    var sceneName = this.props.workout.date.toString().slice(4,15);
+    this.props.goToScene(DayScene, sceneName, this.props.workout);
+  },
   render: function(){
     var workout = this.props.workout;
     var dateString = workout.date.toString();
@@ -30,19 +35,26 @@ var LogCard = React.createClass({
 
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
-        <View style={styles.dateContainer}>
-          <Text style={[styles.dateText, {fontSize: 11, marginBottom: 6, color: '#A79D93'}]}>{day}</Text>
-          <Text style={[styles.dateText, {fontSize: 12}]}>{month}</Text>
-          <Text style={[styles.dateText, {fontSize: 15}]}>{dateNum}</Text>
+      <TouchableHighlight
+        onPress={() => this.handlePress()}
+        underlayColor='rgba(155,155,155,.4)'>
+        <View style={styles.container}>
+          <View style={styles.dateContainer}>
+            <Text style={[styles.dateText, {fontSize: 11, marginBottom: 6, color: '#A79D93'}]}>{day}</Text>
+            <Text style={[styles.dateText, {fontSize: 12}]}>{month}</Text>
+            <Text style={[styles.dateText, {fontSize: 15}]}>{dateNum}</Text>
+          </View>
+          <View style={styles.workoutContent}>
+            <PartsView
+              workout={workout}
+              showNotes={true}
+              goToScene={this.props.goToScene} />
+          </View>
+          <View style={styles.disclosureIndicatorContainer}>
+           <Image source={require('image!disclosureIndicator')} />
+          </View>
         </View>
-        <View style={styles.workoutContent}>
-          <PartsView
-            workout={workout}
-            showNotes={true}
-            goToScene={this.props.goToScene} />
-        </View>
-      </View>
+      </TouchableHighlight>
       /* jshint ignore:end */
     );
   }
@@ -59,7 +71,7 @@ var styles = StyleSheet.create({
     marginBottom: 10,
   },
   dateContainer: {
-    flex: .2,
+    flex: .15,
     flexDirection: 'column',
     justifyContent: 'center', //not working, RN bug
     alignItems: 'center',
@@ -71,8 +83,15 @@ var styles = StyleSheet.create({
     color: '#8D867E',
   },
   workoutContent: {
-    flex: .8,
+    flex: .75,
     flexDirection: 'column'
+  },
+  disclosureIndicatorContainer: {
+    flex: .1,
+    flexDirection: 'column',
+    justifyContent: 'center', //not working, RN bug
+    alignItems: 'center',
+    marginTop: 12, //until justifyContent works, use this,
   },
 });
 
