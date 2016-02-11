@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 10:46:39
+* @Last Modified time: 2016-02-11 10:50:49
 */
 
 'use strict';
@@ -79,7 +79,7 @@ var NavBarRouteMapper = {
         else logActions.setIsShowingCalendar(false);
       };
       return (
-        <View style={styles.navBarComponentContainer, {width: 80, marginTop: 8, marginLeft: 5}}>
+        <View style={styles.navBarComponentContainer, {width: 80, marginTop: 8, marginLeft: 10}}>
           <SegmentedControlIOS
             values={['Cal', 'List']}
             onValueChange={(val) => setCalView(val)}
