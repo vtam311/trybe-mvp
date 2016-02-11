@@ -2,14 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-02-10 14:58:52
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-10 16:15:59
+* @Last Modified time: 2016-02-10 16:46:34
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var PartView = require('./partView');
+var ExpandedPartView = require('./expandedPartView');
 
 var {
   ScrollView,
@@ -36,7 +36,12 @@ var DayScene = React.createClass({
     var partViews = existingParts.map((part, index) =>
       /* jshint ignore:start */
       <View style={styles.partViewContainer} key={index}>
-        <PartView part={part} showNotes={true} notesNumLines={null}/>
+        <ExpandedPartView
+          workout={workout}
+          part={part}
+          partIdx={index}
+          showNotes={true}
+          notesNumLines={null}/>
       </View>
       /* jshint ignore:end */
     );
