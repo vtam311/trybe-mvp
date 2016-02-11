@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 09:22:35
+* @Last Modified time: 2016-02-11 10:46:39
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var React = require('react-native');
 var Log = require('./log');
 var modalActions = require('../../actions/modalActions');
 var logActions = require('../../actions/logActions');
+// var logStore = require('../../stores/logStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
@@ -19,7 +20,8 @@ var {
   View,
   Navigator,
   TouchableOpacity,
-  Image
+  Image,
+  SegmentedControlIOS
 } = React;
 
 var RouteStack = {
@@ -70,22 +72,40 @@ var LogTab = React.createClass({
 
 var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity
-        style={styles.navBarComponentContainer}
-        onPress={ () => {
-          if(index > 0) {
-            navigator.pop();
-          }
-        }}>
-        { index > 0 ?
-          <Image
-            style={{height: 22, width: 12}}
-            source={ require('image!backArrow') } /> : null }
-      </TouchableOpacity>
-      /* jshint ignore:end */
-        );
+    if(route.name === 'Log'){
+      //if user is at log page, show SegmentedControl to show or hide calendar
+      var setCalView = function(val){
+        if(val === 'Cal') logActions.setIsShowingCalendar(true);
+        else logActions.setIsShowingCalendar(false);
+      };
+      return (
+        <View style={styles.navBarComponentContainer, {width: 80, marginTop: 8, marginLeft: 5}}>
+          <SegmentedControlIOS
+            values={['Cal', 'List']}
+            onValueChange={(val) => setCalView(val)}
+            tintColor='#fff'
+            selectedIndex={0} />
+        </View>
+      );
+    } else {
+      //Otherwise show back button
+      return (
+        /* jshint ignore:start */
+        <TouchableOpacity
+          style={styles.navBarComponentContainer}
+          onPress={ () => {
+            if(index > 0) {
+              navigator.pop();
+            }
+          }}>
+          { index > 0 ?
+            <Image
+              style={{height: 22, width: 12}}
+              source={ require('image!backArrow') } /> : null }
+        </TouchableOpacity>
+        /* jshint ignore:end */
+      );
+    }
   },
 
   RightButton: function(route, navigator, index, navState) {
@@ -93,7 +113,7 @@ var NavBarRouteMapper = {
       /* jshint ignore:start */
       <TouchableOpacity
         style={styles.navBarComponentContainer}
-        onPress={ () => logActions.setIsShowingCalendar(false)}>
+        onPress={ () => console.log('search pressed')}>
         <Image source={require('image!search')} style={styles.searchIcon}/>
       </TouchableOpacity>
       /* jshint ignore:end */
