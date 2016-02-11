@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 09:37:43
+* @Last Modified time: 2016-02-11 10:04:43
 */
 
 'use strict';
@@ -15,7 +15,7 @@ var logActions = require('../../actions/logActions');
 
 //Load components
 var Calendar = require('react-native-calendar');
-var LogCard = require('./logCard');
+var LogWorkouts = require('./logWorkouts');
 
 var {
   StyleSheet,
@@ -77,38 +77,6 @@ var Log = React.createClass({
   },
 
   render: function(){
-    var workouts;
-    //if showing calendar, show workouts by month
-    if(this.state.isShowingCalendar){
-      //If there are workouts in the current month, show
-      if(this.state.currMonthWorkouts.length > 0){
-        workouts = this.state.currMonthWorkouts.map((workout, index) =>
-          <LogCard
-            workout={workout}
-            key={index}
-            goToScene={this.props.goToScene} />
-        );
-      } else {
-        workouts =
-        <View style={styles.noWorkoutsContainer}>
-          <Text>No Workouts This Month</Text>
-        </View>
-      }
-    } else {
-      //Otherwise show all workouts
-      workouts = this.state.workouts.map((workout, index) =>
-        <View key={index}>
-          {index === 0 || workout.date.getMonth() !== this.state.workouts[index - 1].date.getMonth() ?
-            <Text>New Month</Text>
-            : null
-          }
-          <LogCard
-            workout={workout}
-            goToScene={this.props.goToScene} />
-        </View>
-      );
-    }
-
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
@@ -139,7 +107,11 @@ var Log = React.createClass({
           : null
         }
         <ScrollView>
-          {workouts}
+          <LogWorkouts
+            workouts={this.state.workouts}
+            isShowingCalendar={this.state.isShowingCalendar}
+            currMonthWorkouts={this.state.currMonthWorkouts}
+            goToScene={this.props.goToScene} />
         </ScrollView>
       </View>
       /* jshint ignore:end */
@@ -156,14 +128,7 @@ var styles = StyleSheet.create({
     borderBottomWidth: .5,
     borderColor: '#d9d9d9'
   },
-  logCardContainer: {
-    marginBottom: 10
-  },
-  noWorkoutsContainer: {
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+
   noWorkoutsText: {
 
   }
