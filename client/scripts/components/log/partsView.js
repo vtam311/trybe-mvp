@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-10 11:54:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 16:01:57
+* @Last Modified time: 2016-02-10 16:08:01
 */
 
 'use strict';
@@ -11,7 +11,6 @@ var React = require('react-native');
 
 //Load components
 var PartView = require('./partView');
-var DayScene = require('./dayScene');
 
 var {
   TouchableHighlight,
@@ -33,13 +32,13 @@ var PartsView = React.createClass({
     var existingParts = workout.parts.filter(partExists);
     var partViews = existingParts.map((part, index) =>
       /* jshint ignore:start */
-        <View style={styles.partViewContainer} key={index}>
-          <PartView part={part} showNotes={this.props.showNotes}/>
-          { existingParts[index + 1] ?
-            <View style={styles.separatorLine}></View> :
-            null
-          }
-        </View>
+      <View style={styles.partViewContainer} key={index}>
+        <PartView part={part} showNotes={this.props.showNotes}/>
+        { existingParts[index + 1] ?
+          <View style={styles.separatorLine}></View> :
+          null
+        }
+      </View>
       /* jshint ignore:end */
     );
 
