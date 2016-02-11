@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 16:07:56
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-11 15:06:37
 */
 
 'use strict';
@@ -74,7 +74,7 @@ var styles = StyleSheet.create({
   userText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#58504D',
     fontWeight: '600',
     marginTop: 1,
     marginBottom: 2,
@@ -82,13 +82,13 @@ var styles = StyleSheet.create({
   activityText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#9b9b9b',
     fontWeight: '500',
   },
   timeText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#9b9b9b',
     fontWeight: '500',
   }
 });

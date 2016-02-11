@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-09 16:05:35
+* @Last Modified time: 2016-02-11 15:09:22
 */
 
 'use strict';
@@ -57,17 +57,14 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   partNameText: {
-    fontFamily: 'Avenir Next',
     fontSize: 16,
-    fontWeight: '500',
-    color: '#8D867E',
+    color: '#58504D',
     marginBottom: 6,
     marginTop: 0,
   },
   instructionText: {
-    fontFamily: 'Avenir Next',
     fontSize: 15,
-    fontWeight: '500',
+    // fontWeight: '500',
     fontStyle: 'italic',
     color: '#8D867E',
     marginBottom: 6,
@@ -87,7 +84,6 @@ var styles = StyleSheet.create({
     flex: 1,
   },
   notesText: {
-    fontFamily: 'Avenir Next',
     fontSize: 15,
     fontWeight: '500',
     fontStyle: 'italic',
