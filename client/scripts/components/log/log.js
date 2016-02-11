@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 09:03:00
+* @Last Modified time: 2016-02-11 09:37:43
 */
 
 'use strict';
@@ -28,9 +28,9 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       workouts: logStore.getWorkouts(),
+      isShowingCalendar: logStore.getIsShowingCalendar(),
+      calendarMonthAndYear: logStore.getMonthAndYear(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
-      showCalendar: true,
-      calendarMonthAndYear: logStore.getMonthAndYear()
     };
   },
   componentDidMount: function(){
@@ -43,8 +43,9 @@ var Log = React.createClass({
   _onChange: function(){
     this.setState({
       workouts: logStore.getWorkouts(),
+      isShowingCalendar: logStore.getIsShowingCalendar(),
+      calendarMonthAndYear: logStore.getMonthAndYear(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
-      calendarMonthAndYear: logStore.getMonthAndYear()
     });
   },
 
@@ -77,47 +78,66 @@ var Log = React.createClass({
 
   render: function(){
     var workouts;
-    //If there are workouts in the current month, show
-    if(this.state.currMonthWorkouts[0]){
-      workouts = this.state.currMonthWorkouts.map((workout, index) =>
-        <LogCard
-          workout={workout}
-          key={index}
-          goToScene={this.props.goToScene} />
-      );
+    //if showing calendar, show workouts by month
+    if(this.state.isShowingCalendar){
+      //If there are workouts in the current month, show
+      if(this.state.currMonthWorkouts.length > 0){
+        workouts = this.state.currMonthWorkouts.map((workout, index) =>
+          <LogCard
+            workout={workout}
+            key={index}
+            goToScene={this.props.goToScene} />
+        );
+      } else {
+        workouts =
+        <View style={styles.noWorkoutsContainer}>
+          <Text>No Workouts This Month</Text>
+        </View>
+      }
     } else {
-      workouts =
-      <View style={styles.noWorkoutsContainer}>
-        <Text>No Workouts This Month</Text>
-      </View>
+      //Otherwise show all workouts
+      workouts = this.state.workouts.map((workout, index) =>
+        <View key={index}>
+          {index === 0 || workout.date.getMonth() !== this.state.workouts[index - 1].date.getMonth() ?
+            <Text>New Month</Text>
+            : null
+          }
+          <LogCard
+            workout={workout}
+            goToScene={this.props.goToScene} />
+        </View>
+      );
     }
 
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
-        <View style={styles.calendarContainer}>
-          <Calendar
-            scrollEnabled={false}
-            showControls={true}
-            titleFormat={'MMMM YYYY'}
-            dayHeadings={['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}
-            prevButtonText='Prev'
-            nextButtonText='Next'
-            onDateSelect={(date) => this.onDateSelect(date)}
-            onTouchPrev={this.onTouchPrev}
-            onTouchNext={this.onTouchNext}
-            customStyle={{
-              day: {fontSize: 14, textAlign: 'center'},
-              currentDayText: {color: '#4DBA97'},
-              selectedDayCircle: {backgroundColor: '#4DBA97'},
-              currentDayCircle: {backgroundColor: '#E9DB72'},
-              calendarHeading: {borderColor: 'rgba(0,0,0,0)'},
-              weekendDayText: {color: 'black'},
-              dayHeading: {fontSize: 11, color: '#A79D93'},
-              weekendHeading: {fontSize: 11, color: '#A79D93'},
-              controlButtonText: {fontSize: 13, color: '#A79D93'}
-            }} />
-        </View>
+        {this.state.isShowingCalendar ?
+          <View style={styles.calendarContainer}>
+            <Calendar
+              scrollEnabled={false}
+              showControls={true}
+              titleFormat={'MMMM YYYY'}
+              dayHeadings={['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}
+              prevButtonText='Prev'
+              nextButtonText='Next'
+              onDateSelect={(date) => this.onDateSelect(date)}
+              onTouchPrev={this.onTouchPrev}
+              onTouchNext={this.onTouchNext}
+              customStyle={{
+                day: {fontSize: 14, textAlign: 'center'},
+                currentDayText: {color: '#4DBA97'},
+                selectedDayCircle: {backgroundColor: '#4DBA97'},
+                currentDayCircle: {backgroundColor: '#E9DB72'},
+                calendarHeading: {borderColor: 'rgba(0,0,0,0)'},
+                weekendDayText: {color: 'black'},
+                dayHeading: {fontSize: 11, color: '#A79D93'},
+                weekendHeading: {fontSize: 11, color: '#A79D93'},
+                controlButtonText: {fontSize: 13, color: '#A79D93'}
+              }} />
+          </View>
+          : null
+        }
         <ScrollView>
           {workouts}
         </ScrollView>

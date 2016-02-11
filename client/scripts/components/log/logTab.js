@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-10 16:06:09
+* @Last Modified time: 2016-02-11 09:22:35
 */
 
 'use strict';
@@ -10,6 +10,7 @@
 var React = require('react-native');
 var Log = require('./log');
 var modalActions = require('../../actions/modalActions');
+var logActions = require('../../actions/logActions');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
@@ -92,9 +93,7 @@ var NavBarRouteMapper = {
       /* jshint ignore:start */
       <TouchableOpacity
         style={styles.navBarComponentContainer}
-        onPress={ () => {
-          console.log('search button pressed')
-        }}>
+        onPress={ () => logActions.setIsShowingCalendar(false)}>
         <Image source={require('image!search')} style={styles.searchIcon}/>
       </TouchableOpacity>
       /* jshint ignore:end */
