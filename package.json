@@ -16,6 +16,6 @@
     "react-native-multipicker": "0.1.1",
     "react-native-page-control": "^1.0.5",
     "react-native-swipeout": "^2.0.12",
-    "react-native-tableview-simple" : "waterdoo/react-native-tableview-simple-custom"
+    "react-native-tableview-simple": "waterdoo/react-native-tableview-simple-custom"
   }
 }

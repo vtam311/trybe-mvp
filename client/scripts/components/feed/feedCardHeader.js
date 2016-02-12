@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-11 15:06:37
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-12 10:59:54
 */
 
 'use strict';
@@ -74,7 +74,7 @@ var styles = StyleSheet.create({
   userText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#58504D',
+    color: '#929292',
     fontWeight: '600',
     marginTop: 1,
     marginBottom: 2,

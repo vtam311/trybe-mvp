@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 15:09:22
+* @Last Modified time: 2016-02-12 11:01:17
 */
 
 'use strict';
@@ -58,7 +58,7 @@ var styles = StyleSheet.create({
   },
   partNameText: {
     fontSize: 16,
-    color: '#58504D',
+    color: '#8D867E',
     marginBottom: 6,
     marginTop: 0,
   },
