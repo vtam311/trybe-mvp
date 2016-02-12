@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 10:50:49
+* @Last Modified time: 2016-02-12 11:13:07
 */
 
 'use strict';
@@ -11,7 +11,7 @@ var React = require('react-native');
 var Log = require('./log');
 var modalActions = require('../../actions/modalActions');
 var logActions = require('../../actions/logActions');
-// var logStore = require('../../stores/logStore');
+var logStore = require('../../stores/logStore');
 var editWorkoutActions = require('../../actions/editWorkoutActions');
 
 var {
@@ -74,18 +74,20 @@ var NavBarRouteMapper = {
   LeftButton: function(route, navigator, index, navState) {
     if(route.name === 'Log'){
       //if user is at log page, show SegmentedControl to show or hide calendar
-      var setCalView = function(val){
-        if(val === 'Cal') logActions.setIsShowingCalendar(true);
-        else logActions.setIsShowingCalendar(false);
+      var toggleCalView = function(val){
+        if(logStore.getIsShowingCalendar() === true){
+          logActions.setIsShowingCalendar(false);
+        } else {
+          logActions.setIsShowingCalendar(true);
+        }
       };
+
       return (
-        <View style={styles.navBarComponentContainer, {width: 80, marginTop: 8, marginLeft: 10}}>
-          <SegmentedControlIOS
-            values={['Cal', 'List']}
-            onValueChange={(val) => setCalView(val)}
-            tintColor='#fff'
-            selectedIndex={0} />
-        </View>
+        <TouchableOpacity
+          style={styles.navBarComponentContainer}
+          onPress={ () => toggleCalView()}>
+          <Image source={require('image!calendarIcon')} style={{width: 22, height: 22}} />
+        </TouchableOpacity>
       );
     } else {
       //Otherwise show back button

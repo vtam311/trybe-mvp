@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 09:25:16
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-12 11:02:13
 */
 
 'use strict';
@@ -19,7 +19,7 @@ var sortByDate = require('../common/sortByDate');
 var _store = {
   workouts: [],
   currMonthWorkouts: [],
-  isShowingCalendar: true,
+  isShowingCalendar: false,
   calendarDate: {
     month: new Date().getMonth(),
     year: new Date().getFullYear()
