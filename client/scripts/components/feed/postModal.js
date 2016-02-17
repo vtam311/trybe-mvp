@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-17 13:53:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 14:24:13
+* @Last Modified time: 2016-02-17 15:15:49
 */
 
 'use strict';
@@ -18,6 +18,7 @@ var {
   TextInput,
   Dimensions,
   Animated,
+  TouchableOpacity
 } = React;
 
 //Gets device height for animating app
@@ -40,16 +41,20 @@ var PostModal = React.createClass({
       toValue: 0
     }).start();
   },
+  handleCancelPress: function(){
+    this.closeModal();
+  },
+  handlePost: function(){
+    console.log('sendMessage message is', this.state.chatMessage);
+    feedActions.sendMessage(this.state.chatMessage);
+    this.clearMessage(); //needed?
+    modalActions.closePostModal();
+  },
   closeModal: function() {
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: deviceHeight
     }).start(modalActions.closePostModal);
-  },
-  sendMessage: function(){
-    feedActions.sendMessage(this.state.chatMessage);
-    console.log('sendMessage message is', this.state.chatMessage);
-    this.clearMessage();
   },
   clearMessage: function(){
     this.setState({
@@ -58,14 +63,30 @@ var PostModal = React.createClass({
   },
   render: function(){
     return (
-      <Animated.View style={[styles.modal, styles.flexCenter, {transform: [{translateY: this.state.offset}]}]}>
-        <View style={styles.container}>
-          <TextInput
-            style={[styles.chatBar, {width: this.state.visibleWidth, height: this.state.visibleHeight}]}
-            value={this.state.chatMessage}
-            placeholder={'What\'s going on?'}
-            onChangeText={(text) => this.setState({chatMessage: text})}
-            onSubmitEditing={() => this.sendMessage()}/>
+      <Animated.View style={[styles.modal, {transform: [{translateY: this.state.offset}]}]}>
+        <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+
+          <View style={styles.header}>
+            <View style={styles.headerContainer}>
+              <TouchableOpacity onPress={this.handleCancelPress}>
+                <Text style={styles.headerButtonText}>Cancel</Text>
+              </TouchableOpacity>
+              <Text style={styles.headerTitleText}>Write Message</Text>
+              <TouchableOpacity onPress={this.handlePost}>
+                <Text style={styles.headerButtonText}>Post</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View style={styles.body}>
+            <TextInput
+              style={styles.messageBox}
+              value={this.state.chatMessage}
+              placeholder={'What\'s going on?'}
+              onChangeText={(text) => this.setState({chatMessage: text})}
+              onSubmitEditing={() => this.handlePost()}/>
+          </View>
+
         </View>
       </Animated.View>
     );
@@ -79,19 +100,45 @@ var styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    // backgroundColor: 'rgba(155, 155, 155, 0.4)',
-  },
-  flexCenter: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   container: {
-    flex: 1 //needed
+    flex: 1,
   },
-  chatBar: {
+  header: {
+    flex: .1,
+    borderBottomWidth: .5,
+    borderBottomColor: 'rgba(155, 155, 155, 0.7)',
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 3,
     backgroundColor: '#fff',
-    textAlign: 'center',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 30,
+  },
+  headerTitleText: {
+    fontFamily: 'Avenir',
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#8D867E'
+  },
+  headerButtonText: {
+    fontFamily: 'Helvetica Neue',
+    fontSize: 17,
+    color: '#4DBA97'
+  },
+  body: {
+    flex: .9,
+    flexDirection: 'column',
+  },
+  messageBox: {
+    height: 40,
+    marginLeft: 10,
+    marginRight: 10
   },
 });
 
