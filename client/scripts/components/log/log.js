@@ -3,8 +3,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-12 11:28:14
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-17 13:45:19
 */
 
 'use strict';
@@ -54,7 +54,6 @@ var Log = React.createClass({
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
-
         <ScrollView>
           <LogWorkouts
             workouts={this.state.workouts}
