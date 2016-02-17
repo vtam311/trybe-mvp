@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-17 13:53:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 15:21:20
+* @Last Modified time: 2016-02-17 15:33:52
 */
 
 'use strict';
@@ -44,10 +44,8 @@ var PostModal = React.createClass({
   handleCancelPress: function(){
     this.closeModal();
   },
-  handlePost: function(){
-    console.log('sendMessage message is', this.state.chatMessage);
+  handleSend: function(){
     feedActions.sendMessage(this.state.chatMessage);
-    this.clearMessage(); //needed?
     modalActions.closePostModal();
   },
   closeModal: function() {
@@ -55,11 +53,6 @@ var PostModal = React.createClass({
       duration: 100,
       toValue: deviceHeight
     }).start(modalActions.closePostModal);
-  },
-  clearMessage: function(){
-    this.setState({
-      chatMessage: ''
-    });
   },
   render: function(){
     return (
@@ -73,10 +66,10 @@ var PostModal = React.createClass({
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>Write Message</Text>
               {this.state.chatMessage.length > 0 ?
-                <TouchableOpacity onPress={this.handlePost}>
+                <TouchableOpacity onPress={this.handleSend}>
                   <Text style={[styles.headerButtonText, {fontWeight: '600'}]}>Post</Text>
                 </TouchableOpacity>
-                : <Text style={[styles.headerButtonText, {color: 'rgba(0,0,0,.15)', fontWeight: '600'}]}>Post</Text>
+                : <Text style={[styles.headerButtonText, {color: 'rgba(0,0,0,.15)', fontWeight: '600'}]}>Send</Text>
               }
             </View>
           </View>
@@ -87,8 +80,10 @@ var PostModal = React.createClass({
               value={this.state.chatMessage}
               placeholder={'What\'s going on?'}
               autoFocus={true}
+              enablesReturnKeyAutomatically={true}
+              returnKeyType='send'
               onChangeText={(text) => this.setState({chatMessage: text})}
-              onSubmitEditing={() => this.handlePost()}/>
+              onSubmitEditing={() => this.handleSend()}/>
           </View>
 
         </View>
