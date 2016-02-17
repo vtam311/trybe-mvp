@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-07-30 13:09:33
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-21 10:16:45
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-10 17:04:12
 */
 
 'use strict';
@@ -61,7 +61,7 @@ var FeedCardFooter = React.createClass({
             <Text style={styles.footerText}>Try</Text>
             <Image
               source={require('image!tryIcon')}
-              style={styles.footerIcon} />
+              style={[styles.footerIcon]} />
           </TouchableOpacity>
         </View>
       </View>

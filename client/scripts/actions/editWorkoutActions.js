@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 19:44:00
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-08 19:45:44
 */
 
 'use strict';
@@ -29,7 +29,7 @@ var editWorkoutActions = {
     //To do: make get req to server
     //temp use DUMMY_WORKOUT and make its id unique
     var dummyWorkout = newWorkout(DUMMY_WORKOUT);
-    dummyWorkout.id = 4;
+    dummyWorkout.id = Math.random() * 9999;
     dummyWorkout.parts[0].name = 'Warm up';
     dummyWorkout.parts[0].instructions = '5 rounds of';
     var newPart = newObject(dummyWorkout.parts[0]);

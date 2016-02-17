@@ -1,16 +1,16 @@
 /*
 * @Author: vincetam
-* @Date:   2016-01-10 21:18:58
+* @Date:   2016-02-10 11:58:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-12 11:01:17
+* @Last Modified time: 2016-02-11 15:05:08
 */
 
 'use strict';
 
 var React = require('react-native');
 
-var ExerciseDescription = require('./exerciseDescrText');
-var ViewResults = require('./viewResults');
+var ExerciseDescription = require('../../common/workoutViews/exerciseDescrText');
+var ViewResults = require('../../common/workoutViews/viewResults');
 
 var {
   StyleSheet,
@@ -41,7 +41,7 @@ var Part = React.createClass({
         </View>
         {this.props.showNotes === true && part.notes ?
           <View style={styles.notesContainer}>
-            <Text numberOfLines={3} style={styles.notesText}>{part.notes}</Text>
+            <Text numberOfLines={this.props.notesNumLines} style={styles.notesText}>{part.notes}</Text>
           </View> :
           null
         }
@@ -54,38 +54,31 @@ var Part = React.createClass({
 var styles = StyleSheet.create({
   partContainer: {
     flexDirection: 'column',
-    alignItems: 'center',
   },
   partNameText: {
-    fontSize: 16,
-    color: '#8D867E',
-    marginBottom: 6,
-    marginTop: 0,
+    fontSize: 15,
+    color: '#58504D',
+    marginBottom: 8,
   },
   instructionText: {
     fontSize: 15,
-    // fontWeight: '500',
     fontStyle: 'italic',
     color: '#8D867E',
     marginBottom: 6,
   },
   exerciseContainer: {
-    width: 280,
-    paddingTop: 5,
-    paddingBottom: 5
+    paddingTop: 3,
+    paddingBottom: 3
   },
   resultsContainer: {
-    width: 280,
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
   notesContainer: {
-    width: 280,
     flex: 1,
   },
   notesText: {
     fontSize: 15,
-    fontWeight: '500',
     fontStyle: 'italic',
     color: '#8D867E',
     marginBottom: 10

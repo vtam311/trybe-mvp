@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-07-30 13:08:17
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-29 16:38:43
+* @Last Modified time: 2016-02-12 10:59:54
 */
 
 'use strict';
@@ -52,7 +52,9 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
     paddingBottom: 10,
     borderBottomWidth: .5,
     borderColor: 'rgba(155,155,155,.7)'
@@ -72,7 +74,7 @@ var styles = StyleSheet.create({
   userText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#929292',
     fontWeight: '600',
     marginTop: 1,
     marginBottom: 2,
@@ -80,13 +82,13 @@ var styles = StyleSheet.create({
   activityText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#9b9b9b',
     fontWeight: '500',
   },
   timeText: {
     fontFamily: 'Avenir Next',
     fontSize: 15,
-    color: '#8D867E',
+    color: '#9b9b9b',
     fontWeight: '500',
   }
 });

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-12-27 18:20:38
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-16 09:53:19
+* @Last Modified time: 2016-02-09 18:20:16
 */
 
 var copyObjectHelper = require('../client/scripts/common/copyObjectHelper');
@@ -41,7 +41,7 @@ var EXERCISE_TEMPLATE_THREE = {
 
 var PART_TEMPLATE = {
   id: 1,
-  name: 'Metcon',
+  name: 'Cindy',
   instructions: '20min AMRAP of',
   media: {
     title: null,

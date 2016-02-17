@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:51:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-20 17:55:54
+* @Last Modified time: 2016-02-10 16:18:12
 */
 
 'use strict';
@@ -11,60 +11,89 @@ var React = require('react-native');
 var logActions = require('../../actions/logActions');
 
 //Load components
-// var LogCardHeader = require('./logCardHeader');
-var ViewWorkoutBody = require('../../common/workoutViews/viewWorkoutBody');
-var LogCardFooter = require('./logCardFooter');
+var PartsView = require('./partsView');
+var DayScene = require('./dayScene');
 
 var {
   StyleSheet,
   Text,
   View,
+  Image,
+  TouchableHighlight
 } = React;
 
 var LogCard = React.createClass({
-
+  handlePress: function(){
+    var sceneName = this.props.workout.date.toString().slice(4,15);
+    this.props.goToScene(DayScene, sceneName, this.props.workout);
+  },
   render: function(){
     var workout = this.props.workout;
     var dateString = workout.date.toString();
-    var dateDescr = dateString.slice(0,10);
+    var day = dateString.slice(0,3).toUpperCase();
+    var month = dateString.slice(4,7);
+    var dateNum = dateString.slice(8,10);
 
     return (
       /* jshint ignore:start */
-      <View>
-        <Text style={styles.dateText}>{dateDescr}</Text>
-        <View style={styles.cardContainer}>
-          <ViewWorkoutBody
-            workout={workout}
-            showNotes={true} />
-          <LogCardFooter
-            workout={workout} />
+      <TouchableHighlight
+        onPress={() => this.handlePress()}
+        underlayColor='rgba(155,155,155,.4)'>
+        <View style={styles.container}>
+          <View style={styles.dateContainer}>
+            <Text style={[styles.dateText, {fontSize: 11, marginBottom: 6, color: '#A79D93'}]}>{day}</Text>
+            <Text style={[styles.dateText, {fontSize: 12}]}>{month}</Text>
+            <Text style={[styles.dateText, {fontSize: 15}]}>{dateNum}</Text>
+          </View>
+          <View style={styles.workoutContent}>
+            <PartsView
+              workout={workout}
+              showNotes={true}
+              goToScene={this.props.goToScene} />
+          </View>
+          <View style={styles.disclosureIndicatorContainer}>
+           <Image source={require('image!disclosureIndicator')} />
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
       /* jshint ignore:end */
     );
   }
 });
 
 var styles = StyleSheet.create({
-  cardContainer: {
+  container: {
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#fff',
     borderTopWidth: .5,
     borderBottomWidth: .5,
-    borderColor: '#979797',
-    shadowColor: '#979797',
-    shadowOffset: {height: 1, width: 0},
-    shadowOpacity: .5,
-    padding: 10,
+    borderColor: '#d9d9d9',
+    marginBottom: 10,
   },
-  dateText: { //
+  dateContainer: {
+    flex: .15,
+    flexDirection: 'column',
+    justifyContent: 'center', //not working, RN bug
+    alignItems: 'center',
+    marginTop: 12 //until justifyContent works, use this
+  },
+  dateText: {
     fontFamily: 'Avenir Next',
-    fontSize: 14,
     fontWeight: '500',
     color: '#8D867E',
-    marginLeft: 10,
-    marginBottom: 5,
-  }
+  },
+  workoutContent: {
+    flex: .75,
+    flexDirection: 'column'
+  },
+  disclosureIndicatorContainer: {
+    flex: .1,
+    flexDirection: 'column',
+    justifyContent: 'center', //not working, RN bug
+    alignItems: 'center',
+    marginTop: 12, //until justifyContent works, use this,
+  },
 });
 
 module.exports = LogCard;

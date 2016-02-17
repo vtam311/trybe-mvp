@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2015-10-23 16:05:18
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-03 20:01:36
+* @Last Modified time: 2016-02-08 20:37:24
 */
 
 'use strict';
@@ -36,7 +36,7 @@ var PART_TEMPLATE = {
 };
 
 var WORKOUT_TEMPLATE = {
-  id: null,
+  id: Math.random() * 9999, //temporarily set to random num, TO DO: get id by time
   username: null,
   trybe: null,
   day: null,
@@ -74,6 +74,9 @@ var setToDefaultWorkout = function(){
 
 var resetWorkout = function(){
   _store.workout = newWorkout(WORKOUT_TEMPLATE);
+
+  //TO DO: change id to be timestamp-based
+  _store.workout.id = Math.random() * 9999;
 };
 
 var saveDate = function(data){

@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-06 21:06:48
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-11 10:45:08
 */
 
 'use strict';
@@ -116,7 +116,7 @@ var LogResults = React.createClass({
                   values={['Time', 'Rounds', 'Max Load', 'Custom']}
                   selectedIndex={this.state.segmCtrlIdx}
                   onValueChange={(val) => this.setMetric(val)}
-                  tintColor={'#4DBA97'}/>
+                  tintColor='#4DBA97' />
               </View>
               : null}
 
