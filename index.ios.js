@@ -16,6 +16,7 @@ var EditExerciseModal = require('./client/scripts/components/editWorkout/editExe
 var EditPartModal = require('./client/scripts/components/editWorkout/editPart/editPartModal');
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
 var LogModal = require('./client/scripts/components/logModal/logModalNav');
+var PostModal = require('./client/scripts/components/feed/postModal');
 
 var {
   AppRegistry,
@@ -41,6 +42,7 @@ var Trybe = React.createClass({
       partModalVisible: false,
       dateModalVisible: false,
       logModalVisible: false,
+      postModalVisible: false,
     };
   },
   componentWillMount: function() {
@@ -58,6 +60,7 @@ var Trybe = React.createClass({
       partModalVisible: modalStore.getPartModalVisible(),
       dateModalVisible: modalStore.getDateModalVisible(),
       logModalVisible: modalStore.getLogModalVisible(),
+      postModalVisible: modalStore.getPostModalVisible(),
     });
   },
   renderScene: function(route, navigator){
@@ -85,6 +88,7 @@ var Trybe = React.createClass({
         {this.state.partModalVisible ? <EditPartModal /> : null }
         {this.state.dateModalVisible ? <EditDateModal /> : null }
         {this.state.logModalVisible ? <LogModal /> : null }
+        {this.state.postModalVisible ? <PostModal /> : null }
       </View>
       /* jshint ignore:end */
     );

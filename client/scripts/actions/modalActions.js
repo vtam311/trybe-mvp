@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:22
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 11:17:32
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-17 14:27:34
 */
 
 'use strict';
@@ -79,6 +79,16 @@ var modalActions = {
   closeLogModal: function() {
     AppDispatcher.handleAction({
       actionType: modalConstants.CLOSE_LOG_MODAL
+    });
+  },
+  openPostModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.OPEN_POST_MODAL
+    });
+  },
+  closePostModal: function() {
+    AppDispatcher.handleAction({
+      actionType: modalConstants.CLOSE_POST_MODAL
     });
   },
 };

@@ -1,13 +1,16 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-21 09:22:35
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-01-21 10:27:21
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-17 14:33:09
 */
 
 'use strict';
 
 var React = require('react-native');
+var modalActions = require('../../actions/modalActions');
+
+//Load components
 var Feed = require('./feed');
 
 var {
@@ -84,24 +87,24 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
-    return (
-      /* jshint ignore:start */
-      <TouchableOpacity
-        style={styles.navBarComponentContainer}
-        onPress={ () => {
-          console.log('send button pressed')
-        }}>
-        <Image source={require('image!newPost')} style={styles.newPostIcon}/>
-      </TouchableOpacity>
-      /* jshint ignore:end */
-    );
+    if(route.name === 'Feed'){
+      return (
+        /* jshint ignore:start */
+        <TouchableOpacity
+          style={styles.navBarComponentContainer}
+          onPress={ () => modalActions.openPostModal()}>
+          <Image source={require('image!newPost')} style={styles.newPostIcon}/>
+        </TouchableOpacity>
+        /* jshint ignore:end */
+      );
+    }
   },
 
   Title: function(route, navigator, index, navState) {
     return (
       /* jshint ignore:start */
       <View style={styles.navBarComponentContainer}>
-        <Text style={styles.navBarTitleText}>ICON Athletes</Text>
+        <Text style={styles.navBarTitleText}>Icon Athletes</Text>
       </View>
       /* jshint ignore:end */
     );
