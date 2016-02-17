@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-17 13:53:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 15:17:55
+* @Last Modified time: 2016-02-17 15:21:20
 */
 
 'use strict';
@@ -72,9 +72,12 @@ var PostModal = React.createClass({
                 <Text style={styles.headerButtonText}>Cancel</Text>
               </TouchableOpacity>
               <Text style={styles.headerTitleText}>Write Message</Text>
-              <TouchableOpacity onPress={this.handlePost}>
-                <Text style={styles.headerButtonText}>Post</Text>
-              </TouchableOpacity>
+              {this.state.chatMessage.length > 0 ?
+                <TouchableOpacity onPress={this.handlePost}>
+                  <Text style={[styles.headerButtonText, {fontWeight: '600'}]}>Post</Text>
+                </TouchableOpacity>
+                : <Text style={[styles.headerButtonText, {color: 'rgba(0,0,0,.15)', fontWeight: '600'}]}>Post</Text>
+              }
             </View>
           </View>
 
