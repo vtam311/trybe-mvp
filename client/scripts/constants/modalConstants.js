@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:36
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 11:17:49
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-17 14:28:05
 */
 
 'use strict';
@@ -22,6 +22,8 @@ var modalConstants = {
   CLOSE_DATE_MODAL: 'CLOSE_DATE_MODAL',
   OPEN_LOG_MODAL: 'OPEN_LOG_MODAL',
   CLOSE_LOG_MODAL: 'CLOSE_LOG_MODAL',
+  OPEN_POST_MODAL: 'OPEN_POST_MODAL',
+  CLOSE_POST_MODAL: 'CLOSE_POST_MODAL',
 };
 
 module.exports = modalConstants;

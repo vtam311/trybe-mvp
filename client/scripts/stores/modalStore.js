@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-12 12:10:43
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-18 11:19:19
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-17 14:33:31
 */
 
 'use strict';
@@ -21,6 +21,7 @@ var _store = {
   partModalVisible: false,
   dateModalVisible: false,
   logModalVisible: false,
+  postModalVisible: false,
 };
 
 var openEditWorkoutModal = function() {
@@ -33,7 +34,6 @@ var closeEditWorkoutModal = function() {
 
 var openViewWorkoutModal = function() {
   _store.viewWorkoutModalVisible = true;
-  console.log('modalStore openViewWorkoutModal called');
 };
 
 var closeViewWorkoutModal = function() {
@@ -80,6 +80,14 @@ var closeLogModal = function() {
   _store.logModalVisible = false;
 };
 
+var openPostModal = function() {
+  _store.postModalVisible = true;
+};
+
+var closePostModal = function() {
+  _store.postModalVisible = false;
+};
+
 var modalStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -107,6 +115,9 @@ var modalStore = Object.assign({}, EventEmitter.prototype, {
   },
   getLogModalVisible: function(){
     return _store.logModalVisible;
+  },
+  getPostModalVisible: function(){
+    return _store.postModalVisible;
   },
 });
 
@@ -167,6 +178,14 @@ AppDispatcher.register(function(payload){
       break;
     case modalConstants.CLOSE_LOG_MODAL:
       closeLogModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.OPEN_POST_MODAL:
+      openPostModal();
+      modalStore.emit(CHANGE_EVENT);
+      break;
+    case modalConstants.CLOSE_POST_MODAL:
+      closePostModal();
       modalStore.emit(CHANGE_EVENT);
       break;
     default:
