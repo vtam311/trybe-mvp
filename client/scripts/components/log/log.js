@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 10:04:43
+* @Last Modified time: 2016-02-12 11:28:14
 */
 
 'use strict';
@@ -14,7 +14,6 @@ var logStore = require('../../stores/logStore');
 var logActions = require('../../actions/logActions');
 
 //Load components
-var Calendar = require('react-native-calendar');
 var LogWorkouts = require('./logWorkouts');
 
 var {
@@ -49,63 +48,13 @@ var Log = React.createClass({
     });
   },
 
-  onDateSelect: function(){
-  },
-  onTouchPrev: function(){
-    var newMonth, newYear;
-    if(this.state.calendarMonthAndYear.month === 0){
-      newMonth = 11;
-      newYear = this.state.calendarMonthAndYear.year - 1;
-    } else {
-      newMonth = this.state.calendarMonthAndYear.month - 1;
-      newYear = this.state.calendarMonthAndYear.year;
-    }
 
-    logActions.setCalendarMonthAndYear(newMonth, newYear);
-  },
-  onTouchNext: function(){
-    var newMonth, newYear;
-    if(this.state.calendarMonthAndYear.month === 11){
-      newMonth = 0;
-      newYear = this.state.calendarMonthAndYear.year + 1;
-    } else {
-      newMonth = this.state.calendarMonthAndYear.month + 1;
-      newYear = this.state.calendarMonthAndYear.year;
-    }
-
-    logActions.setCalendarMonthAndYear(newMonth, newYear);
-  },
 
   render: function(){
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
-        {this.state.isShowingCalendar ?
-          <View style={styles.calendarContainer}>
-            <Calendar
-              scrollEnabled={false}
-              showControls={true}
-              titleFormat={'MMMM YYYY'}
-              dayHeadings={['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']}
-              prevButtonText='Prev'
-              nextButtonText='Next'
-              onDateSelect={(date) => this.onDateSelect(date)}
-              onTouchPrev={this.onTouchPrev}
-              onTouchNext={this.onTouchNext}
-              customStyle={{
-                day: {fontSize: 14, textAlign: 'center'},
-                currentDayText: {color: '#4DBA97'},
-                selectedDayCircle: {backgroundColor: '#4DBA97'},
-                currentDayCircle: {backgroundColor: '#E9DB72'},
-                calendarHeading: {borderColor: 'rgba(0,0,0,0)'},
-                weekendDayText: {color: 'black'},
-                dayHeading: {fontSize: 11, color: '#A79D93'},
-                weekendHeading: {fontSize: 11, color: '#A79D93'},
-                controlButtonText: {fontSize: 13, color: '#A79D93'}
-              }} />
-          </View>
-          : null
-        }
+
         <ScrollView>
           <LogWorkouts
             workouts={this.state.workouts}
@@ -124,14 +73,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(141, 134, 126, .2)',
   },
-  calendarContainer: {
-    borderBottomWidth: .5,
-    borderColor: '#d9d9d9'
-  },
-
-  noWorkoutsText: {
-
-  }
 });
 
 module.exports = Log;
