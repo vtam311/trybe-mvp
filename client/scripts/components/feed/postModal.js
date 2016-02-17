@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-17 13:53:06
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 15:15:49
+* @Last Modified time: 2016-02-17 15:17:55
 */
 
 'use strict';
@@ -83,6 +83,7 @@ var PostModal = React.createClass({
               style={styles.messageBox}
               value={this.state.chatMessage}
               placeholder={'What\'s going on?'}
+              autoFocus={true}
               onChangeText={(text) => this.setState({chatMessage: text})}
               onSubmitEditing={() => this.handlePost()}/>
           </View>
