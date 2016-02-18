@@ -12,6 +12,12 @@ var feedConstants = require('../constants/feedConstants');
 
 var newWorkout = require('../common/newWorkout');
 var newObject = require('../common/copyObjectHelper');
+var Firebase = require('firebase');
+
+var _ = require('lodash');
+
+
+var firebaseRef = new Firebase("https://trybe.firebaseio.com/comments");
 
 //Create dummy workouts
 var DUMMY_WORKOUT = require('../../../Documentation/workoutModel');
@@ -74,8 +80,14 @@ var feedActions = {
         comments: 8
       }
     ];
-
-    this.setCards(dummyCards);
+    var _this = this;
+    firebaseRef.once("value", function(snapshot) {
+      _.each(snapshot.val(), function(comment) {
+        dummyCards.push(comment);
+      })
+      _this.setCards(dummyCards);
+    });
+    
   },
   setCards: function(cards) {
     AppDispatcher.handleAction({
@@ -84,9 +96,6 @@ var feedActions = {
     });
   },
   sendMessage: function(text){
-    //To do: post to server
-    //To do: call getCards
-
     //Temp solution: create dummy card, dispatch for store
     var DUMMY_COMMENT_CARD = {
       username: 'Jacob Greensbury',
@@ -99,10 +108,7 @@ var feedActions = {
       comments: 3
     };
 
-    AppDispatcher.handleAction({
-      actionType: feedConstants.SEND_MESSAGE,
-      data: DUMMY_COMMENT_CARD
-    });
+    firebaseRef.push(DUMMY_COMMENT_CARD);
   }
 };
 
