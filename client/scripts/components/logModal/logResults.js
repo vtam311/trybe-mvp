@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-02 15:53:03
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 10:45:08
+* @Last Modified time: 2016-02-17 16:53:24
 */
 
 'use strict';
@@ -16,7 +16,6 @@ var {
   TouchableOpacity,
   Image,
   SegmentedControlIOS,
-  Image,
 } = React;
 
 //Load components
@@ -151,8 +150,6 @@ var styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    // marginLeft: 15,
-    // marginRight: 15,
   },
   metricControlContainer:{
     marginTop: 15,

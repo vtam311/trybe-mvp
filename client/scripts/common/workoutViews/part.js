@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-10 21:18:58
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-12 11:01:17
+* @Last Modified time: 2016-02-17 18:16:07
 */
 
 'use strict';
@@ -37,7 +37,7 @@ var Part = React.createClass({
         <Text style={styles.instructionText}>{part.instructions}</Text>
         {exercises}
         <View style={styles.resultsContainer}>
-          <ViewResults result={part.result} />
+          <ViewResults result={part.result} showIcon={true}/>
         </View>
         {this.props.showNotes === true && part.notes ?
           <View style={styles.notesContainer}>
@@ -78,6 +78,7 @@ var styles = StyleSheet.create({
     width: 280,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginBottom: 10
   },
   notesContainer: {
     width: 280,
