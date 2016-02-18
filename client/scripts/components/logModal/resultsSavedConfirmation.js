@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-17 16:16:50
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 19:36:54
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-18 10:47:22
 */
 
 'use strict';
@@ -62,13 +62,18 @@ var ResultsSavedConfirmation = React.createClass({
         </View>
 
         <View style={styles.buttonsContainer}>
+          <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Continue to {nextPartName}</Text>
+            </View>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={this.handleCompleteWorkoutPress}>
             <Text style={styles.buttonText}>Complete</Text>
           </TouchableOpacity>
 
           {nextPartName ?
             <View style={styles.continueContent}>
-              <Text style={styles.text}>OR</Text>
               <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
                 <Text style={styles.buttonText}>Continue To {nextPartName}</Text>
               </TouchableOpacity>
@@ -100,17 +105,33 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   },
+  button: {
+    height: 50,
+    width: 250,
+    borderColor: '#4dba97',
+    borderWidth: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+  buttonText: {
+    fontFamily: 'Avenir',
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#4dba97'
+  },
   continueContent: {
     flexDirection: 'column',
     alignItems: 'center'
   },
-  buttonText: {
-    color: '#4dba97',
-    fontWeight: '600',
-    fontSize: 18,
-    marginTop: 20,
-    marginBottom: 20
-  }
+  // buttonText: {
+  //   color: '#4dba97',
+  //   fontWeight: '600',
+  //   fontSize: 18,
+  //   marginTop: 20,
+  //   marginBottom: 20
+  // }
 });
 
 module.exports = ResultsSavedConfirmation;
