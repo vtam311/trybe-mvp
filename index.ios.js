@@ -17,6 +17,9 @@ var EditPartModal = require('./client/scripts/components/editWorkout/editPart/ed
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
 var LogModal = require('./client/scripts/components/logModal/logModalNav');
 var PostModal = require('./client/scripts/components/feed/postModal');
+var Auth0Lock = require('react-native-lock-ios');
+
+var lock = new Auth0Lock({clientId: "2AEubwoUnJd76NDkQRMl0LEITsoNlo5W", domain: "trybe.auth0.com"});
 
 var {
   AppRegistry,
@@ -24,6 +27,7 @@ var {
   Text,
   View,
   Navigator,
+  TouchableHighlight
 } = React;
 
 var RouteStack = {
@@ -72,11 +76,23 @@ var Trybe = React.createClass({
         events={this.rootNavListener} />
     );
   },
-
+  showLock: function() {
+    lock.show({}, (err, profile, token) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      // Authentication worked!
+      console.log('Logged in with Auth0!');
+    });
+  },
   render: function() {
     return (
       /* jshint ignore:start */
       <View style={styles.container}>
+      <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
+        <Text>Login</Text>
+      </TouchableHighlight>
         <Navigator
           ref="rootNav"
           initialRoute={RouteStack.app}
@@ -98,6 +114,13 @@ var Trybe = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loginButton: {
+    backgroundColor: '#000000',
+    width:200,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
