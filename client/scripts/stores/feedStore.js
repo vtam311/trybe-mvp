@@ -10,7 +10,10 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var feedConstants = require('../constants/feedConstants');
 var EventEmitter = require('events').EventEmitter;
+var Firebase = require('firebase');
 
+
+var firebaseRef = new Firebase("https://trybe.firebaseio.com/comments");
 var CHANGE_EVENT = 'change';
 
 var _store = {
@@ -43,6 +46,12 @@ var feedStore = Object.assign({}, EventEmitter.prototype, {
   getCards: function(){
     return _store.cards;
   },
+});
+
+firebaseRef.on("child_added", function(snapshot) {
+  var comments = snapshot.val();
+  addCard(comments);
+  feedStore.emit(CHANGE_EVENT);
 });
 
 AppDispatcher.register(function(payload){

@@ -39,7 +39,7 @@ var Feed = React.createClass({
     var cards = feedStore.getCards();
     this.setState({
       trybeWorkout: feedStore.getTrybeWorkout(),
-      dataSource: this.state.dataSource.cloneWithRows(cards)
+      dataSource: (!cards) ? this.state.dataSource : this.state.dataSource.cloneWithRows(cards)
     });
   },
 
