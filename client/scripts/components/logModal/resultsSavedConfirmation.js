@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-17 16:16:50
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-17 18:23:45
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-17 18:30:31
 */
 
 'use strict';
@@ -52,20 +52,21 @@ var ResultsSavedConfirmation = React.createClass({
       <View style={styles.container}>
         <View style={styles.congratContent}>
           <ViewResults result={result} />
-          <Text style={styles.congratText}>. Great work!</Text>
+          <Text style={styles.text}>. Great work!</Text>
         </View>
 
-        <View style={styles.actionButtons}>
+        <View style={styles.buttonsContainer}>
           <TouchableOpacity onPress={this.handleCompleteWorkoutPress}>
-            <Text>Complete</Text>
+            <Text style={styles.buttonText}>Complete</Text>
           </TouchableOpacity>
 
-          <Text>OR</Text>
-
           {nextPartName ?
-            <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
-              <Text>Continue To {nextPartName}</Text>
-            </TouchableOpacity>
+            <View style={styles.continueContent}>
+              <Text style={styles.text}>OR</Text>
+              <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
+                <Text style={styles.buttonText}>Continue To {nextPartName}</Text>
+              </TouchableOpacity>
+            </View>
             : null
           }
         </View>
@@ -84,15 +85,25 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  congratText: {
+  text: {
     color: '#58504D',
     fontSize: 15,
   },
-  actionButtons: {
+  buttonsContainer: {
     flex: .66,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around'
+    alignItems: 'center'
+  },
+  continueContent: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  buttonText: {
+    color: '#4dba97',
+    fontWeight: '600',
+    fontSize: 18,
+    marginTop: 20,
+    marginBottom: 20
   }
 });
 
