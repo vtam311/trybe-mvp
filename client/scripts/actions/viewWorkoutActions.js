@@ -28,6 +28,14 @@ var viewWorkoutActions = {
       }
     });
   },
+  setCurrPartIdx: function(partIdx) {
+    AppDispatcher.handleAction({
+      actionType: viewWorkoutConstants.SET_CURR_PART_IDX,
+      data: {
+        partIdx: partIdx
+      }
+    });
+  },
 };
 
 module.exports = viewWorkoutActions;

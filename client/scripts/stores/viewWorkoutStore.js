@@ -11,7 +11,9 @@ var _store = {
   isModifying: false,
   //reflects which parts in viewWorkout have been logged
   //is an array of bools
-  partsAreLogged: []
+  partsAreLogged: [],
+  //reflects which partIdx user should auto scroll to
+  currPartIdx: 0
 };
 
 var setIsModifying = function(data){
@@ -37,6 +39,12 @@ var setPartIsLoggedTrue = function(data){
   _store.partsAreLogged[partIdx] = true;
 };
 
+var setCurrPartIdx = function(data){
+  var partIdx = data.partIdx;
+  _store.currPartIdx = partIdx;
+  console.log('viewWorkoutStore setCurrPartIdx to', _store.currPartIdx);
+};
+
 var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -49,6 +57,9 @@ var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {
   },
   getPartsAreLogged: function(){
     return _store.partsAreLogged;
+  },
+  getCurrPartIdx: function(){
+    return _store.currPartIdx;
   },
 });
 
@@ -65,6 +76,10 @@ AppDispatcher.register(function(payload){
       break;
     case viewWorkoutConstants.SET_PART_IS_LOGGED_TRUE:
       setPartIsLoggedTrue(action.data);
+      viewWorkoutStore.emit(CHANGE_EVENT);
+      break;
+    case viewWorkoutConstants.SET_CURR_PART_IDX:
+      setCurrPartIdx(action.data);
       viewWorkoutStore.emit(CHANGE_EVENT);
       break;
     default:

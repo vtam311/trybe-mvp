@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2015-10-28 19:35:23
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-08 19:45:44
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-17 18:46:52
 */
 
 'use strict';
@@ -30,13 +30,13 @@ var editWorkoutActions = {
     //temp use DUMMY_WORKOUT and make its id unique
     var dummyWorkout = newWorkout(DUMMY_WORKOUT);
     dummyWorkout.id = Math.random() * 9999;
-    dummyWorkout.parts[0].name = 'Warm up';
+    dummyWorkout.parts[0].name = 'Warm Up';
     dummyWorkout.parts[0].instructions = '5 rounds of';
     var newPart = newObject(dummyWorkout.parts[0]);
     var newPart2 = newObject(dummyWorkout.parts[0]);
     newPart.name = 'Murph';
     newPart.instructions = '1 mile runs sandwiching 20 rounds of';
-    newPart2.name = 'Cool down';
+    newPart2.name = 'Cool Down';
     newPart2.instructions = 'Row 1km';
     newPart2.exercises = [];
     dummyWorkout.parts.push(newPart);

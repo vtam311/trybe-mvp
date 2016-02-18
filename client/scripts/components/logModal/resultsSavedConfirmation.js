@@ -2,13 +2,14 @@
 * @Author: vincetam
 * @Date:   2016-02-17 16:16:50
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 18:30:31
+* @Last Modified time: 2016-02-17 19:36:54
 */
 
 'use strict';
 
 var React = require('react-native');
 var editWorkoutStore = require('../../stores/editWorkoutStore');
+var viewWorkoutActions = require('../../actions/viewWorkoutActions');
 var modalActions = require('../../actions/modalActions');
 var tabActions = require('../../actions/tabActions');
 
@@ -30,6 +31,11 @@ var ResultsSavedConfirmation = React.createClass({
     tabActions.setTab('profile');
   },
   handleContinueWorkoutPress: function(){
+    //Set the currPartIdx of ViewWorkoutModal to be the next one,
+    //so it preloads for user
+    var nextPartIdx = editWorkoutStore.getTargetPartIdx() + 1;
+
+    viewWorkoutActions.setCurrPartIdx(nextPartIdx);
     modalActions.closeLogModal();
   },
   render: function() {
