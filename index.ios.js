@@ -25,6 +25,8 @@ var lock = new Auth0Lock({clientId: "2AEubwoUnJd76NDkQRMl0LEITsoNlo5W", domain: 
 var FirebaseTokenGenerator = require("firebase-token-generator");
 
 var {
+  ActivityIndicatorIOS,
+  AsyncStorage,
   AppRegistry,
   StyleSheet,
   Text,
@@ -39,6 +41,7 @@ var RouteStack = {
   }
 };
 
+
 var Trybe = React.createClass({
   getInitialState: function(){
     return {
@@ -50,11 +53,19 @@ var Trybe = React.createClass({
       dateModalVisible: false,
       logModalVisible: false,
       postModalVisible: false,
-      authData: firebaseRef.getAuth()
+      loading: true
     };
   },
   componentWillMount: function() {
     this.rootNavListener = new EventEmitter();
+    var _this = this;
+    AsyncStorage.getItem("authData").then((value) => {
+      if(value) {
+        _this.login(value);
+      } else {
+        _this.setState({loading: false});
+      }
+    }).done();
   },
   componentDidMount: function() {
     modalStore.addChangeListener(this._onChange);
@@ -80,28 +91,45 @@ var Trybe = React.createClass({
         events={this.rootNavListener} />
     );
   },
+  login: function(userId) {
+    // firebase token: Firebase app configuration -> secrets
+      var tokenGenerator = new FirebaseTokenGenerator('dzM08pcN5kg04o6M3azKU9ngYXQ86a6kaHAhWNbM');
+      
+      // use the token generator to create a new token with the userId
+      var ref_token = tokenGenerator.createToken({ uid: userId });
+      var _this = this;
+      firebaseRef.authWithCustomToken(ref_token, function(error, authData) {
+        if (error) {
+          console.log('Login Failed!');
+        } else {
+          AsyncStorage.setItem("authData", JSON.stringify(userId));
+          _this.setState({authData: authData, loading: false});
+        }
+      });
+  },
   showLock: function() {
+    this.setState({loading: true});
     lock.show({}, (err, profile, token) => {
       if (err) {
         console.log(err);
         return;
       }
-      // firebase token: Firebase app configuration -> secrets
-        var tokenGenerator = new FirebaseTokenGenerator('dzM08pcN5kg04o6M3azKU9ngYXQ86a6kaHAhWNbM');
-        
-        // use the token generator to create a new token with the userId
-        var ref_token = tokenGenerator.createToken({ uid: profile.userId });
-        var _this = this;
-        firebaseRef.authWithCustomToken(ref_token, function(error, authData) {
-          if (error) {
-            console.log('Login Failed!');
-          } else {
-            _this.setState({authData: authData});
-          }
-        });
+      this.login(profile.userId);
     });
   },
   render: function() {
+    if(this.state.loading) {
+      return (
+        <View style={styles.loadingContainer}>
+        <Text>Logging In</Text>
+        <ActivityIndicatorIOS
+          animating={this.state.animating}
+          style={[styles.centering, {height: 80}]}
+          size="large"
+        />
+        </View>
+      );
+    }
     var login = (
       <View style={styles.loginContainer}>
         <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
@@ -134,6 +162,15 @@ var Trybe = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  centering: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   loginContainer: {
     flex: 1,
