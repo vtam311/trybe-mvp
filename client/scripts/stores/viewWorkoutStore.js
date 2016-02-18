@@ -42,7 +42,6 @@ var setPartIsLoggedTrue = function(data){
 var setCurrPartIdx = function(data){
   var partIdx = data.partIdx;
   _store.currPartIdx = partIdx;
-  console.log('viewWorkoutStore setCurrPartIdx to', _store.currPartIdx);
 };
 
 var viewWorkoutStore = Object.assign({}, EventEmitter.prototype, {

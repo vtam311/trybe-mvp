@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 19:37:03
+* @Last Modified time: 2016-02-17 19:43:45
 */
 
 'use strict';
@@ -95,7 +95,6 @@ var ViewWorkoutModal = React.createClass({
   },
 
   render: function() {
-    console.log('viewWorkoutModal this.state.currPartIdx is', this.state.currPartIdx);
     if(this.state.workout){
       var partHeaders = this.state.workout.parts.map( (part, index) =>
         /* jshint ignore:start */
