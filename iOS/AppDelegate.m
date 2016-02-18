@@ -32,7 +32,7 @@
    */
 
   //Note: if running on phone using Xcode, manually set machine's IP
-  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"];
+  //jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios"];
 
   /**
    * OPTION 2
@@ -44,7 +44,7 @@
    * see http://facebook.github.io/react-native/docs/runningondevice.html
    */
 
-  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"trybe"

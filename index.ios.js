@@ -17,6 +17,12 @@ var EditPartModal = require('./client/scripts/components/editWorkout/editPart/ed
 var EditDateModal = require('./client/scripts/components/editWorkout/editPart/editDateModal');
 var LogModal = require('./client/scripts/components/logModal/logModalNav');
 var PostModal = require('./client/scripts/components/feed/postModal');
+var Firebase = require('firebase');
+var Auth0Lock = require('react-native-lock-ios');
+var firebaseRef = new Firebase("https://trybe.firebaseio.com");
+
+var lock = new Auth0Lock({clientId: "2AEubwoUnJd76NDkQRMl0LEITsoNlo5W", domain: "trybe.auth0.com"});
+var FirebaseTokenGenerator = require("firebase-token-generator");
 
 var {
   AppRegistry,
@@ -24,6 +30,7 @@ var {
   Text,
   View,
   Navigator,
+  TouchableHighlight
 } = React;
 
 var RouteStack = {
@@ -43,6 +50,7 @@ var Trybe = React.createClass({
       dateModalVisible: false,
       logModalVisible: false,
       postModalVisible: false,
+      authData: firebaseRef.getAuth()
     };
   },
   componentWillMount: function() {
@@ -72,11 +80,39 @@ var Trybe = React.createClass({
         events={this.rootNavListener} />
     );
   },
-
+  showLock: function() {
+    lock.show({}, (err, profile, token) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      // firebase token: Firebase app configuration -> secrets
+        var tokenGenerator = new FirebaseTokenGenerator('dzM08pcN5kg04o6M3azKU9ngYXQ86a6kaHAhWNbM');
+        
+        // use the token generator to create a new token with the userId
+        var ref_token = tokenGenerator.createToken({ uid: profile.userId });
+        var _this = this;
+        firebaseRef.authWithCustomToken(ref_token, function(error, authData) {
+          if (error) {
+            console.log('Login Failed!');
+          } else {
+            _this.setState({authData: authData});
+          }
+        });
+    });
+  },
   render: function() {
-    return (
+    var login = (
+      <View style={styles.loginContainer}>
+        <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
+          <Text>Login</Text>
+        </TouchableHighlight>
+      </View>);
+    
+    return !this.state.authData ? login : (
       /* jshint ignore:start */
       <View style={styles.container}>
+      
         <Navigator
           ref="rootNav"
           initialRoute={RouteStack.app}
@@ -98,6 +134,17 @@ var Trybe = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loginContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  loginButton: {
+    width:200,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
