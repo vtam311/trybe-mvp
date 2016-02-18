@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-10 11:58:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 15:05:08
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-17 19:38:34
 */
 
 'use strict';
@@ -73,6 +73,7 @@ var styles = StyleSheet.create({
   resultsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginBottom: 10
   },
   notesContainer: {
     flex: 1,
