@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-06 10:09:44
+* @Last Modified time: 2016-02-17 19:43:45
 */
 
 'use strict';
@@ -50,7 +50,7 @@ var ViewWorkoutModal = React.createClass({
       offset: new Animated.Value(deviceHeight),
       visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
-      currPartIdx: 0,
+      currPartIdx: viewWorkoutStore.getCurrPartIdx(),
     };
   },
   componentDidMount: function() {
@@ -60,6 +60,7 @@ var ViewWorkoutModal = React.createClass({
     if(this.state.isDefaultOrCustom === 'default'){
       editWorkoutActions.setToDefaultWorkout();
     }
+
     Animated.timing(this.state.offset, {
       duration: 100,
       toValue: 0
@@ -72,7 +73,8 @@ var ViewWorkoutModal = React.createClass({
   _onChange: function(){
     this.setState({
       workout: editWorkoutStore.getWorkout(),
-      isModifying: viewWorkoutStore.getIsModifying()
+      isModifying: viewWorkoutStore.getIsModifying(),
+      currPartIdx: viewWorkoutStore.getCurrPartIdx()
     });
   },
   closeModal: function() {
@@ -83,8 +85,8 @@ var ViewWorkoutModal = React.createClass({
   },
   handleScroll: function(event: Object) {
     var horizontalOffset = event.nativeEvent.contentOffset.x;
-    var currPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
-    this.setState({currPartIdx: currPartIdx});
+    var newCurrPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    viewWorkoutActions.setCurrPartIdx(newCurrPartIdx);
   },
   handleLogButtonPress: function(){
     //notifies editWorkoutStore which part to modify
@@ -116,11 +118,13 @@ var ViewWorkoutModal = React.createClass({
               <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
                 <View style={{flex: .25, backgroundColor: 'rgba(77,186,151,.6)'}}>
                   <ScrollView
+                    ref="partScroll"
                     horizontal={true}
                     pagingEnabled={true}
                     onScroll={this.handleScroll}
                     scrollEventThrottle={256}
-                    showsHorizontalScrollIndicator={false} >
+                    showsHorizontalScrollIndicator={false}
+                    contentOffset={{x: this.state.currPartIdx * this.state.visibleWidth}} >
 
                     {partHeaders}
 

@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-06 11:35:45
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-06 21:14:27
+* @Last Modified time: 2016-02-17 17:57:18
 */
 
 'use strict';
@@ -18,6 +18,7 @@ var logActions = require('../../actions/logActions');
 
 //Load components
 var LogResults = require('./logResults');
+var ResultsSavedConfirmation = require('./resultsSavedConfirmation');
 
 var {
   Navigator,
@@ -77,10 +78,11 @@ var LogModalNav = React.createClass({
       toValue: 0
     }).start();
   },
-  goToScene: function(component, name){
+  goToScene: function(component, name, workout){
     this.refs.logModalNav.push({
       component: component,
-      name: name
+      name: name,
+      workout: workout
     });
   },
   resetRoute: function(route){
@@ -92,6 +94,7 @@ var LogModalNav = React.createClass({
     return (
       <Component
         goToScene={this.goToScene}
+        route={route}
         result={this.state.result}
         notes={this.state.notes} />
     );
@@ -128,9 +131,7 @@ var NavBarRouteMapper = {
           <Text style={styles.navBarSideText}>Cancel</Text>
         </TouchableOpacity>
       );
-    }
-
-    if(route.name === 'Workout Notes'){
+    }else{
       return (
         <View style={styles.navBarComponentContainer}>
           <TouchableOpacity onPress={() => navigator.pop()}
@@ -146,7 +147,8 @@ var NavBarRouteMapper = {
   },
 
   RightButton: function(route, navigator, index, navState) {
-      var handleDonePress = function(){
+    if(route.name === 'Log Results' || route.name == 'Workout Notes'){
+      var handleSavePress = function(){
         var result = logModalStore.getResult();
         var notes = logModalStore.getNotes();
         var currPartIdx = editWorkoutStore.getTargetPartIdx();
@@ -156,15 +158,24 @@ var NavBarRouteMapper = {
         editWorkoutActions.savePartNotes(notes);
         viewWorkoutActions.setPartIsLoggedTrue(currPartIdx);
         logActions.addWorkoutPart(workout, currPartIdx);
-        modalActions.closeLogModal();
+        // push navigator to Saved scene
+        navigator.push({
+          component: ResultsSavedConfirmation,
+          name: 'Results Saved',
+          workout: workout
+        });
       };
       return (
         <TouchableOpacity
-          onPress={() => handleDonePress()}
+          onPress={() => handleSavePress()}
           style={styles.navBarComponentContainer} >
-          <Text style={styles.navBarSideText}>Done</Text>
+          <Text style={styles.navBarSideText}>Save</Text>
         </TouchableOpacity>
       );
+    }
+    if(route.name === 'Saved'){
+      return null;
+    }
   },
 
   Title: function(route, navigator, index, navState) {
