@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-01-18 18:07:15
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-01-20 10:21:13
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-18 10:53:32
 */
 
 'use strict';
@@ -45,7 +45,7 @@ var WorkoutChoice = React.createClass({
             </TouchableOpacity>
           </View>
         </Image>
-      /* jshint ignore:start */
+      /* jshint ignore:end */
     );
   }
 });

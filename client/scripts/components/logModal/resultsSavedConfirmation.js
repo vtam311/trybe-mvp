@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-17 16:16:50
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-18 10:47:22
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-18 11:52:53
 */
 
 'use strict';
@@ -57,29 +57,25 @@ var ResultsSavedConfirmation = React.createClass({
     return (
       <View style={styles.container}>
         <View style={styles.congratContent}>
-          <ViewResults result={result} />
+          <ViewResults result={result} customFontSize={16} />
           <Text style={styles.text}>. Great work!</Text>
         </View>
 
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Continue to {nextPartName}</Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleCompleteWorkoutPress}>
-            <Text style={styles.buttonText}>Complete</Text>
-          </TouchableOpacity>
-
           {nextPartName ?
-            <View style={styles.continueContent}>
-              <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
-                <Text style={styles.buttonText}>Continue To {nextPartName}</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Continue to {nextPartName}</Text>
+              </View>
+            </TouchableOpacity>
             : null
           }
+
+          <TouchableOpacity onPress={this.handleCompleteWorkoutPress}>
+            <View style={styles.button}>
+              <Text style={styles.buttonText}>Complete</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -98,7 +94,7 @@ var styles = StyleSheet.create({
   },
   text: {
     color: '#58504D',
-    fontSize: 15,
+    fontSize: 16,
   },
   buttonsContainer: {
     flex: .66,
@@ -107,13 +103,15 @@ var styles = StyleSheet.create({
   },
   button: {
     height: 50,
+    borderRadius: 25,
     width: 250,
     borderColor: '#4dba97',
     borderWidth: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    marginTop: 20,
+    marginBottom: 20
   },
   buttonText: {
     fontFamily: 'Avenir',
@@ -121,17 +119,6 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     color: '#4dba97'
   },
-  continueContent: {
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  // buttonText: {
-  //   color: '#4dba97',
-  //   fontWeight: '600',
-  //   fontSize: 18,
-  //   marginTop: 20,
-  //   marginBottom: 20
-  // }
 });
 
 module.exports = ResultsSavedConfirmation;

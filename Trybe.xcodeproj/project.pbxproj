@@ -12,6 +12,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2737EE9F1C76562500F68C4E /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 2737EE9E1C76562500F68C4E /* main.jsbundle */; };
 		279F44251BB32A9500D99458 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 279F44241BB32A9500D99458 /* Images.xcassets */; };
 		27E9A9191C581FE200882849 /* libRNMultiPickerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E9A9181C581FBC00882849 /* libRNMultiPickerIOS.a */; };
 		692FE52498D4B14D9F5A6193 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 683FC62B652C546B851038D0 /* libPods.a */; };
@@ -45,6 +46,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iOS/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
+		2737EE9E1C76562500F68C4E /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		279F44241BB32A9500D99458 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Trybe/Images.xcassets; sourceTree = "<group>"; };
 		27E9A9131C581FBC00882849 /* RNMultiPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNMultiPicker.xcodeproj; path = "node_modules/react-native-multipicker/RNMultiPicker.xcodeproj"; sourceTree = "<group>"; };
 		683FC62B652C546B851038D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,7 @@
 		13B07FAE1A68108700A75B9A /* Trybe */ = {
 			isa = PBXGroup;
 			children = (
+				2737EE9E1C76562500F68C4E /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -274,6 +277,7 @@
 				279F44251BB32A9500D99458 /* Images.xcassets in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				2737EE9F1C76562500F68C4E /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
