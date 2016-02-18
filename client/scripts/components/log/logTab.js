@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-09 17:03:49
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-12 11:13:07
+* @Last Modified time: 2016-02-18 12:54:37
 */
 
 'use strict';
@@ -112,13 +112,7 @@ var NavBarRouteMapper = {
 
   RightButton: function(route, navigator, index, navState) {
     return (
-      /* jshint ignore:start */
-      <TouchableOpacity
-        style={styles.navBarComponentContainer}
-        onPress={ () => console.log('search pressed')}>
-        <Image source={require('image!search')} style={styles.searchIcon}/>
-      </TouchableOpacity>
-      /* jshint ignore:end */
+      null
     );
   },
 
