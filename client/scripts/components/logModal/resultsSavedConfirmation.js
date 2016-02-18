@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-17 16:16:50
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 18:16:49
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-17 18:23:45
 */
 
 'use strict';
@@ -36,6 +36,17 @@ var ResultsSavedConfirmation = React.createClass({
     var workout = editWorkoutStore.getWorkout();
     var currPartIdx = editWorkoutStore.getTargetPartIdx();
     var result = workout.parts[currPartIdx].result;
+    var nextPartName;
+
+    //If the workout's part is followed by another part, gets its name
+    if(workout.parts[currPartIdx + 1]){
+      //if it has a name, get it. Otherwise, name it Part #
+      if(workout.parts[currPartIdx + 1].name){
+        nextPartName = workout.parts[currPartIdx + 1].name;
+      } else {
+        nextPartName = 'Part ' + (currPartIdx+1);
+      }
+    }
 
     return (
       <View style={styles.container}>
@@ -46,11 +57,17 @@ var ResultsSavedConfirmation = React.createClass({
 
         <View style={styles.actionButtons}>
           <TouchableOpacity onPress={this.handleCompleteWorkoutPress}>
-            <Text>View in Log</Text>
+            <Text>Complete</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
-            <Text>Continue Workout</Text>
-          </TouchableOpacity>
+
+          <Text>OR</Text>
+
+          {nextPartName ?
+            <TouchableOpacity onPress={this.handleContinueWorkoutPress}>
+              <Text>Continue To {nextPartName}</Text>
+            </TouchableOpacity>
+            : null
+          }
         </View>
       </View>
     );
