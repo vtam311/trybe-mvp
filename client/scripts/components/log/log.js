@@ -3,8 +3,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-19 11:21:09
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-19 11:28:51
 */
 
 'use strict';
@@ -52,17 +52,23 @@ var Log = React.createClass({
   handleScroll: function(event: Object) {
     var horizontalOffset = event.nativeEvent.contentOffset.x;
     var currDateIdx = Math.round(horizontalOffset/this.state.visibleWidth);
-    console.log('currDateIdx', currDateIdx);
-
     logActions.setCurrViewingMonth(currDateIdx);
   },
 
 
   render: function(){
-    //for each month/year object, create a monthOverview
+    var months = ['January','February','March',
+    'April','May','June','July','August',
+    'September','October','November','December'];
+
     var lastTwelveMonthOverviews = this.state.lastTwelveMonths.map((date, index) =>
-      <MonthOverview date={date} key={index} width={this.state.visibleWidth}/>
+      <MonthOverview
+        date={date}
+        monthName={months[date.month]}
+        width={this.state.visibleWidth}
+        key={index} />
     );
+
 
     return (
       /* jshint ignore:start */
@@ -75,6 +81,7 @@ var Log = React.createClass({
             onScroll={this.handleScroll}
             scrollEventThrottle={256}
             showsHorizontalScrollIndicator={false}
+            contentOffset={{x: 11 * this.state.visibleWidth}}
             contentContainerStyle={{flex: 1}}
             automaticallyAdjustContentInsets={false} >
 
