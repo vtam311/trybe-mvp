@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-18 12:55:07
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-19 10:19:02
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-19 10:37:29
 */
 
 'use strict';
@@ -17,7 +17,7 @@ var {
   View,
 } = React;
 
-var ProfileCard = React.createClass({
+var MonthOverview = React.createClass({
   render: function(){
     /* jshint ignore:start */
     return (
@@ -72,7 +72,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
+    padding: 5,
   },
   centerContainer: {
     flexDirection: 'row',
@@ -108,4 +108,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = ProfileCard;
+module.exports = MonthOverview;

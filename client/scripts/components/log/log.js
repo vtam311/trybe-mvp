@@ -3,8 +3,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-19 10:19:15
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-19 10:39:48
 */
 
 'use strict';
@@ -98,7 +98,9 @@ var Log = React.createClass({
             pagingEnabled={true}
             onScroll={this.handleScroll}
             scrollEventThrottle={256}
-            showsHorizontalScrollIndicator={false} >
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{flex: 1}}
+            automaticallyAdjustContentInsets={false} >
 
             {lastTwelveMonthOverviews}
 
@@ -127,10 +129,11 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(141, 134, 126, .2)',
   },
   monthScrollContainer: {
-    flex: .5,
+    flex: .2,
+    backgroundColor: 'grey'
   },
   monthlyContentContainer: {
-    flex: .5,
+    flex: .8,
   },
 });
 

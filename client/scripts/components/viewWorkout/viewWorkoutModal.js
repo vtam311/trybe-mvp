@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-01-16 12:52:29
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-17 19:43:45
+* @Last Modified time: 2016-02-19 10:40:07
 */
 
 'use strict';
@@ -124,7 +124,8 @@ var ViewWorkoutModal = React.createClass({
                     onScroll={this.handleScroll}
                     scrollEventThrottle={256}
                     showsHorizontalScrollIndicator={false}
-                    contentOffset={{x: this.state.currPartIdx * this.state.visibleWidth}} >
+                    contentOffset={{x: this.state.currPartIdx * this.state.visibleWidth}}
+                    automaticallyAdjustContentInsets={false} >
 
                     {partHeaders}
 
