@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-18 12:55:07
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-18 13:33:28
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-18 13:34:30
 */
 
 'use strict';
@@ -44,7 +44,7 @@ var ProfileCard = React.createClass({
                 <Image source={require('image!loggedIcon')} style={{width: 26, height: 26}} />
               </View>
               <View style={styles.metricContainer}>
-                <Text style={styles.metricText}>18</Text>
+                <Text style={styles.metricText}>3</Text>
                 <Image source={require('image!newAchievementGreen')} style={{width: 24, height: 24}} />
               </View>
             </View>
