@@ -1,5 +1,5 @@
-'use strict';
-
+OOOOAAAOOOBOBBO'use strict';
+OBB
 require("babel/register");
 
 var React = require('react-native');
@@ -61,8 +61,7 @@ var Trybe = React.createClass({
     var _this = this;
     AsyncStorage.getItem("authData").then((value) => {
       if(value) {
-        //_this.setState({loading: false});
-        _this.login(JSON.parse(value));
+        _this.login(value);
       } else {
         _this.setState({loading: false});
       }

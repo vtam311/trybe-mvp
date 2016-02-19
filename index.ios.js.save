@@ -1,4 +1,4 @@
-'use strict';
+AOAOOBBBX'use strict';
 
 require("babel/register");
 
@@ -61,8 +61,7 @@ var Trybe = React.createClass({
     var _this = this;
     AsyncStorage.getItem("authData").then((value) => {
       if(value) {
-        //_this.setState({loading: false});
-        _this.login(JSON.parse(value));
+        _this.login(value);
       } else {
         _this.setState({loading: false});
       }
@@ -119,26 +118,26 @@ var Trybe = React.createClass({
     });
   },
   render: function() {
-    if(this.state.loading) {
-      return (
-        <View style={styles.loadingContainer}>
-        <Text>Logging In</Text>
-        <ActivityIndicatorIOS
-          animating={this.state.animating}
-          style={[styles.centering, {height: 80}]}
-          size="large"
-        />
-        </View>
-      );
-    }
-    var login = (
-      <View style={styles.loginContainer}>
-        <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
-          <Text>Login</Text>
-        </TouchableHighlight>
-      </View>);
+    // if(this.state.loading) {
+    //   return (
+    //     <View style={styles.loadingContainer}>
+    //     <Text>Logging In</Text>
+    //     <ActivityIndicatorIOS
+    //       animating={this.state.animating}
+    //       style={[styles.centering, {height: 80}]}
+    //       size="large"
+    //     />
+    //     </View>
+    //   );
+    // }
+    // var login = (
+    //   <View style={styles.loginContainer}>
+    //     <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
+    //       <Text>Login</Text>
+    //     </TouchableHighlight>
+    //   </View>);
 
-    return !this.state.authData ? login : (
+    return (
       /* jshint ignore:start */
       <View style={styles.container}>
 
