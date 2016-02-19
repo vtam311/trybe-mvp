@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-18 18:47:15
+* @Last Modified time: 2016-02-19 10:19:15
 */
 
 'use strict';
@@ -31,6 +31,8 @@ var Log = React.createClass({
       workouts: logStore.getWorkouts(),
       calendarMonthAndYear: logStore.getMonthAndYear(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
+      visibleHeight: Dimensions.get('window').height,
+      visibleWidth: Dimensions.get('window').width,
     };
   },
   componentDidMount: function(){
@@ -49,15 +51,46 @@ var Log = React.createClass({
   },
   handleScroll: function(event: Object) {
     var horizontalOffset = event.nativeEvent.contentOffset.x;
-    var newCurrPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
-    viewWorkoutActions.setCurrPartIdx(newCurrPartIdx);
+    console.log('horizontalOffset', horizontalOffset);
+    //compare old x offset with new. if increase, use logic from onNext. if decrease, use logic from onPrev
+    // var newCurrPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    // viewWorkoutActions.setCurrPartIdx(newCurrPartIdx);
   },
 
 
   render: function(){
+    //Build array of date objects representing last 12 months
+    var dates = [];
+    var currMonth = this.state.calendarMonthAndYear.month;
+    var currYear = this.state.calendarMonthAndYear.year;
+    var lastMonthVal = this.state.calendarMonthAndYear.month;
+
+    for(var i = 0; i < 12; i++){
+      if(lastMonthVal === 11){
+        lastMonthVal = -1;
+      }
+      var newMonthVal = lastMonthVal + 1;
+      var newYearVal;
+      if(newMonthVal > currMonth){
+        newYearVal = currYear - 1;
+      } else {
+        newYearVal = currYear;
+      }
+      dates.push({
+        month: newMonthVal,
+        year: newYearVal
+      });
+      lastMonthVal++;
+    }
+
+    //for each month/year object, create a monthOverview
+    var lastTwelveMonthOverviews = dates.map((date, index) =>
+      <MonthOverview date={date} key={index} width={this.state.visibleWidth}/>
+    );
+
     return (
       /* jshint ignore:start */
-      <View style={styles.container}>
+      <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
         <View style={styles.monthScrollContainer}>
           <ScrollView
             ref="monthScroll"
@@ -65,12 +98,12 @@ var Log = React.createClass({
             pagingEnabled={true}
             onScroll={this.handleScroll}
             scrollEventThrottle={256}
-            showsHorizontalScrollIndicator={false}
-            contentOffset={{x: this.state.currPartIdx * this.state.visibleWidth}} >
+            showsHorizontalScrollIndicator={false} >
 
-            <MonthOverview />
+            {lastTwelveMonthOverviews}
 
           </ScrollView>
+
         </View>
 
         <View style={styles.monthlyContentContainer}>
@@ -94,10 +127,10 @@ var styles = StyleSheet.create({
     backgroundColor: 'rgba(141, 134, 126, .2)',
   },
   monthScrollContainer: {
-    flex: .2,
+    flex: .5,
   },
   monthlyContentContainer: {
-    flex: .8,
+    flex: .5,
   },
 });
 
