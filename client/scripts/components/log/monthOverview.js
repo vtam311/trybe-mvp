@@ -1,8 +1,8 @@
 /*
 * @Author: vincetam
 * @Date:   2016-02-18 12:55:07
-* @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-19 11:30:43
+* @Last Modified by:   VINCE
+* @Last Modified time: 2016-02-19 11:33:41
 */
 
 'use strict';
@@ -61,7 +61,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'rgba(255, 255, 255, .85)',
+    backgroundColor: 'rgba(255, 255, 255, .95)',
     borderTopWidth: .5,
     borderBottomWidth: .5,
     borderColor: '#979797',
