@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-18 13:05:58
+* @Last Modified time: 2016-02-18 18:47:15
 */
 
 'use strict';
@@ -18,17 +18,17 @@ var MonthOverview = require('./monthOverview');
 var LogWorkouts = require('./logWorkouts');
 
 var {
+  ScrollView,
+  Dimensions,
   StyleSheet,
   Text,
   View,
-  ScrollView,
 } = React;
 
 var Log = React.createClass({
   getInitialState: function(){
     return {
       workouts: logStore.getWorkouts(),
-      isShowingCalendar: logStore.getIsShowingCalendar(),
       calendarMonthAndYear: logStore.getMonthAndYear(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
     };
@@ -43,12 +43,15 @@ var Log = React.createClass({
   _onChange: function(){
     this.setState({
       workouts: logStore.getWorkouts(),
-      isShowingCalendar: logStore.getIsShowingCalendar(),
       calendarMonthAndYear: logStore.getMonthAndYear(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
     });
   },
-
+  handleScroll: function(event: Object) {
+    var horizontalOffset = event.nativeEvent.contentOffset.x;
+    var newCurrPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    viewWorkoutActions.setCurrPartIdx(newCurrPartIdx);
+  },
 
 
   render: function(){
@@ -56,14 +59,25 @@ var Log = React.createClass({
       /* jshint ignore:start */
       <View style={styles.container}>
         <View style={styles.monthScrollContainer}>
-          <MonthOverview />
+          <ScrollView
+            ref="monthScroll"
+            horizontal={true}
+            pagingEnabled={true}
+            onScroll={this.handleScroll}
+            scrollEventThrottle={256}
+            showsHorizontalScrollIndicator={false}
+            contentOffset={{x: this.state.currPartIdx * this.state.visibleWidth}} >
+
+            <MonthOverview />
+
+          </ScrollView>
         </View>
 
         <View style={styles.monthlyContentContainer}>
           <ScrollView>
             <LogWorkouts
               workouts={this.state.workouts}
-              isShowingCalendar={this.state.isShowingCalendar}
+
               currMonthWorkouts={this.state.currMonthWorkouts}
               goToScene={this.props.goToScene} />
           </ScrollView>

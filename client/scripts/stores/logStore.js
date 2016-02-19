@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-12 11:02:13
+* @Last Modified time: 2016-02-18 18:49:15
 */
 
 'use strict';
@@ -19,7 +19,6 @@ var sortByDate = require('../common/sortByDate');
 var _store = {
   workouts: [],
   currMonthWorkouts: [],
-  isShowingCalendar: false,
   calendarDate: {
     month: new Date().getMonth(),
     year: new Date().getFullYear()
@@ -118,12 +117,6 @@ var setCurrMonthWorkouts = function(){
   sortWorkouts(_store.currMonthWorkouts);
 };
 
-var setIsShowingCalendar = function(data){
-  var bool = data.bool;
-  _store.isShowingCalendar = bool;
-  console.log('logStore setIsShowingCalendar set _store.isShowingCalendar to', _store.isShowingCalendar);
-};
-
 var logStore = Object.assign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
@@ -139,9 +132,6 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   },
   getMonthAndYear: function(){
     return _store.calendarDate;
-  },
-  getIsShowingCalendar: function(){
-    return _store.isShowingCalendar;
   }
 });
 
@@ -161,10 +151,6 @@ AppDispatcher.register(function(payload){
     case logConstants.SET_CALENDAR_MONTH_AND_YEAR:
       setCalendarMonthAndYear(action.data);
       setCurrMonthWorkouts();
-      logStore.emit(CHANGE_EVENT);
-      break;
-    case logConstants.SET_IS_SHOWING_CALENDAR:
-      setIsShowingCalendar(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
     default:

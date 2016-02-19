@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-11 09:16:20
+* @Last Modified time: 2016-02-18 18:48:48
 */
 
 'use strict';
@@ -70,14 +70,6 @@ var logActions = {
       data: {
         month: month,
         year: year
-      }
-    });
-  },
-  setIsShowingCalendar: function(bool){
-    AppDispatcher.handleAction({
-      actionType: logConstants.SET_IS_SHOWING_CALENDAR,
-      data: {
-        bool: bool
       }
     });
   },
