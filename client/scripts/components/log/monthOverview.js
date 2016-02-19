@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-18 12:55:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-19 11:25:43
+* @Last Modified time: 2016-02-19 11:30:43
 */
 
 'use strict';
@@ -40,7 +40,7 @@ var MonthOverview = React.createClass({
 
             <View style={styles.bottomContainer}>
               <View style={styles.metricContainer}>
-                <Text style={styles.metricText}>18</Text>
+                <Text style={styles.metricText}>{this.props.numWorkouts}</Text>
                 <Image source={require('image!loggedIcon')} style={{width: 26, height: 26}} />
               </View>
               <View style={styles.metricContainer}>
