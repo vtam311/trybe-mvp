@@ -2,7 +2,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 14:07:47
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-18 18:48:48
+* @Last Modified time: 2016-02-19 11:16:40
 */
 
 'use strict';
@@ -64,12 +64,11 @@ var logActions = {
       }
     });
   },
-  setCalendarMonthAndYear: function(month, year){
+  setCurrViewingMonth: function(idx){
     AppDispatcher.handleAction({
-      actionType: logConstants.SET_CALENDAR_MONTH_AND_YEAR,
+      actionType: logConstants.SET_CURR_VIEWING_MONTH,
       data: {
-        month: month,
-        year: year
+        idx: idx
       }
     });
   },

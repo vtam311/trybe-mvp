@@ -1,8 +1,8 @@
 /*
 * @Author: VINCE
 * @Date:   2015-09-25 14:20:07
-* @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-18 18:49:15
+* @Last Modified by:   vincetam
+* @Last Modified time: 2016-02-19 11:17:46
 */
 
 'use strict';
@@ -18,12 +18,43 @@ var sortByDate = require('../common/sortByDate');
 
 var _store = {
   workouts: [],
-  currMonthWorkouts: [],
-  calendarDate: {
+  currViewingMonth: {
     month: new Date().getMonth(),
     year: new Date().getFullYear()
-  }
+  },
+  lastTwelveMonths: null,
+  currMonthWorkouts: [],
 };
+
+var setLastTwelveMonths = function(){
+  var dates = [];
+  var currMonth = _store.currViewingMonth.month;
+  var currYear = _store.currViewingMonth.year;
+  var lastMonthVal = _store.currViewingMonth.month;
+
+  for(var i = 0; i < 12; i++){
+    if(lastMonthVal === 11){
+      lastMonthVal = -1;
+    }
+    var newMonthVal = lastMonthVal + 1;
+    var newYearVal;
+    if(newMonthVal > currMonth){
+      newYearVal = currYear - 1;
+    } else {
+      newYearVal = currYear;
+    }
+    dates.push({
+      month: newMonthVal,
+      year: newYearVal
+    });
+    lastMonthVal++;
+  }
+
+  _store.lastTwelveMonths = dates;
+};
+
+setLastTwelveMonths();
+
 
 var setWorkouts = function(data){
   //If workouts already exist in store,
@@ -98,17 +129,15 @@ var addWorkoutPart = function(data){
   }
 };
 
-var setCalendarMonthAndYear = function(data){
-  var month = data.month;
-  var year = data.year;
-  _store.calendarDate.month = month;
-  _store.calendarDate.year = year;
+var setCurrViewingMonth = function(data){
+  var idx = data.idx;
+  _store.currViewingMonth = _store.lastTwelveMonths[idx];
 };
 
 var setCurrMonthWorkouts = function(){
   var isSameMonth = function(workout){
     var workoutMonth = workout.date.getMonth();
-    if(workoutMonth === _store.calendarDate.month){
+    if(workoutMonth === _store.currViewingMonth.month){
       return true;
     } else return false;
   };
@@ -130,8 +159,11 @@ var logStore = Object.assign({}, EventEmitter.prototype, {
   getCurrMonthWorkouts: function(){
     return _store.currMonthWorkouts;
   },
-  getMonthAndYear: function(){
-    return _store.calendarDate;
+  getCurrViewingMonth: function(){
+    return _store.currViewingMonth;
+  },
+  getLastTwelveMonths: function(){
+    return _store.lastTwelveMonths;
   }
 });
 
@@ -148,8 +180,8 @@ AppDispatcher.register(function(payload){
       addWorkoutPart(action.data);
       logStore.emit(CHANGE_EVENT);
       break;
-    case logConstants.SET_CALENDAR_MONTH_AND_YEAR:
-      setCalendarMonthAndYear(action.data);
+    case logConstants.SET_CURR_VIEWING_MONTH:
+      setCurrViewingMonth(action.data);
       setCurrMonthWorkouts();
       logStore.emit(CHANGE_EVENT);
       break;

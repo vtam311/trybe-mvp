@@ -2,7 +2,7 @@
 * @Author: vincetam
 * @Date:   2016-02-18 12:55:07
 * @Last Modified by:   vincetam
-* @Last Modified time: 2016-02-19 10:37:29
+* @Last Modified time: 2016-02-19 10:41:59
 */
 
 'use strict';
@@ -30,7 +30,7 @@ var MonthOverview = React.createClass({
           <View style={styles.content}>
 
             <View style={styles.topContainer}>
-              <Text style={styles.monthText}>February 2016</Text>
+              <Text style={styles.monthText}>{this.props.date.month} {this.props.date.year}</Text>
             </View>
 
             <View style={styles.centerContainer}>

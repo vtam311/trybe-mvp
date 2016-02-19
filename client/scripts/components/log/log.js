@@ -4,7 +4,7 @@
 * @Author: VINCE
 * @Date:   2015-09-25 11:45:27
 * @Last Modified by:   VINCE
-* @Last Modified time: 2016-02-19 10:39:48
+* @Last Modified time: 2016-02-19 11:21:09
 */
 
 'use strict';
@@ -29,9 +29,9 @@ var Log = React.createClass({
   getInitialState: function(){
     return {
       workouts: logStore.getWorkouts(),
-      calendarMonthAndYear: logStore.getMonthAndYear(),
+      lastTwelveMonths: logStore.getLastTwelveMonths(),
+      currViewingMonth: logStore.getCurrViewingMonth(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
-      visibleHeight: Dimensions.get('window').height,
       visibleWidth: Dimensions.get('window').width,
     };
   },
@@ -45,52 +45,28 @@ var Log = React.createClass({
   _onChange: function(){
     this.setState({
       workouts: logStore.getWorkouts(),
-      calendarMonthAndYear: logStore.getMonthAndYear(),
+      currViewingMonth: logStore.getCurrViewingMonth(),
       currMonthWorkouts: logStore.getCurrMonthWorkouts(),
     });
   },
   handleScroll: function(event: Object) {
     var horizontalOffset = event.nativeEvent.contentOffset.x;
-    console.log('horizontalOffset', horizontalOffset);
-    //compare old x offset with new. if increase, use logic from onNext. if decrease, use logic from onPrev
-    // var newCurrPartIdx = Math.round(horizontalOffset/this.state.visibleWidth);
-    // viewWorkoutActions.setCurrPartIdx(newCurrPartIdx);
+    var currDateIdx = Math.round(horizontalOffset/this.state.visibleWidth);
+    console.log('currDateIdx', currDateIdx);
+
+    logActions.setCurrViewingMonth(currDateIdx);
   },
 
 
   render: function(){
-    //Build array of date objects representing last 12 months
-    var dates = [];
-    var currMonth = this.state.calendarMonthAndYear.month;
-    var currYear = this.state.calendarMonthAndYear.year;
-    var lastMonthVal = this.state.calendarMonthAndYear.month;
-
-    for(var i = 0; i < 12; i++){
-      if(lastMonthVal === 11){
-        lastMonthVal = -1;
-      }
-      var newMonthVal = lastMonthVal + 1;
-      var newYearVal;
-      if(newMonthVal > currMonth){
-        newYearVal = currYear - 1;
-      } else {
-        newYearVal = currYear;
-      }
-      dates.push({
-        month: newMonthVal,
-        year: newYearVal
-      });
-      lastMonthVal++;
-    }
-
     //for each month/year object, create a monthOverview
-    var lastTwelveMonthOverviews = dates.map((date, index) =>
+    var lastTwelveMonthOverviews = this.state.lastTwelveMonths.map((date, index) =>
       <MonthOverview date={date} key={index} width={this.state.visibleWidth}/>
     );
 
     return (
       /* jshint ignore:start */
-      <View style={[styles.container, {height: this.state.visibleHeight, width: this.state.visibleWidth}]}>
+      <View style={[styles.container]}>
         <View style={styles.monthScrollContainer}>
           <ScrollView
             ref="monthScroll"
