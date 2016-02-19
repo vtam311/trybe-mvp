@@ -57,15 +57,15 @@ var Trybe = React.createClass({
     };
   },
   componentWillMount: function() {
-    // this.rootNavListener = new EventEmitter();
-    // var _this = this;
-    // AsyncStorage.getItem("authData").then((value) => {
-    //   if(value) {
-    //     _this.login(value);
-    //   } else {
-    //     _this.setState({loading: false});
-    //   }
-    // }).done();
+    this.rootNavListener = new EventEmitter();
+    var _this = this;
+    AsyncStorage.getItem("authData").then((value) => {
+      if(value) {
+        _this.login(value);
+      } else {
+        _this.setState({loading: false});
+      }
+    }).done();
   },
   componentDidMount: function() {
     modalStore.addChangeListener(this._onChange);
@@ -118,26 +118,26 @@ var Trybe = React.createClass({
     });
   },
   render: function() {
-    // if(this.state.loading) {
-    //   return (
-    //     <View style={styles.loadingContainer}>
-    //     <Text>Logging In</Text>
-    //     <ActivityIndicatorIOS
-    //       animating={this.state.animating}
-    //       style={[styles.centering, {height: 80}]}
-    //       size="large"
-    //     />
-    //     </View>
-    //   );
-    // }
-    // var login = (
-    //   <View style={styles.loginContainer}>
-    //     <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
-    //       <Text>Login</Text>
-    //     </TouchableHighlight>
-    //   </View>);
+    if(this.state.loading) {
+      return (
+        <View style={styles.loadingContainer}>
+        <Text>Logging In</Text>
+        <ActivityIndicatorIOS
+          animating={this.state.animating}
+          style={[styles.centering, {height: 80}]}
+          size="large"
+        />
+        </View>
+      );
+    }
+    var login = (
+      <View style={styles.loginContainer}>
+        <TouchableHighlight style={styles.loginButton} onPress={this.showLock}>
+          <Text>Login</Text>
+        </TouchableHighlight>
+      </View>);
 
-    return (
+    return !this.state.authData ? login : (
       /* jshint ignore:start */
       <View style={styles.container}>
 
